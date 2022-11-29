@@ -5,6 +5,7 @@ from Formance.apis.tags.accounts_api import AccountsApi
 from Formance.apis.tags.balances_api import BalancesApi
 from Formance.apis.tags.clients_api import ClientsApi
 from Formance.apis.tags.mapping_api import MappingApi
+from Formance.apis.tags.payments_api import PaymentsApi
 from Formance.apis.tags.scopes_api import ScopesApi
 from Formance.apis.tags.script_api import ScriptApi
 from Formance.apis.tags.search_api import SearchApi
@@ -21,6 +22,7 @@ TagToApi = typing_extensions.TypedDict(
         TagValues.BALANCES: BalancesApi,
         TagValues.CLIENTS: ClientsApi,
         TagValues.MAPPING: MappingApi,
+        TagValues.PAYMENTS: PaymentsApi,
         TagValues.SCOPES: ScopesApi,
         TagValues.SCRIPT: ScriptApi,
         TagValues.SEARCH: SearchApi,
@@ -38,6 +40,7 @@ tag_to_api = TagToApi(
         TagValues.BALANCES: BalancesApi,
         TagValues.CLIENTS: ClientsApi,
         TagValues.MAPPING: MappingApi,
+        TagValues.PAYMENTS: PaymentsApi,
         TagValues.SCOPES: ScopesApi,
         TagValues.SCRIPT: ScriptApi,
         TagValues.SEARCH: SearchApi,

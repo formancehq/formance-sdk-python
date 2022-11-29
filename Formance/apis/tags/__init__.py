@@ -10,6 +10,7 @@ class TagValues(str, enum.Enum):
     BALANCES = "Balances"
     CLIENTS = "Clients"
     MAPPING = "Mapping"
+    PAYMENTS = "Payments"
     SCOPES = "Scopes"
     SCRIPT = "Script"
     SEARCH = "Search"
