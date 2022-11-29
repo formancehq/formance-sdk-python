@@ -25,6 +25,15 @@ from Formance.apis.paths.api_ledger_ledger_transactions_txid_revert import ApiLe
 from Formance.apis.paths.api_ledger_ledger_transactions_batch import ApiLedgerLedgerTransactionsBatch
 from Formance.apis.paths.api_ledger_ledger_balances import ApiLedgerLedgerBalances
 from Formance.apis.paths.api_ledger_ledger_aggregate_balances import ApiLedgerLedgerAggregateBalances
+from Formance.apis.paths.api_payments_payments import ApiPaymentsPayments
+from Formance.apis.paths.api_payments_payments_payment_id import ApiPaymentsPaymentsPaymentId
+from Formance.apis.paths.api_payments_connectors import ApiPaymentsConnectors
+from Formance.apis.paths.api_payments_connectors_configs import ApiPaymentsConnectorsConfigs
+from Formance.apis.paths.api_payments_connectors_connector import ApiPaymentsConnectorsConnector
+from Formance.apis.paths.api_payments_connectors_connector_config import ApiPaymentsConnectorsConnectorConfig
+from Formance.apis.paths.api_payments_connectors_connector_reset import ApiPaymentsConnectorsConnectorReset
+from Formance.apis.paths.api_payments_connectors_connector_tasks import ApiPaymentsConnectorsConnectorTasks
+from Formance.apis.paths.api_payments_connectors_connector_tasks_task_id import ApiPaymentsConnectorsConnectorTasksTaskId
 from Formance.apis.paths.api_search_ import ApiSearch
 from Formance.apis.paths.api_webhooks_configs import ApiWebhooksConfigs
 from Formance.apis.paths.api_webhooks_configs_id import ApiWebhooksConfigsId
@@ -59,6 +68,15 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_LEDGER_LEDGER_TRANSACTIONS_BATCH: ApiLedgerLedgerTransactionsBatch,
         PathValues.API_LEDGER_LEDGER_BALANCES: ApiLedgerLedgerBalances,
         PathValues.API_LEDGER_LEDGER_AGGREGATE_BALANCES: ApiLedgerLedgerAggregateBalances,
+        PathValues.API_PAYMENTS_PAYMENTS: ApiPaymentsPayments,
+        PathValues.API_PAYMENTS_PAYMENTS_PAYMENT_ID: ApiPaymentsPaymentsPaymentId,
+        PathValues.API_PAYMENTS_CONNECTORS: ApiPaymentsConnectors,
+        PathValues.API_PAYMENTS_CONNECTORS_CONFIGS: ApiPaymentsConnectorsConfigs,
+        PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR: ApiPaymentsConnectorsConnector,
+        PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR_CONFIG: ApiPaymentsConnectorsConnectorConfig,
+        PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR_RESET: ApiPaymentsConnectorsConnectorReset,
+        PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR_TASKS: ApiPaymentsConnectorsConnectorTasks,
+        PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR_TASKS_TASK_ID: ApiPaymentsConnectorsConnectorTasksTaskId,
         PathValues.API_SEARCH_: ApiSearch,
         PathValues.API_WEBHOOKS_CONFIGS: ApiWebhooksConfigs,
         PathValues.API_WEBHOOKS_CONFIGS_ID: ApiWebhooksConfigsId,
@@ -94,6 +112,15 @@ path_to_api = PathToApi(
         PathValues.API_LEDGER_LEDGER_TRANSACTIONS_BATCH: ApiLedgerLedgerTransactionsBatch,
         PathValues.API_LEDGER_LEDGER_BALANCES: ApiLedgerLedgerBalances,
         PathValues.API_LEDGER_LEDGER_AGGREGATE_BALANCES: ApiLedgerLedgerAggregateBalances,
+        PathValues.API_PAYMENTS_PAYMENTS: ApiPaymentsPayments,
+        PathValues.API_PAYMENTS_PAYMENTS_PAYMENT_ID: ApiPaymentsPaymentsPaymentId,
+        PathValues.API_PAYMENTS_CONNECTORS: ApiPaymentsConnectors,
+        PathValues.API_PAYMENTS_CONNECTORS_CONFIGS: ApiPaymentsConnectorsConfigs,
+        PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR: ApiPaymentsConnectorsConnector,
+        PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR_CONFIG: ApiPaymentsConnectorsConnectorConfig,
+        PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR_RESET: ApiPaymentsConnectorsConnectorReset,
+        PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR_TASKS: ApiPaymentsConnectorsConnectorTasks,
+        PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR_TASKS_TASK_ID: ApiPaymentsConnectorsConnectorTasksTaskId,
         PathValues.API_SEARCH_: ApiSearch,
         PathValues.API_WEBHOOKS_CONFIGS: ApiWebhooksConfigs,
         PathValues.API_WEBHOOKS_CONFIGS_ID: ApiWebhooksConfigsId,
