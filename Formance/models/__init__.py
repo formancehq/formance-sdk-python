@@ -16,11 +16,17 @@ from Formance.model.account_with_volumes_and_balances import AccountWithVolumesA
 from Formance.model.accounts_balances import AccountsBalances
 from Formance.model.aggregated_volumes import AggregatedVolumes
 from Formance.model.assets_balances import AssetsBalances
+from Formance.model.attempt import Attempt
+from Formance.model.attempt_response import AttemptResponse
 from Formance.model.banking_circle_config import BankingCircleConfig
 from Formance.model.client import Client
 from Formance.model.client_options import ClientOptions
 from Formance.model.client_secret import ClientSecret
 from Formance.model.config import Config
+from Formance.model.config_activated import ConfigActivated
+from Formance.model.config_activated_response import ConfigActivatedResponse
+from Formance.model.config_deactivated import ConfigDeactivated
+from Formance.model.config_deactivated_response import ConfigDeactivatedResponse
 from Formance.model.config_info import ConfigInfo
 from Formance.model.config_info_response import ConfigInfoResponse
 from Formance.model.config_user import ConfigUser
@@ -82,6 +88,5 @@ from Formance.model.update_scope_response import UpdateScopeResponse
 from Formance.model.user import User
 from Formance.model.volume import Volume
 from Formance.model.volumes import Volumes
-from Formance.model.webhooks_config import WebhooksConfig
 from Formance.model.webhooks_cursor import WebhooksCursor
 from Formance.model.wise_config import WiseConfig

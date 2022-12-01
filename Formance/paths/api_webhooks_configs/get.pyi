@@ -25,7 +25,7 @@ import frozendict  # noqa: F401
 
 from Formance import schemas  # noqa: F401
 
-from Formance.model.webhooks_config import WebhooksConfig
+from Formance.model.config_activated import ConfigActivated
 from Formance.model.webhooks_cursor import WebhooksCursor
 
 # Query params
@@ -106,12 +106,12 @@ class SchemaFor200ResponseBodyApplicationJson(
                                     class MetaOapg:
                                         
                                         @staticmethod
-                                        def items() -> typing.Type['WebhooksConfig']:
-                                            return WebhooksConfig
+                                        def items() -> typing.Type['ConfigActivated']:
+                                            return ConfigActivated
                                 
                                     def __new__(
                                         cls,
-                                        _arg: typing.Union[typing.Tuple['WebhooksConfig'], typing.List['WebhooksConfig']],
+                                        _arg: typing.Union[typing.Tuple['ConfigActivated'], typing.List['ConfigActivated']],
                                         _configuration: typing.Optional[schemas.Configuration] = None,
                                     ) -> 'data':
                                         return super().__new__(
@@ -120,7 +120,7 @@ class SchemaFor200ResponseBodyApplicationJson(
                                             _configuration=_configuration,
                                         )
                                 
-                                    def __getitem__(self, i: int) -> 'WebhooksConfig':
+                                    def __getitem__(self, i: int) -> 'ConfigActivated':
                                         return super().__getitem__(i)
                                 __annotations__ = {
                                     "data": data,

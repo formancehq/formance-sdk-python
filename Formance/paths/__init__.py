@@ -42,6 +42,7 @@ class PathValues(str, enum.Enum):
     API_SEARCH_ = "/api/search/"
     API_WEBHOOKS_CONFIGS = "/api/webhooks/configs"
     API_WEBHOOKS_CONFIGS_ID = "/api/webhooks/configs/{id}"
+    API_WEBHOOKS_CONFIGS_ID_TEST = "/api/webhooks/configs/{id}/test"
     API_WEBHOOKS_CONFIGS_ID_ACTIVATE = "/api/webhooks/configs/{id}/activate"
     API_WEBHOOKS_CONFIGS_ID_DEACTIVATE = "/api/webhooks/configs/{id}/deactivate"
     API_WEBHOOKS_CONFIGS_ID_SECRET_CHANGE = "/api/webhooks/configs/{id}/secret/change"
