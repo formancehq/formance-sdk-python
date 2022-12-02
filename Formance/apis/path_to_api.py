@@ -37,6 +37,7 @@ from Formance.apis.paths.api_payments_connectors_connector_tasks_task_id import 
 from Formance.apis.paths.api_search_ import ApiSearch
 from Formance.apis.paths.api_webhooks_configs import ApiWebhooksConfigs
 from Formance.apis.paths.api_webhooks_configs_id import ApiWebhooksConfigsId
+from Formance.apis.paths.api_webhooks_configs_id_test import ApiWebhooksConfigsIdTest
 from Formance.apis.paths.api_webhooks_configs_id_activate import ApiWebhooksConfigsIdActivate
 from Formance.apis.paths.api_webhooks_configs_id_deactivate import ApiWebhooksConfigsIdDeactivate
 from Formance.apis.paths.api_webhooks_configs_id_secret_change import ApiWebhooksConfigsIdSecretChange
@@ -80,6 +81,7 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_SEARCH_: ApiSearch,
         PathValues.API_WEBHOOKS_CONFIGS: ApiWebhooksConfigs,
         PathValues.API_WEBHOOKS_CONFIGS_ID: ApiWebhooksConfigsId,
+        PathValues.API_WEBHOOKS_CONFIGS_ID_TEST: ApiWebhooksConfigsIdTest,
         PathValues.API_WEBHOOKS_CONFIGS_ID_ACTIVATE: ApiWebhooksConfigsIdActivate,
         PathValues.API_WEBHOOKS_CONFIGS_ID_DEACTIVATE: ApiWebhooksConfigsIdDeactivate,
         PathValues.API_WEBHOOKS_CONFIGS_ID_SECRET_CHANGE: ApiWebhooksConfigsIdSecretChange,
@@ -124,6 +126,7 @@ path_to_api = PathToApi(
         PathValues.API_SEARCH_: ApiSearch,
         PathValues.API_WEBHOOKS_CONFIGS: ApiWebhooksConfigs,
         PathValues.API_WEBHOOKS_CONFIGS_ID: ApiWebhooksConfigsId,
+        PathValues.API_WEBHOOKS_CONFIGS_ID_TEST: ApiWebhooksConfigsIdTest,
         PathValues.API_WEBHOOKS_CONFIGS_ID_ACTIVATE: ApiWebhooksConfigsIdActivate,
         PathValues.API_WEBHOOKS_CONFIGS_ID_DEACTIVATE: ApiWebhooksConfigsIdDeactivate,
         PathValues.API_WEBHOOKS_CONFIGS_ID_SECRET_CHANGE: ApiWebhooksConfigsIdSecretChange,
