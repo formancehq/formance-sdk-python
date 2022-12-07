@@ -25,8 +25,8 @@ import frozendict  # noqa: F401
 
 from Formance import schemas  # noqa: F401
 
-from Formance.model.post_transaction import PostTransaction
 from Formance.model.transactions_response import TransactionsResponse
+from Formance.model.transaction_data import TransactionData
 
 from . import path
 
@@ -83,10 +83,10 @@ request_path_ledger = api_client.PathParameter(
     required=True,
 )
 # body param
-SchemaForRequestBodyApplicationJson = PostTransaction
+SchemaForRequestBodyApplicationJson = TransactionData
 
 
-request_body_post_transaction = api_client.RequestBody(
+request_body_transaction_data = api_client.RequestBody(
     content={
         'application/json': api_client.MediaType(
             schema=SchemaForRequestBodyApplicationJson),
@@ -113,6 +113,25 @@ _response_for_200 = api_client.OpenApiResponse(
     content={
         'application/json': api_client.MediaType(
             schema=SchemaFor200ResponseBodyApplicationJson),
+    },
+)
+SchemaFor304ResponseBodyApplicationJson = TransactionsResponse
+
+
+@dataclass
+class ApiResponseFor304(api_client.ApiResponse):
+    response: urllib3.HTTPResponse
+    body: typing.Union[
+        SchemaFor304ResponseBodyApplicationJson,
+    ]
+    headers: schemas.Unset = schemas.unset
+
+
+_response_for_304 = api_client.OpenApiResponse(
+    response_cls=ApiResponseFor304,
+    content={
+        'application/json': api_client.MediaType(
+            schema=SchemaFor304ResponseBodyApplicationJson),
     },
 )
 
@@ -283,6 +302,7 @@ _response_for_409 = api_client.OpenApiResponse(
 )
 _status_code_to_response = {
     '200': _response_for_200,
+    '304': _response_for_304,
     '400': _response_for_400,
     '409': _response_for_409,
 }
@@ -410,7 +430,7 @@ class BaseApi(api_client.Api):
                 'The required body parameter has an invalid value of: unset. Set a valid value instead')
         _fields = None
         _body = None
-        serialized_data = request_body_post_transaction.serialize(body, content_type)
+        serialized_data = request_body_transaction_data.serialize(body, content_type)
         _headers.add('Content-Type', content_type)
         if 'fields' in serialized_data:
             _fields = serialized_data['fields']

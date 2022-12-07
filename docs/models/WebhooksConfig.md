@@ -8,6 +8,7 @@ dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal
 ### Dictionary Keys
 Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
+**id** | str, uuid.UUID,  | str,  |  | [optional] value must be a uuid
 **endpoint** | str,  | str,  |  | [optional] 
 **secret** | str,  | str,  |  | [optional] 
 **[eventTypes](#eventTypes)** | list, tuple,  | tuple,  |  | [optional] 
