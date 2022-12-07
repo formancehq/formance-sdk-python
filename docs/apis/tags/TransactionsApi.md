@@ -40,9 +40,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -128,6 +128,7 @@ n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization i
 204 | [ApiResponseFor204](#add_metadata_on_transaction.ApiResponseFor204) | No Content
 400 | [ApiResponseFor400](#add_metadata_on_transaction.ApiResponseFor400) | Bad Request
 404 | [ApiResponseFor404](#add_metadata_on_transaction.ApiResponseFor404) | Not Found
+409 | [ApiResponseFor409](#add_metadata_on_transaction.ApiResponseFor409) | Conflict
 
 #### add_metadata_on_transaction.ApiResponseFor204
 Name | Type | Description  | Notes
@@ -178,6 +179,27 @@ Key | Input Type | Accessed Type | Description | Notes
 **error_message** | str,  | str,  |  | [optional] 
 **any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
+#### add_metadata_on_transaction.ApiResponseFor409
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor409ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor409ResponseBodyApplicationJson
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
+
+### Dictionary Keys
+Key | Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | ------------- | -------------
+**error_code** | str,  | str,  |  | 
+**error_message** | str,  | str,  |  | [optional] 
+**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
+
 ### Authorization
 
 [Authorization](../../../README.md#Authorization)
@@ -210,9 +232,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -359,7 +381,7 @@ decimal.Decimal, int,  | decimal.Decimal,  |  |
 
 # **create_transaction**
 <a name="create_transaction"></a>
-> TransactionsResponse create_transaction(ledgerpost_transaction)
+> TransactionsResponse create_transaction(ledgertransaction_data)
 
 Create a new transaction to a ledger.
 
@@ -369,8 +391,8 @@ Create a new transaction to a ledger.
 ```python
 import Formance
 from Formance.apis.tags import transactions_api
-from Formance.model.post_transaction import PostTransaction
 from Formance.model.transactions_response import TransactionsResponse
+from Formance.model.transaction_data import TransactionData
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -385,9 +407,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -399,7 +421,7 @@ with Formance.ApiClient(configuration) as api_client:
     }
     query_params = {
     }
-    body = PostTransaction(
+    body = TransactionData(
         timestamp="1970-01-01T00:00:00.00Z",
         postings=[
             Posting(
@@ -409,10 +431,6 @@ with Formance.ApiClient(configuration) as api_client:
                 source="users:001",
             )
         ],
-        script=dict(
-            plain="vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
-            vars=dict(),
-        ),
         reference="ref:001",
         metadata=LedgerMetadata(
             key=None,
@@ -436,7 +454,7 @@ with Formance.ApiClient(configuration) as api_client:
     query_params = {
         'preview': True,
     }
-    body = PostTransaction(
+    body = TransactionData(
         timestamp="1970-01-01T00:00:00.00Z",
         postings=[
             Posting(
@@ -446,10 +464,6 @@ with Formance.ApiClient(configuration) as api_client:
                 source="users:001",
             )
         ],
-        script=dict(
-            plain="vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
-            vars=dict(),
-        ),
         reference="ref:001",
         metadata=LedgerMetadata(
             key=None,
@@ -484,7 +498,7 @@ skip_deserialization | bool | default is False | when True, headers and body wil
 # SchemaForRequestBodyApplicationJson
 Type | Description  | Notes
 ------------- | ------------- | -------------
-[**PostTransaction**](../../models/PostTransaction.md) |  | 
+[**TransactionData**](../../models/TransactionData.md) |  | 
 
 
 ### query_params
@@ -522,6 +536,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#create_transaction.ApiResponseFor200) | OK
+304 | [ApiResponseFor304](#create_transaction.ApiResponseFor304) | Not modified (when preview is enabled)
 400 | [ApiResponseFor400](#create_transaction.ApiResponseFor400) | Bad Request
 409 | [ApiResponseFor409](#create_transaction.ApiResponseFor409) | Conflict
 
@@ -533,6 +548,19 @@ body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**TransactionsResponse**](../../models/TransactionsResponse.md) |  | 
+
+
+#### create_transaction.ApiResponseFor304
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor304ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor304ResponseBodyApplicationJson
 Type | Description  | Notes
 ------------- | ------------- | -------------
 [**TransactionsResponse**](../../models/TransactionsResponse.md) |  | 
@@ -614,9 +642,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -786,9 +814,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -940,9 +968,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -1223,9 +1251,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -1285,6 +1313,7 @@ n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization i
 200 | [ApiResponseFor200](#revert_transaction.ApiResponseFor200) | OK
 400 | [ApiResponseFor400](#revert_transaction.ApiResponseFor400) | Bad Request
 404 | [ApiResponseFor404](#revert_transaction.ApiResponseFor404) | Not Found
+409 | [ApiResponseFor409](#revert_transaction.ApiResponseFor409) | Conflict
 
 #### revert_transaction.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1328,6 +1357,27 @@ body | typing.Union[SchemaFor404ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
 # SchemaFor404ResponseBodyApplicationJson
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
+
+### Dictionary Keys
+Key | Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | ------------- | -------------
+**error_code** | str,  | str,  |  | 
+**error_message** | str,  | str,  |  | [optional] 
+**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
+
+#### revert_transaction.ApiResponseFor409
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor409ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor409ResponseBodyApplicationJson
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes

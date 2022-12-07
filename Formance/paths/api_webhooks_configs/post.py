@@ -26,6 +26,7 @@ import frozendict  # noqa: F401
 from Formance import schemas  # noqa: F401
 
 from Formance.model.config_user import ConfigUser
+from Formance.model.config_response import ConfigResponse
 
 from . import path
 
@@ -43,14 +44,14 @@ request_body_config_user = api_client.RequestBody(
 _auth = [
     'Authorization',
 ]
-SchemaFor200ResponseBodyTextPlain = schemas.StrSchema
+SchemaFor200ResponseBodyApplicationJson = ConfigResponse
 
 
 @dataclass
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBodyTextPlain,
+        SchemaFor200ResponseBodyApplicationJson,
     ]
     headers: schemas.Unset = schemas.unset
 
@@ -58,8 +59,8 @@ class ApiResponseFor200(api_client.ApiResponse):
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        'text/plain': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyTextPlain),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor200ResponseBodyApplicationJson),
     },
 )
 SchemaFor400ResponseBodyTextPlain = schemas.StrSchema
@@ -86,6 +87,7 @@ _status_code_to_response = {
     '400': _response_for_400,
 }
 _all_accept_content_types = (
+    'application/json',
     'text/plain',
 )
 

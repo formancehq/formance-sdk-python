@@ -37,9 +37,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -111,6 +111,7 @@ Code | Class | Description
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 204 | [ApiResponseFor204](#add_metadata_to_account.ApiResponseFor204) | No Content
 400 | [ApiResponseFor400](#add_metadata_to_account.ApiResponseFor400) | Bad Request
+409 | [ApiResponseFor409](#add_metadata_to_account.ApiResponseFor409) | Conflict
 
 #### add_metadata_to_account.ApiResponseFor204
 Name | Type | Description  | Notes
@@ -127,6 +128,27 @@ body | typing.Union[SchemaFor400ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
 # SchemaFor400ResponseBodyApplicationJson
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
+
+### Dictionary Keys
+Key | Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | ------------- | -------------
+**error_code** | str,  | str,  |  | 
+**error_message** | str,  | str,  |  | [optional] 
+**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
+
+#### add_metadata_to_account.ApiResponseFor409
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor409ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor409ResponseBodyApplicationJson
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
@@ -172,9 +194,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -319,9 +341,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -458,9 +480,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class

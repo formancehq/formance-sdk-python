@@ -30,6 +30,10 @@ Formance/model/aggregated_volumes.py
 Formance/model/aggregated_volumes.pyi
 Formance/model/assets_balances.py
 Formance/model/assets_balances.pyi
+Formance/model/attempt.py
+Formance/model/attempt.pyi
+Formance/model/attempt_response.py
+Formance/model/attempt_response.pyi
 Formance/model/banking_circle_config.py
 Formance/model/banking_circle_config.pyi
 Formance/model/client.py
@@ -44,6 +48,8 @@ Formance/model/config_info.py
 Formance/model/config_info.pyi
 Formance/model/config_info_response.py
 Formance/model/config_info_response.pyi
+Formance/model/config_response.py
+Formance/model/config_response.pyi
 Formance/model/config_user.py
 Formance/model/config_user.pyi
 Formance/model/connector_base_info.py
@@ -104,8 +110,6 @@ Formance/model/modulr_config.py
 Formance/model/modulr_config.pyi
 Formance/model/payment.py
 Formance/model/payment.pyi
-Formance/model/post_transaction.py
-Formance/model/post_transaction.pyi
 Formance/model/posting.py
 Formance/model/posting.pyi
 Formance/model/query.py
@@ -138,6 +142,8 @@ Formance/model/stripe_config.py
 Formance/model/stripe_config.pyi
 Formance/model/stripe_task.py
 Formance/model/stripe_task.pyi
+Formance/model/stripe_transfer_request.py
+Formance/model/stripe_transfer_request.pyi
 Formance/model/transaction.py
 Formance/model/transaction.pyi
 Formance/model/transaction_data.py
@@ -190,6 +196,8 @@ docs/models/AccountWithVolumesAndBalances.md
 docs/models/AccountsBalances.md
 docs/models/AggregatedVolumes.md
 docs/models/AssetsBalances.md
+docs/models/Attempt.md
+docs/models/AttemptResponse.md
 docs/models/BankingCircleConfig.md
 docs/models/Client.md
 docs/models/ClientOptions.md
@@ -197,6 +205,7 @@ docs/models/ClientSecret.md
 docs/models/Config.md
 docs/models/ConfigInfo.md
 docs/models/ConfigInfoResponse.md
+docs/models/ConfigResponse.md
 docs/models/ConfigUser.md
 docs/models/ConnectorBaseInfo.md
 docs/models/ConnectorConfig.md
@@ -227,7 +236,6 @@ docs/models/MappingResponse.md
 docs/models/Metadata.md
 docs/models/ModulrConfig.md
 docs/models/Payment.md
-docs/models/PostTransaction.md
 docs/models/Posting.md
 docs/models/Query.md
 docs/models/ReadClientResponse.md
@@ -244,6 +252,7 @@ docs/models/Stats.md
 docs/models/StatsResponse.md
 docs/models/StripeConfig.md
 docs/models/StripeTask.md
+docs/models/StripeTransferRequest.md
 docs/models/Transaction.md
 docs/models/TransactionData.md
 docs/models/TransactionResponse.md
@@ -266,4 +275,8 @@ setup.py
 test-requirements.txt
 test/__init__.py
 test/test_models/__init__.py
+test/test_models/test_attempt.py
+test/test_models/test_attempt_response.py
+test/test_models/test_config_response.py
+test/test_models/test_stripe_transfer_request.py
 tox.ini
