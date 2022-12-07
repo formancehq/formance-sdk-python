@@ -6,16 +6,16 @@ import enum
 
 
 class TagValues(str, enum.Enum):
-    ACCOUNTS = "Accounts"
-    BALANCES = "Balances"
     CLIENTS = "Clients"
-    MAPPING = "Mapping"
     PAYMENTS = "Payments"
     SCOPES = "Scopes"
-    SCRIPT = "Script"
     SEARCH = "Search"
-    SERVER = "Server"
-    STATS = "Stats"
-    TRANSACTIONS = "Transactions"
     USERS = "Users"
     WEBHOOKS = "Webhooks"
+    ACCOUNTS = "accounts"
+    BALANCES = "balances"
+    MAPPING = "mapping"
+    SCRIPT = "script"
+    SERVER = "server"
+    STATS = "stats"
+    TRANSACTIONS = "transactions"
