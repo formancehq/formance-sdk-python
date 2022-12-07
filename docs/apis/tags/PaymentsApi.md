@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**connectors_stripe_transfer**](#connectors_stripe_transfer) | **post** /api/payments/connectors/stripe/transfer | Transfer funds between Stripe accounts
 [**get_all_connectors**](#get_all_connectors) | **get** /api/payments/connectors | Get all installed connectors
 [**get_all_connectors_configs**](#get_all_connectors_configs) | **get** /api/payments/connectors/configs | Get all available connectors configs
 [**get_connector_task**](#get_connector_task) | **get** /api/payments/connectors/{connector}/tasks/{taskId} | Read a specific task of the connector
@@ -15,6 +16,96 @@ Method | HTTP request | Description
 [**read_connector_config**](#read_connector_config) | **get** /api/payments/connectors/{connector}/config | Read connector config
 [**reset_connector**](#reset_connector) | **post** /api/payments/connectors/{connector}/reset | Reset connector
 [**uninstall_connector**](#uninstall_connector) | **delete** /api/payments/connectors/{connector} | Uninstall connector
+
+# **connectors_stripe_transfer**
+<a name="connectors_stripe_transfer"></a>
+> connectors_stripe_transfer(stripe_transfer_request)
+
+Transfer funds between Stripe accounts
+
+Execute a transfer between two Stripe accounts
+
+### Example
+
+* OAuth Authentication (Authorization):
+```python
+import Formance
+from Formance.apis.tags import payments_api
+from Formance.model.stripe_transfer_request import StripeTransferRequest
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = Formance.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: Authorization
+configuration = Formance.Configuration(
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
+)
+# Enter a context with an instance of the API client
+with Formance.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = payments_api.PaymentsApi(api_client)
+
+    # example passing only required values which don't have defaults set
+    body = StripeTransferRequest(
+        amount=100,
+        asset="USD",
+        destination="acct_1Gqj58KZcSIg2N2q",
+        metadata=dict(),
+    )
+    try:
+        # Transfer funds between Stripe accounts
+        api_response = api_instance.connectors_stripe_transfer(
+            body=body,
+        )
+    except Formance.ApiException as e:
+        print("Exception when calling PaymentsApi->connectors_stripe_transfer: %s\n" % e)
+```
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
+content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+
+### body
+
+# SchemaForRequestBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**StripeTransferRequest**](../../models/StripeTransferRequest.md) |  | 
+
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | [ApiResponseFor200](#connectors_stripe_transfer.ApiResponseFor200) | Transfer has been executed
+
+#### connectors_stripe_transfer.ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | Unset | body was not defined |
+headers | Unset | headers were not defined |
+
+### Authorization
+
+[Authorization](../../../README.md#Authorization)
+
+[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **get_all_connectors**
 <a name="get_all_connectors"></a>
@@ -45,9 +136,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -119,9 +210,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -193,9 +284,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -300,9 +391,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -400,9 +491,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -504,9 +595,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -608,9 +699,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -734,9 +825,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -833,9 +924,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -924,9 +1015,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost"
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class

@@ -250,6 +250,89 @@ _response_for_404 = api_client.OpenApiResponse(
             schema=SchemaFor404ResponseBodyApplicationJson),
     },
 )
+
+
+class SchemaFor409ResponseBodyApplicationJson(
+    schemas.DictSchema
+):
+
+
+    class MetaOapg:
+        required = {
+            "error_code",
+        }
+        
+        class properties:
+            error_code = schemas.StrSchema
+            error_message = schemas.StrSchema
+            __annotations__ = {
+                "error_code": error_code,
+                "error_message": error_message,
+            }
+    
+    error_code: MetaOapg.properties.error_code
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["error_code"]) -> MetaOapg.properties.error_code: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["error_message"]) -> MetaOapg.properties.error_message: ...
+    
+    @typing.overload
+    def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
+    
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["error_code", "error_message", ], str]):
+        # dict_instance[name] accessor
+        return super().__getitem__(name)
+    
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["error_code"]) -> MetaOapg.properties.error_code: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["error_message"]) -> typing.Union[MetaOapg.properties.error_message, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
+    
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["error_code", "error_message", ], str]):
+        return super().get_item_oapg(name)
+    
+
+    def __new__(
+        cls,
+        *_args: typing.Union[dict, frozendict.frozendict, ],
+        error_code: typing.Union[MetaOapg.properties.error_code, str, ],
+        error_message: typing.Union[MetaOapg.properties.error_message, str, schemas.Unset] = schemas.unset,
+        _configuration: typing.Optional[schemas.Configuration] = None,
+        **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
+    ) -> 'SchemaFor409ResponseBodyApplicationJson':
+        return super().__new__(
+            cls,
+            *_args,
+            error_code=error_code,
+            error_message=error_message,
+            _configuration=_configuration,
+            **kwargs,
+        )
+
+
+@dataclass
+class ApiResponseFor409(api_client.ApiResponse):
+    response: urllib3.HTTPResponse
+    body: typing.Union[
+        SchemaFor409ResponseBodyApplicationJson,
+    ]
+    headers: schemas.Unset = schemas.unset
+
+
+_response_for_409 = api_client.OpenApiResponse(
+    response_cls=ApiResponseFor409,
+    content={
+        'application/json': api_client.MediaType(
+            schema=SchemaFor409ResponseBodyApplicationJson),
+    },
+)
 _all_accept_content_types = (
     'application/json',
 )
