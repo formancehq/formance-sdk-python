@@ -68,6 +68,7 @@ from Formance.model.script import Script
 from Formance.model.script_result import ScriptResult
 from Formance.model.secret import Secret
 from Formance.model.secret_options import SecretOptions
+from Formance.model.server_info import ServerInfo
 from Formance.model.stats import Stats
 from Formance.model.stats_response import StatsResponse
 from Formance.model.stripe_config import StripeConfig

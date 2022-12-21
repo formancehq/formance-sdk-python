@@ -7,6 +7,7 @@ Formance/apis/__init__.py
 Formance/apis/tags/accounts_api.py
 Formance/apis/tags/balances_api.py
 Formance/apis/tags/clients_api.py
+Formance/apis/tags/default_api.py
 Formance/apis/tags/mapping_api.py
 Formance/apis/tags/payments_api.py
 Formance/apis/tags/scopes_api.py
@@ -134,6 +135,8 @@ Formance/model/secret.py
 Formance/model/secret.pyi
 Formance/model/secret_options.py
 Formance/model/secret_options.pyi
+Formance/model/server_info.py
+Formance/model/server_info.pyi
 Formance/model/stats.py
 Formance/model/stats.pyi
 Formance/model/stats_response.py
@@ -181,6 +184,7 @@ README.md
 docs/apis/tags/AccountsApi.md
 docs/apis/tags/BalancesApi.md
 docs/apis/tags/ClientsApi.md
+docs/apis/tags/DefaultApi.md
 docs/apis/tags/MappingApi.md
 docs/apis/tags/PaymentsApi.md
 docs/apis/tags/ScopesApi.md
@@ -248,6 +252,7 @@ docs/models/Script.md
 docs/models/ScriptResult.md
 docs/models/Secret.md
 docs/models/SecretOptions.md
+docs/models/ServerInfo.md
 docs/models/Stats.md
 docs/models/StatsResponse.md
 docs/models/StripeConfig.md
@@ -275,8 +280,5 @@ setup.py
 test-requirements.txt
 test/__init__.py
 test/test_models/__init__.py
-test/test_models/test_attempt.py
-test/test_models/test_attempt_response.py
-test/test_models/test_config_response.py
-test/test_models/test_stripe_transfer_request.py
+test/test_models/test_server_info.py
 tox.ini
