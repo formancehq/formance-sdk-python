@@ -14,6 +14,7 @@ class TagValues(str, enum.Enum):
     WEBHOOKS = "Webhooks"
     ACCOUNTS = "accounts"
     BALANCES = "balances"
+    DEFAULT = "default"
     MAPPING = "mapping"
     SCRIPT = "script"
     SERVER = "server"

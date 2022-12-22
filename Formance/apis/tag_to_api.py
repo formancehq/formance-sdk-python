@@ -9,6 +9,7 @@ from Formance.apis.tags.users_api import UsersApi
 from Formance.apis.tags.webhooks_api import WebhooksApi
 from Formance.apis.tags.accounts_api import AccountsApi
 from Formance.apis.tags.balances_api import BalancesApi
+from Formance.apis.tags.default_api import DefaultApi
 from Formance.apis.tags.mapping_api import MappingApi
 from Formance.apis.tags.script_api import ScriptApi
 from Formance.apis.tags.server_api import ServerApi
@@ -26,6 +27,7 @@ TagToApi = typing_extensions.TypedDict(
         TagValues.WEBHOOKS: WebhooksApi,
         TagValues.ACCOUNTS: AccountsApi,
         TagValues.BALANCES: BalancesApi,
+        TagValues.DEFAULT: DefaultApi,
         TagValues.MAPPING: MappingApi,
         TagValues.SCRIPT: ScriptApi,
         TagValues.SERVER: ServerApi,
@@ -44,6 +46,7 @@ tag_to_api = TagToApi(
         TagValues.WEBHOOKS: WebhooksApi,
         TagValues.ACCOUNTS: AccountsApi,
         TagValues.BALANCES: BalancesApi,
+        TagValues.DEFAULT: DefaultApi,
         TagValues.MAPPING: MappingApi,
         TagValues.SCRIPT: ScriptApi,
         TagValues.SERVER: ServerApi,

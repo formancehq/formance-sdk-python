@@ -8,8 +8,10 @@ dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal
 ### Dictionary Keys
 Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
-**webhookID** | str,  | str,  |  | [optional] 
-**date** | str, datetime,  | str,  |  | [optional] value must conform to RFC-3339 date-time
+**id** | str, uuid.UUID,  | str,  |  | [optional] value must be a uuid
+**webhookID** | str, uuid.UUID,  | str,  |  | [optional] value must be a uuid
+**createdAt** | str, datetime,  | str,  |  | [optional] value must conform to RFC-3339 date-time
+**updatedAt** | str, datetime,  | str,  |  | [optional] value must conform to RFC-3339 date-time
 **config** | [**WebhooksConfig**](WebhooksConfig.md) | [**WebhooksConfig**](WebhooksConfig.md) |  | [optional] 
 **payload** | str,  | str,  |  | [optional] 
 **statusCode** | decimal.Decimal, int,  | decimal.Decimal,  |  | [optional] 
