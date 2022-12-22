@@ -257,7 +257,7 @@ Type | Description  | Notes
 
 # **get_connector_task**
 <a name="get_connector_task"></a>
-> ConnectorTask get_connector_task(connectortask_id)
+> bool, date, datetime, dict, float, int, list, str, none_type get_connector_task(connectortask_id)
 
 Read a specific task of the connector
 
@@ -269,7 +269,13 @@ Get a specific task associated to the connector
 ```python
 import Formance
 from Formance.apis.tags import payments_api
-from Formance.model.connector_task import ConnectorTask
+from Formance.model.task_descriptor_dummy_pay import TaskDescriptorDummyPay
+from Formance.model.task_descriptor_wise import TaskDescriptorWise
+from Formance.model.task_descriptor_modulr import TaskDescriptorModulr
+from Formance.model.task_descriptor_stripe import TaskDescriptorStripe
+from Formance.model.connectors import Connectors
+from Formance.model.task_descriptor_banking_circle import TaskDescriptorBankingCircle
+from Formance.model.task_descriptor_currency_cloud import TaskDescriptorCurrencyCloud
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -294,7 +300,7 @@ with Formance.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     path_params = {
-        'connector': "stripe",
+        'connector': Connectors("STRIPE"),
         'taskId': "task1",
     }
     try:
@@ -325,11 +331,10 @@ connector | ConnectorSchema | |
 taskId | TaskIdSchema | | 
 
 # ConnectorSchema
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**Connectors**](../../models/Connectors.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | must be one of ["stripe", ] 
 
 # TaskIdSchema
 
@@ -353,10 +358,22 @@ body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**ConnectorTask**](../../models/ConnectorTask.md) |  | 
 
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader,  | frozendict.frozendict, str, decimal.Decimal, BoolClass, NoneClass, tuple, bytes, FileIO |  | 
+
+### Composed Schemas (allOf/anyOf/oneOf/not)
+#### oneOf
+Class Name | Input Type | Accessed Type | Description | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+[TaskDescriptorStripe]({{complexTypePrefix}}TaskDescriptorStripe.md) | [**TaskDescriptorStripe**]({{complexTypePrefix}}TaskDescriptorStripe.md) | [**TaskDescriptorStripe**]({{complexTypePrefix}}TaskDescriptorStripe.md) |  | 
+[TaskDescriptorWise]({{complexTypePrefix}}TaskDescriptorWise.md) | [**TaskDescriptorWise**]({{complexTypePrefix}}TaskDescriptorWise.md) | [**TaskDescriptorWise**]({{complexTypePrefix}}TaskDescriptorWise.md) |  | 
+[TaskDescriptorCurrencyCloud]({{complexTypePrefix}}TaskDescriptorCurrencyCloud.md) | [**TaskDescriptorCurrencyCloud**]({{complexTypePrefix}}TaskDescriptorCurrencyCloud.md) | [**TaskDescriptorCurrencyCloud**]({{complexTypePrefix}}TaskDescriptorCurrencyCloud.md) |  | 
+[TaskDescriptorDummyPay]({{complexTypePrefix}}TaskDescriptorDummyPay.md) | [**TaskDescriptorDummyPay**]({{complexTypePrefix}}TaskDescriptorDummyPay.md) | [**TaskDescriptorDummyPay**]({{complexTypePrefix}}TaskDescriptorDummyPay.md) |  | 
+[TaskDescriptorModulr]({{complexTypePrefix}}TaskDescriptorModulr.md) | [**TaskDescriptorModulr**]({{complexTypePrefix}}TaskDescriptorModulr.md) | [**TaskDescriptorModulr**]({{complexTypePrefix}}TaskDescriptorModulr.md) |  | 
+[TaskDescriptorBankingCircle]({{complexTypePrefix}}TaskDescriptorBankingCircle.md) | [**TaskDescriptorBankingCircle**]({{complexTypePrefix}}TaskDescriptorBankingCircle.md) | [**TaskDescriptorBankingCircle**]({{complexTypePrefix}}TaskDescriptorBankingCircle.md) |  | 
 
 ### Authorization
 
@@ -477,6 +494,7 @@ Install connector
 import Formance
 from Formance.apis.tags import payments_api
 from Formance.model.connector_config import ConnectorConfig
+from Formance.model.connectors import Connectors
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -501,7 +519,7 @@ with Formance.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     path_params = {
-        'connector': "stripe",
+        'connector': Connectors("STRIPE"),
     }
     body = ConnectorConfig(None)
     try:
@@ -540,11 +558,10 @@ Name | Type | Description  | Notes
 connector | ConnectorSchema | | 
 
 # ConnectorSchema
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**Connectors**](../../models/Connectors.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | must be one of ["stripe", "dummypay", "wise", "modulr", "currencycloud", ] 
 
 ### Return Types, Responses
 
@@ -568,7 +585,7 @@ headers | Unset | headers were not defined |
 
 # **list_connector_tasks**
 <a name="list_connector_tasks"></a>
-> [ConnectorTask] list_connector_tasks(connector)
+> [bool, date, datetime, dict, float, int, list, str, none_type] list_connector_tasks(connector)
 
 List connector tasks
 
@@ -580,7 +597,13 @@ List all tasks associated with this connector.
 ```python
 import Formance
 from Formance.apis.tags import payments_api
-from Formance.model.connector_task import ConnectorTask
+from Formance.model.task_descriptor_dummy_pay import TaskDescriptorDummyPay
+from Formance.model.task_descriptor_wise import TaskDescriptorWise
+from Formance.model.task_descriptor_modulr import TaskDescriptorModulr
+from Formance.model.task_descriptor_stripe import TaskDescriptorStripe
+from Formance.model.connectors import Connectors
+from Formance.model.task_descriptor_banking_circle import TaskDescriptorBankingCircle
+from Formance.model.task_descriptor_currency_cloud import TaskDescriptorCurrencyCloud
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -605,7 +628,7 @@ with Formance.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     path_params = {
-        'connector': "stripe",
+        'connector': Connectors("STRIPE"),
     }
     try:
         # List connector tasks
@@ -634,11 +657,10 @@ Name | Type | Description  | Notes
 connector | ConnectorSchema | | 
 
 # ConnectorSchema
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**Connectors**](../../models/Connectors.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | must be one of ["stripe", ] 
 
 ### Return Types, Responses
 
@@ -664,7 +686,25 @@ list, tuple,  | tuple,  |  |
 ### Tuple Items
 Class Name | Input Type | Accessed Type | Description | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-[**ConnectorTask**]({{complexTypePrefix}}ConnectorTask.md) | [**ConnectorTask**]({{complexTypePrefix}}ConnectorTask.md) | [**ConnectorTask**]({{complexTypePrefix}}ConnectorTask.md) |  | 
+[items](#items) | dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader,  | frozendict.frozendict, str, decimal.Decimal, BoolClass, NoneClass, tuple, bytes, FileIO |  | 
+
+# items
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader,  | frozendict.frozendict, str, decimal.Decimal, BoolClass, NoneClass, tuple, bytes, FileIO |  | 
+
+### Composed Schemas (allOf/anyOf/oneOf/not)
+#### oneOf
+Class Name | Input Type | Accessed Type | Description | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+[TaskDescriptorStripe]({{complexTypePrefix}}TaskDescriptorStripe.md) | [**TaskDescriptorStripe**]({{complexTypePrefix}}TaskDescriptorStripe.md) | [**TaskDescriptorStripe**]({{complexTypePrefix}}TaskDescriptorStripe.md) |  | 
+[TaskDescriptorWise]({{complexTypePrefix}}TaskDescriptorWise.md) | [**TaskDescriptorWise**]({{complexTypePrefix}}TaskDescriptorWise.md) | [**TaskDescriptorWise**]({{complexTypePrefix}}TaskDescriptorWise.md) |  | 
+[TaskDescriptorCurrencyCloud]({{complexTypePrefix}}TaskDescriptorCurrencyCloud.md) | [**TaskDescriptorCurrencyCloud**]({{complexTypePrefix}}TaskDescriptorCurrencyCloud.md) | [**TaskDescriptorCurrencyCloud**]({{complexTypePrefix}}TaskDescriptorCurrencyCloud.md) |  | 
+[TaskDescriptorDummyPay]({{complexTypePrefix}}TaskDescriptorDummyPay.md) | [**TaskDescriptorDummyPay**]({{complexTypePrefix}}TaskDescriptorDummyPay.md) | [**TaskDescriptorDummyPay**]({{complexTypePrefix}}TaskDescriptorDummyPay.md) |  | 
+[TaskDescriptorModulr]({{complexTypePrefix}}TaskDescriptorModulr.md) | [**TaskDescriptorModulr**]({{complexTypePrefix}}TaskDescriptorModulr.md) | [**TaskDescriptorModulr**]({{complexTypePrefix}}TaskDescriptorModulr.md) |  | 
+[TaskDescriptorBankingCircle]({{complexTypePrefix}}TaskDescriptorBankingCircle.md) | [**TaskDescriptorBankingCircle**]({{complexTypePrefix}}TaskDescriptorBankingCircle.md) | [**TaskDescriptorBankingCircle**]({{complexTypePrefix}}TaskDescriptorBankingCircle.md) |  | 
 
 ### Authorization
 
@@ -811,6 +851,7 @@ Read connector config
 import Formance
 from Formance.apis.tags import payments_api
 from Formance.model.connector_config import ConnectorConfig
+from Formance.model.connectors import Connectors
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -835,7 +876,7 @@ with Formance.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     path_params = {
-        'connector': "stripe",
+        'connector': Connectors("STRIPE"),
     }
     try:
         # Read connector config
@@ -864,11 +905,10 @@ Name | Type | Description  | Notes
 connector | ConnectorSchema | | 
 
 # ConnectorSchema
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**Connectors**](../../models/Connectors.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | must be one of ["stripe", ] 
 
 ### Return Types, Responses
 
@@ -910,6 +950,7 @@ Reset connector. Will remove the connector and ALL PAYMENTS generated with it.
 ```python
 import Formance
 from Formance.apis.tags import payments_api
+from Formance.model.connectors import Connectors
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -934,7 +975,7 @@ with Formance.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     path_params = {
-        'connector': "stripe",
+        'connector': Connectors("STRIPE"),
     }
     try:
         # Reset connector
@@ -961,11 +1002,10 @@ Name | Type | Description  | Notes
 connector | ConnectorSchema | | 
 
 # ConnectorSchema
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**Connectors**](../../models/Connectors.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | must be one of ["stripe", ] 
 
 ### Return Types, Responses
 
@@ -1001,6 +1041,7 @@ Uninstall  connector
 ```python
 import Formance
 from Formance.apis.tags import payments_api
+from Formance.model.connectors import Connectors
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1025,7 +1066,7 @@ with Formance.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     path_params = {
-        'connector': "stripe",
+        'connector': Connectors("STRIPE"),
     }
     try:
         # Uninstall connector
@@ -1052,11 +1093,10 @@ Name | Type | Description  | Notes
 connector | ConnectorSchema | | 
 
 # ConnectorSchema
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**Connectors**](../../models/Connectors.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | must be one of ["stripe", ] 
 
 ### Return Types, Responses
 

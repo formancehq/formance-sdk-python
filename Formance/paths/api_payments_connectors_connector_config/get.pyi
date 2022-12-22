@@ -26,22 +26,14 @@ import frozendict  # noqa: F401
 from Formance import schemas  # noqa: F401
 
 from Formance.model.connector_config import ConnectorConfig
+from Formance.model.connectors import Connectors
 
 # Path params
-
-
-class ConnectorSchema(
-    schemas.EnumBase,
-    schemas.StrSchema
-):
-    
-    @schemas.classproperty
-    def STRIPE(cls):
-        return cls("stripe")
+ConnectorSchema = Connectors
 RequestRequiredPathParams = typing_extensions.TypedDict(
     'RequestRequiredPathParams',
     {
-        'connector': typing.Union[ConnectorSchema, str, ],
+        'connector': typing.Union[ConnectorSchema, ],
     }
 )
 RequestOptionalPathParams = typing_extensions.TypedDict(

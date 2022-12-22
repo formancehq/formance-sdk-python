@@ -26,50 +26,16 @@ import frozendict  # noqa: F401
 from Formance import schemas  # noqa: F401
 
 from Formance.model.connector_config import ConnectorConfig
+from Formance.model.connectors import Connectors
 
 from . import path
 
 # Path params
-
-
-class ConnectorSchema(
-    schemas.EnumBase,
-    schemas.StrSchema
-):
-
-
-    class MetaOapg:
-        enum_value_to_name = {
-            "stripe": "STRIPE",
-            "dummypay": "DUMMYPAY",
-            "wise": "WISE",
-            "modulr": "MODULR",
-            "currencycloud": "CURRENCYCLOUD",
-        }
-    
-    @schemas.classproperty
-    def STRIPE(cls):
-        return cls("stripe")
-    
-    @schemas.classproperty
-    def DUMMYPAY(cls):
-        return cls("dummypay")
-    
-    @schemas.classproperty
-    def WISE(cls):
-        return cls("wise")
-    
-    @schemas.classproperty
-    def MODULR(cls):
-        return cls("modulr")
-    
-    @schemas.classproperty
-    def CURRENCYCLOUD(cls):
-        return cls("currencycloud")
+ConnectorSchema = Connectors
 RequestRequiredPathParams = typing_extensions.TypedDict(
     'RequestRequiredPathParams',
     {
-        'connector': typing.Union[ConnectorSchema, str, ],
+        'connector': typing.Union[ConnectorSchema, ],
     }
 )
 RequestOptionalPathParams = typing_extensions.TypedDict(

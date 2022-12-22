@@ -25,23 +25,20 @@ import frozendict  # noqa: F401
 
 from Formance import schemas  # noqa: F401
 
-from Formance.model.connector_task import ConnectorTask
+from Formance.model.task_descriptor_dummy_pay import TaskDescriptorDummyPay
+from Formance.model.task_descriptor_wise import TaskDescriptorWise
+from Formance.model.task_descriptor_modulr import TaskDescriptorModulr
+from Formance.model.task_descriptor_stripe import TaskDescriptorStripe
+from Formance.model.connectors import Connectors
+from Formance.model.task_descriptor_banking_circle import TaskDescriptorBankingCircle
+from Formance.model.task_descriptor_currency_cloud import TaskDescriptorCurrencyCloud
 
 # Path params
-
-
-class ConnectorSchema(
-    schemas.EnumBase,
-    schemas.StrSchema
-):
-    
-    @schemas.classproperty
-    def STRIPE(cls):
-        return cls("stripe")
+ConnectorSchema = Connectors
 RequestRequiredPathParams = typing_extensions.TypedDict(
     'RequestRequiredPathParams',
     {
-        'connector': typing.Union[ConnectorSchema, str, ],
+        'connector': typing.Union[ConnectorSchema, ],
     }
 )
 RequestOptionalPathParams = typing_extensions.TypedDict(
@@ -71,13 +68,50 @@ class SchemaFor200ResponseBodyApplicationJson(
 
     class MetaOapg:
         
-        @staticmethod
-        def items() -> typing.Type['ConnectorTask']:
-            return ConnectorTask
+        
+        class items(
+            schemas.ComposedSchema,
+        ):
+        
+        
+            class MetaOapg:
+                
+                @classmethod
+                @functools.lru_cache()
+                def one_of(cls):
+                    # we need this here to make our import statements work
+                    # we must store _composed_schemas in here so the code is only run
+                    # when we invoke this method. If we kept this at the class
+                    # level we would get an error because the class level
+                    # code would be run when this module is imported, and these composed
+                    # classes don't exist yet because their module has not finished
+                    # loading
+                    return [
+                        TaskDescriptorStripe,
+                        TaskDescriptorWise,
+                        TaskDescriptorCurrencyCloud,
+                        TaskDescriptorDummyPay,
+                        TaskDescriptorModulr,
+                        TaskDescriptorBankingCircle,
+                    ]
+        
+        
+            def __new__(
+                cls,
+                *_args: typing.Union[dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
+                _configuration: typing.Optional[schemas.Configuration] = None,
+                **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
+            ) -> 'items':
+                return super().__new__(
+                    cls,
+                    *_args,
+                    _configuration=_configuration,
+                    **kwargs,
+                )
 
     def __new__(
         cls,
-        _arg: typing.Union[typing.Tuple['ConnectorTask'], typing.List['ConnectorTask']],
+        _arg: typing.Union[typing.Tuple[typing.Union[MetaOapg.items, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ]], typing.List[typing.Union[MetaOapg.items, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ]]],
         _configuration: typing.Optional[schemas.Configuration] = None,
     ) -> 'SchemaFor200ResponseBodyApplicationJson':
         return super().__new__(
@@ -86,7 +120,7 @@ class SchemaFor200ResponseBodyApplicationJson(
             _configuration=_configuration,
         )
 
-    def __getitem__(self, i: int) -> 'ConnectorTask':
+    def __getitem__(self, i: int) -> MetaOapg.items:
         return super().__getitem__(i)
 
 

@@ -35,6 +35,7 @@ from Formance.apis.paths.api_payments_connectors_connector_reset import ApiPayme
 from Formance.apis.paths.api_payments_connectors_connector_tasks import ApiPaymentsConnectorsConnectorTasks
 from Formance.apis.paths.api_payments_connectors_connector_tasks_task_id import ApiPaymentsConnectorsConnectorTasksTaskId
 from Formance.apis.paths.api_payments_connectors_stripe_transfer import ApiPaymentsConnectorsStripeTransfer
+from Formance.apis.paths.api_search__info import ApiSearchInfo
 from Formance.apis.paths.api_search_ import ApiSearch
 from Formance.apis.paths.api_webhooks_configs import ApiWebhooksConfigs
 from Formance.apis.paths.api_webhooks_configs_id import ApiWebhooksConfigsId
@@ -80,6 +81,7 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR_TASKS: ApiPaymentsConnectorsConnectorTasks,
         PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR_TASKS_TASK_ID: ApiPaymentsConnectorsConnectorTasksTaskId,
         PathValues.API_PAYMENTS_CONNECTORS_STRIPE_TRANSFER: ApiPaymentsConnectorsStripeTransfer,
+        PathValues.API_SEARCH__INFO: ApiSearchInfo,
         PathValues.API_SEARCH_: ApiSearch,
         PathValues.API_WEBHOOKS_CONFIGS: ApiWebhooksConfigs,
         PathValues.API_WEBHOOKS_CONFIGS_ID: ApiWebhooksConfigsId,
@@ -126,6 +128,7 @@ path_to_api = PathToApi(
         PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR_TASKS: ApiPaymentsConnectorsConnectorTasks,
         PathValues.API_PAYMENTS_CONNECTORS_CONNECTOR_TASKS_TASK_ID: ApiPaymentsConnectorsConnectorTasksTaskId,
         PathValues.API_PAYMENTS_CONNECTORS_STRIPE_TRANSFER: ApiPaymentsConnectorsStripeTransfer,
+        PathValues.API_SEARCH__INFO: ApiSearchInfo,
         PathValues.API_SEARCH_: ApiSearch,
         PathValues.API_WEBHOOKS_CONFIGS: ApiWebhooksConfigs,
         PathValues.API_WEBHOOKS_CONFIGS_ID: ApiWebhooksConfigsId,
