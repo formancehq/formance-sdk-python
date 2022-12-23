@@ -29,7 +29,6 @@ from Formance.model.config_response import ConfigResponse
 from Formance.model.config_user import ConfigUser
 from Formance.model.connector_base_info import ConnectorBaseInfo
 from Formance.model.connector_config import ConnectorConfig
-from Formance.model.connector_task_base import ConnectorTaskBase
 from Formance.model.connectors import Connectors
 from Formance.model.contract import Contract
 from Formance.model.create_client_request import CreateClientRequest
@@ -38,12 +37,19 @@ from Formance.model.create_scope_request import CreateScopeRequest
 from Formance.model.create_scope_response import CreateScopeResponse
 from Formance.model.create_secret_request import CreateSecretRequest
 from Formance.model.create_secret_response import CreateSecretResponse
+from Formance.model.create_wallet_request import CreateWalletRequest
+from Formance.model.create_wallet_response import CreateWalletResponse
 from Formance.model.currency_cloud_config import CurrencyCloudConfig
 from Formance.model.cursor import Cursor
+from Formance.model.debit_wallet_response import DebitWalletResponse
 from Formance.model.dummy_pay_config import DummyPayConfig
 from Formance.model.error_code import ErrorCode
 from Formance.model.error_response import ErrorResponse
+from Formance.model.get_holds_response import GetHoldsResponse
 from Formance.model.get_payment_response import GetPaymentResponse
+from Formance.model.get_wallet_response import GetWalletResponse
+from Formance.model.get_wallets_response import GetWalletsResponse
+from Formance.model.hold import Hold
 from Formance.model.ledger_metadata import LedgerMetadata
 from Formance.model.ledger_storage import LedgerStorage
 from Formance.model.list_clients_response import ListClientsResponse
@@ -56,6 +62,7 @@ from Formance.model.mapping import Mapping
 from Formance.model.mapping_response import MappingResponse
 from Formance.model.metadata import Metadata
 from Formance.model.modulr_config import ModulrConfig
+from Formance.model.monetary import Monetary
 from Formance.model.payment import Payment
 from Formance.model.posting import Posting
 from Formance.model.query import Query
@@ -93,6 +100,8 @@ from Formance.model.update_scope_response import UpdateScopeResponse
 from Formance.model.user import User
 from Formance.model.volume import Volume
 from Formance.model.volumes import Volumes
+from Formance.model.wallet import Wallet
+from Formance.model.wallet_with_balances import WalletWithBalances
 from Formance.model.webhooks_config import WebhooksConfig
 from Formance.model.webhooks_cursor import WebhooksCursor
 from Formance.model.wise_config import WiseConfig

@@ -43,6 +43,13 @@ from Formance.apis.paths.api_webhooks_configs_id_test import ApiWebhooksConfigsI
 from Formance.apis.paths.api_webhooks_configs_id_activate import ApiWebhooksConfigsIdActivate
 from Formance.apis.paths.api_webhooks_configs_id_deactivate import ApiWebhooksConfigsIdDeactivate
 from Formance.apis.paths.api_webhooks_configs_id_secret_change import ApiWebhooksConfigsIdSecretChange
+from Formance.apis.paths.api_wallets_wallets import ApiWalletsWallets
+from Formance.apis.paths.api_wallets_wallets_id import ApiWalletsWalletsId
+from Formance.apis.paths.api_wallets_wallets_id_debit import ApiWalletsWalletsIdDebit
+from Formance.apis.paths.api_wallets_wallets_id_credit import ApiWalletsWalletsIdCredit
+from Formance.apis.paths.api_wallets_wallets_id_holds import ApiWalletsWalletsIdHolds
+from Formance.apis.paths.api_wallets_wallets_id_holds_hold_id_confirm import ApiWalletsWalletsIdHoldsHoldIdConfirm
+from Formance.apis.paths.api_wallets_wallets_id_holds_hold_id_void import ApiWalletsWalletsIdHoldsHoldIdVoid
 
 PathToApi = typing_extensions.TypedDict(
     'PathToApi',
@@ -89,6 +96,13 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_WEBHOOKS_CONFIGS_ID_ACTIVATE: ApiWebhooksConfigsIdActivate,
         PathValues.API_WEBHOOKS_CONFIGS_ID_DEACTIVATE: ApiWebhooksConfigsIdDeactivate,
         PathValues.API_WEBHOOKS_CONFIGS_ID_SECRET_CHANGE: ApiWebhooksConfigsIdSecretChange,
+        PathValues.API_WALLETS_WALLETS: ApiWalletsWallets,
+        PathValues.API_WALLETS_WALLETS_ID: ApiWalletsWalletsId,
+        PathValues.API_WALLETS_WALLETS_ID_DEBIT: ApiWalletsWalletsIdDebit,
+        PathValues.API_WALLETS_WALLETS_ID_CREDIT: ApiWalletsWalletsIdCredit,
+        PathValues.API_WALLETS_WALLETS_ID_HOLDS: ApiWalletsWalletsIdHolds,
+        PathValues.API_WALLETS_WALLETS_ID_HOLDS_HOLD_ID_CONFIRM: ApiWalletsWalletsIdHoldsHoldIdConfirm,
+        PathValues.API_WALLETS_WALLETS_ID_HOLDS_HOLD_ID_VOID: ApiWalletsWalletsIdHoldsHoldIdVoid,
     }
 )
 
@@ -136,5 +150,12 @@ path_to_api = PathToApi(
         PathValues.API_WEBHOOKS_CONFIGS_ID_ACTIVATE: ApiWebhooksConfigsIdActivate,
         PathValues.API_WEBHOOKS_CONFIGS_ID_DEACTIVATE: ApiWebhooksConfigsIdDeactivate,
         PathValues.API_WEBHOOKS_CONFIGS_ID_SECRET_CHANGE: ApiWebhooksConfigsIdSecretChange,
+        PathValues.API_WALLETS_WALLETS: ApiWalletsWallets,
+        PathValues.API_WALLETS_WALLETS_ID: ApiWalletsWalletsId,
+        PathValues.API_WALLETS_WALLETS_ID_DEBIT: ApiWalletsWalletsIdDebit,
+        PathValues.API_WALLETS_WALLETS_ID_CREDIT: ApiWalletsWalletsIdCredit,
+        PathValues.API_WALLETS_WALLETS_ID_HOLDS: ApiWalletsWalletsIdHolds,
+        PathValues.API_WALLETS_WALLETS_ID_HOLDS_HOLD_ID_CONFIRM: ApiWalletsWalletsIdHoldsHoldIdConfirm,
+        PathValues.API_WALLETS_WALLETS_ID_HOLDS_HOLD_ID_VOID: ApiWalletsWalletsIdHoldsHoldIdVoid,
     }
 )
