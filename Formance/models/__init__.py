@@ -29,7 +29,6 @@ from Formance.model.config_response import ConfigResponse
 from Formance.model.config_user import ConfigUser
 from Formance.model.connector_base_info import ConnectorBaseInfo
 from Formance.model.connector_config import ConnectorConfig
-from Formance.model.connector_task_base import ConnectorTaskBase
 from Formance.model.connectors import Connectors
 from Formance.model.contract import Contract
 from Formance.model.create_client_request import CreateClientRequest
