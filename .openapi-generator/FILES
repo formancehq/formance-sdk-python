@@ -57,8 +57,6 @@ Formance/model/connector_base_info.py
 Formance/model/connector_base_info.pyi
 Formance/model/connector_config.py
 Formance/model/connector_config.pyi
-Formance/model/connector_task_base.py
-Formance/model/connector_task_base.pyi
 Formance/model/connectors.py
 Formance/model/connectors.pyi
 Formance/model/contract.py
@@ -227,7 +225,6 @@ docs/models/ConfigResponse.md
 docs/models/ConfigUser.md
 docs/models/ConnectorBaseInfo.md
 docs/models/ConnectorConfig.md
-docs/models/ConnectorTaskBase.md
 docs/models/Connectors.md
 docs/models/Contract.md
 docs/models/CreateClientRequest.md
@@ -301,13 +298,4 @@ setup.py
 test-requirements.txt
 test/__init__.py
 test/test_models/__init__.py
-test/test_models/test_connector_task_base.py
-test/test_models/test_connectors.py
-test/test_models/test_server_info.py
-test/test_models/test_task_descriptor_banking_circle.py
-test/test_models/test_task_descriptor_currency_cloud.py
-test/test_models/test_task_descriptor_dummy_pay.py
-test/test_models/test_task_descriptor_modulr.py
-test/test_models/test_task_descriptor_stripe.py
-test/test_models/test_task_descriptor_wise.py
 tox.ini
