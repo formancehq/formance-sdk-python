@@ -1,6 +1,7 @@
 import typing_extensions
 
 from Formance.paths import PathValues
+from Formance.apis.paths.api_auth__info import ApiAuthInfo
 from Formance.apis.paths.api_auth_clients import ApiAuthClients
 from Formance.apis.paths.api_auth_clients_client_id import ApiAuthClientsClientId
 from Formance.apis.paths.api_auth_clients_client_id_secrets import ApiAuthClientsClientIdSecrets
@@ -47,6 +48,7 @@ from Formance.apis.paths.api_webhooks_configs_id_secret_change import ApiWebhook
 PathToApi = typing_extensions.TypedDict(
     'PathToApi',
     {
+        PathValues.API_AUTH__INFO: ApiAuthInfo,
         PathValues.API_AUTH_CLIENTS: ApiAuthClients,
         PathValues.API_AUTH_CLIENTS_CLIENT_ID: ApiAuthClientsClientId,
         PathValues.API_AUTH_CLIENTS_CLIENT_ID_SECRETS: ApiAuthClientsClientIdSecrets,
@@ -94,6 +96,7 @@ PathToApi = typing_extensions.TypedDict(
 
 path_to_api = PathToApi(
     {
+        PathValues.API_AUTH__INFO: ApiAuthInfo,
         PathValues.API_AUTH_CLIENTS: ApiAuthClients,
         PathValues.API_AUTH_CLIENTS_CLIENT_ID: ApiAuthClientsClientId,
         PathValues.API_AUTH_CLIENTS_CLIENT_ID_SECRETS: ApiAuthClientsClientIdSecrets,
