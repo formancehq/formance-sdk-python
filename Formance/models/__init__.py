@@ -23,13 +23,14 @@ from Formance.model.client import Client
 from Formance.model.client_options import ClientOptions
 from Formance.model.client_secret import ClientSecret
 from Formance.model.config import Config
+from Formance.model.config_change_secret import ConfigChangeSecret
 from Formance.model.config_info import ConfigInfo
 from Formance.model.config_info_response import ConfigInfoResponse
 from Formance.model.config_response import ConfigResponse
 from Formance.model.config_user import ConfigUser
+from Formance.model.configs_response import ConfigsResponse
 from Formance.model.connector_base_info import ConnectorBaseInfo
 from Formance.model.connector_config import ConnectorConfig
-from Formance.model.connector_task_base import ConnectorTaskBase
 from Formance.model.connectors import Connectors
 from Formance.model.contract import Contract
 from Formance.model.create_client_request import CreateClientRequest
