@@ -11,6 +11,7 @@ class TagValues(str, enum.Enum):
     SCOPES = "Scopes"
     SEARCH = "Search"
     USERS = "Users"
+    WALLETS = "Wallets"
     WEBHOOKS = "Webhooks"
     ACCOUNTS = "accounts"
     BALANCES = "balances"
