@@ -6,6 +6,7 @@ import enum
 
 
 class PathValues(str, enum.Enum):
+    API_AUTH__INFO = "/api/auth/_info"
     API_AUTH_CLIENTS = "/api/auth/clients"
     API_AUTH_CLIENTS_CLIENT_ID = "/api/auth/clients/{clientId}"
     API_AUTH_CLIENTS_CLIENT_ID_SECRETS = "/api/auth/clients/{clientId}/secrets"
@@ -48,3 +49,15 @@ class PathValues(str, enum.Enum):
     API_WEBHOOKS_CONFIGS_ID_ACTIVATE = "/api/webhooks/configs/{id}/activate"
     API_WEBHOOKS_CONFIGS_ID_DEACTIVATE = "/api/webhooks/configs/{id}/deactivate"
     API_WEBHOOKS_CONFIGS_ID_SECRET_CHANGE = "/api/webhooks/configs/{id}/secret/change"
+    API_WALLETS__INFO = "/api/wallets/_info"
+    API_WALLETS_TRANSACTIONS = "/api/wallets/transactions"
+    API_WALLETS_WALLETS = "/api/wallets/wallets"
+    API_WALLETS_WALLETS_ID = "/api/wallets/wallets/{id}"
+    API_WALLETS_WALLETS_ID_BALANCES = "/api/wallets/wallets/{id}/balances"
+    API_WALLETS_WALLETS_ID_BALANCES_BALANCE_NAME = "/api/wallets/wallets/{id}/balances/{balanceName}"
+    API_WALLETS_WALLETS_ID_DEBIT = "/api/wallets/wallets/{id}/debit"
+    API_WALLETS_WALLETS_ID_CREDIT = "/api/wallets/wallets/{id}/credit"
+    API_WALLETS_HOLDS = "/api/wallets/holds"
+    API_WALLETS_HOLDS_HOLD_ID = "/api/wallets/holds/{holdID}"
+    API_WALLETS_HOLDS_HOLD_ID_CONFIRM = "/api/wallets/holds/{hold_id}/confirm"
+    API_WALLETS_HOLDS_HOLD_ID_VOID = "/api/wallets/holds/{hold_id}/void"
