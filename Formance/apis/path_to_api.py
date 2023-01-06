@@ -1,6 +1,7 @@
 import typing_extensions
 
 from Formance.paths import PathValues
+from Formance.apis.paths.api_auth__info import ApiAuthInfo
 from Formance.apis.paths.api_auth_clients import ApiAuthClients
 from Formance.apis.paths.api_auth_clients_client_id import ApiAuthClientsClientId
 from Formance.apis.paths.api_auth_clients_client_id_secrets import ApiAuthClientsClientIdSecrets
@@ -43,10 +44,23 @@ from Formance.apis.paths.api_webhooks_configs_id_test import ApiWebhooksConfigsI
 from Formance.apis.paths.api_webhooks_configs_id_activate import ApiWebhooksConfigsIdActivate
 from Formance.apis.paths.api_webhooks_configs_id_deactivate import ApiWebhooksConfigsIdDeactivate
 from Formance.apis.paths.api_webhooks_configs_id_secret_change import ApiWebhooksConfigsIdSecretChange
+from Formance.apis.paths.api_wallets__info import ApiWalletsInfo
+from Formance.apis.paths.api_wallets_transactions import ApiWalletsTransactions
+from Formance.apis.paths.api_wallets_wallets import ApiWalletsWallets
+from Formance.apis.paths.api_wallets_wallets_id import ApiWalletsWalletsId
+from Formance.apis.paths.api_wallets_wallets_id_balances import ApiWalletsWalletsIdBalances
+from Formance.apis.paths.api_wallets_wallets_id_balances_balance_name import ApiWalletsWalletsIdBalancesBalanceName
+from Formance.apis.paths.api_wallets_wallets_id_debit import ApiWalletsWalletsIdDebit
+from Formance.apis.paths.api_wallets_wallets_id_credit import ApiWalletsWalletsIdCredit
+from Formance.apis.paths.api_wallets_holds import ApiWalletsHolds
+from Formance.apis.paths.api_wallets_holds_hold_id import ApiWalletsHoldsHoldID
+from Formance.apis.paths.api_wallets_holds_hold_id_confirm import ApiWalletsHoldsHoldIdConfirm
+from Formance.apis.paths.api_wallets_holds_hold_id_void import ApiWalletsHoldsHoldIdVoid
 
 PathToApi = typing_extensions.TypedDict(
     'PathToApi',
     {
+        PathValues.API_AUTH__INFO: ApiAuthInfo,
         PathValues.API_AUTH_CLIENTS: ApiAuthClients,
         PathValues.API_AUTH_CLIENTS_CLIENT_ID: ApiAuthClientsClientId,
         PathValues.API_AUTH_CLIENTS_CLIENT_ID_SECRETS: ApiAuthClientsClientIdSecrets,
@@ -89,11 +103,24 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_WEBHOOKS_CONFIGS_ID_ACTIVATE: ApiWebhooksConfigsIdActivate,
         PathValues.API_WEBHOOKS_CONFIGS_ID_DEACTIVATE: ApiWebhooksConfigsIdDeactivate,
         PathValues.API_WEBHOOKS_CONFIGS_ID_SECRET_CHANGE: ApiWebhooksConfigsIdSecretChange,
+        PathValues.API_WALLETS__INFO: ApiWalletsInfo,
+        PathValues.API_WALLETS_TRANSACTIONS: ApiWalletsTransactions,
+        PathValues.API_WALLETS_WALLETS: ApiWalletsWallets,
+        PathValues.API_WALLETS_WALLETS_ID: ApiWalletsWalletsId,
+        PathValues.API_WALLETS_WALLETS_ID_BALANCES: ApiWalletsWalletsIdBalances,
+        PathValues.API_WALLETS_WALLETS_ID_BALANCES_BALANCE_NAME: ApiWalletsWalletsIdBalancesBalanceName,
+        PathValues.API_WALLETS_WALLETS_ID_DEBIT: ApiWalletsWalletsIdDebit,
+        PathValues.API_WALLETS_WALLETS_ID_CREDIT: ApiWalletsWalletsIdCredit,
+        PathValues.API_WALLETS_HOLDS: ApiWalletsHolds,
+        PathValues.API_WALLETS_HOLDS_HOLD_ID: ApiWalletsHoldsHoldID,
+        PathValues.API_WALLETS_HOLDS_HOLD_ID_CONFIRM: ApiWalletsHoldsHoldIdConfirm,
+        PathValues.API_WALLETS_HOLDS_HOLD_ID_VOID: ApiWalletsHoldsHoldIdVoid,
     }
 )
 
 path_to_api = PathToApi(
     {
+        PathValues.API_AUTH__INFO: ApiAuthInfo,
         PathValues.API_AUTH_CLIENTS: ApiAuthClients,
         PathValues.API_AUTH_CLIENTS_CLIENT_ID: ApiAuthClientsClientId,
         PathValues.API_AUTH_CLIENTS_CLIENT_ID_SECRETS: ApiAuthClientsClientIdSecrets,
@@ -136,5 +163,17 @@ path_to_api = PathToApi(
         PathValues.API_WEBHOOKS_CONFIGS_ID_ACTIVATE: ApiWebhooksConfigsIdActivate,
         PathValues.API_WEBHOOKS_CONFIGS_ID_DEACTIVATE: ApiWebhooksConfigsIdDeactivate,
         PathValues.API_WEBHOOKS_CONFIGS_ID_SECRET_CHANGE: ApiWebhooksConfigsIdSecretChange,
+        PathValues.API_WALLETS__INFO: ApiWalletsInfo,
+        PathValues.API_WALLETS_TRANSACTIONS: ApiWalletsTransactions,
+        PathValues.API_WALLETS_WALLETS: ApiWalletsWallets,
+        PathValues.API_WALLETS_WALLETS_ID: ApiWalletsWalletsId,
+        PathValues.API_WALLETS_WALLETS_ID_BALANCES: ApiWalletsWalletsIdBalances,
+        PathValues.API_WALLETS_WALLETS_ID_BALANCES_BALANCE_NAME: ApiWalletsWalletsIdBalancesBalanceName,
+        PathValues.API_WALLETS_WALLETS_ID_DEBIT: ApiWalletsWalletsIdDebit,
+        PathValues.API_WALLETS_WALLETS_ID_CREDIT: ApiWalletsWalletsIdCredit,
+        PathValues.API_WALLETS_HOLDS: ApiWalletsHolds,
+        PathValues.API_WALLETS_HOLDS_HOLD_ID: ApiWalletsHoldsHoldID,
+        PathValues.API_WALLETS_HOLDS_HOLD_ID_CONFIRM: ApiWalletsHoldsHoldIdConfirm,
+        PathValues.API_WALLETS_HOLDS_HOLD_ID_VOID: ApiWalletsHoldsHoldIdVoid,
     }
 )

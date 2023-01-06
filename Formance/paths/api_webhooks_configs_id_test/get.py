@@ -87,7 +87,7 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
     @typing.overload
-    def _test_one_config_oapg(
+    def _test_config_oapg(
         self,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -99,7 +99,7 @@ class BaseApi(api_client.Api):
     ]: ...
 
     @typing.overload
-    def _test_one_config_oapg(
+    def _test_config_oapg(
         self,
         skip_deserialization: typing_extensions.Literal[True],
         path_params: RequestPathParams = frozendict.frozendict(),
@@ -109,7 +109,7 @@ class BaseApi(api_client.Api):
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def _test_one_config_oapg(
+    def _test_config_oapg(
         self,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -121,7 +121,7 @@ class BaseApi(api_client.Api):
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def _test_one_config_oapg(
+    def _test_config_oapg(
         self,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -176,20 +176,16 @@ class BaseApi(api_client.Api):
                 api_response = api_client.ApiResponseWithoutDeserialization(response=response)
 
         if not 200 <= response.status <= 299:
-            raise exceptions.ApiException(
-                status=response.status,
-                reason=response.reason,
-                api_response=api_response
-            )
+            raise exceptions.ApiException(api_response=api_response)
 
         return api_response
 
 
-class TestOneConfig(BaseApi):
+class TestConfig(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
     @typing.overload
-    def test_one_config(
+    def test_config(
         self,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -201,7 +197,7 @@ class TestOneConfig(BaseApi):
     ]: ...
 
     @typing.overload
-    def test_one_config(
+    def test_config(
         self,
         skip_deserialization: typing_extensions.Literal[True],
         path_params: RequestPathParams = frozendict.frozendict(),
@@ -211,7 +207,7 @@ class TestOneConfig(BaseApi):
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def test_one_config(
+    def test_config(
         self,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -223,7 +219,7 @@ class TestOneConfig(BaseApi):
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def test_one_config(
+    def test_config(
         self,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -231,7 +227,7 @@ class TestOneConfig(BaseApi):
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._test_one_config_oapg(
+        return self._test_config_oapg(
             path_params=path_params,
             accept_content_types=accept_content_types,
             stream=stream,
@@ -286,7 +282,7 @@ class ApiForget(BaseApi):
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._test_one_config_oapg(
+        return self._test_config_oapg(
             path_params=path_params,
             accept_content_types=accept_content_types,
             stream=stream,

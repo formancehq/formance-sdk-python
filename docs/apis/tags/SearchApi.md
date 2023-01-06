@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Search
 
-Search with Query
+ElasticSearch query engine
 
 ### Example
 
@@ -37,9 +37,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -48,12 +48,19 @@ with Formance.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     body = Query(
         ledgers=[
-            "ledgers_example"
+            "quickstart"
         ],
-        next_token="next_token_example",
-        size=1,
-,
+        after=[
+            "users:002"
+        ],
+        page_size=0,
+        terms=[
+            "destination=central_bank1"
+        ],
+        sort="txid:asc",
+        policy="OR",
         target="target_example",
+        cursor="YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     )
     try:
         # Search
@@ -89,6 +96,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#search.ApiResponseFor200) | Success
+default | [ApiResponseForDefault](#search.ApiResponseForDefault) | Error
 
 #### search.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -102,6 +110,13 @@ Type | Description  | Notes
 ------------- | ------------- | -------------
 [**Response**](../../models/Response.md) |  | 
 
+
+#### search.ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[] |  |
+headers | Unset | headers were not defined |
 
 ### Authorization
 

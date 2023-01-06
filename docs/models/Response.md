@@ -10,8 +10,6 @@ Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
 **[data](#data)** | dict, frozendict.frozendict,  | frozendict.frozendict,  | The payload | [optional] 
 **[cursor](#cursor)** | dict, frozendict.frozendict,  | frozendict.frozendict,  |  | [optional] 
-**kind** | str,  | str,  | The kind of the object, either \&quot;TRANSACTION\&quot; or \&quot;META\&quot; | [optional] 
-**ledger** | str,  | str,  | The ledger | [optional] 
 **any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 # data
@@ -33,7 +31,7 @@ dict, frozendict.frozendict,  | frozendict.frozendict,  |  |
 ### Dictionary Keys
 Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
-**pageSize** | decimal.Decimal, int, float,  | decimal.Decimal,  |  | [optional] 
+**pageSize** | decimal.Decimal, int,  | decimal.Decimal,  |  | [optional] value must be a 64 bit integer
 **hasMore** | bool,  | BoolClass,  |  | [optional] 
 **[total](#total)** | dict, frozendict.frozendict,  | frozendict.frozendict,  |  | [optional] 
 **next** | str,  | str,  |  | [optional] 
@@ -51,7 +49,7 @@ dict, frozendict.frozendict,  | frozendict.frozendict,  |  |
 ### Dictionary Keys
 Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
-**value** | decimal.Decimal, int, float,  | decimal.Decimal,  |  | [optional] 
+**value** | decimal.Decimal, int,  | decimal.Decimal,  |  | [optional] value must be a 64 bit integer
 **relation** | str,  | str,  |  | [optional] 
 **any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 

@@ -53,7 +53,7 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
     @typing.overload
-    def _get_server_info_oapg(
+    def _searchget_server_info_oapg(
         self,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -64,7 +64,7 @@ class BaseApi(api_client.Api):
     ]: ...
 
     @typing.overload
-    def _get_server_info_oapg(
+    def _searchget_server_info_oapg(
         self,
         skip_deserialization: typing_extensions.Literal[True],
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -73,7 +73,7 @@ class BaseApi(api_client.Api):
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def _get_server_info_oapg(
+    def _searchget_server_info_oapg(
         self,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -84,7 +84,7 @@ class BaseApi(api_client.Api):
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def _get_server_info_oapg(
+    def _searchget_server_info_oapg(
         self,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -124,20 +124,16 @@ class BaseApi(api_client.Api):
                 api_response = api_client.ApiResponseWithoutDeserialization(response=response)
 
         if not 200 <= response.status <= 299:
-            raise exceptions.ApiException(
-                status=response.status,
-                reason=response.reason,
-                api_response=api_response
-            )
+            raise exceptions.ApiException(api_response=api_response)
 
         return api_response
 
 
-class GetServerInfo(BaseApi):
+class SearchgetServerInfo(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
     @typing.overload
-    def get_server_info(
+    def searchget_server_info(
         self,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -148,7 +144,7 @@ class GetServerInfo(BaseApi):
     ]: ...
 
     @typing.overload
-    def get_server_info(
+    def searchget_server_info(
         self,
         skip_deserialization: typing_extensions.Literal[True],
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -157,7 +153,7 @@ class GetServerInfo(BaseApi):
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def get_server_info(
+    def searchget_server_info(
         self,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -168,14 +164,14 @@ class GetServerInfo(BaseApi):
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def get_server_info(
+    def searchget_server_info(
         self,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._get_server_info_oapg(
+        return self._searchget_server_info_oapg(
             accept_content_types=accept_content_types,
             stream=stream,
             timeout=timeout,
@@ -225,7 +221,7 @@ class ApiForget(BaseApi):
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._get_server_info_oapg(
+        return self._searchget_server_info_oapg(
             accept_content_types=accept_content_types,
             stream=stream,
             timeout=timeout,

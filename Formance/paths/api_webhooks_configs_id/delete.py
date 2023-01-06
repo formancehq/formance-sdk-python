@@ -75,7 +75,7 @@ _status_code_to_response = {
 
 class BaseApi(api_client.Api):
     @typing.overload
-    def _delete_one_config_oapg(
+    def _delete_config_oapg(
         self,
         path_params: RequestPathParams = frozendict.frozendict(),
         stream: bool = False,
@@ -86,7 +86,7 @@ class BaseApi(api_client.Api):
     ]: ...
 
     @typing.overload
-    def _delete_one_config_oapg(
+    def _delete_config_oapg(
         self,
         skip_deserialization: typing_extensions.Literal[True],
         path_params: RequestPathParams = frozendict.frozendict(),
@@ -95,7 +95,7 @@ class BaseApi(api_client.Api):
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def _delete_one_config_oapg(
+    def _delete_config_oapg(
         self,
         path_params: RequestPathParams = frozendict.frozendict(),
         stream: bool = False,
@@ -106,7 +106,7 @@ class BaseApi(api_client.Api):
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def _delete_one_config_oapg(
+    def _delete_config_oapg(
         self,
         path_params: RequestPathParams = frozendict.frozendict(),
         stream: bool = False,
@@ -154,20 +154,16 @@ class BaseApi(api_client.Api):
                 api_response = api_client.ApiResponseWithoutDeserialization(response=response)
 
         if not 200 <= response.status <= 299:
-            raise exceptions.ApiException(
-                status=response.status,
-                reason=response.reason,
-                api_response=api_response
-            )
+            raise exceptions.ApiException(api_response=api_response)
 
         return api_response
 
 
-class DeleteOneConfig(BaseApi):
+class DeleteConfig(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
     @typing.overload
-    def delete_one_config(
+    def delete_config(
         self,
         path_params: RequestPathParams = frozendict.frozendict(),
         stream: bool = False,
@@ -178,7 +174,7 @@ class DeleteOneConfig(BaseApi):
     ]: ...
 
     @typing.overload
-    def delete_one_config(
+    def delete_config(
         self,
         skip_deserialization: typing_extensions.Literal[True],
         path_params: RequestPathParams = frozendict.frozendict(),
@@ -187,7 +183,7 @@ class DeleteOneConfig(BaseApi):
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def delete_one_config(
+    def delete_config(
         self,
         path_params: RequestPathParams = frozendict.frozendict(),
         stream: bool = False,
@@ -198,14 +194,14 @@ class DeleteOneConfig(BaseApi):
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def delete_one_config(
+    def delete_config(
         self,
         path_params: RequestPathParams = frozendict.frozendict(),
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._delete_one_config_oapg(
+        return self._delete_config_oapg(
             path_params=path_params,
             stream=stream,
             timeout=timeout,
@@ -255,7 +251,7 @@ class ApiFordelete(BaseApi):
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._delete_one_config_oapg(
+        return self._delete_config_oapg(
             path_params=path_params,
             stream=stream,
             timeout=timeout,

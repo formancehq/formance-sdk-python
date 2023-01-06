@@ -5,19 +5,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activate_one_config**](#activate_one_config) | **put** /api/webhooks/configs/{id}/activate | Activate one config
-[**change_one_config_secret**](#change_one_config_secret) | **put** /api/webhooks/configs/{id}/secret/change | Change the signing secret of a config
-[**deactivate_one_config**](#deactivate_one_config) | **put** /api/webhooks/configs/{id}/deactivate | Deactivate one config
-[**delete_one_config**](#delete_one_config) | **delete** /api/webhooks/configs/{id} | Delete one config
+[**activate_config**](#activate_config) | **put** /api/webhooks/configs/{id}/activate | Activate one config
+[**change_config_secret**](#change_config_secret) | **put** /api/webhooks/configs/{id}/secret/change | Change the signing secret of a config
+[**deactivate_config**](#deactivate_config) | **put** /api/webhooks/configs/{id}/deactivate | Deactivate one config
+[**delete_config**](#delete_config) | **delete** /api/webhooks/configs/{id} | Delete one config
 [**get_many_configs**](#get_many_configs) | **get** /api/webhooks/configs | Get many configs
-[**insert_one_config**](#insert_one_config) | **post** /api/webhooks/configs | Insert a new config 
-[**test_one_config**](#test_one_config) | **get** /api/webhooks/configs/{id}/test | Test one config
+[**insert_config**](#insert_config) | **post** /api/webhooks/configs | Insert a new config
+[**test_config**](#test_config) | **get** /api/webhooks/configs/{id}/test | Test one config
 
-# **activate_one_config**
-<a name="activate_one_config"></a>
-> ConfigResponse activate_one_config(id)
+# **activate_config**
+<a name="activate_config"></a>
+> ConfigResponse activate_config(id)
 
 Activate one config
+
+Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 
 ### Example
 
@@ -40,9 +42,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -54,12 +56,12 @@ with Formance.ApiClient(configuration) as api_client:
     }
     try:
         # Activate one config
-        api_response = api_instance.activate_one_config(
+        api_response = api_instance.activate_config(
             path_params=path_params,
         )
         pprint(api_response)
     except Formance.ApiException as e:
-        print("Exception when calling WebhooksApi->activate_one_config: %s\n" % e)
+        print("Exception when calling WebhooksApi->activate_config: %s\n" % e)
 ```
 ### Parameters
 
@@ -90,10 +92,10 @@ str,  | str,  |  |
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#activate_one_config.ApiResponseFor200) | Config successfully activated.
-304 | [ApiResponseFor304](#activate_one_config.ApiResponseFor304) | Config not modified, was already activated.
+200 | [ApiResponseFor200](#activate_config.ApiResponseFor200) | Config successfully activated.
+304 | [ApiResponseFor304](#activate_config.ApiResponseFor304) | Config not modified, was already activated.
 
-#### activate_one_config.ApiResponseFor200
+#### activate_config.ApiResponseFor200
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
@@ -106,7 +108,7 @@ Type | Description  | Notes
 [**ConfigResponse**](../../models/ConfigResponse.md) |  | 
 
 
-#### activate_one_config.ApiResponseFor304
+#### activate_config.ApiResponseFor304
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
@@ -119,13 +121,13 @@ headers | Unset | headers were not defined |
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
-# **change_one_config_secret**
-<a name="change_one_config_secret"></a>
-> ConfigResponse change_one_config_secret(id)
+# **change_config_secret**
+<a name="change_config_secret"></a>
+> ConfigResponse change_config_secret(id)
 
 Change the signing secret of a config
 
-Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+Change the signing secret of the endpoint of a webhooks config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
 
 ### Example
 
@@ -134,6 +136,7 @@ Change the signing secret of the endpoint of a config.  If not passed or empty, 
 import Formance
 from Formance.apis.tags import webhooks_api
 from Formance.model.config_response import ConfigResponse
+from Formance.model.config_change_secret import ConfigChangeSecret
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -148,9 +151,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -162,29 +165,29 @@ with Formance.ApiClient(configuration) as api_client:
     }
     try:
         # Change the signing secret of a config
-        api_response = api_instance.change_one_config_secret(
+        api_response = api_instance.change_config_secret(
             path_params=path_params,
         )
         pprint(api_response)
     except Formance.ApiException as e:
-        print("Exception when calling WebhooksApi->change_one_config_secret: %s\n" % e)
+        print("Exception when calling WebhooksApi->change_config_secret: %s\n" % e)
 
     # example passing only optional values
     path_params = {
         'id': "4997257d-dfb6-445b-929c-cbe2ab182818",
     }
-    body = dict(
+    body = ConfigChangeSecret(
         secret="V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
     )
     try:
         # Change the signing secret of a config
-        api_response = api_instance.change_one_config_secret(
+        api_response = api_instance.change_config_secret(
             path_params=path_params,
             body=body,
         )
         pprint(api_response)
     except Formance.ApiException as e:
-        print("Exception when calling WebhooksApi->change_one_config_secret: %s\n" % e)
+        print("Exception when calling WebhooksApi->change_config_secret: %s\n" % e)
 ```
 ### Parameters
 
@@ -201,17 +204,10 @@ skip_deserialization | bool | default is False | when True, headers and body wil
 ### body
 
 # SchemaForRequestBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ConfigChangeSecret**](../../models/ConfigChangeSecret.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**secret** | str,  | str,  |  | 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### path_params
 #### RequestPathParams
@@ -232,9 +228,9 @@ str,  | str,  |  |
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#change_one_config_secret.ApiResponseFor200) | Secret successfully changed.
+200 | [ApiResponseFor200](#change_config_secret.ApiResponseFor200) | Secret successfully changed.
 
-#### change_one_config_secret.ApiResponseFor200
+#### change_config_secret.ApiResponseFor200
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
@@ -253,11 +249,13 @@ Type | Description  | Notes
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
-# **deactivate_one_config**
-<a name="deactivate_one_config"></a>
-> ConfigResponse deactivate_one_config(id)
+# **deactivate_config**
+<a name="deactivate_config"></a>
+> ConfigResponse deactivate_config(id)
 
 Deactivate one config
+
+Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 
 ### Example
 
@@ -280,9 +278,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -294,12 +292,12 @@ with Formance.ApiClient(configuration) as api_client:
     }
     try:
         # Deactivate one config
-        api_response = api_instance.deactivate_one_config(
+        api_response = api_instance.deactivate_config(
             path_params=path_params,
         )
         pprint(api_response)
     except Formance.ApiException as e:
-        print("Exception when calling WebhooksApi->deactivate_one_config: %s\n" % e)
+        print("Exception when calling WebhooksApi->deactivate_config: %s\n" % e)
 ```
 ### Parameters
 
@@ -330,10 +328,10 @@ str,  | str,  |  |
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#deactivate_one_config.ApiResponseFor200) | Config successfully deactivated.
-304 | [ApiResponseFor304](#deactivate_one_config.ApiResponseFor304) | Config not modified, was already deactivated.
+200 | [ApiResponseFor200](#deactivate_config.ApiResponseFor200) | Config successfully deactivated.
+304 | [ApiResponseFor304](#deactivate_config.ApiResponseFor304) | Config not modified, was already deactivated.
 
-#### deactivate_one_config.ApiResponseFor200
+#### deactivate_config.ApiResponseFor200
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
@@ -346,7 +344,7 @@ Type | Description  | Notes
 [**ConfigResponse**](../../models/ConfigResponse.md) |  | 
 
 
-#### deactivate_one_config.ApiResponseFor304
+#### deactivate_config.ApiResponseFor304
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
@@ -359,11 +357,13 @@ headers | Unset | headers were not defined |
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
-# **delete_one_config**
-<a name="delete_one_config"></a>
-> delete_one_config(id)
+# **delete_config**
+<a name="delete_config"></a>
+> delete_config(id)
 
 Delete one config
+
+Delete a webhooks config by ID.
 
 ### Example
 
@@ -385,9 +385,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -399,11 +399,11 @@ with Formance.ApiClient(configuration) as api_client:
     }
     try:
         # Delete one config
-        api_response = api_instance.delete_one_config(
+        api_response = api_instance.delete_config(
             path_params=path_params,
         )
     except Formance.ApiException as e:
-        print("Exception when calling WebhooksApi->delete_one_config: %s\n" % e)
+        print("Exception when calling WebhooksApi->delete_config: %s\n" % e)
 ```
 ### Parameters
 
@@ -433,9 +433,9 @@ str,  | str,  |  |
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#delete_one_config.ApiResponseFor200) | Config successfully deleted.
+200 | [ApiResponseFor200](#delete_config.ApiResponseFor200) | Config successfully deleted.
 
-#### delete_one_config.ApiResponseFor200
+#### delete_config.ApiResponseFor200
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
@@ -450,7 +450,7 @@ headers | Unset | headers were not defined |
 
 # **get_many_configs**
 <a name="get_many_configs"></a>
-> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} get_many_configs()
+> ConfigsResponse get_many_configs()
 
 Get many configs
 
@@ -462,8 +462,7 @@ Sorted by updated date descending
 ```python
 import Formance
 from Formance.apis.tags import webhooks_api
-from Formance.model.webhooks_config import WebhooksConfig
-from Formance.model.webhooks_cursor import WebhooksCursor
+from Formance.model.configs_response import ConfigsResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -478,9 +477,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -548,56 +547,10 @@ body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ConfigsResponse**](../../models/ConfigsResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**[cursor](#cursor)** | dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader,  | frozendict.frozendict, str, decimal.Decimal, BoolClass, NoneClass, tuple, bytes, FileIO |  | 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-# cursor
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader,  | frozendict.frozendict, str, decimal.Decimal, BoolClass, NoneClass, tuple, bytes, FileIO |  | 
-
-### Composed Schemas (allOf/anyOf/oneOf/not)
-#### allOf
-Class Name | Input Type | Accessed Type | Description | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-[WebhooksCursor]({{complexTypePrefix}}WebhooksCursor.md) | [**WebhooksCursor**]({{complexTypePrefix}}WebhooksCursor.md) | [**WebhooksCursor**]({{complexTypePrefix}}WebhooksCursor.md) |  | 
-[all_of_1](#all_of_1) | dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-# all_of_1
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**[data](#data)** | list, tuple,  | tuple,  |  | 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-# data
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-list, tuple,  | tuple,  |  | 
-
-### Tuple Items
-Class Name | Input Type | Accessed Type | Description | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-[**WebhooksConfig**]({{complexTypePrefix}}WebhooksConfig.md) | [**WebhooksConfig**]({{complexTypePrefix}}WebhooksConfig.md) | [**WebhooksConfig**]({{complexTypePrefix}}WebhooksConfig.md) |  | 
 
 ### Authorization
 
@@ -605,13 +558,13 @@ Class Name | Input Type | Accessed Type | Description | Notes
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
-# **insert_one_config**
-<a name="insert_one_config"></a>
-> ConfigResponse insert_one_config(config_user)
+# **insert_config**
+<a name="insert_config"></a>
+> ConfigResponse insert_config(config_user)
 
-Insert a new config 
+Insert a new config
 
-Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+Insert a new webhooks config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
 
 ### Example
 
@@ -635,24 +588,28 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = webhooks_api.WebhooksApi(api_client)
 
     # example passing only required values which don't have defaults set
-    body = ConfigUser(None)
+    body = ConfigUser(
+        endpoint="https://example.com",
+        secret="V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
+        event_types=["TYPE1","TYPE2"],
+    )
     try:
-        # Insert a new config 
-        api_response = api_instance.insert_one_config(
+        # Insert a new config
+        api_response = api_instance.insert_config(
             body=body,
         )
         pprint(api_response)
     except Formance.ApiException as e:
-        print("Exception when calling WebhooksApi->insert_one_config: %s\n" % e)
+        print("Exception when calling WebhooksApi->insert_config: %s\n" % e)
 ```
 ### Parameters
 
@@ -678,10 +635,10 @@ Type | Description  | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#insert_one_config.ApiResponseFor200) | Config created successfully.
-400 | [ApiResponseFor400](#insert_one_config.ApiResponseFor400) | Bad Request
+200 | [ApiResponseFor200](#insert_config.ApiResponseFor200) | Config created successfully.
+400 | [ApiResponseFor400](#insert_config.ApiResponseFor400) | Bad Request
 
-#### insert_one_config.ApiResponseFor200
+#### insert_config.ApiResponseFor200
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
@@ -694,7 +651,7 @@ Type | Description  | Notes
 [**ConfigResponse**](../../models/ConfigResponse.md) |  | 
 
 
-#### insert_one_config.ApiResponseFor400
+#### insert_config.ApiResponseFor400
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
@@ -714,13 +671,13 @@ str,  | str,  |  |
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
-# **test_one_config**
-<a name="test_one_config"></a>
-> AttemptResponse test_one_config(id)
+# **test_config**
+<a name="test_config"></a>
+> AttemptResponse test_config(id)
 
 Test one config
 
-Test one config by sending a webhook to its endpoint. 
+Test a config by sending a webhook to its endpoint.
 
 ### Example
 
@@ -743,9 +700,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -757,12 +714,12 @@ with Formance.ApiClient(configuration) as api_client:
     }
     try:
         # Test one config
-        api_response = api_instance.test_one_config(
+        api_response = api_instance.test_config(
             path_params=path_params,
         )
         pprint(api_response)
     except Formance.ApiException as e:
-        print("Exception when calling WebhooksApi->test_one_config: %s\n" % e)
+        print("Exception when calling WebhooksApi->test_config: %s\n" % e)
 ```
 ### Parameters
 
@@ -793,9 +750,9 @@ str,  | str,  |  |
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#test_one_config.ApiResponseFor200) | OK
+200 | [ApiResponseFor200](#test_config.ApiResponseFor200) | OK
 
-#### test_one_config.ApiResponseFor200
+#### test_config.ApiResponseFor200
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |

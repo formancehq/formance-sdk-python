@@ -125,14 +125,14 @@ class SchemaFor200ResponseBodyApplicationJson(
 
     def __new__(
         cls,
-        *_args: typing.Union[dict, frozendict.frozendict, ],
+        *args: typing.Union[dict, frozendict.frozendict, ],
         data: 'AssetsBalances',
         _configuration: typing.Optional[schemas.Configuration] = None,
         **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
     ) -> 'SchemaFor200ResponseBodyApplicationJson':
         return super().__new__(
             cls,
-            *_args,
+            *args,
             data=data,
             _configuration=_configuration,
             **kwargs,
@@ -206,7 +206,7 @@ class SchemaFor400ResponseBodyApplicationJson(
 
     def __new__(
         cls,
-        *_args: typing.Union[dict, frozendict.frozendict, ],
+        *args: typing.Union[dict, frozendict.frozendict, ],
         error_code: typing.Union[MetaOapg.properties.error_code, str, ],
         error_message: typing.Union[MetaOapg.properties.error_message, str, schemas.Unset] = schemas.unset,
         _configuration: typing.Optional[schemas.Configuration] = None,
@@ -214,7 +214,7 @@ class SchemaFor400ResponseBodyApplicationJson(
     ) -> 'SchemaFor400ResponseBodyApplicationJson':
         return super().__new__(
             cls,
-            *_args,
+            *args,
             error_code=error_code,
             error_message=error_message,
             _configuration=_configuration,
@@ -352,11 +352,7 @@ class BaseApi(api_client.Api):
                 api_response = api_client.ApiResponseWithoutDeserialization(response=response)
 
         if not 200 <= response.status <= 299:
-            raise exceptions.ApiException(
-                status=response.status,
-                reason=response.reason,
-                api_response=api_response
-            )
+            raise exceptions.ApiException(api_response=api_response)
 
         return api_response
 
