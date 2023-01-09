@@ -8,7 +8,7 @@ dict, frozendict.frozendict,  | frozendict.frozendict,  |  |
 ### Dictionary Keys
 Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
-**amount** | decimal.Decimal, int,  | decimal.Decimal,  |  | 
+**amount** | decimal.Decimal, int,  | decimal.Decimal,  |  | value must be a 64 bit integer
 **destination** | str,  | str,  |  | 
 **source** | str,  | str,  |  | 
 **asset** | str,  | str,  |  | 

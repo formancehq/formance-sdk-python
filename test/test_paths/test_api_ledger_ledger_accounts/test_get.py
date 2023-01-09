@@ -21,7 +21,7 @@ from .. import ApiTestMixin
 class TestApiLedgerLedgerAccounts(ApiTestMixin, unittest.TestCase):
     """
     ApiLedgerLedgerAccounts unit test stubs
-        List accounts from a ledger.  # noqa: E501
+        List accounts from a ledger  # noqa: E501
     """
     _configuration = configuration.Configuration()
 

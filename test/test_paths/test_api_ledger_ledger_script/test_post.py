@@ -21,7 +21,7 @@ from .. import ApiTestMixin
 class TestApiLedgerLedgerScript(ApiTestMixin, unittest.TestCase):
     """
     ApiLedgerLedgerScript unit test stubs
-        Execute a Numscript.  # noqa: E501
+        Execute a Numscript  # noqa: E501
     """
     _configuration = configuration.Configuration()
 

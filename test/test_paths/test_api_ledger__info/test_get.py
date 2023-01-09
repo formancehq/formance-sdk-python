@@ -21,7 +21,7 @@ from .. import ApiTestMixin
 class TestApiLedgerInfo(ApiTestMixin, unittest.TestCase):
     """
     ApiLedgerInfo unit test stubs
-        Show server information.  # noqa: E501
+        Show server information  # noqa: E501
     """
     _configuration = configuration.Configuration()
 

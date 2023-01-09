@@ -25,6 +25,7 @@ import frozendict  # noqa: F401
 
 from Formance import schemas  # noqa: F401
 
+from Formance.model.error_response import ErrorResponse
 from Formance.model.transactions_response import TransactionsResponse
 from Formance.model.transactions import Transactions
 
@@ -89,176 +90,28 @@ _response_for_200 = api_client.OpenApiResponse(
             schema=SchemaFor200ResponseBodyApplicationJson),
     },
 )
-
-
-class SchemaFor400ResponseBodyApplicationJson(
-    schemas.DictSchema
-):
-
-
-    class MetaOapg:
-        required = {
-            "error_code",
-        }
-        
-        class properties:
-            error_code = schemas.StrSchema
-            error_message = schemas.StrSchema
-            __annotations__ = {
-                "error_code": error_code,
-                "error_message": error_message,
-            }
-    
-    error_code: MetaOapg.properties.error_code
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["error_code"]) -> MetaOapg.properties.error_code: ...
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["error_message"]) -> MetaOapg.properties.error_message: ...
-    
-    @typing.overload
-    def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
-    
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["error_code", "error_message", ], str]):
-        # dict_instance[name] accessor
-        return super().__getitem__(name)
-    
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["error_code"]) -> MetaOapg.properties.error_code: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["error_message"]) -> typing.Union[MetaOapg.properties.error_message, schemas.Unset]: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
-    
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["error_code", "error_message", ], str]):
-        return super().get_item_oapg(name)
-    
-
-    def __new__(
-        cls,
-        *_args: typing.Union[dict, frozendict.frozendict, ],
-        error_code: typing.Union[MetaOapg.properties.error_code, str, ],
-        error_message: typing.Union[MetaOapg.properties.error_message, str, schemas.Unset] = schemas.unset,
-        _configuration: typing.Optional[schemas.Configuration] = None,
-        **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
-    ) -> 'SchemaFor400ResponseBodyApplicationJson':
-        return super().__new__(
-            cls,
-            *_args,
-            error_code=error_code,
-            error_message=error_message,
-            _configuration=_configuration,
-            **kwargs,
-        )
+SchemaFor0ResponseBodyApplicationJson = ErrorResponse
 
 
 @dataclass
-class ApiResponseFor400(api_client.ApiResponse):
+class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor400ResponseBodyApplicationJson,
+        SchemaFor0ResponseBodyApplicationJson,
     ]
     headers: schemas.Unset = schemas.unset
 
 
-_response_for_400 = api_client.OpenApiResponse(
-    response_cls=ApiResponseFor400,
+_response_for_default = api_client.OpenApiResponse(
+    response_cls=ApiResponseForDefault,
     content={
         'application/json': api_client.MediaType(
-            schema=SchemaFor400ResponseBodyApplicationJson),
-    },
-)
-
-
-class SchemaFor409ResponseBodyApplicationJson(
-    schemas.DictSchema
-):
-
-
-    class MetaOapg:
-        required = {
-            "error_code",
-        }
-        
-        class properties:
-            error_code = schemas.StrSchema
-            error_message = schemas.StrSchema
-            __annotations__ = {
-                "error_code": error_code,
-                "error_message": error_message,
-            }
-    
-    error_code: MetaOapg.properties.error_code
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["error_code"]) -> MetaOapg.properties.error_code: ...
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["error_message"]) -> MetaOapg.properties.error_message: ...
-    
-    @typing.overload
-    def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
-    
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["error_code", "error_message", ], str]):
-        # dict_instance[name] accessor
-        return super().__getitem__(name)
-    
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["error_code"]) -> MetaOapg.properties.error_code: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["error_message"]) -> typing.Union[MetaOapg.properties.error_message, schemas.Unset]: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
-    
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["error_code", "error_message", ], str]):
-        return super().get_item_oapg(name)
-    
-
-    def __new__(
-        cls,
-        *_args: typing.Union[dict, frozendict.frozendict, ],
-        error_code: typing.Union[MetaOapg.properties.error_code, str, ],
-        error_message: typing.Union[MetaOapg.properties.error_message, str, schemas.Unset] = schemas.unset,
-        _configuration: typing.Optional[schemas.Configuration] = None,
-        **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
-    ) -> 'SchemaFor409ResponseBodyApplicationJson':
-        return super().__new__(
-            cls,
-            *_args,
-            error_code=error_code,
-            error_message=error_message,
-            _configuration=_configuration,
-            **kwargs,
-        )
-
-
-@dataclass
-class ApiResponseFor409(api_client.ApiResponse):
-    response: urllib3.HTTPResponse
-    body: typing.Union[
-        SchemaFor409ResponseBodyApplicationJson,
-    ]
-    headers: schemas.Unset = schemas.unset
-
-
-_response_for_409 = api_client.OpenApiResponse(
-    response_cls=ApiResponseFor409,
-    content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor409ResponseBodyApplicationJson),
+            schema=SchemaFor0ResponseBodyApplicationJson),
     },
 )
 _status_code_to_response = {
     '200': _response_for_200,
-    '400': _response_for_400,
-    '409': _response_for_409,
+    'default': _response_for_default,
 }
 _all_accept_content_types = (
     'application/json',
@@ -278,6 +131,7 @@ class BaseApi(api_client.Api):
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
     ]: ...
 
     @typing.overload
@@ -292,6 +146,7 @@ class BaseApi(api_client.Api):
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
     ]: ...
 
 
@@ -319,6 +174,7 @@ class BaseApi(api_client.Api):
         skip_deserialization: bool = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
@@ -333,7 +189,7 @@ class BaseApi(api_client.Api):
         skip_deserialization: bool = False,
     ):
         """
-        Create a new batch of transactions to a ledger.
+        Create a new batch of transactions to a ledger
         :param skip_deserialization: If true then api_response.response will be set but
             api_response.body and api_response.headers will not be deserialized into schema
             class instances
@@ -389,14 +245,14 @@ class BaseApi(api_client.Api):
             if response_for_status:
                 api_response = response_for_status.deserialize(response, self.api_client.configuration)
             else:
-                api_response = api_client.ApiResponseWithoutDeserialization(response=response)
+                default_response = _status_code_to_response.get('default')
+                if default_response:
+                    api_response = default_response.deserialize(response, self.api_client.configuration)
+                else:
+                    api_response = api_client.ApiResponseWithoutDeserialization(response=response)
 
         if not 200 <= response.status <= 299:
-            raise exceptions.ApiException(
-                status=response.status,
-                reason=response.reason,
-                api_response=api_response
-            )
+            raise exceptions.ApiException(api_response=api_response)
 
         return api_response
 
@@ -416,6 +272,7 @@ class CreateTransactions(BaseApi):
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
     ]: ...
 
     @typing.overload
@@ -430,6 +287,7 @@ class CreateTransactions(BaseApi):
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
     ]: ...
 
 
@@ -457,6 +315,7 @@ class CreateTransactions(BaseApi):
         skip_deserialization: bool = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
@@ -496,6 +355,7 @@ class ApiForpost(BaseApi):
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
     ]: ...
 
     @typing.overload
@@ -510,6 +370,7 @@ class ApiForpost(BaseApi):
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
     ]: ...
 
 
@@ -537,6 +398,7 @@ class ApiForpost(BaseApi):
         skip_deserialization: bool = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 

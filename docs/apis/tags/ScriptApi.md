@@ -5,13 +5,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**run_script**](#run_script) | **post** /api/ledger/{ledger}/script | Execute a Numscript.
+[**run_script**](#run_script) | **post** /api/ledger/{ledger}/script | Execute a Numscript
 
 # **run_script**
 <a name="run_script"></a>
-> ScriptResult run_script(ledgerscript)
+> ScriptResponse run_script(ledgerscript)
 
-Execute a Numscript.
+Execute a Numscript
+
+This route is deprecated, and has been merged into `POST /{ledger}/transactions`. 
 
 ### Example
 
@@ -20,7 +22,7 @@ Execute a Numscript.
 import Formance
 from Formance.apis.tags import script_api
 from Formance.model.script import Script
-from Formance.model.script_result import ScriptResult
+from Formance.model.script_response import ScriptResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -35,9 +37,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -50,15 +52,15 @@ with Formance.ApiClient(configuration) as api_client:
     query_params = {
     }
     body = Script(
+        plain="vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
+        vars=dict(),
         reference="order_1234",
         metadata=LedgerMetadata(
             key=None,
         ),
-        plain="vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
-        vars=dict(),
     )
     try:
-        # Execute a Numscript.
+        # Execute a Numscript
         api_response = api_instance.run_script(
             path_params=path_params,
             query_params=query_params,
@@ -76,15 +78,15 @@ with Formance.ApiClient(configuration) as api_client:
         'preview': True,
     }
     body = Script(
+        plain="vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
+        vars=dict(),
         reference="order_1234",
         metadata=LedgerMetadata(
             key=None,
         ),
-        plain="vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
-        vars=dict(),
     )
     try:
-        # Execute a Numscript.
+        # Execute a Numscript
         api_response = api_instance.run_script(
             path_params=path_params,
             query_params=query_params,
@@ -149,9 +151,7 @@ str,  | str,  |  |
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#run_script.ApiResponseFor200) | OK
-400 | [ApiResponseFor400](#run_script.ApiResponseFor400) | Bad Request
-409 | [ApiResponseFor409](#run_script.ApiResponseFor409) | Conflict
+200 | [ApiResponseFor200](#run_script.ApiResponseFor200) | On success, it will return a 200 status code, and the resulting transaction under the &#x60;transaction&#x60; field.  On failure, it will also return a 200 status code, and the following fields:   - &#x60;details&#x60;: contains a URL. When there is an error parsing Numscript, the result can be difficult to read—the provided URL will render the error in an easy-to-read format.   - &#x60;errorCode&#x60; and &#x60;error_code&#x60; (deprecated): contains the string code of the error   - &#x60;errorMessage&#x60; and &#x60;error_message&#x60; (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript. 
 
 #### run_script.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -163,50 +163,8 @@ headers | Unset | headers were not defined |
 # SchemaFor200ResponseBodyApplicationJson
 Type | Description  | Notes
 ------------- | ------------- | -------------
-[**ScriptResult**](../../models/ScriptResult.md) |  | 
+[**ScriptResponse**](../../models/ScriptResponse.md) |  | 
 
-
-#### run_script.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor400ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
-
-# SchemaFor400ResponseBodyApplicationJson
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-#### run_script.ApiResponseFor409
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor409ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
-
-# SchemaFor409ResponseBodyApplicationJson
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### Authorization
 

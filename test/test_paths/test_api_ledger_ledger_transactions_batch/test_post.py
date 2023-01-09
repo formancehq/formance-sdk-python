@@ -21,7 +21,7 @@ from .. import ApiTestMixin
 class TestApiLedgerLedgerTransactionsBatch(ApiTestMixin, unittest.TestCase):
     """
     ApiLedgerLedgerTransactionsBatch unit test stubs
-        Create a new batch of transactions to a ledger.  # noqa: E501
+        Create a new batch of transactions to a ledger  # noqa: E501
     """
     _configuration = configuration.Configuration()
 

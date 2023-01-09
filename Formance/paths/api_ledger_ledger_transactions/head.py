@@ -9,6 +9,7 @@
 from dataclasses import dataclass
 import typing_extensions
 import urllib3
+from urllib3._collections import HTTPHeaderDict
 
 from Formance import api_client, exceptions
 from datetime import date, datetime  # noqa: F401
@@ -24,6 +25,8 @@ import frozendict  # noqa: F401
 
 from Formance import schemas  # noqa: F401
 
+from Formance.model.error_response import ErrorResponse
+
 from . import path
 
 # Query params
@@ -31,6 +34,10 @@ ReferenceSchema = schemas.StrSchema
 AccountSchema = schemas.StrSchema
 SourceSchema = schemas.StrSchema
 DestinationSchema = schemas.StrSchema
+StartTimeSchema = schemas.DateTimeSchema
+StartTimeSchema = schemas.DateTimeSchema
+EndTimeSchema = schemas.DateTimeSchema
+EndTimeSchema = schemas.DateTimeSchema
 MetadataSchema = schemas.DictSchema
 RequestRequiredQueryParams = typing_extensions.TypedDict(
     'RequestRequiredQueryParams',
@@ -44,6 +51,10 @@ RequestOptionalQueryParams = typing_extensions.TypedDict(
         'account': typing.Union[AccountSchema, str, ],
         'source': typing.Union[SourceSchema, str, ],
         'destination': typing.Union[DestinationSchema, str, ],
+        'startTime': typing.Union[StartTimeSchema, str, datetime, ],
+        'start_time': typing.Union[StartTimeSchema, str, datetime, ],
+        'endTime': typing.Union[EndTimeSchema, str, datetime, ],
+        'end_time': typing.Union[EndTimeSchema, str, datetime, ],
         'metadata': typing.Union[MetadataSchema, dict, frozendict.frozendict, ],
     },
     total=False
@@ -76,6 +87,30 @@ request_query_destination = api_client.QueryParameter(
     name="destination",
     style=api_client.ParameterStyle.FORM,
     schema=DestinationSchema,
+    explode=True,
+)
+request_query_start_time = api_client.QueryParameter(
+    name="startTime",
+    style=api_client.ParameterStyle.FORM,
+    schema=StartTimeSchema,
+    explode=True,
+)
+request_query_start_time2 = api_client.QueryParameter(
+    name="start_time",
+    style=api_client.ParameterStyle.FORM,
+    schema=StartTimeSchema,
+    explode=True,
+)
+request_query_end_time = api_client.QueryParameter(
+    name="endTime",
+    style=api_client.ParameterStyle.FORM,
+    schema=EndTimeSchema,
+    explode=True,
+)
+request_query_end_time2 = api_client.QueryParameter(
+    name="end_time",
+    style=api_client.ParameterStyle.FORM,
+    schema=EndTimeSchema,
     explode=True,
 )
 request_query_metadata = api_client.QueryParameter(
@@ -113,7 +148,16 @@ request_path_ledger = api_client.PathParameter(
 _auth = [
     'Authorization',
 ]
-CountSchema = schemas.IntSchema
+
+
+class CountSchema(
+    schemas.Int64Schema
+):
+
+
+    class MetaOapg:
+        format = 'int64'
+        inclusive_minimum = 0
 count_parameter = api_client.HeaderParameter(
     name="Count",
     style=api_client.ParameterStyle.SIMPLE,
@@ -140,9 +184,32 @@ _response_for_200 = api_client.OpenApiResponse(
         count_parameter,
     ]
 )
+SchemaFor0ResponseBodyApplicationJson = ErrorResponse
+
+
+@dataclass
+class ApiResponseForDefault(api_client.ApiResponse):
+    response: urllib3.HTTPResponse
+    body: typing.Union[
+        SchemaFor0ResponseBodyApplicationJson,
+    ]
+    headers: schemas.Unset = schemas.unset
+
+
+_response_for_default = api_client.OpenApiResponse(
+    response_cls=ApiResponseForDefault,
+    content={
+        'application/json': api_client.MediaType(
+            schema=SchemaFor0ResponseBodyApplicationJson),
+    },
+)
 _status_code_to_response = {
     '200': _response_for_200,
+    'default': _response_for_default,
 }
+_all_accept_content_types = (
+    'application/json',
+)
 
 
 class BaseApi(api_client.Api):
@@ -151,11 +218,13 @@ class BaseApi(api_client.Api):
         self,
         query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
     ]: ...
 
     @typing.overload
@@ -164,6 +233,7 @@ class BaseApi(api_client.Api):
         skip_deserialization: typing_extensions.Literal[True],
         query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
     ) -> api_client.ApiResponseWithoutDeserialization: ...
@@ -173,11 +243,13 @@ class BaseApi(api_client.Api):
         self,
         query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
@@ -185,12 +257,13 @@ class BaseApi(api_client.Api):
         self,
         query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
         """
-        Count the transactions from a ledger.
+        Count the transactions from a ledger
         :param skip_deserialization: If true then api_response.response will be set but
             api_response.body and api_response.headers will not be deserialized into schema
             class instances
@@ -218,6 +291,10 @@ class BaseApi(api_client.Api):
             request_query_account,
             request_query_source,
             request_query_destination,
+            request_query_start_time,
+            request_query_start_time2,
+            request_query_end_time,
+            request_query_end_time2,
             request_query_metadata,
         ):
             parameter_data = query_params.get(parameter.name, schemas.unset)
@@ -228,11 +305,17 @@ class BaseApi(api_client.Api):
             serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
             for serialized_value in serialized_data.values():
                 used_path += serialized_value
+
+        _headers = HTTPHeaderDict()
         # TODO add cookie handling
+        if accept_content_types:
+            for accept_content_type in accept_content_types:
+                _headers.add('Accept', accept_content_type)
 
         response = self.api_client.call_api(
             resource_path=used_path,
             method='head'.upper(),
+            headers=_headers,
             auth_settings=_auth,
             stream=stream,
             timeout=timeout,
@@ -245,14 +328,14 @@ class BaseApi(api_client.Api):
             if response_for_status:
                 api_response = response_for_status.deserialize(response, self.api_client.configuration)
             else:
-                api_response = api_client.ApiResponseWithoutDeserialization(response=response)
+                default_response = _status_code_to_response.get('default')
+                if default_response:
+                    api_response = default_response.deserialize(response, self.api_client.configuration)
+                else:
+                    api_response = api_client.ApiResponseWithoutDeserialization(response=response)
 
         if not 200 <= response.status <= 299:
-            raise exceptions.ApiException(
-                status=response.status,
-                reason=response.reason,
-                api_response=api_response
-            )
+            raise exceptions.ApiException(api_response=api_response)
 
         return api_response
 
@@ -265,11 +348,13 @@ class CountTransactions(BaseApi):
         self,
         query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
     ]: ...
 
     @typing.overload
@@ -278,6 +363,7 @@ class CountTransactions(BaseApi):
         skip_deserialization: typing_extensions.Literal[True],
         query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
     ) -> api_client.ApiResponseWithoutDeserialization: ...
@@ -287,11 +373,13 @@ class CountTransactions(BaseApi):
         self,
         query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
@@ -299,6 +387,7 @@ class CountTransactions(BaseApi):
         self,
         query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
@@ -306,6 +395,7 @@ class CountTransactions(BaseApi):
         return self._count_transactions_oapg(
             query_params=query_params,
             path_params=path_params,
+            accept_content_types=accept_content_types,
             stream=stream,
             timeout=timeout,
             skip_deserialization=skip_deserialization
@@ -320,11 +410,13 @@ class ApiForhead(BaseApi):
         self,
         query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
     ]: ...
 
     @typing.overload
@@ -333,6 +425,7 @@ class ApiForhead(BaseApi):
         skip_deserialization: typing_extensions.Literal[True],
         query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
     ) -> api_client.ApiResponseWithoutDeserialization: ...
@@ -342,11 +435,13 @@ class ApiForhead(BaseApi):
         self,
         query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
@@ -354,6 +449,7 @@ class ApiForhead(BaseApi):
         self,
         query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
@@ -361,6 +457,7 @@ class ApiForhead(BaseApi):
         return self._count_transactions_oapg(
             query_params=query_params,
             path_params=path_params,
+            accept_content_types=accept_content_types,
             stream=stream,
             timeout=timeout,
             skip_deserialization=skip_deserialization

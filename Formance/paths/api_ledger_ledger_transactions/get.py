@@ -25,8 +25,8 @@ import frozendict  # noqa: F401
 
 from Formance import schemas  # noqa: F401
 
-from Formance.model.cursor import Cursor
-from Formance.model.transaction import Transaction
+from Formance.model.error_response import ErrorResponse
+from Formance.model.transactions_cursor_response import TransactionsCursorResponse
 
 from . import path
 
@@ -34,11 +34,23 @@ from . import path
 
 
 class PageSizeSchema(
-    schemas.IntSchema
+    schemas.Int64Schema
 ):
 
 
     class MetaOapg:
+        format = 'int64'
+        inclusive_maximum = 1000
+        inclusive_minimum = 1
+
+
+class PageSizeSchema(
+    schemas.Int64Schema
+):
+
+
+    class MetaOapg:
+        format = 'int64'
         inclusive_maximum = 1000
         inclusive_minimum = 1
 AfterSchema = schemas.StrSchema
@@ -46,8 +58,11 @@ ReferenceSchema = schemas.StrSchema
 AccountSchema = schemas.StrSchema
 SourceSchema = schemas.StrSchema
 DestinationSchema = schemas.StrSchema
-StartTimeSchema = schemas.StrSchema
-EndTimeSchema = schemas.StrSchema
+StartTimeSchema = schemas.DateTimeSchema
+StartTimeSchema = schemas.DateTimeSchema
+EndTimeSchema = schemas.DateTimeSchema
+EndTimeSchema = schemas.DateTimeSchema
+CursorSchema = schemas.StrSchema
 PaginationTokenSchema = schemas.StrSchema
 MetadataSchema = schemas.DictSchema
 RequestRequiredQueryParams = typing_extensions.TypedDict(
@@ -58,14 +73,18 @@ RequestRequiredQueryParams = typing_extensions.TypedDict(
 RequestOptionalQueryParams = typing_extensions.TypedDict(
     'RequestOptionalQueryParams',
     {
+        'pageSize': typing.Union[PageSizeSchema, decimal.Decimal, int, ],
         'page_size': typing.Union[PageSizeSchema, decimal.Decimal, int, ],
         'after': typing.Union[AfterSchema, str, ],
         'reference': typing.Union[ReferenceSchema, str, ],
         'account': typing.Union[AccountSchema, str, ],
         'source': typing.Union[SourceSchema, str, ],
         'destination': typing.Union[DestinationSchema, str, ],
-        'start_time': typing.Union[StartTimeSchema, str, ],
-        'end_time': typing.Union[EndTimeSchema, str, ],
+        'startTime': typing.Union[StartTimeSchema, str, datetime, ],
+        'start_time': typing.Union[StartTimeSchema, str, datetime, ],
+        'endTime': typing.Union[EndTimeSchema, str, datetime, ],
+        'end_time': typing.Union[EndTimeSchema, str, datetime, ],
+        'cursor': typing.Union[CursorSchema, str, ],
         'pagination_token': typing.Union[PaginationTokenSchema, str, ],
         'metadata': typing.Union[MetadataSchema, dict, frozendict.frozendict, ],
     },
@@ -78,6 +97,12 @@ class RequestQueryParams(RequestRequiredQueryParams, RequestOptionalQueryParams)
 
 
 request_query_page_size = api_client.QueryParameter(
+    name="pageSize",
+    style=api_client.ParameterStyle.FORM,
+    schema=PageSizeSchema,
+    explode=True,
+)
+request_query_page_size2 = api_client.QueryParameter(
     name="page_size",
     style=api_client.ParameterStyle.FORM,
     schema=PageSizeSchema,
@@ -114,15 +139,33 @@ request_query_destination = api_client.QueryParameter(
     explode=True,
 )
 request_query_start_time = api_client.QueryParameter(
+    name="startTime",
+    style=api_client.ParameterStyle.FORM,
+    schema=StartTimeSchema,
+    explode=True,
+)
+request_query_start_time2 = api_client.QueryParameter(
     name="start_time",
     style=api_client.ParameterStyle.FORM,
     schema=StartTimeSchema,
     explode=True,
 )
 request_query_end_time = api_client.QueryParameter(
+    name="endTime",
+    style=api_client.ParameterStyle.FORM,
+    schema=EndTimeSchema,
+    explode=True,
+)
+request_query_end_time2 = api_client.QueryParameter(
     name="end_time",
     style=api_client.ParameterStyle.FORM,
     schema=EndTimeSchema,
+    explode=True,
+)
+request_query_cursor = api_client.QueryParameter(
+    name="cursor",
+    style=api_client.ParameterStyle.FORM,
+    schema=CursorSchema,
     explode=True,
 )
 request_query_pagination_token = api_client.QueryParameter(
@@ -166,177 +209,7 @@ request_path_ledger = api_client.PathParameter(
 _auth = [
     'Authorization',
 ]
-
-
-class SchemaFor200ResponseBodyApplicationJson(
-    schemas.DictSchema
-):
-
-
-    class MetaOapg:
-        required = {
-            "cursor",
-        }
-        
-        class properties:
-            
-            
-            class cursor(
-                schemas.ComposedSchema,
-            ):
-            
-            
-                class MetaOapg:
-                    
-                    
-                    class all_of_1(
-                        schemas.DictSchema
-                    ):
-                    
-                    
-                        class MetaOapg:
-                            required = {
-                                "data",
-                            }
-                            
-                            class properties:
-                                
-                                
-                                class data(
-                                    schemas.ListSchema
-                                ):
-                                
-                                
-                                    class MetaOapg:
-                                        
-                                        @staticmethod
-                                        def items() -> typing.Type['Transaction']:
-                                            return Transaction
-                                
-                                    def __new__(
-                                        cls,
-                                        _arg: typing.Union[typing.Tuple['Transaction'], typing.List['Transaction']],
-                                        _configuration: typing.Optional[schemas.Configuration] = None,
-                                    ) -> 'data':
-                                        return super().__new__(
-                                            cls,
-                                            _arg,
-                                            _configuration=_configuration,
-                                        )
-                                
-                                    def __getitem__(self, i: int) -> 'Transaction':
-                                        return super().__getitem__(i)
-                                __annotations__ = {
-                                    "data": data,
-                                }
-                        
-                        data: MetaOapg.properties.data
-                        
-                        @typing.overload
-                        def __getitem__(self, name: typing_extensions.Literal["data"]) -> MetaOapg.properties.data: ...
-                        
-                        @typing.overload
-                        def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
-                        
-                        def __getitem__(self, name: typing.Union[typing_extensions.Literal["data", ], str]):
-                            # dict_instance[name] accessor
-                            return super().__getitem__(name)
-                        
-                        
-                        @typing.overload
-                        def get_item_oapg(self, name: typing_extensions.Literal["data"]) -> MetaOapg.properties.data: ...
-                        
-                        @typing.overload
-                        def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
-                        
-                        def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["data", ], str]):
-                            return super().get_item_oapg(name)
-                        
-                    
-                        def __new__(
-                            cls,
-                            *_args: typing.Union[dict, frozendict.frozendict, ],
-                            data: typing.Union[MetaOapg.properties.data, list, tuple, ],
-                            _configuration: typing.Optional[schemas.Configuration] = None,
-                            **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
-                        ) -> 'all_of_1':
-                            return super().__new__(
-                                cls,
-                                *_args,
-                                data=data,
-                                _configuration=_configuration,
-                                **kwargs,
-                            )
-                    
-                    @classmethod
-                    @functools.lru_cache()
-                    def all_of(cls):
-                        # we need this here to make our import statements work
-                        # we must store _composed_schemas in here so the code is only run
-                        # when we invoke this method. If we kept this at the class
-                        # level we would get an error because the class level
-                        # code would be run when this module is imported, and these composed
-                        # classes don't exist yet because their module has not finished
-                        # loading
-                        return [
-                            Cursor,
-                            cls.all_of_1,
-                        ]
-            
-            
-                def __new__(
-                    cls,
-                    *_args: typing.Union[dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
-                    _configuration: typing.Optional[schemas.Configuration] = None,
-                    **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
-                ) -> 'cursor':
-                    return super().__new__(
-                        cls,
-                        *_args,
-                        _configuration=_configuration,
-                        **kwargs,
-                    )
-            __annotations__ = {
-                "cursor": cursor,
-            }
-    
-    cursor: MetaOapg.properties.cursor
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["cursor"]) -> MetaOapg.properties.cursor: ...
-    
-    @typing.overload
-    def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
-    
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["cursor", ], str]):
-        # dict_instance[name] accessor
-        return super().__getitem__(name)
-    
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["cursor"]) -> MetaOapg.properties.cursor: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
-    
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["cursor", ], str]):
-        return super().get_item_oapg(name)
-    
-
-    def __new__(
-        cls,
-        *_args: typing.Union[dict, frozendict.frozendict, ],
-        cursor: typing.Union[MetaOapg.properties.cursor, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
-        _configuration: typing.Optional[schemas.Configuration] = None,
-        **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
-    ) -> 'SchemaFor200ResponseBodyApplicationJson':
-        return super().__new__(
-            cls,
-            *_args,
-            cursor=cursor,
-            _configuration=_configuration,
-            **kwargs,
-        )
+SchemaFor200ResponseBodyApplicationJson = TransactionsCursorResponse
 
 
 @dataclass
@@ -355,92 +228,28 @@ _response_for_200 = api_client.OpenApiResponse(
             schema=SchemaFor200ResponseBodyApplicationJson),
     },
 )
-
-
-class SchemaFor400ResponseBodyApplicationJson(
-    schemas.DictSchema
-):
-
-
-    class MetaOapg:
-        required = {
-            "error_code",
-        }
-        
-        class properties:
-            error_code = schemas.StrSchema
-            error_message = schemas.StrSchema
-            __annotations__ = {
-                "error_code": error_code,
-                "error_message": error_message,
-            }
-    
-    error_code: MetaOapg.properties.error_code
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["error_code"]) -> MetaOapg.properties.error_code: ...
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["error_message"]) -> MetaOapg.properties.error_message: ...
-    
-    @typing.overload
-    def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
-    
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["error_code", "error_message", ], str]):
-        # dict_instance[name] accessor
-        return super().__getitem__(name)
-    
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["error_code"]) -> MetaOapg.properties.error_code: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["error_message"]) -> typing.Union[MetaOapg.properties.error_message, schemas.Unset]: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
-    
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["error_code", "error_message", ], str]):
-        return super().get_item_oapg(name)
-    
-
-    def __new__(
-        cls,
-        *_args: typing.Union[dict, frozendict.frozendict, ],
-        error_code: typing.Union[MetaOapg.properties.error_code, str, ],
-        error_message: typing.Union[MetaOapg.properties.error_message, str, schemas.Unset] = schemas.unset,
-        _configuration: typing.Optional[schemas.Configuration] = None,
-        **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
-    ) -> 'SchemaFor400ResponseBodyApplicationJson':
-        return super().__new__(
-            cls,
-            *_args,
-            error_code=error_code,
-            error_message=error_message,
-            _configuration=_configuration,
-            **kwargs,
-        )
+SchemaFor0ResponseBodyApplicationJson = ErrorResponse
 
 
 @dataclass
-class ApiResponseFor400(api_client.ApiResponse):
+class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor400ResponseBodyApplicationJson,
+        SchemaFor0ResponseBodyApplicationJson,
     ]
     headers: schemas.Unset = schemas.unset
 
 
-_response_for_400 = api_client.OpenApiResponse(
-    response_cls=ApiResponseFor400,
+_response_for_default = api_client.OpenApiResponse(
+    response_cls=ApiResponseForDefault,
     content={
         'application/json': api_client.MediaType(
-            schema=SchemaFor400ResponseBodyApplicationJson),
+            schema=SchemaFor0ResponseBodyApplicationJson),
     },
 )
 _status_code_to_response = {
     '200': _response_for_200,
-    '400': _response_for_400,
+    'default': _response_for_default,
 }
 _all_accept_content_types = (
     'application/json',
@@ -459,6 +268,7 @@ class BaseApi(api_client.Api):
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
     ]: ...
 
     @typing.overload
@@ -483,6 +293,7 @@ class BaseApi(api_client.Api):
         skip_deserialization: bool = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
@@ -496,7 +307,7 @@ class BaseApi(api_client.Api):
         skip_deserialization: bool = False,
     ):
         """
-        List transactions from a ledger.
+        List transactions from a ledger
         :param skip_deserialization: If true then api_response.response will be set but
             api_response.body and api_response.headers will not be deserialized into schema
             class instances
@@ -521,13 +332,17 @@ class BaseApi(api_client.Api):
         prefix_separator_iterator = None
         for parameter in (
             request_query_page_size,
+            request_query_page_size2,
             request_query_after,
             request_query_reference,
             request_query_account,
             request_query_source,
             request_query_destination,
             request_query_start_time,
+            request_query_start_time2,
             request_query_end_time,
+            request_query_end_time2,
+            request_query_cursor,
             request_query_pagination_token,
             request_query_metadata,
         ):
@@ -562,14 +377,14 @@ class BaseApi(api_client.Api):
             if response_for_status:
                 api_response = response_for_status.deserialize(response, self.api_client.configuration)
             else:
-                api_response = api_client.ApiResponseWithoutDeserialization(response=response)
+                default_response = _status_code_to_response.get('default')
+                if default_response:
+                    api_response = default_response.deserialize(response, self.api_client.configuration)
+                else:
+                    api_response = api_client.ApiResponseWithoutDeserialization(response=response)
 
         if not 200 <= response.status <= 299:
-            raise exceptions.ApiException(
-                status=response.status,
-                reason=response.reason,
-                api_response=api_response
-            )
+            raise exceptions.ApiException(api_response=api_response)
 
         return api_response
 
@@ -588,6 +403,7 @@ class ListTransactions(BaseApi):
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
     ]: ...
 
     @typing.overload
@@ -612,6 +428,7 @@ class ListTransactions(BaseApi):
         skip_deserialization: bool = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
@@ -648,6 +465,7 @@ class ApiForget(BaseApi):
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
     ]: ...
 
     @typing.overload
@@ -672,6 +490,7 @@ class ApiForget(BaseApi):
         skip_deserialization: bool = ...,
     ) -> typing.Union[
         ApiResponseFor200,
+        ApiResponseForDefault,
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 

@@ -5,14 +5,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_mapping**](#get_mapping) | **get** /api/ledger/{ledger}/mapping | Get the mapping of a ledger.
-[**update_mapping**](#update_mapping) | **put** /api/ledger/{ledger}/mapping | Update the mapping of a ledger.
+[**get_mapping**](#get_mapping) | **get** /api/ledger/{ledger}/mapping | Get the mapping of a ledger
+[**update_mapping**](#update_mapping) | **put** /api/ledger/{ledger}/mapping | Update the mapping of a ledger
 
 # **get_mapping**
 <a name="get_mapping"></a>
 > MappingResponse get_mapping(ledger)
 
-Get the mapping of a ledger.
+Get the mapping of a ledger
 
 ### Example
 
@@ -20,6 +20,7 @@ Get the mapping of a ledger.
 ```python
 import Formance
 from Formance.apis.tags import mapping_api
+from Formance.model.error_response import ErrorResponse
 from Formance.model.mapping_response import MappingResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -35,9 +36,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -48,7 +49,7 @@ with Formance.ApiClient(configuration) as api_client:
         'ledger': "ledger001",
     }
     try:
-        # Get the mapping of a ledger.
+        # Get the mapping of a ledger
         api_response = api_instance.get_mapping(
             path_params=path_params,
         )
@@ -86,6 +87,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#get_mapping.ApiResponseFor200) | OK
+default | [ApiResponseForDefault](#get_mapping.ApiResponseForDefault) | Error
 
 #### get_mapping.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -100,6 +102,19 @@ Type | Description  | Notes
 [**MappingResponse**](../../models/MappingResponse.md) |  | 
 
 
+#### get_mapping.ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
+
+
 ### Authorization
 
 [Authorization](../../../README.md#Authorization)
@@ -110,7 +125,7 @@ Type | Description  | Notes
 <a name="update_mapping"></a>
 > MappingResponse update_mapping(ledgermapping)
 
-Update the mapping of a ledger.
+Update the mapping of a ledger
 
 ### Example
 
@@ -119,6 +134,7 @@ Update the mapping of a ledger.
 import Formance
 from Formance.apis.tags import mapping_api
 from Formance.model.mapping import Mapping
+from Formance.model.error_response import ErrorResponse
 from Formance.model.mapping_response import MappingResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -134,9 +150,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -155,7 +171,7 @@ with Formance.ApiClient(configuration) as api_client:
         ],
     )
     try:
-        # Update the mapping of a ledger.
+        # Update the mapping of a ledger
         api_response = api_instance.update_mapping(
             path_params=path_params,
             body=body,
@@ -204,6 +220,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#update_mapping.ApiResponseFor200) | OK
+default | [ApiResponseForDefault](#update_mapping.ApiResponseForDefault) | Error
 
 #### update_mapping.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -216,6 +233,19 @@ headers | Unset | headers were not defined |
 Type | Description  | Notes
 ------------- | ------------- | -------------
 [**MappingResponse**](../../models/MappingResponse.md) |  | 
+
+
+#### update_mapping.ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
 
 ### Authorization

@@ -21,7 +21,7 @@ from .. import ApiTestMixin
 class TestApiLedgerLedgerTransactionsTxidMetadata(ApiTestMixin, unittest.TestCase):
     """
     ApiLedgerLedgerTransactionsTxidMetadata unit test stubs
-        Set the metadata of a transaction by its ID.  # noqa: E501
+        Set the metadata of a transaction by its ID  # noqa: E501
     """
     _configuration = configuration.Configuration()
 

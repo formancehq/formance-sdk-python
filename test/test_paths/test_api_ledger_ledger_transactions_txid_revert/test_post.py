@@ -21,7 +21,7 @@ from .. import ApiTestMixin
 class TestApiLedgerLedgerTransactionsTxidRevert(ApiTestMixin, unittest.TestCase):
     """
     ApiLedgerLedgerTransactionsTxidRevert unit test stubs
-        Revert a ledger transaction by its ID.  # noqa: E501
+        Revert a ledger transaction by its ID  # noqa: E501
     """
     _configuration = configuration.Configuration()
 

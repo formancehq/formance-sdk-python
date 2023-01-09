@@ -5,19 +5,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_metadata_on_transaction**](#add_metadata_on_transaction) | **post** /api/ledger/{ledger}/transactions/{txid}/metadata | Set the metadata of a transaction by its ID.
-[**count_transactions**](#count_transactions) | **head** /api/ledger/{ledger}/transactions | Count the transactions from a ledger.
-[**create_transaction**](#create_transaction) | **post** /api/ledger/{ledger}/transactions | Create a new transaction to a ledger.
-[**create_transactions**](#create_transactions) | **post** /api/ledger/{ledger}/transactions/batch | Create a new batch of transactions to a ledger.
-[**get_transaction**](#get_transaction) | **get** /api/ledger/{ledger}/transactions/{txid} | Get transaction from a ledger by its ID.
-[**list_transactions**](#list_transactions) | **get** /api/ledger/{ledger}/transactions | List transactions from a ledger.
-[**revert_transaction**](#revert_transaction) | **post** /api/ledger/{ledger}/transactions/{txid}/revert | Revert a ledger transaction by its ID.
+[**add_metadata_on_transaction**](#add_metadata_on_transaction) | **post** /api/ledger/{ledger}/transactions/{txid}/metadata | Set the metadata of a transaction by its ID
+[**count_transactions**](#count_transactions) | **head** /api/ledger/{ledger}/transactions | Count the transactions from a ledger
+[**create_transaction**](#create_transaction) | **post** /api/ledger/{ledger}/transactions | Create a new transaction to a ledger
+[**create_transactions**](#create_transactions) | **post** /api/ledger/{ledger}/transactions/batch | Create a new batch of transactions to a ledger
+[**get_transaction**](#get_transaction) | **get** /api/ledger/{ledger}/transactions/{txid} | Get transaction from a ledger by its ID
+[**list_transactions**](#list_transactions) | **get** /api/ledger/{ledger}/transactions | List transactions from a ledger
+[**revert_transaction**](#revert_transaction) | **post** /api/ledger/{ledger}/transactions/{txid}/revert | Revert a ledger transaction by its ID
 
 # **add_metadata_on_transaction**
 <a name="add_metadata_on_transaction"></a>
 > add_metadata_on_transaction(ledgertxid)
 
-Set the metadata of a transaction by its ID.
+Set the metadata of a transaction by its ID
 
 ### Example
 
@@ -25,6 +25,7 @@ Set the metadata of a transaction by its ID.
 ```python
 import Formance
 from Formance.apis.tags import transactions_api
+from Formance.model.error_response import ErrorResponse
 from Formance.model.ledger_metadata import LedgerMetadata
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -40,9 +41,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -54,7 +55,7 @@ with Formance.ApiClient(configuration) as api_client:
         'txid': 1234,
     }
     try:
-        # Set the metadata of a transaction by its ID.
+        # Set the metadata of a transaction by its ID
         api_response = api_instance.add_metadata_on_transaction(
             path_params=path_params,
         )
@@ -70,7 +71,7 @@ with Formance.ApiClient(configuration) as api_client:
         key=None,
     )
     try:
-        # Set the metadata of a transaction by its ID.
+        # Set the metadata of a transaction by its ID
         api_response = api_instance.add_metadata_on_transaction(
             path_params=path_params,
             body=body,
@@ -118,7 +119,7 @@ str,  | str,  |  |
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | 
+decimal.Decimal, int,  | decimal.Decimal,  |  | value must be a 64 bit integer
 
 ### Return Types, Responses
 
@@ -126,9 +127,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 204 | [ApiResponseFor204](#add_metadata_on_transaction.ApiResponseFor204) | No Content
-400 | [ApiResponseFor400](#add_metadata_on_transaction.ApiResponseFor400) | Bad Request
-404 | [ApiResponseFor404](#add_metadata_on_transaction.ApiResponseFor404) | Not Found
-409 | [ApiResponseFor409](#add_metadata_on_transaction.ApiResponseFor409) | Conflict
+default | [ApiResponseForDefault](#add_metadata_on_transaction.ApiResponseForDefault) | Error
 
 #### add_metadata_on_transaction.ApiResponseFor204
 Name | Type | Description  | Notes
@@ -137,68 +136,18 @@ response | urllib3.HTTPResponse | Raw response |
 body | typing.Union[] |  |
 headers | Unset | headers were not defined |
 
-#### add_metadata_on_transaction.ApiResponseFor400
+#### add_metadata_on_transaction.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor400ResponseBodyApplicationJson, ] |  |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
-# SchemaFor400ResponseBodyApplicationJson
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-#### add_metadata_on_transaction.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor404ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
-
-# SchemaFor404ResponseBodyApplicationJson
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-#### add_metadata_on_transaction.ApiResponseFor409
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor409ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
-
-# SchemaFor409ResponseBodyApplicationJson
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### Authorization
 
@@ -210,7 +159,7 @@ Key | Input Type | Accessed Type | Description | Notes
 <a name="count_transactions"></a>
 > count_transactions(ledger)
 
-Count the transactions from a ledger.
+Count the transactions from a ledger
 
 ### Example
 
@@ -218,6 +167,7 @@ Count the transactions from a ledger.
 ```python
 import Formance
 from Formance.apis.tags import transactions_api
+from Formance.model.error_response import ErrorResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -232,9 +182,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -247,7 +197,7 @@ with Formance.ApiClient(configuration) as api_client:
     query_params = {
     }
     try:
-        # Count the transactions from a ledger.
+        # Count the transactions from a ledger
         api_response = api_instance.count_transactions(
             path_params=path_params,
             query_params=query_params,
@@ -264,10 +214,14 @@ with Formance.ApiClient(configuration) as api_client:
         'account': "users:001",
         'source': "users:001",
         'destination': "users:001",
+        'startTime': "1970-01-01T00:00:00.00Z",
+        'start_time': "1970-01-01T00:00:00.00Z",
+        'endTime': "1970-01-01T00:00:00.00Z",
+        'end_time': "1970-01-01T00:00:00.00Z",
         'metadata': dict(),
     }
     try:
-        # Count the transactions from a ledger.
+        # Count the transactions from a ledger
         api_response = api_instance.count_transactions(
             path_params=path_params,
             query_params=query_params,
@@ -281,6 +235,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 query_params | RequestQueryParams | |
 path_params | RequestPathParams | |
+accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
 skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
@@ -294,6 +249,10 @@ reference | ReferenceSchema | | optional
 account | AccountSchema | | optional
 source | SourceSchema | | optional
 destination | DestinationSchema | | optional
+startTime | StartTimeSchema | | optional
+start_time | StartTimeSchema | | optional
+endTime | EndTimeSchema | | optional
+end_time | EndTimeSchema | | optional
 metadata | MetadataSchema | | optional
 
 
@@ -325,6 +284,34 @@ Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 str,  | str,  |  | 
 
+# StartTimeSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str, datetime,  | str,  |  | value must conform to RFC-3339 date-time
+
+# StartTimeSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str, datetime,  | str,  |  | value must conform to RFC-3339 date-time
+
+# EndTimeSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str, datetime,  | str,  |  | value must conform to RFC-3339 date-time
+
+# EndTimeSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str, datetime,  | str,  |  | value must conform to RFC-3339 date-time
+
 # MetadataSchema
 
 ## Model Type Info
@@ -352,6 +339,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#count_transactions.ApiResponseFor200) | OK
+default | [ApiResponseForDefault](#count_transactions.ApiResponseForDefault) | Error
 
 #### count_transactions.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -370,7 +358,20 @@ Count | CountSchema | | optional
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | 
+decimal.Decimal, int,  | decimal.Decimal,  |  | value must be a 64 bit integer
+
+
+#### count_transactions.ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
 
 ### Authorization
@@ -381,9 +382,9 @@ decimal.Decimal, int,  | decimal.Decimal,  |  |
 
 # **create_transaction**
 <a name="create_transaction"></a>
-> TransactionsResponse create_transaction(ledgertransaction_data)
+> TransactionsResponse create_transaction(ledgerpost_transaction)
 
-Create a new transaction to a ledger.
+Create a new transaction to a ledger
 
 ### Example
 
@@ -391,8 +392,9 @@ Create a new transaction to a ledger.
 ```python
 import Formance
 from Formance.apis.tags import transactions_api
+from Formance.model.error_response import ErrorResponse
+from Formance.model.post_transaction import PostTransaction
 from Formance.model.transactions_response import TransactionsResponse
-from Formance.model.transaction_data import TransactionData
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -407,9 +409,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -421,7 +423,7 @@ with Formance.ApiClient(configuration) as api_client:
     }
     query_params = {
     }
-    body = TransactionData(
+    body = PostTransaction(
         timestamp="1970-01-01T00:00:00.00Z",
         postings=[
             Posting(
@@ -431,13 +433,17 @@ with Formance.ApiClient(configuration) as api_client:
                 source="users:001",
             )
         ],
+        script=dict(
+            plain="vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
+            vars=dict(),
+        ),
         reference="ref:001",
         metadata=LedgerMetadata(
             key=None,
         ),
     )
     try:
-        # Create a new transaction to a ledger.
+        # Create a new transaction to a ledger
         api_response = api_instance.create_transaction(
             path_params=path_params,
             query_params=query_params,
@@ -454,7 +460,7 @@ with Formance.ApiClient(configuration) as api_client:
     query_params = {
         'preview': True,
     }
-    body = TransactionData(
+    body = PostTransaction(
         timestamp="1970-01-01T00:00:00.00Z",
         postings=[
             Posting(
@@ -464,13 +470,17 @@ with Formance.ApiClient(configuration) as api_client:
                 source="users:001",
             )
         ],
+        script=dict(
+            plain="vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
+            vars=dict(),
+        ),
         reference="ref:001",
         metadata=LedgerMetadata(
             key=None,
         ),
     )
     try:
-        # Create a new transaction to a ledger.
+        # Create a new transaction to a ledger
         api_response = api_instance.create_transaction(
             path_params=path_params,
             query_params=query_params,
@@ -498,7 +508,7 @@ skip_deserialization | bool | default is False | when True, headers and body wil
 # SchemaForRequestBodyApplicationJson
 Type | Description  | Notes
 ------------- | ------------- | -------------
-[**TransactionData**](../../models/TransactionData.md) |  | 
+[**PostTransaction**](../../models/PostTransaction.md) |  | 
 
 
 ### query_params
@@ -536,9 +546,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#create_transaction.ApiResponseFor200) | OK
-304 | [ApiResponseFor304](#create_transaction.ApiResponseFor304) | Not modified (when preview is enabled)
-400 | [ApiResponseFor400](#create_transaction.ApiResponseFor400) | Bad Request
-409 | [ApiResponseFor409](#create_transaction.ApiResponseFor409) | Conflict
+default | [ApiResponseForDefault](#create_transaction.ApiResponseForDefault) | Error
 
 #### create_transaction.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -553,60 +561,18 @@ Type | Description  | Notes
 [**TransactionsResponse**](../../models/TransactionsResponse.md) |  | 
 
 
-#### create_transaction.ApiResponseFor304
+#### create_transaction.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor304ResponseBodyApplicationJson, ] |  |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
-# SchemaFor304ResponseBodyApplicationJson
+# SchemaFor0ResponseBodyApplicationJson
 Type | Description  | Notes
 ------------- | ------------- | -------------
-[**TransactionsResponse**](../../models/TransactionsResponse.md) |  | 
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
-
-#### create_transaction.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor400ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
-
-# SchemaFor400ResponseBodyApplicationJson
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-#### create_transaction.ApiResponseFor409
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor409ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
-
-# SchemaFor409ResponseBodyApplicationJson
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### Authorization
 
@@ -618,7 +584,7 @@ Key | Input Type | Accessed Type | Description | Notes
 <a name="create_transactions"></a>
 > TransactionsResponse create_transactions(ledgertransactions)
 
-Create a new batch of transactions to a ledger.
+Create a new batch of transactions to a ledger
 
 ### Example
 
@@ -626,6 +592,7 @@ Create a new batch of transactions to a ledger.
 ```python
 import Formance
 from Formance.apis.tags import transactions_api
+from Formance.model.error_response import ErrorResponse
 from Formance.model.transactions_response import TransactionsResponse
 from Formance.model.transactions import Transactions
 from pprint import pprint
@@ -642,9 +609,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -657,7 +624,6 @@ with Formance.ApiClient(configuration) as api_client:
     body = Transactions(
         transactions=[
             TransactionData(
-                timestamp="1970-01-01T00:00:00.00Z",
                 postings=[
                     Posting(
                         amount=100,
@@ -670,11 +636,12 @@ with Formance.ApiClient(configuration) as api_client:
                 metadata=LedgerMetadata(
                     key=None,
                 ),
+                timestamp="1970-01-01T00:00:00.00Z",
             )
         ],
     )
     try:
-        # Create a new batch of transactions to a ledger.
+        # Create a new batch of transactions to a ledger
         api_response = api_instance.create_transactions(
             path_params=path_params,
             body=body,
@@ -723,8 +690,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#create_transactions.ApiResponseFor200) | OK
-400 | [ApiResponseFor400](#create_transactions.ApiResponseFor400) | Bad Request
-409 | [ApiResponseFor409](#create_transactions.ApiResponseFor409) | Conflict
+default | [ApiResponseForDefault](#create_transactions.ApiResponseForDefault) | Error
 
 #### create_transactions.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -739,47 +705,18 @@ Type | Description  | Notes
 [**TransactionsResponse**](../../models/TransactionsResponse.md) |  | 
 
 
-#### create_transactions.ApiResponseFor400
+#### create_transactions.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor400ResponseBodyApplicationJson, ] |  |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
-# SchemaFor400ResponseBodyApplicationJson
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-#### create_transactions.ApiResponseFor409
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor409ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
-
-# SchemaFor409ResponseBodyApplicationJson
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### Authorization
 
@@ -791,7 +728,7 @@ Key | Input Type | Accessed Type | Description | Notes
 <a name="get_transaction"></a>
 > TransactionResponse get_transaction(ledgertxid)
 
-Get transaction from a ledger by its ID.
+Get transaction from a ledger by its ID
 
 ### Example
 
@@ -800,6 +737,7 @@ Get transaction from a ledger by its ID.
 import Formance
 from Formance.apis.tags import transactions_api
 from Formance.model.transaction_response import TransactionResponse
+from Formance.model.error_response import ErrorResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -814,9 +752,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -828,7 +766,7 @@ with Formance.ApiClient(configuration) as api_client:
         'txid': 1234,
     }
     try:
-        # Get transaction from a ledger by its ID.
+        # Get transaction from a ledger by its ID
         api_response = api_instance.get_transaction(
             path_params=path_params,
         )
@@ -866,7 +804,7 @@ str,  | str,  |  |
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | 
+decimal.Decimal, int,  | decimal.Decimal,  |  | value must be a 64 bit integer
 
 ### Return Types, Responses
 
@@ -874,8 +812,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#get_transaction.ApiResponseFor200) | OK
-400 | [ApiResponseFor400](#get_transaction.ApiResponseFor400) | Bad Request
-404 | [ApiResponseFor404](#get_transaction.ApiResponseFor404) | Not Found
+default | [ApiResponseForDefault](#get_transaction.ApiResponseForDefault) | Error
 
 #### get_transaction.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -890,47 +827,18 @@ Type | Description  | Notes
 [**TransactionResponse**](../../models/TransactionResponse.md) |  | 
 
 
-#### get_transaction.ApiResponseFor400
+#### get_transaction.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor400ResponseBodyApplicationJson, ] |  |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
-# SchemaFor400ResponseBodyApplicationJson
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-#### get_transaction.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor404ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
-
-# SchemaFor404ResponseBodyApplicationJson
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### Authorization
 
@@ -940,9 +848,9 @@ Key | Input Type | Accessed Type | Description | Notes
 
 # **list_transactions**
 <a name="list_transactions"></a>
-> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} list_transactions(ledger)
+> TransactionsCursorResponse list_transactions(ledger)
 
-List transactions from a ledger.
+List transactions from a ledger
 
 List transactions from a ledger, sorted by txid in descending order.
 
@@ -952,8 +860,8 @@ List transactions from a ledger, sorted by txid in descending order.
 ```python
 import Formance
 from Formance.apis.tags import transactions_api
-from Formance.model.cursor import Cursor
-from Formance.model.transaction import Transaction
+from Formance.model.error_response import ErrorResponse
+from Formance.model.transactions_cursor_response import TransactionsCursorResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -968,9 +876,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -983,7 +891,7 @@ with Formance.ApiClient(configuration) as api_client:
     query_params = {
     }
     try:
-        # List transactions from a ledger.
+        # List transactions from a ledger
         api_response = api_instance.list_transactions(
             path_params=path_params,
             query_params=query_params,
@@ -997,19 +905,23 @@ with Formance.ApiClient(configuration) as api_client:
         'ledger': "ledger001",
     }
     query_params = {
+        'pageSize': 100,
         'page_size': 100,
         'after': "1234",
         'reference': "ref:001",
         'account': "users:001",
         'source': "users:001",
         'destination': "users:001",
-        'start_time': "start_time_example",
-        'end_time': "end_time_example",
+        'startTime': "1970-01-01T00:00:00.00Z",
+        'start_time': "1970-01-01T00:00:00.00Z",
+        'endTime': "1970-01-01T00:00:00.00Z",
+        'end_time': "1970-01-01T00:00:00.00Z",
+        'cursor': "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         'pagination_token': "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         'metadata': dict(),
     }
     try:
-        # List transactions from a ledger.
+        # List transactions from a ledger
         api_response = api_instance.list_transactions(
             path_params=path_params,
             query_params=query_params,
@@ -1034,14 +946,18 @@ skip_deserialization | bool | default is False | when True, headers and body wil
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+pageSize | PageSizeSchema | | optional
 page_size | PageSizeSchema | | optional
 after | AfterSchema | | optional
 reference | ReferenceSchema | | optional
 account | AccountSchema | | optional
 source | SourceSchema | | optional
 destination | DestinationSchema | | optional
+startTime | StartTimeSchema | | optional
 start_time | StartTimeSchema | | optional
+endTime | EndTimeSchema | | optional
 end_time | EndTimeSchema | | optional
+cursor | CursorSchema | | optional
 pagination_token | PaginationTokenSchema | | optional
 metadata | MetadataSchema | | optional
 
@@ -1051,7 +967,14 @@ metadata | MetadataSchema | | optional
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | if omitted the server will use the default value of 15
+decimal.Decimal, int,  | decimal.Decimal,  |  | if omitted the server will use the default value of 15value must be a 64 bit integer
+
+# PageSizeSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+decimal.Decimal, int,  | decimal.Decimal,  |  | if omitted the server will use the default value of 15value must be a 64 bit integer
 
 # AfterSchema
 
@@ -1093,9 +1016,30 @@ str,  | str,  |  |
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-str,  | str,  |  | 
+str, datetime,  | str,  |  | value must conform to RFC-3339 date-time
+
+# StartTimeSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str, datetime,  | str,  |  | value must conform to RFC-3339 date-time
 
 # EndTimeSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str, datetime,  | str,  |  | value must conform to RFC-3339 date-time
+
+# EndTimeSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str, datetime,  | str,  |  | value must conform to RFC-3339 date-time
+
+# CursorSchema
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
@@ -1136,7 +1080,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#list_transactions.ApiResponseFor200) | OK
-400 | [ApiResponseFor400](#list_transactions.ApiResponseFor400) | Bad Request
+default | [ApiResponseForDefault](#list_transactions.ApiResponseForDefault) | Error
 
 #### list_transactions.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1146,77 +1090,23 @@ body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**TransactionsCursorResponse**](../../models/TransactionsCursorResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
 
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**[cursor](#cursor)** | dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader,  | frozendict.frozendict, str, decimal.Decimal, BoolClass, NoneClass, tuple, bytes, FileIO |  | 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-# cursor
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader,  | frozendict.frozendict, str, decimal.Decimal, BoolClass, NoneClass, tuple, bytes, FileIO |  | 
-
-### Composed Schemas (allOf/anyOf/oneOf/not)
-#### allOf
-Class Name | Input Type | Accessed Type | Description | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-[Cursor]({{complexTypePrefix}}Cursor.md) | [**Cursor**]({{complexTypePrefix}}Cursor.md) | [**Cursor**]({{complexTypePrefix}}Cursor.md) |  | 
-[all_of_1](#all_of_1) | dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-# all_of_1
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**[data](#data)** | list, tuple,  | tuple,  |  | 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-# data
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-list, tuple,  | tuple,  |  | 
-
-### Tuple Items
-Class Name | Input Type | Accessed Type | Description | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-[**Transaction**]({{complexTypePrefix}}Transaction.md) | [**Transaction**]({{complexTypePrefix}}Transaction.md) | [**Transaction**]({{complexTypePrefix}}Transaction.md) |  | 
-
-#### list_transactions.ApiResponseFor400
+#### list_transactions.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor400ResponseBodyApplicationJson, ] |  |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
-# SchemaFor400ResponseBodyApplicationJson
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### Authorization
 
@@ -1228,7 +1118,7 @@ Key | Input Type | Accessed Type | Description | Notes
 <a name="revert_transaction"></a>
 > TransactionResponse revert_transaction(ledgertxid)
 
-Revert a ledger transaction by its ID.
+Revert a ledger transaction by its ID
 
 ### Example
 
@@ -1237,6 +1127,7 @@ Revert a ledger transaction by its ID.
 import Formance
 from Formance.apis.tags import transactions_api
 from Formance.model.transaction_response import TransactionResponse
+from Formance.model.error_response import ErrorResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -1251,9 +1142,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -1265,7 +1156,7 @@ with Formance.ApiClient(configuration) as api_client:
         'txid': 1234,
     }
     try:
-        # Revert a ledger transaction by its ID.
+        # Revert a ledger transaction by its ID
         api_response = api_instance.revert_transaction(
             path_params=path_params,
         )
@@ -1303,7 +1194,7 @@ str,  | str,  |  |
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | 
+decimal.Decimal, int,  | decimal.Decimal,  |  | value must be a 64 bit integer
 
 ### Return Types, Responses
 
@@ -1311,9 +1202,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#revert_transaction.ApiResponseFor200) | OK
-400 | [ApiResponseFor400](#revert_transaction.ApiResponseFor400) | Bad Request
-404 | [ApiResponseFor404](#revert_transaction.ApiResponseFor404) | Not Found
-409 | [ApiResponseFor409](#revert_transaction.ApiResponseFor409) | Conflict
+default | [ApiResponseForDefault](#revert_transaction.ApiResponseForDefault) | Error
 
 #### revert_transaction.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1328,68 +1217,18 @@ Type | Description  | Notes
 [**TransactionResponse**](../../models/TransactionResponse.md) |  | 
 
 
-#### revert_transaction.ApiResponseFor400
+#### revert_transaction.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor400ResponseBodyApplicationJson, ] |  |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
-# SchemaFor400ResponseBodyApplicationJson
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-#### revert_transaction.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor404ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
-
-# SchemaFor404ResponseBodyApplicationJson
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-#### revert_transaction.ApiResponseFor409
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor409ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
-
-# SchemaFor409ResponseBodyApplicationJson
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### Authorization
 

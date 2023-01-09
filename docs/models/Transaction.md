@@ -9,7 +9,7 @@ dict, frozendict.frozendict,  | frozendict.frozendict,  |  |
 Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
 **[postings](#postings)** | list, tuple,  | tuple,  |  | 
-**txid** | decimal.Decimal, int,  | decimal.Decimal,  |  | 
+**txid** | decimal.Decimal, int,  | decimal.Decimal,  |  | value must be a 64 bit integer
 **timestamp** | str, datetime,  | str,  |  | value must conform to RFC-3339 date-time
 **reference** | str,  | str,  |  | [optional] 
 **metadata** | [**LedgerMetadata**](LedgerMetadata.md) | [**LedgerMetadata**](LedgerMetadata.md) |  | [optional] 

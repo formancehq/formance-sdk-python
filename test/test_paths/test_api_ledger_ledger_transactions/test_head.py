@@ -21,7 +21,7 @@ from .. import ApiTestMixin
 class TestApiLedgerLedgerTransactions(ApiTestMixin, unittest.TestCase):
     """
     ApiLedgerLedgerTransactions unit test stubs
-        Count the transactions from a ledger.  # noqa: E501
+        Count the transactions from a ledger  # noqa: E501
     """
     _configuration = configuration.Configuration()
 

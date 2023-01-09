@@ -21,7 +21,7 @@ from .. import ApiTestMixin
 class TestApiLedgerLedgerMapping(ApiTestMixin, unittest.TestCase):
     """
     ApiLedgerLedgerMapping unit test stubs
-        Update the mapping of a ledger.  # noqa: E501
+        Update the mapping of a ledger  # noqa: E501
     """
     _configuration = configuration.Configuration()
 

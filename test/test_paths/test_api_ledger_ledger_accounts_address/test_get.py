@@ -21,7 +21,7 @@ from .. import ApiTestMixin
 class TestApiLedgerLedgerAccountsAddress(ApiTestMixin, unittest.TestCase):
     """
     ApiLedgerLedgerAccountsAddress unit test stubs
-        Get account by its address.  # noqa: E501
+        Get account by its address  # noqa: E501
     """
     _configuration = configuration.Configuration()
 

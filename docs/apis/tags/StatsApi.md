@@ -5,15 +5,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**read_stats**](#read_stats) | **get** /api/ledger/{ledger}/stats | Get Stats
+[**read_stats**](#read_stats) | **get** /api/ledger/{ledger}/stats | Get statistics from a ledger
 
 # **read_stats**
 <a name="read_stats"></a>
 > StatsResponse read_stats(ledger)
 
-Get Stats
+Get statistics from a ledger
 
-Get ledger stats (aggregate metrics on accounts and transactions) The stats for account 
+Get statistics from a ledger. (aggregate metrics on accounts and transactions) 
 
 ### Example
 
@@ -21,6 +21,7 @@ Get ledger stats (aggregate metrics on accounts and transactions) The stats for 
 ```python
 import Formance
 from Formance.apis.tags import stats_api
+from Formance.model.error_response import ErrorResponse
 from Formance.model.stats_response import StatsResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -36,9 +37,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -49,7 +50,7 @@ with Formance.ApiClient(configuration) as api_client:
         'ledger': "ledger001",
     }
     try:
-        # Get Stats
+        # Get statistics from a ledger
         api_response = api_instance.read_stats(
             path_params=path_params,
         )
@@ -87,6 +88,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#read_stats.ApiResponseFor200) | OK
+default | [ApiResponseForDefault](#read_stats.ApiResponseForDefault) | Error
 
 #### read_stats.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -99,6 +101,19 @@ headers | Unset | headers were not defined |
 Type | Description  | Notes
 ------------- | ------------- | -------------
 [**StatsResponse**](../../models/StatsResponse.md) |  | 
+
+
+#### read_stats.ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
 
 ### Authorization

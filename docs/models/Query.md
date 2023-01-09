@@ -9,13 +9,28 @@ dict, frozendict.frozendict,  | frozendict.frozendict,  |  |
 Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
 **[ledgers](#ledgers)** | list, tuple,  | tuple,  |  | [optional] 
-**nextToken** | str,  | str,  |  | [optional] 
-**size** | decimal.Decimal, int,  | decimal.Decimal,  |  | [optional] 
+**[after](#after)** | list, tuple,  | tuple,  |  | [optional] 
+**pageSize** | decimal.Decimal, int,  | decimal.Decimal,  |  | [optional] value must be a 64 bit integer
 **[terms](#terms)** | list, tuple,  | tuple,  |  | [optional] 
+**sort** | str,  | str,  |  | [optional] 
+**policy** | str,  | str,  |  | [optional] 
 **target** | str,  | str,  |  | [optional] 
+**cursor** | str,  | str,  |  | [optional] 
 **any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 # ledgers
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+list, tuple,  | tuple,  |  | 
+
+### Tuple Items
+Class Name | Input Type | Accessed Type | Description | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+items | str,  | str,  |  | 
+
+# after
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes

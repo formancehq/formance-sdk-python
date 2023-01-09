@@ -5,16 +5,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_metadata_to_account**](#add_metadata_to_account) | **post** /api/ledger/{ledger}/accounts/{address}/metadata | Add metadata to an account.
-[**count_accounts**](#count_accounts) | **head** /api/ledger/{ledger}/accounts | Count the accounts from a ledger.
-[**get_account**](#get_account) | **get** /api/ledger/{ledger}/accounts/{address} | Get account by its address.
-[**list_accounts**](#list_accounts) | **get** /api/ledger/{ledger}/accounts | List accounts from a ledger.
+[**add_metadata_to_account**](#add_metadata_to_account) | **post** /api/ledger/{ledger}/accounts/{address}/metadata | Add metadata to an account
+[**count_accounts**](#count_accounts) | **head** /api/ledger/{ledger}/accounts | Count the accounts from a ledger
+[**get_account**](#get_account) | **get** /api/ledger/{ledger}/accounts/{address} | Get account by its address
+[**list_accounts**](#list_accounts) | **get** /api/ledger/{ledger}/accounts | List accounts from a ledger
 
 # **add_metadata_to_account**
 <a name="add_metadata_to_account"></a>
 > add_metadata_to_account(ledgeraddressledger_metadata)
 
-Add metadata to an account.
+Add metadata to an account
 
 ### Example
 
@@ -22,6 +22,7 @@ Add metadata to an account.
 ```python
 import Formance
 from Formance.apis.tags import accounts_api
+from Formance.model.error_response import ErrorResponse
 from Formance.model.ledger_metadata import LedgerMetadata
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -37,9 +38,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -54,7 +55,7 @@ with Formance.ApiClient(configuration) as api_client:
         key=None,
     )
     try:
-        # Add metadata to an account.
+        # Add metadata to an account
         api_response = api_instance.add_metadata_to_account(
             path_params=path_params,
             body=body,
@@ -110,8 +111,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 204 | [ApiResponseFor204](#add_metadata_to_account.ApiResponseFor204) | No Content
-400 | [ApiResponseFor400](#add_metadata_to_account.ApiResponseFor400) | Bad Request
-409 | [ApiResponseFor409](#add_metadata_to_account.ApiResponseFor409) | Conflict
+default | [ApiResponseForDefault](#add_metadata_to_account.ApiResponseForDefault) | Error
 
 #### add_metadata_to_account.ApiResponseFor204
 Name | Type | Description  | Notes
@@ -120,47 +120,18 @@ response | urllib3.HTTPResponse | Raw response |
 body | typing.Union[] |  |
 headers | Unset | headers were not defined |
 
-#### add_metadata_to_account.ApiResponseFor400
+#### add_metadata_to_account.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor400ResponseBodyApplicationJson, ] |  |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
-# SchemaFor400ResponseBodyApplicationJson
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-#### add_metadata_to_account.ApiResponseFor409
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor409ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
-
-# SchemaFor409ResponseBodyApplicationJson
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### Authorization
 
@@ -172,7 +143,7 @@ Key | Input Type | Accessed Type | Description | Notes
 <a name="count_accounts"></a>
 > count_accounts(ledger)
 
-Count the accounts from a ledger.
+Count the accounts from a ledger
 
 ### Example
 
@@ -180,6 +151,7 @@ Count the accounts from a ledger.
 ```python
 import Formance
 from Formance.apis.tags import accounts_api
+from Formance.model.error_response import ErrorResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -194,9 +166,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -209,7 +181,7 @@ with Formance.ApiClient(configuration) as api_client:
     query_params = {
     }
     try:
-        # Count the accounts from a ledger.
+        # Count the accounts from a ledger
         api_response = api_instance.count_accounts(
             path_params=path_params,
             query_params=query_params,
@@ -226,7 +198,7 @@ with Formance.ApiClient(configuration) as api_client:
         'metadata': dict(),
     }
     try:
-        # Count the accounts from a ledger.
+        # Count the accounts from a ledger
         api_response = api_instance.count_accounts(
             path_params=path_params,
             query_params=query_params,
@@ -240,6 +212,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 query_params | RequestQueryParams | |
 path_params | RequestPathParams | |
+accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
 skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
@@ -287,6 +260,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#count_accounts.ApiResponseFor200) | OK
+default | [ApiResponseForDefault](#count_accounts.ApiResponseForDefault) | Error
 
 #### count_accounts.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -305,7 +279,20 @@ Count | CountSchema | | optional
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | 
+decimal.Decimal, int,  | decimal.Decimal,  |  | value must be a 64 bit integer
+
+
+#### count_accounts.ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
 
 ### Authorization
@@ -316,9 +303,9 @@ decimal.Decimal, int,  | decimal.Decimal,  |  |
 
 # **get_account**
 <a name="get_account"></a>
-> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} get_account(ledgeraddress)
+> AccountResponse get_account(ledgeraddress)
 
-Get account by its address.
+Get account by its address
 
 ### Example
 
@@ -326,7 +313,8 @@ Get account by its address.
 ```python
 import Formance
 from Formance.apis.tags import accounts_api
-from Formance.model.account_with_volumes_and_balances import AccountWithVolumesAndBalances
+from Formance.model.error_response import ErrorResponse
+from Formance.model.account_response import AccountResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -341,9 +329,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -355,7 +343,7 @@ with Formance.ApiClient(configuration) as api_client:
         'address': "users:001",
     }
     try:
-        # Get account by its address.
+        # Get account by its address
         api_response = api_instance.get_account(
             path_params=path_params,
         )
@@ -401,7 +389,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#get_account.ApiResponseFor200) | OK
-400 | [ApiResponseFor400](#get_account.ApiResponseFor400) | Bad Request
+default | [ApiResponseForDefault](#get_account.ApiResponseForDefault) | Error
 
 #### get_account.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -411,38 +399,23 @@ body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**AccountResponse**](../../models/AccountResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
 
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**data** | [**AccountWithVolumesAndBalances**]({{complexTypePrefix}}AccountWithVolumesAndBalances.md) | [**AccountWithVolumesAndBalances**]({{complexTypePrefix}}AccountWithVolumesAndBalances.md) |  | 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-#### get_account.ApiResponseFor400
+#### get_account.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor400ResponseBodyApplicationJson, ] |  |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
-# SchemaFor400ResponseBodyApplicationJson
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### Authorization
 
@@ -452,9 +425,9 @@ Key | Input Type | Accessed Type | Description | Notes
 
 # **list_accounts**
 <a name="list_accounts"></a>
-> bool, date, datetime, dict, float, int, list, str, none_type list_accounts(ledger)
+> AccountsCursorResponse list_accounts(ledger)
 
-List accounts from a ledger.
+List accounts from a ledger
 
 List accounts from a ledger, sorted by address in descending order.
 
@@ -464,8 +437,8 @@ List accounts from a ledger, sorted by address in descending order.
 ```python
 import Formance
 from Formance.apis.tags import accounts_api
-from Formance.model.cursor import Cursor
-from Formance.model.account import Account
+from Formance.model.accounts_cursor_response import AccountsCursorResponse
+from Formance.model.error_response import ErrorResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -480,9 +453,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -495,7 +468,7 @@ with Formance.ApiClient(configuration) as api_client:
     query_params = {
     }
     try:
-        # List accounts from a ledger.
+        # List accounts from a ledger
         api_response = api_instance.list_accounts(
             path_params=path_params,
             query_params=query_params,
@@ -509,16 +482,19 @@ with Formance.ApiClient(configuration) as api_client:
         'ledger': "ledger001",
     }
     query_params = {
+        'pageSize': 100,
         'page_size': 100,
         'after': "users:003",
         'address': "users:.+",
         'metadata': dict(),
         'balance': 2400,
+        'balanceOperator': "gte",
         'balance_operator': "gte",
+        'cursor': "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         'pagination_token': "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     }
     try:
-        # List accounts from a ledger.
+        # List accounts from a ledger
         api_response = api_instance.list_accounts(
             path_params=path_params,
             query_params=query_params,
@@ -543,12 +519,15 @@ skip_deserialization | bool | default is False | when True, headers and body wil
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+pageSize | PageSizeSchema | | optional
 page_size | PageSizeSchema | | optional
 after | AfterSchema | | optional
 address | AddressSchema | | optional
 metadata | MetadataSchema | | optional
 balance | BalanceSchema | | optional
+balanceOperator | BalanceOperatorSchema | | optional
 balance_operator | BalanceOperatorSchema | | optional
+cursor | CursorSchema | | optional
 pagination_token | PaginationTokenSchema | | optional
 
 
@@ -557,7 +536,14 @@ pagination_token | PaginationTokenSchema | | optional
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | if omitted the server will use the default value of 15
+decimal.Decimal, int,  | decimal.Decimal,  |  | if omitted the server will use the default value of 15value must be a 64 bit integer
+
+# PageSizeSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+decimal.Decimal, int,  | decimal.Decimal,  |  | if omitted the server will use the default value of 15value must be a 64 bit integer
 
 # AfterSchema
 
@@ -592,7 +578,21 @@ decimal.Decimal, int,  | decimal.Decimal,  |  | value must be a 64 bit integer
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-str,  | str,  |  | must be one of ["gte", "lte", "gt", "lt", "e", ] 
+str,  | str,  |  | must be one of ["gte", "lte", "gt", "lt", "e", "ne", ] 
+
+# BalanceOperatorSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | must be one of ["gte", "lte", "gt", "lt", "e", "ne", ] 
+
+# CursorSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | 
 
 # PaginationTokenSchema
 
@@ -621,7 +621,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#list_accounts.ApiResponseFor200) | OK
-400 | [ApiResponseFor400](#list_accounts.ApiResponseFor400) | Bad Request
+default | [ApiResponseForDefault](#list_accounts.ApiResponseForDefault) | Error
 
 #### list_accounts.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -631,77 +631,23 @@ body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**AccountsCursorResponse**](../../models/AccountsCursorResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader,  | frozendict.frozendict, str, decimal.Decimal, BoolClass, NoneClass, tuple, bytes, FileIO |  | 
 
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**[cursor](#cursor)** | dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader,  | frozendict.frozendict, str, decimal.Decimal, BoolClass, NoneClass, tuple, bytes, FileIO |  | 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-# cursor
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader,  | frozendict.frozendict, str, decimal.Decimal, BoolClass, NoneClass, tuple, bytes, FileIO |  | 
-
-### Composed Schemas (allOf/anyOf/oneOf/not)
-#### allOf
-Class Name | Input Type | Accessed Type | Description | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-[Cursor]({{complexTypePrefix}}Cursor.md) | [**Cursor**]({{complexTypePrefix}}Cursor.md) | [**Cursor**]({{complexTypePrefix}}Cursor.md) |  | 
-[all_of_1](#all_of_1) | dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-# all_of_1
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**[data](#data)** | list, tuple,  | tuple,  |  | 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-# data
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-list, tuple,  | tuple,  |  | 
-
-### Tuple Items
-Class Name | Input Type | Accessed Type | Description | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-[**Account**]({{complexTypePrefix}}Account.md) | [**Account**]({{complexTypePrefix}}Account.md) | [**Account**]({{complexTypePrefix}}Account.md) |  | 
-
-#### list_accounts.ApiResponseFor400
+#### list_accounts.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor400ResponseBodyApplicationJson, ] |  |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
-# SchemaFor400ResponseBodyApplicationJson
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### Authorization
 

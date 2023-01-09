@@ -21,7 +21,7 @@ from .. import ApiTestMixin
 class TestApiLedgerLedgerAccountsAddressMetadata(ApiTestMixin, unittest.TestCase):
     """
     ApiLedgerLedgerAccountsAddressMetadata unit test stubs
-        Add metadata to an account.  # noqa: E501
+        Add metadata to an account  # noqa: E501
     """
     _configuration = configuration.Configuration()
 

@@ -21,7 +21,7 @@ from .. import ApiTestMixin
 class TestApiLedgerLedgerStats(ApiTestMixin, unittest.TestCase):
     """
     ApiLedgerLedgerStats unit test stubs
-        Get Stats  # noqa: E501
+        Get statistics from a ledger  # noqa: E501
     """
     _configuration = configuration.Configuration()
 

@@ -21,7 +21,7 @@ from .. import ApiTestMixin
 class TestApiLedgerLedgerTransactionsTxid(ApiTestMixin, unittest.TestCase):
     """
     ApiLedgerLedgerTransactionsTxid unit test stubs
-        Get transaction from a ledger by its ID.  # noqa: E501
+        Get transaction from a ledger by its ID  # noqa: E501
     """
     _configuration = configuration.Configuration()
 

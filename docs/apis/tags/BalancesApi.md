@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **get_balances**
 <a name="get_balances"></a>
-> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} get_balances(ledger)
+> BalancesCursorResponse get_balances(ledger)
 
 Get the balances from a ledger's account
 
@@ -20,8 +20,8 @@ Get the balances from a ledger's account
 ```python
 import Formance
 from Formance.apis.tags import balances_api
-from Formance.model.cursor import Cursor
-from Formance.model.accounts_balances import AccountsBalances
+from Formance.model.error_response import ErrorResponse
+from Formance.model.balances_cursor_response import BalancesCursorResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -36,9 +36,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -67,6 +67,7 @@ with Formance.ApiClient(configuration) as api_client:
     query_params = {
         'address': "users:001",
         'after': "users:003",
+        'cursor': "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         'pagination_token': "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     }
     try:
@@ -97,6 +98,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 address | AddressSchema | | optional
 after | AfterSchema | | optional
+cursor | CursorSchema | | optional
 pagination_token | PaginationTokenSchema | | optional
 
 
@@ -108,6 +110,13 @@ Input Type | Accessed Type | Description | Notes
 str,  | str,  |  | 
 
 # AfterSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | 
+
+# CursorSchema
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
@@ -141,7 +150,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#get_balances.ApiResponseFor200) | OK
-400 | [ApiResponseFor400](#get_balances.ApiResponseFor400) | Bad Request
+default | [ApiResponseForDefault](#get_balances.ApiResponseForDefault) | Error
 
 #### get_balances.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -151,77 +160,23 @@ body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**BalancesCursorResponse**](../../models/BalancesCursorResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
 
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**[cursor](#cursor)** | dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader,  | frozendict.frozendict, str, decimal.Decimal, BoolClass, NoneClass, tuple, bytes, FileIO |  | 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-# cursor
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader,  | frozendict.frozendict, str, decimal.Decimal, BoolClass, NoneClass, tuple, bytes, FileIO |  | 
-
-### Composed Schemas (allOf/anyOf/oneOf/not)
-#### allOf
-Class Name | Input Type | Accessed Type | Description | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-[Cursor]({{complexTypePrefix}}Cursor.md) | [**Cursor**]({{complexTypePrefix}}Cursor.md) | [**Cursor**]({{complexTypePrefix}}Cursor.md) |  | 
-[all_of_1](#all_of_1) | dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-# all_of_1
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**[data](#data)** | list, tuple,  | tuple,  |  | 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-# data
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-list, tuple,  | tuple,  |  | 
-
-### Tuple Items
-Class Name | Input Type | Accessed Type | Description | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-[**AccountsBalances**]({{complexTypePrefix}}AccountsBalances.md) | [**AccountsBalances**]({{complexTypePrefix}}AccountsBalances.md) | [**AccountsBalances**]({{complexTypePrefix}}AccountsBalances.md) |  | 
-
-#### get_balances.ApiResponseFor400
+#### get_balances.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor400ResponseBodyApplicationJson, ] |  |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
-# SchemaFor400ResponseBodyApplicationJson
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### Authorization
 
@@ -231,7 +186,7 @@ Key | Input Type | Accessed Type | Description | Notes
 
 # **get_balances_aggregated**
 <a name="get_balances_aggregated"></a>
-> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} get_balances_aggregated(ledger)
+> AggregateBalancesResponse get_balances_aggregated(ledger)
 
 Get the aggregated balances from selected accounts
 
@@ -241,7 +196,8 @@ Get the aggregated balances from selected accounts
 ```python
 import Formance
 from Formance.apis.tags import balances_api
-from Formance.model.assets_balances import AssetsBalances
+from Formance.model.error_response import ErrorResponse
+from Formance.model.aggregate_balances_response import AggregateBalancesResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -256,9 +212,9 @@ configuration = Formance.Configuration(
 
 # Configure OAuth2 access token for authorization: Authorization
 configuration = Formance.Configuration(
-    host = "http://localhost",
-    access_token = 'YOUR_ACCESS_TOKEN'
+    host = "http://localhost"
 )
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with Formance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -343,7 +299,7 @@ Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
 200 | [ApiResponseFor200](#get_balances_aggregated.ApiResponseFor200) | OK
-400 | [ApiResponseFor400](#get_balances_aggregated.ApiResponseFor400) | Bad Request
+default | [ApiResponseForDefault](#get_balances_aggregated.ApiResponseForDefault) | Error
 
 #### get_balances_aggregated.ApiResponseFor200
 Name | Type | Description  | Notes
@@ -353,38 +309,23 @@ body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**AggregateBalancesResponse**](../../models/AggregateBalancesResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
 
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**data** | [**AssetsBalances**]({{complexTypePrefix}}AssetsBalances.md) | [**AssetsBalances**]({{complexTypePrefix}}AssetsBalances.md) |  | 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-#### get_balances_aggregated.ApiResponseFor400
+#### get_balances_aggregated.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor400ResponseBodyApplicationJson, ] |  |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
 headers | Unset | headers were not defined |
 
-# SchemaFor400ResponseBodyApplicationJson
+# SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ErrorResponse**](../../models/ErrorResponse.md) |  | 
 
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**error_code** | str,  | str,  |  | 
-**error_message** | str,  | str,  |  | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### Authorization
 
