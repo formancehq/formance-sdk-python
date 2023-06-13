@@ -21,7 +21,7 @@ from .. import ApiTestMixin
 class TestApiWebhooksConfigs(ApiTestMixin, unittest.TestCase):
     """
     ApiWebhooksConfigs unit test stubs
-        Insert a new config   # noqa: E501
+        Insert a new config  # noqa: E501
     """
     _configuration = configuration.Configuration()
 
