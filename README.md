@@ -4,7 +4,7 @@
 ## SDK Installation
 
 ```bash
-pip install git+<UNSET>.git
+pip install formance-sdk-python
 ```
 <!-- End SDK Installation -->
 
