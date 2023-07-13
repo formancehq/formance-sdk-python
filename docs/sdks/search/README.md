@@ -24,6 +24,7 @@ s = sdk.SDK(
 req = shared.Query(
     after=[
         'users:002',
+        'users:002',
     ],
     cursor='YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=',
     ledgers=[
@@ -32,12 +33,14 @@ req = shared.Query(
         'quickstart',
         'quickstart',
     ],
-    page_size=952749,
+    page_size=433288,
     policy='OR',
     raw=shared.QueryRaw(),
     sort='txid:asc',
-    target='dolorum',
+    target='non',
     terms=[
+        'destination=central_bank1',
+        'destination=central_bank1',
         'destination=central_bank1',
         'destination=central_bank1',
     ],

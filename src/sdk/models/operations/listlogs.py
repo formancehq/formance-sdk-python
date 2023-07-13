@@ -34,7 +34,7 @@ class ListLogsRequest:
     Set to the value of previous for the previous page of results.
     No other parameters can be set when this parameter is set.
     Deprecated, please use `cursor` instead.
-    
+
     Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible
     """
     start_time: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'startTime', 'style': 'form', 'explode': True }})

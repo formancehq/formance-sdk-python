@@ -57,6 +57,20 @@ if res.get_versions_response is not None:
 * [update_client](docs/sdks/auth/README.md#update_client) - Update client
 * [update_scope](docs/sdks/auth/README.md#update_scope) - Update scope
 
+### [flows](docs/sdks/flows/README.md)
+
+* [flowsget_server_info](docs/sdks/flows/README.md#flowsget_server_info) - Get server info
+* [cancel_event](docs/sdks/flows/README.md#cancel_event) - Cancel a running workflow
+* [create_workflow](docs/sdks/flows/README.md#create_workflow) - Create workflow
+* [get_instance](docs/sdks/flows/README.md#get_instance) - Get a workflow instance by id
+* [get_instance_history](docs/sdks/flows/README.md#get_instance_history) - Get a workflow instance history by id
+* [get_instance_stage_history](docs/sdks/flows/README.md#get_instance_stage_history) - Get a workflow instance stage history
+* [get_workflow](docs/sdks/flows/README.md#get_workflow) - Get a flow by id
+* [list_instances](docs/sdks/flows/README.md#list_instances) - List instances of a workflow
+* [list_workflows](docs/sdks/flows/README.md#list_workflows) - List registered workflows
+* [run_workflow](docs/sdks/flows/README.md#run_workflow) - Run workflow
+* [send_event](docs/sdks/flows/README.md#send_event) - Send an event to a running workflow
+
 ### [ledger](docs/sdks/ledger/README.md)
 
 * [create_transactions](docs/sdks/ledger/README.md#create_transactions) - Create a new batch of transactions to a ledger
@@ -79,20 +93,6 @@ if res.get_versions_response is not None:
 * [revert_transaction](docs/sdks/ledger/README.md#revert_transaction) - Revert a ledger transaction by its ID
 * [~~run_script~~](docs/sdks/ledger/README.md#run_script) - Execute a Numscript :warning: **Deprecated**
 * [update_mapping](docs/sdks/ledger/README.md#update_mapping) - Update the mapping of a ledger
-
-### [orchestration](docs/sdks/orchestration/README.md)
-
-* [cancel_event](docs/sdks/orchestration/README.md#cancel_event) - Cancel a running workflow
-* [create_workflow](docs/sdks/orchestration/README.md#create_workflow) - Create workflow
-* [get_instance](docs/sdks/orchestration/README.md#get_instance) - Get a workflow instance by id
-* [get_instance_history](docs/sdks/orchestration/README.md#get_instance_history) - Get a workflow instance history by id
-* [get_instance_stage_history](docs/sdks/orchestration/README.md#get_instance_stage_history) - Get a workflow instance stage history
-* [get_workflow](docs/sdks/orchestration/README.md#get_workflow) - Get a flow by id
-* [list_instances](docs/sdks/orchestration/README.md#list_instances) - List instances of a workflow
-* [list_workflows](docs/sdks/orchestration/README.md#list_workflows) - List registered workflows
-* [orchestrationget_server_info](docs/sdks/orchestration/README.md#orchestrationget_server_info) - Get server info
-* [run_workflow](docs/sdks/orchestration/README.md#run_workflow) - Run workflow
-* [send_event](docs/sdks/orchestration/README.md#send_event) - Send an event to a running workflow
 
 ### [payments](docs/sdks/payments/README.md)
 

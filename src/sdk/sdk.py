@@ -2,8 +2,8 @@
 
 import requests as requests_http
 from .auth import Auth
+from .flows import Flows
 from .ledger import Ledger
-from .orchestration import Orchestration
 from .payments import Payments
 from .sdkconfiguration import SDKConfiguration
 from .search import Search
@@ -15,10 +15,10 @@ from typing import Optional
 
 class SDK:
     r"""Formance Stack API: Open, modular foundation for unique payments flows
-    
+
     # Introduction
     This API is documented in **OpenAPI format**.
-    
+
     # Authentication
     Formance Stack offers one forms of authentication:
       - OAuth2
@@ -27,8 +27,8 @@ class SDK:
     <SecurityDefinitions />
     """
     auth: Auth
+    flows: Flows
     ledger: Ledger
-    orchestration: Orchestration
     payments: Payments
     search: Search
     wallets: Wallets
@@ -81,8 +81,8 @@ class SDK:
     
     def _init_sdks(self):
         self.auth = Auth(self.sdk_configuration)
+        self.flows = Flows(self.sdk_configuration)
         self.ledger = Ledger(self.sdk_configuration)
-        self.orchestration = Orchestration(self.sdk_configuration)
         self.payments = Payments(self.sdk_configuration)
         self.search = Search(self.sdk_configuration)
         self.wallets = Wallets(self.sdk_configuration)

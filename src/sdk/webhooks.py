@@ -45,7 +45,7 @@ class Webhooks:
     def change_config_secret(self, request: operations.ChangeConfigSecretRequest) -> operations.ChangeConfigSecretResponse:
         r"""Change the signing secret of a config
         Change the signing secret of the endpoint of a webhooks config.
-        
+
         If not passed or empty, a secret is automatically generated.
         The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
         """
@@ -170,13 +170,13 @@ class Webhooks:
     def insert_config(self, request: shared.ConfigUser) -> operations.InsertConfigResponse:
         r"""Insert a new config
         Insert a new webhooks config.
-        
+
         The endpoint should be a valid https URL and be unique.
-        
+
         The secret is the endpoint's verification secret.
         If not passed or empty, a secret is automatically generated.
         The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
-        
+
         All eventTypes are converted to lower-case when inserted.
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())

@@ -45,8 +45,7 @@ req = operations.CreateTransactionsRequest(
         transactions=[
             shared.TransactionData(
                 metadata={
-                    "explicabo": 'nobis',
-                    "enim": 'omnis',
+                    "error": 'temporibus',
                 },
                 postings=[
                     shared.Posting(
@@ -61,9 +60,15 @@ req = operations.CreateTransactionsRequest(
                         destination='users:002',
                         source='users:001',
                     ),
+                    shared.Posting(
+                        amount=100,
+                        asset='COIN',
+                        destination='users:002',
+                        source='users:001',
+                    ),
                 ],
                 reference='ref:001',
-                timestamp=dateutil.parser.isoparse('2022-06-06T21:04:34.044Z'),
+                timestamp=dateutil.parser.isoparse('2022-01-11T05:45:42.485Z'),
             ),
         ],
     ),
@@ -106,7 +111,10 @@ s = sdk.SDK(
 
 req = operations.AddMetadataOnTransactionRequest(
     request_body={
-        "iure": 'culpa',
+        "vero": 'nihil',
+        "praesentium": 'voluptatibus',
+        "ipsa": 'omnis',
+        "voluptate": 'cum',
     },
     ledger='ledger001',
     txid=1234,
@@ -148,10 +156,7 @@ s = sdk.SDK(
 
 req = operations.AddMetadataToAccountRequest(
     request_body={
-        "sapiente": 'architecto',
-        "mollitia": 'dolorem',
-        "culpa": 'consequuntur',
-        "repellat": 'mollitia',
+        "doloremque": 'reprehenderit',
     },
     address='users:001',
     ledger='ledger001',
@@ -235,12 +240,12 @@ s = sdk.SDK(
 req = operations.CountTransactionsRequest(
     account='users:001',
     destination='users:001',
-    end_time=dateutil.parser.isoparse('2022-06-30T02:19:51.375Z'),
+    end_time=dateutil.parser.isoparse('2022-01-08T10:49:12.847Z'),
     ledger='ledger001',
     metadata=operations.CountTransactionsMetadata(),
     reference='ref:001',
     source='users:001',
-    start_time=dateutil.parser.isoparse('2022-07-14T19:07:02.935Z'),
+    start_time=dateutil.parser.isoparse('2022-08-22T19:15:58.586Z'),
 )
 
 res = s.ledger.count_transactions(req)
@@ -281,10 +286,28 @@ s = sdk.SDK(
 req = operations.CreateTransactionRequest(
     post_transaction=shared.PostTransaction(
         metadata={
-            "velit": 'error',
-            "quia": 'quis',
+            "iusto": 'dicta',
+            "harum": 'enim',
         },
         postings=[
+            shared.Posting(
+                amount=100,
+                asset='COIN',
+                destination='users:002',
+                source='users:001',
+            ),
+            shared.Posting(
+                amount=100,
+                asset='COIN',
+                destination='users:002',
+                source='users:001',
+            ),
+            shared.Posting(
+                amount=100,
+                asset='COIN',
+                destination='users:002',
+                source='users:001',
+            ),
             shared.Posting(
                 amount=100,
                 asset='COIN',
@@ -304,7 +327,7 @@ req = operations.CreateTransactionRequest(
         ',
             vars=shared.PostTransactionScriptVars(),
         ),
-        timestamp=dateutil.parser.isoparse('2021-09-08T21:06:19.630Z'),
+        timestamp=dateutil.parser.isoparse('2022-01-30T20:15:26.045Z'),
     ),
     ledger='ledger001',
     preview=True,
@@ -616,7 +639,7 @@ req = operations.ListAccountsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger='ledger001',
     metadata=operations.ListAccountsMetadata(),
-    page_size=317202,
+    page_size=64147,
     pagination_token='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
 )
 
@@ -658,11 +681,11 @@ s = sdk.SDK(
 req = operations.ListLogsRequest(
     after='1234',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    end_time=dateutil.parser.isoparse('2022-03-22T21:41:36.666Z'),
+    end_time=dateutil.parser.isoparse('2022-04-23T05:56:38.936Z'),
     ledger='ledger001',
-    page_size=196582,
+    page_size=565189,
     pagination_token='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    start_time=dateutil.parser.isoparse('2021-11-23T05:54:08.890Z'),
+    start_time=dateutil.parser.isoparse('2021-04-09T11:24:10.949Z'),
 )
 
 res = s.ledger.list_logs(req)
@@ -705,14 +728,14 @@ req = operations.ListTransactionsRequest(
     after='1234',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     destination='users:001',
-    end_time=dateutil.parser.isoparse('2021-05-11T16:11:54.761Z'),
+    end_time=dateutil.parser.isoparse('2022-06-29T05:25:54.356Z'),
     ledger='ledger001',
     metadata=operations.ListTransactionsMetadata(),
-    page_size=13571,
+    page_size=523248,
     pagination_token='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     reference='ref:001',
     source='users:001',
-    start_time=dateutil.parser.isoparse('2022-05-18T15:52:05.226Z'),
+    start_time=dateutil.parser.isoparse('2022-09-20T03:14:35.704Z'),
 )
 
 res = s.ledger.list_transactions(req)
@@ -833,10 +856,10 @@ s = sdk.SDK(
 req = operations.RunScriptRequest(
     script=shared.Script(
         metadata={
-            "laborum": 'quasi',
-            "reiciendis": 'voluptatibus',
-            "vero": 'nihil',
-            "praesentium": 'voluptatibus',
+            "sint": 'veritatis',
+            "itaque": 'incidunt',
+            "enim": 'consequatur',
+            "est": 'quibusdam',
         },
         plain='vars {
     account $user

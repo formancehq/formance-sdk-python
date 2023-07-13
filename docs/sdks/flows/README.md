@@ -1,7 +1,8 @@
-# orchestration
+# flows
 
 ### Available Operations
 
+* [flowsget_server_info](#flowsget_server_info) - Get server info
 * [cancel_event](#cancel_event) - Cancel a running workflow
 * [create_workflow](#create_workflow) - Create workflow
 * [get_instance](#get_instance) - Get a workflow instance by id
@@ -10,9 +11,37 @@
 * [get_workflow](#get_workflow) - Get a flow by id
 * [list_instances](#list_instances) - List instances of a workflow
 * [list_workflows](#list_workflows) - List registered workflows
-* [orchestrationget_server_info](#orchestrationget_server_info) - Get server info
 * [run_workflow](#run_workflow) - Run workflow
 * [send_event](#send_event) - Send an event to a running workflow
+
+## flowsget_server_info
+
+Get server info
+
+### Example Usage
+
+```python
+import sdk
+
+
+s = sdk.SDK(
+    security=shared.Security(
+        authorization="",
+    ),
+)
+
+
+res = s.flows.flowsget_server_info()
+
+if res.server_info is not None:
+    # handle response
+```
+
+
+### Response
+
+**[operations.FlowsgetServerInfoResponse](../../models/operations/flowsgetserverinforesponse.md)**
+
 
 ## cancel_event
 
@@ -31,10 +60,10 @@ s = sdk.SDK(
 )
 
 req = operations.CancelEventRequest(
-    instance_id='omnis',
+    instance_id='dolorem',
 )
 
-res = s.orchestration.cancel_event(req)
+res = s.flows.cancel_event(req)
 
 if res.status_code == 200:
     # handle response
@@ -69,28 +98,22 @@ s = sdk.SDK(
 )
 
 req = shared.CreateWorkflowRequest(
-    name='Ms. Karla Aufderhar',
+    name='Rose Rolfson',
     stages=[
         {
-            "corporis": 'dolore',
+            "excepturi": 'accusantium',
+            "iure": 'culpa',
         },
         {
-            "dicta": 'harum',
-            "enim": 'accusamus',
-        },
-        {
-            "repudiandae": 'quae',
-            "ipsum": 'quidem',
-        },
-        {
-            "excepturi": 'pariatur',
-            "modi": 'praesentium',
-            "rem": 'voluptates',
+            "sapiente": 'architecto',
+            "mollitia": 'dolorem',
+            "culpa": 'consequuntur',
+            "repellat": 'mollitia',
         },
     ],
 )
 
-res = s.orchestration.create_workflow(req)
+res = s.flows.create_workflow(req)
 
 if res.create_workflow_response is not None:
     # handle response
@@ -125,10 +148,10 @@ s = sdk.SDK(
 )
 
 req = operations.GetInstanceRequest(
-    instance_id='quasi',
+    instance_id='occaecati',
 )
 
-res = s.orchestration.get_instance(req)
+res = s.flows.get_instance(req)
 
 if res.get_workflow_instance_response is not None:
     # handle response
@@ -163,10 +186,10 @@ s = sdk.SDK(
 )
 
 req = operations.GetInstanceHistoryRequest(
-    instance_id='repudiandae',
+    instance_id='numquam',
 )
 
-res = s.orchestration.get_instance_history(req)
+res = s.flows.get_instance_history(req)
 
 if res.get_workflow_instance_history_response is not None:
     # handle response
@@ -201,11 +224,11 @@ s = sdk.SDK(
 )
 
 req = operations.GetInstanceStageHistoryRequest(
-    instance_id='sint',
-    number=83112,
+    instance_id='commodi',
+    number=466311,
 )
 
-res = s.orchestration.get_instance_stage_history(req)
+res = s.flows.get_instance_stage_history(req)
 
 if res.get_workflow_instance_history_stage_response is not None:
     # handle response
@@ -240,10 +263,10 @@ s = sdk.SDK(
 )
 
 req = operations.GetWorkflowRequest(
-    flow_id='itaque',
+    flow_id='molestiae',
 )
 
-res = s.orchestration.get_workflow(req)
+res = s.flows.get_workflow(req)
 
 if res.get_workflow_response is not None:
     # handle response
@@ -279,10 +302,10 @@ s = sdk.SDK(
 
 req = operations.ListInstancesRequest(
     running=False,
-    workflow_id='incidunt',
+    workflow_id='velit',
 )
 
-res = s.orchestration.list_instances(req)
+res = s.flows.list_instances(req)
 
 if res.list_runs_response is not None:
     # handle response
@@ -317,7 +340,7 @@ s = sdk.SDK(
 )
 
 
-res = s.orchestration.list_workflows()
+res = s.flows.list_workflows()
 
 if res.list_workflows_response is not None:
     # handle response
@@ -327,35 +350,6 @@ if res.list_workflows_response is not None:
 ### Response
 
 **[operations.ListWorkflowsResponse](../../models/operations/listworkflowsresponse.md)**
-
-
-## orchestrationget_server_info
-
-Get server info
-
-### Example Usage
-
-```python
-import sdk
-
-
-s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
-)
-
-
-res = s.orchestration.orchestrationget_server_info()
-
-if res.server_info is not None:
-    # handle response
-```
-
-
-### Response
-
-**[operations.OrchestrationgetServerInfoResponse](../../models/operations/orchestrationgetserverinforesponse.md)**
 
 
 ## run_workflow
@@ -376,14 +370,15 @@ s = sdk.SDK(
 
 req = operations.RunWorkflowRequest(
     request_body={
-        "consequatur": 'est',
-        "quibusdam": 'explicabo',
+        "quia": 'quis',
+        "vitae": 'laborum',
+        "animi": 'enim',
     },
     wait=False,
-    workflow_id='deserunt',
+    workflow_id='odit',
 )
 
-res = s.orchestration.run_workflow(req)
+res = s.flows.run_workflow(req)
 
 if res.run_workflow_response is not None:
     # handle response
@@ -419,12 +414,12 @@ s = sdk.SDK(
 
 req = operations.SendEventRequest(
     request_body=operations.SendEventRequestBody(
-        name='Marty Green',
+        name='Jimmy Wiegand',
     ),
-    instance_id='aliquid',
+    instance_id='possimus',
 )
 
-res = s.orchestration.send_event(req)
+res = s.flows.send_event(req)
 
 if res.status_code == 200:
     # handle response

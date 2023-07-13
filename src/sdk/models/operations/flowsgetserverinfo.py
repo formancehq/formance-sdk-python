@@ -10,7 +10,7 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class OrchestrationgetServerInfoResponse:
+class FlowsgetServerInfoResponse:
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     error: Optional[shared_error.Error] = dataclasses.field(default=None)

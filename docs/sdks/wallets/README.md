@@ -40,7 +40,7 @@ req = operations.ConfirmHoldRequest(
         amount=100,
         final=True,
     ),
-    hold_id='in',
+    hold_id='sint',
 )
 
 res = s.wallets.confirm_hold(req)
@@ -80,11 +80,11 @@ s = sdk.SDK(
 
 req = operations.CreateBalanceRequest(
     create_balance_request=shared.CreateBalanceRequest(
-        expires_at=dateutil.parser.isoparse('2020-01-25T11:09:22.009Z'),
-        name='Keith Gulgowski',
-        priority=411820,
+        expires_at=dateutil.parser.isoparse('2022-05-29T21:42:45.399Z'),
+        name='Perry Nikolaus',
+        priority=952749,
     ),
-    id='6ae395ef-b9ba-488f-ba66-997074ba4469',
+    id='a77dfb14-cd66-4ae3-95ef-b9ba88f3a669',
 )
 
 res = s.wallets.create_balance(req)
@@ -123,11 +123,11 @@ s = sdk.SDK(
 
 req = shared.CreateWalletRequest(
     metadata={
-        "eum": 'vero',
-        "aspernatur": 'architecto',
-        "magnam": 'et',
+        "molestiae": 'perferendis',
+        "nihil": 'magnam',
+        "distinctio": 'id',
     },
-    name='Derrick McLaughlin',
+    name='Jamie Hoppe',
 )
 
 res = s.wallets.create_wallet(req)
@@ -167,30 +167,28 @@ s = sdk.SDK(
 req = operations.CreditWalletRequest(
     credit_wallet_request=shared.CreditWalletRequest(
         amount=shared.Monetary(
-            amount=33625,
-            asset='mollitia',
+            amount=428769,
+            asset='vero',
         ),
-        balance='reiciendis',
+        balance='aspernatur',
         metadata={
-            "ad": 'eum',
-            "dolor": 'necessitatibus',
-            "odit": 'nemo',
+            "magnam": 'et',
         },
-        reference='quasi',
+        reference='excepturi',
         sources=[
             shared.WalletSubject(
-                balance='debitis',
-                identifier='eius',
-                type='maxime',
+                balance='quos',
+                identifier='sint',
+                type='accusantium',
             ),
             shared.WalletSubject(
-                balance='facilis',
-                identifier='in',
-                type='architecto',
+                balance='reiciendis',
+                identifier='mollitia',
+                type='ad',
             ),
         ],
     ),
-    id='1e5b7fd2-ed02-4892-9cdd-c692601fb576',
+    id='63e2516f-e4c8-4b71-9e5b-7fd2ed028921',
 )
 
 res = s.wallets.credit_wallet(req)
@@ -230,29 +228,28 @@ s = sdk.SDK(
 req = operations.DebitWalletRequest(
     debit_wallet_request=shared.DebitWalletRequest(
         amount=shared.Monetary(
-            amount=722056,
-            asset='eaque',
+            amount=779051,
+            asset='illum',
         ),
         balances=[
-            'nemo',
-            'voluptatibus',
-            'perferendis',
-            'fugiat',
+            'maxime',
+            'ea',
+            'excepturi',
+            'odit',
         ],
-        description='amet',
+        description='ea',
         destination=shared.LedgerAccountSubject(
-            identifier='cumque',
-            type='corporis',
+            identifier='ab',
+            type='maiores',
         ),
         metadata={
-            "libero": 'nobis',
-            "dolores": 'quis',
-            "totam": 'dignissimos',
-            "eaque": 'quis',
+            "ipsam": 'voluptate',
+            "autem": 'nam',
+            "eaque": 'pariatur',
         },
         pending=False,
     ),
-    id='3202c73d-5fe9-4b90-8289-09b3fe49a8d9',
+    id='5f0d30c5-fbb2-4587-8532-02c73d5fe9b9',
 )
 
 res = s.wallets.debit_wallet(req)
@@ -290,8 +287,8 @@ s = sdk.SDK(
 )
 
 req = operations.GetBalanceRequest(
-    balance_name='nobis',
-    id='bf486333-23f9-4b77-b3a4-100674ebf692',
+    balance_name='voluptatem',
+    id='c28909b3-fe49-4a8d-9cbf-48633323f9b7',
 )
 
 res = s.wallets.get_balance(req)
@@ -329,7 +326,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetHoldRequest(
-    hold_id='atque',
+    hold_id='dignissimos',
 )
 
 res = s.wallets.get_hold(req)
@@ -369,10 +366,13 @@ s = sdk.SDK(
 req = operations.GetHoldsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     metadata={
-        "fugiat": 'ab',
+        "amet": 'dolorum',
+        "numquam": 'veritatis',
+        "ipsa": 'ipsa',
+        "iure": 'odio',
     },
-    page_size=743835,
-    wallet_id='dolorum',
+    page_size=311796,
+    wallet_id='accusamus',
 )
 
 res = s.wallets.get_holds(req)
@@ -409,8 +409,8 @@ s = sdk.SDK(
 
 req = operations.GetTransactionsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=478596,
-    wallet_id='voluptate',
+    page_size=696344,
+    wallet_id='voluptatibus',
 )
 
 res = s.wallets.get_transactions(req)
@@ -448,7 +448,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetWalletRequest(
-    id='a89ebf73-7ae4-4203-8e5e-6a95d8a0d446',
+    id='69280d1b-a77a-489e-bf73-7ae4203ce5e6',
 )
 
 res = s.wallets.get_wallet(req)
@@ -486,7 +486,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetWalletSummaryRequest(
-    id='ce2af7a7-3cf3-4be4-93f8-70b326b5a734',
+    id='a95d8a0d-446c-4e2a-b7a7-3cf3be453f87',
 )
 
 res = s.wallets.get_wallet_summary(req)
@@ -524,7 +524,7 @@ s = sdk.SDK(
 )
 
 req = operations.ListBalancesRequest(
-    id='29cdb1a8-422b-4b67-9d23-22715bf0cbb1',
+    id='0b326b5a-7342-49cd-b1a8-422bb679d232',
 )
 
 res = s.wallets.list_balances(req)
@@ -564,13 +564,10 @@ s = sdk.SDK(
 req = operations.ListWalletsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     metadata={
-        "ipsum": 'veritatis',
-        "nobis": 'quos',
-        "tempore": 'cupiditate',
-        "aperiam": 'delectus',
+        "odio": 'sunt',
     },
-    name='Joanne Grant',
-    page_size=100294,
+    name='Miss Candice Weimann',
+    page_size=748664,
 )
 
 res = s.wallets.list_wallets(req)
@@ -610,10 +607,10 @@ s = sdk.SDK(
 req = operations.UpdateWalletRequest(
     request_body=operations.UpdateWalletRequestBody(
         metadata={
-            "aut": 'quas',
+            "saepe": 'ipsum',
         },
     ),
-    id='e0adcf4b-9218-479f-8e95-3f73ef7fbc7a',
+    id='1b8b90f3-443a-4110-8e0a-dcf4b921879f',
 )
 
 res = s.wallets.update_wallet(req)
@@ -651,7 +648,7 @@ s = sdk.SDK(
 )
 
 req = operations.VoidHoldRequest(
-    hold_id='facilis',
+    hold_id='quisquam',
 )
 
 res = s.wallets.void_hold(req)

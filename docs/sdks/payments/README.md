@@ -121,8 +121,8 @@ s = sdk.SDK(
 )
 
 req = operations.GetConnectorTaskRequest(
-    connector=shared.Connector.MODULR,
-    task_id='perferendis',
+    connector=shared.Connector.CURRENCY_CLOUD,
+    task_id='quibusdam',
 )
 
 res = s.payments.get_connector_task(req)
@@ -160,7 +160,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetPaymentRequest(
-    payment_id='magni',
+    payment_id='labore',
 )
 
 res = s.payments.get_payment(req)
@@ -198,13 +198,12 @@ s = sdk.SDK(
 )
 
 req = operations.InstallConnectorRequest(
-    request_body=shared.CurrencyCloudConfig(
-        api_key='XXX',
-        endpoint='XXX',
-        login_id='XXX',
-        polling_period='60s',
+    request_body=shared.DummyPayConfig(
+        directory='/tmp/dummypay',
+        file_generation_period='60s',
+        file_polling_period='60s',
     ),
-    connector=shared.Connector.WISE,
+    connector=shared.Connector.DUMMY_PAY,
 )
 
 res = s.payments.install_connector(req)
@@ -300,9 +299,9 @@ s = sdk.SDK(
 )
 
 req = operations.ListConnectorTasksRequest(
-    connector=shared.Connector.STRIPE,
+    connector=shared.Connector.WISE,
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=146441,
+    page_size=586513,
 )
 
 res = s.payments.list_connector_tasks(req)
@@ -340,7 +339,7 @@ s = sdk.SDK(
 )
 
 req = operations.ListConnectorsTransfersRequest(
-    connector=shared.Connector.CURRENCY_CLOUD,
+    connector=shared.Connector.MODULR,
 )
 
 res = s.payments.list_connectors_transfers(req)
@@ -379,10 +378,9 @@ s = sdk.SDK(
 
 req = operations.ListPaymentsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=569618,
+    page_size=20107,
     sort=[
-        'facilis',
-        'tempore',
+        'assumenda',
     ],
 )
 
@@ -451,12 +449,9 @@ s = sdk.SDK(
 
 req = operations.PaymentslistAccountsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=288476,
+    page_size=369808,
     sort=[
-        'eum',
-        'non',
-        'eligendi',
-        'sint',
+        'fugit',
     ],
 )
 
@@ -495,7 +490,7 @@ s = sdk.SDK(
 )
 
 req = operations.ReadConnectorConfigRequest(
-    connector=shared.Connector.WISE,
+    connector=shared.Connector.CURRENCY_CLOUD,
 )
 
 res = s.payments.read_connector_config(req)
@@ -573,7 +568,7 @@ s = sdk.SDK(
 )
 
 req = operations.UninstallConnectorRequest(
-    connector=shared.Connector.BANKING_CIRCLE,
+    connector=shared.Connector.DUMMY_PAY,
 )
 
 res = s.payments.uninstall_connector(req)
@@ -612,9 +607,9 @@ s = sdk.SDK(
 
 req = operations.UpdateMetadataRequest(
     payment_metadata=shared.PaymentMetadata(
-        key='sint',
+        key='facilis',
     ),
-    payment_id='officia',
+    payment_id='tempore',
 )
 
 res = s.payments.update_metadata(req)
