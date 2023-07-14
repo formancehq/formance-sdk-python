@@ -16,7 +16,7 @@ class Flows:
         r"""Get server info"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = base_url + '/api/Flows/_info'
+        url = base_url + '/api/orchestration/_info'
         headers = {}
         headers['Accept'] = 'application/json;q=1, application/json;q=0'
         headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
@@ -46,7 +46,7 @@ class Flows:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.CancelEventRequest, base_url, '/api/Flows/instances/{instanceID}/abort', request)
+        url = utils.generate_url(operations.CancelEventRequest, base_url, '/api/orchestration/instances/{instanceID}/abort', request)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
@@ -74,7 +74,7 @@ class Flows:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = base_url + '/api/Flows/workflows'
+        url = base_url + '/api/orchestration/workflows'
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, "request", 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -107,7 +107,7 @@ class Flows:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetInstanceRequest, base_url, '/api/Flows/instances/{instanceID}', request)
+        url = utils.generate_url(operations.GetInstanceRequest, base_url, '/api/orchestration/instances/{instanceID}', request)
         headers = {}
         headers['Accept'] = 'application/json;q=1, application/json;q=0'
         headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
@@ -137,7 +137,7 @@ class Flows:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetInstanceHistoryRequest, base_url, '/api/Flows/instances/{instanceID}/history', request)
+        url = utils.generate_url(operations.GetInstanceHistoryRequest, base_url, '/api/orchestration/instances/{instanceID}/history', request)
         headers = {}
         headers['Accept'] = 'application/json;q=1, application/json;q=0'
         headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
@@ -167,7 +167,7 @@ class Flows:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetInstanceStageHistoryRequest, base_url, '/api/Flows/instances/{instanceID}/stages/{number}/history', request)
+        url = utils.generate_url(operations.GetInstanceStageHistoryRequest, base_url, '/api/orchestration/instances/{instanceID}/stages/{number}/history', request)
         headers = {}
         headers['Accept'] = 'application/json;q=1, application/json;q=0'
         headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
@@ -197,7 +197,7 @@ class Flows:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetWorkflowRequest, base_url, '/api/Flows/workflows/{flowId}', request)
+        url = utils.generate_url(operations.GetWorkflowRequest, base_url, '/api/orchestration/workflows/{flowId}', request)
         headers = {}
         headers['Accept'] = 'application/json;q=1, application/json;q=0'
         headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
@@ -227,7 +227,7 @@ class Flows:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = base_url + '/api/Flows/instances'
+        url = base_url + '/api/orchestration/instances'
         headers = {}
         query_params = utils.get_query_params(operations.ListInstancesRequest, request)
         headers['Accept'] = 'application/json;q=1, application/json;q=0'
@@ -258,7 +258,7 @@ class Flows:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = base_url + '/api/Flows/workflows'
+        url = base_url + '/api/orchestration/workflows'
         headers = {}
         headers['Accept'] = 'application/json;q=1, application/json;q=0'
         headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
@@ -288,7 +288,7 @@ class Flows:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.RunWorkflowRequest, base_url, '/api/Flows/workflows/{workflowID}/instances', request)
+        url = utils.generate_url(operations.RunWorkflowRequest, base_url, '/api/orchestration/workflows/{workflowID}/instances', request)
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, "request_body", 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -322,7 +322,7 @@ class Flows:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.SendEventRequest, base_url, '/api/Flows/instances/{instanceID}/events', request)
+        url = utils.generate_url(operations.SendEventRequest, base_url, '/api/orchestration/instances/{instanceID}/events', request)
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, "request_body", 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):

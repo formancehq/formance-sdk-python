@@ -27,7 +27,7 @@ Show stack version information
 
 ```python
 import sdk
-
+from sdk.models import shared
 
 s = sdk.SDK(
     security=shared.Security(

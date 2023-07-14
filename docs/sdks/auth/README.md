@@ -30,7 +30,7 @@ Add scope to client
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -69,7 +69,7 @@ Add a transient scope to a scope
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -255,7 +255,7 @@ Delete client
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -293,7 +293,7 @@ Delete scope
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -331,7 +331,7 @@ Delete scope from client
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -370,7 +370,7 @@ Delete a secret from a client
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -409,7 +409,7 @@ Delete a transient scope from a scope
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -448,7 +448,7 @@ Get server info
 
 ```python
 import sdk
-
+from sdk.models import shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -477,7 +477,7 @@ List clients
 
 ```python
 import sdk
-
+from sdk.models import shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -506,7 +506,7 @@ List Scopes
 
 ```python
 import sdk
-
+from sdk.models import shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -535,7 +535,7 @@ List users
 
 ```python
 import sdk
-
+from sdk.models import shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -564,7 +564,7 @@ Read client
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -602,7 +602,7 @@ Read scope
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -640,7 +640,7 @@ Read user
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(

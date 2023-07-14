@@ -18,7 +18,7 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -101,7 +101,7 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -139,7 +139,7 @@ Delete a webhooks config by ID.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -177,7 +177,7 @@ Sorted by updated date descending
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -270,7 +270,7 @@ Test a config by sending a webhook to its endpoint.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(

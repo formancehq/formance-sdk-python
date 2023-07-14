@@ -10,9 +10,11 @@ pip install formance-sdk-python
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
+
+
 ```python
 import sdk
-
+from sdk.models import shared
 
 s = sdk.SDK(
     security=shared.Security(

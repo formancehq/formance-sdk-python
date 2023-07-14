@@ -151,7 +151,7 @@ Get a payment
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -232,7 +232,7 @@ List all installed connectors.
 
 ```python
 import sdk
-
+from sdk.models import shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -261,7 +261,7 @@ List the configs of each available connector.
 
 ```python
 import sdk
-
+from sdk.models import shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -368,7 +368,7 @@ List payments
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -410,7 +410,7 @@ Get server info
 
 ```python
 import sdk
-
+from sdk.models import shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -439,7 +439,7 @@ List accounts
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(

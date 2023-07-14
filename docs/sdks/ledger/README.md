@@ -101,7 +101,7 @@ Set the metadata of a transaction by its ID
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -146,7 +146,7 @@ Add metadata to an account
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -188,7 +188,7 @@ Count the accounts from a ledger
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -229,7 +229,7 @@ Count the transactions from a ledger
 ```python
 import sdk
 import dateutil.parser
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -359,7 +359,7 @@ Get account by its address
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -398,7 +398,7 @@ Get the balances from a ledger's account
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -440,7 +440,7 @@ Get the aggregated balances from selected accounts
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -479,7 +479,7 @@ Show server information
 
 ```python
 import sdk
-
+from sdk.models import shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -508,7 +508,7 @@ Get information about a ledger
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -546,7 +546,7 @@ Get the mapping of a ledger
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -584,7 +584,7 @@ Get transaction from a ledger by its ID
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -623,7 +623,7 @@ List accounts from a ledger, sorted by address in descending order.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -670,7 +670,7 @@ List the logs from a ledger, sorted by ID in descending order.
 ```python
 import sdk
 import dateutil.parser
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -715,7 +715,7 @@ List transactions from a ledger, sorted by txid in descending order.
 ```python
 import sdk
 import dateutil.parser
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -765,7 +765,7 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -803,7 +803,7 @@ Revert a ledger transaction by its ID
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
