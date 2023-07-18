@@ -22,34 +22,6 @@ class Flows:
         self._gen_version = gen_version
         
     
-    def flowsget_server_info(self) -> operations.FlowsgetServerInfoResponse:
-        r"""Get server info"""
-        base_url = self._server_url
-        
-        url = base_url.removesuffix('/') + '/api/orchestration/_info'
-        headers = {}
-        headers['Accept'] = 'application/json;q=1, application/json;q=0'
-        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
-        
-        client = self._security_client
-        
-        http_res = client.request('GET', url, headers=headers)
-        content_type = http_res.headers.get('Content-Type')
-
-        res = operations.FlowsgetServerInfoResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
-        
-        if http_res.status_code == 200:
-            if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[shared.ServerInfo])
-                res.server_info = out
-        else:
-            if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[shared.Error])
-                res.error = out
-
-        return res
-
-    
     def cancel_event(self, request: operations.CancelEventRequest) -> operations.CancelEventResponse:
         r"""Cancel a running workflow
         Cancel a running workflow
@@ -103,6 +75,34 @@ class Flows:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.CreateWorkflowResponse])
                 res.create_workflow_response = out
+        else:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[shared.Error])
+                res.error = out
+
+        return res
+
+    
+    def delete_workflow(self, request: operations.DeleteWorkflowRequest) -> operations.DeleteWorkflowResponse:
+        r"""Delete a flow by id
+        Delete a flow by id
+        """
+        base_url = self._server_url
+        
+        url = utils.generate_url(operations.DeleteWorkflowRequest, base_url, '/api/orchestration/workflows/{flowId}', request)
+        headers = {}
+        headers['Accept'] = 'application/json'
+        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
+        
+        client = self._security_client
+        
+        http_res = client.request('DELETE', url, headers=headers)
+        content_type = http_res.headers.get('Content-Type')
+
+        res = operations.DeleteWorkflowResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+        if http_res.status_code == 204:
+            pass
         else:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.Error])
@@ -284,6 +284,34 @@ class Flows:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.ListWorkflowsResponse])
                 res.list_workflows_response = out
+        else:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[shared.Error])
+                res.error = out
+
+        return res
+
+    
+    def orchestrationget_server_info(self) -> operations.OrchestrationgetServerInfoResponse:
+        r"""Get server info"""
+        base_url = self._server_url
+        
+        url = base_url.removesuffix('/') + '/api/orchestration/_info'
+        headers = {}
+        headers['Accept'] = 'application/json;q=1, application/json;q=0'
+        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
+        
+        client = self._security_client
+        
+        http_res = client.request('GET', url, headers=headers)
+        content_type = http_res.headers.get('Content-Type')
+
+        res = operations.OrchestrationgetServerInfoResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+        if http_res.status_code == 200:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[shared.ServerInfo])
+                res.server_info = out
         else:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.Error])

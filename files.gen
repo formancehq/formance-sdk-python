@@ -32,15 +32,16 @@ src/sdk/models/operations/readscope.py
 src/sdk/models/operations/readuser.py
 src/sdk/models/operations/updateclient.py
 src/sdk/models/operations/updatescope.py
-src/sdk/models/operations/flowsgetserverinfo.py
 src/sdk/models/operations/cancelevent.py
 src/sdk/models/operations/createworkflow.py
+src/sdk/models/operations/deleteworkflow.py
 src/sdk/models/operations/getinstance.py
 src/sdk/models/operations/getinstancehistory.py
 src/sdk/models/operations/getinstancestagehistory.py
 src/sdk/models/operations/getworkflow.py
 src/sdk/models/operations/listinstances.py
 src/sdk/models/operations/listworkflows.py
+src/sdk/models/operations/orchestrationgetserverinfo.py
 src/sdk/models/operations/runworkflow.py
 src/sdk/models/operations/sendevent.py
 src/sdk/models/operations/createtransactions.py
@@ -229,6 +230,8 @@ src/sdk/models/shared/taskcurrencycloud.py
 src/sdk/models/shared/taskdummypay.py
 src/sdk/models/shared/taskmodulr.py
 src/sdk/models/shared/taskbankingcircle.py
+src/sdk/models/shared/taskmangopay.py
+src/sdk/models/shared/taskmoneycorp.py
 src/sdk/models/shared/paymentresponse.py
 src/sdk/models/shared/stripeconfig.py
 src/sdk/models/shared/dummypayconfig.py
@@ -236,6 +239,8 @@ src/sdk/models/shared/wiseconfig.py
 src/sdk/models/shared/modulrconfig.py
 src/sdk/models/shared/currencycloudconfig.py
 src/sdk/models/shared/bankingcircleconfig.py
+src/sdk/models/shared/mangopayconfig.py
+src/sdk/models/shared/moneycorpconfig.py
 src/sdk/models/shared/connectorsresponse.py
 src/sdk/models/shared/connectorsconfigsresponse.py
 src/sdk/models/shared/taskscursor.py
@@ -263,6 +268,7 @@ src/sdk/models/shared/getholdsresponse.py
 src/sdk/models/shared/gettransactionsresponse.py
 src/sdk/models/shared/walletstransaction.py
 src/sdk/models/shared/walletsvolume.py
+src/sdk/models/shared/walletsposting.py
 src/sdk/models/shared/getwalletresponse.py
 src/sdk/models/shared/getwalletsummaryresponse.py
 src/sdk/models/shared/listbalancesresponse.py

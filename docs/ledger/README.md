@@ -45,7 +45,9 @@ req = operations.CreateTransactionsRequest(
         transactions=[
             shared.TransactionData(
                 metadata={
-                    "error": 'temporibus',
+                    "possimus": 'aut',
+                    "quasi": 'error',
+                    "temporibus": 'laborum',
                 },
                 postings=[
                     shared.Posting(
@@ -54,12 +56,18 @@ req = operations.CreateTransactionsRequest(
                         destination='users:002',
                         source='users:001',
                     ),
-                    shared.Posting(
-                        amount=100,
-                        asset='COIN',
-                        destination='users:002',
-                        source='users:001',
-                    ),
+                ],
+                reference='ref:001',
+                timestamp=dateutil.parser.isoparse('2020-01-27T18:38:42.890Z'),
+            ),
+            shared.TransactionData(
+                metadata={
+                    "nihil": 'praesentium',
+                    "voluptatibus": 'ipsa',
+                    "omnis": 'voluptate',
+                    "cum": 'perferendis',
+                },
+                postings=[
                     shared.Posting(
                         amount=100,
                         asset='COIN',
@@ -68,7 +76,7 @@ req = operations.CreateTransactionsRequest(
                     ),
                 ],
                 reference='ref:001',
-                timestamp=dateutil.parser.isoparse('2022-01-11T05:45:42.485Z'),
+                timestamp=dateutil.parser.isoparse('2022-09-19T18:36:39.009Z'),
             ),
         ],
     ),
@@ -99,10 +107,10 @@ s = sdk.SDK(
 
 req = operations.AddMetadataOnTransactionRequest(
     request_body={
-        "vero": 'nihil',
-        "praesentium": 'voluptatibus',
-        "ipsa": 'omnis',
-        "voluptate": 'cum',
+        "dicta": 'corporis',
+        "dolore": 'iusto',
+        "dicta": 'harum',
+        "enim": 'accusamus',
     },
     ledger='ledger001',
     txid=1234,
@@ -132,7 +140,8 @@ s = sdk.SDK(
 
 req = operations.AddMetadataToAccountRequest(
     request_body={
-        "doloremque": 'reprehenderit',
+        "repudiandae": 'quae',
+        "ipsum": 'quidem',
     },
     address='users:001',
     ledger='ledger001',
@@ -164,8 +173,9 @@ req = operations.CountAccountsRequest(
     address='users:.+',
     ledger='ledger001',
     metadata={
-        "maiores": 'dicta',
-        "corporis": 'dolore',
+        "excepturi": 'pariatur',
+        "modi": 'praesentium',
+        "rem": 'voluptates',
     },
 )
 
@@ -195,16 +205,16 @@ s = sdk.SDK(
 req = operations.CountTransactionsRequest(
     account='users:001',
     destination='users:001',
-    end_time=dateutil.parser.isoparse('2022-11-18T15:56:41.921Z'),
+    end_time=dateutil.parser.isoparse('2022-01-29T18:39:33.469Z'),
     ledger='ledger001',
     metadata={
-        "enim": 'accusamus',
-        "commodi": 'repudiandae',
-        "quae": 'ipsum',
+        "veritatis": 'itaque',
+        "incidunt": 'enim',
+        "consequatur": 'est',
     },
     reference='ref:001',
     source='users:001',
-    start_time=dateutil.parser.isoparse('2021-11-14T09:53:27.431Z'),
+    start_time=dateutil.parser.isoparse('2022-08-09T16:21:07.003Z'),
 )
 
 res = s.ledger.count_transactions(req)
@@ -233,17 +243,11 @@ s = sdk.SDK(
 req = operations.CreateTransactionRequest(
     post_transaction=shared.PostTransaction(
         metadata={
-            "pariatur": 'modi',
-            "praesentium": 'rem',
-            "voluptates": 'quasi',
+            "distinctio": 'quibusdam',
+            "labore": 'modi',
+            "qui": 'aliquid',
         },
         postings=[
-            shared.Posting(
-                amount=100,
-                asset='COIN',
-                destination='users:002',
-                source='users:001',
-            ),
             shared.Posting(
                 amount=100,
                 asset='COIN',
@@ -274,12 +278,12 @@ req = operations.CreateTransactionRequest(
         )
         ',
             vars={
-                "veritatis": 'itaque',
-                "incidunt": 'enim',
-                "consequatur": 'est',
+                "perferendis": 'magni',
+                "assumenda": 'ipsam',
+                "alias": 'fugit',
             },
         ),
-        timestamp=dateutil.parser.isoparse('2022-08-09T16:21:07.003Z'),
+        timestamp=dateutil.parser.isoparse('2021-11-11T04:17:07.569Z'),
     ),
     ledger='ledger001',
     preview=True,
@@ -501,11 +505,10 @@ req = operations.ListAccountsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger='ledger001',
     metadata={
-        "distinctio": 'quibusdam',
-        "labore": 'modi',
-        "qui": 'aliquid',
+        "facilis": 'tempore',
+        "labore": 'delectus',
     },
-    page_size=586513,
+    page_size=433288,
     pagination_token='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
 )
 
@@ -535,11 +538,11 @@ s = sdk.SDK(
 req = operations.ListLogsRequest(
     after='1234',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    end_time=dateutil.parser.isoparse('2022-12-17T07:42:55.593Z'),
+    end_time=dateutil.parser.isoparse('2022-03-31T00:30:19.135Z'),
     ledger='ledger001',
-    page_size=164940,
+    page_size=576157,
     pagination_token='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    start_time=dateutil.parser.isoparse('2021-11-22T01:26:35.048Z'),
+    start_time=dateutil.parser.isoparse('2022-05-29T21:42:45.399Z'),
 )
 
 res = s.ledger.list_logs(req)
@@ -570,18 +573,18 @@ req = operations.ListTransactionsRequest(
     after='1234',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     destination='users:001',
-    end_time=dateutil.parser.isoparse('2022-11-08T13:10:11.700Z'),
+    end_time=dateutil.parser.isoparse('2021-04-14T09:13:11.675Z'),
     ledger='ledger001',
     metadata={
-        "excepturi": 'tempora',
-        "facilis": 'tempore',
-        "labore": 'delectus',
+        "dolor": 'debitis',
+        "a": 'dolorum',
+        "in": 'in',
     },
-    page_size=433288,
+    page_size=846409,
     pagination_token='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     reference='ref:001',
     source='users:001',
-    start_time=dateutil.parser.isoparse('2022-03-31T00:30:19.135Z'),
+    start_time=dateutil.parser.isoparse('2020-11-26T01:41:04.216Z'),
 )
 
 res = s.ledger.list_transactions(req)
@@ -666,9 +669,7 @@ s = sdk.SDK(
 req = operations.RunScriptRequest(
     script=shared.Script(
         metadata={
-            "aliquid": 'provident',
-            "necessitatibus": 'sint',
-            "officia": 'dolor',
+            "magnam": 'cumque',
         },
         plain='vars {
     account $user
@@ -680,10 +681,10 @@ req = operations.RunScriptRequest(
     ',
         reference='order_1234',
         vars={
-            "a": 'dolorum',
-            "in": 'in',
-            "illum": 'maiores',
-            "rerum": 'dicta',
+            "ea": 'aliquid',
+            "laborum": 'accusamus',
+            "non": 'occaecati',
+            "enim": 'accusamus',
         },
     ),
     ledger='ledger001',
@@ -718,19 +719,29 @@ req = operations.UpdateMappingRequest(
             shared.Contract(
                 account='users:001',
                 expr={
-                    "facere": 'ea',
-                    "aliquid": 'laborum',
-                    "accusamus": 'non',
-                    "occaecati": 'enim',
+                    "provident": 'nam',
+                    "id": 'blanditiis',
+                    "deleniti": 'sapiente',
                 },
             ),
             shared.Contract(
                 account='users:001',
                 expr={
-                    "delectus": 'quidem',
-                    "provident": 'nam',
-                    "id": 'blanditiis',
-                    "deleniti": 'sapiente',
+                    "deserunt": 'nisi',
+                },
+            ),
+            shared.Contract(
+                account='users:001',
+                expr={
+                    "natus": 'omnis',
+                    "molestiae": 'perferendis',
+                },
+            ),
+            shared.Contract(
+                account='users:001',
+                expr={
+                    "magnam": 'distinctio',
+                    "id": 'labore',
                 },
             ),
         ],

@@ -40,7 +40,8 @@ req = shared.StripeTransferRequest(
     asset='USD',
     destination='acct_1Gqj58KZcSIg2N2q',
     metadata={
-        "deserunt": 'nisi',
+        "suscipit": 'natus',
+        "nobis": 'eum',
     },
 )
 
@@ -73,7 +74,7 @@ req = operations.ConnectorsTransferRequest(
         destination='acct_1Gqj58KZcSIg2N2q',
         source='acct_1Gqj58KZcSIg2N2q',
     ),
-    connector=shared.Connector.WISE,
+    connector=shared.Connector.MONEYCORP,
 )
 
 res = s.payments.connectors_transfer(req)
@@ -99,8 +100,8 @@ s = sdk.SDK(
 )
 
 req = operations.GetConnectorTaskRequest(
-    connector=shared.Connector.MODULR,
-    task_id='omnis',
+    connector=shared.Connector.DUMMY_PAY,
+    task_id='architecto',
 )
 
 res = s.payments.get_connector_task(req)
@@ -126,7 +127,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetPaymentRequest(
-    payment_id='molestiae',
+    payment_id='magnam',
 )
 
 res = s.payments.get_payment(req)
@@ -157,7 +158,7 @@ req = operations.InstallConnectorRequest(
         page_size=50,
         polling_period='60s',
     ),
-    connector=shared.Connector.WISE,
+    connector=shared.Connector.CURRENCY_CLOUD,
 )
 
 res = s.payments.install_connector(req)
@@ -229,9 +230,9 @@ s = sdk.SDK(
 )
 
 req = operations.ListConnectorTasksRequest(
-    connector=shared.Connector.DUMMY_PAY,
+    connector=shared.Connector.WISE,
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=716075,
+    page_size=590873,
 )
 
 res = s.payments.list_connector_tasks(req)
@@ -257,7 +258,7 @@ s = sdk.SDK(
 )
 
 req = operations.ListConnectorsTransfersRequest(
-    connector=shared.Connector.MODULR,
+    connector=shared.Connector.CURRENCY_CLOUD,
 )
 
 res = s.payments.list_connectors_transfers(req)
@@ -284,10 +285,9 @@ s = sdk.SDK(
 
 req = operations.ListPaymentsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=287991,
+    page_size=574325,
     sort=[
-        'suscipit',
-        'natus',
+        'mollitia',
     ],
 )
 
@@ -338,10 +338,11 @@ s = sdk.SDK(
 
 req = operations.PaymentslistAccountsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=749170,
+    page_size=968962,
     sort=[
-        'vero',
-        'aspernatur',
+        'ad',
+        'eum',
+        'dolor',
     ],
 )
 
@@ -368,7 +369,7 @@ s = sdk.SDK(
 )
 
 req = operations.ReadConnectorConfigRequest(
-    connector=shared.Connector.STRIPE,
+    connector=shared.Connector.MONEYCORP,
 )
 
 res = s.payments.read_connector_config(req)
@@ -422,7 +423,7 @@ s = sdk.SDK(
 )
 
 req = operations.UninstallConnectorRequest(
-    connector=shared.Connector.STRIPE,
+    connector=shared.Connector.WISE,
 )
 
 res = s.payments.uninstall_connector(req)
@@ -449,9 +450,9 @@ s = sdk.SDK(
 
 req = operations.UpdateMetadataRequest(
     payment_metadata=shared.PaymentMetadata(
-        key='excepturi',
+        key='quasi',
     ),
-    payment_id='ullam',
+    payment_id='iure',
 )
 
 res = s.payments.update_metadata(req)
