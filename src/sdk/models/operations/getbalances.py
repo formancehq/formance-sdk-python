@@ -8,9 +8,9 @@ from ..shared import errorresponse as shared_errorresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GetBalancesRequest:
+    
     ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
     r"""Name of the ledger."""
     address: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'address', 'style': 'form', 'explode': True }})
@@ -28,16 +28,14 @@ class GetBalancesRequest:
     Set to the value of next for the next page of results.
     Set to the value of previous for the previous page of results.
     Deprecated, please use `cursor` instead.
-
+    
     Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible
     """
     
 
-
-
-
 @dataclasses.dataclass
 class GetBalancesResponse:
+    
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     balances_cursor_response: Optional[shared_balancescursorresponse.BalancesCursorResponse] = dataclasses.field(default=None)
@@ -46,4 +44,3 @@ class GetBalancesResponse:
     r"""Error"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     
-

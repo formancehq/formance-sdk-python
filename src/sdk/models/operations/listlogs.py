@@ -9,9 +9,9 @@ from datetime import datetime
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class ListLogsRequest:
+    
     ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
     r"""Name of the ledger."""
     after: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'after', 'style': 'form', 'explode': True }})
@@ -34,7 +34,7 @@ class ListLogsRequest:
     Set to the value of previous for the previous page of results.
     No other parameters can be set when this parameter is set.
     Deprecated, please use `cursor` instead.
-
+    
     Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible
     """
     start_time: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'startTime', 'style': 'form', 'explode': True }})
@@ -43,11 +43,9 @@ class ListLogsRequest:
     """
     
 
-
-
-
 @dataclasses.dataclass
 class ListLogsResponse:
+    
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     error_response: Optional[shared_errorresponse.ErrorResponse] = dataclasses.field(default=None)
@@ -56,4 +54,3 @@ class ListLogsResponse:
     r"""OK"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     
-
