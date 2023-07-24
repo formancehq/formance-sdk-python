@@ -45,7 +45,7 @@ class SDK:
     _security_client: requests_http.Session
     _server_url: str = SERVERS[0]
     _language: str = "python"
-    _sdk_version: str = "v1.0.20230718.1"
+    _sdk_version: str = "v1.0.202307124"
     _gen_version: str = "2.31.0"
 
     def __init__(self,
