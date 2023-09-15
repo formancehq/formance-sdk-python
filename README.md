@@ -11,20 +11,53 @@ pip install formance-sdk-python
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
 ```python
+# pip3 install formance-sdk-python
 import sdk
+from sdk import operations, shared
+
+STACK_URL = "https://xxxxxxxx-yyyyy.sandbox.formance.cloud"
+CLIENT_ID = "xxxxxxxxx-aaaa-bbbb-cccc-yyyyyyyyy"
+CLIENT_SECRET = "aaaaaaaaaaa-xxxx-yyyy-zzzz-bbbbbbbbb"
+
+# Function to obtain access token
+def get_access_token(url, client_id, client_secret):
+    response = requests.post(
+        f"{url}/api/auth/oauth/token",
+        data={
+            "grant_type": "client_credentials",
+            "scope": "openid email offline_access",
+        },
+        auth=(client_id, client_secret),
+    )
+    #print(response)
+    return response.json()["access_token"]
+
+# Function to get server info
+    def get_server_info(formance_client):
+        server_info_response = formance_client.auth.get_server_info()
+        if server_info_response.server_info is not None:
+            return server_info_response.server_info
+        return None
 
 
-s = sdk.SDK(
+# Get access token
+    access_token = get_access_token(STACK_URL, CLIENT_ID, CLIENT_SECRET)
+    #print(access_token)
+
+    # Initialize Formance client with access token
+    formance_client = sdk.SDK(
+    server_url=STACK_URL,
     security=shared.Security(
-        authorization="Bearer YOUR_ACCESS_TOKEN_HERE",
+        authorization=f"Bearer {access_token}",
     ),
 )
 
 
-res = s.get_versions()
+# Get and print server info
+    server_info = get_server_info(formance_client)
+    if server_info is not None:
+        print(server_info)
 
-if res.get_versions_response is not None:
-    # handle response
 ```
 <!-- End SDK Example Usage -->
 
