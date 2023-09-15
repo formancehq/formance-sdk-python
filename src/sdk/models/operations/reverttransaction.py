@@ -15,6 +15,8 @@ class RevertTransactionRequest:
     r"""Name of the ledger."""
     txid: int = dataclasses.field(metadata={'path_param': { 'field_name': 'txid', 'style': 'simple', 'explode': False }})
     r"""Transaction ID."""
+    disable_checks: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'disableChecks', 'style': 'form', 'explode': True }})
+    r"""Allow to disable balances checks"""
     
 
 @dataclasses.dataclass

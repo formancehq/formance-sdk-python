@@ -637,6 +637,7 @@ s = sdk.SDK(
 )
 
 req = operations.RevertTransactionRequest(
+    disable_checks=False,
     ledger='ledger001',
     txid=1234,
 )
