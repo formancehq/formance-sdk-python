@@ -9,10 +9,13 @@ from typing import Optional
 
 @dataclasses.dataclass
 class ListClientsResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     list_clients_response: Optional[shared_listclientsresponse.ListClientsResponse] = dataclasses.field(default=None)
     r"""List of clients"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     
+

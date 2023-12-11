@@ -9,10 +9,13 @@ from typing import Optional
 
 @dataclasses.dataclass
 class CreateScopeResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     create_scope_response: Optional[shared_createscoperesponse.CreateScopeResponse] = dataclasses.field(default=None)
     r"""Created scope"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     
+

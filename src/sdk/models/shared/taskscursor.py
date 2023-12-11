@@ -2,26 +2,39 @@
 
 from __future__ import annotations
 import dataclasses
+from ..shared import taskbankingcircle as shared_taskbankingcircle
+from ..shared import taskcurrencycloud as shared_taskcurrencycloud
+from ..shared import taskdummypay as shared_taskdummypay
+from ..shared import taskmangopay as shared_taskmangopay
+from ..shared import taskmodulr as shared_taskmodulr
+from ..shared import taskmoneycorp as shared_taskmoneycorp
+from ..shared import taskstripe as shared_taskstripe
+from ..shared import taskwise as shared_taskwise
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
-from typing import Any, Optional
+from typing import List, Optional, Union
+
+
+@dataclasses.dataclass
+class TasksCursorCursorData:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class TasksCursorCursor:
-    
-    data: list[Any] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
+    data: List[Union[shared_taskstripe.TaskStripe, shared_taskwise.TaskWise, shared_taskcurrencycloud.TaskCurrencyCloud, shared_taskdummypay.TaskDummyPay, shared_taskmodulr.TaskModulr, shared_taskbankingcircle.TaskBankingCircle, shared_taskmangopay.TaskMangoPay, shared_taskmoneycorp.TaskMoneycorp]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     has_more: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hasMore') }})
     page_size: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pageSize') }})
     next: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('next'), 'exclude': lambda f: f is None }})
     previous: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('previous'), 'exclude': lambda f: f is None }})
     
 
+
+
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class TasksCursor:
-    r"""OK"""
-    
     cursor: TasksCursorCursor = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cursor') }})
     
+

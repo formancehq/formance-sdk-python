@@ -9,16 +9,20 @@ from typing import Optional
 
 @dataclasses.dataclass
 class UpdateMetadataRequest:
-    
     payment_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'paymentId', 'style': 'simple', 'explode': False }})
     r"""The payment ID."""
-    payment_metadata: shared_paymentmetadata.PaymentMetadata = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    payment_metadata: Optional[shared_paymentmetadata.PaymentMetadata] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     
+
+
 
 @dataclasses.dataclass
 class UpdateMetadataResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     
+

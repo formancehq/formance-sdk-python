@@ -10,7 +10,6 @@ from typing import Optional
 
 @dataclasses.dataclass
 class GetBalancesRequest:
-    
     ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
     r"""Name of the ledger."""
     address: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'address', 'style': 'form', 'explode': True }})
@@ -28,19 +27,24 @@ class GetBalancesRequest:
     Set to the value of next for the next page of results.
     Set to the value of previous for the previous page of results.
     Deprecated, please use `cursor` instead.
-    
-    Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible
+
+    Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
     """
     
 
+
+
 @dataclasses.dataclass
 class GetBalancesResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     balances_cursor_response: Optional[shared_balancescursorresponse.BalancesCursorResponse] = dataclasses.field(default=None)
     r"""OK"""
     error_response: Optional[shared_errorresponse.ErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     
+

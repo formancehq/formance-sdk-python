@@ -10,18 +10,22 @@ from typing import Optional
 
 @dataclasses.dataclass
 class UpdateScopeRequest:
-    
     scope_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'scopeId', 'style': 'simple', 'explode': False }})
     r"""Scope ID"""
     update_scope_request: Optional[shared_updatescoperequest.UpdateScopeRequest] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
     
 
+
+
 @dataclasses.dataclass
 class UpdateScopeResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     update_scope_response: Optional[shared_updatescoperesponse.UpdateScopeResponse] = dataclasses.field(default=None)
     r"""Updated scope"""
     
+

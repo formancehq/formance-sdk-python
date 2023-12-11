@@ -10,19 +10,23 @@ from typing import Optional
 
 @dataclasses.dataclass
 class DeactivateConfigRequest:
-    
     id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'id', 'style': 'simple', 'explode': False }})
     r"""Config ID"""
     
 
+
+
 @dataclasses.dataclass
 class DeactivateConfigResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     config_response: Optional[shared_configresponse.ConfigResponse] = dataclasses.field(default=None)
     r"""Config successfully deactivated."""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     webhooks_error_response: Optional[shared_webhookserrorresponse.WebhooksErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     
+
