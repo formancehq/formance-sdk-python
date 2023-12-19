@@ -1,0 +1,12 @@
+# V2Log
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `data`                                                               | Dict[str, *Any*]                                                     | :heavy_check_mark:                                                   | N/A                                                                  |                                                                      |
+| `date_`                                                              | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |                                                                      |
+| `hash`                                                               | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  | 9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e     |
+| `id`                                                                 | *int*                                                                | :heavy_check_mark:                                                   | N/A                                                                  | 1234                                                                 |
+| `type`                                                               | [V2LogType](../../models/shared/v2logtype.md)                        | :heavy_check_mark:                                                   | N/A                                                                  |                                                                      |

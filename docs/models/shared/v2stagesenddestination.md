@@ -1,0 +1,10 @@
+# V2StageSendDestination
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `account`                                                                                       | [Optional[V2StageSendDestinationAccount]](../../models/shared/v2stagesenddestinationaccount.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |
+| `payment`                                                                                       | [Optional[V2StageSendDestinationPayment]](../../models/shared/v2stagesenddestinationpayment.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |
+| `wallet`                                                                                        | [Optional[V2StageSendDestinationWallet]](../../models/shared/v2stagesenddestinationwallet.md)   | :heavy_minus_sign:                                                                              | N/A                                                                                             |

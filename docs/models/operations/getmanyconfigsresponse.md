@@ -1,0 +1,12 @@
+# GetManyConfigsResponse
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `configs_response`                                                                     | [Optional[shared.ConfigsResponse]](../../models/shared/configsresponse.md)             | :heavy_minus_sign:                                                                     | OK                                                                                     |
+| `content_type`                                                                         | *str*                                                                                  | :heavy_check_mark:                                                                     | HTTP response content type for this operation                                          |
+| `status_code`                                                                          | *int*                                                                                  | :heavy_check_mark:                                                                     | HTTP response status code for this operation                                           |
+| `raw_response`                                                                         | [requests.Response](https://requests.readthedocs.io/en/latest/api/#requests.Response)  | :heavy_minus_sign:                                                                     | Raw HTTP response; suitable for custom response parsing                                |
+| `webhooks_error_response`                                                              | [Optional[shared.WebhooksErrorResponse]](../../models/shared/webhookserrorresponse.md) | :heavy_minus_sign:                                                                     | Error                                                                                  |

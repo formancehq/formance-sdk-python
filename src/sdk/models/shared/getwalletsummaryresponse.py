@@ -5,16 +5,16 @@ import dataclasses
 from ..shared import balancewithassets as shared_balancewithassets
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
+from typing import Dict, List
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class GetWalletSummaryResponse:
-    r"""Wallet summary"""
+    available_funds: Dict[str, int] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('availableFunds') }})
+    balances: List[shared_balancewithassets.BalanceWithAssets] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('balances') }})
+    expirable_funds: Dict[str, int] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('expirableFunds') }})
+    expired_funds: Dict[str, int] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('expiredFunds') }})
+    hold_funds: Dict[str, int] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('holdFunds') }})
     
-    available_funds: dict[str, int] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('availableFunds') }})
-    balances: list[shared_balancewithassets.BalanceWithAssets] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('balances') }})
-    expirable_funds: dict[str, int] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('expirableFunds') }})
-    expired_funds: dict[str, int] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('expiredFunds') }})
-    hold_funds: dict[str, int] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('holdFunds') }})
-    
+

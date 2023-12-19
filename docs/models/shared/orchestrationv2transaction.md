@@ -1,0 +1,12 @@
+# OrchestrationV2Transaction
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `id`                                                                 | *int*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |                                                                      |
+| `metadata`                                                           | Dict[str, *str*]                                                     | :heavy_check_mark:                                                   | N/A                                                                  | [object Object]                                                      |
+| `postings`                                                           | List[[V2Posting](../../models/shared/v2posting.md)]                  | :heavy_check_mark:                                                   | N/A                                                                  |                                                                      |
+| `reference`                                                          | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  | ref:001                                                              |
+| `timestamp`                                                          | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |                                                                      |

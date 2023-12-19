@@ -1,18 +1,17 @@
 <!-- Start SDK Example Usage -->
+
+
 ```python
 import sdk
 
 
-s = sdk.SDK(
-    security=shared.Security(
-        authorization="Bearer YOUR_ACCESS_TOKEN_HERE",
-    ),
-)
+s = sdk.SDK()
 
 
-res = s.get_versions()
+res = s.sdk.get_versions()
 
 if res.get_versions_response is not None:
     # handle response
+    pass
 ```
 <!-- End SDK Example Usage -->

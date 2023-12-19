@@ -10,21 +10,25 @@ from typing import Optional
 
 @dataclasses.dataclass
 class GetTransactionRequest:
-    
     ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
     r"""Name of the ledger."""
     txid: int = dataclasses.field(metadata={'path_param': { 'field_name': 'txid', 'style': 'simple', 'explode': False }})
     r"""Transaction ID."""
     
 
+
+
 @dataclasses.dataclass
 class GetTransactionResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     error_response: Optional[shared_errorresponse.ErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     transaction_response: Optional[shared_transactionresponse.TransactionResponse] = dataclasses.field(default=None)
     r"""OK"""
     
+
