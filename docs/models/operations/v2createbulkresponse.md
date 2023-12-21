@@ -1,0 +1,12 @@
+# V2CreateBulkResponse
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `content_type`                                                                        | *str*                                                                                 | :heavy_check_mark:                                                                    | HTTP response content type for this operation                                         |
+| `status_code`                                                                         | *int*                                                                                 | :heavy_check_mark:                                                                    | HTTP response status code for this operation                                          |
+| `raw_response`                                                                        | [requests.Response](https://requests.readthedocs.io/en/latest/api/#requests.Response) | :heavy_minus_sign:                                                                    | Raw HTTP response; suitable for custom response parsing                               |
+| `v2_bulk_response`                                                                    | [Optional[shared.V2BulkResponse]](../../models/shared/v2bulkresponse.md)              | :heavy_minus_sign:                                                                    | OK                                                                                    |
+| `v2_error_response`                                                                   | [Optional[shared.V2ErrorResponse]](../../models/shared/v2errorresponse.md)            | :heavy_minus_sign:                                                                    | Error                                                                                 |

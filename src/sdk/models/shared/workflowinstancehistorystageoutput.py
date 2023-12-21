@@ -8,6 +8,7 @@ from ..shared import activitygetaccountoutput as shared_activitygetaccountoutput
 from ..shared import activitygetpaymentoutput as shared_activitygetpaymentoutput
 from ..shared import activitygetwalletoutput as shared_activitygetwalletoutput
 from ..shared import activityreverttransactionoutput as shared_activityreverttransactionoutput
+from ..shared import orchestrationlistwalletsresponse as shared_orchestrationlistwalletsresponse
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import Optional
@@ -16,11 +17,12 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class WorkflowInstanceHistoryStageOutput:
-    
     create_transaction: Optional[shared_activitycreatetransactionoutput.ActivityCreateTransactionOutput] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('CreateTransaction'), 'exclude': lambda f: f is None }})
     debit_wallet: Optional[shared_activitydebitwalletoutput.ActivityDebitWalletOutput] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('DebitWallet'), 'exclude': lambda f: f is None }})
     get_account: Optional[shared_activitygetaccountoutput.ActivityGetAccountOutput] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('GetAccount'), 'exclude': lambda f: f is None }})
     get_payment: Optional[shared_activitygetpaymentoutput.ActivityGetPaymentOutput] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('GetPayment'), 'exclude': lambda f: f is None }})
     get_wallet: Optional[shared_activitygetwalletoutput.ActivityGetWalletOutput] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('GetWallet'), 'exclude': lambda f: f is None }})
+    list_wallets: Optional[shared_orchestrationlistwalletsresponse.OrchestrationListWalletsResponse] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ListWallets'), 'exclude': lambda f: f is None }})
     revert_transaction: Optional[shared_activityreverttransactionoutput.ActivityRevertTransactionOutput] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('RevertTransaction'), 'exclude': lambda f: f is None }})
     
+

@@ -10,27 +10,31 @@ from typing import Optional
 
 @dataclasses.dataclass
 class GetTransactionsRequest:
-    
     cursor: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'cursor', 'style': 'form', 'explode': True }})
     r"""Parameter used in pagination requests.
     Set to the value of next for the next page of results.
     Set to the value of previous for the previous page of results.
     No other parameters can be set when the cursor is set.
     """
-    page_size: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'pageSize', 'style': 'form', 'explode': True }})
+    page_size: Optional[int] = dataclasses.field(default=15, metadata={'query_param': { 'field_name': 'pageSize', 'style': 'form', 'explode': True }})
     r"""The maximum number of results to return per page"""
     wallet_id: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'walletID', 'style': 'form', 'explode': True }})
     r"""A wallet ID to filter on"""
     
 
+
+
 @dataclasses.dataclass
 class GetTransactionsResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     get_transactions_response: Optional[shared_gettransactionsresponse.GetTransactionsResponse] = dataclasses.field(default=None)
     r"""OK"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     wallets_error_response: Optional[shared_walletserrorresponse.WalletsErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     
+

@@ -10,19 +10,23 @@ from typing import Optional
 
 @dataclasses.dataclass
 class ReadStatsRequest:
-    
     ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
     r"""name of the ledger"""
     
 
+
+
 @dataclasses.dataclass
 class ReadStatsResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     error_response: Optional[shared_errorresponse.ErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     stats_response: Optional[shared_statsresponse.StatsResponse] = dataclasses.field(default=None)
     r"""OK"""
     
+

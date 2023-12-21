@@ -6,12 +6,11 @@ import requests as requests_http
 from ..shared import errorresponse as shared_errorresponse
 from ..shared import transactionscursorresponse as shared_transactionscursorresponse
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any, Dict, Optional
 
 
 @dataclasses.dataclass
 class ListTransactionsRequest:
-    
     ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
     r"""Name of the ledger."""
     account: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'account', 'style': 'form', 'explode': True }})
@@ -30,19 +29,10 @@ class ListTransactionsRequest:
     r"""Filter transactions that occurred before this timestamp.
     The format is RFC3339 and is exclusive (for example, \"2023-01-02T15:04:01Z\" excludes the first second of 4th minute).
     """
-    metadata: Optional[dict[str, Any]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
+    metadata: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
     r"""Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below."""
-    page_size: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'pageSize', 'style': 'form', 'explode': True }})
+    page_size: Optional[int] = dataclasses.field(default=15, metadata={'query_param': { 'field_name': 'pageSize', 'style': 'form', 'explode': True }})
     r"""The maximum number of results to return per page."""
-    pagination_token: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'pagination_token', 'style': 'form', 'explode': True }})
-    r"""Parameter used in pagination requests. Maximum page size is set to 15.
-    Set to the value of next for the next page of results.
-    Set to the value of previous for the previous page of results.
-    No other parameters can be set when this parameter is set.
-    Deprecated, please use `cursor` instead.
-    
-    Deprecated: this field will be removed in a future release, please migrate away from it as soon as possible
-    """
     reference: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'reference', 'style': 'form', 'explode': True }})
     r"""Find transactions by reference field."""
     source: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'source', 'style': 'form', 'explode': True }})
@@ -53,14 +43,19 @@ class ListTransactionsRequest:
     """
     
 
+
+
 @dataclasses.dataclass
 class ListTransactionsResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     error_response: Optional[shared_errorresponse.ErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     transactions_cursor_response: Optional[shared_transactionscursorresponse.TransactionsCursorResponse] = dataclasses.field(default=None)
     r"""OK"""
     
+

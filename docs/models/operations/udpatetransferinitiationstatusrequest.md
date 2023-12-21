@@ -1,0 +1,9 @@
+# UdpateTransferInitiationStatusRequest
+
+
+## Fields
+
+| Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `update_transfer_initiation_status_request`                                                                  | [shared.UpdateTransferInitiationStatusRequest](../../models/shared/updatetransferinitiationstatusrequest.md) | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
+| `transfer_id`                                                                                                | *str*                                                                                                        | :heavy_check_mark:                                                                                           | The transfer ID.                                                                                             |
