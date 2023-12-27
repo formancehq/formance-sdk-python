@@ -5,8 +5,9 @@ from enum import Enum
 
 class PaymentStatus(str, Enum):
     PENDING = 'PENDING'
-    ACTIVE = 'ACTIVE'
-    TERMINATED = 'TERMINATED'
-    FAILED = 'FAILED'
     SUCCEEDED = 'SUCCEEDED'
     CANCELLED = 'CANCELLED'
+    FAILED = 'FAILED'
+    EXPIRED = 'EXPIRED'
+    REFUNDED = 'REFUNDED'
+    OTHER = 'OTHER'

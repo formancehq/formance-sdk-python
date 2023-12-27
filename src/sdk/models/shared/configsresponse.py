@@ -5,20 +5,21 @@ import dataclasses
 from ..shared import webhooksconfig as shared_webhooksconfig
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
+from typing import List
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ConfigsResponseCursor:
-    
-    data: list[shared_webhooksconfig.WebhooksConfig] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
+    data: List[shared_webhooksconfig.WebhooksConfig] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     has_more: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hasMore') }})
     
+
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ConfigsResponse:
-    r"""OK"""
-    
     cursor: ConfigsResponseCursor = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cursor') }})
     
+

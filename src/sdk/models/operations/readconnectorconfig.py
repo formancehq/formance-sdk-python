@@ -10,17 +10,21 @@ from typing import Optional
 
 @dataclasses.dataclass
 class ReadConnectorConfigRequest:
-    
     connector: shared_connector.Connector = dataclasses.field(metadata={'path_param': { 'field_name': 'connector', 'style': 'simple', 'explode': False }})
     r"""The name of the connector."""
     
 
+
+
 @dataclasses.dataclass
 class ReadConnectorConfigResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     connector_config_response: Optional[shared_connectorconfigresponse.ConnectorConfigResponse] = dataclasses.field(default=None)
     r"""OK"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     
+

@@ -1,0 +1,10 @@
+# V2CountAccountsRequest
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `request_body`                                                       | Dict[str, *Any*]                                                     | :heavy_minus_sign:                                                   | N/A                                                                  |                                                                      |
+| `ledger`                                                             | *str*                                                                | :heavy_check_mark:                                                   | Name of the ledger.                                                  | ledger001                                                            |
+| `pit`                                                                | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | N/A                                                                  |                                                                      |

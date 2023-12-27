@@ -10,21 +10,25 @@ from typing import Optional
 
 @dataclasses.dataclass
 class GetManyConfigsRequest:
-    
     endpoint: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'endpoint', 'style': 'form', 'explode': True }})
     r"""Optional filter by endpoint URL"""
     id: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'id', 'style': 'form', 'explode': True }})
     r"""Optional filter by Config ID"""
     
 
+
+
 @dataclasses.dataclass
 class GetManyConfigsResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     configs_response: Optional[shared_configsresponse.ConfigsResponse] = dataclasses.field(default=None)
     r"""OK"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     webhooks_error_response: Optional[shared_webhookserrorresponse.WebhooksErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     
+

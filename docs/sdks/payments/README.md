@@ -1,0 +1,1483 @@
+# Payments
+(*payments*)
+
+### Available Operations
+
+* [add_account_to_pool](#add_account_to_pool) - Add an account to a pool
+* [connectors_transfer](#connectors_transfer) - Transfer funds between Connector accounts
+* [create_bank_account](#create_bank_account) - Create a BankAccount in Payments and on the PSP
+* [create_payment](#create_payment) - Create a payment
+* [create_pool](#create_pool) - Create a Pool
+* [create_transfer_initiation](#create_transfer_initiation) - Create a TransferInitiation
+* [delete_pool](#delete_pool) - Delete a Pool
+* [delete_transfer_initiation](#delete_transfer_initiation) - Delete a transfer initiation
+* [get_account_balances](#get_account_balances) - Get account balances
+* [get_bank_account](#get_bank_account) - Get a bank account created by user on Formance
+* [~~get_connector_task~~](#get_connector_task) - Read a specific task of the connector :warning: **Deprecated**
+* [get_connector_task_v1](#get_connector_task_v1) - Read a specific task of the connector
+* [get_payment](#get_payment) - Get a payment
+* [get_pool](#get_pool) - Get a Pool
+* [get_pool_balances](#get_pool_balances) - Get pool balances
+* [get_transfer_initiation](#get_transfer_initiation) - Get a transfer initiation
+* [install_connector](#install_connector) - Install a connector
+* [list_all_connectors](#list_all_connectors) - List all installed connectors
+* [list_bank_accounts](#list_bank_accounts) - List bank accounts created by user on Formance
+* [list_configs_available_connectors](#list_configs_available_connectors) - List the configs of each available connector
+* [~~list_connector_tasks~~](#list_connector_tasks) - List tasks from a connector :warning: **Deprecated**
+* [list_connector_tasks_v1](#list_connector_tasks_v1) - List tasks from a connector
+* [list_payments](#list_payments) - List payments
+* [list_pools](#list_pools) - List Pools
+* [list_transfer_initiations](#list_transfer_initiations) - List Transfer Initiations
+* [paymentsget_account](#paymentsget_account) - Get an account
+* [paymentsget_server_info](#paymentsget_server_info) - Get server info
+* [paymentslist_accounts](#paymentslist_accounts) - List accounts
+* [~~read_connector_config~~](#read_connector_config) - Read the config of a connector :warning: **Deprecated**
+* [read_connector_config_v1](#read_connector_config_v1) - Read the config of a connector
+* [remove_account_from_pool](#remove_account_from_pool) - Remove an account from a pool
+* [~~reset_connector~~](#reset_connector) - Reset a connector :warning: **Deprecated**
+* [reset_connector_v1](#reset_connector_v1) - Reset a connector
+* [retry_transfer_initiation](#retry_transfer_initiation) - Retry a failed transfer initiation
+* [udpate_transfer_initiation_status](#udpate_transfer_initiation_status) - Update the status of a transfer initiation
+* [~~uninstall_connector~~](#uninstall_connector) - Uninstall a connector :warning: **Deprecated**
+* [uninstall_connector_v1](#uninstall_connector_v1) - Uninstall a connector
+* [update_connector_config_v1](#update_connector_config_v1) - Update the config of a connector
+* [update_metadata](#update_metadata) - Update metadata
+
+## add_account_to_pool
+
+Add an account to a pool
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.AddAccountToPoolRequest(
+    add_account_to_pool_request=shared.AddAccountToPoolRequest(
+        account_id='string',
+    ),
+    pool_id='string',
+)
+
+res = s.payments.add_account_to_pool(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.AddAccountToPoolRequest](../../models/operations/addaccounttopoolrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+
+
+### Response
+
+**[operations.AddAccountToPoolResponse](../../models/operations/addaccounttopoolresponse.md)**
+
+
+## connectors_transfer
+
+Execute a transfer between two accounts.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.ConnectorsTransferRequest(
+    transfer_request=shared.TransferRequest(
+        amount=100,
+        asset='USD',
+        destination='acct_1Gqj58KZcSIg2N2q',
+        source='acct_1Gqj58KZcSIg2N2q',
+    ),
+    connector=shared.Connector.CURRENCY_CLOUD,
+)
+
+res = s.payments.connectors_transfer(req)
+
+if res.transfer_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.ConnectorsTransferRequest](../../models/operations/connectorstransferrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+
+
+### Response
+
+**[operations.ConnectorsTransferResponse](../../models/operations/connectorstransferresponse.md)**
+
+
+## create_bank_account
+
+Create a bank account in Payments and on the PSP.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import shared
+
+s = sdk.SDK()
+
+req = shared.BankAccountRequest(
+    connector_id='string',
+    country='GB',
+    metadata={
+        "key": 'string',
+    },
+    name='My account',
+)
+
+res = s.payments.create_bank_account(req)
+
+if res.bank_account_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `request`                                                              | [shared.BankAccountRequest](../../models/shared/bankaccountrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+
+
+### Response
+
+**[operations.CreateBankAccountResponse](../../models/operations/createbankaccountresponse.md)**
+
+
+## create_payment
+
+Create a payment
+
+### Example Usage
+
+```python
+import sdk
+import dateutil.parser
+from sdk.models import shared
+
+s = sdk.SDK()
+
+req = shared.PaymentRequest(
+    amount=100,
+    asset='USD',
+    connector_id='string',
+    created_at=dateutil.parser.isoparse('2023-11-09T02:12:55.787Z'),
+    reference='string',
+    scheme=shared.PaymentScheme.GOOGLE_PAY,
+    status=shared.PaymentStatus.REFUNDED,
+    type=shared.PaymentType.TRANSFER,
+)
+
+res = s.payments.create_payment(req)
+
+if res.payment_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `request`                                                      | [shared.PaymentRequest](../../models/shared/paymentrequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+
+
+### Response
+
+**[operations.CreatePaymentResponse](../../models/operations/createpaymentresponse.md)**
+
+
+## create_pool
+
+Create a Pool
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import shared
+
+s = sdk.SDK()
+
+req = shared.PoolRequest(
+    account_i_ds=[
+        'string',
+    ],
+    name='string',
+)
+
+res = s.payments.create_pool(req)
+
+if res.pool_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `request`                                                | [shared.PoolRequest](../../models/shared/poolrequest.md) | :heavy_check_mark:                                       | The request object to use for the request.               |
+
+
+### Response
+
+**[operations.CreatePoolResponse](../../models/operations/createpoolresponse.md)**
+
+
+## create_transfer_initiation
+
+Create a transfer initiation
+
+### Example Usage
+
+```python
+import sdk
+import dateutil.parser
+from sdk.models import shared
+
+s = sdk.SDK()
+
+req = shared.TransferInitiationRequest(
+    amount=256698,
+    asset='USD',
+    description='Multi-tiered incremental methodology',
+    destination_account_id='string',
+    metadata={
+        "key": 'string',
+    },
+    reference='XXX',
+    scheduled_at=dateutil.parser.isoparse('2022-05-04T12:05:29.406Z'),
+    source_account_id='string',
+    type=shared.TransferInitiationRequestType.TRANSFER,
+    validated=False,
+)
+
+res = s.payments.create_transfer_initiation(req)
+
+if res.transfer_initiation_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `request`                                                                            | [shared.TransferInitiationRequest](../../models/shared/transferinitiationrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+
+
+### Response
+
+**[operations.CreateTransferInitiationResponse](../../models/operations/createtransferinitiationresponse.md)**
+
+
+## delete_pool
+
+Delete a pool by its id.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.DeletePoolRequest(
+    pool_id='string',
+)
+
+res = s.payments.delete_pool(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `request`                                                                    | [operations.DeletePoolRequest](../../models/operations/deletepoolrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+
+
+### Response
+
+**[operations.DeletePoolResponse](../../models/operations/deletepoolresponse.md)**
+
+
+## delete_transfer_initiation
+
+Delete a transfer initiation by its id.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.DeleteTransferInitiationRequest(
+    transfer_id='string',
+)
+
+res = s.payments.delete_transfer_initiation(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                | [operations.DeleteTransferInitiationRequest](../../models/operations/deletetransferinitiationrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+
+
+### Response
+
+**[operations.DeleteTransferInitiationResponse](../../models/operations/deletetransferinitiationresponse.md)**
+
+
+## get_account_balances
+
+Get account balances
+
+### Example Usage
+
+```python
+import sdk
+import dateutil.parser
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.GetAccountBalancesRequest(
+    account_id='string',
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    sort=[
+        'string',
+    ],
+)
+
+res = s.payments.get_account_balances(req)
+
+if res.balances_cursor is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.GetAccountBalancesRequest](../../models/operations/getaccountbalancesrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+
+
+### Response
+
+**[operations.GetAccountBalancesResponse](../../models/operations/getaccountbalancesresponse.md)**
+
+
+## get_bank_account
+
+Get a bank account created by user on Formance
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.GetBankAccountRequest(
+    bank_account_id='string',
+)
+
+res = s.payments.get_bank_account(req)
+
+if res.bank_account_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `request`                                                                            | [operations.GetBankAccountRequest](../../models/operations/getbankaccountrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+
+
+### Response
+
+**[operations.GetBankAccountResponse](../../models/operations/getbankaccountresponse.md)**
+
+
+## ~~get_connector_task~~
+
+Get a specific task associated to the connector.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.GetConnectorTaskRequest(
+    connector=shared.Connector.ATLAR,
+    task_id='string',
+)
+
+res = s.payments.get_connector_task(req)
+
+if res.task_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.GetConnectorTaskRequest](../../models/operations/getconnectortaskrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+
+
+### Response
+
+**[operations.GetConnectorTaskResponse](../../models/operations/getconnectortaskresponse.md)**
+
+
+## get_connector_task_v1
+
+Get a specific task associated to the connector.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.GetConnectorTaskV1Request(
+    connector=shared.Connector.CURRENCY_CLOUD,
+    connector_id='string',
+    task_id='string',
+)
+
+res = s.payments.get_connector_task_v1(req)
+
+if res.task_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.GetConnectorTaskV1Request](../../models/operations/getconnectortaskv1request.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+
+
+### Response
+
+**[operations.GetConnectorTaskV1Response](../../models/operations/getconnectortaskv1response.md)**
+
+
+## get_payment
+
+Get a payment
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.GetPaymentRequest(
+    payment_id='string',
+)
+
+res = s.payments.get_payment(req)
+
+if res.payment_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `request`                                                                    | [operations.GetPaymentRequest](../../models/operations/getpaymentrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+
+
+### Response
+
+**[operations.GetPaymentResponse](../../models/operations/getpaymentresponse.md)**
+
+
+## get_pool
+
+Get a Pool
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.GetPoolRequest(
+    pool_id='string',
+)
+
+res = s.payments.get_pool(req)
+
+if res.pool_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `request`                                                              | [operations.GetPoolRequest](../../models/operations/getpoolrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+
+
+### Response
+
+**[operations.GetPoolResponse](../../models/operations/getpoolresponse.md)**
+
+
+## get_pool_balances
+
+Get pool balances
+
+### Example Usage
+
+```python
+import sdk
+import dateutil.parser
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.GetPoolBalancesRequest(
+    at=dateutil.parser.isoparse('2022-05-04T19:57:32.195Z'),
+    pool_id='string',
+)
+
+res = s.payments.get_pool_balances(req)
+
+if res.pool_balances_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `request`                                                                              | [operations.GetPoolBalancesRequest](../../models/operations/getpoolbalancesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+
+
+### Response
+
+**[operations.GetPoolBalancesResponse](../../models/operations/getpoolbalancesresponse.md)**
+
+
+## get_transfer_initiation
+
+Get a transfer initiation
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.GetTransferInitiationRequest(
+    transfer_id='string',
+)
+
+res = s.payments.get_transfer_initiation(req)
+
+if res.transfer_initiation_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `request`                                                                                          | [operations.GetTransferInitiationRequest](../../models/operations/gettransferinitiationrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+
+
+### Response
+
+**[operations.GetTransferInitiationResponse](../../models/operations/gettransferinitiationresponse.md)**
+
+
+## install_connector
+
+Install a connector by its name and config.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.InstallConnectorRequest(
+    shared.WiseConfig(
+        api_key='XXX',
+        name='My Wise Account',
+        polling_period='60s',
+    ),
+    connector=shared.Connector.ATLAR,
+)
+
+res = s.payments.install_connector(req)
+
+if res.connector_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.InstallConnectorRequest](../../models/operations/installconnectorrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+
+
+### Response
+
+**[operations.InstallConnectorResponse](../../models/operations/installconnectorresponse.md)**
+
+
+## list_all_connectors
+
+List all installed connectors.
+
+### Example Usage
+
+```python
+import sdk
+
+
+s = sdk.SDK()
+
+
+res = s.payments.list_all_connectors()
+
+if res.connectors_response is not None:
+    # handle response
+    pass
+```
+
+
+### Response
+
+**[operations.ListAllConnectorsResponse](../../models/operations/listallconnectorsresponse.md)**
+
+
+## list_bank_accounts
+
+List all bank accounts created by user on Formance.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.ListBankAccountsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    sort=[
+        'string',
+    ],
+)
+
+res = s.payments.list_bank_accounts(req)
+
+if res.bank_accounts_cursor is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.ListBankAccountsRequest](../../models/operations/listbankaccountsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+
+
+### Response
+
+**[operations.ListBankAccountsResponse](../../models/operations/listbankaccountsresponse.md)**
+
+
+## list_configs_available_connectors
+
+List the configs of each available connector.
+
+### Example Usage
+
+```python
+import sdk
+
+
+s = sdk.SDK()
+
+
+res = s.payments.list_configs_available_connectors()
+
+if res.connectors_configs_response is not None:
+    # handle response
+    pass
+```
+
+
+### Response
+
+**[operations.ListConfigsAvailableConnectorsResponse](../../models/operations/listconfigsavailableconnectorsresponse.md)**
+
+
+## ~~list_connector_tasks~~
+
+List all tasks associated with this connector.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.ListConnectorTasksRequest(
+    connector=shared.Connector.WISE,
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+)
+
+res = s.payments.list_connector_tasks(req)
+
+if res.tasks_cursor is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.ListConnectorTasksRequest](../../models/operations/listconnectortasksrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+
+
+### Response
+
+**[operations.ListConnectorTasksResponse](../../models/operations/listconnectortasksresponse.md)**
+
+
+## list_connector_tasks_v1
+
+List all tasks associated with this connector.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.ListConnectorTasksV1Request(
+    connector=shared.Connector.BANKING_CIRCLE,
+    connector_id='string',
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+)
+
+res = s.payments.list_connector_tasks_v1(req)
+
+if res.tasks_cursor is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `request`                                                                                        | [operations.ListConnectorTasksV1Request](../../models/operations/listconnectortasksv1request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+
+
+### Response
+
+**[operations.ListConnectorTasksV1Response](../../models/operations/listconnectortasksv1response.md)**
+
+
+## list_payments
+
+List payments
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.ListPaymentsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    sort=[
+        'string',
+    ],
+)
+
+res = s.payments.list_payments(req)
+
+if res.payments_cursor is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [operations.ListPaymentsRequest](../../models/operations/listpaymentsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+
+
+### Response
+
+**[operations.ListPaymentsResponse](../../models/operations/listpaymentsresponse.md)**
+
+
+## list_pools
+
+List Pools
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.ListPoolsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    sort=[
+        'string',
+    ],
+)
+
+res = s.payments.list_pools(req)
+
+if res.pools_cursor is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `request`                                                                  | [operations.ListPoolsRequest](../../models/operations/listpoolsrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+
+
+### Response
+
+**[operations.ListPoolsResponse](../../models/operations/listpoolsresponse.md)**
+
+
+## list_transfer_initiations
+
+List Transfer Initiations
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.ListTransferInitiationsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    sort=[
+        'string',
+    ],
+)
+
+res = s.payments.list_transfer_initiations(req)
+
+if res.transfer_initiations_cursor is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                              | [operations.ListTransferInitiationsRequest](../../models/operations/listtransferinitiationsrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+
+
+### Response
+
+**[operations.ListTransferInitiationsResponse](../../models/operations/listtransferinitiationsresponse.md)**
+
+
+## paymentsget_account
+
+Get an account
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.PaymentsgetAccountRequest(
+    account_id='string',
+)
+
+res = s.payments.paymentsget_account(req)
+
+if res.payments_account_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.PaymentsgetAccountRequest](../../models/operations/paymentsgetaccountrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+
+
+### Response
+
+**[operations.PaymentsgetAccountResponse](../../models/operations/paymentsgetaccountresponse.md)**
+
+
+## paymentsget_server_info
+
+Get server info
+
+### Example Usage
+
+```python
+import sdk
+
+
+s = sdk.SDK()
+
+
+res = s.payments.paymentsget_server_info()
+
+if res.server_info is not None:
+    # handle response
+    pass
+```
+
+
+### Response
+
+**[operations.PaymentsgetServerInfoResponse](../../models/operations/paymentsgetserverinforesponse.md)**
+
+
+## paymentslist_accounts
+
+List accounts
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.PaymentslistAccountsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    sort=[
+        'string',
+    ],
+)
+
+res = s.payments.paymentslist_accounts(req)
+
+if res.accounts_cursor is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `request`                                                                                        | [operations.PaymentslistAccountsRequest](../../models/operations/paymentslistaccountsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+
+
+### Response
+
+**[operations.PaymentslistAccountsResponse](../../models/operations/paymentslistaccountsresponse.md)**
+
+
+## ~~read_connector_config~~
+
+Read connector config
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.ReadConnectorConfigRequest(
+    connector=shared.Connector.ADYEN,
+)
+
+res = s.payments.read_connector_config(req)
+
+if res.connector_config_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `request`                                                                                      | [operations.ReadConnectorConfigRequest](../../models/operations/readconnectorconfigrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+
+
+### Response
+
+**[operations.ReadConnectorConfigResponse](../../models/operations/readconnectorconfigresponse.md)**
+
+
+## read_connector_config_v1
+
+Read connector config
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.ReadConnectorConfigV1Request(
+    connector=shared.Connector.CURRENCY_CLOUD,
+    connector_id='string',
+)
+
+res = s.payments.read_connector_config_v1(req)
+
+if res.connector_config_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `request`                                                                                          | [operations.ReadConnectorConfigV1Request](../../models/operations/readconnectorconfigv1request.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+
+
+### Response
+
+**[operations.ReadConnectorConfigV1Response](../../models/operations/readconnectorconfigv1response.md)**
+
+
+## remove_account_from_pool
+
+Remove an account from a pool by its id.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.RemoveAccountFromPoolRequest(
+    account_id='string',
+    pool_id='string',
+)
+
+res = s.payments.remove_account_from_pool(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `request`                                                                                          | [operations.RemoveAccountFromPoolRequest](../../models/operations/removeaccountfrompoolrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+
+
+### Response
+
+**[operations.RemoveAccountFromPoolResponse](../../models/operations/removeaccountfrompoolresponse.md)**
+
+
+## ~~reset_connector~~
+
+Reset a connector by its name.
+It will remove the connector and ALL PAYMENTS generated with it.
+
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.ResetConnectorRequest(
+    connector=shared.Connector.MONEYCORP,
+)
+
+res = s.payments.reset_connector(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `request`                                                                            | [operations.ResetConnectorRequest](../../models/operations/resetconnectorrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+
+
+### Response
+
+**[operations.ResetConnectorResponse](../../models/operations/resetconnectorresponse.md)**
+
+
+## reset_connector_v1
+
+Reset a connector by its name.
+It will remove the connector and ALL PAYMENTS generated with it.
+
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.ResetConnectorV1Request(
+    connector=shared.Connector.ADYEN,
+    connector_id='string',
+)
+
+res = s.payments.reset_connector_v1(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.ResetConnectorV1Request](../../models/operations/resetconnectorv1request.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+
+
+### Response
+
+**[operations.ResetConnectorV1Response](../../models/operations/resetconnectorv1response.md)**
+
+
+## retry_transfer_initiation
+
+Retry a failed transfer initiation
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.RetryTransferInitiationRequest(
+    transfer_id='string',
+)
+
+res = s.payments.retry_transfer_initiation(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                              | [operations.RetryTransferInitiationRequest](../../models/operations/retrytransferinitiationrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+
+
+### Response
+
+**[operations.RetryTransferInitiationResponse](../../models/operations/retrytransferinitiationresponse.md)**
+
+
+## udpate_transfer_initiation_status
+
+Update a transfer initiation status
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.UdpateTransferInitiationStatusRequest(
+    update_transfer_initiation_status_request=shared.UpdateTransferInitiationStatusRequest(
+        status=shared.UpdateTransferInitiationStatusRequestStatus.VALIDATED,
+    ),
+    transfer_id='string',
+)
+
+res = s.payments.udpate_transfer_initiation_status(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                            | [operations.UdpateTransferInitiationStatusRequest](../../models/operations/udpatetransferinitiationstatusrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
+
+
+### Response
+
+**[operations.UdpateTransferInitiationStatusResponse](../../models/operations/udpatetransferinitiationstatusresponse.md)**
+
+
+## ~~uninstall_connector~~
+
+Uninstall a connector by its name.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.UninstallConnectorRequest(
+    connector=shared.Connector.WISE,
+)
+
+res = s.payments.uninstall_connector(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.UninstallConnectorRequest](../../models/operations/uninstallconnectorrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+
+
+### Response
+
+**[operations.UninstallConnectorResponse](../../models/operations/uninstallconnectorresponse.md)**
+
+
+## uninstall_connector_v1
+
+Uninstall a connector by its name.
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.UninstallConnectorV1Request(
+    connector=shared.Connector.ADYEN,
+    connector_id='string',
+)
+
+res = s.payments.uninstall_connector_v1(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `request`                                                                                        | [operations.UninstallConnectorV1Request](../../models/operations/uninstallconnectorv1request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+
+
+### Response
+
+**[operations.UninstallConnectorV1Response](../../models/operations/uninstallconnectorv1response.md)**
+
+
+## update_connector_config_v1
+
+Update connector config
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK()
+
+req = operations.UpdateConnectorConfigV1Request(
+    shared.StripeConfig(
+        api_key='XXX',
+        name='My Stripe Account',
+        page_size=50,
+        polling_period='60s',
+    ),
+    connector=shared.Connector.STRIPE,
+    connector_id='string',
+)
+
+res = s.payments.update_connector_config_v1(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                              | [operations.UpdateConnectorConfigV1Request](../../models/operations/updateconnectorconfigv1request.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+
+
+### Response
+
+**[operations.UpdateConnectorConfigV1Response](../../models/operations/updateconnectorconfigv1response.md)**
+
+
+## update_metadata
+
+Update metadata
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK()
+
+req = operations.UpdateMetadataRequest(
+    request_body={
+        "key": 'string',
+    },
+    payment_id='string',
+)
+
+res = s.payments.update_metadata(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `request`                                                                            | [operations.UpdateMetadataRequest](../../models/operations/updatemetadatarequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+
+
+### Response
+
+**[operations.UpdateMetadataResponse](../../models/operations/updatemetadataresponse.md)**
+

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import payment as shared_payment
+from ..shared import orchestrationpayment as shared_orchestrationpayment
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 
@@ -10,6 +10,6 @@ from sdk import utils
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ActivityGetPaymentOutput:
+    data: shared_orchestrationpayment.OrchestrationPayment = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
-    data: shared_payment.Payment = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
-    
+

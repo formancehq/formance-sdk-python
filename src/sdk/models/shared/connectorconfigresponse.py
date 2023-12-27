@@ -2,15 +2,24 @@
 
 from __future__ import annotations
 import dataclasses
+from ..shared import adyenconfig as shared_adyenconfig
+from ..shared import atlarconfig as shared_atlarconfig
+from ..shared import bankingcircleconfig as shared_bankingcircleconfig
+from ..shared import currencycloudconfig as shared_currencycloudconfig
+from ..shared import dummypayconfig as shared_dummypayconfig
+from ..shared import mangopayconfig as shared_mangopayconfig
+from ..shared import modulrconfig as shared_modulrconfig
+from ..shared import moneycorpconfig as shared_moneycorpconfig
+from ..shared import stripeconfig as shared_stripeconfig
+from ..shared import wiseconfig as shared_wiseconfig
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
-from typing import Any
+from typing import Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ConnectorConfigResponse:
-    r"""OK"""
+    data: Union[shared_stripeconfig.StripeConfig, shared_dummypayconfig.DummyPayConfig, shared_wiseconfig.WiseConfig, shared_modulrconfig.ModulrConfig, shared_currencycloudconfig.CurrencyCloudConfig, shared_bankingcircleconfig.BankingCircleConfig, shared_mangopayconfig.MangoPayConfig, shared_moneycorpconfig.MoneycorpConfig, shared_atlarconfig.AtlarConfig, shared_adyenconfig.AdyenConfig] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
-    data: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
-    
+
