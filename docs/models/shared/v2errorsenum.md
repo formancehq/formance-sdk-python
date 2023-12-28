@@ -1,0 +1,17 @@
+# V2ErrorsEnum
+
+
+## Values
+
+| Name                 | Value                |
+| -------------------- | -------------------- |
+| `INTERNAL`           | INTERNAL             |
+| `INSUFFICIENT_FUND`  | INSUFFICIENT_FUND    |
+| `VALIDATION`         | VALIDATION           |
+| `CONFLICT`           | CONFLICT             |
+| `COMPILATION_FAILED` | COMPILATION_FAILED   |
+| `METADATA_OVERRIDE`  | METADATA_OVERRIDE    |
+| `NOT_FOUND`          | NOT_FOUND            |
+| `REVERT_OCCURRING`   | REVERT_OCCURRING     |
+| `ALREADY_REVERT`     | ALREADY_REVERT       |
+| `NO_POSTINGS`        | NO_POSTINGS          |

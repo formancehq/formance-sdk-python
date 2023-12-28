@@ -2,15 +2,27 @@
 
 from __future__ import annotations
 import dataclasses
+from ..shared import taskbankingcircle as shared_taskbankingcircle
+from ..shared import taskcurrencycloud as shared_taskcurrencycloud
+from ..shared import taskdummypay as shared_taskdummypay
+from ..shared import taskmangopay as shared_taskmangopay
+from ..shared import taskmodulr as shared_taskmodulr
+from ..shared import taskmoneycorp as shared_taskmoneycorp
+from ..shared import taskstripe as shared_taskstripe
+from ..shared import taskwise as shared_taskwise
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
-from typing import Any
+from typing import Union
+
+
+@dataclasses.dataclass
+class TaskResponseData:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class TaskResponse:
-    r"""OK"""
+    data: Union[shared_taskstripe.TaskStripe, shared_taskwise.TaskWise, shared_taskcurrencycloud.TaskCurrencyCloud, shared_taskdummypay.TaskDummyPay, shared_taskmodulr.TaskModulr, shared_taskbankingcircle.TaskBankingCircle, shared_taskmangopay.TaskMangoPay, shared_taskmoneycorp.TaskMoneycorp] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
-    data: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
-    
+

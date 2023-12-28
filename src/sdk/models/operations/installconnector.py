@@ -3,22 +3,39 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
+from ..shared import adyenconfig as shared_adyenconfig
+from ..shared import atlarconfig as shared_atlarconfig
+from ..shared import bankingcircleconfig as shared_bankingcircleconfig
 from ..shared import connector as shared_connector
-from typing import Any, Optional
+from ..shared import connectorresponse as shared_connectorresponse
+from ..shared import currencycloudconfig as shared_currencycloudconfig
+from ..shared import dummypayconfig as shared_dummypayconfig
+from ..shared import mangopayconfig as shared_mangopayconfig
+from ..shared import modulrconfig as shared_modulrconfig
+from ..shared import moneycorpconfig as shared_moneycorpconfig
+from ..shared import stripeconfig as shared_stripeconfig
+from ..shared import wiseconfig as shared_wiseconfig
+from typing import Optional, Union
 
 
 @dataclasses.dataclass
 class InstallConnectorRequest:
-    
     connector: shared_connector.Connector = dataclasses.field(metadata={'path_param': { 'field_name': 'connector', 'style': 'simple', 'explode': False }})
     r"""The name of the connector."""
-    request_body: Any = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    connector_config: Union[shared_stripeconfig.StripeConfig, shared_dummypayconfig.DummyPayConfig, shared_wiseconfig.WiseConfig, shared_modulrconfig.ModulrConfig, shared_currencycloudconfig.CurrencyCloudConfig, shared_bankingcircleconfig.BankingCircleConfig, shared_mangopayconfig.MangoPayConfig, shared_moneycorpconfig.MoneycorpConfig, shared_atlarconfig.AtlarConfig, shared_adyenconfig.AdyenConfig] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     
+
+
 
 @dataclasses.dataclass
 class InstallConnectorResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
+    connector_response: Optional[shared_connectorresponse.ConnectorResponse] = dataclasses.field(default=None)
+    r"""OK"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     
+

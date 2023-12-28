@@ -5,27 +5,31 @@ import dataclasses
 import requests as requests_http
 from ..shared import error as shared_error
 from ..shared import runworkflowresponse as shared_runworkflowresponse
-from typing import Optional
+from typing import Dict, Optional
 
 
 @dataclasses.dataclass
 class RunWorkflowRequest:
-    
     workflow_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workflowID', 'style': 'simple', 'explode': False }})
     r"""The flow id"""
-    request_body: Optional[dict[str, str]] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
+    request_body: Optional[Dict[str, str]] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
     wait: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'wait', 'style': 'form', 'explode': True }})
     r"""Wait end of the workflow before return"""
     
 
+
+
 @dataclasses.dataclass
 class RunWorkflowResponse:
-    
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
     r"""General error"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     run_workflow_response: Optional[shared_runworkflowresponse.RunWorkflowResponse] = dataclasses.field(default=None)
     r"""The workflow instance"""
     
+

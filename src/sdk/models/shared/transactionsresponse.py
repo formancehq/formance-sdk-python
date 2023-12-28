@@ -5,12 +5,12 @@ import dataclasses
 from ..shared import transaction as shared_transaction
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
+from typing import List
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class TransactionsResponse:
-    r"""OK"""
+    data: List[shared_transaction.Transaction] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
-    data: list[shared_transaction.Transaction] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
-    
+

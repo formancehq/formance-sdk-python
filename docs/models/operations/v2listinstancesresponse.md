@@ -1,0 +1,12 @@
+# V2ListInstancesResponse
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `content_type`                                                                        | *str*                                                                                 | :heavy_check_mark:                                                                    | HTTP response content type for this operation                                         |
+| `status_code`                                                                         | *int*                                                                                 | :heavy_check_mark:                                                                    | HTTP response status code for this operation                                          |
+| `raw_response`                                                                        | [requests.Response](https://requests.readthedocs.io/en/latest/api/#requests.Response) | :heavy_minus_sign:                                                                    | Raw HTTP response; suitable for custom response parsing                               |
+| `v2_error`                                                                            | [Optional[shared.V2Error]](../../models/shared/v2error.md)                            | :heavy_minus_sign:                                                                    | General error                                                                         |
+| `v2_list_runs_response`                                                               | [Optional[shared.V2ListRunsResponse]](../../models/shared/v2listrunsresponse.md)      | :heavy_minus_sign:                                                                    | List of workflow instances                                                            |
