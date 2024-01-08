@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import error as shared_error
-from ..shared import listworkflowsresponse as shared_listworkflowsresponse
+from ...models.shared import error as shared_error
+from ...models.shared import listworkflowsresponse as shared_listworkflowsresponse
 from typing import Optional
 
 
@@ -12,13 +12,13 @@ from typing import Optional
 class ListWorkflowsResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
     r"""General error"""
     list_workflows_response: Optional[shared_listworkflowsresponse.ListWorkflowsResponse] = dataclasses.field(default=None)
     r"""List of workflows"""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     
 

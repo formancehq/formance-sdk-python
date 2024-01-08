@@ -23,15 +23,13 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = shared.PolicyRequest(
     ledger_name='default',
     ledger_query={
-        "key": 'string',
+        'key': 'string',
     },
     name='XXX',
     payments_pool_id='XXX',
@@ -54,7 +52,11 @@ if res.policy_response is not None:
 ### Response
 
 **[operations.CreatePolicyResponse](../../models/operations/createpolicyresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## delete_policy
 
@@ -64,12 +66,10 @@ Delete a policy by its id.
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.DeletePolicyRequest(
@@ -93,7 +93,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeletePolicyResponse](../../models/operations/deletepolicyresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_policy
 
@@ -103,12 +107,10 @@ Get a policy
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetPolicyRequest(
@@ -132,7 +134,11 @@ if res.policy_response is not None:
 ### Response
 
 **[operations.GetPolicyResponse](../../models/operations/getpolicyresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_reconciliation
 
@@ -142,12 +148,10 @@ Get a reconciliation
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetReconciliationRequest(
@@ -171,7 +175,11 @@ if res.reconciliation_response is not None:
 ### Response
 
 **[operations.GetReconciliationResponse](../../models/operations/getreconciliationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_policies
 
@@ -181,12 +189,10 @@ List policies
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListPoliciesRequest(
@@ -210,7 +216,11 @@ if res.policies_cursor_response is not None:
 ### Response
 
 **[operations.ListPoliciesResponse](../../models/operations/listpoliciesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_reconciliations
 
@@ -220,12 +230,10 @@ List reconciliations
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListReconciliationsRequest(
@@ -249,7 +257,11 @@ if res.reconciliations_cursor_response is not None:
 ### Response
 
 **[operations.ListReconciliationsResponse](../../models/operations/listreconciliationsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## reconcile
 
@@ -258,14 +270,12 @@ Reconcile using a policy
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
+import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ReconcileRequest(
@@ -293,7 +303,11 @@ if res.reconciliation_response is not None:
 ### Response
 
 **[operations.ReconcileResponse](../../models/operations/reconcileresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## reconciliationget_server_info
 
@@ -303,12 +317,9 @@ Get server info
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -323,4 +334,8 @@ if res.server_info is not None:
 ### Response
 
 **[operations.ReconciliationgetServerInfoResponse](../../models/operations/reconciliationgetserverinforesponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

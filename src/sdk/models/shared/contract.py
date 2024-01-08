@@ -8,14 +8,14 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class ContractExpr:
+class Expr:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Contract:
-    expr: ContractExpr = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('expr') }})
+    expr: Expr = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('expr') }})
     account: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account'), 'exclude': lambda f: f is None }})
     
 

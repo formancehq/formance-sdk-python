@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import paymentscursor as shared_paymentscursor
+from ...models.shared import paymentscursor as shared_paymentscursor
 from typing import List, Optional
 
 
@@ -27,11 +27,11 @@ class ListPaymentsRequest:
 class ListPaymentsResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     payments_cursor: Optional[shared_paymentscursor.PaymentsCursor] = dataclasses.field(default=None)
     r"""OK"""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     
 

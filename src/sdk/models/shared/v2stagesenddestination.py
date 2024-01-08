@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import v2stagesenddestinationaccount as shared_v2stagesenddestinationaccount
-from ..shared import v2stagesenddestinationpayment as shared_v2stagesenddestinationpayment
-from ..shared import v2stagesenddestinationwallet as shared_v2stagesenddestinationwallet
+from .v2stagesenddestinationaccount import V2StageSendDestinationAccount
+from .v2stagesenddestinationpayment import V2StageSendDestinationPayment
+from .v2stagesenddestinationwallet import V2StageSendDestinationWallet
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import Optional
@@ -13,8 +13,8 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class V2StageSendDestination:
-    account: Optional[shared_v2stagesenddestinationaccount.V2StageSendDestinationAccount] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account'), 'exclude': lambda f: f is None }})
-    payment: Optional[shared_v2stagesenddestinationpayment.V2StageSendDestinationPayment] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('payment'), 'exclude': lambda f: f is None }})
-    wallet: Optional[shared_v2stagesenddestinationwallet.V2StageSendDestinationWallet] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('wallet'), 'exclude': lambda f: f is None }})
+    account: Optional[V2StageSendDestinationAccount] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account'), 'exclude': lambda f: f is None }})
+    payment: Optional[V2StageSendDestinationPayment] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('payment'), 'exclude': lambda f: f is None }})
+    wallet: Optional[V2StageSendDestinationWallet] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('wallet'), 'exclude': lambda f: f is None }})
     
 

@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import dateutil.parser
-from ..shared import workflowinstance as shared_workflowinstance
+from .workflowinstance import WorkflowInstance
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from sdk import utils
@@ -16,7 +16,7 @@ class TriggerOccurrence:
     date_: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     event: Dict[str, Any] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('event') }})
     trigger_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('triggerID') }})
-    workflow_instance: shared_workflowinstance.WorkflowInstance = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workflowInstance') }})
+    workflow_instance: WorkflowInstance = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workflowInstance') }})
     workflow_instance_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workflowInstanceID') }})
     
 

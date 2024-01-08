@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import v2bulkelementresult as shared_v2bulkelementresult
+from .v2bulkelementresult import Schemas, V2BulkElementResultCreateTransactionSchemas, V2BulkElementResultDeleteMetadataSchemas, V2BulkElementResultErrorSchemas, V2BulkElementResultRevertTransactionSchemas
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import List, Union
@@ -11,6 +11,6 @@ from typing import List, Union
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class V2BulkResponse:
-    data: List[Union[shared_v2bulkelementresult.V2BulkElementResultV2BulkElementResultCreateTransaction, shared_v2bulkelementresult.V2BulkElementResultV2BulkElementResultAddMetadata, shared_v2bulkelementresult.V2BulkElementResultV2BulkElementResultRevertTransaction, shared_v2bulkelementresult.V2BulkElementResultV2BulkElementResultDeleteMetadata, shared_v2bulkelementresult.V2BulkElementResultV2BulkElementResultError]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
+    data: List[Union[V2BulkElementResultCreateTransactionSchemas, Schemas, V2BulkElementResultRevertTransactionSchemas, V2BulkElementResultDeleteMetadataSchemas, V2BulkElementResultErrorSchemas]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
 

@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import v2ledgeraccountsubject as shared_v2ledgeraccountsubject
-from ..shared import v2monetary as shared_v2monetary
-from ..shared import v2walletsubject as shared_v2walletsubject
+from .v2ledgeraccountsubject import V2LedgerAccountSubject
+from .v2monetary import V2Monetary
+from .v2walletsubject import V2WalletSubject
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import Dict, List, Optional, Union
@@ -13,12 +13,12 @@ from typing import Dict, List, Optional, Union
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class V2DebitWalletRequest:
-    amount: shared_v2monetary.V2Monetary = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('amount') }})
+    amount: V2Monetary = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('amount') }})
     metadata: Dict[str, str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata') }})
     r"""Metadata associated with the wallet."""
     balances: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('balances'), 'exclude': lambda f: f is None }})
     description: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description'), 'exclude': lambda f: f is None }})
-    destination: Optional[Union[shared_v2ledgeraccountsubject.V2LedgerAccountSubject, shared_v2walletsubject.V2WalletSubject]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destination'), 'exclude': lambda f: f is None }})
+    destination: Optional[Union[V2LedgerAccountSubject, V2WalletSubject]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destination'), 'exclude': lambda f: f is None }})
     pending: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pending'), 'exclude': lambda f: f is None }})
     r"""Set to true to create a pending hold. If false, the wallet will be debited immediately."""
     

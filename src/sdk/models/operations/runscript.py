@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import script as shared_script
-from ..shared import scriptresponse as shared_scriptresponse
+from ...models.shared import script as shared_script
+from ...models.shared import scriptresponse as shared_scriptresponse
 from typing import Optional
 
 
@@ -23,10 +23,10 @@ class RunScriptRequest:
 class RunScriptResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     script_response: Optional[shared_scriptresponse.ScriptResponse] = dataclasses.field(default=None)
     r"""On success, it will return a 200 status code, and the resulting transaction under the `transaction` field.
 

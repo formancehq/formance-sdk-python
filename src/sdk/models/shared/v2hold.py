@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import v2ledgeraccountsubject as shared_v2ledgeraccountsubject
-from ..shared import v2walletsubject as shared_v2walletsubject
+from .v2ledgeraccountsubject import V2LedgerAccountSubject
+from .v2walletsubject import V2WalletSubject
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import Dict, Optional, Union
@@ -19,6 +19,6 @@ class V2Hold:
     r"""Metadata associated with the hold."""
     wallet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('walletID') }})
     r"""The ID of the wallet the hold is associated with."""
-    destination: Optional[Union[shared_v2ledgeraccountsubject.V2LedgerAccountSubject, shared_v2walletsubject.V2WalletSubject]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destination'), 'exclude': lambda f: f is None }})
+    destination: Optional[Union[V2LedgerAccountSubject, V2WalletSubject]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destination'), 'exclude': lambda f: f is None }})
     
 

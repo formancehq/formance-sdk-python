@@ -19,12 +19,10 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ActivateConfigRequest(
@@ -48,7 +46,11 @@ if res.config_response is not None:
 ### Response
 
 **[operations.ActivateConfigResponse](../../models/operations/activateconfigresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## change_config_secret
 
@@ -65,9 +67,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ChangeConfigSecretRequest(
@@ -94,7 +94,12 @@ if res.config_response is not None:
 ### Response
 
 **[operations.ChangeConfigSecretResponse](../../models/operations/changeconfigsecretresponse.md)**
+### Errors
 
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.WebhooksErrorResponse | 400                          | application/json             |
+| errors.SDKError              | 400-600                      | */*                          |
 
 ## deactivate_config
 
@@ -104,12 +109,10 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.DeactivateConfigRequest(
@@ -133,7 +136,12 @@ if res.config_response is not None:
 ### Response
 
 **[operations.DeactivateConfigResponse](../../models/operations/deactivateconfigresponse.md)**
+### Errors
 
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.WebhooksErrorResponse | 404                          | application/json             |
+| errors.SDKError              | 400-600                      | */*                          |
 
 ## delete_config
 
@@ -143,12 +151,10 @@ Delete a webhooks config by ID.
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.DeleteConfigRequest(
@@ -172,7 +178,12 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteConfigResponse](../../models/operations/deleteconfigresponse.md)**
+### Errors
 
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.WebhooksErrorResponse | 400,404                      | application/json             |
+| errors.SDKError              | 400-600                      | */*                          |
 
 ## get_many_configs
 
@@ -182,12 +193,10 @@ Sorted by updated date descending
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetManyConfigsRequest(
@@ -212,7 +221,11 @@ if res.configs_response is not None:
 ### Response
 
 **[operations.GetManyConfigsResponse](../../models/operations/getmanyconfigsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## insert_config
 
@@ -234,9 +247,7 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = shared.ConfigUser(
@@ -265,7 +276,12 @@ if res.config_response is not None:
 ### Response
 
 **[operations.InsertConfigResponse](../../models/operations/insertconfigresponse.md)**
+### Errors
 
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.WebhooksErrorResponse | 400                          | application/json             |
+| errors.SDKError              | 400-600                      | */*                          |
 
 ## test_config
 
@@ -275,12 +291,10 @@ Test a config by sending a webhook to its endpoint.
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.TestConfigRequest(
@@ -304,4 +318,9 @@ if res.attempt_response is not None:
 ### Response
 
 **[operations.TestConfigResponse](../../models/operations/testconfigresponse.md)**
+### Errors
 
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.WebhooksErrorResponse | 400,404                      | application/json             |
+| errors.SDKError              | 400-600                      | */*                          |

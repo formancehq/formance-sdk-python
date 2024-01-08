@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import v2triggertest as shared_v2triggertest
+from .v2triggertest import V2TriggerTest
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 
@@ -10,6 +10,6 @@ from sdk import utils
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class V2TestTriggerResponse:
-    data: shared_v2triggertest.V2TriggerTest = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
+    data: V2TriggerTest = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
 

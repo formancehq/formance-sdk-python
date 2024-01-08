@@ -3,33 +3,33 @@
 
 ## Supported Types
 
-### V2BulkElementResultV2BulkElementResultAddMetadata
+### Schemas
 
 ```python
-v2BulkElementResult: shared.V2BulkElementResultV2BulkElementResultAddMetadata = /* values here */
+v2BulkElementResult: shared.Schemas = /* values here */
 ```
 
-### V2BulkElementResultV2BulkElementResultCreateTransaction
+### V2BulkElementResultCreateTransactionSchemas
 
 ```python
-v2BulkElementResult: shared.V2BulkElementResultV2BulkElementResultCreateTransaction = /* values here */
+v2BulkElementResult: shared.V2BulkElementResultCreateTransactionSchemas = /* values here */
 ```
 
-### V2BulkElementResultV2BulkElementResultDeleteMetadata
+### V2BulkElementResultDeleteMetadataSchemas
 
 ```python
-v2BulkElementResult: shared.V2BulkElementResultV2BulkElementResultDeleteMetadata = /* values here */
+v2BulkElementResult: shared.V2BulkElementResultDeleteMetadataSchemas = /* values here */
 ```
 
-### V2BulkElementResultV2BulkElementResultError
+### V2BulkElementResultErrorSchemas
 
 ```python
-v2BulkElementResult: shared.V2BulkElementResultV2BulkElementResultError = /* values here */
+v2BulkElementResult: shared.V2BulkElementResultErrorSchemas = /* values here */
 ```
 
-### V2BulkElementResultV2BulkElementResultRevertTransaction
+### V2BulkElementResultRevertTransactionSchemas
 
 ```python
-v2BulkElementResult: shared.V2BulkElementResultV2BulkElementResultRevertTransaction = /* values here */
+v2BulkElementResult: shared.V2BulkElementResultRevertTransactionSchemas = /* values here */
 ```
 

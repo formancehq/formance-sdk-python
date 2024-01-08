@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import aggregatebalancesresponse as shared_aggregatebalancesresponse
-from ..shared import errorresponse as shared_errorresponse
+from ...models.errors import errorresponse as errors_errorresponse
+from ...models.shared import aggregatebalancesresponse as shared_aggregatebalancesresponse
 from typing import Optional
 
 
@@ -22,13 +22,13 @@ class GetBalancesAggregatedRequest:
 class GetBalancesAggregatedResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     aggregate_balances_response: Optional[shared_aggregatebalancesresponse.AggregateBalancesResponse] = dataclasses.field(default=None)
     r"""OK"""
-    error_response: Optional[shared_errorresponse.ErrorResponse] = dataclasses.field(default=None)
+    error_response: Optional[errors_errorresponse.ErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     
 

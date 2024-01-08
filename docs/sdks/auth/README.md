@@ -25,14 +25,12 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = shared.CreateClientRequest(
     metadata={
-        "key": 'string',
+        'key': 'string',
     },
     name='string',
     post_logout_redirect_uris=[
@@ -63,7 +61,11 @@ if res.create_client_response is not None:
 ### Response
 
 **[operations.CreateClientResponse](../../models/operations/createclientresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## create_secret
 
@@ -76,15 +78,13 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.CreateSecretRequest(
     create_secret_request=shared.CreateSecretRequest(
         metadata={
-            "key": 'string',
+            'key': 'string',
         },
         name='string',
     ),
@@ -108,7 +108,11 @@ if res.create_secret_response is not None:
 ### Response
 
 **[operations.CreateSecretResponse](../../models/operations/createsecretresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## delete_client
 
@@ -118,12 +122,10 @@ Delete client
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.DeleteClientRequest(
@@ -147,7 +149,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteClientResponse](../../models/operations/deleteclientresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## delete_secret
 
@@ -157,12 +163,10 @@ Delete a secret from a client
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.DeleteSecretRequest(
@@ -187,7 +191,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteSecretResponse](../../models/operations/deletesecretresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_server_info
 
@@ -197,12 +205,9 @@ Get server info
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -217,7 +222,11 @@ if res.server_info is not None:
 ### Response
 
 **[operations.GetServerInfoResponse](../../models/operations/getserverinforesponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_clients
 
@@ -227,12 +236,9 @@ List clients
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -247,7 +253,11 @@ if res.list_clients_response is not None:
 ### Response
 
 **[operations.ListClientsResponse](../../models/operations/listclientsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_users
 
@@ -257,12 +267,9 @@ List users
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -277,7 +284,11 @@ if res.list_users_response is not None:
 ### Response
 
 **[operations.ListUsersResponse](../../models/operations/listusersresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## read_client
 
@@ -287,12 +298,10 @@ Read client
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ReadClientRequest(
@@ -316,7 +325,11 @@ if res.read_client_response is not None:
 ### Response
 
 **[operations.ReadClientResponse](../../models/operations/readclientresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## read_user
 
@@ -326,12 +339,10 @@ Read user
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ReadUserRequest(
@@ -355,7 +366,11 @@ if res.read_user_response is not None:
 ### Response
 
 **[operations.ReadUserResponse](../../models/operations/readuserresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## update_client
 
@@ -368,15 +383,13 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.UpdateClientRequest(
     update_client_request=shared.UpdateClientRequest(
         metadata={
-            "key": 'string',
+            'key': 'string',
         },
         name='string',
         post_logout_redirect_uris=[
@@ -409,4 +422,8 @@ if res.update_client_response is not None:
 ### Response
 
 **[operations.UpdateClientResponse](../../models/operations/updateclientresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

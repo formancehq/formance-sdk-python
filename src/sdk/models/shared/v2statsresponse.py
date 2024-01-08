@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import v2stats as shared_v2stats
+from .v2stats import V2Stats
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 
@@ -10,6 +10,6 @@ from sdk import utils
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class V2StatsResponse:
-    data: shared_v2stats.V2Stats = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
+    data: V2Stats = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
 

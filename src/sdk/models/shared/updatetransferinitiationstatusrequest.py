@@ -6,7 +6,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from sdk import utils
 
-class UpdateTransferInitiationStatusRequestStatus(str, Enum):
+class Status(str, Enum):
     WAITING_FOR_VALIDATION = 'WAITING_FOR_VALIDATION'
     PROCESSING = 'PROCESSING'
     PROCESSED = 'PROCESSED'
@@ -18,6 +18,6 @@ class UpdateTransferInitiationStatusRequestStatus(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class UpdateTransferInitiationStatusRequest:
-    status: UpdateTransferInitiationStatusRequestStatus = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status') }})
+    status: Status = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status') }})
     
 

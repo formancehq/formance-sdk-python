@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import trigger as shared_trigger
+from .trigger import Trigger
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import List
@@ -11,6 +11,6 @@ from typing import List
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ListTriggersResponse:
-    data: List[shared_trigger.Trigger] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
+    data: List[Trigger] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
 

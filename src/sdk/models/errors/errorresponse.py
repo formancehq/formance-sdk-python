@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..errors import errorsenum as errors_errorsenum
+from ...models.shared import errorsenum as shared_errorsenum
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import Optional
@@ -12,10 +12,11 @@ from typing import Optional
 
 @dataclasses.dataclass
 class ErrorResponse(Exception):
-    error_code: errors_errorsenum.ErrorsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorCode') }})
+    r"""Error"""
+    error_code: shared_errorsenum.ErrorsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorCode') }})
     error_message: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorMessage') }})
     details: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('details'), 'exclude': lambda f: f is None }})
     
 
     def __str__(self) -> str:
-        return utils.marshal_json(self)
+        return utils.marshal_json(self, type(self))

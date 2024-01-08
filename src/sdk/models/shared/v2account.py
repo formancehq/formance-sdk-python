@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import v2volume as shared_v2volume
+from .v2volume import V2Volume
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import Dict, Optional
@@ -13,7 +13,7 @@ from typing import Dict, Optional
 class V2Account:
     address: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('address') }})
     metadata: Dict[str, str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata') }})
-    effective_volumes: Optional[Dict[str, shared_v2volume.V2Volume]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('effectiveVolumes'), 'exclude': lambda f: f is None }})
-    volumes: Optional[Dict[str, shared_v2volume.V2Volume]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('volumes'), 'exclude': lambda f: f is None }})
+    effective_volumes: Optional[Dict[str, V2Volume]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('effectiveVolumes'), 'exclude': lambda f: f is None }})
+    volumes: Optional[Dict[str, V2Volume]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('volumes'), 'exclude': lambda f: f is None }})
     
 

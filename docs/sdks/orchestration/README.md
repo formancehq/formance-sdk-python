@@ -47,12 +47,10 @@ Cancel a running workflow
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.CancelEventRequest(
@@ -76,7 +74,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.CancelEventResponse](../../models/operations/canceleventresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## create_trigger
 
@@ -89,15 +91,13 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = shared.TriggerData(
     event='string',
     vars={
-        "key": 'string',
+        'key': 'string',
     },
     workflow_id='string',
 )
@@ -119,7 +119,11 @@ if res.create_trigger_response is not None:
 ### Response
 
 **[operations.CreateTriggerResponse](../../models/operations/createtriggerresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## create_workflow
 
@@ -132,15 +136,13 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = shared.CreateWorkflowRequest(
     stages=[
         {
-            "key": 'string',
+            'key': 'string',
         },
     ],
 )
@@ -162,7 +164,11 @@ if res.create_workflow_response is not None:
 ### Response
 
 **[operations.CreateWorkflowResponse](../../models/operations/createworkflowresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## delete_trigger
 
@@ -172,12 +178,10 @@ Read trigger
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.DeleteTriggerRequest(
@@ -201,7 +205,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteTriggerResponse](../../models/operations/deletetriggerresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## delete_workflow
 
@@ -211,12 +219,10 @@ Delete a flow by id
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.DeleteWorkflowRequest(
@@ -240,7 +246,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteWorkflowResponse](../../models/operations/deleteworkflowresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_instance
 
@@ -250,12 +260,10 @@ Get a workflow instance by id
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetInstanceRequest(
@@ -279,7 +287,11 @@ if res.get_workflow_instance_response is not None:
 ### Response
 
 **[operations.GetInstanceResponse](../../models/operations/getinstanceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_instance_history
 
@@ -289,12 +301,10 @@ Get a workflow instance history by id
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetInstanceHistoryRequest(
@@ -318,7 +328,11 @@ if res.get_workflow_instance_history_response is not None:
 ### Response
 
 **[operations.GetInstanceHistoryResponse](../../models/operations/getinstancehistoryresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_instance_stage_history
 
@@ -328,12 +342,10 @@ Get a workflow instance stage history
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetInstanceStageHistoryRequest(
@@ -358,7 +370,11 @@ if res.get_workflow_instance_history_stage_response is not None:
 ### Response
 
 **[operations.GetInstanceStageHistoryResponse](../../models/operations/getinstancestagehistoryresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_workflow
 
@@ -368,12 +384,10 @@ Get a flow by id
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetWorkflowRequest(
@@ -397,7 +411,11 @@ if res.get_workflow_response is not None:
 ### Response
 
 **[operations.GetWorkflowResponse](../../models/operations/getworkflowresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_instances
 
@@ -407,12 +425,10 @@ List instances of a workflow
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListInstancesRequest()
@@ -434,7 +450,11 @@ if res.list_runs_response is not None:
 ### Response
 
 **[operations.ListInstancesResponse](../../models/operations/listinstancesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_triggers
 
@@ -444,12 +464,9 @@ List triggers
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -464,7 +481,11 @@ if res.list_triggers_response is not None:
 ### Response
 
 **[operations.ListTriggersResponse](../../models/operations/listtriggersresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_triggers_occurrences
 
@@ -474,12 +495,10 @@ List triggers occurrences
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListTriggersOccurrencesRequest(
@@ -503,7 +522,11 @@ if res.list_triggers_occurrences_response is not None:
 ### Response
 
 **[operations.ListTriggersOccurrencesResponse](../../models/operations/listtriggersoccurrencesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_workflows
 
@@ -513,12 +536,9 @@ List registered workflows
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -533,7 +553,11 @@ if res.list_workflows_response is not None:
 ### Response
 
 **[operations.ListWorkflowsResponse](../../models/operations/listworkflowsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## orchestrationget_server_info
 
@@ -543,12 +567,9 @@ Get server info
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -563,7 +584,11 @@ if res.server_info is not None:
 ### Response
 
 **[operations.OrchestrationgetServerInfoResponse](../../models/operations/orchestrationgetserverinforesponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## read_trigger
 
@@ -573,12 +598,10 @@ Read trigger
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ReadTriggerRequest(
@@ -602,7 +625,11 @@ if res.read_trigger_response is not None:
 ### Response
 
 **[operations.ReadTriggerResponse](../../models/operations/readtriggerresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## run_workflow
 
@@ -612,17 +639,15 @@ Run workflow
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.RunWorkflowRequest(
     request_body={
-        "key": 'string',
+        'key': 'string',
     },
     workflow_id='string',
 )
@@ -644,7 +669,11 @@ if res.run_workflow_response is not None:
 ### Response
 
 **[operations.RunWorkflowResponse](../../models/operations/runworkflowresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## send_event
 
@@ -654,12 +683,10 @@ Send an event to a running workflow
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.SendEventRequest(
@@ -686,7 +713,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.SendEventResponse](../../models/operations/sendeventresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## test_trigger
 
@@ -696,17 +727,15 @@ Test trigger
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.TestTriggerRequest(
     request_body={
-        "key": 'string',
+        'key': 'string',
     },
     trigger_id='string',
 )
@@ -728,7 +757,11 @@ if res.v2_test_trigger_response is not None:
 ### Response
 
 **[operations.TestTriggerResponse](../../models/operations/testtriggerresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_cancel_event
 
@@ -738,12 +771,10 @@ Cancel a running workflow
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2CancelEventRequest(
@@ -767,7 +798,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.V2CancelEventResponse](../../models/operations/v2canceleventresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_create_trigger
 
@@ -780,15 +815,13 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = shared.V2TriggerData(
     event='string',
     vars={
-        "key": 'string',
+        'key': 'string',
     },
     workflow_id='string',
 )
@@ -810,7 +843,11 @@ if res.v2_create_trigger_response is not None:
 ### Response
 
 **[operations.V2CreateTriggerResponse](../../models/operations/v2createtriggerresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_create_workflow
 
@@ -823,15 +860,13 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = shared.V2CreateWorkflowRequest(
     stages=[
         {
-            "key": 'string',
+            'key': 'string',
         },
     ],
 )
@@ -853,7 +888,11 @@ if res.v2_create_workflow_response is not None:
 ### Response
 
 **[operations.V2CreateWorkflowResponse](../../models/operations/v2createworkflowresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_delete_trigger
 
@@ -863,12 +902,10 @@ Read trigger
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2DeleteTriggerRequest(
@@ -892,7 +929,12 @@ if res.status_code == 200:
 ### Response
 
 **[operations.V2DeleteTriggerResponse](../../models/operations/v2deletetriggerresponse.md)**
+### Errors
 
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | 404              | application/json |
+| errors.SDKError  | 400-600          | */*              |
 
 ## v2_delete_workflow
 
@@ -902,12 +944,10 @@ Delete a flow by id
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2DeleteWorkflowRequest(
@@ -931,7 +971,12 @@ if res.status_code == 200:
 ### Response
 
 **[operations.V2DeleteWorkflowResponse](../../models/operations/v2deleteworkflowresponse.md)**
+### Errors
 
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | 400,404          | application/json |
+| errors.SDKError  | 400-600          | */*              |
 
 ## v2_get_instance
 
@@ -941,12 +986,10 @@ Get a workflow instance by id
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2GetInstanceRequest(
@@ -970,7 +1013,11 @@ if res.v2_get_workflow_instance_response is not None:
 ### Response
 
 **[operations.V2GetInstanceResponse](../../models/operations/v2getinstanceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_get_instance_history
 
@@ -980,12 +1027,10 @@ Get a workflow instance history by id
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2GetInstanceHistoryRequest(
@@ -1009,7 +1054,11 @@ if res.v2_get_workflow_instance_history_response is not None:
 ### Response
 
 **[operations.V2GetInstanceHistoryResponse](../../models/operations/v2getinstancehistoryresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_get_instance_stage_history
 
@@ -1019,12 +1068,10 @@ Get a workflow instance stage history
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2GetInstanceStageHistoryRequest(
@@ -1049,7 +1096,11 @@ if res.v2_get_workflow_instance_history_stage_response is not None:
 ### Response
 
 **[operations.V2GetInstanceStageHistoryResponse](../../models/operations/v2getinstancestagehistoryresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_get_server_info
 
@@ -1059,12 +1110,9 @@ Get server info
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -1079,7 +1127,11 @@ if res.v2_server_info is not None:
 ### Response
 
 **[operations.V2GetServerInfoResponse](../../models/operations/v2getserverinforesponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_get_workflow
 
@@ -1089,12 +1141,10 @@ Get a flow by id
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2GetWorkflowRequest(
@@ -1118,7 +1168,11 @@ if res.v2_get_workflow_response is not None:
 ### Response
 
 **[operations.V2GetWorkflowResponse](../../models/operations/v2getworkflowresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_list_instances
 
@@ -1128,12 +1182,10 @@ List instances of a workflow
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2ListInstancesRequest()
@@ -1155,7 +1207,11 @@ if res.v2_list_runs_response is not None:
 ### Response
 
 **[operations.V2ListInstancesResponse](../../models/operations/v2listinstancesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_list_triggers
 
@@ -1165,12 +1221,9 @@ List triggers
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -1185,7 +1238,11 @@ if res.v2_list_triggers_response is not None:
 ### Response
 
 **[operations.V2ListTriggersResponse](../../models/operations/v2listtriggersresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_list_triggers_occurrences
 
@@ -1195,12 +1252,10 @@ List triggers occurrences
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2ListTriggersOccurrencesRequest(
@@ -1224,7 +1279,11 @@ if res.v2_list_triggers_occurrences_response is not None:
 ### Response
 
 **[operations.V2ListTriggersOccurrencesResponse](../../models/operations/v2listtriggersoccurrencesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_list_workflows
 
@@ -1234,12 +1293,9 @@ List registered workflows
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -1254,7 +1310,11 @@ if res.v2_list_workflows_response is not None:
 ### Response
 
 **[operations.V2ListWorkflowsResponse](../../models/operations/v2listworkflowsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_read_trigger
 
@@ -1264,12 +1324,10 @@ Read trigger
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2ReadTriggerRequest(
@@ -1293,7 +1351,11 @@ if res.v2_read_trigger_response is not None:
 ### Response
 
 **[operations.V2ReadTriggerResponse](../../models/operations/v2readtriggerresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_run_workflow
 
@@ -1303,17 +1365,15 @@ Run workflow
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2RunWorkflowRequest(
     request_body={
-        "key": 'string',
+        'key': 'string',
     },
     workflow_id='string',
 )
@@ -1335,7 +1395,11 @@ if res.v2_run_workflow_response is not None:
 ### Response
 
 **[operations.V2RunWorkflowResponse](../../models/operations/v2runworkflowresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_send_event
 
@@ -1345,12 +1409,10 @@ Send an event to a running workflow
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2SendEventRequest(
@@ -1377,4 +1439,8 @@ if res.status_code == 200:
 ### Response
 
 **[operations.V2SendEventResponse](../../models/operations/v2sendeventresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

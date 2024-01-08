@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import version as shared_version
+from .version import Version
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import List
@@ -13,6 +13,6 @@ from typing import List
 class GetVersionsResponse:
     env: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('env') }})
     region: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region') }})
-    versions: List[shared_version.Version] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('versions') }})
+    versions: List[Version] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('versions') }})
     
 

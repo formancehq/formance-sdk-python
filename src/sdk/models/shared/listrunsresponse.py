@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import workflowinstance as shared_workflowinstance
+from .workflowinstance import WorkflowInstance
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import List
@@ -11,6 +11,6 @@ from typing import List
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ListRunsResponse:
-    data: List[shared_workflowinstance.WorkflowInstance] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
+    data: List[WorkflowInstance] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
 

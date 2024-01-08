@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import v2hold as shared_v2hold
+from .v2hold import V2Hold
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 
@@ -10,6 +10,6 @@ from sdk import utils
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class V2ActivityDebitWalletOutput:
-    data: shared_v2hold.V2Hold = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
+    data: V2Hold = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
 

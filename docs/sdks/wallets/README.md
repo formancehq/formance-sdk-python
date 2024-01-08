@@ -31,9 +31,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ConfirmHoldRequest(
@@ -61,7 +59,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.ConfirmHoldResponse](../../models/operations/confirmholdresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## create_balance
 
@@ -70,14 +72,12 @@ Create a balance
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
+import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.CreateBalanceRequest(
@@ -104,7 +104,11 @@ if res.create_balance_response is not None:
 ### Response
 
 **[operations.CreateBalanceResponse](../../models/operations/createbalanceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## create_wallet
 
@@ -117,14 +121,12 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = shared.CreateWalletRequest(
     metadata={
-        "key": 'string',
+        'key': 'string',
     },
     name='string',
 )
@@ -146,7 +148,11 @@ if res.create_wallet_response is not None:
 ### Response
 
 **[operations.CreateWalletResponse](../../models/operations/createwalletresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## credit_wallet
 
@@ -159,9 +165,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.CreditWalletRequest(
@@ -171,7 +175,7 @@ req = operations.CreditWalletRequest(
             asset='string',
         ),
         metadata={
-            "key": 'string',
+            'key': 'string',
         },
         sources=[
             shared.LedgerAccountSubject(
@@ -200,7 +204,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.CreditWalletResponse](../../models/operations/creditwalletresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## debit_wallet
 
@@ -213,9 +221,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.DebitWalletRequest(
@@ -227,12 +233,12 @@ req = operations.DebitWalletRequest(
         balances=[
             'string',
         ],
-        shared.LedgerAccountSubject(
-            identifier='string',
-            type='string',
-        ),
+        destination=shared.LedgerAccountSubject(
+        identifier='string',
+        type='string',
+    ),
         metadata={
-            "key": 'string',
+            'key': 'string',
         },
     ),
     id='<ID>',
@@ -255,7 +261,11 @@ if res.debit_wallet_response is not None:
 ### Response
 
 **[operations.DebitWalletResponse](../../models/operations/debitwalletresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_balance
 
@@ -265,12 +275,10 @@ Get detailed balance
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetBalanceRequest(
@@ -295,7 +303,11 @@ if res.get_balance_response is not None:
 ### Response
 
 **[operations.GetBalanceResponse](../../models/operations/getbalanceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_hold
 
@@ -305,12 +317,10 @@ Get a hold
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetHoldRequest(
@@ -334,7 +344,11 @@ if res.get_hold_response is not None:
 ### Response
 
 **[operations.GetHoldResponse](../../models/operations/getholdresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_holds
 
@@ -344,18 +358,16 @@ Get all holds for a wallet
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetHoldsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     metadata={
-        "key": 'string',
+        'key': 'string',
     },
 )
 
@@ -376,7 +388,11 @@ if res.get_holds_response is not None:
 ### Response
 
 **[operations.GetHoldsResponse](../../models/operations/getholdsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_transactions
 
@@ -384,12 +400,10 @@ if res.get_holds_response is not None:
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetTransactionsRequest(
@@ -413,7 +427,11 @@ if res.get_transactions_response is not None:
 ### Response
 
 **[operations.GetTransactionsResponse](../../models/operations/gettransactionsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_wallet
 
@@ -423,12 +441,10 @@ Get a wallet
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetWalletRequest(
@@ -452,7 +468,11 @@ if res.get_wallet_response is not None:
 ### Response
 
 **[operations.GetWalletResponse](../../models/operations/getwalletresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_wallet_summary
 
@@ -462,12 +482,10 @@ Get wallet summary
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetWalletSummaryRequest(
@@ -491,7 +509,11 @@ if res.get_wallet_summary_response is not None:
 ### Response
 
 **[operations.GetWalletSummaryResponse](../../models/operations/getwalletsummaryresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_balances
 
@@ -501,12 +523,10 @@ List balances of a wallet
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListBalancesRequest(
@@ -530,7 +550,11 @@ if res.list_balances_response is not None:
 ### Response
 
 **[operations.ListBalancesResponse](../../models/operations/listbalancesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_wallets
 
@@ -540,18 +564,16 @@ List all wallets
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListWalletsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     metadata={
-        "key": 'string',
+        'key': 'string',
     },
 )
 
@@ -572,7 +594,11 @@ if res.list_wallets_response is not None:
 ### Response
 
 **[operations.ListWalletsResponse](../../models/operations/listwalletsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## update_wallet
 
@@ -582,18 +608,16 @@ Update a wallet
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.UpdateWalletRequest(
     request_body=operations.UpdateWalletRequestBody(
         metadata={
-            "key": 'string',
+            'key': 'string',
         },
     ),
     id='<ID>',
@@ -616,7 +640,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.UpdateWalletResponse](../../models/operations/updatewalletresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## void_hold
 
@@ -626,12 +654,10 @@ Cancel a hold
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.VoidHoldRequest(
@@ -655,7 +681,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.VoidHoldResponse](../../models/operations/voidholdresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## walletsget_server_info
 
@@ -665,12 +695,9 @@ Get server info
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -685,4 +712,8 @@ if res.server_info is not None:
 ### Response
 
 **[operations.WalletsgetServerInfoResponse](../../models/operations/walletsgetserverinforesponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

@@ -3,9 +3,12 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import v2bulkelement as shared_v2bulkelement
-from ..shared import v2bulkresponse as shared_v2bulkresponse
-from ..shared import v2errorresponse as shared_v2errorresponse
+from ...models.errors import v2errorresponse as errors_v2errorresponse
+from ...models.shared import v2bulkelementaddmetadata as shared_v2bulkelementaddmetadata
+from ...models.shared import v2bulkelementcreatetransaction as shared_v2bulkelementcreatetransaction
+from ...models.shared import v2bulkelementdeletemetadata as shared_v2bulkelementdeletemetadata
+from ...models.shared import v2bulkelementreverttransaction as shared_v2bulkelementreverttransaction
+from ...models.shared import v2bulkresponse as shared_v2bulkresponse
 from typing import List, Optional, Union
 
 
@@ -13,7 +16,7 @@ from typing import List, Optional, Union
 class V2CreateBulkRequest:
     ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
     r"""Name of the ledger."""
-    request_body: Optional[List[Union[shared_v2bulkelement.V2BulkElementV2BulkElementCreateTransaction, shared_v2bulkelement.V2BulkElementV2BulkElementAddMetadata, shared_v2bulkelement.V2BulkElementV2BulkElementRevertTransaction, shared_v2bulkelement.V2BulkElementV2BulkElementDeleteMetadata]]] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
+    request_body: Optional[List[Union[shared_v2bulkelementcreatetransaction.V2BulkElementCreateTransaction, shared_v2bulkelementaddmetadata.V2BulkElementAddMetadata, shared_v2bulkelementreverttransaction.V2BulkElementRevertTransaction, shared_v2bulkelementdeletemetadata.V2BulkElementDeleteMetadata]]] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
     
 
 
@@ -22,13 +25,13 @@ class V2CreateBulkRequest:
 class V2CreateBulkResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     v2_bulk_response: Optional[shared_v2bulkresponse.V2BulkResponse] = dataclasses.field(default=None)
     r"""OK"""
-    v2_error_response: Optional[shared_v2errorresponse.V2ErrorResponse] = dataclasses.field(default=None)
+    v2_error_response: Optional[errors_v2errorresponse.V2ErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     
 

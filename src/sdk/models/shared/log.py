@@ -9,7 +9,7 @@ from enum import Enum
 from sdk import utils
 from typing import Any, Dict
 
-class LogType(str, Enum):
+class Type(str, Enum):
     NEW_TRANSACTION = 'NEW_TRANSACTION'
     SET_METADATA = 'SET_METADATA'
 
@@ -21,6 +21,6 @@ class Log:
     date_: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     hash: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hash') }})
     id: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id') }})
-    type: LogType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
+    type: Type = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
     
 

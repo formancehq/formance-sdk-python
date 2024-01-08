@@ -3,13 +3,13 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import errorresponse as shared_errorresponse
+from ...models.errors import errorresponse as errors_errorresponse
 from datetime import datetime
 from typing import Dict, List, Optional
 
 
 @dataclasses.dataclass
-class CountTransactionsMetadata:
+class Metadata:
     r"""Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below."""
     
 
@@ -27,7 +27,7 @@ class CountTransactionsRequest:
     r"""Filter transactions that occurred before this timestamp.
     The format is RFC3339 and is exclusive (for example, \"2023-01-02T15:04:01Z\" excludes the first second of 4th minute).
     """
-    metadata: Optional[CountTransactionsMetadata] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
+    metadata: Optional[Metadata] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
     r"""Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below."""
     reference: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'reference', 'style': 'form', 'explode': True }})
     r"""Filter transactions by reference field."""
@@ -45,12 +45,12 @@ class CountTransactionsRequest:
 class CountTransactionsResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    headers: Dict[str, List[str]] = dataclasses.field()
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    error_response: Optional[shared_errorresponse.ErrorResponse] = dataclasses.field(default=None)
+    error_response: Optional[errors_errorresponse.ErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
-    headers: Optional[Dict[str, List[str]]] = dataclasses.field(default=None)
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     
 

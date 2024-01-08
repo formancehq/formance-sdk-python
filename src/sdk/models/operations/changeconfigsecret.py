@@ -3,9 +3,9 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import configchangesecret as shared_configchangesecret
-from ..shared import configresponse as shared_configresponse
-from ..shared import webhookserrorresponse as shared_webhookserrorresponse
+from ...models.errors import webhookserrorresponse as errors_webhookserrorresponse
+from ...models.shared import configchangesecret as shared_configchangesecret
+from ...models.shared import configresponse as shared_configresponse
 from typing import Optional
 
 
@@ -22,13 +22,13 @@ class ChangeConfigSecretRequest:
 class ChangeConfigSecretResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     config_response: Optional[shared_configresponse.ConfigResponse] = dataclasses.field(default=None)
     r"""Secret successfully changed."""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
-    webhooks_error_response: Optional[shared_webhookserrorresponse.WebhooksErrorResponse] = dataclasses.field(default=None)
+    webhooks_error_response: Optional[errors_webhookserrorresponse.WebhooksErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     
 

@@ -3,9 +3,9 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import v2createtransactionresponse as shared_v2createtransactionresponse
-from ..shared import v2errorresponse as shared_v2errorresponse
-from ..shared import v2posttransaction as shared_v2posttransaction
+from ...models.errors import v2errorresponse as errors_v2errorresponse
+from ...models.shared import v2createtransactionresponse as shared_v2createtransactionresponse
+from ...models.shared import v2posttransaction as shared_v2posttransaction
 from typing import Optional
 
 
@@ -30,13 +30,13 @@ class V2CreateTransactionRequest:
 class V2CreateTransactionResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     v2_create_transaction_response: Optional[shared_v2createtransactionresponse.V2CreateTransactionResponse] = dataclasses.field(default=None)
     r"""OK"""
-    v2_error_response: Optional[shared_v2errorresponse.V2ErrorResponse] = dataclasses.field(default=None)
+    v2_error_response: Optional[errors_v2errorresponse.V2ErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     
 

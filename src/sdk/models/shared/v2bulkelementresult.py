@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import v2transaction as shared_v2transaction
+from .v2transaction import V2Transaction
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import Optional
@@ -10,7 +10,7 @@ from typing import Optional
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class V2BulkElementResultV2BulkElementResultError:
+class V2BulkElementResultErrorSchemas:
     error_code: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorCode') }})
     error_description: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorDescription') }})
     response_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('responseType') }})
@@ -21,7 +21,7 @@ class V2BulkElementResultV2BulkElementResultError:
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class V2BulkElementResultV2BulkElementResultDeleteMetadata:
+class V2BulkElementResultDeleteMetadataSchemas:
     response_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('responseType') }})
     
 
@@ -29,8 +29,8 @@ class V2BulkElementResultV2BulkElementResultDeleteMetadata:
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class V2BulkElementResultV2BulkElementResultRevertTransaction:
-    data: shared_v2transaction.V2Transaction = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
+class V2BulkElementResultRevertTransactionSchemas:
+    data: V2Transaction = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     response_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('responseType') }})
     
 
@@ -38,7 +38,7 @@ class V2BulkElementResultV2BulkElementResultRevertTransaction:
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class V2BulkElementResultV2BulkElementResultAddMetadata:
+class Schemas:
     response_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('responseType') }})
     
 
@@ -46,13 +46,8 @@ class V2BulkElementResultV2BulkElementResultAddMetadata:
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class V2BulkElementResultV2BulkElementResultCreateTransaction:
-    data: shared_v2transaction.V2Transaction = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
+class V2BulkElementResultCreateTransactionSchemas:
+    data: V2Transaction = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     response_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('responseType') }})
     
 
-
-
-@dataclasses.dataclass
-class V2BulkElementResult:
-    pass

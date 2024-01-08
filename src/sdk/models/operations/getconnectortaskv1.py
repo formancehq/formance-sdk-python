@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import connector as shared_connector
-from ..shared import taskresponse as shared_taskresponse
+from ...models.shared import connector as shared_connector
+from ...models.shared import taskresponse as shared_taskresponse
 from typing import Optional
 
 
@@ -24,10 +24,10 @@ class GetConnectorTaskV1Request:
 class GetConnectorTaskV1Response:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     task_response: Optional[shared_taskresponse.TaskResponse] = dataclasses.field(default=None)
     r"""OK"""
     

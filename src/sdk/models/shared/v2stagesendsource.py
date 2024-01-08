@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import v2stagesendsourceaccount as shared_v2stagesendsourceaccount
-from ..shared import v2stagesendsourcepayment as shared_v2stagesendsourcepayment
-from ..shared import v2stagesendsourcewallet as shared_v2stagesendsourcewallet
+from .v2stagesendsourceaccount import V2StageSendSourceAccount
+from .v2stagesendsourcepayment import V2StageSendSourcePayment
+from .v2stagesendsourcewallet import V2StageSendSourceWallet
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import Optional
@@ -13,8 +13,8 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class V2StageSendSource:
-    account: Optional[shared_v2stagesendsourceaccount.V2StageSendSourceAccount] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account'), 'exclude': lambda f: f is None }})
-    payment: Optional[shared_v2stagesendsourcepayment.V2StageSendSourcePayment] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('payment'), 'exclude': lambda f: f is None }})
-    wallet: Optional[shared_v2stagesendsourcewallet.V2StageSendSourceWallet] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('wallet'), 'exclude': lambda f: f is None }})
+    account: Optional[V2StageSendSourceAccount] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account'), 'exclude': lambda f: f is None }})
+    payment: Optional[V2StageSendSourcePayment] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('payment'), 'exclude': lambda f: f is None }})
+    wallet: Optional[V2StageSendSourceWallet] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('wallet'), 'exclude': lambda f: f is None }})
     
 

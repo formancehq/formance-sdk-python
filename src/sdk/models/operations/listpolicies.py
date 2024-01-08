@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import policiescursorresponse as shared_policiescursorresponse
-from ..shared import reconciliationerrorresponse as shared_reconciliationerrorresponse
+from ...models.shared import policiescursorresponse as shared_policiescursorresponse
+from ...models.shared import reconciliationerrorresponse as shared_reconciliationerrorresponse
 from typing import Optional
 
 
@@ -26,12 +26,12 @@ class ListPoliciesRequest:
 class ListPoliciesResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     policies_cursor_response: Optional[shared_policiescursorresponse.PoliciesCursorResponse] = dataclasses.field(default=None)
     r"""OK"""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     reconciliation_error_response: Optional[shared_reconciliationerrorresponse.ReconciliationErrorResponse] = dataclasses.field(default=None)
     r"""Error response"""
     

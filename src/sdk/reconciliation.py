@@ -12,6 +12,7 @@ class Reconciliation:
         self.sdk_configuration = sdk_config
         
     
+    
     def create_policy(self, request: shared.PolicyRequest) -> operations.CreatePolicyResponse:
         r"""Create a policy
         Create a policy
@@ -20,7 +21,7 @@ class Reconciliation:
         
         url = base_url + '/api/reconciliation/policies'
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, shared.PolicyRequest, "request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -28,11 +29,14 @@ class Reconciliation:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.CreatePolicyResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 201:
@@ -53,6 +57,7 @@ class Reconciliation:
         return res
 
     
+    
     def delete_policy(self, request: operations.DeletePolicyRequest) -> operations.DeletePolicyResponse:
         r"""Delete a policy
         Delete a policy by its id.
@@ -64,11 +69,14 @@ class Reconciliation:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.DeletePolicyResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -85,6 +93,7 @@ class Reconciliation:
         return res
 
     
+    
     def get_policy(self, request: operations.GetPolicyRequest) -> operations.GetPolicyResponse:
         r"""Get a policy"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -94,11 +103,14 @@ class Reconciliation:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.GetPolicyResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -119,6 +131,7 @@ class Reconciliation:
         return res
 
     
+    
     def get_reconciliation(self, request: operations.GetReconciliationRequest) -> operations.GetReconciliationResponse:
         r"""Get a reconciliation"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -128,11 +141,14 @@ class Reconciliation:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.GetReconciliationResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -153,6 +169,7 @@ class Reconciliation:
         return res
 
     
+    
     def list_policies(self, request: operations.ListPoliciesRequest) -> operations.ListPoliciesResponse:
         r"""List policies"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -163,11 +180,14 @@ class Reconciliation:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ListPoliciesResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -188,6 +208,7 @@ class Reconciliation:
         return res
 
     
+    
     def list_reconciliations(self, request: operations.ListReconciliationsRequest) -> operations.ListReconciliationsResponse:
         r"""List reconciliations"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -198,11 +219,14 @@ class Reconciliation:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ListReconciliationsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -223,6 +247,7 @@ class Reconciliation:
         return res
 
     
+    
     def reconcile(self, request: operations.ReconcileRequest) -> operations.ReconcileResponse:
         r"""Reconcile using a policy
         Reconcile using a policy
@@ -231,7 +256,7 @@ class Reconciliation:
         
         url = utils.generate_url(operations.ReconcileRequest, base_url, '/api/reconciliation/policies/{policyID}/reconciliation', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "reconciliation_request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.ReconcileRequest, "reconciliation_request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -239,11 +264,14 @@ class Reconciliation:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ReconcileResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -264,6 +292,7 @@ class Reconciliation:
         return res
 
     
+    
     def reconciliationget_server_info(self) -> operations.ReconciliationgetServerInfoResponse:
         r"""Get server info"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -273,11 +302,14 @@ class Reconciliation:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ReconciliationgetServerInfoResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:

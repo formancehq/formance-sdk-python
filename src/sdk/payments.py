@@ -12,6 +12,7 @@ class Payments:
         self.sdk_configuration = sdk_config
         
     
+    
     def add_account_to_pool(self, request: operations.AddAccountToPoolRequest) -> operations.AddAccountToPoolResponse:
         r"""Add an account to a pool
         Add an account to a pool
@@ -20,7 +21,7 @@ class Payments:
         
         url = utils.generate_url(operations.AddAccountToPoolRequest, base_url, '/api/payments/pools/{poolId}/accounts', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "add_account_to_pool_request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.AddAccountToPoolRequest, "add_account_to_pool_request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -28,11 +29,14 @@ class Payments:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.AddAccountToPoolResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -43,6 +47,7 @@ class Payments:
         return res
 
     
+    
     def connectors_transfer(self, request: operations.ConnectorsTransferRequest) -> operations.ConnectorsTransferResponse:
         r"""Transfer funds between Connector accounts
         Execute a transfer between two accounts.
@@ -51,7 +56,7 @@ class Payments:
         
         url = utils.generate_url(operations.ConnectorsTransferRequest, base_url, '/api/payments/connectors/{connector}/transfers', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "transfer_request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.ConnectorsTransferRequest, "transfer_request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -59,11 +64,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ConnectorsTransferResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -78,6 +86,7 @@ class Payments:
         return res
 
     
+    
     def create_bank_account(self, request: shared.BankAccountRequest) -> operations.CreateBankAccountResponse:
         r"""Create a BankAccount in Payments and on the PSP
         Create a bank account in Payments and on the PSP.
@@ -86,7 +95,7 @@ class Payments:
         
         url = base_url + '/api/payments/bank-accounts'
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, shared.BankAccountRequest, "request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -94,11 +103,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.CreateBankAccountResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -113,6 +125,7 @@ class Payments:
         return res
 
     
+    
     def create_payment(self, request: shared.PaymentRequest) -> operations.CreatePaymentResponse:
         r"""Create a payment
         Create a payment
@@ -121,7 +134,7 @@ class Payments:
         
         url = base_url + '/api/payments/payments'
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, shared.PaymentRequest, "request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -129,11 +142,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.CreatePaymentResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -148,6 +164,7 @@ class Payments:
         return res
 
     
+    
     def create_pool(self, request: shared.PoolRequest) -> operations.CreatePoolResponse:
         r"""Create a Pool
         Create a Pool
@@ -156,7 +173,7 @@ class Payments:
         
         url = base_url + '/api/payments/pools'
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, shared.PoolRequest, "request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -164,11 +181,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.CreatePoolResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -183,6 +203,7 @@ class Payments:
         return res
 
     
+    
     def create_transfer_initiation(self, request: shared.TransferInitiationRequest) -> operations.CreateTransferInitiationResponse:
         r"""Create a TransferInitiation
         Create a transfer initiation
@@ -191,7 +212,7 @@ class Payments:
         
         url = base_url + '/api/payments/transfer-initiations'
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, shared.TransferInitiationRequest, "request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -199,11 +220,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.CreateTransferInitiationResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -218,6 +242,7 @@ class Payments:
         return res
 
     
+    
     def delete_pool(self, request: operations.DeletePoolRequest) -> operations.DeletePoolResponse:
         r"""Delete a Pool
         Delete a pool by its id.
@@ -229,11 +254,14 @@ class Payments:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.DeletePoolResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -243,6 +271,7 @@ class Payments:
 
         return res
 
+    
     
     def delete_transfer_initiation(self, request: operations.DeleteTransferInitiationRequest) -> operations.DeleteTransferInitiationResponse:
         r"""Delete a transfer initiation
@@ -255,11 +284,14 @@ class Payments:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.DeleteTransferInitiationResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -269,6 +301,7 @@ class Payments:
 
         return res
 
+    
     
     def get_account_balances(self, request: operations.GetAccountBalancesRequest) -> operations.GetAccountBalancesResponse:
         r"""Get account balances"""
@@ -280,11 +313,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.GetAccountBalancesResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -299,6 +335,7 @@ class Payments:
         return res
 
     
+    
     def get_bank_account(self, request: operations.GetBankAccountRequest) -> operations.GetBankAccountResponse:
         r"""Get a bank account created by user on Formance"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -308,11 +345,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.GetBankAccountResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -327,6 +367,7 @@ class Payments:
         return res
 
     
+    
     def get_connector_task(self, request: operations.GetConnectorTaskRequest) -> operations.GetConnectorTaskResponse:
         r"""Read a specific task of the connector
         Get a specific task associated to the connector.
@@ -340,11 +381,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.GetConnectorTaskResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -359,6 +403,7 @@ class Payments:
         return res
 
     
+    
     def get_connector_task_v1(self, request: operations.GetConnectorTaskV1Request) -> operations.GetConnectorTaskV1Response:
         r"""Read a specific task of the connector
         Get a specific task associated to the connector.
@@ -370,11 +415,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.GetConnectorTaskV1Response(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -389,6 +437,7 @@ class Payments:
         return res
 
     
+    
     def get_payment(self, request: operations.GetPaymentRequest) -> operations.GetPaymentResponse:
         r"""Get a payment"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -398,11 +447,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.GetPaymentResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -417,6 +469,7 @@ class Payments:
         return res
 
     
+    
     def get_pool(self, request: operations.GetPoolRequest) -> operations.GetPoolResponse:
         r"""Get a Pool"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -426,11 +479,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.GetPoolResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -445,6 +501,7 @@ class Payments:
         return res
 
     
+    
     def get_pool_balances(self, request: operations.GetPoolBalancesRequest) -> operations.GetPoolBalancesResponse:
         r"""Get pool balances"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -455,11 +512,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.GetPoolBalancesResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -474,6 +534,7 @@ class Payments:
         return res
 
     
+    
     def get_transfer_initiation(self, request: operations.GetTransferInitiationRequest) -> operations.GetTransferInitiationResponse:
         r"""Get a transfer initiation"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -483,11 +544,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.GetTransferInitiationResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -502,6 +566,7 @@ class Payments:
         return res
 
     
+    
     def install_connector(self, request: operations.InstallConnectorRequest) -> operations.InstallConnectorResponse:
         r"""Install a connector
         Install a connector by its name and config.
@@ -510,7 +575,7 @@ class Payments:
         
         url = utils.generate_url(operations.InstallConnectorRequest, base_url, '/api/payments/connectors/{connector}', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "connector_config", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.InstallConnectorRequest, "connector_config", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -518,11 +583,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.InstallConnectorResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 201:
@@ -537,6 +605,7 @@ class Payments:
         return res
 
     
+    
     def list_all_connectors(self) -> operations.ListAllConnectorsResponse:
         r"""List all installed connectors
         List all installed connectors.
@@ -548,11 +617,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ListAllConnectorsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -567,6 +639,7 @@ class Payments:
         return res
 
     
+    
     def list_bank_accounts(self, request: operations.ListBankAccountsRequest) -> operations.ListBankAccountsResponse:
         r"""List bank accounts created by user on Formance
         List all bank accounts created by user on Formance.
@@ -579,11 +652,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ListBankAccountsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -598,6 +674,7 @@ class Payments:
         return res
 
     
+    
     def list_configs_available_connectors(self) -> operations.ListConfigsAvailableConnectorsResponse:
         r"""List the configs of each available connector
         List the configs of each available connector.
@@ -609,11 +686,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ListConfigsAvailableConnectorsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -627,6 +707,7 @@ class Payments:
 
         return res
 
+    
     
     def list_connector_tasks(self, request: operations.ListConnectorTasksRequest) -> operations.ListConnectorTasksResponse:
         r"""List tasks from a connector
@@ -642,11 +723,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ListConnectorTasksResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -661,6 +745,7 @@ class Payments:
         return res
 
     
+    
     def list_connector_tasks_v1(self, request: operations.ListConnectorTasksV1Request) -> operations.ListConnectorTasksV1Response:
         r"""List tasks from a connector
         List all tasks associated with this connector.
@@ -673,11 +758,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ListConnectorTasksV1Response(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -692,6 +780,7 @@ class Payments:
         return res
 
     
+    
     def list_payments(self, request: operations.ListPaymentsRequest) -> operations.ListPaymentsResponse:
         r"""List payments"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -702,11 +791,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ListPaymentsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -721,6 +813,7 @@ class Payments:
         return res
 
     
+    
     def list_pools(self, request: operations.ListPoolsRequest) -> operations.ListPoolsResponse:
         r"""List Pools"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -731,11 +824,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ListPoolsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -750,6 +846,7 @@ class Payments:
         return res
 
     
+    
     def list_transfer_initiations(self, request: operations.ListTransferInitiationsRequest) -> operations.ListTransferInitiationsResponse:
         r"""List Transfer Initiations"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -760,11 +857,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ListTransferInitiationsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -779,6 +879,7 @@ class Payments:
         return res
 
     
+    
     def paymentsget_account(self, request: operations.PaymentsgetAccountRequest) -> operations.PaymentsgetAccountResponse:
         r"""Get an account"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -788,11 +889,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.PaymentsgetAccountResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -807,6 +911,7 @@ class Payments:
         return res
 
     
+    
     def paymentsget_server_info(self) -> operations.PaymentsgetServerInfoResponse:
         r"""Get server info"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -816,11 +921,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.PaymentsgetServerInfoResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -835,6 +943,7 @@ class Payments:
         return res
 
     
+    
     def paymentslist_accounts(self, request: operations.PaymentslistAccountsRequest) -> operations.PaymentslistAccountsResponse:
         r"""List accounts"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -845,11 +954,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.PaymentslistAccountsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -864,6 +976,7 @@ class Payments:
         return res
 
     
+    
     def read_connector_config(self, request: operations.ReadConnectorConfigRequest) -> operations.ReadConnectorConfigResponse:
         r"""Read the config of a connector
         Read connector config
@@ -877,11 +990,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ReadConnectorConfigResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -896,6 +1012,7 @@ class Payments:
         return res
 
     
+    
     def read_connector_config_v1(self, request: operations.ReadConnectorConfigV1Request) -> operations.ReadConnectorConfigV1Response:
         r"""Read the config of a connector
         Read connector config
@@ -907,11 +1024,14 @@ class Payments:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ReadConnectorConfigV1Response(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -926,6 +1046,7 @@ class Payments:
         return res
 
     
+    
     def remove_account_from_pool(self, request: operations.RemoveAccountFromPoolRequest) -> operations.RemoveAccountFromPoolResponse:
         r"""Remove an account from a pool
         Remove an account from a pool by its id.
@@ -937,11 +1058,14 @@ class Payments:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.RemoveAccountFromPoolResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -951,6 +1075,7 @@ class Payments:
 
         return res
 
+    
     
     def reset_connector(self, request: operations.ResetConnectorRequest) -> operations.ResetConnectorResponse:
         r"""Reset a connector
@@ -966,11 +1091,14 @@ class Payments:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ResetConnectorResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -980,6 +1108,7 @@ class Payments:
 
         return res
 
+    
     
     def reset_connector_v1(self, request: operations.ResetConnectorV1Request) -> operations.ResetConnectorV1Response:
         r"""Reset a connector
@@ -993,11 +1122,14 @@ class Payments:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ResetConnectorV1Response(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -1007,6 +1139,7 @@ class Payments:
 
         return res
 
+    
     
     def retry_transfer_initiation(self, request: operations.RetryTransferInitiationRequest) -> operations.RetryTransferInitiationResponse:
         r"""Retry a failed transfer initiation
@@ -1019,11 +1152,14 @@ class Payments:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.RetryTransferInitiationResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -1034,6 +1170,7 @@ class Payments:
         return res
 
     
+    
     def udpate_transfer_initiation_status(self, request: operations.UdpateTransferInitiationStatusRequest) -> operations.UdpateTransferInitiationStatusResponse:
         r"""Update the status of a transfer initiation
         Update a transfer initiation status
@@ -1042,7 +1179,7 @@ class Payments:
         
         url = utils.generate_url(operations.UdpateTransferInitiationStatusRequest, base_url, '/api/payments/transfer-initiations/{transferId}/status', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "update_transfer_initiation_status_request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.UdpateTransferInitiationStatusRequest, "update_transfer_initiation_status_request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -1050,11 +1187,14 @@ class Payments:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.UdpateTransferInitiationStatusResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -1064,6 +1204,7 @@ class Payments:
 
         return res
 
+    
     
     def uninstall_connector(self, request: operations.UninstallConnectorRequest) -> operations.UninstallConnectorResponse:
         r"""Uninstall a connector
@@ -1078,11 +1219,14 @@ class Payments:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.UninstallConnectorResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -1092,6 +1236,7 @@ class Payments:
 
         return res
 
+    
     
     def uninstall_connector_v1(self, request: operations.UninstallConnectorV1Request) -> operations.UninstallConnectorV1Response:
         r"""Uninstall a connector
@@ -1104,11 +1249,14 @@ class Payments:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.UninstallConnectorV1Response(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -1119,6 +1267,7 @@ class Payments:
         return res
 
     
+    
     def update_connector_config_v1(self, request: operations.UpdateConnectorConfigV1Request) -> operations.UpdateConnectorConfigV1Response:
         r"""Update the config of a connector
         Update connector config
@@ -1127,7 +1276,7 @@ class Payments:
         
         url = utils.generate_url(operations.UpdateConnectorConfigV1Request, base_url, '/api/payments/connectors/{connector}/{connectorId}/config', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "connector_config", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.UpdateConnectorConfigV1Request, "connector_config", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -1135,11 +1284,14 @@ class Payments:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.UpdateConnectorConfigV1Response(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -1150,13 +1302,14 @@ class Payments:
         return res
 
     
+    
     def update_metadata(self, request: operations.UpdateMetadataRequest) -> operations.UpdateMetadataResponse:
         r"""Update metadata"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(operations.UpdateMetadataRequest, base_url, '/api/payments/payments/{paymentId}/metadata', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request_body", True, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.UpdateMetadataRequest, "request_body", True, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -1164,11 +1317,14 @@ class Payments:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('PATCH', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.UpdateMetadataResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:

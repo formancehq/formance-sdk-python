@@ -8,7 +8,7 @@ from sdk import utils
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class ConnectorsConfigsResponseDataConnectorKey:
+class Key:
     data_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataType') }})
     required: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('required') }})
     
@@ -17,8 +17,8 @@ class ConnectorsConfigsResponseDataConnectorKey:
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class ConnectorsConfigsResponseDataConnector:
-    key: ConnectorsConfigsResponseDataConnectorKey = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('key') }})
+class ConnectorsConfigsResponseConnector:
+    key: Key = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('key') }})
     
 
 
@@ -26,7 +26,7 @@ class ConnectorsConfigsResponseDataConnector:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ConnectorsConfigsResponseData:
-    connector: ConnectorsConfigsResponseDataConnector = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connector') }})
+    connector: ConnectorsConfigsResponseConnector = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connector') }})
     
 
 

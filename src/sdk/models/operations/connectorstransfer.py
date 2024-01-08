@@ -3,9 +3,9 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import connector as shared_connector
-from ..shared import transferrequest as shared_transferrequest
-from ..shared import transferresponse as shared_transferresponse
+from ...models.shared import connector as shared_connector
+from ...models.shared import transferrequest as shared_transferrequest
+from ...models.shared import transferresponse as shared_transferresponse
 from typing import Optional
 
 
@@ -22,10 +22,10 @@ class ConnectorsTransferRequest:
 class ConnectorsTransferResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     transfer_response: Optional[shared_transferresponse.TransferResponse] = dataclasses.field(default=None)
     r"""OK"""
     

@@ -29,16 +29,13 @@ Show stack version information
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
-res = s.sdk.get_versions()
+res = s.get_versions()
 
 if res.get_versions_response is not None:
     # handle response
@@ -49,7 +46,11 @@ if res.get_versions_response is not None:
 ### Response
 
 **[operations.GetVersionsResponse](../../models/operations/getversionsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_api_auth_well_known_openid_configuration
 
@@ -57,16 +58,13 @@ if res.get_versions_response is not None:
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
-res = s.sdk.get_api_auth_well_known_openid_configuration()
+res = s.get_api_auth_well_known_openid_configuration()
 
 if res.status_code == 200:
     # handle response
@@ -77,4 +75,8 @@ if res.status_code == 200:
 ### Response
 
 **[operations.GetAPIAuthWellKnownOpenidConfigurationResponse](../../models/operations/getapiauthwellknownopenidconfigurationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

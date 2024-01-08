@@ -17,65 +17,22 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = shared.Query(
     after=[
-        'u',
-        's',
-        'e',
-        'r',
-        's',
-        ':',
-        '0',
-        '0',
-        '2',
+        'users:002',
     ],
     cursor='YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=',
     ledgers=[
-        'q',
-        'u',
-        'i',
-        'c',
-        'k',
-        's',
-        't',
-        'a',
-        'r',
-        't',
+        'quickstart',
     ],
     policy='OR',
     raw=shared.QueryRaw(),
     sort='id:asc',
     terms=[
-        'd',
-        'e',
-        's',
-        't',
-        'i',
-        'n',
-        'a',
-        't',
-        'i',
-        'o',
-        'n',
-        '=',
-        'c',
-        'e',
-        'n',
-        't',
-        'r',
-        'a',
-        'l',
-        '_',
-        'b',
-        'a',
-        'n',
-        'k',
-        '1',
+        'destination=central_bank1',
     ],
 )
 
@@ -96,7 +53,11 @@ if res.response is not None:
 ### Response
 
 **[operations.SearchResponse](../../models/operations/searchresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## searchget_server_info
 
@@ -106,12 +67,9 @@ Get server info
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -126,4 +84,8 @@ if res.server_info is not None:
 ### Response
 
 **[operations.SearchgetServerInfoResponse](../../models/operations/searchgetserverinforesponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

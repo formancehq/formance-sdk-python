@@ -3,9 +3,9 @@
 from __future__ import annotations
 import dataclasses
 import dateutil.parser
-from ..shared import v2stagedelay as shared_v2stagedelay
-from ..shared import v2stagesend as shared_v2stagesend
-from ..shared import v2stagewaitevent as shared_v2stagewaitevent
+from .v2stagedelay import V2StageDelay
+from .v2stagesend import V2StageSend
+from .v2stagewaitevent import V2StageWaitEvent
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from sdk import utils
@@ -15,7 +15,7 @@ from typing import Optional, Union
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class V2WorkflowInstanceHistory:
-    input: Union[shared_v2stagesend.V2StageSend, shared_v2stagedelay.V2StageDelay, shared_v2stagewaitevent.V2StageWaitEvent] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('input') }})
+    input: Union[V2StageSend, V2StageDelay, V2StageWaitEvent] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('input') }})
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     started_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('startedAt'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     terminated: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('terminated') }})

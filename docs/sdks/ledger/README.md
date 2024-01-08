@@ -52,14 +52,12 @@ Create a new batch of transactions to a ledger
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
+import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.CreateTransactionsRequest(
@@ -67,7 +65,7 @@ req = operations.CreateTransactionsRequest(
         transactions=[
             shared.TransactionData(
                 metadata={
-                    "key": 'string',
+                    'key': 'string',
                 },
                 postings=[
                     shared.Posting(
@@ -101,7 +99,11 @@ if res.transactions_response is not None:
 ### Response
 
 **[operations.CreateTransactionsResponse](../../models/operations/createtransactionsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## add_metadata_on_transaction
 
@@ -111,17 +113,15 @@ Set the metadata of a transaction by its ID
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.AddMetadataOnTransactionRequest(
     request_body={
-        "key": 'string',
+        'key': 'string',
     },
     ledger='ledger001',
     txid=1234,
@@ -144,7 +144,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.AddMetadataOnTransactionResponse](../../models/operations/addmetadataontransactionresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## add_metadata_to_account
 
@@ -154,17 +158,15 @@ Add metadata to an account
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.AddMetadataToAccountRequest(
     request_body={
-        "key": 'string',
+        'key': 'string',
     },
     address='users:001',
     ledger='ledger001',
@@ -187,7 +189,12 @@ if res.status_code == 200:
 ### Response
 
 **[operations.AddMetadataToAccountResponse](../../models/operations/addmetadatatoaccountresponse.md)**
+### Errors
 
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400,404              | application/json     |
+| errors.SDKError      | 400-600              | */*                  |
 
 ## count_accounts
 
@@ -197,19 +204,17 @@ Count the accounts from a ledger
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.CountAccountsRequest(
     address='users:.+',
     ledger='ledger001',
     metadata={
-        "key": 'string',
+        'key': 'string',
     },
 )
 
@@ -230,7 +235,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.CountAccountsResponse](../../models/operations/countaccountsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## count_transactions
 
@@ -239,21 +248,19 @@ Count the transactions from a ledger
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
-from sdk.models import operations, shared
+import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.CountTransactionsRequest(
     account='users:001',
     destination='users:001',
     ledger='ledger001',
-    metadata=operations.CountTransactionsMetadata(),
+    metadata=operations.Metadata(),
     reference='ref:001',
     source='users:001',
 )
@@ -275,7 +282,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.CountTransactionsResponse](../../models/operations/counttransactionsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## create_transaction
 
@@ -284,20 +295,18 @@ Create a new transaction to a ledger
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
+import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.CreateTransactionRequest(
     post_transaction=shared.PostTransaction(
         metadata={
-            "key": 'string',
+            'key': 'string',
         },
         postings=[
             shared.Posting(
@@ -318,7 +327,7 @@ req = operations.CreateTransactionRequest(
         )
         ',
             vars={
-                "user": 'string',
+                'user': 'string',
             },
         ),
     ),
@@ -343,7 +352,12 @@ if res.transactions_response is not None:
 ### Response
 
 **[operations.CreateTransactionResponse](../../models/operations/createtransactionresponse.md)**
+### Errors
 
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.SDKError      | 400-600              | */*                  |
 
 ## get_account
 
@@ -353,12 +367,10 @@ Get account by its address
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetAccountRequest(
@@ -383,7 +395,11 @@ if res.account_response is not None:
 ### Response
 
 **[operations.GetAccountResponse](../../models/operations/getaccountresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_balances
 
@@ -393,12 +409,10 @@ Get the balances from a ledger's account
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetBalancesRequest(
@@ -425,7 +439,11 @@ if res.balances_cursor_response is not None:
 ### Response
 
 **[operations.GetBalancesResponse](../../models/operations/getbalancesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_balances_aggregated
 
@@ -435,12 +453,10 @@ Get the aggregated balances from selected accounts
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetBalancesAggregatedRequest(
@@ -465,7 +481,11 @@ if res.aggregate_balances_response is not None:
 ### Response
 
 **[operations.GetBalancesAggregatedResponse](../../models/operations/getbalancesaggregatedresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_info
 
@@ -475,12 +495,9 @@ Show server information
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -495,7 +512,11 @@ if res.config_info_response is not None:
 ### Response
 
 **[operations.GetInfoResponse](../../models/operations/getinforesponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_ledger_info
 
@@ -505,12 +526,10 @@ Get information about a ledger
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetLedgerInfoRequest(
@@ -534,7 +553,11 @@ if res.ledger_info_response is not None:
 ### Response
 
 **[operations.GetLedgerInfoResponse](../../models/operations/getledgerinforesponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_mapping
 
@@ -544,12 +567,10 @@ Get the mapping of a ledger
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetMappingRequest(
@@ -573,7 +594,11 @@ if res.mapping_response is not None:
 ### Response
 
 **[operations.GetMappingResponse](../../models/operations/getmappingresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_transaction
 
@@ -583,12 +608,10 @@ Get transaction from a ledger by its ID
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetTransactionRequest(
@@ -613,7 +636,11 @@ if res.transaction_response is not None:
 ### Response
 
 **[operations.GetTransactionResponse](../../models/operations/gettransactionresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_accounts
 
@@ -623,12 +650,10 @@ List accounts from a ledger, sorted by address in descending order.
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListAccountsRequest(
@@ -638,7 +663,7 @@ req = operations.ListAccountsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger='ledger001',
     metadata={
-        "key": 'string',
+        'key': 'string',
     },
     pagination_token='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
 )
@@ -660,7 +685,11 @@ if res.accounts_cursor_response is not None:
 ### Response
 
 **[operations.ListAccountsResponse](../../models/operations/listaccountsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_logs
 
@@ -669,14 +698,12 @@ List the logs from a ledger, sorted by ID in descending order.
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
-from sdk.models import operations, shared
+import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListLogsRequest(
@@ -702,7 +729,11 @@ if res.logs_cursor_response is not None:
 ### Response
 
 **[operations.ListLogsResponse](../../models/operations/listlogsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_transactions
 
@@ -711,14 +742,12 @@ List transactions from a ledger, sorted by txid in descending order.
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
-from sdk.models import operations, shared
+import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListTransactionsRequest(
@@ -728,7 +757,7 @@ req = operations.ListTransactionsRequest(
     destination='users:001',
     ledger='ledger001',
     metadata={
-        "key": 'string',
+        'key': 'string',
     },
     reference='ref:001',
     source='users:001',
@@ -751,7 +780,11 @@ if res.transactions_cursor_response is not None:
 ### Response
 
 **[operations.ListTransactionsResponse](../../models/operations/listtransactionsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## read_stats
 
@@ -762,12 +795,10 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ReadStatsRequest(
@@ -791,7 +822,11 @@ if res.stats_response is not None:
 ### Response
 
 **[operations.ReadStatsResponse](../../models/operations/readstatsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## revert_transaction
 
@@ -801,12 +836,10 @@ Revert a ledger transaction by its ID
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.RevertTransactionRequest(
@@ -831,7 +864,11 @@ if res.transaction_response is not None:
 ### Response
 
 **[operations.RevertTransactionResponse](../../models/operations/reverttransactionresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## ~~run_script~~
 
@@ -847,15 +884,13 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.RunScriptRequest(
     script=shared.Script(
         metadata={
-            "key": 'string',
+            'key': 'string',
         },
         plain='vars {
     account $user
@@ -867,7 +902,7 @@ req = operations.RunScriptRequest(
     ',
         reference='order_1234',
         vars={
-            "user": 'string',
+            'user': 'string',
         },
     ),
     ledger='ledger001',
@@ -891,7 +926,11 @@ if res.script_response is not None:
 ### Response
 
 **[operations.RunScriptResponse](../../models/operations/runscriptresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## update_mapping
 
@@ -904,9 +943,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.UpdateMappingRequest(
@@ -914,7 +951,7 @@ req = operations.UpdateMappingRequest(
         contracts=[
             shared.Contract(
                 account='users:001',
-                expr=shared.ContractExpr(),
+                expr=shared.Expr(),
             ),
         ],
     ),
@@ -938,7 +975,11 @@ if res.mapping_response is not None:
 ### Response
 
 **[operations.UpdateMappingResponse](../../models/operations/updatemappingresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_add_metadata_on_transaction
 
@@ -948,17 +989,15 @@ Set the metadata of a transaction by its ID
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2AddMetadataOnTransactionRequest(
     request_body={
-        "admin": 'true',
+        'admin': 'true',
     },
     dry_run=True,
     id=1234,
@@ -982,7 +1021,12 @@ if res.status_code == 200:
 ### Response
 
 **[operations.V2AddMetadataOnTransactionResponse](../../models/operations/v2addmetadataontransactionresponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | 400,404                | application/json       |
+| errors.SDKError        | 400-600                | */*                    |
 
 ## v2_add_metadata_to_account
 
@@ -992,17 +1036,15 @@ Add metadata to an account
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2AddMetadataToAccountRequest(
     request_body={
-        "admin": 'true',
+        'admin': 'true',
     },
     address='users:001',
     dry_run=True,
@@ -1026,7 +1068,12 @@ if res.status_code == 200:
 ### Response
 
 **[operations.V2AddMetadataToAccountResponse](../../models/operations/v2addmetadatatoaccountresponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | 400,404                | application/json       |
+| errors.SDKError        | 400-600                | */*                    |
 
 ## v2_count_accounts
 
@@ -1035,19 +1082,17 @@ Count the accounts from a ledger
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
-from sdk.models import operations, shared
+import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2CountAccountsRequest(
     request_body={
-        "key": 'string',
+        'key': 'string',
     },
     ledger='ledger001',
 )
@@ -1069,7 +1114,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.V2CountAccountsResponse](../../models/operations/v2countaccountsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_count_transactions
 
@@ -1078,19 +1127,17 @@ Count the transactions from a ledger
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
-from sdk.models import operations, shared
+import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2CountTransactionsRequest(
     request_body={
-        "key": 'string',
+        'key': 'string',
     },
     ledger='ledger001',
 )
@@ -1112,7 +1159,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.V2CountTransactionsResponse](../../models/operations/v2counttransactionsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_create_bulk
 
@@ -1121,25 +1172,23 @@ Bulk request
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
+import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2CreateBulkRequest(
     request_body=[
-        shared.V2BulkElementV2BulkElementAddMetadata(
+        shared.V2BulkElementAddMetadata(
             action='string',
-            data=shared.V2BulkElementV2BulkElementAddMetadataData(
+            data=shared.V2BulkElementAddMetadataData(
                 metadata={
-                    "key": 'string',
+                    'key': 'string',
                 },
-            'string',
+                target_id='string',
                 target_type=shared.V2TargetType.ACCOUNT,
             ),
         ),
@@ -1164,7 +1213,11 @@ if res.v2_bulk_response is not None:
 ### Response
 
 **[operations.V2CreateBulkResponse](../../models/operations/v2createbulkresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_create_ledger
 
@@ -1177,9 +1230,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2CreateLedgerRequest(
@@ -1204,7 +1255,12 @@ if res.status_code == 200:
 ### Response
 
 **[operations.V2CreateLedgerResponse](../../models/operations/v2createledgerresponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | 400                    | application/json       |
+| errors.SDKError        | 400-600                | */*                    |
 
 ## v2_create_transaction
 
@@ -1213,20 +1269,18 @@ Create a new transaction to a ledger
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
+import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2CreateTransactionRequest(
     v2_post_transaction=shared.V2PostTransaction(
         metadata={
-            "admin": 'true',
+            'admin': 'true',
         },
         postings=[
             shared.V2Posting(
@@ -1247,7 +1301,7 @@ req = operations.V2CreateTransactionRequest(
         )
         ',
             vars={
-                "user": 'string',
+                'user': 'string',
             },
         ),
     ),
@@ -1272,7 +1326,12 @@ if res.v2_create_transaction_response is not None:
 ### Response
 
 **[operations.V2CreateTransactionResponse](../../models/operations/v2createtransactionresponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | 400                    | application/json       |
+| errors.SDKError        | 400-600                | */*                    |
 
 ## v2_delete_account_metadata
 
@@ -1282,12 +1341,10 @@ Delete metadata by key
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2DeleteAccountMetadataRequest(
@@ -1313,7 +1370,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.V2DeleteAccountMetadataResponse](../../models/operations/v2deleteaccountmetadataresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_delete_transaction_metadata
 
@@ -1323,12 +1384,10 @@ Delete metadata by key
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2DeleteTransactionMetadataRequest(
@@ -1354,7 +1413,12 @@ if res.status_code == 200:
 ### Response
 
 **[operations.V2DeleteTransactionMetadataResponse](../../models/operations/v2deletetransactionmetadataresponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | 400                    | application/json       |
+| errors.SDKError        | 400-600                | */*                    |
 
 ## v2_get_account
 
@@ -1363,14 +1427,12 @@ Get account by its address
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
-from sdk.models import operations, shared
+import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2GetAccountRequest(
@@ -1395,7 +1457,11 @@ if res.v2_account_response is not None:
 ### Response
 
 **[operations.V2GetAccountResponse](../../models/operations/v2getaccountresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_get_balances_aggregated
 
@@ -1404,19 +1470,17 @@ Get the aggregated balances from selected accounts
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
-from sdk.models import operations, shared
+import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2GetBalancesAggregatedRequest(
     request_body={
-        "key": 'string',
+        'key': 'string',
     },
     ledger='ledger001',
 )
@@ -1438,7 +1502,11 @@ if res.v2_aggregate_balances_response is not None:
 ### Response
 
 **[operations.V2GetBalancesAggregatedResponse](../../models/operations/v2getbalancesaggregatedresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_get_info
 
@@ -1448,12 +1516,9 @@ Show server information
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -1468,7 +1533,11 @@ if res.v2_config_info_response is not None:
 ### Response
 
 **[operations.V2GetInfoResponse](../../models/operations/v2getinforesponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_get_ledger
 
@@ -1478,12 +1547,10 @@ Get a ledger
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2GetLedgerRequest(
@@ -1507,7 +1574,11 @@ if res.v2_ledger is not None:
 ### Response
 
 **[operations.V2GetLedgerResponse](../../models/operations/v2getledgerresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_get_ledger_info
 
@@ -1517,12 +1588,10 @@ Get information about a ledger
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2GetLedgerInfoRequest(
@@ -1546,7 +1615,11 @@ if res.v2_ledger_info_response is not None:
 ### Response
 
 **[operations.V2GetLedgerInfoResponse](../../models/operations/v2getledgerinforesponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_get_transaction
 
@@ -1555,14 +1628,12 @@ Get transaction from a ledger by its ID
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
-from sdk.models import operations, shared
+import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2GetTransactionRequest(
@@ -1587,7 +1658,12 @@ if res.v2_get_transaction_response is not None:
 ### Response
 
 **[operations.V2GetTransactionResponse](../../models/operations/v2gettransactionresponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | 404                    | application/json       |
+| errors.SDKError        | 400-600                | */*                    |
 
 ## v2_list_accounts
 
@@ -1596,19 +1672,17 @@ List accounts from a ledger, sorted by address in descending order.
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
-from sdk.models import operations, shared
+import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2ListAccountsRequest(
     request_body={
-        "key": 'string',
+        'key': 'string',
     },
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger='ledger001',
@@ -1631,7 +1705,12 @@ if res.v2_accounts_cursor_response is not None:
 ### Response
 
 **[operations.V2ListAccountsResponse](../../models/operations/v2listaccountsresponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | 400                    | application/json       |
+| errors.SDKError        | 400-600                | */*                    |
 
 ## v2_list_ledgers
 
@@ -1641,12 +1720,10 @@ List ledgers
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2ListLedgersRequest(
@@ -1670,7 +1747,11 @@ if res.v2_ledger_list_response is not None:
 ### Response
 
 **[operations.V2ListLedgersResponse](../../models/operations/v2listledgersresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_list_logs
 
@@ -1679,19 +1760,17 @@ List the logs from a ledger, sorted by ID in descending order.
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
-from sdk.models import operations, shared
+import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2ListLogsRequest(
     request_body={
-        "key": 'string',
+        'key': 'string',
     },
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger='ledger001',
@@ -1714,7 +1793,11 @@ if res.v2_logs_cursor_response is not None:
 ### Response
 
 **[operations.V2ListLogsResponse](../../models/operations/v2listlogsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_list_transactions
 
@@ -1723,19 +1806,17 @@ List transactions from a ledger, sorted by id in descending order.
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
-from sdk.models import operations, shared
+import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2ListTransactionsRequest(
     request_body={
-        "key": 'string',
+        'key': 'string',
     },
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger='ledger001',
@@ -1758,7 +1839,12 @@ if res.v2_transactions_cursor_response is not None:
 ### Response
 
 **[operations.V2ListTransactionsResponse](../../models/operations/v2listtransactionsresponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | 400,404                | application/json       |
+| errors.SDKError        | 400-600                | */*                    |
 
 ## v2_read_stats
 
@@ -1769,12 +1855,10 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2ReadStatsRequest(
@@ -1798,7 +1882,11 @@ if res.v2_stats_response is not None:
 ### Response
 
 **[operations.V2ReadStatsResponse](../../models/operations/v2readstatsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## v2_revert_transaction
 
@@ -1808,12 +1896,10 @@ Revert a ledger transaction by its ID
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2RevertTransactionRequest(
@@ -1838,4 +1924,9 @@ if res.v2_revert_transaction_response is not None:
 ### Response
 
 **[operations.V2RevertTransactionResponse](../../models/operations/v2reverttransactionresponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | 400                    | application/json       |
+| errors.SDKError        | 400-600                | */*                    |

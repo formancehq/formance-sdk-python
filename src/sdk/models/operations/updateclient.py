@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import updateclientrequest as shared_updateclientrequest
-from ..shared import updateclientresponse as shared_updateclientresponse
+from ...models.shared import updateclientrequest as shared_updateclientrequest
+from ...models.shared import updateclientresponse as shared_updateclientresponse
 from typing import Optional
 
 
@@ -21,10 +21,10 @@ class UpdateClientRequest:
 class UpdateClientResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     update_client_response: Optional[shared_updateclientresponse.UpdateClientResponse] = dataclasses.field(default=None)
     r"""Updated client"""
     

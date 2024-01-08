@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import walletserrorresponse as shared_walletserrorresponse
+from ...models.shared import walletserrorresponse as shared_walletserrorresponse
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import Dict, Optional
@@ -30,10 +30,10 @@ class UpdateWalletRequest:
 class UpdateWalletResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     wallets_error_response: Optional[shared_walletserrorresponse.WalletsErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     

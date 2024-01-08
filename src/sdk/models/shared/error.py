@@ -6,7 +6,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from sdk import utils
 
-class ErrorErrorCode(str, Enum):
+class ErrorCode(str, Enum):
     VALIDATION = 'VALIDATION'
     NOT_FOUND = 'NOT_FOUND'
     INTERNAL = 'INTERNAL'
@@ -15,7 +15,7 @@ class ErrorErrorCode(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Error:
-    error_code: ErrorErrorCode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorCode') }})
+    error_code: ErrorCode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorCode') }})
     error_message: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorMessage') }})
     
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import v2migrationinfo as shared_v2migrationinfo
+from .v2migrationinfo import V2MigrationInfo
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import List, Optional
@@ -11,7 +11,7 @@ from typing import List, Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class V2LedgerInfoStorage:
-    migrations: Optional[List[shared_v2migrationinfo.V2MigrationInfo]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('migrations'), 'exclude': lambda f: f is None }})
+    migrations: Optional[List[V2MigrationInfo]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('migrations'), 'exclude': lambda f: f is None }})
     
 
 

@@ -2,6 +2,9 @@
 
 <div align="left">
     <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
+    <a href="https://opensource.org/licenses/MIT">
+        <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
+    </a>
 </div>
 
 
@@ -12,46 +15,45 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 - [ ] ♻️ Refine your SDK quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
 - [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/productionize-sdks/publish-sdks)
 - [ ] ✨ When ready to productionize, delete this section from the README
-<!-- Start SDK Installation -->
-# SDK Installation
+
+<!-- Start SDK Installation [installation] -->
+## SDK Installation
 
 ```bash
 pip install git+<UNSET>.git
 ```
-<!-- End SDK Installation -->
+<!-- End SDK Installation [installation] -->
 
+<!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
-<!-- Start SDK Example Usage -->
 
+### Example
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
-res = s.sdk.get_versions()
+res = s.get_versions()
 
 if res.get_versions_response is not None:
     # handle response
     pass
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->
 
-<!-- Start SDK Available Operations -->
-# Available Resources and Operations
+<!-- Start Available Resources and Operations [operations] -->
+## Available Resources and Operations
 
-## [SDK](docs/sdks/sdk/README.md)
+### [SDK](docs/sdks/sdk/README.md)
 
 * [get_versions](docs/sdks/sdk/README.md#get_versions) - Show stack version information
 * [get_api_auth_well_known_openid_configuration](docs/sdks/sdk/README.md#get_api_auth_well_known_openid_configuration)
 
-## [auth](docs/sdks/auth/README.md)
+### [auth](docs/sdks/auth/README.md)
 
 * [create_client](docs/sdks/auth/README.md#create_client) - Create client
 * [create_secret](docs/sdks/auth/README.md#create_secret) - Add a secret to a client
@@ -64,7 +66,7 @@ if res.get_versions_response is not None:
 * [read_user](docs/sdks/auth/README.md#read_user) - Read user
 * [update_client](docs/sdks/auth/README.md#update_client) - Update client
 
-## [ledger](docs/sdks/ledger/README.md)
+### [ledger](docs/sdks/ledger/README.md)
 
 * [create_transactions](docs/sdks/ledger/README.md#create_transactions) - Create a new batch of transactions to a ledger
 * [add_metadata_on_transaction](docs/sdks/ledger/README.md#add_metadata_on_transaction) - Set the metadata of a transaction by its ID
@@ -108,7 +110,7 @@ if res.get_versions_response is not None:
 * [v2_read_stats](docs/sdks/ledger/README.md#v2_read_stats) - Get statistics from a ledger
 * [v2_revert_transaction](docs/sdks/ledger/README.md#v2_revert_transaction) - Revert a ledger transaction by its ID
 
-## [orchestration](docs/sdks/orchestration/README.md)
+### [orchestration](docs/sdks/orchestration/README.md)
 
 * [cancel_event](docs/sdks/orchestration/README.md#cancel_event) - Cancel a running workflow
 * [create_trigger](docs/sdks/orchestration/README.md#create_trigger) - Create trigger
@@ -146,7 +148,7 @@ if res.get_versions_response is not None:
 * [v2_run_workflow](docs/sdks/orchestration/README.md#v2_run_workflow) - Run workflow
 * [v2_send_event](docs/sdks/orchestration/README.md#v2_send_event) - Send an event to a running workflow
 
-## [payments](docs/sdks/payments/README.md)
+### [payments](docs/sdks/payments/README.md)
 
 * [add_account_to_pool](docs/sdks/payments/README.md#add_account_to_pool) - Add an account to a pool
 * [connectors_transfer](docs/sdks/payments/README.md#connectors_transfer) - Transfer funds between Connector accounts
@@ -188,7 +190,7 @@ if res.get_versions_response is not None:
 * [update_connector_config_v1](docs/sdks/payments/README.md#update_connector_config_v1) - Update the config of a connector
 * [update_metadata](docs/sdks/payments/README.md#update_metadata) - Update metadata
 
-## [reconciliation](docs/sdks/reconciliation/README.md)
+### [reconciliation](docs/sdks/reconciliation/README.md)
 
 * [create_policy](docs/sdks/reconciliation/README.md#create_policy) - Create a policy
 * [delete_policy](docs/sdks/reconciliation/README.md#delete_policy) - Delete a policy
@@ -199,12 +201,12 @@ if res.get_versions_response is not None:
 * [reconcile](docs/sdks/reconciliation/README.md#reconcile) - Reconcile using a policy
 * [reconciliationget_server_info](docs/sdks/reconciliation/README.md#reconciliationget_server_info) - Get server info
 
-## [search](docs/sdks/search/README.md)
+### [search](docs/sdks/search/README.md)
 
 * [search](docs/sdks/search/README.md#search) - Search
 * [searchget_server_info](docs/sdks/search/README.md#searchget_server_info) - Get server info
 
-## [wallets](docs/sdks/wallets/README.md)
+### [wallets](docs/sdks/wallets/README.md)
 
 * [confirm_hold](docs/sdks/wallets/README.md#confirm_hold) - Confirm a hold
 * [create_balance](docs/sdks/wallets/README.md#create_balance) - Create a balance
@@ -223,7 +225,7 @@ if res.get_versions_response is not None:
 * [void_hold](docs/sdks/wallets/README.md#void_hold) - Cancel a hold
 * [walletsget_server_info](docs/sdks/wallets/README.md#walletsget_server_info) - Get server info
 
-## [webhooks](docs/sdks/webhooks/README.md)
+### [webhooks](docs/sdks/webhooks/README.md)
 
 * [activate_config](docs/sdks/webhooks/README.md#activate_config) - Activate one config
 * [change_config_secret](docs/sdks/webhooks/README.md#change_config_secret) - Change the signing secret of a config
@@ -232,35 +234,31 @@ if res.get_versions_response is not None:
 * [get_many_configs](docs/sdks/webhooks/README.md#get_many_configs) - Get many configs
 * [insert_config](docs/sdks/webhooks/README.md#insert_config) - Insert a new config
 * [test_config](docs/sdks/webhooks/README.md#test_config) - Test one config
-<!-- End SDK Available Operations -->
+<!-- End Available Resources and Operations [operations] -->
 
-<!-- Start Dev Containers -->
+<!-- Start Error Handling [errors] -->
+## Error Handling
 
+Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
 
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400,404              | application/json     |
+| errors.SDKError      | 400-600              | */*                  |
 
-<!-- End Dev Containers -->
-
-<!-- Start Error Handling -->
-# Error Handling
-
-Handling errors in your SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
-
-
-## Example
+### Example
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.AddMetadataToAccountRequest(
     request_body={
-        "key": 'string',
+        'key': 'string',
     },
     address='users:001',
     ledger='ledger001',
@@ -269,22 +267,23 @@ req = operations.AddMetadataToAccountRequest(
 res = None
 try:
     res = s.ledger.add_metadata_to_account(req)
-
-except (ErrorResponse) as e:
-    print(e) # handle exception
-
-
+except errors.ErrorResponse as e:
+    print(e)  # handle exception
+    raise(e)
+except errors.SDKError as e:
+    print(e)  # handle exception
+    raise(e)
 
 if res.status_code == 200:
     # handle response
     pass
 ```
-<!-- End Error Handling -->
+<!-- End Error Handling [errors] -->
 
-<!-- Start Server Selection -->
-# Server Selection
+<!-- Start Server Selection [server] -->
+## Server Selection
 
-## Select Server by Index
+### Select Server by Index
 
 You can override the default server globally by passing a server index to the `server_idx: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
@@ -292,22 +291,18 @@ You can override the default server globally by passing a server index to the `s
 | - | ------ | --------- |
 | 0 | `http://localhost` | None |
 
-For example:
-
+#### Example
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
-    server_idx=0
+    server_idx=0,
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
-res = s.sdk.get_versions()
+res = s.get_versions()
 
 if res.get_versions_response is not None:
     # handle response
@@ -315,39 +310,32 @@ if res.get_versions_response is not None:
 ```
 
 
-## Override Server URL Per-Client
+### Override Server URL Per-Client
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
-
-
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
-    server_url="http://localhost"
+    server_url="http://localhost",
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
-res = s.sdk.get_versions()
+res = s.get_versions()
 
 if res.get_versions_response is not None:
     # handle response
     pass
 ```
-<!-- End Server Selection -->
+<!-- End Server Selection [server] -->
 
-<!-- Start Custom HTTP Client -->
-# Custom HTTP Client
+<!-- Start Custom HTTP Client [http-client] -->
+## Custom HTTP Client
 
 The Python SDK makes API calls using the (requests)[https://pypi.org/project/requests/] HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
 
-
-For example, you could specify a header for every request that your sdk makes as follows:
-
+For example, you could specify a header for every request that this sdk makes as follows:
 ```python
 import sdk
 import requests
@@ -356,9 +344,35 @@ http_client = requests.Session()
 http_client.headers.update({'x-custom-header': 'someValue'})
 s = sdk.SDK(client: http_client)
 ```
+<!-- End Custom HTTP Client [http-client] -->
+
+<!-- Start Authentication [security] -->
+## Authentication
+
+### Per-Client Security Schemes
+
+This SDK supports the following security scheme globally:
+
+| Name            | Type            | Scheme          |
+| --------------- | --------------- | --------------- |
+| `authorization` | oauth2          | OAuth2 token    |
+
+To authenticate with the API the `authorization` parameter must be set when initializing the SDK client instance. For example:
+```python
+import sdk
+
+s = sdk.SDK(
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+)
 
 
-<!-- End Custom HTTP Client -->
+res = s.get_versions()
+
+if res.get_versions_response is not None:
+    # handle response
+    pass
+```
+<!-- End Authentication [security] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

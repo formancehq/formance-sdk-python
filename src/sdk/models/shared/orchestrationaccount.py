@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import volume as shared_volume
+from .volume import Volume
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import Dict, Optional
@@ -13,7 +13,7 @@ from typing import Dict, Optional
 class OrchestrationAccount:
     address: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('address') }})
     metadata: Dict[str, str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata') }})
-    effective_volumes: Optional[Dict[str, shared_volume.Volume]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('effectiveVolumes'), 'exclude': lambda f: f is None }})
-    volumes: Optional[Dict[str, shared_volume.Volume]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('volumes'), 'exclude': lambda f: f is None }})
+    effective_volumes: Optional[Dict[str, Volume]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('effectiveVolumes'), 'exclude': lambda f: f is None }})
+    volumes: Optional[Dict[str, Volume]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('volumes'), 'exclude': lambda f: f is None }})
     
 

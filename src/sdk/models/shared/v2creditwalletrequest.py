@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import v2ledgeraccountsubject as shared_v2ledgeraccountsubject
-from ..shared import v2monetary as shared_v2monetary
-from ..shared import v2walletsubject as shared_v2walletsubject
+from .v2ledgeraccountsubject import V2LedgerAccountSubject
+from .v2monetary import V2Monetary
+from .v2walletsubject import V2WalletSubject
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import Dict, List, Optional, Union
@@ -13,10 +13,10 @@ from typing import Dict, List, Optional, Union
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class V2CreditWalletRequest:
-    amount: shared_v2monetary.V2Monetary = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('amount') }})
+    amount: V2Monetary = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('amount') }})
     metadata: Dict[str, str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata') }})
     r"""Metadata associated with the wallet."""
-    sources: List[Union[shared_v2ledgeraccountsubject.V2LedgerAccountSubject, shared_v2walletsubject.V2WalletSubject]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sources') }})
+    sources: List[Union[V2LedgerAccountSubject, V2WalletSubject]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sources') }})
     balance: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('balance'), 'exclude': lambda f: f is None }})
     r"""The balance to credit"""
     reference: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reference'), 'exclude': lambda f: f is None }})

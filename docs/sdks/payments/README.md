@@ -54,9 +54,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.AddAccountToPoolRequest(
@@ -83,7 +81,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.AddAccountToPoolResponse](../../models/operations/addaccounttopoolresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## connectors_transfer
 
@@ -96,9 +98,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ConnectorsTransferRequest(
@@ -128,7 +128,11 @@ if res.transfer_response is not None:
 ### Response
 
 **[operations.ConnectorsTransferResponse](../../models/operations/connectorstransferresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## create_bank_account
 
@@ -141,16 +145,14 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = shared.BankAccountRequest(
     connector_id='string',
     country='GB',
     metadata={
-        "key": 'string',
+        'key': 'string',
     },
     name='My account',
 )
@@ -172,7 +174,11 @@ if res.bank_account_response is not None:
 ### Response
 
 **[operations.CreateBankAccountResponse](../../models/operations/createbankaccountresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## create_payment
 
@@ -181,21 +187,19 @@ Create a payment
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
+import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = shared.PaymentRequest(
     amount=100,
     asset='USD',
     connector_id='string',
-    created_at=dateutil.parser.isoparse('2023-11-09T02:12:55.787Z'),
+    created_at=dateutil.parser.isoparse('2024-11-09T01:03:21.153Z'),
     reference='string',
     scheme=shared.PaymentScheme.GOOGLE_PAY,
     status=shared.PaymentStatus.REFUNDED,
@@ -219,7 +223,11 @@ if res.payment_response is not None:
 ### Response
 
 **[operations.CreatePaymentResponse](../../models/operations/createpaymentresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## create_pool
 
@@ -232,9 +240,7 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = shared.PoolRequest(
@@ -261,7 +267,11 @@ if res.pool_response is not None:
 ### Response
 
 **[operations.CreatePoolResponse](../../models/operations/createpoolresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## create_transfer_initiation
 
@@ -270,14 +280,12 @@ Create a transfer initiation
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
+import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = shared.TransferInitiationRequest(
@@ -286,10 +294,10 @@ req = shared.TransferInitiationRequest(
     description='Multi-tiered incremental methodology',
     destination_account_id='string',
     metadata={
-        "key": 'string',
+        'key': 'string',
     },
     reference='XXX',
-    scheduled_at=dateutil.parser.isoparse('2022-05-04T12:05:29.406Z'),
+    scheduled_at=dateutil.parser.isoparse('2023-05-04T22:47:54.364Z'),
     source_account_id='string',
     type=shared.TransferInitiationRequestType.TRANSFER,
     validated=False,
@@ -312,7 +320,11 @@ if res.transfer_initiation_response is not None:
 ### Response
 
 **[operations.CreateTransferInitiationResponse](../../models/operations/createtransferinitiationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## delete_pool
 
@@ -322,12 +334,10 @@ Delete a pool by its id.
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.DeletePoolRequest(
@@ -351,7 +361,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeletePoolResponse](../../models/operations/deletepoolresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## delete_transfer_initiation
 
@@ -361,12 +375,10 @@ Delete a transfer initiation by its id.
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.DeleteTransferInitiationRequest(
@@ -390,7 +402,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteTransferInitiationResponse](../../models/operations/deletetransferinitiationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_account_balances
 
@@ -399,14 +415,12 @@ Get account balances
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
-from sdk.models import operations, shared
+import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetAccountBalancesRequest(
@@ -434,7 +448,11 @@ if res.balances_cursor is not None:
 ### Response
 
 **[operations.GetAccountBalancesResponse](../../models/operations/getaccountbalancesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_bank_account
 
@@ -444,12 +462,10 @@ Get a bank account created by user on Formance
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetBankAccountRequest(
@@ -473,7 +489,11 @@ if res.bank_account_response is not None:
 ### Response
 
 **[operations.GetBankAccountResponse](../../models/operations/getbankaccountresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## ~~get_connector_task~~
 
@@ -488,9 +508,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetConnectorTaskRequest(
@@ -515,7 +533,11 @@ if res.task_response is not None:
 ### Response
 
 **[operations.GetConnectorTaskResponse](../../models/operations/getconnectortaskresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_connector_task_v1
 
@@ -528,9 +550,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetConnectorTaskV1Request(
@@ -556,7 +576,11 @@ if res.task_response is not None:
 ### Response
 
 **[operations.GetConnectorTaskV1Response](../../models/operations/getconnectortaskv1response.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_payment
 
@@ -566,12 +590,10 @@ Get a payment
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetPaymentRequest(
@@ -595,7 +617,11 @@ if res.payment_response is not None:
 ### Response
 
 **[operations.GetPaymentResponse](../../models/operations/getpaymentresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_pool
 
@@ -605,12 +631,10 @@ Get a Pool
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetPoolRequest(
@@ -634,7 +658,11 @@ if res.pool_response is not None:
 ### Response
 
 **[operations.GetPoolResponse](../../models/operations/getpoolresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_pool_balances
 
@@ -643,18 +671,16 @@ Get pool balances
 ### Example Usage
 
 ```python
-import sdk
 import dateutil.parser
-from sdk.models import operations, shared
+import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetPoolBalancesRequest(
-    at=dateutil.parser.isoparse('2022-05-04T19:57:32.195Z'),
+    at=dateutil.parser.isoparse('2023-05-05T06:40:23.018Z'),
     pool_id='string',
 )
 
@@ -675,7 +701,11 @@ if res.pool_balances_response is not None:
 ### Response
 
 **[operations.GetPoolBalancesResponse](../../models/operations/getpoolbalancesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_transfer_initiation
 
@@ -685,12 +715,10 @@ Get a transfer initiation
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.GetTransferInitiationRequest(
@@ -714,7 +742,11 @@ if res.transfer_initiation_response is not None:
 ### Response
 
 **[operations.GetTransferInitiationResponse](../../models/operations/gettransferinitiationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## install_connector
 
@@ -727,17 +759,15 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.InstallConnectorRequest(
-    shared.WiseConfig(
-        api_key='XXX',
-        name='My Wise Account',
-        polling_period='60s',
-    ),
+    connector_config=shared.WiseConfig(
+    api_key='XXX',
+    name='My Wise Account',
+    polling_period='60s',
+),
     connector=shared.Connector.ATLAR,
 )
 
@@ -758,7 +788,11 @@ if res.connector_response is not None:
 ### Response
 
 **[operations.InstallConnectorResponse](../../models/operations/installconnectorresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_all_connectors
 
@@ -768,12 +802,9 @@ List all installed connectors.
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -788,7 +819,11 @@ if res.connectors_response is not None:
 ### Response
 
 **[operations.ListAllConnectorsResponse](../../models/operations/listallconnectorsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_bank_accounts
 
@@ -798,12 +833,10 @@ List all bank accounts created by user on Formance.
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListBankAccountsRequest(
@@ -830,7 +863,11 @@ if res.bank_accounts_cursor is not None:
 ### Response
 
 **[operations.ListBankAccountsResponse](../../models/operations/listbankaccountsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_configs_available_connectors
 
@@ -840,12 +877,9 @@ List the configs of each available connector.
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -860,7 +894,11 @@ if res.connectors_configs_response is not None:
 ### Response
 
 **[operations.ListConfigsAvailableConnectorsResponse](../../models/operations/listconfigsavailableconnectorsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## ~~list_connector_tasks~~
 
@@ -875,9 +913,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListConnectorTasksRequest(
@@ -902,7 +938,11 @@ if res.tasks_cursor is not None:
 ### Response
 
 **[operations.ListConnectorTasksResponse](../../models/operations/listconnectortasksresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_connector_tasks_v1
 
@@ -915,9 +955,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListConnectorTasksV1Request(
@@ -943,7 +981,11 @@ if res.tasks_cursor is not None:
 ### Response
 
 **[operations.ListConnectorTasksV1Response](../../models/operations/listconnectortasksv1response.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_payments
 
@@ -953,12 +995,10 @@ List payments
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListPaymentsRequest(
@@ -985,7 +1025,11 @@ if res.payments_cursor is not None:
 ### Response
 
 **[operations.ListPaymentsResponse](../../models/operations/listpaymentsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_pools
 
@@ -995,12 +1039,10 @@ List Pools
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListPoolsRequest(
@@ -1027,7 +1069,11 @@ if res.pools_cursor is not None:
 ### Response
 
 **[operations.ListPoolsResponse](../../models/operations/listpoolsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_transfer_initiations
 
@@ -1037,12 +1083,10 @@ List Transfer Initiations
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ListTransferInitiationsRequest(
@@ -1069,7 +1113,11 @@ if res.transfer_initiations_cursor is not None:
 ### Response
 
 **[operations.ListTransferInitiationsResponse](../../models/operations/listtransferinitiationsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## paymentsget_account
 
@@ -1079,12 +1127,10 @@ Get an account
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.PaymentsgetAccountRequest(
@@ -1108,7 +1154,11 @@ if res.payments_account_response is not None:
 ### Response
 
 **[operations.PaymentsgetAccountResponse](../../models/operations/paymentsgetaccountresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## paymentsget_server_info
 
@@ -1118,12 +1168,9 @@ Get server info
 
 ```python
 import sdk
-from sdk.models import shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 
@@ -1138,7 +1185,11 @@ if res.server_info is not None:
 ### Response
 
 **[operations.PaymentsgetServerInfoResponse](../../models/operations/paymentsgetserverinforesponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## paymentslist_accounts
 
@@ -1148,12 +1199,10 @@ List accounts
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.PaymentslistAccountsRequest(
@@ -1180,7 +1229,11 @@ if res.accounts_cursor is not None:
 ### Response
 
 **[operations.PaymentslistAccountsResponse](../../models/operations/paymentslistaccountsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## ~~read_connector_config~~
 
@@ -1195,9 +1248,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ReadConnectorConfigRequest(
@@ -1221,7 +1272,11 @@ if res.connector_config_response is not None:
 ### Response
 
 **[operations.ReadConnectorConfigResponse](../../models/operations/readconnectorconfigresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## read_connector_config_v1
 
@@ -1234,9 +1289,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ReadConnectorConfigV1Request(
@@ -1261,7 +1314,11 @@ if res.connector_config_response is not None:
 ### Response
 
 **[operations.ReadConnectorConfigV1Response](../../models/operations/readconnectorconfigv1response.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## remove_account_from_pool
 
@@ -1271,12 +1328,10 @@ Remove an account from a pool by its id.
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.RemoveAccountFromPoolRequest(
@@ -1301,7 +1356,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.RemoveAccountFromPoolResponse](../../models/operations/removeaccountfrompoolresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## ~~reset_connector~~
 
@@ -1318,9 +1377,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ResetConnectorRequest(
@@ -1344,7 +1401,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.ResetConnectorResponse](../../models/operations/resetconnectorresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## reset_connector_v1
 
@@ -1359,9 +1420,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ResetConnectorV1Request(
@@ -1386,7 +1445,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.ResetConnectorV1Response](../../models/operations/resetconnectorv1response.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## retry_transfer_initiation
 
@@ -1396,12 +1459,10 @@ Retry a failed transfer initiation
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.RetryTransferInitiationRequest(
@@ -1425,7 +1486,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.RetryTransferInitiationResponse](../../models/operations/retrytransferinitiationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## udpate_transfer_initiation_status
 
@@ -1438,14 +1503,12 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.UdpateTransferInitiationStatusRequest(
     update_transfer_initiation_status_request=shared.UpdateTransferInitiationStatusRequest(
-        status=shared.UpdateTransferInitiationStatusRequestStatus.VALIDATED,
+        status=shared.Status.VALIDATED,
     ),
     transfer_id='string',
 )
@@ -1467,7 +1530,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.UdpateTransferInitiationStatusResponse](../../models/operations/udpatetransferinitiationstatusresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## ~~uninstall_connector~~
 
@@ -1482,9 +1549,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.UninstallConnectorRequest(
@@ -1508,7 +1573,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.UninstallConnectorResponse](../../models/operations/uninstallconnectorresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## uninstall_connector_v1
 
@@ -1521,9 +1590,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.UninstallConnectorV1Request(
@@ -1548,7 +1615,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.UninstallConnectorV1Response](../../models/operations/uninstallconnectorv1response.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## update_connector_config_v1
 
@@ -1561,18 +1632,16 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.UpdateConnectorConfigV1Request(
-    shared.StripeConfig(
-        api_key='XXX',
-        name='My Stripe Account',
-        page_size=50,
-        polling_period='60s',
-    ),
+    connector_config=shared.StripeConfig(
+    api_key='XXX',
+    name='My Stripe Account',
+    page_size=50,
+    polling_period='60s',
+),
     connector=shared.Connector.STRIPE,
     connector_id='string',
 )
@@ -1594,7 +1663,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.UpdateConnectorConfigV1Response](../../models/operations/updateconnectorconfigv1response.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## update_metadata
 
@@ -1604,17 +1677,15 @@ Update metadata
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
-    security=shared.Security(
-        authorization="",
-    ),
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.UpdateMetadataRequest(
     request_body={
-        "key": 'string',
+        'key': 'string',
     },
     payment_id='string',
 )
@@ -1636,4 +1707,8 @@ if res.status_code == 200:
 ### Response
 
 **[operations.UpdateMetadataResponse](../../models/operations/updatemetadataresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

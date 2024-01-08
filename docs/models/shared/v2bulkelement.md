@@ -3,27 +3,27 @@
 
 ## Supported Types
 
-### V2BulkElementV2BulkElementAddMetadata
+### V2BulkElementAddMetadata
 
 ```python
-v2BulkElement: shared.V2BulkElementV2BulkElementAddMetadata = /* values here */
+v2BulkElement: shared.V2BulkElementAddMetadata = /* values here */
 ```
 
-### V2BulkElementV2BulkElementCreateTransaction
+### V2BulkElementCreateTransaction
 
 ```python
-v2BulkElement: shared.V2BulkElementV2BulkElementCreateTransaction = /* values here */
+v2BulkElement: shared.V2BulkElementCreateTransaction = /* values here */
 ```
 
-### V2BulkElementV2BulkElementDeleteMetadata
+### V2BulkElementDeleteMetadata
 
 ```python
-v2BulkElement: shared.V2BulkElementV2BulkElementDeleteMetadata = /* values here */
+v2BulkElement: shared.V2BulkElementDeleteMetadata = /* values here */
 ```
 
-### V2BulkElementV2BulkElementRevertTransaction
+### V2BulkElementRevertTransaction
 
 ```python
-v2BulkElement: shared.V2BulkElementV2BulkElementRevertTransaction = /* values here */
+v2BulkElement: shared.V2BulkElementRevertTransaction = /* values here */
 ```
 

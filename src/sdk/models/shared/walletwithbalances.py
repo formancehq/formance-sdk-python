@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import dateutil.parser
-from ..shared import assetholder as shared_assetholder
+from .assetholder import AssetHolder
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from sdk import utils
@@ -13,7 +13,7 @@ from typing import Dict
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class WalletWithBalancesBalances:
-    main: shared_assetholder.AssetHolder = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('main') }})
+    main: AssetHolder = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('main') }})
     
 
 

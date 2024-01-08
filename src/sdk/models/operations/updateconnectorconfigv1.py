@@ -3,18 +3,18 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import adyenconfig as shared_adyenconfig
-from ..shared import atlarconfig as shared_atlarconfig
-from ..shared import bankingcircleconfig as shared_bankingcircleconfig
-from ..shared import connector as shared_connector
-from ..shared import currencycloudconfig as shared_currencycloudconfig
-from ..shared import dummypayconfig as shared_dummypayconfig
-from ..shared import mangopayconfig as shared_mangopayconfig
-from ..shared import modulrconfig as shared_modulrconfig
-from ..shared import moneycorpconfig as shared_moneycorpconfig
-from ..shared import stripeconfig as shared_stripeconfig
-from ..shared import wiseconfig as shared_wiseconfig
-from typing import Optional, Union
+from ...models.shared import adyenconfig as shared_adyenconfig
+from ...models.shared import atlarconfig as shared_atlarconfig
+from ...models.shared import bankingcircleconfig as shared_bankingcircleconfig
+from ...models.shared import connector as shared_connector
+from ...models.shared import currencycloudconfig as shared_currencycloudconfig
+from ...models.shared import dummypayconfig as shared_dummypayconfig
+from ...models.shared import mangopayconfig as shared_mangopayconfig
+from ...models.shared import modulrconfig as shared_modulrconfig
+from ...models.shared import moneycorpconfig as shared_moneycorpconfig
+from ...models.shared import stripeconfig as shared_stripeconfig
+from ...models.shared import wiseconfig as shared_wiseconfig
+from typing import Union
 
 
 @dataclasses.dataclass
@@ -32,9 +32,9 @@ class UpdateConnectorConfigV1Request:
 class UpdateConnectorConfigV1Response:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     
 
