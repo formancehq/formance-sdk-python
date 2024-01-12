@@ -3,6 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import dateutil.parser
+from .transferinitiationadjusments import TransferInitiationAdjusments
 from .transferinitiationpayments import TransferInitiationPayments
 from .transferinitiationstatus import TransferInitiationStatus
 from dataclasses_json import Undefined, dataclass_json
@@ -32,8 +33,8 @@ class TransferInitiation:
     source_account_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceAccountID') }})
     status: TransferInitiationStatus = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status') }})
     type: TransferInitiationType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
-    updated_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('updatedAt'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     metadata: Optional[Dict[str, str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata') }})
+    related_adjustments: Optional[List[TransferInitiationAdjusments]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('relatedAdjustments'), 'exclude': lambda f: f is None }})
     related_payments: Optional[List[TransferInitiationPayments]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('relatedPayments'), 'exclude': lambda f: f is None }})
     
 

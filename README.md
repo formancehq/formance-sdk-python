@@ -59,7 +59,6 @@ if res.get_versions_response is not None:
 * [create_secret](docs/sdks/auth/README.md#create_secret) - Add a secret to a client
 * [delete_client](docs/sdks/auth/README.md#delete_client) - Delete client
 * [delete_secret](docs/sdks/auth/README.md#delete_secret) - Delete a secret from a client
-* [get_server_info](docs/sdks/auth/README.md#get_server_info) - Get server info
 * [list_clients](docs/sdks/auth/README.md#list_clients) - List clients
 * [list_users](docs/sdks/auth/README.md#list_users) - List users
 * [read_client](docs/sdks/auth/README.md#read_client) - Read client
@@ -244,7 +243,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400,404              | application/json     |
-| errors.SDKError      | 400-600              | */*                  |
+| errors.SDKError      | 4x-5xx               | */*                  |
 
 ### Example
 
@@ -333,7 +332,7 @@ if res.get_versions_response is not None:
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
 
-The Python SDK makes API calls using the (requests)[https://pypi.org/project/requests/] HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
+The Python SDK makes API calls using the [requests](https://pypi.org/project/requests/) HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
 
 For example, you could specify a header for every request that this sdk makes as follows:
 ```python

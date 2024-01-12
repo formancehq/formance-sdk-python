@@ -10,3 +10,4 @@ class TransferInitiationStatus(str, Enum):
     FAILED = 'FAILED'
     REJECTED = 'REJECTED'
     VALIDATED = 'VALIDATED'
+    RETRIED = 'RETRIED'

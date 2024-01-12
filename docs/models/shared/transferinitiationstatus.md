@@ -11,3 +11,4 @@
 | `FAILED`                 | FAILED                   |
 | `REJECTED`               | REJECTED                 |
 | `VALIDATED`              | VALIDATED                |
+| `RETRIED`                | RETRIED                  |

@@ -7,7 +7,6 @@
 * [create_secret](#create_secret) - Add a secret to a client
 * [delete_client](#delete_client) - Delete client
 * [delete_secret](#delete_secret) - Delete a secret from a client
-* [get_server_info](#get_server_info) - Get server info
 * [list_clients](#list_clients) - List clients
 * [list_users](#list_users) - List users
 * [read_client](#read_client) - Read client
@@ -65,7 +64,7 @@ if res.create_client_response is not None:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 400-600         | */*             |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## create_secret
 
@@ -112,7 +111,7 @@ if res.create_secret_response is not None:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 400-600         | */*             |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## delete_client
 
@@ -153,7 +152,7 @@ if res.status_code == 200:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 400-600         | */*             |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## delete_secret
 
@@ -195,38 +194,7 @@ if res.status_code == 200:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 400-600         | */*             |
-
-## get_server_info
-
-Get server info
-
-### Example Usage
-
-```python
-import sdk
-
-s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
-)
-
-
-res = s.auth.get_server_info()
-
-if res.server_info is not None:
-    # handle response
-    pass
-```
-
-
-### Response
-
-**[operations.GetServerInfoResponse](../../models/operations/getserverinforesponse.md)**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 400-600         | */*             |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## list_clients
 
@@ -257,7 +225,7 @@ if res.list_clients_response is not None:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 400-600         | */*             |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## list_users
 
@@ -288,7 +256,7 @@ if res.list_users_response is not None:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 400-600         | */*             |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## read_client
 
@@ -329,7 +297,7 @@ if res.read_client_response is not None:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 400-600         | */*             |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## read_user
 
@@ -370,7 +338,7 @@ if res.read_user_response is not None:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 400-600         | */*             |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## update_client
 
@@ -426,4 +394,4 @@ if res.update_client_response is not None:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 400-600         | */*             |
+| errors.SDKError | 4x-5xx          | */*             |

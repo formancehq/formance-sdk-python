@@ -50,7 +50,7 @@ if res.config_response is not None:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 400-600         | */*             |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## change_config_secret
 
@@ -99,7 +99,7 @@ if res.config_response is not None:
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.WebhooksErrorResponse | 400                          | application/json             |
-| errors.SDKError              | 400-600                      | */*                          |
+| errors.SDKError              | 4x-5xx                       | */*                          |
 
 ## deactivate_config
 
@@ -141,7 +141,7 @@ if res.config_response is not None:
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.WebhooksErrorResponse | 404                          | application/json             |
-| errors.SDKError              | 400-600                      | */*                          |
+| errors.SDKError              | 4x-5xx                       | */*                          |
 
 ## delete_config
 
@@ -183,7 +183,7 @@ if res.status_code == 200:
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.WebhooksErrorResponse | 400,404                      | application/json             |
-| errors.SDKError              | 400-600                      | */*                          |
+| errors.SDKError              | 4x-5xx                       | */*                          |
 
 ## get_many_configs
 
@@ -225,7 +225,7 @@ if res.configs_response is not None:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 400-600         | */*             |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## insert_config
 
@@ -281,7 +281,7 @@ if res.config_response is not None:
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.WebhooksErrorResponse | 400                          | application/json             |
-| errors.SDKError              | 400-600                      | */*                          |
+| errors.SDKError              | 4x-5xx                       | */*                          |
 
 ## test_config
 
@@ -323,4 +323,4 @@ if res.attempt_response is not None:
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.WebhooksErrorResponse | 400,404                      | application/json             |
-| errors.SDKError              | 400-600                      | */*                          |
+| errors.SDKError              | 4x-5xx                       | */*                          |
