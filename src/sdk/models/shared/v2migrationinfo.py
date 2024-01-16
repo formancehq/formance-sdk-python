@@ -10,8 +10,8 @@ from sdk import utils
 from typing import Optional
 
 class V2MigrationInfoState(str, Enum):
-    TO_DO = 'to do'
-    DONE = 'done'
+    TO_DO = 'TO DO'
+    DONE = 'DONE'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

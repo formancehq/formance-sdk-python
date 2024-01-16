@@ -5,5 +5,5 @@
 
 | Name    | Value   |
 | ------- | ------- |
-| `TO_DO` | to do   |
-| `DONE`  | done    |
+| `TO_DO` | TO DO   |
+| `DONE`  | DONE    |

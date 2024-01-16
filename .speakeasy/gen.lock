@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: 6e04c947-cac7-4754-b032-f03c03ebeaa8
+id: 48d9323f-a658-4e97-b179-9d7dd16d109c
 management:
-  docChecksum: 95f392ca415ee81efbcf27592234e0ec
-  docVersion: v2.0.0-beta.8
+  docChecksum: 19f45ae5d8990dc505885da49871ae14
+  docVersion: v2.0.0-beta.9
   speakeasyVersion: internal
   generationVersion: 2.230.1
-  releaseVersion: v2.0.0-beta.8
-  configChecksum: d4af03d061c90d570c9cbc4c13104196
+  releaseVersion: v2.0.0-beta.9
+  configChecksum: 5cf44a2363d6197607824355f2092fa4
 features:
   python:
     constsAndDefaults: 0.1.2
