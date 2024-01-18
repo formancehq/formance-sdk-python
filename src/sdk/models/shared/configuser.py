@@ -12,6 +12,7 @@ from typing import List, Optional
 class ConfigUser:
     endpoint: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint') }})
     event_types: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('eventTypes') }})
+    name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name'), 'exclude': lambda f: f is None }})
     secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret'), 'exclude': lambda f: f is None }})
     
 

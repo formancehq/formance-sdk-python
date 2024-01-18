@@ -256,6 +256,7 @@ req = shared.ConfigUser(
         'TYPE1',
         'TYPE2',
     ],
+    name='customer_payment',
     secret='V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
 )
 

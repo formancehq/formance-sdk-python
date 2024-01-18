@@ -12,7 +12,7 @@ from .wallets import Wallets
 from .webhooks import Webhooks
 from sdk import utils
 from sdk.models import errors, operations, shared
-from typing import Dict, Optional
+from typing import Callable, Dict, Optional, Union
 
 class SDK:
     r"""Formance Stack API: Open, modular foundation for unique payments flows
@@ -39,7 +39,7 @@ class SDK:
     sdk_configuration: SDKConfiguration
 
     def __init__(self,
-                 authorization: str ,
+                 authorization: Union[str, Callable[[], str]],
                  server_idx: int = None,
                  server_url: str = None,
                  url_params: Dict[str, str] = None,
@@ -49,7 +49,7 @@ class SDK:
         """Instantiates the SDK configuring it with the provided parameters.
         
         :param authorization: The authorization required for authentication
-        :type authorization: Union[str,Callable[[], str]]
+        :type authorization: Union[str, Callable[[], str]]
         :param server_idx: The index of the server to use for all operations
         :type server_idx: int
         :param server_url: The server URL to use for all operations
@@ -64,7 +64,11 @@ class SDK:
         if client is None:
             client = requests_http.Session()
         
-        security = shared.Security(authorization = authorization)
+        if callable(authorization):
+            def security():
+                return shared.Security(authorization = authorization())
+        else:
+            security = shared.Security(authorization = authorization)
         
         if server_url is not None:
             if url_params is not None:
