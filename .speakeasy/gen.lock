@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: 279c91d4-df40-4e5a-9dff-3f12a0bcdaac
+id: 688a7fb9-f540-4733-a097-31d5065b5f2e
 management:
-  docChecksum: bf3929cd2ca1ce376006df43bc2705f2
-  docVersion: v2.0.0-beta.10
+  docChecksum: 59f508b388b2e40561de26a8dcd854b9
+  docVersion: v2.0.0-beta.11
   speakeasyVersion: internal
-  generationVersion: 2.234.1
-  releaseVersion: v2.0.0-beta.10
-  configChecksum: edb8f171cc163bbc58373c7bedad5b99
+  generationVersion: 2.237.2
+  releaseVersion: v2.0.0-beta.11
+  configChecksum: 000d5d72a4e31d501d11f165d1addbef
 features:
   python:
     constsAndDefaults: 0.1.2
@@ -14,7 +14,7 @@ features:
     deprecations: 2.81.1
     errors: 2.81.8
     getRequestBodies: 2.81.1
-    globalSecurity: 2.83.1
+    globalSecurity: 2.83.2
     globalServerURLs: 2.82.1
     groups: 2.81.2
     ignores: 2.81.1
