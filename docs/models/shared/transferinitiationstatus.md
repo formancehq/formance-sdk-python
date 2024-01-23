@@ -11,4 +11,9 @@
 | `FAILED`                 | FAILED                   |
 | `REJECTED`               | REJECTED                 |
 | `VALIDATED`              | VALIDATED                |
-| `RETRIED`                | RETRIED                  |
+| `ASK_RETRIED`            | ASK_RETRIED              |
+| `ASK_REVERSED`           | ASK_REVERSED             |
+| `REVERSE_PROCESSING`     | REVERSE_PROCESSING       |
+| `REVERSE_FAILED`         | REVERSE_FAILED           |
+| `PARTIALLY_REVERSED`     | PARTIALLY_REVERSED       |
+| `REVERSED`               | REVERSED                 |

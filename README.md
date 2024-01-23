@@ -183,6 +183,7 @@ if res.get_versions_response is not None:
 * [~~reset_connector~~](docs/sdks/payments/README.md#reset_connector) - Reset a connector :warning: **Deprecated**
 * [reset_connector_v1](docs/sdks/payments/README.md#reset_connector_v1) - Reset a connector
 * [retry_transfer_initiation](docs/sdks/payments/README.md#retry_transfer_initiation) - Retry a failed transfer initiation
+* [reverse_transfer_initiation](docs/sdks/payments/README.md#reverse_transfer_initiation) - Reverse a transfer initiation
 * [udpate_transfer_initiation_status](docs/sdks/payments/README.md#udpate_transfer_initiation_status) - Update the status of a transfer initiation
 * [~~uninstall_connector~~](docs/sdks/payments/README.md#uninstall_connector) - Uninstall a connector :warning: **Deprecated**
 * [uninstall_connector_v1](docs/sdks/payments/README.md#uninstall_connector_v1) - Uninstall a connector

@@ -37,6 +37,7 @@
 * [~~reset_connector~~](#reset_connector) - Reset a connector :warning: **Deprecated**
 * [reset_connector_v1](#reset_connector_v1) - Reset a connector
 * [retry_transfer_initiation](#retry_transfer_initiation) - Retry a failed transfer initiation
+* [reverse_transfer_initiation](#reverse_transfer_initiation) - Reverse a transfer initiation
 * [udpate_transfer_initiation_status](#udpate_transfer_initiation_status) - Update the status of a transfer initiation
 * [~~uninstall_connector~~](#uninstall_connector) - Uninstall a connector :warning: **Deprecated**
 * [uninstall_connector_v1](#uninstall_connector_v1) - Uninstall a connector
@@ -1486,6 +1487,56 @@ if res.status_code == 200:
 ### Response
 
 **[operations.RetryTransferInitiationResponse](../../models/operations/retrytransferinitiationresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
+
+## reverse_transfer_initiation
+
+Reverse transfer initiation
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK(
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+)
+
+req = operations.ReverseTransferInitiationRequest(
+    reverse_transfer_initiation_request=shared.ReverseTransferInitiationRequest(
+        amount=327549,
+        asset='USD',
+        description='Streamlined high-level local area network',
+        metadata={
+            'key': 'string',
+        },
+        reference='XXX',
+    ),
+    transfer_id='string',
+)
+
+res = s.payments.reverse_transfer_initiation(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                  | [operations.ReverseTransferInitiationRequest](../../models/operations/reversetransferinitiationrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+
+
+### Response
+
+**[operations.ReverseTransferInitiationResponse](../../models/operations/reversetransferinitiationresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

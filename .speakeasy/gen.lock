@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: dee57e43-0270-46a8-bba7-ed3d828bda1b
+id: d72af736-0d1d-44d1-b0dd-854f811ffba2
 management:
-  docChecksum: 62528734db388452295a3642ad792516
-  docVersion: v2.0.0-beta.12
+  docChecksum: e3879c02fea2e4914c9d924447572b5d
+  docVersion: v2.0.0-beta.13
   speakeasyVersion: internal
   generationVersion: 2.237.2
-  releaseVersion: v2.0.0-beta.12
-  configChecksum: 60037c8b38f1cb8bfe5220914d04c227
+  releaseVersion: v2.0.0-beta.13
+  configChecksum: c06828e012788e0a66b0d7d13ca57a32
 features:
   python:
     constsAndDefaults: 0.1.2
@@ -159,6 +159,7 @@ generatedFiles:
   - src/sdk/models/operations/resetconnector.py
   - src/sdk/models/operations/resetconnectorv1.py
   - src/sdk/models/operations/retrytransferinitiation.py
+  - src/sdk/models/operations/reversetransferinitiation.py
   - src/sdk/models/operations/udpatetransferinitiationstatus.py
   - src/sdk/models/operations/uninstallconnector.py
   - src/sdk/models/operations/uninstallconnectorv1.py
@@ -477,6 +478,7 @@ generatedFiles:
   - src/sdk/models/shared/paymentsaccount.py
   - src/sdk/models/shared/accountscursor.py
   - src/sdk/models/shared/connectorconfigresponse.py
+  - src/sdk/models/shared/reversetransferinitiationrequest.py
   - src/sdk/models/shared/updatetransferinitiationstatusrequest.py
   - src/sdk/models/shared/reconciliationerrorresponse.py
   - src/sdk/models/shared/policyresponse.py
@@ -747,6 +749,8 @@ generatedFiles:
   - docs/models/operations/resetconnectorv1response.md
   - docs/models/operations/retrytransferinitiationrequest.md
   - docs/models/operations/retrytransferinitiationresponse.md
+  - docs/models/operations/reversetransferinitiationrequest.md
+  - docs/models/operations/reversetransferinitiationresponse.md
   - docs/models/operations/udpatetransferinitiationstatusrequest.md
   - docs/models/operations/udpatetransferinitiationstatusresponse.md
   - docs/models/operations/uninstallconnectorrequest.md
@@ -1186,6 +1190,7 @@ generatedFiles:
   - docs/models/shared/cursor.md
   - docs/models/shared/accountscursor.md
   - docs/models/shared/connectorconfigresponse.md
+  - docs/models/shared/reversetransferinitiationrequest.md
   - docs/models/shared/status.md
   - docs/models/shared/updatetransferinitiationstatusrequest.md
   - docs/models/shared/reconciliationerrorresponse.md

@@ -28,6 +28,7 @@ class TransferInitiation:
     destination_account_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationAccountID') }})
     error: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('error') }})
     id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id') }})
+    initial_amount: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initialAmount') }})
     reference: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reference') }})
     scheduled_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('scheduledAt'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     source_account_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceAccountID') }})

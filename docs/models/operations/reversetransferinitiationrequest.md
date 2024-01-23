@@ -1,0 +1,9 @@
+# ReverseTransferInitiationRequest
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `reverse_transfer_initiation_request`                                                              | [shared.ReverseTransferInitiationRequest](../../models/shared/reversetransferinitiationrequest.md) | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `transfer_id`                                                                                      | *str*                                                                                              | :heavy_check_mark:                                                                                 | The transfer ID.                                                                                   |
