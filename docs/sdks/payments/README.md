@@ -203,7 +203,7 @@ req = shared.PaymentRequest(
     created_at=dateutil.parser.isoparse('2024-11-09T01:03:21.153Z'),
     reference='string',
     scheme=shared.PaymentScheme.GOOGLE_PAY,
-    status=shared.PaymentStatus.REFUNDED,
+    status=shared.PaymentStatus.DISPUTE_WON,
     type=shared.PaymentType.TRANSFER,
 )
 
