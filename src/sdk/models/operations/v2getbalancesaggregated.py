@@ -15,6 +15,8 @@ class V2GetBalancesAggregatedRequest:
     r"""Name of the ledger."""
     pit: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'pit', 'style': 'form', 'explode': True }})
     request_body: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
+    use_insertion_date: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'use_insertion_date', 'style': 'form', 'explode': True }})
+    r"""Use insertion date instead of effective date"""
     
 
 

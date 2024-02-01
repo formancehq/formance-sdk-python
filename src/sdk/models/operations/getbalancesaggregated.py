@@ -14,6 +14,8 @@ class GetBalancesAggregatedRequest:
     r"""Name of the ledger."""
     address: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'address', 'style': 'form', 'explode': True }})
     r"""Filter balances involving given account, either as source or destination."""
+    use_insertion_date: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'use_insertion_date', 'style': 'form', 'explode': True }})
+    r"""Use insertion date instead of effective date"""
     
 
 
