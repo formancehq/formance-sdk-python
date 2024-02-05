@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: 21c298d1-8589-49b9-96cf-318090a21860
+id: 7cfcb9f2-059d-40ae-86b5-ce5c202b9e4d
 management:
-  docChecksum: 7dfe7c153410dab21130617af7d17ee2
-  docVersion: v2.0.0-rc.2
+  docChecksum: 25f7693c65559e6fd8db6433caadba98
+  docVersion: v2.0.0-rc.3
   speakeasyVersion: internal
   generationVersion: 2.237.2
-  releaseVersion: v2.0.0-rc.2
-  configChecksum: 95bd8ec4025e96d6b92fe5c1048a0779
+  releaseVersion: v2.0.0-rc.3
+  configChecksum: 6f39605ed438a9e1e81fa3d983c65b00
 features:
   python:
     constsAndDefaults: 0.1.2
@@ -133,6 +133,7 @@ generatedFiles:
   - src/sdk/models/operations/createtransferinitiation.py
   - src/sdk/models/operations/deletepool.py
   - src/sdk/models/operations/deletetransferinitiation.py
+  - src/sdk/models/operations/forwardbankaccount.py
   - src/sdk/models/operations/getaccountbalances.py
   - src/sdk/models/operations/getbankaccount.py
   - src/sdk/models/operations/getconnectortask.py
@@ -425,6 +426,7 @@ generatedFiles:
   - src/sdk/models/shared/transferrequest.py
   - src/sdk/models/shared/bankaccountresponse.py
   - src/sdk/models/shared/bankaccount.py
+  - src/sdk/models/shared/bankaccountadjustment.py
   - src/sdk/models/shared/bankaccountrequest.py
   - src/sdk/models/shared/paymentresponse.py
   - src/sdk/models/shared/payment.py
@@ -442,6 +444,7 @@ generatedFiles:
   - src/sdk/models/shared/transferinitiationpayments.py
   - src/sdk/models/shared/transferinitiationadjusments.py
   - src/sdk/models/shared/transferinitiationrequest.py
+  - src/sdk/models/shared/forwardbankaccountrequest.py
   - src/sdk/models/shared/balancescursor.py
   - src/sdk/models/shared/accountbalance.py
   - src/sdk/models/shared/taskresponse.py
@@ -700,6 +703,8 @@ generatedFiles:
   - docs/models/operations/deletepoolresponse.md
   - docs/models/operations/deletetransferinitiationrequest.md
   - docs/models/operations/deletetransferinitiationresponse.md
+  - docs/models/operations/forwardbankaccountrequest.md
+  - docs/models/operations/forwardbankaccountresponse.md
   - docs/models/operations/getaccountbalancesrequest.md
   - docs/models/operations/getaccountbalancesresponse.md
   - docs/models/operations/getbankaccountrequest.md
@@ -1101,6 +1106,7 @@ generatedFiles:
   - docs/models/shared/transferrequest.md
   - docs/models/shared/bankaccountresponse.md
   - docs/models/shared/bankaccount.md
+  - docs/models/shared/bankaccountadjustment.md
   - docs/models/shared/bankaccountrequest.md
   - docs/models/shared/paymentresponse.md
   - docs/models/shared/raw.md
@@ -1122,6 +1128,7 @@ generatedFiles:
   - docs/models/shared/transferinitiationadjusments.md
   - docs/models/shared/transferinitiationrequesttype.md
   - docs/models/shared/transferinitiationrequest.md
+  - docs/models/shared/forwardbankaccountrequest.md
   - docs/models/shared/balancescursorcursor.md
   - docs/models/shared/balancescursor.md
   - docs/models/shared/accountbalance.md

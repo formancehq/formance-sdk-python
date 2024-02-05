@@ -21,10 +21,10 @@ class SDKConfiguration:
     server_url: str = ''
     server_idx: int = 0
     language: str = 'python'
-    openapi_doc_version: str = 'v2.0.0-rc.2'
-    sdk_version: str = 'v2.0.0-rc.2'
+    openapi_doc_version: str = 'v2.0.0-rc.3'
+    sdk_version: str = 'v2.0.0-rc.3'
     gen_version: str = '2.237.2'
-    user_agent: str = 'speakeasy-sdk/python v2.0.0-rc.2 2.237.2 v2.0.0-rc.2 formance-sdk-python'
+    user_agent: str = 'speakeasy-sdk/python v2.0.0-rc.3 2.237.2 v2.0.0-rc.3 formance-sdk-python'
     retry_config: RetryConfig = None
 
     def get_server_details(self) -> Tuple[str, Dict[str, str]]:

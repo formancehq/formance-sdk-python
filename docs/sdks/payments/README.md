@@ -11,6 +11,7 @@
 * [create_transfer_initiation](#create_transfer_initiation) - Create a TransferInitiation
 * [delete_pool](#delete_pool) - Delete a Pool
 * [delete_transfer_initiation](#delete_transfer_initiation) - Delete a transfer initiation
+* [forward_bank_account](#forward_bank_account) - Forward a bank account to a connector
 * [get_account_balances](#get_account_balances) - Get account balances
 * [get_bank_account](#get_bank_account) - Get a bank account created by user on Formance
 * [~~get_connector_task~~](#get_connector_task) - Read a specific task of the connector :warning: **Deprecated**
@@ -403,6 +404,50 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteTransferInitiationResponse](../../models/operations/deletetransferinitiationresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
+
+## forward_bank_account
+
+Forward a bank account to a connector
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK(
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+)
+
+req = operations.ForwardBankAccountRequest(
+    forward_bank_account_request=shared.ForwardBankAccountRequest(
+        connector_id='string',
+    ),
+    bank_account_id='string',
+)
+
+res = s.payments.forward_bank_account(req)
+
+if res.bank_account_response is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.ForwardBankAccountRequest](../../models/operations/forwardbankaccountrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+
+
+### Response
+
+**[operations.ForwardBankAccountResponse](../../models/operations/forwardbankaccountresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

@@ -157,6 +157,7 @@ if res.get_versions_response is not None:
 * [create_transfer_initiation](docs/sdks/payments/README.md#create_transfer_initiation) - Create a TransferInitiation
 * [delete_pool](docs/sdks/payments/README.md#delete_pool) - Delete a Pool
 * [delete_transfer_initiation](docs/sdks/payments/README.md#delete_transfer_initiation) - Delete a transfer initiation
+* [forward_bank_account](docs/sdks/payments/README.md#forward_bank_account) - Forward a bank account to a connector
 * [get_account_balances](docs/sdks/payments/README.md#get_account_balances) - Get account balances
 * [get_bank_account](docs/sdks/payments/README.md#get_bank_account) - Get a bank account created by user on Formance
 * [~~get_connector_task~~](docs/sdks/payments/README.md#get_connector_task) - Read a specific task of the connector :warning: **Deprecated**
