@@ -188,6 +188,7 @@ if res.get_versions_response is not None:
 * [udpate_transfer_initiation_status](docs/sdks/payments/README.md#udpate_transfer_initiation_status) - Update the status of a transfer initiation
 * [~~uninstall_connector~~](docs/sdks/payments/README.md#uninstall_connector) - Uninstall a connector :warning: **Deprecated**
 * [uninstall_connector_v1](docs/sdks/payments/README.md#uninstall_connector_v1) - Uninstall a connector
+* [update_bank_account_metadata](docs/sdks/payments/README.md#update_bank_account_metadata) - Update metadata of a bank account
 * [update_connector_config_v1](docs/sdks/payments/README.md#update_connector_config_v1) - Update the config of a connector
 * [update_metadata](docs/sdks/payments/README.md#update_metadata) - Update metadata
 

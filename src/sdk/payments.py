@@ -1340,6 +1340,39 @@ class Payments:
 
     
     
+    def update_bank_account_metadata(self, request: operations.UpdateBankAccountMetadataRequest) -> operations.UpdateBankAccountMetadataResponse:
+        r"""Update metadata of a bank account"""
+        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
+        
+        url = utils.generate_url(operations.UpdateBankAccountMetadataRequest, base_url, '/api/payments/bank-accounts/{bankAccountId}/metadata', request)
+        headers = {}
+        req_content_type, data, form = utils.serialize_request_body(request, operations.UpdateBankAccountMetadataRequest, "update_bank_account_metadata_request", False, False, 'json')
+        if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
+            headers['content-type'] = req_content_type
+        if data is None and form is None:
+            raise Exception('request body is required')
+        headers['Accept'] = '*/*'
+        headers['user-agent'] = self.sdk_configuration.user_agent
+        
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
+        
+        http_res = client.request('PATCH', url, data=data, files=form, headers=headers)
+        content_type = http_res.headers.get('Content-Type')
+        
+        res = operations.UpdateBankAccountMetadataResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+        if http_res.status_code == 204:
+            pass
+        elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+
+        return res
+
+    
+    
     def update_connector_config_v1(self, request: operations.UpdateConnectorConfigV1Request) -> operations.UpdateConnectorConfigV1Response:
         r"""Update the config of a connector
         Update connector config

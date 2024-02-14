@@ -1,0 +1,9 @@
+# UpdateBankAccountMetadataRequest
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `update_bank_account_metadata_request`                                                             | [shared.UpdateBankAccountMetadataRequest](../../models/shared/updatebankaccountmetadatarequest.md) | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `bank_account_id`                                                                                  | *str*                                                                                              | :heavy_check_mark:                                                                                 | The bank account ID.                                                                               |

@@ -42,6 +42,7 @@
 * [udpate_transfer_initiation_status](#udpate_transfer_initiation_status) - Update the status of a transfer initiation
 * [~~uninstall_connector~~](#uninstall_connector) - Uninstall a connector :warning: **Deprecated**
 * [uninstall_connector_v1](#uninstall_connector_v1) - Uninstall a connector
+* [update_bank_account_metadata](#update_bank_account_metadata) - Update metadata of a bank account
 * [update_connector_config_v1](#update_connector_config_v1) - Update the config of a connector
 * [update_metadata](#update_metadata) - Update metadata
 
@@ -1711,6 +1712,52 @@ if res.status_code == 200:
 ### Response
 
 **[operations.UninstallConnectorV1Response](../../models/operations/uninstallconnectorv1response.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
+
+## update_bank_account_metadata
+
+Update metadata of a bank account
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations, shared
+
+s = sdk.SDK(
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+)
+
+req = operations.UpdateBankAccountMetadataRequest(
+    update_bank_account_metadata_request=shared.UpdateBankAccountMetadataRequest(
+        metadata={
+            'key': 'string',
+        },
+    ),
+    bank_account_id='string',
+)
+
+res = s.payments.update_bank_account_metadata(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                  | [operations.UpdateBankAccountMetadataRequest](../../models/operations/updatebankaccountmetadatarequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+
+
+### Response
+
+**[operations.UpdateBankAccountMetadataResponse](../../models/operations/updatebankaccountmetadataresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

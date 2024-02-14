@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import dateutil.parser
-from .bankaccountadjustment import BankAccountAdjustment
+from .bankaccountrelatedaccounts import BankAccountRelatedAccounts
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from sdk import utils
@@ -20,10 +20,10 @@ class BankAccount:
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     account_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accountID'), 'exclude': lambda f: f is None }})
     account_number: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accountNumber'), 'exclude': lambda f: f is None }})
-    adjustments: Optional[List[BankAccountAdjustment]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('adjustments'), 'exclude': lambda f: f is None }})
     iban: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('iban'), 'exclude': lambda f: f is None }})
     metadata: Optional[Dict[str, str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata') }})
     provider: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('provider'), 'exclude': lambda f: f is None }})
+    related_accounts: Optional[List[BankAccountRelatedAccounts]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('relatedAccounts'), 'exclude': lambda f: f is None }})
     swift_bic_code: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('swiftBicCode'), 'exclude': lambda f: f is None }})
     
 

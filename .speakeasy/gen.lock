@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: 3e330746-7172-422b-b105-fceadd4419e1
+id: bdfd61ab-8ca1-4cbb-8396-70c337fb4220
 management:
-  docChecksum: 5d24de084aa582df481914f9765a2d91
-  docVersion: v2.0.0-rc.4
+  docChecksum: 9498362bd3de88c7492796ec40c09297
+  docVersion: v2.0.0-rc.7
   speakeasyVersion: internal
   generationVersion: 2.237.2
-  releaseVersion: v2.0.0-rc.4
-  configChecksum: 1987f163c4dd65ea84ce2e065054cd5c
+  releaseVersion: v2.0.0-rc.7
+  configChecksum: 98ec711b99431fe83bd89030d003d513
 features:
   python:
     constsAndDefaults: 0.1.2
@@ -164,6 +164,7 @@ generatedFiles:
   - src/sdk/models/operations/udpatetransferinitiationstatus.py
   - src/sdk/models/operations/uninstallconnector.py
   - src/sdk/models/operations/uninstallconnectorv1.py
+  - src/sdk/models/operations/updatebankaccountmetadata.py
   - src/sdk/models/operations/updateconnectorconfigv1.py
   - src/sdk/models/operations/updatemetadata.py
   - src/sdk/models/operations/createpolicy.py
@@ -426,7 +427,7 @@ generatedFiles:
   - src/sdk/models/shared/transferrequest.py
   - src/sdk/models/shared/bankaccountresponse.py
   - src/sdk/models/shared/bankaccount.py
-  - src/sdk/models/shared/bankaccountadjustment.py
+  - src/sdk/models/shared/bankaccountrelatedaccounts.py
   - src/sdk/models/shared/bankaccountrequest.py
   - src/sdk/models/shared/paymentresponse.py
   - src/sdk/models/shared/payment.py
@@ -483,6 +484,7 @@ generatedFiles:
   - src/sdk/models/shared/connectorconfigresponse.py
   - src/sdk/models/shared/reversetransferinitiationrequest.py
   - src/sdk/models/shared/updatetransferinitiationstatusrequest.py
+  - src/sdk/models/shared/updatebankaccountmetadatarequest.py
   - src/sdk/models/shared/reconciliationerrorresponse.py
   - src/sdk/models/shared/policyresponse.py
   - src/sdk/models/shared/policy.py
@@ -762,6 +764,8 @@ generatedFiles:
   - docs/models/operations/uninstallconnectorresponse.md
   - docs/models/operations/uninstallconnectorv1request.md
   - docs/models/operations/uninstallconnectorv1response.md
+  - docs/models/operations/updatebankaccountmetadatarequest.md
+  - docs/models/operations/updatebankaccountmetadataresponse.md
   - docs/models/operations/updateconnectorconfigv1request.md
   - docs/models/operations/updateconnectorconfigv1response.md
   - docs/models/operations/updatemetadatarequest.md
@@ -1106,7 +1110,7 @@ generatedFiles:
   - docs/models/shared/transferrequest.md
   - docs/models/shared/bankaccountresponse.md
   - docs/models/shared/bankaccount.md
-  - docs/models/shared/bankaccountadjustment.md
+  - docs/models/shared/bankaccountrelatedaccounts.md
   - docs/models/shared/bankaccountrequest.md
   - docs/models/shared/paymentresponse.md
   - docs/models/shared/raw.md
@@ -1200,6 +1204,7 @@ generatedFiles:
   - docs/models/shared/reversetransferinitiationrequest.md
   - docs/models/shared/status.md
   - docs/models/shared/updatetransferinitiationstatusrequest.md
+  - docs/models/shared/updatebankaccountmetadatarequest.md
   - docs/models/shared/reconciliationerrorresponse.md
   - docs/models/shared/policyresponse.md
   - docs/models/shared/policy.md

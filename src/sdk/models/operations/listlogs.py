@@ -16,7 +16,7 @@ class ListLogsRequest:
     after: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'after', 'style': 'form', 'explode': True }})
     r"""Pagination cursor, will return the logs after a given ID. (in descending order)."""
     cursor: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'cursor', 'style': 'form', 'explode': True }})
-    r"""Parameter used in pagination requests. Maximum page size is set to 15.
+    r"""Parameter used in pagination requests. Maximum page size is set to 1000.
     Set to the value of next for the next page of results.
     Set to the value of previous for the previous page of results.
     No other parameters can be set when this parameter is set.

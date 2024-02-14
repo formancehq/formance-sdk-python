@@ -19,7 +19,7 @@ class ListAccountsRequest:
     balance: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'balance', 'style': 'form', 'explode': True }})
     r"""Filter accounts by their balance (default operator is gte)"""
     cursor: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'cursor', 'style': 'form', 'explode': True }})
-    r"""Parameter used in pagination requests. Maximum page size is set to 15.
+    r"""Parameter used in pagination requests. Maximum page size is set to 1000.
     Set to the value of next for the next page of results.
     Set to the value of previous for the previous page of results.
     No other parameters can be set when this parameter is set.
@@ -29,7 +29,7 @@ class ListAccountsRequest:
     page_size: Optional[int] = dataclasses.field(default=15, metadata={'query_param': { 'field_name': 'pageSize', 'style': 'form', 'explode': True }})
     r"""The maximum number of results to return per page."""
     pagination_token: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'pagination_token', 'style': 'form', 'explode': True }})
-    r"""Parameter used in pagination requests. Maximum page size is set to 15.
+    r"""Parameter used in pagination requests. Maximum page size is set to 1000.
     Set to the value of next for the next page of results.
     Set to the value of previous for the previous page of results.
     No other parameters can be set when this parameter is set.
