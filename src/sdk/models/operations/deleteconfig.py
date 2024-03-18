@@ -19,10 +19,10 @@ class DeleteConfigRequest:
 class DeleteConfigResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     webhooks_error_response: Optional[errors_webhookserrorresponse.WebhooksErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     

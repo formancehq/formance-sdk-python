@@ -8,9 +8,9 @@ from typing import Dict, Optional
 
 @dataclasses.dataclass
 class UpdateMetadataRequest:
+    request_body: Optional[Dict[str, str]] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     payment_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'paymentId', 'style': 'simple', 'explode': False }})
     r"""The payment ID."""
-    request_body: Optional[Dict[str, str]] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     
 
 
@@ -19,9 +19,9 @@ class UpdateMetadataRequest:
 class UpdateMetadataResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     
 

@@ -1,24 +1,29 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: 5e9a79dbe7142aa90188e21ea54c7198
-  docVersion: v2.0.0-rc.15
-  speakeasyVersion: internal
-  generationVersion: 2.237.2
-  releaseVersion: v2.0.0-rc.15
-  configChecksum: 5aa8d2a5f48ed17b964388bd1ef8c60b
+  docChecksum: 254f15d23bfd21d49b8db8ecb44639be
+  docVersion: v2.0.0-rc.16
+  speakeasyVersion: 1.209.3
+  generationVersion: 2.281.2
+  releaseVersion: 2.1.0
+  configChecksum: 61758f75deba7b9e60eda7a63adb1777
+  repoURL: https://github.com/formancehq/formance-sdk-python.git
+  repoSubDirectory: .
+  installationURL: https://github.com/formancehq/formance-sdk-python.git
+  published: true
 features:
   python:
-    constsAndDefaults: 0.1.2
-    core: 4.4.2
+    constsAndDefaults: 0.1.3
+    core: 4.5.1
     deprecations: 2.81.1
     errors: 2.81.8
     getRequestBodies: 2.81.1
-    globalSecurity: 2.83.2
-    globalServerURLs: 2.82.1
+    globalSecurity: 2.83.4
+    globalServerURLs: 2.82.2
     groups: 2.81.2
     ignores: 2.81.1
-    unions: 2.82.5
+    responseFormat: 0.1.0
+    unions: 2.82.6
 generatedFiles:
   - src/sdk/sdkconfiguration.py
   - src/sdk/auth.py
@@ -30,6 +35,7 @@ generatedFiles:
   - src/sdk/wallets.py
   - src/sdk/webhooks.py
   - src/sdk/sdk.py
+  - py.typed
   - pylintrc
   - setup.py
   - src/sdk/__init__.py
@@ -1272,3 +1278,6 @@ generatedFiles:
   - docs/sdks/webhooks/README.md
   - USAGE.md
   - .gitattributes
+  - src/sdk/_hooks/sdkhooks.py
+  - src/sdk/_hooks/types.py
+  - src/sdk/_hooks/__init__.py

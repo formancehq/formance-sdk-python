@@ -21,19 +21,10 @@ s = sdk.SDK(
 )
 
 req = shared.Query(
-    after=[
-        'users:002',
-    ],
     cursor='YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=',
-    ledgers=[
-        'quickstart',
-    ],
     policy='OR',
     raw=shared.QueryRaw(),
     sort='id:asc',
-    terms=[
-        'destination=central_bank1',
-    ],
 )
 
 res = s.search.search(req)
@@ -41,6 +32,7 @@ res = s.search.search(req)
 if res.response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -78,6 +70,7 @@ res = s.search.searchget_server_info()
 if res.server_info is not None:
     # handle response
     pass
+
 ```
 
 

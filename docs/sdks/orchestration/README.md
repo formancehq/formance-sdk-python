@@ -54,14 +54,15 @@ s = sdk.SDK(
 )
 
 req = operations.CancelEventRequest(
-    instance_id='string',
+    instance_id='<value>',
 )
 
 res = s.orchestration.cancel_event(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -95,11 +96,8 @@ s = sdk.SDK(
 )
 
 req = shared.TriggerData(
-    event='string',
-    vars={
-        'key': 'string',
-    },
-    workflow_id='string',
+    event='<value>',
+    workflow_id='<value>',
 )
 
 res = s.orchestration.create_trigger(req)
@@ -107,6 +105,7 @@ res = s.orchestration.create_trigger(req)
 if res.create_trigger_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -142,7 +141,7 @@ s = sdk.SDK(
 req = shared.CreateWorkflowRequest(
     stages=[
         {
-            'key': 'string',
+            'key': '<value>',
         },
     ],
 )
@@ -152,6 +151,7 @@ res = s.orchestration.create_workflow(req)
 if res.create_workflow_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -185,14 +185,15 @@ s = sdk.SDK(
 )
 
 req = operations.DeleteTriggerRequest(
-    trigger_id='string',
+    trigger_id='<value>',
 )
 
 res = s.orchestration.delete_trigger(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -226,14 +227,15 @@ s = sdk.SDK(
 )
 
 req = operations.DeleteWorkflowRequest(
-    flow_id='string',
+    flow_id='<value>',
 )
 
 res = s.orchestration.delete_workflow(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -267,7 +269,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetInstanceRequest(
-    instance_id='string',
+    instance_id='<value>',
 )
 
 res = s.orchestration.get_instance(req)
@@ -275,6 +277,7 @@ res = s.orchestration.get_instance(req)
 if res.get_workflow_instance_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -308,7 +311,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetInstanceHistoryRequest(
-    instance_id='string',
+    instance_id='<value>',
 )
 
 res = s.orchestration.get_instance_history(req)
@@ -316,6 +319,7 @@ res = s.orchestration.get_instance_history(req)
 if res.get_workflow_instance_history_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -349,7 +353,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetInstanceStageHistoryRequest(
-    instance_id='string',
+    instance_id='<value>',
     number=600636,
 )
 
@@ -358,6 +362,7 @@ res = s.orchestration.get_instance_stage_history(req)
 if res.get_workflow_instance_history_stage_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -391,7 +396,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetWorkflowRequest(
-    flow_id='string',
+    flow_id='<value>',
 )
 
 res = s.orchestration.get_workflow(req)
@@ -399,6 +404,7 @@ res = s.orchestration.get_workflow(req)
 if res.get_workflow_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -438,6 +444,7 @@ res = s.orchestration.list_instances(req)
 if res.list_runs_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -475,6 +482,7 @@ res = s.orchestration.list_triggers()
 if res.list_triggers_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -502,7 +510,7 @@ s = sdk.SDK(
 )
 
 req = operations.ListTriggersOccurrencesRequest(
-    trigger_id='string',
+    trigger_id='<value>',
 )
 
 res = s.orchestration.list_triggers_occurrences(req)
@@ -510,6 +518,7 @@ res = s.orchestration.list_triggers_occurrences(req)
 if res.list_triggers_occurrences_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -547,6 +556,7 @@ res = s.orchestration.list_workflows()
 if res.list_workflows_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -578,6 +588,7 @@ res = s.orchestration.orchestrationget_server_info()
 if res.server_info is not None:
     # handle response
     pass
+
 ```
 
 
@@ -605,7 +616,7 @@ s = sdk.SDK(
 )
 
 req = operations.ReadTriggerRequest(
-    trigger_id='string',
+    trigger_id='<value>',
 )
 
 res = s.orchestration.read_trigger(req)
@@ -613,6 +624,7 @@ res = s.orchestration.read_trigger(req)
 if res.read_trigger_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -646,10 +658,7 @@ s = sdk.SDK(
 )
 
 req = operations.RunWorkflowRequest(
-    request_body={
-        'key': 'string',
-    },
-    workflow_id='string',
+    workflow_id='<value>',
 )
 
 res = s.orchestration.run_workflow(req)
@@ -657,6 +666,7 @@ res = s.orchestration.run_workflow(req)
 if res.run_workflow_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -690,17 +700,15 @@ s = sdk.SDK(
 )
 
 req = operations.SendEventRequest(
-    request_body=operations.SendEventRequestBody(
-        name='string',
-    ),
-    instance_id='string',
+    instance_id='<value>',
 )
 
 res = s.orchestration.send_event(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -734,10 +742,7 @@ s = sdk.SDK(
 )
 
 req = operations.TestTriggerRequest(
-    request_body={
-        'key': 'string',
-    },
-    trigger_id='string',
+    trigger_id='<value>',
 )
 
 res = s.orchestration.test_trigger(req)
@@ -745,6 +750,7 @@ res = s.orchestration.test_trigger(req)
 if res.v2_test_trigger_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -778,14 +784,15 @@ s = sdk.SDK(
 )
 
 req = operations.V2CancelEventRequest(
-    instance_id='string',
+    instance_id='<value>',
 )
 
 res = s.orchestration.v2_cancel_event(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -819,11 +826,8 @@ s = sdk.SDK(
 )
 
 req = shared.V2TriggerData(
-    event='string',
-    vars={
-        'key': 'string',
-    },
-    workflow_id='string',
+    event='<value>',
+    workflow_id='<value>',
 )
 
 res = s.orchestration.v2_create_trigger(req)
@@ -831,6 +835,7 @@ res = s.orchestration.v2_create_trigger(req)
 if res.v2_create_trigger_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -866,7 +871,7 @@ s = sdk.SDK(
 req = shared.V2CreateWorkflowRequest(
     stages=[
         {
-            'key': 'string',
+            'key': '<value>',
         },
     ],
 )
@@ -876,6 +881,7 @@ res = s.orchestration.v2_create_workflow(req)
 if res.v2_create_workflow_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -909,14 +915,15 @@ s = sdk.SDK(
 )
 
 req = operations.V2DeleteTriggerRequest(
-    trigger_id='string',
+    trigger_id='<value>',
 )
 
 res = s.orchestration.v2_delete_trigger(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -951,14 +958,15 @@ s = sdk.SDK(
 )
 
 req = operations.V2DeleteWorkflowRequest(
-    flow_id='string',
+    flow_id='<value>',
 )
 
 res = s.orchestration.v2_delete_workflow(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -993,7 +1001,7 @@ s = sdk.SDK(
 )
 
 req = operations.V2GetInstanceRequest(
-    instance_id='string',
+    instance_id='<value>',
 )
 
 res = s.orchestration.v2_get_instance(req)
@@ -1001,6 +1009,7 @@ res = s.orchestration.v2_get_instance(req)
 if res.v2_get_workflow_instance_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1034,7 +1043,7 @@ s = sdk.SDK(
 )
 
 req = operations.V2GetInstanceHistoryRequest(
-    instance_id='string',
+    instance_id='<value>',
 )
 
 res = s.orchestration.v2_get_instance_history(req)
@@ -1042,6 +1051,7 @@ res = s.orchestration.v2_get_instance_history(req)
 if res.v2_get_workflow_instance_history_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1075,7 +1085,7 @@ s = sdk.SDK(
 )
 
 req = operations.V2GetInstanceStageHistoryRequest(
-    instance_id='string',
+    instance_id='<value>',
     number=465454,
 )
 
@@ -1084,6 +1094,7 @@ res = s.orchestration.v2_get_instance_stage_history(req)
 if res.v2_get_workflow_instance_history_stage_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1121,6 +1132,7 @@ res = s.orchestration.v2_get_server_info()
 if res.v2_server_info is not None:
     # handle response
     pass
+
 ```
 
 
@@ -1148,7 +1160,7 @@ s = sdk.SDK(
 )
 
 req = operations.V2GetWorkflowRequest(
-    flow_id='string',
+    flow_id='<value>',
 )
 
 res = s.orchestration.v2_get_workflow(req)
@@ -1156,6 +1168,7 @@ res = s.orchestration.v2_get_workflow(req)
 if res.v2_get_workflow_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1195,6 +1208,7 @@ res = s.orchestration.v2_list_instances(req)
 if res.v2_list_runs_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1232,6 +1246,7 @@ res = s.orchestration.v2_list_triggers()
 if res.v2_list_triggers_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -1259,7 +1274,7 @@ s = sdk.SDK(
 )
 
 req = operations.V2ListTriggersOccurrencesRequest(
-    trigger_id='string',
+    trigger_id='<value>',
 )
 
 res = s.orchestration.v2_list_triggers_occurrences(req)
@@ -1267,6 +1282,7 @@ res = s.orchestration.v2_list_triggers_occurrences(req)
 if res.v2_list_triggers_occurrences_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1304,6 +1320,7 @@ res = s.orchestration.v2_list_workflows()
 if res.v2_list_workflows_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -1331,7 +1348,7 @@ s = sdk.SDK(
 )
 
 req = operations.V2ReadTriggerRequest(
-    trigger_id='string',
+    trigger_id='<value>',
 )
 
 res = s.orchestration.v2_read_trigger(req)
@@ -1339,6 +1356,7 @@ res = s.orchestration.v2_read_trigger(req)
 if res.v2_read_trigger_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1372,10 +1390,7 @@ s = sdk.SDK(
 )
 
 req = operations.V2RunWorkflowRequest(
-    request_body={
-        'key': 'string',
-    },
-    workflow_id='string',
+    workflow_id='<value>',
 )
 
 res = s.orchestration.v2_run_workflow(req)
@@ -1383,6 +1398,7 @@ res = s.orchestration.v2_run_workflow(req)
 if res.v2_run_workflow_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1416,17 +1432,15 @@ s = sdk.SDK(
 )
 
 req = operations.V2SendEventRequest(
-    request_body=operations.V2SendEventRequestBody(
-        name='string',
-    ),
-    instance_id='string',
+    instance_id='<value>',
 )
 
 res = s.orchestration.v2_send_event(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

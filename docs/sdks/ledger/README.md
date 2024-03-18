@@ -52,7 +52,6 @@ Create a new batch of transactions to a ledger
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations, shared
 
@@ -64,9 +63,6 @@ req = operations.CreateTransactionsRequest(
     transactions=shared.Transactions(
         transactions=[
             shared.TransactionData(
-                metadata={
-                    'key': 'string',
-                },
                 postings=[
                     shared.Posting(
                         amount=100,
@@ -87,6 +83,7 @@ res = s.ledger.create_transactions(req)
 if res.transactions_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -120,18 +117,16 @@ s = sdk.SDK(
 )
 
 req = operations.AddMetadataOnTransactionRequest(
-    request_body={
-        'key': 'string',
-    },
     ledger='ledger001',
     txid=1234,
 )
 
 res = s.ledger.add_metadata_on_transaction(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -166,7 +161,7 @@ s = sdk.SDK(
 
 req = operations.AddMetadataToAccountRequest(
     request_body={
-        'key': 'string',
+        'key': '<value>',
     },
     address='users:001',
     ledger='ledger001',
@@ -174,9 +169,10 @@ req = operations.AddMetadataToAccountRequest(
 
 res = s.ledger.add_metadata_to_account(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -211,18 +207,16 @@ s = sdk.SDK(
 )
 
 req = operations.CountAccountsRequest(
-    address='users:.+',
     ledger='ledger001',
-    metadata={
-        'key': 'string',
-    },
+    address='users:.+',
 )
 
 res = s.ledger.count_accounts(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -248,7 +242,6 @@ Count the transactions from a ledger
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations
 
@@ -257,19 +250,19 @@ s = sdk.SDK(
 )
 
 req = operations.CountTransactionsRequest(
+    ledger='ledger001',
     account='users:001',
     destination='users:001',
-    ledger='ledger001',
-    metadata=operations.Metadata(),
     reference='ref:001',
     source='users:001',
 )
 
 res = s.ledger.count_transactions(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -295,7 +288,6 @@ Create a new transaction to a ledger
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations, shared
 
@@ -305,31 +297,7 @@ s = sdk.SDK(
 
 req = operations.CreateTransactionRequest(
     post_transaction=shared.PostTransaction(
-        metadata={
-            'key': 'string',
-        },
-        postings=[
-            shared.Posting(
-                amount=100,
-                asset='COIN',
-                destination='users:002',
-                source='users:001',
-            ),
-        ],
         reference='ref:001',
-        script=shared.PostTransactionScript(
-            plain='vars {
-        account $user
-        }
-        send [COIN 10] (
-        	source = @world
-        	destination = $user
-        )
-        ',
-            vars={
-                'user': 'string',
-            },
-        ),
     ),
     ledger='ledger001',
     preview=True,
@@ -340,6 +308,7 @@ res = s.ledger.create_transaction(req)
 if res.transactions_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -383,6 +352,7 @@ res = s.ledger.get_account(req)
 if res.account_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -416,10 +386,10 @@ s = sdk.SDK(
 )
 
 req = operations.GetBalancesRequest(
+    ledger='ledger001',
     address='users:001',
     after='users:003',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    ledger='ledger001',
 )
 
 res = s.ledger.get_balances(req)
@@ -427,6 +397,7 @@ res = s.ledger.get_balances(req)
 if res.balances_cursor_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -460,8 +431,8 @@ s = sdk.SDK(
 )
 
 req = operations.GetBalancesAggregatedRequest(
-    address='users:001',
     ledger='ledger001',
+    address='users:001',
 )
 
 res = s.ledger.get_balances_aggregated(req)
@@ -469,6 +440,7 @@ res = s.ledger.get_balances_aggregated(req)
 if res.aggregate_balances_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -506,6 +478,7 @@ res = s.ledger.get_info()
 if res.config_info_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -541,6 +514,7 @@ res = s.ledger.get_ledger_info(req)
 if res.ledger_info_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -582,6 +556,7 @@ res = s.ledger.get_mapping(req)
 if res.mapping_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -624,6 +599,7 @@ res = s.ledger.get_transaction(req)
 if res.transaction_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -657,14 +633,11 @@ s = sdk.SDK(
 )
 
 req = operations.ListAccountsRequest(
+    ledger='ledger001',
     address='users:.+',
     after='users:003',
     balance=2400,
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    ledger='ledger001',
-    metadata={
-        'key': 'string',
-    },
     pagination_token='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
 )
 
@@ -673,6 +646,7 @@ res = s.ledger.list_accounts(req)
 if res.accounts_cursor_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -698,7 +672,6 @@ List the logs from a ledger, sorted by ID in descending order.
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations
 
@@ -707,9 +680,9 @@ s = sdk.SDK(
 )
 
 req = operations.ListLogsRequest(
+    ledger='ledger001',
     after='1234',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    ledger='ledger001',
 )
 
 res = s.ledger.list_logs(req)
@@ -717,6 +690,7 @@ res = s.ledger.list_logs(req)
 if res.logs_cursor_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -742,7 +716,6 @@ List transactions from a ledger, sorted by txid in descending order.
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations
 
@@ -751,14 +724,11 @@ s = sdk.SDK(
 )
 
 req = operations.ListTransactionsRequest(
+    ledger='ledger001',
     account='users:001',
     after='1234',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     destination='users:001',
-    ledger='ledger001',
-    metadata={
-        'key': 'string',
-    },
     reference='ref:001',
     source='users:001',
 )
@@ -768,6 +738,7 @@ res = s.ledger.list_transactions(req)
 if res.transactions_cursor_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -810,6 +781,7 @@ res = s.ledger.read_stats(req)
 if res.stats_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -852,6 +824,7 @@ res = s.ledger.revert_transaction(req)
 if res.transaction_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -889,9 +862,6 @@ s = sdk.SDK(
 
 req = operations.RunScriptRequest(
     script=shared.Script(
-        metadata={
-            'key': 'string',
-        },
         plain='vars {
     account $user
     }
@@ -902,7 +872,7 @@ req = operations.RunScriptRequest(
     ',
         reference='order_1234',
         vars={
-            'user': 'string',
+            'user': 'users:042',
         },
     ),
     ledger='ledger001',
@@ -914,6 +884,7 @@ res = s.ledger.run_script(req)
 if res.script_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -950,8 +921,8 @@ req = operations.UpdateMappingRequest(
     mapping=shared.Mapping(
         contracts=[
             shared.Contract(
-                account='users:001',
                 expr=shared.Expr(),
+                account='users:001',
             ),
         ],
     ),
@@ -963,6 +934,7 @@ res = s.ledger.update_mapping(req)
 if res.mapping_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -996,19 +968,20 @@ s = sdk.SDK(
 )
 
 req = operations.V2AddMetadataOnTransactionRequest(
+    id=1234,
+    ledger='ledger001',
     request_body={
         'admin': 'true',
     },
     dry_run=True,
-    id=1234,
-    ledger='ledger001',
 )
 
 res = s.ledger.v2_add_metadata_on_transaction(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1047,15 +1020,16 @@ req = operations.V2AddMetadataToAccountRequest(
         'admin': 'true',
     },
     address='users:001',
-    dry_run=True,
     ledger='ledger001',
+    dry_run=True,
 )
 
 res = s.ledger.v2_add_metadata_to_account(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1082,7 +1056,6 @@ Count the accounts from a ledger
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations
 
@@ -1091,17 +1064,15 @@ s = sdk.SDK(
 )
 
 req = operations.V2CountAccountsRequest(
-    request_body={
-        'key': 'string',
-    },
     ledger='ledger001',
 )
 
 res = s.ledger.v2_count_accounts(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1127,7 +1098,6 @@ Count the transactions from a ledger
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations
 
@@ -1136,17 +1106,15 @@ s = sdk.SDK(
 )
 
 req = operations.V2CountTransactionsRequest(
-    request_body={
-        'key': 'string',
-    },
     ledger='ledger001',
 )
 
 res = s.ledger.v2_count_transactions(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1172,27 +1140,14 @@ Bulk request
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
     authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2CreateBulkRequest(
-    request_body=[
-        shared.V2BulkElementAddMetadata(
-            action='string',
-            data=shared.V2BulkElementAddMetadataData(
-                metadata={
-                    'key': 'string',
-                },
-                target_id='string',
-                target_type=shared.V2TargetType.ACCOUNT,
-            ),
-        ),
-    ],
     ledger='ledger001',
 )
 
@@ -1201,6 +1156,7 @@ res = s.ledger.v2_create_bulk(req)
 if res.v2_bulk_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1227,22 +1183,22 @@ Create a ledger
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
     authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.V2CreateLedgerRequest(
-    v2_create_ledger_request=shared.V2CreateLedgerRequest(),
     ledger='ledger001',
 )
 
 res = s.ledger.v2_create_ledger(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1269,7 +1225,6 @@ Create a new transaction to a ledger
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations, shared
 
@@ -1282,31 +1237,10 @@ req = operations.V2CreateTransactionRequest(
         metadata={
             'admin': 'true',
         },
-        postings=[
-            shared.V2Posting(
-                amount=100,
-                asset='COIN',
-                destination='users:002',
-                source='users:001',
-            ),
-        ],
         reference='ref:001',
-        script=shared.V2PostTransactionScript(
-            plain='vars {
-        account $user
-        }
-        send [COIN 10] (
-        	source = @world
-        	destination = $user
-        )
-        ',
-            vars={
-                'user': 'string',
-            },
-        ),
     ),
-    dry_run=True,
     ledger='ledger001',
+    dry_run=True,
 )
 
 res = s.ledger.v2_create_transaction(req)
@@ -1314,6 +1248,7 @@ res = s.ledger.v2_create_transaction(req)
 if res.v2_create_transaction_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1355,9 +1290,10 @@ req = operations.V2DeleteAccountMetadataRequest(
 
 res = s.ledger.v2_delete_account_metadata(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1398,9 +1334,10 @@ req = operations.V2DeleteTransactionMetadataRequest(
 
 res = s.ledger.v2_delete_transaction_metadata(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1427,7 +1364,6 @@ Get account by its address
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations
 
@@ -1445,6 +1381,7 @@ res = s.ledger.v2_get_account(req)
 if res.v2_account_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1470,7 +1407,6 @@ Get the aggregated balances from selected accounts
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations
 
@@ -1479,9 +1415,6 @@ s = sdk.SDK(
 )
 
 req = operations.V2GetBalancesAggregatedRequest(
-    request_body={
-        'key': 'string',
-    },
     ledger='ledger001',
 )
 
@@ -1490,6 +1423,7 @@ res = s.ledger.v2_get_balances_aggregated(req)
 if res.v2_aggregate_balances_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1527,6 +1461,7 @@ res = s.ledger.v2_get_info()
 if res.v2_config_info_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -1562,6 +1497,7 @@ res = s.ledger.v2_get_ledger(req)
 if res.v2_ledger is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1603,6 +1539,7 @@ res = s.ledger.v2_get_ledger_info(req)
 if res.v2_ledger_info_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1628,7 +1565,6 @@ Get transaction from a ledger by its ID
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations
 
@@ -1646,6 +1582,7 @@ res = s.ledger.v2_get_transaction(req)
 if res.v2_get_transaction_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1672,7 +1609,6 @@ List accounts from a ledger, sorted by address in descending order.
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations
 
@@ -1681,11 +1617,8 @@ s = sdk.SDK(
 )
 
 req = operations.V2ListAccountsRequest(
-    request_body={
-        'key': 'string',
-    },
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger='ledger001',
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
 )
 
 res = s.ledger.v2_list_accounts(req)
@@ -1693,6 +1626,7 @@ res = s.ledger.v2_list_accounts(req)
 if res.v2_accounts_cursor_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1735,6 +1669,7 @@ res = s.ledger.v2_list_ledgers(req)
 if res.v2_ledger_list_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1760,7 +1695,6 @@ List the logs from a ledger, sorted by ID in descending order.
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations
 
@@ -1769,11 +1703,8 @@ s = sdk.SDK(
 )
 
 req = operations.V2ListLogsRequest(
-    request_body={
-        'key': 'string',
-    },
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger='ledger001',
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
 )
 
 res = s.ledger.v2_list_logs(req)
@@ -1781,6 +1712,7 @@ res = s.ledger.v2_list_logs(req)
 if res.v2_logs_cursor_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1806,7 +1738,6 @@ List transactions from a ledger, sorted by id in descending order.
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations
 
@@ -1815,11 +1746,8 @@ s = sdk.SDK(
 )
 
 req = operations.V2ListTransactionsRequest(
-    request_body={
-        'key': 'string',
-    },
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger='ledger001',
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
 )
 
 res = s.ledger.v2_list_transactions(req)
@@ -1827,6 +1755,7 @@ res = s.ledger.v2_list_transactions(req)
 if res.v2_transactions_cursor_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1870,6 +1799,7 @@ res = s.ledger.v2_read_stats(req)
 if res.v2_stats_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1912,6 +1842,7 @@ res = s.ledger.v2_revert_transaction(req)
 if res.v2_revert_transaction_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

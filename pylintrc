@@ -180,6 +180,7 @@ good-names=i,
            ex,
            Run,
            _,
+           e,
            id,
            to,
            at,
@@ -443,7 +444,8 @@ disable=raw-checker-failed,
         cyclic-import,
         too-many-nested-blocks,
         too-many-boolean-expressions,
-        no-else-raise
+        no-else-raise,
+        bare-except
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option

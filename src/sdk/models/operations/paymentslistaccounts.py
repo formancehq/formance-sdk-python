@@ -4,11 +4,12 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.shared import accountscursor as shared_accountscursor
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 
 @dataclasses.dataclass
 class PaymentslistAccountsRequest:
+    request_body: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
     cursor: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'cursor', 'style': 'form', 'explode': True }})
     r"""Parameter used in pagination requests. Maximum page size is set to 15.
     Set to the value of next for the next page of results.
@@ -27,10 +28,10 @@ class PaymentslistAccountsRequest:
 class PaymentslistAccountsResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     accounts_cursor: Optional[shared_accountscursor.AccountsCursor] = dataclasses.field(default=None)
     r"""OK"""
     

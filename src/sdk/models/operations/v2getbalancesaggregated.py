@@ -13,8 +13,8 @@ from typing import Any, Dict, Optional
 class V2GetBalancesAggregatedRequest:
     ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
     r"""Name of the ledger."""
-    pit: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'pit', 'style': 'form', 'explode': True }})
     request_body: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
+    pit: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'pit', 'style': 'form', 'explode': True }})
     use_insertion_date: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'use_insertion_date', 'style': 'form', 'explode': True }})
     r"""Use insertion date instead of effective date"""
     
@@ -25,10 +25,10 @@ class V2GetBalancesAggregatedRequest:
 class V2GetBalancesAggregatedResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     v2_aggregate_balances_response: Optional[shared_v2aggregatebalancesresponse.V2AggregateBalancesResponse] = dataclasses.field(default=None)
     r"""OK"""
     v2_error_response: Optional[errors_v2errorresponse.V2ErrorResponse] = dataclasses.field(default=None)

@@ -20,9 +20,9 @@ from typing import Optional, Union
 
 @dataclasses.dataclass
 class InstallConnectorRequest:
+    connector_config: Union[shared_stripeconfig.StripeConfig, shared_dummypayconfig.DummyPayConfig, shared_wiseconfig.WiseConfig, shared_modulrconfig.ModulrConfig, shared_currencycloudconfig.CurrencyCloudConfig, shared_bankingcircleconfig.BankingCircleConfig, shared_mangopayconfig.MangoPayConfig, shared_moneycorpconfig.MoneycorpConfig, shared_atlarconfig.AtlarConfig, shared_adyenconfig.AdyenConfig] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     connector: shared_connector.Connector = dataclasses.field(metadata={'path_param': { 'field_name': 'connector', 'style': 'simple', 'explode': False }})
     r"""The name of the connector."""
-    connector_config: Union[shared_stripeconfig.StripeConfig, shared_dummypayconfig.DummyPayConfig, shared_wiseconfig.WiseConfig, shared_modulrconfig.ModulrConfig, shared_currencycloudconfig.CurrencyCloudConfig, shared_bankingcircleconfig.BankingCircleConfig, shared_mangopayconfig.MangoPayConfig, shared_moneycorpconfig.MoneycorpConfig, shared_atlarconfig.AtlarConfig, shared_adyenconfig.AdyenConfig] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     
 
 
@@ -31,10 +31,10 @@ class InstallConnectorRequest:
 class InstallConnectorResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     connector_response: Optional[shared_connectorresponse.ConnectorResponse] = dataclasses.field(default=None)
     r"""OK"""
     

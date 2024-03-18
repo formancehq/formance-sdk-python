@@ -9,6 +9,8 @@ from typing import Dict, Optional
 
 @dataclasses.dataclass
 class V2AddMetadataToAccountRequest:
+    request_body: Dict[str, str] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    r"""metadata"""
     address: str = dataclasses.field(metadata={'path_param': { 'field_name': 'address', 'style': 'simple', 'explode': False }})
     r"""Exact address of the account. It must match the following regular expressions pattern:
     ```
@@ -17,12 +19,10 @@ class V2AddMetadataToAccountRequest:
     """
     ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
     r"""Name of the ledger."""
-    request_body: Dict[str, str] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
-    r"""metadata"""
-    dry_run: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'dryRun', 'style': 'form', 'explode': True }})
-    r"""Set the dry run mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker."""
     idempotency_key: Optional[str] = dataclasses.field(default=None, metadata={'header': { 'field_name': 'Idempotency-Key', 'style': 'simple', 'explode': False }})
     r"""Use an idempotency key"""
+    dry_run: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'dryRun', 'style': 'form', 'explode': True }})
+    r"""Set the dry run mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker."""
     
 
 
@@ -31,10 +31,10 @@ class V2AddMetadataToAccountRequest:
 class V2AddMetadataToAccountResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     v2_error_response: Optional[errors_v2errorresponse.V2ErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     

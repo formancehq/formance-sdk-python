@@ -26,13 +26,13 @@ class ListReconciliationsRequest:
 class ListReconciliationsResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    reconciliation_error_response: Optional[shared_reconciliationerrorresponse.ReconciliationErrorResponse] = dataclasses.field(default=None)
-    r"""Error response"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     reconciliations_cursor_response: Optional[shared_reconciliationscursorresponse.ReconciliationsCursorResponse] = dataclasses.field(default=None)
     r"""OK"""
+    reconciliation_error_response: Optional[shared_reconciliationerrorresponse.ReconciliationErrorResponse] = dataclasses.field(default=None)
+    r"""Error response"""
     
 

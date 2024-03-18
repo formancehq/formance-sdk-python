@@ -12,5 +12,6 @@ res = s.get_versions()
 if res.get_versions_response is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->

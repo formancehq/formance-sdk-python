@@ -9,6 +9,8 @@ from typing import Any, Dict, Optional
 
 @dataclasses.dataclass
 class AddMetadataToAccountRequest:
+    request_body: Optional[Dict[str, Any]] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    r"""metadata"""
     address: str = dataclasses.field(metadata={'path_param': { 'field_name': 'address', 'style': 'simple', 'explode': False }})
     r"""Exact address of the account. It must match the following regular expressions pattern:
     ```
@@ -17,8 +19,6 @@ class AddMetadataToAccountRequest:
     """
     ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
     r"""Name of the ledger."""
-    request_body: Optional[Dict[str, Any]] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
-    r"""metadata"""
     
 
 
@@ -27,10 +27,10 @@ class AddMetadataToAccountRequest:
 class AddMetadataToAccountResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     error_response: Optional[errors_errorresponse.ErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     

@@ -29,7 +29,7 @@ s = sdk.SDK(
 req = shared.PolicyRequest(
     ledger_name='default',
     ledger_query={
-        'key': 'string',
+        'key': '<value>',
     },
     name='XXX',
     payments_pool_id='XXX',
@@ -40,6 +40,7 @@ res = s.reconciliation.create_policy(req)
 if res.policy_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -73,14 +74,15 @@ s = sdk.SDK(
 )
 
 req = operations.DeletePolicyRequest(
-    policy_id='string',
+    policy_id='<value>',
 )
 
 res = s.reconciliation.delete_policy(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -114,7 +116,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetPolicyRequest(
-    policy_id='string',
+    policy_id='<value>',
 )
 
 res = s.reconciliation.get_policy(req)
@@ -122,6 +124,7 @@ res = s.reconciliation.get_policy(req)
 if res.policy_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -155,7 +158,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetReconciliationRequest(
-    reconciliation_id='string',
+    reconciliation_id='<value>',
 )
 
 res = s.reconciliation.get_reconciliation(req)
@@ -163,6 +166,7 @@ res = s.reconciliation.get_reconciliation(req)
 if res.reconciliation_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -204,6 +208,7 @@ res = s.reconciliation.list_policies(req)
 if res.policies_cursor_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -245,6 +250,7 @@ res = s.reconciliation.list_reconciliations(req)
 if res.reconciliations_cursor_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -283,7 +289,7 @@ req = operations.ReconcileRequest(
         reconciled_at_ledger=dateutil.parser.isoparse('2021-01-01T00:00:00.000Z'),
         reconciled_at_payments=dateutil.parser.isoparse('2021-01-01T00:00:00.000Z'),
     ),
-    policy_id='string',
+    policy_id='<value>',
 )
 
 res = s.reconciliation.reconcile(req)
@@ -291,6 +297,7 @@ res = s.reconciliation.reconcile(req)
 if res.reconciliation_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -328,6 +335,7 @@ res = s.reconciliation.reconciliationget_server_info()
 if res.server_info is not None:
     # handle response
     pass
+
 ```
 
 

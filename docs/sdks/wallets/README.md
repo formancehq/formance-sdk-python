@@ -28,25 +28,22 @@ Confirm a hold
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
     authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ConfirmHoldRequest(
-    confirm_hold_request=shared.ConfirmHoldRequest(
-        amount=100,
-        final=True,
-    ),
-    hold_id='string',
+    hold_id='<value>',
 )
 
 res = s.wallets.confirm_hold(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -72,19 +69,15 @@ Create a balance
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
     authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.CreateBalanceRequest(
-    create_balance_request=shared.CreateBalanceRequest(
-        name='string',
-    ),
-    id='<ID>',
+    id='<id>',
 )
 
 res = s.wallets.create_balance(req)
@@ -92,6 +85,7 @@ res = s.wallets.create_balance(req)
 if res.create_balance_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -126,9 +120,9 @@ s = sdk.SDK(
 
 req = shared.CreateWalletRequest(
     metadata={
-        'key': 'string',
+        'key': '<value>',
     },
-    name='string',
+    name='<value>',
 )
 
 res = s.wallets.create_wallet(req)
@@ -136,6 +130,7 @@ res = s.wallets.create_wallet(req)
 if res.create_wallet_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -169,29 +164,30 @@ s = sdk.SDK(
 )
 
 req = operations.CreditWalletRequest(
+    id='<id>',
     credit_wallet_request=shared.CreditWalletRequest(
         amount=shared.Monetary(
-            amount=201874,
-            asset='string',
+            amount=100,
+            asset='USD/2',
         ),
         metadata={
-            'key': 'string',
+            'key': '',
         },
         sources=[
             shared.LedgerAccountSubject(
-                identifier='string',
-                type='string',
+                identifier='<value>',
+                type='<value>',
             ),
         ],
     ),
-    id='<ID>',
 )
 
 res = s.wallets.credit_wallet(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -225,23 +221,17 @@ s = sdk.SDK(
 )
 
 req = operations.DebitWalletRequest(
+    id='<id>',
     debit_wallet_request=shared.DebitWalletRequest(
         amount=shared.Monetary(
-            amount=245256,
-            asset='string',
+            amount=100,
+            asset='USD/2',
         ),
-        balances=[
-            'string',
-        ],
-        destination=shared.LedgerAccountSubject(
-        identifier='string',
-        type='string',
-    ),
         metadata={
-            'key': 'string',
+            'key': '',
         },
+        pending=True,
     ),
-    id='<ID>',
 )
 
 res = s.wallets.debit_wallet(req)
@@ -249,6 +239,7 @@ res = s.wallets.debit_wallet(req)
 if res.debit_wallet_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -282,8 +273,8 @@ s = sdk.SDK(
 )
 
 req = operations.GetBalanceRequest(
-    balance_name='string',
-    id='<ID>',
+    balance_name='<value>',
+    id='<id>',
 )
 
 res = s.wallets.get_balance(req)
@@ -291,6 +282,7 @@ res = s.wallets.get_balance(req)
 if res.get_balance_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -324,7 +316,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetHoldRequest(
-    hold_id='string',
+    hold_id='<value>',
 )
 
 res = s.wallets.get_hold(req)
@@ -332,6 +324,7 @@ res = s.wallets.get_hold(req)
 if res.get_hold_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -366,9 +359,6 @@ s = sdk.SDK(
 
 req = operations.GetHoldsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    metadata={
-        'key': 'string',
-    },
 )
 
 res = s.wallets.get_holds(req)
@@ -376,6 +366,7 @@ res = s.wallets.get_holds(req)
 if res.get_holds_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -415,6 +406,7 @@ res = s.wallets.get_transactions(req)
 if res.get_transactions_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -448,7 +440,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetWalletRequest(
-    id='<ID>',
+    id='<id>',
 )
 
 res = s.wallets.get_wallet(req)
@@ -456,6 +448,7 @@ res = s.wallets.get_wallet(req)
 if res.get_wallet_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -489,7 +482,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetWalletSummaryRequest(
-    id='<ID>',
+    id='<id>',
 )
 
 res = s.wallets.get_wallet_summary(req)
@@ -497,6 +490,7 @@ res = s.wallets.get_wallet_summary(req)
 if res.get_wallet_summary_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -530,7 +524,7 @@ s = sdk.SDK(
 )
 
 req = operations.ListBalancesRequest(
-    id='<ID>',
+    id='<id>',
 )
 
 res = s.wallets.list_balances(req)
@@ -538,6 +532,7 @@ res = s.wallets.list_balances(req)
 if res.list_balances_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -572,9 +567,6 @@ s = sdk.SDK(
 
 req = operations.ListWalletsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    metadata={
-        'key': 'string',
-    },
 )
 
 res = s.wallets.list_wallets(req)
@@ -582,6 +574,7 @@ res = s.wallets.list_wallets(req)
 if res.list_wallets_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -615,19 +608,15 @@ s = sdk.SDK(
 )
 
 req = operations.UpdateWalletRequest(
-    request_body=operations.UpdateWalletRequestBody(
-        metadata={
-            'key': 'string',
-        },
-    ),
-    id='<ID>',
+    id='<id>',
 )
 
 res = s.wallets.update_wallet(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -661,14 +650,15 @@ s = sdk.SDK(
 )
 
 req = operations.VoidHoldRequest(
-    hold_id='string',
+    hold_id='<value>',
 )
 
 res = s.wallets.void_hold(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -706,6 +696,7 @@ res = s.wallets.walletsget_server_info()
 if res.server_info is not None:
     # handle response
     pass
+
 ```
 
 
