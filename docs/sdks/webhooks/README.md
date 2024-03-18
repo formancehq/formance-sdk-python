@@ -34,6 +34,7 @@ res = s.webhooks.activate_config(req)
 if res.config_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -64,16 +65,13 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
     authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.ChangeConfigSecretRequest(
-    config_change_secret=shared.ConfigChangeSecret(
-        secret='V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
-    ),
     id='4997257d-dfb6-445b-929c-cbe2ab182818',
 )
 
@@ -82,6 +80,7 @@ res = s.webhooks.change_config_secret(req)
 if res.config_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -124,6 +123,7 @@ res = s.webhooks.deactivate_config(req)
 if res.config_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -163,9 +163,10 @@ req = operations.DeleteConfigRequest(
 
 res = s.webhooks.delete_config(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -209,6 +210,7 @@ res = s.webhooks.get_many_configs(req)
 if res.configs_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -265,6 +267,7 @@ res = s.webhooks.insert_config(req)
 if res.config_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -307,6 +310,7 @@ res = s.webhooks.test_config(req)
 if res.attempt_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

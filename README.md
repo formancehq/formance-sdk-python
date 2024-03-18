@@ -20,7 +20,7 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ## SDK Installation
 
 ```bash
-pip install git+<UNSET>.git
+pip install formance-sdk-python
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -42,6 +42,7 @@ res = s.get_versions()
 if res.get_versions_response is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->
 
@@ -252,7 +253,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import errors, operations
 
 s = sdk.SDK(
     authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
@@ -260,7 +261,7 @@ s = sdk.SDK(
 
 req = operations.AddMetadataToAccountRequest(
     request_body={
-        'key': 'string',
+        'key': '<value>',
     },
     address='users:001',
     ledger='ledger001',
@@ -270,15 +271,16 @@ res = None
 try:
     res = s.ledger.add_metadata_to_account(req)
 except errors.ErrorResponse as e:
-    print(e)  # handle exception
+    # handle exception
     raise(e)
 except errors.SDKError as e:
-    print(e)  # handle exception
+    # handle exception
     raise(e)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End Error Handling [errors] -->
 
@@ -309,6 +311,7 @@ res = s.get_versions()
 if res.get_versions_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -329,6 +332,7 @@ res = s.get_versions()
 if res.get_versions_response is not None:
     # handle response
     pass
+
 ```
 <!-- End Server Selection [server] -->
 
@@ -373,6 +377,7 @@ res = s.get_versions()
 if res.get_versions_response is not None:
     # handle response
     pass
+
 ```
 <!-- End Authentication [security] -->
 

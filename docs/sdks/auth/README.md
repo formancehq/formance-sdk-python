@@ -28,19 +28,7 @@ s = sdk.SDK(
 )
 
 req = shared.CreateClientRequest(
-    metadata={
-        'key': 'string',
-    },
-    name='string',
-    post_logout_redirect_uris=[
-        'string',
-    ],
-    redirect_uris=[
-        'string',
-    ],
-    scopes=[
-        'string',
-    ],
+    name='<value>',
 )
 
 res = s.auth.create_client(req)
@@ -48,6 +36,7 @@ res = s.auth.create_client(req)
 if res.create_client_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -74,20 +63,14 @@ Add a secret to a client
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
     authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.CreateSecretRequest(
-    create_secret_request=shared.CreateSecretRequest(
-        metadata={
-            'key': 'string',
-        },
-        name='string',
-    ),
-    client_id='string',
+    client_id='<value>',
 )
 
 res = s.auth.create_secret(req)
@@ -95,6 +78,7 @@ res = s.auth.create_secret(req)
 if res.create_secret_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -128,14 +112,15 @@ s = sdk.SDK(
 )
 
 req = operations.DeleteClientRequest(
-    client_id='string',
+    client_id='<value>',
 )
 
 res = s.auth.delete_client(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -169,15 +154,16 @@ s = sdk.SDK(
 )
 
 req = operations.DeleteSecretRequest(
-    client_id='string',
-    secret_id='string',
+    client_id='<value>',
+    secret_id='<value>',
 )
 
 res = s.auth.delete_secret(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -215,6 +201,7 @@ res = s.auth.list_clients()
 if res.list_clients_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -246,6 +233,7 @@ res = s.auth.list_users()
 if res.list_users_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -273,7 +261,7 @@ s = sdk.SDK(
 )
 
 req = operations.ReadClientRequest(
-    client_id='string',
+    client_id='<value>',
 )
 
 res = s.auth.read_client(req)
@@ -281,6 +269,7 @@ res = s.auth.read_client(req)
 if res.read_client_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -314,7 +303,7 @@ s = sdk.SDK(
 )
 
 req = operations.ReadUserRequest(
-    user_id='string',
+    user_id='<value>',
 )
 
 res = s.auth.read_user(req)
@@ -322,6 +311,7 @@ res = s.auth.read_user(req)
 if res.read_user_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -348,29 +338,14 @@ Update client
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import operations
 
 s = sdk.SDK(
     authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
 req = operations.UpdateClientRequest(
-    update_client_request=shared.UpdateClientRequest(
-        metadata={
-            'key': 'string',
-        },
-        name='string',
-        post_logout_redirect_uris=[
-            'string',
-        ],
-        redirect_uris=[
-            'string',
-        ],
-        scopes=[
-            'string',
-        ],
-    ),
-    client_id='string',
+    client_id='<value>',
 )
 
 res = s.auth.update_client(req)
@@ -378,6 +353,7 @@ res = s.auth.update_client(req)
 if res.update_client_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

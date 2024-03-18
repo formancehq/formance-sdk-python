@@ -62,16 +62,17 @@ s = sdk.SDK(
 
 req = operations.AddAccountToPoolRequest(
     add_account_to_pool_request=shared.AddAccountToPoolRequest(
-        account_id='string',
+        account_id='<value>',
     ),
-    pool_id='string',
+    pool_id='<value>',
 )
 
 res = s.payments.add_account_to_pool(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -119,6 +120,7 @@ res = s.payments.connectors_transfer(req)
 if res.transfer_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -152,11 +154,8 @@ s = sdk.SDK(
 )
 
 req = shared.BankAccountRequest(
-    connector_id='string',
+    connector_id='<value>',
     country='GB',
-    metadata={
-        'key': 'string',
-    },
     name='My account',
 )
 
@@ -165,6 +164,7 @@ res = s.payments.create_bank_account(req)
 if res.bank_account_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -201,9 +201,9 @@ s = sdk.SDK(
 req = shared.PaymentRequest(
     amount=100,
     asset='USD',
-    connector_id='string',
+    connector_id='<value>',
     created_at=dateutil.parser.isoparse('2024-11-09T01:03:21.153Z'),
-    reference='string',
+    reference='<value>',
     scheme=shared.PaymentScheme.GOOGLE_PAY,
     status=shared.PaymentStatus.DISPUTE_WON,
     type=shared.PaymentType.TRANSFER,
@@ -214,6 +214,7 @@ res = s.payments.create_payment(req)
 if res.payment_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -248,9 +249,9 @@ s = sdk.SDK(
 
 req = shared.PoolRequest(
     account_i_ds=[
-        'string',
+        '<value>',
     ],
-    name='string',
+    name='<value>',
 )
 
 res = s.payments.create_pool(req)
@@ -258,6 +259,7 @@ res = s.payments.create_pool(req)
 if res.pool_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -295,13 +297,10 @@ req = shared.TransferInitiationRequest(
     amount=256698,
     asset='USD',
     description='Multi-tiered incremental methodology',
-    destination_account_id='string',
-    metadata={
-        'key': 'string',
-    },
+    destination_account_id='<value>',
     reference='XXX',
     scheduled_at=dateutil.parser.isoparse('2023-05-04T22:47:54.364Z'),
-    source_account_id='string',
+    source_account_id='<value>',
     type=shared.TransferInitiationRequestType.TRANSFER,
     validated=False,
 )
@@ -311,6 +310,7 @@ res = s.payments.create_transfer_initiation(req)
 if res.transfer_initiation_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -344,14 +344,15 @@ s = sdk.SDK(
 )
 
 req = operations.DeletePoolRequest(
-    pool_id='string',
+    pool_id='<value>',
 )
 
 res = s.payments.delete_pool(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -385,14 +386,15 @@ s = sdk.SDK(
 )
 
 req = operations.DeleteTransferInitiationRequest(
-    transfer_id='string',
+    transfer_id='<value>',
 )
 
 res = s.payments.delete_transfer_initiation(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -427,9 +429,9 @@ s = sdk.SDK(
 
 req = operations.ForwardBankAccountRequest(
     forward_bank_account_request=shared.ForwardBankAccountRequest(
-        connector_id='string',
+        connector_id='<value>',
     ),
-    bank_account_id='string',
+    bank_account_id='<value>',
 )
 
 res = s.payments.forward_bank_account(req)
@@ -437,6 +439,7 @@ res = s.payments.forward_bank_account(req)
 if res.bank_account_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -462,7 +465,6 @@ Get account balances
 ### Example Usage
 
 ```python
-import dateutil.parser
 import sdk
 from sdk.models import operations
 
@@ -471,11 +473,8 @@ s = sdk.SDK(
 )
 
 req = operations.GetAccountBalancesRequest(
-    account_id='string',
+    account_id='<value>',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    sort=[
-        'string',
-    ],
 )
 
 res = s.payments.get_account_balances(req)
@@ -483,6 +482,7 @@ res = s.payments.get_account_balances(req)
 if res.balances_cursor is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -516,7 +516,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetBankAccountRequest(
-    bank_account_id='string',
+    bank_account_id='<value>',
 )
 
 res = s.payments.get_bank_account(req)
@@ -524,6 +524,7 @@ res = s.payments.get_bank_account(req)
 if res.bank_account_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -560,7 +561,7 @@ s = sdk.SDK(
 
 req = operations.GetConnectorTaskRequest(
     connector=shared.Connector.ATLAR,
-    task_id='string',
+    task_id='<value>',
 )
 
 res = s.payments.get_connector_task(req)
@@ -568,6 +569,7 @@ res = s.payments.get_connector_task(req)
 if res.task_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -602,8 +604,8 @@ s = sdk.SDK(
 
 req = operations.GetConnectorTaskV1Request(
     connector=shared.Connector.CURRENCY_CLOUD,
-    connector_id='string',
-    task_id='string',
+    connector_id='<value>',
+    task_id='<value>',
 )
 
 res = s.payments.get_connector_task_v1(req)
@@ -611,6 +613,7 @@ res = s.payments.get_connector_task_v1(req)
 if res.task_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -644,7 +647,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetPaymentRequest(
-    payment_id='string',
+    payment_id='<value>',
 )
 
 res = s.payments.get_payment(req)
@@ -652,6 +655,7 @@ res = s.payments.get_payment(req)
 if res.payment_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -685,7 +689,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetPoolRequest(
-    pool_id='string',
+    pool_id='<value>',
 )
 
 res = s.payments.get_pool(req)
@@ -693,6 +697,7 @@ res = s.payments.get_pool(req)
 if res.pool_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -728,7 +733,7 @@ s = sdk.SDK(
 
 req = operations.GetPoolBalancesRequest(
     at=dateutil.parser.isoparse('2023-05-05T06:40:23.018Z'),
-    pool_id='string',
+    pool_id='<value>',
 )
 
 res = s.payments.get_pool_balances(req)
@@ -736,6 +741,7 @@ res = s.payments.get_pool_balances(req)
 if res.pool_balances_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -769,7 +775,7 @@ s = sdk.SDK(
 )
 
 req = operations.GetTransferInitiationRequest(
-    transfer_id='string',
+    transfer_id='<value>',
 )
 
 res = s.payments.get_transfer_initiation(req)
@@ -777,6 +783,7 @@ res = s.payments.get_transfer_initiation(req)
 if res.transfer_initiation_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -811,10 +818,10 @@ s = sdk.SDK(
 
 req = operations.InstallConnectorRequest(
     connector_config=shared.WiseConfig(
-    api_key='XXX',
-    name='My Wise Account',
-    polling_period='60s',
-),
+        api_key='XXX',
+        name='My Wise Account',
+        polling_period='60s',
+    ),
     connector=shared.Connector.ATLAR,
 )
 
@@ -823,6 +830,7 @@ res = s.payments.install_connector(req)
 if res.connector_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -860,6 +868,7 @@ res = s.payments.list_all_connectors()
 if res.connectors_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -888,9 +897,6 @@ s = sdk.SDK(
 
 req = operations.ListBankAccountsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    sort=[
-        'string',
-    ],
 )
 
 res = s.payments.list_bank_accounts(req)
@@ -898,6 +904,7 @@ res = s.payments.list_bank_accounts(req)
 if res.bank_accounts_cursor is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -935,6 +942,7 @@ res = s.payments.list_configs_available_connectors()
 if res.connectors_configs_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -973,6 +981,7 @@ res = s.payments.list_connector_tasks(req)
 if res.tasks_cursor is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1007,7 +1016,7 @@ s = sdk.SDK(
 
 req = operations.ListConnectorTasksV1Request(
     connector=shared.Connector.BANKING_CIRCLE,
-    connector_id='string',
+    connector_id='<value>',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
 )
 
@@ -1016,6 +1025,7 @@ res = s.payments.list_connector_tasks_v1(req)
 if res.tasks_cursor is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1050,9 +1060,6 @@ s = sdk.SDK(
 
 req = operations.ListPaymentsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    sort=[
-        'string',
-    ],
 )
 
 res = s.payments.list_payments(req)
@@ -1060,6 +1067,7 @@ res = s.payments.list_payments(req)
 if res.payments_cursor is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1094,9 +1102,6 @@ s = sdk.SDK(
 
 req = operations.ListPoolsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    sort=[
-        'string',
-    ],
 )
 
 res = s.payments.list_pools(req)
@@ -1104,6 +1109,7 @@ res = s.payments.list_pools(req)
 if res.pools_cursor is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1138,9 +1144,6 @@ s = sdk.SDK(
 
 req = operations.ListTransferInitiationsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    sort=[
-        'string',
-    ],
 )
 
 res = s.payments.list_transfer_initiations(req)
@@ -1148,6 +1151,7 @@ res = s.payments.list_transfer_initiations(req)
 if res.transfer_initiations_cursor is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1181,7 +1185,7 @@ s = sdk.SDK(
 )
 
 req = operations.PaymentsgetAccountRequest(
-    account_id='string',
+    account_id='<value>',
 )
 
 res = s.payments.paymentsget_account(req)
@@ -1189,6 +1193,7 @@ res = s.payments.paymentsget_account(req)
 if res.payments_account_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1226,6 +1231,7 @@ res = s.payments.paymentsget_server_info()
 if res.server_info is not None:
     # handle response
     pass
+
 ```
 
 
@@ -1254,9 +1260,6 @@ s = sdk.SDK(
 
 req = operations.PaymentslistAccountsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    sort=[
-        'string',
-    ],
 )
 
 res = s.payments.paymentslist_accounts(req)
@@ -1264,6 +1267,7 @@ res = s.payments.paymentslist_accounts(req)
 if res.accounts_cursor is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1307,6 +1311,7 @@ res = s.payments.read_connector_config(req)
 if res.connector_config_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1341,7 +1346,7 @@ s = sdk.SDK(
 
 req = operations.ReadConnectorConfigV1Request(
     connector=shared.Connector.CURRENCY_CLOUD,
-    connector_id='string',
+    connector_id='<value>',
 )
 
 res = s.payments.read_connector_config_v1(req)
@@ -1349,6 +1354,7 @@ res = s.payments.read_connector_config_v1(req)
 if res.connector_config_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1382,15 +1388,16 @@ s = sdk.SDK(
 )
 
 req = operations.RemoveAccountFromPoolRequest(
-    account_id='string',
-    pool_id='string',
+    account_id='<value>',
+    pool_id='<value>',
 )
 
 res = s.payments.remove_account_from_pool(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1433,9 +1440,10 @@ req = operations.ResetConnectorRequest(
 
 res = s.payments.reset_connector(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1472,14 +1480,15 @@ s = sdk.SDK(
 
 req = operations.ResetConnectorV1Request(
     connector=shared.Connector.ADYEN,
-    connector_id='string',
+    connector_id='<value>',
 )
 
 res = s.payments.reset_connector_v1(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1513,14 +1522,15 @@ s = sdk.SDK(
 )
 
 req = operations.RetryTransferInitiationRequest(
-    transfer_id='string',
+    transfer_id='<value>',
 )
 
 res = s.payments.retry_transfer_initiation(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1559,18 +1569,19 @@ req = operations.ReverseTransferInitiationRequest(
         asset='USD',
         description='Streamlined high-level local area network',
         metadata={
-            'key': 'string',
+            'key': '<value>',
         },
         reference='XXX',
     ),
-    transfer_id='string',
+    transfer_id='<value>',
 )
 
 res = s.payments.reverse_transfer_initiation(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1607,14 +1618,15 @@ req = operations.UdpateTransferInitiationStatusRequest(
     update_transfer_initiation_status_request=shared.UpdateTransferInitiationStatusRequest(
         status=shared.Status.VALIDATED,
     ),
-    transfer_id='string',
+    transfer_id='<value>',
 )
 
 res = s.payments.udpate_transfer_initiation_status(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1655,9 +1667,10 @@ req = operations.UninstallConnectorRequest(
 
 res = s.payments.uninstall_connector(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1692,14 +1705,15 @@ s = sdk.SDK(
 
 req = operations.UninstallConnectorV1Request(
     connector=shared.Connector.ADYEN,
-    connector_id='string',
+    connector_id='<value>',
 )
 
 res = s.payments.uninstall_connector_v1(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1735,17 +1749,18 @@ s = sdk.SDK(
 req = operations.UpdateBankAccountMetadataRequest(
     update_bank_account_metadata_request=shared.UpdateBankAccountMetadataRequest(
         metadata={
-            'key': 'string',
+            'key': '<value>',
         },
     ),
-    bank_account_id='string',
+    bank_account_id='<value>',
 )
 
 res = s.payments.update_bank_account_metadata(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1780,20 +1795,21 @@ s = sdk.SDK(
 
 req = operations.UpdateConnectorConfigV1Request(
     connector_config=shared.StripeConfig(
-    api_key='XXX',
-    name='My Stripe Account',
-    page_size=50,
-    polling_period='60s',
-),
+        api_key='XXX',
+        name='My Stripe Account',
+        page_size=50,
+        polling_period='60s',
+    ),
     connector=shared.Connector.STRIPE,
-    connector_id='string',
+    connector_id='<value>',
 )
 
 res = s.payments.update_connector_config_v1(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -1828,16 +1844,17 @@ s = sdk.SDK(
 
 req = operations.UpdateMetadataRequest(
     request_body={
-        'key': 'string',
+        'key': '<value>',
     },
-    payment_id='string',
+    payment_id='<value>',
 )
 
 res = s.payments.update_metadata(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

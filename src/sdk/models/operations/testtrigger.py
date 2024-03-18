@@ -10,6 +10,8 @@ from typing import Any, Dict, Optional
 
 @dataclasses.dataclass
 class TestTriggerRequest:
+    __test__ = False
+    
     trigger_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'triggerID', 'style': 'simple', 'explode': False }})
     r"""The trigger id"""
     request_body: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
@@ -19,12 +21,14 @@ class TestTriggerRequest:
 
 @dataclasses.dataclass
 class TestTriggerResponse:
+    __test__ = False
+    
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     v2_error: Optional[errors_v2error.V2Error] = dataclasses.field(default=None)
     r"""General error"""
     v2_test_trigger_response: Optional[shared_v2testtriggerresponse.V2TestTriggerResponse] = dataclasses.field(default=None)

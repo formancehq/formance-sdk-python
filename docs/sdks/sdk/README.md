@@ -40,6 +40,7 @@ res = s.get_versions()
 if res.get_versions_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -66,9 +67,10 @@ s = sdk.SDK(
 
 res = s.get_api_auth_well_known_openid_configuration()
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 

@@ -8,9 +8,9 @@ from ...models.shared import updatetransferinitiationstatusrequest as shared_upd
 
 @dataclasses.dataclass
 class UdpateTransferInitiationStatusRequest:
+    update_transfer_initiation_status_request: shared_updatetransferinitiationstatusrequest.UpdateTransferInitiationStatusRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     transfer_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'transferId', 'style': 'simple', 'explode': False }})
     r"""The transfer ID."""
-    update_transfer_initiation_status_request: shared_updatetransferinitiationstatusrequest.UpdateTransferInitiationStatusRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     
 
 
@@ -19,9 +19,9 @@ class UdpateTransferInitiationStatusRequest:
 class UdpateTransferInitiationStatusResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     
 

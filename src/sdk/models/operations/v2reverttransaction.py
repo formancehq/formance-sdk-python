@@ -24,10 +24,10 @@ class V2RevertTransactionRequest:
 class V2RevertTransactionResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     v2_error_response: Optional[errors_v2errorresponse.V2ErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     v2_revert_transaction_response: Optional[shared_v2reverttransactionresponse.V2RevertTransactionResponse] = dataclasses.field(default=None)

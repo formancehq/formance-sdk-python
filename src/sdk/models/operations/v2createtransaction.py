@@ -11,17 +11,17 @@ from typing import Optional
 
 @dataclasses.dataclass
 class V2CreateTransactionRequest:
-    ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
-    r"""Name of the ledger."""
     v2_post_transaction: shared_v2posttransaction.V2PostTransaction = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     r"""The request body must contain at least one of the following objects:
       - `postings`: suitable for simple transactions
       - `script`: enabling more complex transactions with Numscript
     """
-    dry_run: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'dryRun', 'style': 'form', 'explode': True }})
-    r"""Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker."""
+    ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
+    r"""Name of the ledger."""
     idempotency_key: Optional[str] = dataclasses.field(default=None, metadata={'header': { 'field_name': 'Idempotency-Key', 'style': 'simple', 'explode': False }})
     r"""Use an idempotency key"""
+    dry_run: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'dryRun', 'style': 'form', 'explode': True }})
+    r"""Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker."""
     
 
 
@@ -30,10 +30,10 @@ class V2CreateTransactionRequest:
 class V2CreateTransactionResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     v2_create_transaction_response: Optional[shared_v2createtransactionresponse.V2CreateTransactionResponse] = dataclasses.field(default=None)
     r"""OK"""
     v2_error_response: Optional[errors_v2errorresponse.V2ErrorResponse] = dataclasses.field(default=None)

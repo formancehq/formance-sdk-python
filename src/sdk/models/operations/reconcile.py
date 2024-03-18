@@ -11,9 +11,9 @@ from typing import Optional
 
 @dataclasses.dataclass
 class ReconcileRequest:
+    reconciliation_request: shared_reconciliationrequest.ReconciliationRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     policy_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'policyID', 'style': 'simple', 'explode': False }})
     r"""The policy ID."""
-    reconciliation_request: shared_reconciliationrequest.ReconciliationRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     
 
 
@@ -22,13 +22,13 @@ class ReconcileRequest:
 class ReconcileResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    reconciliation_error_response: Optional[shared_reconciliationerrorresponse.ReconciliationErrorResponse] = dataclasses.field(default=None)
-    r"""Error response"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     reconciliation_response: Optional[shared_reconciliationresponse.ReconciliationResponse] = dataclasses.field(default=None)
     r"""OK"""
+    reconciliation_error_response: Optional[shared_reconciliationerrorresponse.ReconciliationErrorResponse] = dataclasses.field(default=None)
+    r"""Error response"""
     
 

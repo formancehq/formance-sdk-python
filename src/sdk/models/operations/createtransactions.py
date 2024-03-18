@@ -11,9 +11,9 @@ from typing import Optional
 
 @dataclasses.dataclass
 class CreateTransactionsRequest:
+    transactions: shared_transactions.Transactions = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
     r"""Name of the ledger."""
-    transactions: shared_transactions.Transactions = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     
 
 
@@ -22,10 +22,10 @@ class CreateTransactionsRequest:
 class CreateTransactionsResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     error_response: Optional[errors_errorresponse.ErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     transactions_response: Optional[shared_transactionsresponse.TransactionsResponse] = dataclasses.field(default=None)
