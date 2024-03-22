@@ -202,9 +202,10 @@ if res is not None:
 **[operations.CreditWalletResponse](../../models/operations/creditwalletresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | 400                         | application/json            |
+| errors.SDKError             | 4x-5xx                      | */*                         |
 
 ## debit_wallet
 
@@ -254,9 +255,10 @@ if res.debit_wallet_response is not None:
 **[operations.DebitWalletResponse](../../models/operations/debitwalletresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | 400                         | application/json            |
+| errors.SDKError             | 4x-5xx                      | */*                         |
 
 ## get_balance
 

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: 254f15d23bfd21d49b8db8ecb44639be
-  docVersion: v2.0.0-rc.16
-  speakeasyVersion: 1.209.3
-  generationVersion: 2.281.2
-  releaseVersion: 2.1.0
-  configChecksum: 61758f75deba7b9e60eda7a63adb1777
+  docChecksum: b48bcb11c6ebfbb0f797aef5364a5064
+  docVersion: v2.0.0-rc.18
+  speakeasyVersion: 1.219.2
+  generationVersion: 2.286.7
+  releaseVersion: 2.1.1
+  configChecksum: aa3a5633587caff071a7c43ed346f3c8
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -18,7 +18,7 @@ features:
     deprecations: 2.81.1
     errors: 2.81.8
     getRequestBodies: 2.81.1
-    globalSecurity: 2.83.4
+    globalSecurity: 2.83.5
     globalServerURLs: 2.82.2
     groups: 2.81.2
     ignores: 2.81.1
@@ -502,7 +502,6 @@ generatedFiles:
   - src/sdk/models/shared/reconciliationrequest.py
   - src/sdk/models/shared/response.py
   - src/sdk/models/shared/query.py
-  - src/sdk/models/shared/walletserrorresponse.py
   - src/sdk/models/shared/confirmholdrequest.py
   - src/sdk/models/shared/createbalanceresponse.py
   - src/sdk/models/shared/balance.py
@@ -534,6 +533,7 @@ generatedFiles:
   - src/sdk/models/errors/errorresponse.py
   - src/sdk/models/errors/v2errorresponse.py
   - src/sdk/models/errors/v2error.py
+  - src/sdk/models/errors/walletserrorresponse.py
   - src/sdk/models/errors/webhookserrorresponse.py
   - src/sdk/models/__init__.py
   - src/sdk/models/errors/__init__.py
@@ -1227,8 +1227,6 @@ generatedFiles:
   - docs/models/shared/response.md
   - docs/models/shared/queryraw.md
   - docs/models/shared/query.md
-  - docs/models/shared/walletserrorresponseerrorcode.md
-  - docs/models/shared/walletserrorresponse.md
   - docs/models/shared/confirmholdrequest.md
   - docs/models/shared/createbalanceresponse.md
   - docs/models/shared/balance.md
@@ -1266,6 +1264,8 @@ generatedFiles:
   - docs/models/errors/v2errorresponse.md
   - docs/models/errors/errorcode.md
   - docs/models/errors/v2error.md
+  - docs/models/errors/schemaserrorcode.md
+  - docs/models/errors/walletserrorresponse.md
   - docs/models/errors/webhookserrorresponse.md
   - docs/sdks/sdk/README.md
   - docs/sdks/auth/README.md
