@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 import dataclasses
+import dateutil.parser
 from .monetary import Monetary
 from .stagesenddestination import StageSendDestination
 from .stagesendsource import StageSendSource
 from dataclasses_json import Undefined, dataclass_json
+from datetime import datetime
 from sdk import utils
 from typing import Dict, Optional
 
@@ -17,5 +19,6 @@ class StageSend:
     destination: Optional[StageSendDestination] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destination'), 'exclude': lambda f: f is None }})
     metadata: Optional[Dict[str, str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata'), 'exclude': lambda f: f is None }})
     source: Optional[StageSendSource] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('source'), 'exclude': lambda f: f is None }})
+    timestamp: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('timestamp'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     
 

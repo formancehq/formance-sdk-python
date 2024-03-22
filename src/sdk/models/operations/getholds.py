@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
+from ...models.errors import walletserrorresponse as errors_walletserrorresponse
 from ...models.shared import getholdsresponse as shared_getholdsresponse
-from ...models.shared import walletserrorresponse as shared_walletserrorresponse
 from typing import Dict, Optional
 
 
@@ -36,7 +36,7 @@ class GetHoldsResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     get_holds_response: Optional[shared_getholdsresponse.GetHoldsResponse] = dataclasses.field(default=None)
     r"""Holds"""
-    wallets_error_response: Optional[shared_walletserrorresponse.WalletsErrorResponse] = dataclasses.field(default=None)
+    wallets_error_response: Optional[errors_walletserrorresponse.WalletsErrorResponse] = dataclasses.field(default=None)
     r"""Error"""
     
 

@@ -23,10 +23,10 @@ class SDKConfiguration:
     server_url: str = ''
     server_idx: int = 0
     language: str = 'python'
-    openapi_doc_version: str = 'v2.0.0-rc.16'
-    sdk_version: str = '2.1.0'
-    gen_version: str = '2.281.2'
-    user_agent: str = 'speakeasy-sdk/python 2.1.0 2.281.2 v2.0.0-rc.16 formance-sdk-python'
+    openapi_doc_version: str = 'v2.0.0-rc.18'
+    sdk_version: str = '2.1.1'
+    gen_version: str = '2.286.7'
+    user_agent: str = 'speakeasy-sdk/python 2.1.1 2.286.7 v2.0.0-rc.18 formance-sdk-python'
     retry_config: RetryConfig = None
     _hooks: SDKHooks = None
 

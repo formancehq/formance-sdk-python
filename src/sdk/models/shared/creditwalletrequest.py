@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 import dataclasses
+import dateutil.parser
 from .ledgeraccountsubject import LedgerAccountSubject
 from .monetary import Monetary
 from .walletsubject import WalletSubject
 from dataclasses_json import Undefined, dataclass_json
+from datetime import datetime
 from sdk import utils
 from typing import Dict, List, Optional, Union
 
@@ -20,5 +22,6 @@ class CreditWalletRequest:
     balance: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('balance'), 'exclude': lambda f: f is None }})
     r"""The balance to credit"""
     reference: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reference'), 'exclude': lambda f: f is None }})
+    timestamp: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('timestamp'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     
 
