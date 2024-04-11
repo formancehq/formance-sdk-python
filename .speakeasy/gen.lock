@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: b48bcb11c6ebfbb0f797aef5364a5064
-  docVersion: v2.0.0-rc.18
-  speakeasyVersion: 1.219.2
-  generationVersion: 2.286.7
-  releaseVersion: 2.1.1
-  configChecksum: aa3a5633587caff071a7c43ed346f3c8
+  docChecksum: 1c0c06fbfb1fa7dfd4a7da5ce409a49e
+  docVersion: v2.0.0-rc.20
+  speakeasyVersion: 1.246.1
+  generationVersion: 2.302.1
+  releaseVersion: 2.2.0
+  configChecksum: facf8c134a7a494499707a18f54d23ea
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -14,7 +14,7 @@ management:
 features:
   python:
     constsAndDefaults: 0.1.3
-    core: 4.5.1
+    core: 4.6.4
     deprecations: 2.81.1
     errors: 2.81.8
     getRequestBodies: 2.81.1
@@ -44,8 +44,8 @@ generatedFiles:
   - src/sdk/utils/utils.py
   - src/sdk/models/errors/sdkerror.py
   - tests/helpers.py
+  - src/sdk/models/operations/getoidcwellknowns.py
   - src/sdk/models/operations/getversions.py
-  - src/sdk/models/operations/get_api_auth_well_known_openid_configuration.py
   - src/sdk/models/operations/createclient.py
   - src/sdk/models/operations/createsecret.py
   - src/sdk/models/operations/deleteclient.py
@@ -83,6 +83,7 @@ generatedFiles:
   - src/sdk/models/operations/v2createledger.py
   - src/sdk/models/operations/v2createtransaction.py
   - src/sdk/models/operations/v2deleteaccountmetadata.py
+  - src/sdk/models/operations/v2deleteledgermetadata.py
   - src/sdk/models/operations/v2deletetransactionmetadata.py
   - src/sdk/models/operations/v2getaccount.py
   - src/sdk/models/operations/v2getbalancesaggregated.py
@@ -96,6 +97,7 @@ generatedFiles:
   - src/sdk/models/operations/v2listtransactions.py
   - src/sdk/models/operations/v2readstats.py
   - src/sdk/models/operations/v2reverttransaction.py
+  - src/sdk/models/operations/v2updateledgermetadata.py
   - src/sdk/models/operations/cancelevent.py
   - src/sdk/models/operations/createtrigger.py
   - src/sdk/models/operations/createworkflow.py
@@ -272,6 +274,7 @@ generatedFiles:
   - src/sdk/models/shared/v2volume.py
   - src/sdk/models/shared/v2aggregatebalancesresponse.py
   - src/sdk/models/shared/v2configinforesponse.py
+  - src/sdk/models/shared/v2getledgerresponse.py
   - src/sdk/models/shared/v2ledger.py
   - src/sdk/models/shared/v2ledgerinforesponse.py
   - src/sdk/models/shared/v2ledgerinfo.py
@@ -286,7 +289,6 @@ generatedFiles:
   - src/sdk/models/shared/v2statsresponse.py
   - src/sdk/models/shared/v2stats.py
   - src/sdk/models/shared/v2reverttransactionresponse.py
-  - src/sdk/models/shared/error.py
   - src/sdk/models/shared/createtriggerresponse.py
   - src/sdk/models/shared/trigger.py
   - src/sdk/models/shared/triggerdata.py
@@ -477,6 +479,7 @@ generatedFiles:
   - src/sdk/models/shared/moneycorpconfig.py
   - src/sdk/models/shared/atlarconfig.py
   - src/sdk/models/shared/adyenconfig.py
+  - src/sdk/models/shared/genericconfig.py
   - src/sdk/models/shared/connectorsresponse.py
   - src/sdk/models/shared/bankaccountscursor.py
   - src/sdk/models/shared/connectorsconfigsresponse.py
@@ -491,7 +494,6 @@ generatedFiles:
   - src/sdk/models/shared/reversetransferinitiationrequest.py
   - src/sdk/models/shared/updatetransferinitiationstatusrequest.py
   - src/sdk/models/shared/updatebankaccountmetadatarequest.py
-  - src/sdk/models/shared/reconciliationerrorresponse.py
   - src/sdk/models/shared/policyresponse.py
   - src/sdk/models/shared/policy.py
   - src/sdk/models/shared/policyrequest.py
@@ -521,9 +523,9 @@ generatedFiles:
   - src/sdk/models/shared/getwalletsummaryresponse.py
   - src/sdk/models/shared/listbalancesresponse.py
   - src/sdk/models/shared/listwalletsresponse.py
-  - src/sdk/models/shared/webhookserrorsenum.py
   - src/sdk/models/shared/configresponse.py
   - src/sdk/models/shared/webhooksconfig.py
+  - src/sdk/models/shared/webhookserrorsenum.py
   - src/sdk/models/shared/configchangesecret.py
   - src/sdk/models/shared/configsresponse.py
   - src/sdk/models/shared/configuser.py
@@ -532,15 +534,17 @@ generatedFiles:
   - src/sdk/models/shared/security.py
   - src/sdk/models/errors/errorresponse.py
   - src/sdk/models/errors/v2errorresponse.py
+  - src/sdk/models/errors/error.py
   - src/sdk/models/errors/v2error.py
+  - src/sdk/models/errors/reconciliationerrorresponse.py
   - src/sdk/models/errors/walletserrorresponse.py
   - src/sdk/models/errors/webhookserrorresponse.py
   - src/sdk/models/__init__.py
   - src/sdk/models/errors/__init__.py
   - src/sdk/models/operations/__init__.py
   - src/sdk/models/shared/__init__.py
+  - docs/models/operations/getoidcwellknownsresponse.md
   - docs/models/operations/getversionsresponse.md
-  - docs/models/operations/getapiauthwellknownopenidconfigurationresponse.md
   - docs/models/operations/createclientresponse.md
   - docs/models/operations/createsecretrequest.md
   - docs/models/operations/createsecretresponse.md
@@ -612,6 +616,8 @@ generatedFiles:
   - docs/models/operations/v2createtransactionresponse.md
   - docs/models/operations/v2deleteaccountmetadatarequest.md
   - docs/models/operations/v2deleteaccountmetadataresponse.md
+  - docs/models/operations/v2deleteledgermetadatarequest.md
+  - docs/models/operations/v2deleteledgermetadataresponse.md
   - docs/models/operations/v2deletetransactionmetadatarequest.md
   - docs/models/operations/v2deletetransactionmetadataresponse.md
   - docs/models/operations/v2getaccountrequest.md
@@ -637,6 +643,8 @@ generatedFiles:
   - docs/models/operations/v2readstatsresponse.md
   - docs/models/operations/v2reverttransactionrequest.md
   - docs/models/operations/v2reverttransactionresponse.md
+  - docs/models/operations/v2updateledgermetadatarequest.md
+  - docs/models/operations/v2updateledgermetadataresponse.md
   - docs/models/operations/canceleventrequest.md
   - docs/models/operations/canceleventresponse.md
   - docs/models/operations/createtriggerresponse.md
@@ -922,6 +930,7 @@ generatedFiles:
   - docs/models/shared/v2volume.md
   - docs/models/shared/v2aggregatebalancesresponse.md
   - docs/models/shared/v2configinforesponse.md
+  - docs/models/shared/v2getledgerresponse.md
   - docs/models/shared/v2ledger.md
   - docs/models/shared/v2ledgerinforesponse.md
   - docs/models/shared/v2ledgerinfostorage.md
@@ -943,8 +952,6 @@ generatedFiles:
   - docs/models/shared/v2statsresponse.md
   - docs/models/shared/v2stats.md
   - docs/models/shared/v2reverttransactionresponse.md
-  - docs/models/shared/errorcode.md
-  - docs/models/shared/error.md
   - docs/models/shared/createtriggerresponse.md
   - docs/models/shared/trigger.md
   - docs/models/shared/triggerdata.md
@@ -1184,6 +1191,7 @@ generatedFiles:
   - docs/models/shared/moneycorpconfig.md
   - docs/models/shared/atlarconfig.md
   - docs/models/shared/adyenconfig.md
+  - docs/models/shared/genericconfig.md
   - docs/models/shared/connectorsresponsedata.md
   - docs/models/shared/connectorsresponse.md
   - docs/models/shared/bankaccountscursorcursor.md
@@ -1211,7 +1219,6 @@ generatedFiles:
   - docs/models/shared/status.md
   - docs/models/shared/updatetransferinitiationstatusrequest.md
   - docs/models/shared/updatebankaccountmetadatarequest.md
-  - docs/models/shared/reconciliationerrorresponse.md
   - docs/models/shared/policyresponse.md
   - docs/models/shared/policy.md
   - docs/models/shared/policyrequest.md
@@ -1250,9 +1257,9 @@ generatedFiles:
   - docs/models/shared/listbalancesresponse.md
   - docs/models/shared/listwalletsresponsecursor.md
   - docs/models/shared/listwalletsresponse.md
-  - docs/models/shared/webhookserrorsenum.md
   - docs/models/shared/configresponse.md
   - docs/models/shared/webhooksconfig.md
+  - docs/models/shared/webhookserrorsenum.md
   - docs/models/shared/configchangesecret.md
   - docs/models/shared/configsresponsecursor.md
   - docs/models/shared/configsresponse.md
@@ -1263,8 +1270,11 @@ generatedFiles:
   - docs/models/errors/errorresponse.md
   - docs/models/errors/v2errorresponse.md
   - docs/models/errors/errorcode.md
-  - docs/models/errors/v2error.md
+  - docs/models/errors/error.md
   - docs/models/errors/schemaserrorcode.md
+  - docs/models/errors/v2error.md
+  - docs/models/errors/reconciliationerrorresponse.md
+  - docs/models/errors/schemaswalletserrorresponseerrorcode.md
   - docs/models/errors/walletserrorresponse.md
   - docs/models/errors/webhookserrorresponse.md
   - docs/sdks/sdk/README.md

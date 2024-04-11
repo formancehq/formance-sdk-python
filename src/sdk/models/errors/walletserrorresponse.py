@@ -6,7 +6,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from sdk import utils
 
-class SchemasErrorCode(str, Enum):
+class SchemasWalletsErrorResponseErrorCode(str, Enum):
     VALIDATION = 'VALIDATION'
     INTERNAL_ERROR = 'INTERNAL_ERROR'
     INSUFFICIENT_FUND = 'INSUFFICIENT_FUND'
@@ -18,7 +18,7 @@ class SchemasErrorCode(str, Enum):
 @dataclasses.dataclass
 class WalletsErrorResponse(Exception):
     r"""Error"""
-    error_code: SchemasErrorCode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorCode') }})
+    error_code: SchemasWalletsErrorResponseErrorCode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorCode') }})
     error_message: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorMessage') }})
     
 

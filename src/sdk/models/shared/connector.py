@@ -14,3 +14,4 @@ class Connector(str, Enum):
     MONEYCORP = 'MONEYCORP'
     ATLAR = 'ATLAR'
     ADYEN = 'ADYEN'
+    GENERIC = 'GENERIC'

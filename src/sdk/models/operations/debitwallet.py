@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import walletserrorresponse as errors_walletserrorresponse
 from ...models.shared import debitwalletrequest as shared_debitwalletrequest
 from ...models.shared import debitwalletresponse as shared_debitwalletresponse
 from typing import Optional
@@ -27,7 +26,5 @@ class DebitWalletResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     debit_wallet_response: Optional[shared_debitwalletresponse.DebitWalletResponse] = dataclasses.field(default=None)
     r"""Wallet successfully debited as a pending hold"""
-    wallets_error_response: Optional[errors_walletserrorresponse.WalletsErrorResponse] = dataclasses.field(default=None)
-    r"""Error"""
     
 

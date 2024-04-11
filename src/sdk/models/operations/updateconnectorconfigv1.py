@@ -9,6 +9,7 @@ from ...models.shared import bankingcircleconfig as shared_bankingcircleconfig
 from ...models.shared import connector as shared_connector
 from ...models.shared import currencycloudconfig as shared_currencycloudconfig
 from ...models.shared import dummypayconfig as shared_dummypayconfig
+from ...models.shared import genericconfig as shared_genericconfig
 from ...models.shared import mangopayconfig as shared_mangopayconfig
 from ...models.shared import modulrconfig as shared_modulrconfig
 from ...models.shared import moneycorpconfig as shared_moneycorpconfig
@@ -19,7 +20,7 @@ from typing import Union
 
 @dataclasses.dataclass
 class UpdateConnectorConfigV1Request:
-    connector_config: Union[shared_stripeconfig.StripeConfig, shared_dummypayconfig.DummyPayConfig, shared_wiseconfig.WiseConfig, shared_modulrconfig.ModulrConfig, shared_currencycloudconfig.CurrencyCloudConfig, shared_bankingcircleconfig.BankingCircleConfig, shared_mangopayconfig.MangoPayConfig, shared_moneycorpconfig.MoneycorpConfig, shared_atlarconfig.AtlarConfig, shared_adyenconfig.AdyenConfig] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    connector_config: Union[shared_stripeconfig.StripeConfig, shared_dummypayconfig.DummyPayConfig, shared_wiseconfig.WiseConfig, shared_modulrconfig.ModulrConfig, shared_currencycloudconfig.CurrencyCloudConfig, shared_bankingcircleconfig.BankingCircleConfig, shared_mangopayconfig.MangoPayConfig, shared_moneycorpconfig.MoneycorpConfig, shared_atlarconfig.AtlarConfig, shared_adyenconfig.AdyenConfig, shared_genericconfig.GenericConfig] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     connector: shared_connector.Connector = dataclasses.field(metadata={'path_param': { 'field_name': 'connector', 'style': 'simple', 'explode': False }})
     r"""The name of the connector."""
     connector_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'connectorId', 'style': 'simple', 'explode': False }})

@@ -13,9 +13,13 @@ class ErrorCode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
-class Error:
+class Error(Exception):
+    r"""General error"""
     error_code: ErrorCode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorCode') }})
     error_message: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorMessage') }})
     
 
+    def __str__(self) -> str:
+        return utils.marshal_json(self, type(self))

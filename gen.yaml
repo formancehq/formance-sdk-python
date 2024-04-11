@@ -12,7 +12,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 python:
-  version: 2.1.1
+  version: 2.2.0
   additionalDependencies:
     dependencies: {}
     extraDependencies:
@@ -33,4 +33,5 @@ python:
   maxMethodParams: 0
   outputModelSuffix: output
   packageName: formance-sdk-python
+  projectUrls: {}
   responseFormat: envelope

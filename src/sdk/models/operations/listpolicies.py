@@ -4,7 +4,6 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.shared import policiescursorresponse as shared_policiescursorresponse
-from ...models.shared import reconciliationerrorresponse as shared_reconciliationerrorresponse
 from typing import Optional
 
 
@@ -32,7 +31,5 @@ class ListPoliciesResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     policies_cursor_response: Optional[shared_policiescursorresponse.PoliciesCursorResponse] = dataclasses.field(default=None)
     r"""OK"""
-    reconciliation_error_response: Optional[shared_reconciliationerrorresponse.ReconciliationErrorResponse] = dataclasses.field(default=None)
-    r"""Error response"""
     
 

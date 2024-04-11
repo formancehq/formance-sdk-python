@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import v2errorresponse as errors_v2errorresponse
 from ...models.shared import v2aggregatebalancesresponse as shared_v2aggregatebalancesresponse
 from datetime import datetime
 from typing import Any, Dict, Optional
@@ -15,7 +14,7 @@ class V2GetBalancesAggregatedRequest:
     r"""Name of the ledger."""
     request_body: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
     pit: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'pit', 'style': 'form', 'explode': True }})
-    use_insertion_date: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'use_insertion_date', 'style': 'form', 'explode': True }})
+    use_insertion_date: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'useInsertionDate', 'style': 'form', 'explode': True }})
     r"""Use insertion date instead of effective date"""
     
 
@@ -31,7 +30,5 @@ class V2GetBalancesAggregatedResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     v2_aggregate_balances_response: Optional[shared_v2aggregatebalancesresponse.V2AggregateBalancesResponse] = dataclasses.field(default=None)
     r"""OK"""
-    v2_error_response: Optional[errors_v2errorresponse.V2ErrorResponse] = dataclasses.field(default=None)
-    r"""Error"""
     
 

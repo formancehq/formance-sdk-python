@@ -11,6 +11,7 @@ from typing import Optional
 @dataclasses.dataclass
 class V2BulkElementRevertTransactionData:
     id: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id') }})
+    at_effective_date: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('atEffectiveDate'), 'exclude': lambda f: f is None }})
     force: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('force'), 'exclude': lambda f: f is None }})
     
 

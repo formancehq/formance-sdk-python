@@ -4,7 +4,6 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.shared import createworkflowresponse as shared_createworkflowresponse
-from ...models.shared import error as shared_error
 from typing import Optional
 
 
@@ -18,7 +17,5 @@ class CreateWorkflowResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     create_workflow_response: Optional[shared_createworkflowresponse.CreateWorkflowResponse] = dataclasses.field(default=None)
     r"""Created workflow"""
-    error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    r"""General error"""
     
 

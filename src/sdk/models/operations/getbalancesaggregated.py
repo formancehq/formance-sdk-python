@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import errorresponse as errors_errorresponse
 from ...models.shared import aggregatebalancesresponse as shared_aggregatebalancesresponse
 from typing import Optional
 
@@ -14,7 +13,7 @@ class GetBalancesAggregatedRequest:
     r"""Name of the ledger."""
     address: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'address', 'style': 'form', 'explode': True }})
     r"""Filter balances involving given account, either as source or destination."""
-    use_insertion_date: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'use_insertion_date', 'style': 'form', 'explode': True }})
+    use_insertion_date: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'useInsertionDate', 'style': 'form', 'explode': True }})
     r"""Use insertion date instead of effective date"""
     
 
@@ -30,7 +29,5 @@ class GetBalancesAggregatedResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     aggregate_balances_response: Optional[shared_aggregatebalancesresponse.AggregateBalancesResponse] = dataclasses.field(default=None)
     r"""OK"""
-    error_response: Optional[errors_errorresponse.ErrorResponse] = dataclasses.field(default=None)
-    r"""Error"""
     
 

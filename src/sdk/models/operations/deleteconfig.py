@@ -3,8 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import webhookserrorresponse as errors_webhookserrorresponse
-from typing import Optional
 
 
 @dataclasses.dataclass
@@ -23,7 +21,5 @@ class DeleteConfigResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    webhooks_error_response: Optional[errors_webhookserrorresponse.WebhooksErrorResponse] = dataclasses.field(default=None)
-    r"""Error"""
     
 

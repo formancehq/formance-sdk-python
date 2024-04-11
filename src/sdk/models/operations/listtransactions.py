@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import errorresponse as errors_errorresponse
 from ...models.shared import transactionscursorresponse as shared_transactionscursorresponse
 from datetime import datetime
 from typing import Any, Dict, Optional
@@ -53,8 +52,6 @@ class ListTransactionsResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    error_response: Optional[errors_errorresponse.ErrorResponse] = dataclasses.field(default=None)
-    r"""Error"""
     transactions_cursor_response: Optional[shared_transactionscursorresponse.TransactionsCursorResponse] = dataclasses.field(default=None)
     r"""OK"""
     

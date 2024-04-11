@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import webhookserrorresponse as errors_webhookserrorresponse
 from ...models.shared import attemptresponse as shared_attemptresponse
 from typing import Optional
 
@@ -30,7 +29,5 @@ class TestConfigResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     attempt_response: Optional[shared_attemptresponse.AttemptResponse] = dataclasses.field(default=None)
     r"""OK"""
-    webhooks_error_response: Optional[errors_webhookserrorresponse.WebhooksErrorResponse] = dataclasses.field(default=None)
-    r"""Error"""
     
 

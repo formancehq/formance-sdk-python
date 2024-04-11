@@ -58,9 +58,10 @@ if res is not None:
 **[operations.ConfirmHoldResponse](../../models/operations/confirmholdresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## create_balance
 
@@ -100,9 +101,10 @@ if res.create_balance_response is not None:
 **[operations.CreateBalanceResponse](../../models/operations/createbalanceresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## create_wallet
 
@@ -145,9 +147,10 @@ if res.create_wallet_response is not None:
 **[operations.CreateWalletResponse](../../models/operations/createwalletresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## credit_wallet
 
@@ -204,8 +207,8 @@ if res is not None:
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | 400                         | application/json            |
-| errors.SDKError             | 4x-5xx                      | */*                         |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## debit_wallet
 
@@ -257,8 +260,8 @@ if res.debit_wallet_response is not None:
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | 400                         | application/json            |
-| errors.SDKError             | 4x-5xx                      | */*                         |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## get_balance
 
@@ -299,9 +302,10 @@ if res.get_balance_response is not None:
 **[operations.GetBalanceResponse](../../models/operations/getbalanceresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## get_hold
 
@@ -341,9 +345,10 @@ if res.get_hold_response is not None:
 **[operations.GetHoldResponse](../../models/operations/getholdresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## get_holds
 
@@ -383,9 +388,10 @@ if res.get_holds_response is not None:
 **[operations.GetHoldsResponse](../../models/operations/getholdsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## get_transactions
 
@@ -423,9 +429,10 @@ if res.get_transactions_response is not None:
 **[operations.GetTransactionsResponse](../../models/operations/gettransactionsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## get_wallet
 
@@ -465,9 +472,10 @@ if res.get_wallet_response is not None:
 **[operations.GetWalletResponse](../../models/operations/getwalletresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## get_wallet_summary
 
@@ -507,9 +515,10 @@ if res.get_wallet_summary_response is not None:
 **[operations.GetWalletSummaryResponse](../../models/operations/getwalletsummaryresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## list_balances
 
@@ -551,7 +560,7 @@ if res.list_balances_response is not None:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## list_wallets
 
@@ -591,9 +600,10 @@ if res.list_wallets_response is not None:
 **[operations.ListWalletsResponse](../../models/operations/listwalletsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## update_wallet
 
@@ -633,9 +643,10 @@ if res is not None:
 **[operations.UpdateWalletResponse](../../models/operations/updatewalletresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## void_hold
 
@@ -675,9 +686,10 @@ if res is not None:
 **[operations.VoidHoldResponse](../../models/operations/voidholdresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## walletsget_server_info
 
@@ -707,6 +719,7 @@ if res.server_info is not None:
 **[operations.WalletsgetServerInfoResponse](../../models/operations/walletsgetserverinforesponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |

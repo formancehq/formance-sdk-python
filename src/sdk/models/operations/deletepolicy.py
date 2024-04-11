@@ -3,8 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.shared import reconciliationerrorresponse as shared_reconciliationerrorresponse
-from typing import Optional
 
 
 @dataclasses.dataclass
@@ -23,7 +21,5 @@ class DeletePolicyResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    reconciliation_error_response: Optional[shared_reconciliationerrorresponse.ReconciliationErrorResponse] = dataclasses.field(default=None)
-    r"""Error response"""
     
 

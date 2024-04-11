@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.shared import reconciliationerrorresponse as shared_reconciliationerrorresponse
 from ...models.shared import reconciliationrequest as shared_reconciliationrequest
 from ...models.shared import reconciliationresponse as shared_reconciliationresponse
 from typing import Optional
@@ -28,7 +27,5 @@ class ReconcileResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     reconciliation_response: Optional[shared_reconciliationresponse.ReconciliationResponse] = dataclasses.field(default=None)
     r"""OK"""
-    reconciliation_error_response: Optional[shared_reconciliationerrorresponse.ReconciliationErrorResponse] = dataclasses.field(default=None)
-    r"""Error response"""
     
 

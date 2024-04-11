@@ -4,7 +4,6 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.shared import createtriggerresponse as shared_createtriggerresponse
-from ...models.shared import error as shared_error
 from typing import Optional
 
 
@@ -18,7 +17,5 @@ class CreateTriggerResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     create_trigger_response: Optional[shared_createtriggerresponse.CreateTriggerResponse] = dataclasses.field(default=None)
     r"""Created trigger"""
-    error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    r"""General error"""
     
 
