@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import errorresponse as errors_errorresponse
 from ...models.shared import configinforesponse as shared_configinforesponse
 from typing import Optional
 
@@ -18,7 +17,5 @@ class GetInfoResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     config_info_response: Optional[shared_configinforesponse.ConfigInfoResponse] = dataclasses.field(default=None)
     r"""OK"""
-    error_response: Optional[errors_errorresponse.ErrorResponse] = dataclasses.field(default=None)
-    r"""Error"""
     
 

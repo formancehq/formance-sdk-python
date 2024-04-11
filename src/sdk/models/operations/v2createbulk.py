@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import v2errorresponse as errors_v2errorresponse
 from ...models.shared import v2bulkelementaddmetadata as shared_v2bulkelementaddmetadata
 from ...models.shared import v2bulkelementcreatetransaction as shared_v2bulkelementcreatetransaction
 from ...models.shared import v2bulkelementdeletemetadata as shared_v2bulkelementdeletemetadata
@@ -31,7 +30,5 @@ class V2CreateBulkResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     v2_bulk_response: Optional[shared_v2bulkresponse.V2BulkResponse] = dataclasses.field(default=None)
     r"""OK"""
-    v2_error_response: Optional[errors_v2errorresponse.V2ErrorResponse] = dataclasses.field(default=None)
-    r"""Error"""
     
 

@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import errorresponse as errors_errorresponse
 from ...models.shared import balancescursorresponse as shared_balancescursorresponse
 from typing import Optional
 
@@ -38,7 +37,5 @@ class GetBalancesResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     balances_cursor_response: Optional[shared_balancescursorresponse.BalancesCursorResponse] = dataclasses.field(default=None)
     r"""OK"""
-    error_response: Optional[errors_errorresponse.ErrorResponse] = dataclasses.field(default=None)
-    r"""Error"""
     
 

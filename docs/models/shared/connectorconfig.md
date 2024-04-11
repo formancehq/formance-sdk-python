@@ -63,3 +63,9 @@ connectorConfig: shared.AtlarConfig = /* values here */
 connectorConfig: shared.AdyenConfig = /* values here */
 ```
 
+### GenericConfig
+
+```python
+connectorConfig: shared.GenericConfig = /* values here */
+```
+

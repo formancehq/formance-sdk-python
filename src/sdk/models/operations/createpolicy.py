@@ -4,7 +4,6 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.shared import policyresponse as shared_policyresponse
-from ...models.shared import reconciliationerrorresponse as shared_reconciliationerrorresponse
 from typing import Optional
 
 
@@ -18,7 +17,5 @@ class CreatePolicyResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     policy_response: Optional[shared_policyresponse.PolicyResponse] = dataclasses.field(default=None)
     r"""OK"""
-    reconciliation_error_response: Optional[shared_reconciliationerrorresponse.ReconciliationErrorResponse] = dataclasses.field(default=None)
-    r"""Error response"""
     
 

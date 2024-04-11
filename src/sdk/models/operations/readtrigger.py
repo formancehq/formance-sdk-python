@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.shared import error as shared_error
 from ...models.shared import readtriggerresponse as shared_readtriggerresponse
 from typing import Optional
 
@@ -24,8 +23,6 @@ class ReadTriggerResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    r"""General error"""
     read_trigger_response: Optional[shared_readtriggerresponse.ReadTriggerResponse] = dataclasses.field(default=None)
     r"""A specific trigger"""
     

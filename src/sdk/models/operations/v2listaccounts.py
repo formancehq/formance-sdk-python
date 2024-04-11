@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import v2errorresponse as errors_v2errorresponse
 from ...models.shared import v2accountscursorresponse as shared_v2accountscursorresponse
 from datetime import datetime
 from typing import Any, Dict, Optional
@@ -38,7 +37,5 @@ class V2ListAccountsResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     v2_accounts_cursor_response: Optional[shared_v2accountscursorresponse.V2AccountsCursorResponse] = dataclasses.field(default=None)
     r"""OK"""
-    v2_error_response: Optional[errors_v2errorresponse.V2ErrorResponse] = dataclasses.field(default=None)
-    r"""Error"""
     
 

@@ -6,7 +6,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from sdk import utils
 
-class ErrorCode(str, Enum):
+class SchemasErrorCode(str, Enum):
     VALIDATION = 'VALIDATION'
     NOT_FOUND = 'NOT_FOUND'
     INTERNAL = 'INTERNAL'
@@ -17,7 +17,7 @@ class ErrorCode(str, Enum):
 @dataclasses.dataclass
 class V2Error(Exception):
     r"""General error"""
-    error_code: ErrorCode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorCode') }})
+    error_code: SchemasErrorCode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorCode') }})
     error_message: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorMessage') }})
     
 

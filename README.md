@@ -37,9 +37,9 @@ s = sdk.SDK(
 )
 
 
-res = s.get_versions()
+res = s.get_oidc_well_knowns()
 
-if res.get_versions_response is not None:
+if res is not None:
     # handle response
     pass
 
@@ -51,8 +51,8 @@ if res.get_versions_response is not None:
 
 ### [SDK](docs/sdks/sdk/README.md)
 
+* [get_oidc_well_knowns](docs/sdks/sdk/README.md#get_oidc_well_knowns) - Retrieve OpenID connect well-knowns.
 * [get_versions](docs/sdks/sdk/README.md#get_versions) - Show stack version information
-* [get_api_auth_well_known_openid_configuration](docs/sdks/sdk/README.md#get_api_auth_well_known_openid_configuration)
 
 ### [auth](docs/sdks/auth/README.md)
 
@@ -96,6 +96,7 @@ if res.get_versions_response is not None:
 * [v2_create_ledger](docs/sdks/ledger/README.md#v2_create_ledger) - Create a ledger
 * [v2_create_transaction](docs/sdks/ledger/README.md#v2_create_transaction) - Create a new transaction to a ledger
 * [v2_delete_account_metadata](docs/sdks/ledger/README.md#v2_delete_account_metadata) - Delete metadata by key
+* [v2_delete_ledger_metadata](docs/sdks/ledger/README.md#v2_delete_ledger_metadata) - Delete ledger metadata by key
 * [v2_delete_transaction_metadata](docs/sdks/ledger/README.md#v2_delete_transaction_metadata) - Delete metadata by key
 * [v2_get_account](docs/sdks/ledger/README.md#v2_get_account) - Get account by its address
 * [v2_get_balances_aggregated](docs/sdks/ledger/README.md#v2_get_balances_aggregated) - Get the aggregated balances from selected accounts
@@ -109,6 +110,7 @@ if res.get_versions_response is not None:
 * [v2_list_transactions](docs/sdks/ledger/README.md#v2_list_transactions) - List transactions from a ledger
 * [v2_read_stats](docs/sdks/ledger/README.md#v2_read_stats) - Get statistics from a ledger
 * [v2_revert_transaction](docs/sdks/ledger/README.md#v2_revert_transaction) - Revert a ledger transaction by its ID
+* [v2_update_ledger_metadata](docs/sdks/ledger/README.md#v2_update_ledger_metadata) - Update ledger metadata
 
 ### [orchestration](docs/sdks/orchestration/README.md)
 
@@ -246,30 +248,41 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | 400,404              | application/json     |
-| errors.SDKError      | 4x-5xx               | */*                  |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ### Example
 
 ```python
 import sdk
-from sdk.models import errors, operations
+from sdk.models import errors, operations, shared
 
 s = sdk.SDK(
     authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
 )
 
-req = operations.AddMetadataToAccountRequest(
-    request_body={
-        'key': '<value>',
-    },
-    address='users:001',
+req = operations.CreateTransactionsRequest(
+    transactions=shared.Transactions(
+        transactions=[
+            shared.TransactionData(
+                postings=[
+                    shared.Posting(
+                        amount=100,
+                        asset='COIN',
+                        destination='users:002',
+                        source='users:001',
+                    ),
+                ],
+                reference='ref:001',
+            ),
+        ],
+    ),
     ledger='ledger001',
 )
 
 res = None
 try:
-    res = s.ledger.add_metadata_to_account(req)
+    res = s.ledger.create_transactions(req)
 except errors.ErrorResponse as e:
     # handle exception
     raise(e)
@@ -277,7 +290,7 @@ except errors.SDKError as e:
     # handle exception
     raise(e)
 
-if res is not None:
+if res.transactions_response is not None:
     # handle response
     pass
 
@@ -306,9 +319,9 @@ s = sdk.SDK(
 )
 
 
-res = s.get_versions()
+res = s.get_oidc_well_knowns()
 
-if res.get_versions_response is not None:
+if res is not None:
     # handle response
     pass
 
@@ -327,9 +340,9 @@ s = sdk.SDK(
 )
 
 
-res = s.get_versions()
+res = s.get_oidc_well_knowns()
 
-if res.get_versions_response is not None:
+if res is not None:
     # handle response
     pass
 
@@ -348,7 +361,7 @@ import requests
 
 http_client = requests.Session()
 http_client.headers.update({'x-custom-header': 'someValue'})
-s = sdk.SDK(client: http_client)
+s = sdk.SDK(client=http_client)
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -372,9 +385,9 @@ s = sdk.SDK(
 )
 
 
-res = s.get_versions()
+res = s.get_oidc_well_knowns()
 
-if res.get_versions_response is not None:
+if res is not None:
     # handle response
     pass
 

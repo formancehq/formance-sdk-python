@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import v2error as errors_v2error
 from ...models.shared import v2getworkflowinstancehistoryresponse as shared_v2getworkflowinstancehistoryresponse
 from typing import Optional
 
@@ -24,8 +23,6 @@ class V2GetInstanceHistoryResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    v2_error: Optional[errors_v2error.V2Error] = dataclasses.field(default=None)
-    r"""General error"""
     v2_get_workflow_instance_history_response: Optional[shared_v2getworkflowinstancehistoryresponse.V2GetWorkflowInstanceHistoryResponse] = dataclasses.field(default=None)
     r"""The workflow instance history"""
     

@@ -55,9 +55,10 @@ if res.policy_response is not None:
 **[operations.CreatePolicyResponse](../../models/operations/createpolicyresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## delete_policy
 
@@ -97,9 +98,10 @@ if res is not None:
 **[operations.DeletePolicyResponse](../../models/operations/deletepolicyresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## get_policy
 
@@ -139,9 +141,10 @@ if res.policy_response is not None:
 **[operations.GetPolicyResponse](../../models/operations/getpolicyresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## get_reconciliation
 
@@ -181,9 +184,10 @@ if res.reconciliation_response is not None:
 **[operations.GetReconciliationResponse](../../models/operations/getreconciliationresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## list_policies
 
@@ -223,9 +227,10 @@ if res.policies_cursor_response is not None:
 **[operations.ListPoliciesResponse](../../models/operations/listpoliciesresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## list_reconciliations
 
@@ -265,9 +270,10 @@ if res.reconciliations_cursor_response is not None:
 **[operations.ListReconciliationsResponse](../../models/operations/listreconciliationsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## reconcile
 
@@ -312,9 +318,10 @@ if res.reconciliation_response is not None:
 **[operations.ReconcileResponse](../../models/operations/reconcileresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## reconciliationget_server_info
 
@@ -344,6 +351,7 @@ if res.server_info is not None:
 **[operations.ReconciliationgetServerInfoResponse](../../models/operations/reconciliationgetserverinforesponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |

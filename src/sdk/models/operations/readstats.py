@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import errorresponse as errors_errorresponse
 from ...models.shared import statsresponse as shared_statsresponse
 from typing import Optional
 
@@ -24,8 +23,6 @@ class ReadStatsResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    error_response: Optional[errors_errorresponse.ErrorResponse] = dataclasses.field(default=None)
-    r"""Error"""
     stats_response: Optional[shared_statsresponse.StatsResponse] = dataclasses.field(default=None)
     r"""OK"""
     

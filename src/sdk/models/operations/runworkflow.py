@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.shared import error as shared_error
 from ...models.shared import runworkflowresponse as shared_runworkflowresponse
 from typing import Dict, Optional
 
@@ -27,8 +26,6 @@ class RunWorkflowResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    r"""General error"""
     run_workflow_response: Optional[shared_runworkflowresponse.RunWorkflowResponse] = dataclasses.field(default=None)
     r"""The workflow instance"""
     

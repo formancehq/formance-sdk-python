@@ -6,7 +6,17 @@ import requests as requests_http
 
 
 @dataclasses.dataclass
-class GetAPIAuthWellKnownOpenidConfigurationResponse:
+class V2DeleteLedgerMetadataRequest:
+    key: str = dataclasses.field(metadata={'path_param': { 'field_name': 'key', 'style': 'simple', 'explode': False }})
+    r"""Key to remove."""
+    ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
+    r"""Name of the ledger."""
+    
+
+
+
+@dataclasses.dataclass
+class V2DeleteLedgerMetadataResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()

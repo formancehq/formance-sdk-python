@@ -49,9 +49,10 @@ if res.config_response is not None:
 **[operations.ActivateConfigResponse](../../models/operations/activateconfigresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.WebhooksErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## change_config_secret
 
@@ -97,8 +98,8 @@ if res.config_response is not None:
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.WebhooksErrorResponse | 400                          | application/json             |
-| errors.SDKError              | 4x-5xx                       | */*                          |
+| errors.WebhooksErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## deactivate_config
 
@@ -140,8 +141,8 @@ if res.config_response is not None:
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.WebhooksErrorResponse | 404                          | application/json             |
-| errors.SDKError              | 4x-5xx                       | */*                          |
+| errors.WebhooksErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## delete_config
 
@@ -183,8 +184,8 @@ if res is not None:
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.WebhooksErrorResponse | 400,404                      | application/json             |
-| errors.SDKError              | 4x-5xx                       | */*                          |
+| errors.WebhooksErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## get_many_configs
 
@@ -225,9 +226,10 @@ if res.configs_response is not None:
 **[operations.GetManyConfigsResponse](../../models/operations/getmanyconfigsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.WebhooksErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## insert_config
 
@@ -284,8 +286,8 @@ if res.config_response is not None:
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.WebhooksErrorResponse | 400                          | application/json             |
-| errors.SDKError              | 4x-5xx                       | */*                          |
+| errors.WebhooksErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## test_config
 
@@ -327,5 +329,5 @@ if res.attempt_response is not None:
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.WebhooksErrorResponse | 400,404                      | application/json             |
-| errors.SDKError              | 4x-5xx                       | */*                          |
+| errors.WebhooksErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |

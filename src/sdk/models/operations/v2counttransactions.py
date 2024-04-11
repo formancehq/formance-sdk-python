@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import v2errorresponse as errors_v2errorresponse
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
@@ -27,7 +26,5 @@ class V2CountTransactionsResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    v2_error_response: Optional[errors_v2errorresponse.V2ErrorResponse] = dataclasses.field(default=None)
-    r"""Error"""
     
 

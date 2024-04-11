@@ -31,6 +31,7 @@
 * [v2_create_ledger](#v2_create_ledger) - Create a ledger
 * [v2_create_transaction](#v2_create_transaction) - Create a new transaction to a ledger
 * [v2_delete_account_metadata](#v2_delete_account_metadata) - Delete metadata by key
+* [v2_delete_ledger_metadata](#v2_delete_ledger_metadata) - Delete ledger metadata by key
 * [v2_delete_transaction_metadata](#v2_delete_transaction_metadata) - Delete metadata by key
 * [v2_get_account](#v2_get_account) - Get account by its address
 * [v2_get_balances_aggregated](#v2_get_balances_aggregated) - Get the aggregated balances from selected accounts
@@ -44,6 +45,7 @@
 * [v2_list_transactions](#v2_list_transactions) - List transactions from a ledger
 * [v2_read_stats](#v2_read_stats) - Get statistics from a ledger
 * [v2_revert_transaction](#v2_revert_transaction) - Revert a ledger transaction by its ID
+* [v2_update_ledger_metadata](#v2_update_ledger_metadata) - Update ledger metadata
 
 ## create_transactions
 
@@ -98,9 +100,10 @@ if res.transactions_response is not None:
 **[operations.CreateTransactionsResponse](../../models/operations/createtransactionsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## add_metadata_on_transaction
 
@@ -141,9 +144,10 @@ if res is not None:
 **[operations.AddMetadataOnTransactionResponse](../../models/operations/addmetadataontransactionresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## add_metadata_to_account
 
@@ -189,8 +193,8 @@ if res is not None:
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | 400,404              | application/json     |
-| errors.SDKError      | 4x-5xx               | */*                  |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## count_accounts
 
@@ -231,9 +235,10 @@ if res is not None:
 **[operations.CountAccountsResponse](../../models/operations/countaccountsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## count_transactions
 
@@ -277,9 +282,10 @@ if res is not None:
 **[operations.CountTransactionsResponse](../../models/operations/counttransactionsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## create_transaction
 
@@ -325,8 +331,8 @@ if res.transactions_response is not None:
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | 400                  | application/json     |
-| errors.SDKError      | 4x-5xx               | */*                  |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## get_account
 
@@ -367,9 +373,10 @@ if res.account_response is not None:
 **[operations.GetAccountResponse](../../models/operations/getaccountresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## get_balances
 
@@ -412,9 +419,10 @@ if res.balances_cursor_response is not None:
 **[operations.GetBalancesResponse](../../models/operations/getbalancesresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## get_balances_aggregated
 
@@ -455,9 +463,10 @@ if res.aggregate_balances_response is not None:
 **[operations.GetBalancesAggregatedResponse](../../models/operations/getbalancesaggregatedresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## get_info
 
@@ -487,9 +496,10 @@ if res.config_info_response is not None:
 **[operations.GetInfoResponse](../../models/operations/getinforesponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## get_ledger_info
 
@@ -529,9 +539,10 @@ if res.ledger_info_response is not None:
 **[operations.GetLedgerInfoResponse](../../models/operations/getledgerinforesponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## get_mapping
 
@@ -571,9 +582,10 @@ if res.mapping_response is not None:
 **[operations.GetMappingResponse](../../models/operations/getmappingresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## get_transaction
 
@@ -614,9 +626,10 @@ if res.transaction_response is not None:
 **[operations.GetTransactionResponse](../../models/operations/gettransactionresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## list_accounts
 
@@ -661,9 +674,10 @@ if res.accounts_cursor_response is not None:
 **[operations.ListAccountsResponse](../../models/operations/listaccountsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## list_logs
 
@@ -705,9 +719,10 @@ if res.logs_cursor_response is not None:
 **[operations.ListLogsResponse](../../models/operations/listlogsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## list_transactions
 
@@ -753,9 +768,10 @@ if res.transactions_cursor_response is not None:
 **[operations.ListTransactionsResponse](../../models/operations/listtransactionsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## read_stats
 
@@ -796,9 +812,10 @@ if res.stats_response is not None:
 **[operations.ReadStatsResponse](../../models/operations/readstatsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## revert_transaction
 
@@ -839,9 +856,10 @@ if res.transaction_response is not None:
 **[operations.RevertTransactionResponse](../../models/operations/reverttransactionresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## ~~run_script~~
 
@@ -901,7 +919,7 @@ if res.script_response is not None:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## update_mapping
 
@@ -949,9 +967,10 @@ if res.mapping_response is not None:
 **[operations.UpdateMappingResponse](../../models/operations/updatemappingresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## v2_add_metadata_on_transaction
 
@@ -998,8 +1017,8 @@ if res is not None:
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400,404                | application/json       |
-| errors.SDKError        | 4x-5xx                 | */*                    |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_add_metadata_to_account
 
@@ -1046,8 +1065,8 @@ if res is not None:
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400,404                | application/json       |
-| errors.SDKError        | 4x-5xx                 | */*                    |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_count_accounts
 
@@ -1087,9 +1106,10 @@ if res is not None:
 **[operations.V2CountAccountsResponse](../../models/operations/v2countaccountsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_count_transactions
 
@@ -1129,9 +1149,10 @@ if res is not None:
 **[operations.V2CountTransactionsResponse](../../models/operations/v2counttransactionsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_create_bulk
 
@@ -1171,9 +1192,10 @@ if res.v2_bulk_response is not None:
 **[operations.V2CreateBulkResponse](../../models/operations/v2createbulkresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_create_ledger
 
@@ -1215,8 +1237,8 @@ if res is not None:
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400                    | application/json       |
-| errors.SDKError        | 4x-5xx                 | */*                    |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_create_transaction
 
@@ -1265,8 +1287,8 @@ if res.v2_create_transaction_response is not None:
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400                    | application/json       |
-| errors.SDKError        | 4x-5xx                 | */*                    |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_delete_account_metadata
 
@@ -1310,7 +1332,51 @@ if res is not None:
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## v2_delete_ledger_metadata
+
+Delete ledger metadata by key
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK(
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+)
+
+req = operations.V2DeleteLedgerMetadataRequest(
+    key='foo',
+    ledger='ledger001',
+)
+
+res = s.ledger.v2_delete_ledger_metadata(req)
+
+if res is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `request`                                                                                            | [operations.V2DeleteLedgerMetadataRequest](../../models/operations/v2deleteledgermetadatarequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+
+
+### Response
+
+**[operations.V2DeleteLedgerMetadataResponse](../../models/operations/v2deleteledgermetadataresponse.md)**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_delete_transaction_metadata
 
@@ -1354,8 +1420,8 @@ if res is not None:
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400                    | application/json       |
-| errors.SDKError        | 4x-5xx                 | */*                    |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_get_account
 
@@ -1396,9 +1462,10 @@ if res.v2_account_response is not None:
 **[operations.V2GetAccountResponse](../../models/operations/v2getaccountresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_get_balances_aggregated
 
@@ -1438,9 +1505,10 @@ if res.v2_aggregate_balances_response is not None:
 **[operations.V2GetBalancesAggregatedResponse](../../models/operations/v2getbalancesaggregatedresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_get_info
 
@@ -1470,9 +1538,10 @@ if res.v2_config_info_response is not None:
 **[operations.V2GetInfoResponse](../../models/operations/v2getinforesponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_get_ledger
 
@@ -1494,7 +1563,7 @@ req = operations.V2GetLedgerRequest(
 
 res = s.ledger.v2_get_ledger(req)
 
-if res.v2_ledger is not None:
+if res.v2_get_ledger_response is not None:
     # handle response
     pass
 
@@ -1512,9 +1581,10 @@ if res.v2_ledger is not None:
 **[operations.V2GetLedgerResponse](../../models/operations/v2getledgerresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_get_ledger_info
 
@@ -1554,9 +1624,10 @@ if res.v2_ledger_info_response is not None:
 **[operations.V2GetLedgerInfoResponse](../../models/operations/v2getledgerinforesponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_get_transaction
 
@@ -1599,8 +1670,8 @@ if res.v2_get_transaction_response is not None:
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 404                    | application/json       |
-| errors.SDKError        | 4x-5xx                 | */*                    |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_list_accounts
 
@@ -1643,8 +1714,8 @@ if res.v2_accounts_cursor_response is not None:
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400                    | application/json       |
-| errors.SDKError        | 4x-5xx                 | */*                    |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_list_ledgers
 
@@ -1684,9 +1755,10 @@ if res.v2_ledger_list_response is not None:
 **[operations.V2ListLedgersResponse](../../models/operations/v2listledgersresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_list_logs
 
@@ -1727,9 +1799,10 @@ if res.v2_logs_cursor_response is not None:
 **[operations.V2ListLogsResponse](../../models/operations/v2listlogsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_list_transactions
 
@@ -1772,8 +1845,8 @@ if res.v2_transactions_cursor_response is not None:
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400,404                | application/json       |
-| errors.SDKError        | 4x-5xx                 | */*                    |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_read_stats
 
@@ -1814,9 +1887,10 @@ if res.v2_stats_response is not None:
 **[operations.V2ReadStatsResponse](../../models/operations/v2readstatsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2_revert_transaction
 
@@ -1859,5 +1933,51 @@ if res.v2_revert_transaction_response is not None:
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400                    | application/json       |
-| errors.SDKError        | 4x-5xx                 | */*                    |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
+
+## v2_update_ledger_metadata
+
+Update ledger metadata
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK(
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+)
+
+req = operations.V2UpdateLedgerMetadataRequest(
+    ledger='ledger001',
+    request_body={
+        'admin': 'true',
+    },
+)
+
+res = s.ledger.v2_update_ledger_metadata(req)
+
+if res is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `request`                                                                                            | [operations.V2UpdateLedgerMetadataRequest](../../models/operations/v2updateledgermetadatarequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+
+
+### Response
+
+**[operations.V2UpdateLedgerMetadataResponse](../../models/operations/v2updateledgermetadataresponse.md)**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |

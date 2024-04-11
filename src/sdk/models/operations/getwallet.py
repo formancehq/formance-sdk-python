@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.errors import walletserrorresponse as errors_walletserrorresponse
 from ...models.shared import getwalletresponse as shared_getwalletresponse
 from typing import Optional
 
@@ -25,7 +24,5 @@ class GetWalletResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     get_wallet_response: Optional[shared_getwalletresponse.GetWalletResponse] = dataclasses.field(default=None)
     r"""Wallet"""
-    wallets_error_response: Optional[errors_walletserrorresponse.WalletsErrorResponse] = dataclasses.field(default=None)
-    r"""Error"""
     
 
