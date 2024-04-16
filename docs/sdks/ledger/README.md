@@ -39,6 +39,7 @@
 * [v2_get_ledger](#v2_get_ledger) - Get a ledger
 * [v2_get_ledger_info](#v2_get_ledger_info) - Get information about a ledger
 * [v2_get_transaction](#v2_get_transaction) - Get transaction from a ledger by its ID
+* [v2_get_volumes_with_balances](#v2_get_volumes_with_balances) - Get list of volumes with balances for (account/asset)
 * [v2_list_accounts](#v2_list_accounts) - List accounts from a ledger
 * [v2_list_ledgers](#v2_list_ledgers) - List ledgers
 * [v2_list_logs](#v2_list_logs) - List the logs from a ledger
@@ -1666,6 +1667,50 @@ if res.v2_get_transaction_response is not None:
 ### Response
 
 **[operations.V2GetTransactionResponse](../../models/operations/v2gettransactionresponse.md)**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
+
+## v2_get_volumes_with_balances
+
+Get list of volumes with balances for (account/asset)
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK(
+    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+)
+
+req = operations.V2GetVolumesWithBalancesRequest(
+    ledger='ledger001',
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+)
+
+res = s.ledger.v2_get_volumes_with_balances(req)
+
+if res.v2_volumes_with_balance_cursor_response is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                | [operations.V2GetVolumesWithBalancesRequest](../../models/operations/v2getvolumeswithbalancesrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+
+
+### Response
+
+**[operations.V2GetVolumesWithBalancesResponse](../../models/operations/v2getvolumeswithbalancesresponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
