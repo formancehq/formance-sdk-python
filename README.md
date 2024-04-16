@@ -104,6 +104,7 @@ if res is not None:
 * [v2_get_ledger](docs/sdks/ledger/README.md#v2_get_ledger) - Get a ledger
 * [v2_get_ledger_info](docs/sdks/ledger/README.md#v2_get_ledger_info) - Get information about a ledger
 * [v2_get_transaction](docs/sdks/ledger/README.md#v2_get_transaction) - Get transaction from a ledger by its ID
+* [v2_get_volumes_with_balances](docs/sdks/ledger/README.md#v2_get_volumes_with_balances) - Get list of volumes with balances for (account/asset)
 * [v2_list_accounts](docs/sdks/ledger/README.md#v2_list_accounts) - List accounts from a ledger
 * [v2_list_ledgers](docs/sdks/ledger/README.md#v2_list_ledgers) - List ledgers
 * [v2_list_logs](docs/sdks/ledger/README.md#v2_list_logs) - List the logs from a ledger

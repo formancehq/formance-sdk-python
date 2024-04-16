@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: 1c0c06fbfb1fa7dfd4a7da5ce409a49e
-  docVersion: v2.0.0-rc.20
-  speakeasyVersion: 1.246.1
-  generationVersion: 2.302.1
-  releaseVersion: 2.2.0
-  configChecksum: facf8c134a7a494499707a18f54d23ea
+  docChecksum: 68e0f776ba164f3551b4b29494444ee0
+  docVersion: v2.0.0-rc.22
+  speakeasyVersion: 1.253.1
+  generationVersion: 2.306.0
+  releaseVersion: 2.2.1
+  configChecksum: 774902a0765b0216f60c3f65c3676064
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -91,6 +91,7 @@ generatedFiles:
   - src/sdk/models/operations/v2getledger.py
   - src/sdk/models/operations/v2getledgerinfo.py
   - src/sdk/models/operations/v2gettransaction.py
+  - src/sdk/models/operations/v2getvolumeswithbalances.py
   - src/sdk/models/operations/v2listaccounts.py
   - src/sdk/models/operations/v2listledgers.py
   - src/sdk/models/operations/v2listlogs.py
@@ -281,6 +282,8 @@ generatedFiles:
   - src/sdk/models/shared/v2migrationinfo.py
   - src/sdk/models/shared/v2gettransactionresponse.py
   - src/sdk/models/shared/v2expandedtransaction.py
+  - src/sdk/models/shared/v2volumeswithbalancecursorresponse.py
+  - src/sdk/models/shared/v2volumeswithbalance.py
   - src/sdk/models/shared/v2accountscursorresponse.py
   - src/sdk/models/shared/v2ledgerlistresponse.py
   - src/sdk/models/shared/v2logscursorresponse.py
@@ -631,6 +634,8 @@ generatedFiles:
   - docs/models/operations/v2getledgerinforesponse.md
   - docs/models/operations/v2gettransactionrequest.md
   - docs/models/operations/v2gettransactionresponse.md
+  - docs/models/operations/v2getvolumeswithbalancesrequest.md
+  - docs/models/operations/v2getvolumeswithbalancesresponse.md
   - docs/models/operations/v2listaccountsrequest.md
   - docs/models/operations/v2listaccountsresponse.md
   - docs/models/operations/v2listledgersrequest.md
@@ -939,6 +944,9 @@ generatedFiles:
   - docs/models/shared/v2migrationinfo.md
   - docs/models/shared/v2gettransactionresponse.md
   - docs/models/shared/v2expandedtransaction.md
+  - docs/models/shared/v2volumeswithbalancecursorresponsecursor.md
+  - docs/models/shared/v2volumeswithbalancecursorresponse.md
+  - docs/models/shared/v2volumeswithbalance.md
   - docs/models/shared/v2accountscursorresponsecursor.md
   - docs/models/shared/v2accountscursorresponse.md
   - docs/models/shared/v2ledgerlistresponsecursor.md
