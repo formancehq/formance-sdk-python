@@ -5,6 +5,7 @@
 
 * [add_account_to_pool](#add_account_to_pool) - Add an account to a pool
 * [connectors_transfer](#connectors_transfer) - Transfer funds between Connector accounts
+* [create_account](#create_account) - Create an account
 * [create_bank_account](#create_bank_account) - Create a BankAccount in Payments and on the PSP
 * [create_payment](#create_payment) - Create a payment
 * [create_pool](#create_pool) - Create a Pool
@@ -57,7 +58,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.AddAccountToPoolRequest(
@@ -102,7 +103,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ConnectorsTransferRequest(
@@ -139,6 +140,52 @@ if res.transfer_response is not None:
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
+## create_account
+
+Create an account
+
+### Example Usage
+
+```python
+import dateutil.parser
+import sdk
+from sdk.models import shared
+
+s = sdk.SDK(
+    authorization="<YOUR_AUTHORIZATION_HERE>",
+)
+
+req = shared.AccountRequest(
+    connector_id='<value>',
+    created_at=dateutil.parser.isoparse('2024-08-19T02:15:08.668Z'),
+    reference='<value>',
+    type=shared.AccountType.UNKNOWN,
+)
+
+res = s.payments.create_account(req)
+
+if res.payments_account_response is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `request`                                                      | [shared.AccountRequest](../../models/shared/accountrequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+
+
+### Response
+
+**[operations.CreateAccountResponse](../../models/operations/createaccountresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
 ## create_bank_account
 
 Create a bank account in Payments and on the PSP.
@@ -150,7 +197,7 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = shared.BankAccountRequest(
@@ -195,7 +242,7 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = shared.PaymentRequest(
@@ -244,7 +291,7 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = shared.PoolRequest(
@@ -290,7 +337,7 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = shared.TransferInitiationRequest(
@@ -340,7 +387,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.DeletePoolRequest(
@@ -382,7 +429,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.DeleteTransferInitiationRequest(
@@ -424,7 +471,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ForwardBankAccountRequest(
@@ -469,7 +516,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetAccountBalancesRequest(
@@ -512,7 +559,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetBankAccountRequest(
@@ -556,7 +603,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetConnectorTaskRequest(
@@ -599,7 +646,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetConnectorTaskV1Request(
@@ -643,7 +690,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetPaymentRequest(
@@ -685,7 +732,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetPoolRequest(
@@ -728,7 +775,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetPoolBalancesRequest(
@@ -771,7 +818,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetTransferInitiationRequest(
@@ -813,7 +860,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.InstallConnectorRequest(
@@ -859,7 +906,7 @@ List all installed connectors.
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 
@@ -892,7 +939,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ListBankAccountsRequest(
@@ -933,7 +980,7 @@ List the configs of each available connector.
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 
@@ -968,7 +1015,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ListConnectorTasksRequest(
@@ -1011,7 +1058,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ListConnectorTasksV1Request(
@@ -1055,7 +1102,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ListPaymentsRequest(
@@ -1097,7 +1144,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ListPoolsRequest(
@@ -1139,7 +1186,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ListTransferInitiationsRequest(
@@ -1181,7 +1228,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.PaymentsgetAccountRequest(
@@ -1222,7 +1269,7 @@ Get server info
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 
@@ -1255,7 +1302,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.PaymentslistAccountsRequest(
@@ -1299,7 +1346,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ReadConnectorConfigRequest(
@@ -1341,7 +1388,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ReadConnectorConfigV1Request(
@@ -1384,7 +1431,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.RemoveAccountFromPoolRequest(
@@ -1431,7 +1478,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ResetConnectorRequest(
@@ -1475,7 +1522,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ResetConnectorV1Request(
@@ -1518,7 +1565,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.RetryTransferInitiationRequest(
@@ -1560,7 +1607,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ReverseTransferInitiationRequest(
@@ -1611,7 +1658,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.UdpateTransferInitiationStatusRequest(
@@ -1658,7 +1705,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.UninstallConnectorRequest(
@@ -1700,7 +1747,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.UninstallConnectorV1Request(
@@ -1743,7 +1790,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.UpdateBankAccountMetadataRequest(
@@ -1790,7 +1837,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.UpdateConnectorConfigV1Request(
@@ -1839,7 +1886,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.UpdateMetadataRequest(

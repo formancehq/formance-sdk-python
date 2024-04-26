@@ -33,7 +33,7 @@ pip install formance-sdk-python
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 
@@ -155,6 +155,7 @@ if res is not None:
 
 * [add_account_to_pool](docs/sdks/payments/README.md#add_account_to_pool) - Add an account to a pool
 * [connectors_transfer](docs/sdks/payments/README.md#connectors_transfer) - Transfer funds between Connector accounts
+* [create_account](docs/sdks/payments/README.md#create_account) - Create an account
 * [create_bank_account](docs/sdks/payments/README.md#create_bank_account) - Create a BankAccount in Payments and on the PSP
 * [create_payment](docs/sdks/payments/README.md#create_payment) - Create a payment
 * [create_pool](docs/sdks/payments/README.md#create_pool) - Create a Pool
@@ -259,7 +260,7 @@ import sdk
 from sdk.models import errors, operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.CreateTransactionsRequest(
@@ -316,7 +317,7 @@ import sdk
 
 s = sdk.SDK(
     server_idx=0,
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 
@@ -337,7 +338,7 @@ import sdk
 
 s = sdk.SDK(
     server_url="http://localhost",
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 
@@ -382,7 +383,7 @@ To authenticate with the API the `authorization` parameter must be set when init
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 

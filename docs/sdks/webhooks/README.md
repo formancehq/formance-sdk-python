@@ -22,7 +22,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ActivateConfigRequest(
@@ -69,7 +69,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ChangeConfigSecretRequest(
@@ -112,7 +112,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.DeactivateConfigRequest(
@@ -155,7 +155,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.DeleteConfigRequest(
@@ -198,7 +198,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetManyConfigsRequest(
@@ -251,7 +251,7 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = shared.ConfigUser(
@@ -300,7 +300,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.TestConfigRequest(

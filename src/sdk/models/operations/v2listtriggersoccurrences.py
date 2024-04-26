@@ -11,6 +11,14 @@ from typing import Optional
 class V2ListTriggersOccurrencesRequest:
     trigger_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'triggerID', 'style': 'simple', 'explode': False }})
     r"""The trigger id"""
+    cursor: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'cursor', 'style': 'form', 'explode': True }})
+    r"""Parameter used in pagination requests.
+    Set to the value of next for the next page of results.
+    Set to the value of previous for the previous page of results.
+    No other parameters can be set when this parameter is set.
+    """
+    page_size: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'pageSize', 'style': 'form', 'explode': True }})
+    r"""The maximum number of results to return per page."""
     
 
 

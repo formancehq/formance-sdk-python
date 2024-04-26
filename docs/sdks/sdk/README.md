@@ -31,7 +31,7 @@ Retrieve OpenID connect well-knowns.
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 
@@ -63,7 +63,7 @@ Show stack version information
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 

@@ -9,6 +9,14 @@ from typing import Optional
 
 @dataclasses.dataclass
 class V2ListInstancesRequest:
+    cursor: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'cursor', 'style': 'form', 'explode': True }})
+    r"""Parameter used in pagination requests.
+    Set to the value of next for the next page of results.
+    Set to the value of previous for the previous page of results.
+    No other parameters can be set when this parameter is set.
+    """
+    page_size: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'pageSize', 'style': 'form', 'explode': True }})
+    r"""The maximum number of results to return per page."""
     running: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'running', 'style': 'form', 'explode': True }})
     r"""Filter running instances"""
     workflow_id: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'workflowID', 'style': 'form', 'explode': True }})
