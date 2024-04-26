@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: 68e0f776ba164f3551b4b29494444ee0
-  docVersion: v2.0.0-rc.22
-  speakeasyVersion: 1.253.1
-  generationVersion: 2.306.0
-  releaseVersion: 2.2.1
-  configChecksum: 774902a0765b0216f60c3f65c3676064
+  docChecksum: f82424cbd31992df4c912ba2ffe8f66c
+  docVersion: v2.0.0-rc.24
+  speakeasyVersion: 1.274.1
+  generationVersion: 2.314.0
+  releaseVersion: 2.2.2
+  configChecksum: b8610f6050ce2821936ac3d7e2f2ad51
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -14,9 +14,9 @@ management:
 features:
   python:
     constsAndDefaults: 0.1.3
-    core: 4.6.4
+    core: 4.6.5
     deprecations: 2.81.1
-    errors: 2.81.8
+    errors: 2.81.9
     getRequestBodies: 2.81.1
     globalSecurity: 2.83.5
     globalServerURLs: 2.82.2
@@ -136,6 +136,7 @@ generatedFiles:
   - src/sdk/models/operations/v2sendevent.py
   - src/sdk/models/operations/addaccounttopool.py
   - src/sdk/models/operations/connectorstransfer.py
+  - src/sdk/models/operations/createaccount.py
   - src/sdk/models/operations/createbankaccount.py
   - src/sdk/models/operations/createpayment.py
   - src/sdk/models/operations/createpool.py
@@ -436,6 +437,10 @@ generatedFiles:
   - src/sdk/models/shared/transferresponse.py
   - src/sdk/models/shared/connector.py
   - src/sdk/models/shared/transferrequest.py
+  - src/sdk/models/shared/paymentsaccountresponse.py
+  - src/sdk/models/shared/paymentsaccount.py
+  - src/sdk/models/shared/accounttype.py
+  - src/sdk/models/shared/accountrequest.py
   - src/sdk/models/shared/bankaccountresponse.py
   - src/sdk/models/shared/bankaccount.py
   - src/sdk/models/shared/bankaccountrelatedaccounts.py
@@ -490,8 +495,6 @@ generatedFiles:
   - src/sdk/models/shared/paymentscursor.py
   - src/sdk/models/shared/poolscursor.py
   - src/sdk/models/shared/transferinitiationscursor.py
-  - src/sdk/models/shared/paymentsaccountresponse.py
-  - src/sdk/models/shared/paymentsaccount.py
   - src/sdk/models/shared/accountscursor.py
   - src/sdk/models/shared/connectorconfigresponse.py
   - src/sdk/models/shared/reversetransferinitiationrequest.py
@@ -701,9 +704,11 @@ generatedFiles:
   - docs/models/operations/v2getworkflowresponse.md
   - docs/models/operations/v2listinstancesrequest.md
   - docs/models/operations/v2listinstancesresponse.md
+  - docs/models/operations/v2listtriggersrequest.md
   - docs/models/operations/v2listtriggersresponse.md
   - docs/models/operations/v2listtriggersoccurrencesrequest.md
   - docs/models/operations/v2listtriggersoccurrencesresponse.md
+  - docs/models/operations/v2listworkflowsrequest.md
   - docs/models/operations/v2listworkflowsresponse.md
   - docs/models/operations/v2readtriggerrequest.md
   - docs/models/operations/v2readtriggerresponse.md
@@ -716,6 +721,7 @@ generatedFiles:
   - docs/models/operations/addaccounttopoolresponse.md
   - docs/models/operations/connectorstransferrequest.md
   - docs/models/operations/connectorstransferresponse.md
+  - docs/models/operations/createaccountresponse.md
   - docs/models/operations/createbankaccountresponse.md
   - docs/models/operations/createpaymentresponse.md
   - docs/models/operations/createpoolresponse.md
@@ -1129,6 +1135,11 @@ generatedFiles:
   - docs/models/shared/transferresponse.md
   - docs/models/shared/connector.md
   - docs/models/shared/transferrequest.md
+  - docs/models/shared/paymentsaccountresponse.md
+  - docs/models/shared/paymentsaccountraw.md
+  - docs/models/shared/paymentsaccount.md
+  - docs/models/shared/accounttype.md
+  - docs/models/shared/accountrequest.md
   - docs/models/shared/bankaccountresponse.md
   - docs/models/shared/bankaccount.md
   - docs/models/shared/bankaccountrelatedaccounts.md
@@ -1217,9 +1228,6 @@ generatedFiles:
   - docs/models/shared/poolscursor.md
   - docs/models/shared/transferinitiationscursorcursor.md
   - docs/models/shared/transferinitiationscursor.md
-  - docs/models/shared/paymentsaccountresponse.md
-  - docs/models/shared/paymentsaccountraw.md
-  - docs/models/shared/paymentsaccount.md
   - docs/models/shared/cursor.md
   - docs/models/shared/accountscursor.md
   - docs/models/shared/connectorconfigresponse.md

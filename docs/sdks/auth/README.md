@@ -24,7 +24,7 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = shared.CreateClientRequest(
@@ -66,7 +66,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.CreateSecretRequest(
@@ -108,7 +108,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.DeleteClientRequest(
@@ -150,7 +150,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.DeleteSecretRequest(
@@ -192,7 +192,7 @@ List clients
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 
@@ -224,7 +224,7 @@ List users
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 
@@ -257,7 +257,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ReadClientRequest(
@@ -299,7 +299,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ReadUserRequest(
@@ -341,7 +341,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.UpdateClientRequest(

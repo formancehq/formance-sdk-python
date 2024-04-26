@@ -12,7 +12,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 python:
-  version: 2.2.1
+  version: 2.2.2
   additionalDependencies:
     dependencies: {}
     extraDependencies:

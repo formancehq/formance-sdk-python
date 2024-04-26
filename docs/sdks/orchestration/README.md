@@ -50,7 +50,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.CancelEventRequest(
@@ -93,7 +93,7 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = shared.TriggerData(
@@ -137,7 +137,7 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = shared.CreateWorkflowRequest(
@@ -184,7 +184,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.DeleteTriggerRequest(
@@ -227,7 +227,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.DeleteWorkflowRequest(
@@ -270,7 +270,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetInstanceRequest(
@@ -313,7 +313,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetInstanceHistoryRequest(
@@ -356,7 +356,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetInstanceStageHistoryRequest(
@@ -400,7 +400,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetWorkflowRequest(
@@ -443,7 +443,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ListInstancesRequest()
@@ -483,7 +483,7 @@ List triggers
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 
@@ -517,7 +517,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ListTriggersOccurrencesRequest(
@@ -559,7 +559,7 @@ List registered workflows
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 
@@ -592,7 +592,7 @@ Get server info
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 
@@ -626,7 +626,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ReadTriggerRequest(
@@ -669,7 +669,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.RunWorkflowRequest(
@@ -712,7 +712,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.SendEventRequest(
@@ -755,7 +755,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.TestTriggerRequest(
@@ -798,7 +798,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.V2CancelEventRequest(
@@ -841,7 +841,7 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = shared.V2TriggerData(
@@ -885,7 +885,7 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = shared.V2CreateWorkflowRequest(
@@ -932,7 +932,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.V2DeleteTriggerRequest(
@@ -975,7 +975,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.V2DeleteWorkflowRequest(
@@ -1018,7 +1018,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.V2GetInstanceRequest(
@@ -1061,7 +1061,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.V2GetInstanceHistoryRequest(
@@ -1104,7 +1104,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.V2GetInstanceStageHistoryRequest(
@@ -1147,7 +1147,7 @@ Get server info
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 
@@ -1181,7 +1181,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.V2GetWorkflowRequest(
@@ -1224,10 +1224,12 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2ListInstancesRequest()
+req = operations.V2ListInstancesRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+)
 
 res = s.orchestration.v2_list_instances(req)
 
@@ -1262,19 +1264,29 @@ List triggers
 
 ```python
 import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
+req = operations.V2ListTriggersRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+)
 
-res = s.orchestration.v2_list_triggers()
+res = s.orchestration.v2_list_triggers(req)
 
 if res.v2_list_triggers_response is not None:
     # handle response
     pass
 
 ```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `request`                                                                            | [operations.V2ListTriggersRequest](../../models/operations/v2listtriggersrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
 
 ### Response
@@ -1298,11 +1310,12 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.V2ListTriggersOccurrencesRequest(
     trigger_id='<value>',
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
 )
 
 res = s.orchestration.v2_list_triggers_occurrences(req)
@@ -1338,19 +1351,29 @@ List registered workflows
 
 ```python
 import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
+req = operations.V2ListWorkflowsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+)
 
-res = s.orchestration.v2_list_workflows()
+res = s.orchestration.v2_list_workflows(req)
 
 if res.v2_list_workflows_response is not None:
     # handle response
     pass
 
 ```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `request`                                                                              | [operations.V2ListWorkflowsRequest](../../models/operations/v2listworkflowsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 
 ### Response
@@ -1374,7 +1397,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.V2ReadTriggerRequest(
@@ -1417,7 +1440,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.V2RunWorkflowRequest(
@@ -1460,7 +1483,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.V2SendEventRequest(

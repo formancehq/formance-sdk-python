@@ -31,7 +31,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ConfirmHoldRequest(
@@ -74,7 +74,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.CreateBalanceRequest(
@@ -117,7 +117,7 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = shared.CreateWalletRequest(
@@ -163,7 +163,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.CreditWalletRequest(
@@ -221,7 +221,7 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.DebitWalletRequest(
@@ -274,7 +274,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetBalanceRequest(
@@ -318,7 +318,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetHoldRequest(
@@ -361,7 +361,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetHoldsRequest(
@@ -402,7 +402,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetTransactionsRequest(
@@ -445,7 +445,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetWalletRequest(
@@ -488,7 +488,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.GetWalletSummaryRequest(
@@ -531,7 +531,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ListBalancesRequest(
@@ -573,7 +573,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.ListWalletsRequest(
@@ -616,7 +616,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.UpdateWalletRequest(
@@ -659,7 +659,7 @@ import sdk
 from sdk.models import operations
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 req = operations.VoidHoldRequest(
@@ -701,7 +701,7 @@ Get server info
 import sdk
 
 s = sdk.SDK(
-    authorization="Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
 

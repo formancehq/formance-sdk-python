@@ -1711,7 +1711,7 @@ class Orchestration:
 
     
     
-    def v2_list_triggers(self) -> operations.V2ListTriggersResponse:
+    def v2_list_triggers(self, request: operations.V2ListTriggersRequest) -> operations.V2ListTriggersResponse:
         r"""List triggers
         List triggers
         """
@@ -1725,6 +1725,7 @@ class Orchestration:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
+        query_params = { **utils.get_query_params(request), **query_params }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
@@ -1784,6 +1785,7 @@ class Orchestration:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
+        query_params = { **utils.get_query_params(request), **query_params }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
@@ -1829,7 +1831,7 @@ class Orchestration:
 
     
     
-    def v2_list_workflows(self) -> operations.V2ListWorkflowsResponse:
+    def v2_list_workflows(self, request: operations.V2ListWorkflowsRequest) -> operations.V2ListWorkflowsResponse:
         r"""List registered workflows
         List registered workflows
         """
@@ -1843,6 +1845,7 @@ class Orchestration:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
+        query_params = { **utils.get_query_params(request), **query_params }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
