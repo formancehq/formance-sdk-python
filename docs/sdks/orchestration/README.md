@@ -481,19 +481,27 @@ List triggers
 
 ```python
 import sdk
+from sdk.models import operations
 
 s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
+req = operations.ListTriggersRequest()
 
-res = s.orchestration.list_triggers()
+res = s.orchestration.list_triggers(req)
 
 if res.list_triggers_response is not None:
     # handle response
     pass
 
 ```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [operations.ListTriggersRequest](../../models/operations/listtriggersrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 
 ### Response

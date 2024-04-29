@@ -597,7 +597,7 @@ class Orchestration:
 
     
     
-    def list_triggers(self) -> operations.ListTriggersResponse:
+    def list_triggers(self, request: operations.ListTriggersRequest) -> operations.ListTriggersResponse:
         r"""List triggers
         List triggers
         """
@@ -611,6 +611,7 @@ class Orchestration:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
+        query_params = { **utils.get_query_params(request), **query_params }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client

@@ -15,6 +15,8 @@ class V2ListTriggersRequest:
     Set to the value of previous for the previous page of results.
     No other parameters can be set when this parameter is set.
     """
+    name: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'name', 'style': 'form', 'explode': True }})
+    r"""search by name"""
     page_size: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'pageSize', 'style': 'form', 'explode': True }})
     r"""The maximum number of results to return per page."""
     

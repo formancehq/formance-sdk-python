@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: f82424cbd31992df4c912ba2ffe8f66c
-  docVersion: v2.0.0-rc.24
-  speakeasyVersion: 1.274.1
+  docChecksum: de4ce37109543835d271fd330d36d4f0
+  docVersion: v2.0.0-rc.26
+  speakeasyVersion: 1.276.0
   generationVersion: 2.314.0
-  releaseVersion: 2.2.2
-  configChecksum: b8610f6050ce2821936ac3d7e2f2ad51
+  releaseVersion: 2.2.3
+  configChecksum: a8e36e7ec87dc3d47cd7292eefdc7bb3
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -671,6 +671,7 @@ generatedFiles:
   - docs/models/operations/getworkflowresponse.md
   - docs/models/operations/listinstancesrequest.md
   - docs/models/operations/listinstancesresponse.md
+  - docs/models/operations/listtriggersrequest.md
   - docs/models/operations/listtriggersresponse.md
   - docs/models/operations/listtriggersoccurrencesrequest.md
   - docs/models/operations/listtriggersoccurrencesresponse.md
