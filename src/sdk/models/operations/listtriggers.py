@@ -8,6 +8,14 @@ from typing import Optional
 
 
 @dataclasses.dataclass
+class ListTriggersRequest:
+    name: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'name', 'style': 'form', 'explode': True }})
+    r"""search by name"""
+    
+
+
+
+@dataclasses.dataclass
 class ListTriggersResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
