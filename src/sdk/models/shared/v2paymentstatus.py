@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class V2PaymentStatus(str, Enum):
     PENDING = 'PENDING'
     ACTIVE = 'ACTIVE'

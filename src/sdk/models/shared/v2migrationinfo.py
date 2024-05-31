@@ -9,6 +9,7 @@ from enum import Enum
 from sdk import utils
 from typing import Optional
 
+
 class V2MigrationInfoState(str, Enum):
     TO_DO = 'TO DO'
     DONE = 'DONE'

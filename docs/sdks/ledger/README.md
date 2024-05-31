@@ -62,7 +62,8 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.CreateTransactionsRequest(
+
+res = s.ledger.create_transactions(request=operations.CreateTransactionsRequest(
     transactions=shared.Transactions(
         transactions=[
             shared.TransactionData(
@@ -79,9 +80,7 @@ req = operations.CreateTransactionsRequest(
         ],
     ),
     ledger='ledger001',
-)
-
-res = s.ledger.create_transactions(req)
+))
 
 if res.transactions_response is not None:
     # handle response
@@ -120,12 +119,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.AddMetadataOnTransactionRequest(
+
+res = s.ledger.add_metadata_on_transaction(request=operations.AddMetadataOnTransactionRequest(
     ledger='ledger001',
     txid=1234,
-)
-
-res = s.ledger.add_metadata_on_transaction(req)
+))
 
 if res is not None:
     # handle response
@@ -164,15 +162,14 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.AddMetadataToAccountRequest(
+
+res = s.ledger.add_metadata_to_account(request=operations.AddMetadataToAccountRequest(
     request_body={
         'key': '<value>',
     },
     address='users:001',
     ledger='ledger001',
-)
-
-res = s.ledger.add_metadata_to_account(req)
+))
 
 if res is not None:
     # handle response
@@ -211,12 +208,63 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.CountAccountsRequest(
+
+res = s.ledger.count_accounts(request=operations.CountAccountsRequest(
     ledger='ledger001',
     address='users:.+',
-)
-
-res = s.ledger.count_accounts(req)
+    metadata={
+        '0': 'm',
+        '1': 'e',
+        '2': 't',
+        '3': 'a',
+        '4': 'd',
+        '5': 'a',
+        '6': 't',
+        '7': 'a',
+        '8': '[',
+        '9': 'k',
+        '10': 'e',
+        '11': 'y',
+        '12': ']',
+        '13': '=',
+        '14': 'v',
+        '15': 'a',
+        '16': 'l',
+        '17': 'u',
+        '18': 'e',
+        '19': '1',
+        '20': '&',
+        '21': 'm',
+        '22': 'e',
+        '23': 't',
+        '24': 'a',
+        '25': 'd',
+        '26': 'a',
+        '27': 't',
+        '28': 'a',
+        '29': '[',
+        '30': 'a',
+        '31': '.',
+        '32': 'n',
+        '33': 'e',
+        '34': 's',
+        '35': 't',
+        '36': 'e',
+        '37': 'd',
+        '38': '.',
+        '39': 'k',
+        '40': 'e',
+        '41': 'y',
+        '42': ']',
+        '43': '=',
+        '44': 'v',
+        '45': 'a',
+        '46': 'l',
+        '47': 'u',
+        '48': 'e',
+        '49': '2',
+    },
+))
 
 if res is not None:
     # handle response
@@ -255,15 +303,15 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.CountTransactionsRequest(
+
+res = s.ledger.count_transactions(request=operations.CountTransactionsRequest(
     ledger='ledger001',
     account='users:001',
     destination='users:001',
+    metadata=operations.Metadata(),
     reference='ref:001',
     source='users:001',
-)
-
-res = s.ledger.count_transactions(req)
+))
 
 if res is not None:
     # handle response
@@ -302,15 +350,35 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.CreateTransactionRequest(
+
+res = s.ledger.create_transaction(request=operations.CreateTransactionRequest(
     post_transaction=shared.PostTransaction(
+        postings=[
+            shared.Posting(
+                amount=100,
+                asset='COIN',
+                destination='users:002',
+                source='users:001',
+            ),
+        ],
         reference='ref:001',
+        script=shared.PostTransactionScript(
+            plain='vars {
+        account $user
+        }
+        send [COIN 10] (
+        	source = @world
+        	destination = $user
+        )
+        ',
+            vars={
+                'user': 'users:042',
+            },
+        ),
     ),
     ledger='ledger001',
     preview=True,
-)
-
-res = s.ledger.create_transaction(req)
+))
 
 if res.transactions_response is not None:
     # handle response
@@ -349,12 +417,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetAccountRequest(
+
+res = s.ledger.get_account(request=operations.GetAccountRequest(
     address='users:001',
     ledger='ledger001',
-)
-
-res = s.ledger.get_account(req)
+))
 
 if res.account_response is not None:
     # handle response
@@ -393,14 +460,13 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetBalancesRequest(
+
+res = s.ledger.get_balances(request=operations.GetBalancesRequest(
     ledger='ledger001',
     address='users:001',
     after='users:003',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
-
-res = s.ledger.get_balances(req)
+))
 
 if res.balances_cursor_response is not None:
     # handle response
@@ -439,12 +505,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetBalancesAggregatedRequest(
+
+res = s.ledger.get_balances_aggregated(request=operations.GetBalancesAggregatedRequest(
     ledger='ledger001',
     address='users:001',
-)
-
-res = s.ledger.get_balances_aggregated(req)
+))
 
 if res.aggregate_balances_response is not None:
     # handle response
@@ -516,11 +581,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetLedgerInfoRequest(
-    ledger='ledger001',
-)
 
-res = s.ledger.get_ledger_info(req)
+res = s.ledger.get_ledger_info(request=operations.GetLedgerInfoRequest(
+    ledger='ledger001',
+))
 
 if res.ledger_info_response is not None:
     # handle response
@@ -559,11 +623,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetMappingRequest(
-    ledger='ledger001',
-)
 
-res = s.ledger.get_mapping(req)
+res = s.ledger.get_mapping(request=operations.GetMappingRequest(
+    ledger='ledger001',
+))
 
 if res.mapping_response is not None:
     # handle response
@@ -602,12 +665,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetTransactionRequest(
+
+res = s.ledger.get_transaction(request=operations.GetTransactionRequest(
     ledger='ledger001',
     txid=1234,
-)
-
-res = s.ledger.get_transaction(req)
+))
 
 if res.transaction_response is not None:
     # handle response
@@ -646,16 +708,67 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListAccountsRequest(
+
+res = s.ledger.list_accounts(request=operations.ListAccountsRequest(
     ledger='ledger001',
     address='users:.+',
     after='users:003',
     balance=2400,
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    pagination_token='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
-
-res = s.ledger.list_accounts(req)
+    metadata={
+        '0': 'm',
+        '1': 'e',
+        '2': 't',
+        '3': 'a',
+        '4': 'd',
+        '5': 'a',
+        '6': 't',
+        '7': 'a',
+        '8': '[',
+        '9': 'k',
+        '10': 'e',
+        '11': 'y',
+        '12': ']',
+        '13': '=',
+        '14': 'v',
+        '15': 'a',
+        '16': 'l',
+        '17': 'u',
+        '18': 'e',
+        '19': '1',
+        '20': '&',
+        '21': 'm',
+        '22': 'e',
+        '23': 't',
+        '24': 'a',
+        '25': 'd',
+        '26': 'a',
+        '27': 't',
+        '28': 'a',
+        '29': '[',
+        '30': 'a',
+        '31': '.',
+        '32': 'n',
+        '33': 'e',
+        '34': 's',
+        '35': 't',
+        '36': 'e',
+        '37': 'd',
+        '38': '.',
+        '39': 'k',
+        '40': 'e',
+        '41': 'y',
+        '42': ']',
+        '43': '=',
+        '44': 'v',
+        '45': 'a',
+        '46': 'l',
+        '47': 'u',
+        '48': 'e',
+        '49': '2',
+    },
+    page_size=100,
+))
 
 if res.accounts_cursor_response is not None:
     # handle response
@@ -694,13 +807,13 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListLogsRequest(
+
+res = s.ledger.list_logs(request=operations.ListLogsRequest(
     ledger='ledger001',
     after='1234',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
-
-res = s.ledger.list_logs(req)
+    page_size=100,
+))
 
 if res.logs_cursor_response is not None:
     # handle response
@@ -739,17 +852,17 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListTransactionsRequest(
+
+res = s.ledger.list_transactions(request=operations.ListTransactionsRequest(
     ledger='ledger001',
     account='users:001',
     after='1234',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     destination='users:001',
+    page_size=100,
     reference='ref:001',
     source='users:001',
-)
-
-res = s.ledger.list_transactions(req)
+))
 
 if res.transactions_cursor_response is not None:
     # handle response
@@ -789,11 +902,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ReadStatsRequest(
-    ledger='ledger001',
-)
 
-res = s.ledger.read_stats(req)
+res = s.ledger.read_stats(request=operations.ReadStatsRequest(
+    ledger='ledger001',
+))
 
 if res.stats_response is not None:
     # handle response
@@ -832,12 +944,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.RevertTransactionRequest(
+
+res = s.ledger.revert_transaction(request=operations.RevertTransactionRequest(
     ledger='ledger001',
     txid=1234,
-)
-
-res = s.ledger.revert_transaction(req)
+))
 
 if res.transaction_response is not None:
     # handle response
@@ -879,7 +990,8 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.RunScriptRequest(
+
+res = s.ledger.run_script(request=operations.RunScriptRequest(
     script=shared.Script(
         plain='vars {
     account $user
@@ -896,9 +1008,7 @@ req = operations.RunScriptRequest(
     ),
     ledger='ledger001',
     preview=True,
-)
-
-res = s.ledger.run_script(req)
+))
 
 if res.script_response is not None:
     # handle response
@@ -936,7 +1046,8 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.UpdateMappingRequest(
+
+res = s.ledger.update_mapping(request=operations.UpdateMappingRequest(
     mapping=shared.Mapping(
         contracts=[
             shared.Contract(
@@ -946,9 +1057,7 @@ req = operations.UpdateMappingRequest(
         ],
     ),
     ledger='ledger001',
-)
-
-res = s.ledger.update_mapping(req)
+))
 
 if res.mapping_response is not None:
     # handle response
@@ -987,16 +1096,15 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2AddMetadataOnTransactionRequest(
+
+res = s.ledger.v2_add_metadata_on_transaction(request=operations.V2AddMetadataOnTransactionRequest(
     id=1234,
     ledger='ledger001',
     request_body={
         'admin': 'true',
     },
     dry_run=True,
-)
-
-res = s.ledger.v2_add_metadata_on_transaction(req)
+))
 
 if res is not None:
     # handle response
@@ -1035,16 +1143,15 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2AddMetadataToAccountRequest(
+
+res = s.ledger.v2_add_metadata_to_account(request=operations.V2AddMetadataToAccountRequest(
     request_body={
         'admin': 'true',
     },
     address='users:001',
     ledger='ledger001',
     dry_run=True,
-)
-
-res = s.ledger.v2_add_metadata_to_account(req)
+))
 
 if res is not None:
     # handle response
@@ -1083,11 +1190,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2CountAccountsRequest(
-    ledger='ledger001',
-)
 
-res = s.ledger.v2_count_accounts(req)
+res = s.ledger.v2_count_accounts(request=operations.V2CountAccountsRequest(
+    ledger='ledger001',
+))
 
 if res is not None:
     # handle response
@@ -1126,11 +1232,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2CountTransactionsRequest(
-    ledger='ledger001',
-)
 
-res = s.ledger.v2_count_transactions(req)
+res = s.ledger.v2_count_transactions(request=operations.V2CountTransactionsRequest(
+    ledger='ledger001',
+))
 
 if res is not None:
     # handle response
@@ -1163,17 +1268,21 @@ Bulk request
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2CreateBulkRequest(
-    ledger='ledger001',
-)
 
-res = s.ledger.v2_create_bulk(req)
+res = s.ledger.v2_create_bulk(request=operations.V2CreateBulkRequest(
+    ledger='ledger001',
+    request_body=[
+        shared.V2BulkElementAddMetadata(
+            action='<value>',
+        ),
+    ],
+))
 
 if res.v2_bulk_response is not None:
     # handle response
@@ -1206,17 +1315,21 @@ Create a ledger
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2CreateLedgerRequest(
-    ledger='ledger001',
-)
 
-res = s.ledger.v2_create_ledger(req)
+res = s.ledger.v2_create_ledger(request=operations.V2CreateLedgerRequest(
+    ledger='ledger001',
+    v2_create_ledger_request=shared.V2CreateLedgerRequest(
+        metadata={
+            'admin': 'true',
+        },
+    ),
+))
 
 if res is not None:
     # handle response
@@ -1255,18 +1368,38 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2CreateTransactionRequest(
+
+res = s.ledger.v2_create_transaction(request=operations.V2CreateTransactionRequest(
     v2_post_transaction=shared.V2PostTransaction(
         metadata={
             'admin': 'true',
         },
+        postings=[
+            shared.V2Posting(
+                amount=100,
+                asset='COIN',
+                destination='users:002',
+                source='users:001',
+            ),
+        ],
         reference='ref:001',
+        script=shared.V2PostTransactionScript(
+            plain='vars {
+        account $user
+        }
+        send [COIN 10] (
+        	source = @world
+        	destination = $user
+        )
+        ',
+            vars={
+                'user': 'users:042',
+            },
+        ),
     ),
     ledger='ledger001',
     dry_run=True,
-)
-
-res = s.ledger.v2_create_transaction(req)
+))
 
 if res.v2_create_transaction_response is not None:
     # handle response
@@ -1305,13 +1438,12 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2DeleteAccountMetadataRequest(
+
+res = s.ledger.v2_delete_account_metadata(request=operations.V2DeleteAccountMetadataRequest(
     address='3680 Emile Grove',
     key='foo',
     ledger='ledger001',
-)
-
-res = s.ledger.v2_delete_account_metadata(req)
+))
 
 if res is not None:
     # handle response
@@ -1349,12 +1481,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2DeleteLedgerMetadataRequest(
+
+res = s.ledger.v2_delete_ledger_metadata(request=operations.V2DeleteLedgerMetadataRequest(
     key='foo',
     ledger='ledger001',
-)
-
-res = s.ledger.v2_delete_ledger_metadata(req)
+))
 
 if res is not None:
     # handle response
@@ -1393,13 +1524,12 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2DeleteTransactionMetadataRequest(
+
+res = s.ledger.v2_delete_transaction_metadata(request=operations.V2DeleteTransactionMetadataRequest(
     id=1234,
     key='foo',
     ledger='ledger001',
-)
-
-res = s.ledger.v2_delete_transaction_metadata(req)
+))
 
 if res is not None:
     # handle response
@@ -1438,12 +1568,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2GetAccountRequest(
+
+res = s.ledger.v2_get_account(request=operations.V2GetAccountRequest(
     address='users:001',
     ledger='ledger001',
-)
-
-res = s.ledger.v2_get_account(req)
+))
 
 if res.v2_account_response is not None:
     # handle response
@@ -1482,11 +1611,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2GetBalancesAggregatedRequest(
-    ledger='ledger001',
-)
 
-res = s.ledger.v2_get_balances_aggregated(req)
+res = s.ledger.v2_get_balances_aggregated(request=operations.V2GetBalancesAggregatedRequest(
+    ledger='ledger001',
+))
 
 if res.v2_aggregate_balances_response is not None:
     # handle response
@@ -1558,11 +1686,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2GetLedgerRequest(
-    ledger='ledger001',
-)
 
-res = s.ledger.v2_get_ledger(req)
+res = s.ledger.v2_get_ledger(request=operations.V2GetLedgerRequest(
+    ledger='ledger001',
+))
 
 if res.v2_get_ledger_response is not None:
     # handle response
@@ -1601,11 +1728,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2GetLedgerInfoRequest(
-    ledger='ledger001',
-)
 
-res = s.ledger.v2_get_ledger_info(req)
+res = s.ledger.v2_get_ledger_info(request=operations.V2GetLedgerInfoRequest(
+    ledger='ledger001',
+))
 
 if res.v2_ledger_info_response is not None:
     # handle response
@@ -1644,12 +1770,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2GetTransactionRequest(
+
+res = s.ledger.v2_get_transaction(request=operations.V2GetTransactionRequest(
     id=1234,
     ledger='ledger001',
-)
-
-res = s.ledger.v2_get_transaction(req)
+))
 
 if res.v2_get_transaction_response is not None:
     # handle response
@@ -1688,12 +1813,13 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2GetVolumesWithBalancesRequest(
+
+res = s.ledger.v2_get_volumes_with_balances(request=operations.V2GetVolumesWithBalancesRequest(
     ledger='ledger001',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
-
-res = s.ledger.v2_get_volumes_with_balances(req)
+    group_by=3,
+    page_size=100,
+))
 
 if res.v2_volumes_with_balance_cursor_response is not None:
     # handle response
@@ -1732,12 +1858,12 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2ListAccountsRequest(
+
+res = s.ledger.v2_list_accounts(request=operations.V2ListAccountsRequest(
     ledger='ledger001',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
-
-res = s.ledger.v2_list_accounts(req)
+    page_size=100,
+))
 
 if res.v2_accounts_cursor_response is not None:
     # handle response
@@ -1776,11 +1902,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2ListLedgersRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.ledger.v2_list_ledgers(req)
+res = s.ledger.v2_list_ledgers(request=operations.V2ListLedgersRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+))
 
 if res.v2_ledger_list_response is not None:
     # handle response
@@ -1819,12 +1945,12 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2ListLogsRequest(
+
+res = s.ledger.v2_list_logs(request=operations.V2ListLogsRequest(
     ledger='ledger001',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
-
-res = s.ledger.v2_list_logs(req)
+    page_size=100,
+))
 
 if res.v2_logs_cursor_response is not None:
     # handle response
@@ -1863,12 +1989,12 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2ListTransactionsRequest(
+
+res = s.ledger.v2_list_transactions(request=operations.V2ListTransactionsRequest(
     ledger='ledger001',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
-
-res = s.ledger.v2_list_transactions(req)
+    page_size=100,
+))
 
 if res.v2_transactions_cursor_response is not None:
     # handle response
@@ -1908,11 +2034,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2ReadStatsRequest(
-    ledger='ledger001',
-)
 
-res = s.ledger.v2_read_stats(req)
+res = s.ledger.v2_read_stats(request=operations.V2ReadStatsRequest(
+    ledger='ledger001',
+))
 
 if res.v2_stats_response is not None:
     # handle response
@@ -1951,12 +2076,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2RevertTransactionRequest(
+
+res = s.ledger.v2_revert_transaction(request=operations.V2RevertTransactionRequest(
     id=1234,
     ledger='ledger001',
-)
-
-res = s.ledger.v2_revert_transaction(req)
+))
 
 if res.v2_revert_transaction_response is not None:
     # handle response
@@ -1995,14 +2119,13 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2UpdateLedgerMetadataRequest(
+
+res = s.ledger.v2_update_ledger_metadata(request=operations.V2UpdateLedgerMetadataRequest(
     ledger='ledger001',
     request_body={
         'admin': 'true',
     },
-)
-
-res = s.ledger.v2_update_ledger_metadata(req)
+))
 
 if res is not None:
     # handle response

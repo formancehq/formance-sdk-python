@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class Connector(str, Enum):
     STRIPE = 'STRIPE'
     DUMMY_PAY = 'DUMMY-PAY'

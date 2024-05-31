@@ -59,6 +59,7 @@ class Wallets:
         if http_res.status_code == 204:
             pass
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -112,6 +113,7 @@ class Wallets:
         res = operations.CreateBalanceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 201:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.CreateBalanceResponse])
                 res.create_balance_response = out
@@ -119,6 +121,7 @@ class Wallets:
                 content_type = http_res.headers.get('Content-Type')
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -130,7 +133,7 @@ class Wallets:
 
     
     
-    def create_wallet(self, request: Optional[shared.CreateWalletRequest]) -> operations.CreateWalletResponse:
+    def create_wallet(self, request: Optional[shared.CreateWalletRequest] = None) -> operations.CreateWalletResponse:
         r"""Create a new wallet"""
         hook_ctx = HookContext(operation_id='createWallet', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -172,6 +175,7 @@ class Wallets:
         res = operations.CreateWalletResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 201:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.CreateWalletResponse])
                 res.create_wallet_response = out
@@ -179,6 +183,7 @@ class Wallets:
                 content_type = http_res.headers.get('Content-Type')
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -234,6 +239,7 @@ class Wallets:
         if http_res.status_code == 204:
             pass
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -287,6 +293,7 @@ class Wallets:
         res = operations.DebitWalletResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 201:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.DebitWalletResponse])
                 res.debit_wallet_response = out
@@ -296,6 +303,7 @@ class Wallets:
         elif http_res.status_code == 204:
             pass
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -346,6 +354,7 @@ class Wallets:
         res = operations.GetBalanceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.GetBalanceResponse])
                 res.get_balance_response = out
@@ -353,6 +362,7 @@ class Wallets:
                 content_type = http_res.headers.get('Content-Type')
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -403,6 +413,7 @@ class Wallets:
         res = operations.GetHoldResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.GetHoldResponse])
                 res.get_hold_response = out
@@ -410,6 +421,7 @@ class Wallets:
                 content_type = http_res.headers.get('Content-Type')
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -461,6 +473,7 @@ class Wallets:
         res = operations.GetHoldsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.GetHoldsResponse])
                 res.get_holds_response = out
@@ -468,6 +481,7 @@ class Wallets:
                 content_type = http_res.headers.get('Content-Type')
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -518,6 +532,7 @@ class Wallets:
         res = operations.GetTransactionsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.GetTransactionsResponse])
                 res.get_transactions_response = out
@@ -525,6 +540,7 @@ class Wallets:
                 content_type = http_res.headers.get('Content-Type')
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -575,6 +591,7 @@ class Wallets:
         res = operations.GetWalletResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.GetWalletResponse])
                 res.get_wallet_response = out
@@ -584,6 +601,7 @@ class Wallets:
         elif http_res.status_code == 404:
             pass
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -634,6 +652,7 @@ class Wallets:
         res = operations.GetWalletSummaryResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.GetWalletSummaryResponse])
                 res.get_wallet_summary_response = out
@@ -643,6 +662,7 @@ class Wallets:
         elif http_res.status_code == 404:
             pass
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -693,6 +713,7 @@ class Wallets:
         res = operations.ListBalancesResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.ListBalancesResponse])
                 res.list_balances_response = out
@@ -746,6 +767,7 @@ class Wallets:
         res = operations.ListWalletsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.ListWalletsResponse])
                 res.list_wallets_response = out
@@ -753,6 +775,7 @@ class Wallets:
                 content_type = http_res.headers.get('Content-Type')
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -808,6 +831,7 @@ class Wallets:
         if http_res.status_code == 204:
             pass
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -860,6 +884,7 @@ class Wallets:
         if http_res.status_code == 204:
             pass
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out
@@ -910,6 +935,7 @@ class Wallets:
         res = operations.WalletsgetServerInfoResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.ServerInfo])
                 res.server_info = out
@@ -917,6 +943,7 @@ class Wallets:
                 content_type = http_res.headers.get('Content-Type')
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         else:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponse)
                 raise out

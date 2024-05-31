@@ -18,6 +18,7 @@ from typing import List, Optional
 class OrchestrationPaymentRaw:
     pass
 
+
 class OrchestrationPaymentScheme(str, Enum):
     VISA = 'visa'
     MASTERCARD = 'mastercard'
@@ -37,6 +38,7 @@ class OrchestrationPaymentScheme(str, Enum):
     RTP = 'rtp'
     UNKNOWN = 'unknown'
     OTHER = 'other'
+
 
 class OrchestrationPaymentType(str, Enum):
     PAY_IN = 'PAY-IN'

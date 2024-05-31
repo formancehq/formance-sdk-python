@@ -3,6 +3,6 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `instance_id`      | *str*              | :heavy_check_mark: | The instance id    |
+| Field              | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `instance_id`      | *str*              | :heavy_check_mark: | The instance id    | xxx                |

@@ -21,3 +21,9 @@ stage: shared.StageDelay = /* values here */
 stage: shared.StageWaitEvent = /* values here */
 ```
 
+### Update
+
+```python
+stage: shared.Update = /* values here */
+```
+

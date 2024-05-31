@@ -26,16 +26,15 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.PolicyRequest(
+
+res = s.reconciliation.create_policy(request=shared.PolicyRequest(
     ledger_name='default',
     ledger_query={
         'key': '<value>',
     },
     name='XXX',
     payments_pool_id='XXX',
-)
-
-res = s.reconciliation.create_policy(req)
+))
 
 if res.policy_response is not None:
     # handle response
@@ -74,11 +73,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.DeletePolicyRequest(
-    policy_id='<value>',
-)
 
-res = s.reconciliation.delete_policy(req)
+res = s.reconciliation.delete_policy(request=operations.DeletePolicyRequest(
+    policy_id='XXX',
+))
 
 if res is not None:
     # handle response
@@ -117,11 +115,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetPolicyRequest(
-    policy_id='<value>',
-)
 
-res = s.reconciliation.get_policy(req)
+res = s.reconciliation.get_policy(request=operations.GetPolicyRequest(
+    policy_id='XXX',
+))
 
 if res.policy_response is not None:
     # handle response
@@ -160,11 +157,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetReconciliationRequest(
-    reconciliation_id='<value>',
-)
 
-res = s.reconciliation.get_reconciliation(req)
+res = s.reconciliation.get_reconciliation(request=operations.GetReconciliationRequest(
+    reconciliation_id='XXX',
+))
 
 if res.reconciliation_response is not None:
     # handle response
@@ -203,11 +199,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListPoliciesRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.reconciliation.list_policies(req)
+res = s.reconciliation.list_policies(request=operations.ListPoliciesRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+))
 
 if res.policies_cursor_response is not None:
     # handle response
@@ -246,11 +242,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListReconciliationsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.reconciliation.list_reconciliations(req)
+res = s.reconciliation.list_reconciliations(request=operations.ListReconciliationsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+))
 
 if res.reconciliations_cursor_response is not None:
     # handle response
@@ -290,15 +286,14 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ReconcileRequest(
+
+res = s.reconciliation.reconcile(request=operations.ReconcileRequest(
     reconciliation_request=shared.ReconciliationRequest(
         reconciled_at_ledger=dateutil.parser.isoparse('2021-01-01T00:00:00.000Z'),
         reconciled_at_payments=dateutil.parser.isoparse('2021-01-01T00:00:00.000Z'),
     ),
-    policy_id='<value>',
-)
-
-res = s.reconciliation.reconcile(req)
+    policy_id='XXX',
+))
 
 if res.reconciliation_response is not None:
     # handle response

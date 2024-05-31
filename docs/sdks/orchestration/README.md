@@ -53,11 +53,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.CancelEventRequest(
-    instance_id='<value>',
-)
 
-res = s.orchestration.cancel_event(req)
+res = s.orchestration.cancel_event(request=operations.CancelEventRequest(
+    instance_id='xxx',
+))
 
 if res is not None:
     # handle response
@@ -96,12 +95,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.TriggerData(
+
+res = s.orchestration.create_trigger(request=shared.TriggerData(
     event='<value>',
     workflow_id='<value>',
-)
-
-res = s.orchestration.create_trigger(req)
+))
 
 if res.create_trigger_response is not None:
     # handle response
@@ -140,15 +138,14 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.CreateWorkflowRequest(
+
+res = s.orchestration.create_workflow(request=shared.CreateWorkflowRequest(
     stages=[
         {
             'key': '<value>',
         },
     ],
-)
-
-res = s.orchestration.create_workflow(req)
+))
 
 if res.create_workflow_response is not None:
     # handle response
@@ -187,11 +184,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.DeleteTriggerRequest(
-    trigger_id='<value>',
-)
 
-res = s.orchestration.delete_trigger(req)
+res = s.orchestration.delete_trigger(request=operations.DeleteTriggerRequest(
+    trigger_id='<value>',
+))
 
 if res is not None:
     # handle response
@@ -230,11 +226,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.DeleteWorkflowRequest(
-    flow_id='<value>',
-)
 
-res = s.orchestration.delete_workflow(req)
+res = s.orchestration.delete_workflow(request=operations.DeleteWorkflowRequest(
+    flow_id='xxx',
+))
 
 if res is not None:
     # handle response
@@ -273,11 +268,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetInstanceRequest(
-    instance_id='<value>',
-)
 
-res = s.orchestration.get_instance(req)
+res = s.orchestration.get_instance(request=operations.GetInstanceRequest(
+    instance_id='xxx',
+))
 
 if res.get_workflow_instance_response is not None:
     # handle response
@@ -316,11 +310,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetInstanceHistoryRequest(
-    instance_id='<value>',
-)
 
-res = s.orchestration.get_instance_history(req)
+res = s.orchestration.get_instance_history(request=operations.GetInstanceHistoryRequest(
+    instance_id='xxx',
+))
 
 if res.get_workflow_instance_history_response is not None:
     # handle response
@@ -359,12 +352,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetInstanceStageHistoryRequest(
-    instance_id='<value>',
-    number=600636,
-)
 
-res = s.orchestration.get_instance_stage_history(req)
+res = s.orchestration.get_instance_stage_history(request=operations.GetInstanceStageHistoryRequest(
+    instance_id='xxx',
+    number=0,
+))
 
 if res.get_workflow_instance_history_stage_response is not None:
     # handle response
@@ -403,11 +395,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetWorkflowRequest(
-    flow_id='<value>',
-)
 
-res = s.orchestration.get_workflow(req)
+res = s.orchestration.get_workflow(request=operations.GetWorkflowRequest(
+    flow_id='xxx',
+))
 
 if res.get_workflow_response is not None:
     # handle response
@@ -446,9 +437,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListInstancesRequest()
 
-res = s.orchestration.list_instances(req)
+res = s.orchestration.list_instances(request=operations.ListInstancesRequest(
+    running=True,
+    workflow_id='xxx',
+))
 
 if res.list_runs_response is not None:
     # handle response
@@ -487,9 +480,8 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListTriggersRequest()
 
-res = s.orchestration.list_triggers(req)
+res = s.orchestration.list_triggers(request=operations.ListTriggersRequest())
 
 if res.list_triggers_response is not None:
     # handle response
@@ -528,11 +520,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListTriggersOccurrencesRequest(
-    trigger_id='<value>',
-)
 
-res = s.orchestration.list_triggers_occurrences(req)
+res = s.orchestration.list_triggers_occurrences(request=operations.ListTriggersOccurrencesRequest(
+    trigger_id='<value>',
+))
 
 if res.list_triggers_occurrences_response is not None:
     # handle response
@@ -637,11 +628,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ReadTriggerRequest(
-    trigger_id='<value>',
-)
 
-res = s.orchestration.read_trigger(req)
+res = s.orchestration.read_trigger(request=operations.ReadTriggerRequest(
+    trigger_id='<value>',
+))
 
 if res.read_trigger_response is not None:
     # handle response
@@ -680,11 +670,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.RunWorkflowRequest(
-    workflow_id='<value>',
-)
 
-res = s.orchestration.run_workflow(req)
+res = s.orchestration.run_workflow(request=operations.RunWorkflowRequest(
+    workflow_id='xxx',
+))
 
 if res.run_workflow_response is not None:
     # handle response
@@ -723,11 +712,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.SendEventRequest(
-    instance_id='<value>',
-)
 
-res = s.orchestration.send_event(req)
+res = s.orchestration.send_event(request=operations.SendEventRequest(
+    instance_id='xxx',
+))
 
 if res is not None:
     # handle response
@@ -766,11 +754,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.TestTriggerRequest(
-    trigger_id='<value>',
-)
 
-res = s.orchestration.test_trigger(req)
+res = s.orchestration.test_trigger(request=operations.TestTriggerRequest(
+    trigger_id='<value>',
+))
 
 if res.v2_test_trigger_response is not None:
     # handle response
@@ -809,11 +796,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2CancelEventRequest(
-    instance_id='<value>',
-)
 
-res = s.orchestration.v2_cancel_event(req)
+res = s.orchestration.v2_cancel_event(request=operations.V2CancelEventRequest(
+    instance_id='xxx',
+))
 
 if res is not None:
     # handle response
@@ -852,12 +838,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.V2TriggerData(
+
+res = s.orchestration.v2_create_trigger(request=shared.V2TriggerData(
     event='<value>',
     workflow_id='<value>',
-)
-
-res = s.orchestration.v2_create_trigger(req)
+))
 
 if res.v2_create_trigger_response is not None:
     # handle response
@@ -896,15 +881,14 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.V2CreateWorkflowRequest(
+
+res = s.orchestration.v2_create_workflow(request=shared.V2CreateWorkflowRequest(
     stages=[
         {
             'key': '<value>',
         },
     ],
-)
-
-res = s.orchestration.v2_create_workflow(req)
+))
 
 if res.v2_create_workflow_response is not None:
     # handle response
@@ -943,11 +927,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2DeleteTriggerRequest(
-    trigger_id='<value>',
-)
 
-res = s.orchestration.v2_delete_trigger(req)
+res = s.orchestration.v2_delete_trigger(request=operations.V2DeleteTriggerRequest(
+    trigger_id='<value>',
+))
 
 if res is not None:
     # handle response
@@ -986,11 +969,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2DeleteWorkflowRequest(
-    flow_id='<value>',
-)
 
-res = s.orchestration.v2_delete_workflow(req)
+res = s.orchestration.v2_delete_workflow(request=operations.V2DeleteWorkflowRequest(
+    flow_id='xxx',
+))
 
 if res is not None:
     # handle response
@@ -1029,11 +1011,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2GetInstanceRequest(
-    instance_id='<value>',
-)
 
-res = s.orchestration.v2_get_instance(req)
+res = s.orchestration.v2_get_instance(request=operations.V2GetInstanceRequest(
+    instance_id='xxx',
+))
 
 if res.v2_get_workflow_instance_response is not None:
     # handle response
@@ -1072,11 +1053,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2GetInstanceHistoryRequest(
-    instance_id='<value>',
-)
 
-res = s.orchestration.v2_get_instance_history(req)
+res = s.orchestration.v2_get_instance_history(request=operations.V2GetInstanceHistoryRequest(
+    instance_id='xxx',
+))
 
 if res.v2_get_workflow_instance_history_response is not None:
     # handle response
@@ -1115,12 +1095,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2GetInstanceStageHistoryRequest(
-    instance_id='<value>',
-    number=465454,
-)
 
-res = s.orchestration.v2_get_instance_stage_history(req)
+res = s.orchestration.v2_get_instance_stage_history(request=operations.V2GetInstanceStageHistoryRequest(
+    instance_id='xxx',
+    number=0,
+))
 
 if res.v2_get_workflow_instance_history_stage_response is not None:
     # handle response
@@ -1192,11 +1171,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2GetWorkflowRequest(
-    flow_id='<value>',
-)
 
-res = s.orchestration.v2_get_workflow(req)
+res = s.orchestration.v2_get_workflow(request=operations.V2GetWorkflowRequest(
+    flow_id='xxx',
+))
 
 if res.v2_get_workflow_response is not None:
     # handle response
@@ -1235,11 +1213,13 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2ListInstancesRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.orchestration.v2_list_instances(req)
+res = s.orchestration.v2_list_instances(request=operations.V2ListInstancesRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+    running=True,
+    workflow_id='xxx',
+))
 
 if res.v2_list_runs_response is not None:
     # handle response
@@ -1278,11 +1258,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2ListTriggersRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.orchestration.v2_list_triggers(req)
+res = s.orchestration.v2_list_triggers(request=operations.V2ListTriggersRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+))
 
 if res.v2_list_triggers_response is not None:
     # handle response
@@ -1321,12 +1301,12 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2ListTriggersOccurrencesRequest(
+
+res = s.orchestration.v2_list_triggers_occurrences(request=operations.V2ListTriggersOccurrencesRequest(
     trigger_id='<value>',
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
-
-res = s.orchestration.v2_list_triggers_occurrences(req)
+    page_size=100,
+))
 
 if res.v2_list_triggers_occurrences_response is not None:
     # handle response
@@ -1365,11 +1345,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2ListWorkflowsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.orchestration.v2_list_workflows(req)
+res = s.orchestration.v2_list_workflows(request=operations.V2ListWorkflowsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+))
 
 if res.v2_list_workflows_response is not None:
     # handle response
@@ -1408,11 +1388,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2ReadTriggerRequest(
-    trigger_id='<value>',
-)
 
-res = s.orchestration.v2_read_trigger(req)
+res = s.orchestration.v2_read_trigger(request=operations.V2ReadTriggerRequest(
+    trigger_id='<value>',
+))
 
 if res.v2_read_trigger_response is not None:
     # handle response
@@ -1451,11 +1430,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2RunWorkflowRequest(
-    workflow_id='<value>',
-)
 
-res = s.orchestration.v2_run_workflow(req)
+res = s.orchestration.v2_run_workflow(request=operations.V2RunWorkflowRequest(
+    workflow_id='xxx',
+))
 
 if res.v2_run_workflow_response is not None:
     # handle response
@@ -1494,11 +1472,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.V2SendEventRequest(
-    instance_id='<value>',
-)
 
-res = s.orchestration.v2_send_event(req)
+res = s.orchestration.v2_send_event(request=operations.V2SendEventRequest(
+    instance_id='xxx',
+))
 
 if res is not None:
     # handle response

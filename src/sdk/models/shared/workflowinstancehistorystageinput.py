@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
+from .activityaddaccountmetadata import ActivityAddAccountMetadata
 from .activityconfirmhold import ActivityConfirmHold
 from .activitycreatetransaction import ActivityCreateTransaction
 from .activitycreditwallet import ActivityCreditWallet
@@ -21,6 +22,7 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class WorkflowInstanceHistoryStageInput:
+    add_account_metadata: Optional[ActivityAddAccountMetadata] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('AddAccountMetadata'), 'exclude': lambda f: f is None }})
     confirm_hold: Optional[ActivityConfirmHold] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ConfirmHold'), 'exclude': lambda f: f is None }})
     create_transaction: Optional[ActivityCreateTransaction] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('CreateTransaction'), 'exclude': lambda f: f is None }})
     credit_wallet: Optional[ActivityCreditWallet] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('CreditWallet'), 'exclude': lambda f: f is None }})

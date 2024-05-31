@@ -6,6 +6,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from sdk import utils
 
+
 class SchemasWalletsErrorResponseErrorCode(str, Enum):
     VALIDATION = 'VALIDATION'
     INTERNAL_ERROR = 'INTERNAL_ERROR'

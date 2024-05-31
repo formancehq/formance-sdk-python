@@ -15,7 +15,7 @@ class Auth:
         
     
     
-    def create_client(self, request: Optional[shared.CreateClientRequest]) -> operations.CreateClientResponse:
+    def create_client(self, request: Optional[shared.CreateClientRequest] = None) -> operations.CreateClientResponse:
         r"""Create client"""
         hook_ctx = HookContext(operation_id='createClient', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -57,6 +57,7 @@ class Auth:
         res = operations.CreateClientResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 201:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.CreateClientResponse])
                 res.create_client_response = out
@@ -112,6 +113,7 @@ class Auth:
         res = operations.CreateSecretResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.CreateSecretResponse])
                 res.create_secret_response = out
@@ -258,6 +260,7 @@ class Auth:
         res = operations.ListClientsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.ListClientsResponse])
                 res.list_clients_response = out
@@ -312,6 +315,7 @@ class Auth:
         res = operations.ListUsersResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.ListUsersResponse])
                 res.list_users_response = out
@@ -364,6 +368,7 @@ class Auth:
         res = operations.ReadClientResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.ReadClientResponse])
                 res.read_client_response = out
@@ -418,6 +423,7 @@ class Auth:
         res = operations.ReadUserResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.ReadUserResponse])
                 res.read_user_response = out
@@ -473,6 +479,7 @@ class Auth:
         res = operations.UpdateClientResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[shared.UpdateClientResponse])
                 res.update_client_response = out

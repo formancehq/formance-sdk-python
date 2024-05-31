@@ -2,25 +2,14 @@
 
 from __future__ import annotations
 import dataclasses
-from .adyenconfig import AdyenConfig
-from .atlarconfig import AtlarConfig
-from .bankingcircleconfig import BankingCircleConfig
-from .currencycloudconfig import CurrencyCloudConfig
-from .dummypayconfig import DummyPayConfig
-from .genericconfig import GenericConfig
-from .mangopayconfig import MangoPayConfig
-from .modulrconfig import ModulrConfig
-from .moneycorpconfig import MoneycorpConfig
-from .stripeconfig import StripeConfig
-from .wiseconfig import WiseConfig
+from .connectorconfig import ConnectorConfig
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
-from typing import Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ConnectorConfigResponse:
-    data: Union[StripeConfig, DummyPayConfig, WiseConfig, ModulrConfig, CurrencyCloudConfig, BankingCircleConfig, MangoPayConfig, MoneycorpConfig, AtlarConfig, AdyenConfig, GenericConfig] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
+    data: ConnectorConfig = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class PaymentType(str, Enum):
     PAY_IN = 'PAY-IN'
     PAYOUT = 'PAYOUT'

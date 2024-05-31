@@ -14,10 +14,12 @@ from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import Union
 
+TaskResponseData = Union[TaskStripe, TaskWise, TaskCurrencyCloud, TaskDummyPay, TaskModulr, TaskBankingCircle, TaskMangoPay, TaskMoneycorp]
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class TaskResponse:
-    data: Union[TaskStripe, TaskWise, TaskCurrencyCloud, TaskDummyPay, TaskModulr, TaskBankingCircle, TaskMangoPay, TaskMoneycorp] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
+    data: TaskResponseData = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
 

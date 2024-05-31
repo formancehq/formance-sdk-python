@@ -25,11 +25,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ActivateConfigRequest(
-    id='4997257d-dfb6-445b-929c-cbe2ab182818',
-)
 
-res = s.webhooks.activate_config(req)
+res = s.webhooks.activate_config(request=operations.ActivateConfigRequest(
+    id='4997257d-dfb6-445b-929c-cbe2ab182818',
+))
 
 if res.config_response is not None:
     # handle response
@@ -66,17 +65,19 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ChangeConfigSecretRequest(
-    id='4997257d-dfb6-445b-929c-cbe2ab182818',
-)
 
-res = s.webhooks.change_config_secret(req)
+res = s.webhooks.change_config_secret(request=operations.ChangeConfigSecretRequest(
+    id='4997257d-dfb6-445b-929c-cbe2ab182818',
+    config_change_secret=shared.ConfigChangeSecret(
+        secret='V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
+    ),
+))
 
 if res.config_response is not None:
     # handle response
@@ -115,11 +116,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.DeactivateConfigRequest(
-    id='4997257d-dfb6-445b-929c-cbe2ab182818',
-)
 
-res = s.webhooks.deactivate_config(req)
+res = s.webhooks.deactivate_config(request=operations.DeactivateConfigRequest(
+    id='4997257d-dfb6-445b-929c-cbe2ab182818',
+))
 
 if res.config_response is not None:
     # handle response
@@ -158,11 +158,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.DeleteConfigRequest(
-    id='4997257d-dfb6-445b-929c-cbe2ab182818',
-)
 
-res = s.webhooks.delete_config(req)
+res = s.webhooks.delete_config(request=operations.DeleteConfigRequest(
+    id='4997257d-dfb6-445b-929c-cbe2ab182818',
+))
 
 if res is not None:
     # handle response
@@ -201,12 +200,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetManyConfigsRequest(
+
+res = s.webhooks.get_many_configs(request=operations.GetManyConfigsRequest(
     endpoint='https://example.com',
     id='4997257d-dfb6-445b-929c-cbe2ab182818',
-)
-
-res = s.webhooks.get_many_configs(req)
+))
 
 if res.configs_response is not None:
     # handle response
@@ -254,7 +252,8 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.ConfigUser(
+
+res = s.webhooks.insert_config(request=shared.ConfigUser(
     endpoint='https://example.com',
     event_types=[
         'TYPE1',
@@ -262,9 +261,7 @@ req = shared.ConfigUser(
     ],
     name='customer_payment',
     secret='V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
-)
-
-res = s.webhooks.insert_config(req)
+))
 
 if res.config_response is not None:
     # handle response
@@ -303,11 +300,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.TestConfigRequest(
-    id='4997257d-dfb6-445b-929c-cbe2ab182818',
-)
 
-res = s.webhooks.test_config(req)
+res = s.webhooks.test_config(request=operations.TestConfigRequest(
+    id='4997257d-dfb6-445b-929c-cbe2ab182818',
+))
 
 if res.attempt_response is not None:
     # handle response

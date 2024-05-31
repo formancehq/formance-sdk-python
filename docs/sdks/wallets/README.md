@@ -28,17 +28,20 @@ Confirm a hold
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ConfirmHoldRequest(
-    hold_id='<value>',
-)
 
-res = s.wallets.confirm_hold(req)
+res = s.wallets.confirm_hold(request=operations.ConfirmHoldRequest(
+    hold_id='<value>',
+    confirm_hold_request=shared.ConfirmHoldRequest(
+        amount=100,
+        final=True,
+    ),
+))
 
 if res is not None:
     # handle response
@@ -77,11 +80,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.CreateBalanceRequest(
-    id='<id>',
-)
 
-res = s.wallets.create_balance(req)
+res = s.wallets.create_balance(request=operations.CreateBalanceRequest(
+    id='<id>',
+))
 
 if res.create_balance_response is not None:
     # handle response
@@ -120,14 +122,13 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.CreateWalletRequest(
+
+res = s.wallets.create_wallet(request=shared.CreateWalletRequest(
     metadata={
         'key': '<value>',
     },
     name='<value>',
-)
-
-res = s.wallets.create_wallet(req)
+))
 
 if res.create_wallet_response is not None:
     # handle response
@@ -166,7 +167,8 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.CreditWalletRequest(
+
+res = s.wallets.credit_wallet(request=operations.CreditWalletRequest(
     id='<id>',
     credit_wallet_request=shared.CreditWalletRequest(
         amount=shared.Monetary(
@@ -183,9 +185,7 @@ req = operations.CreditWalletRequest(
             ),
         ],
     ),
-)
-
-res = s.wallets.credit_wallet(req)
+))
 
 if res is not None:
     # handle response
@@ -224,7 +224,8 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.DebitWalletRequest(
+
+res = s.wallets.debit_wallet(request=operations.DebitWalletRequest(
     id='<id>',
     debit_wallet_request=shared.DebitWalletRequest(
         amount=shared.Monetary(
@@ -236,9 +237,7 @@ req = operations.DebitWalletRequest(
         },
         pending=True,
     ),
-)
-
-res = s.wallets.debit_wallet(req)
+))
 
 if res.debit_wallet_response is not None:
     # handle response
@@ -277,12 +276,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetBalanceRequest(
+
+res = s.wallets.get_balance(request=operations.GetBalanceRequest(
     balance_name='<value>',
     id='<id>',
-)
-
-res = s.wallets.get_balance(req)
+))
 
 if res.get_balance_response is not None:
     # handle response
@@ -321,11 +319,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetHoldRequest(
-    hold_id='<value>',
-)
 
-res = s.wallets.get_hold(req)
+res = s.wallets.get_hold(request=operations.GetHoldRequest(
+    hold_id='<value>',
+))
 
 if res.get_hold_response is not None:
     # handle response
@@ -364,11 +361,15 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetHoldsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.wallets.get_holds(req)
+res = s.wallets.get_holds(request=operations.GetHoldsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    metadata={
+        'admin': 'true',
+    },
+    page_size=100,
+    wallet_id='wallet1',
+))
 
 if res.get_holds_response is not None:
     # handle response
@@ -405,11 +406,12 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetTransactionsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.wallets.get_transactions(req)
+res = s.wallets.get_transactions(request=operations.GetTransactionsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+    wallet_id='wallet1',
+))
 
 if res.get_transactions_response is not None:
     # handle response
@@ -448,11 +450,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetWalletRequest(
-    id='<id>',
-)
 
-res = s.wallets.get_wallet(req)
+res = s.wallets.get_wallet(request=operations.GetWalletRequest(
+    id='<id>',
+))
 
 if res.get_wallet_response is not None:
     # handle response
@@ -491,11 +492,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetWalletSummaryRequest(
-    id='<id>',
-)
 
-res = s.wallets.get_wallet_summary(req)
+res = s.wallets.get_wallet_summary(request=operations.GetWalletSummaryRequest(
+    id='<id>',
+))
 
 if res.get_wallet_summary_response is not None:
     # handle response
@@ -534,11 +534,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListBalancesRequest(
-    id='<id>',
-)
 
-res = s.wallets.list_balances(req)
+res = s.wallets.list_balances(request=operations.ListBalancesRequest(
+    id='<id>',
+))
 
 if res.list_balances_response is not None:
     # handle response
@@ -576,11 +575,15 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListWalletsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.wallets.list_wallets(req)
+res = s.wallets.list_wallets(request=operations.ListWalletsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    metadata={
+        'admin': 'true',
+    },
+    name='wallet1',
+    page_size=100,
+))
 
 if res.list_wallets_response is not None:
     # handle response
@@ -619,11 +622,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.UpdateWalletRequest(
-    id='<id>',
-)
 
-res = s.wallets.update_wallet(req)
+res = s.wallets.update_wallet(request=operations.UpdateWalletRequest(
+    id='<id>',
+))
 
 if res is not None:
     # handle response
@@ -662,11 +664,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.VoidHoldRequest(
-    hold_id='<value>',
-)
 
-res = s.wallets.void_hold(req)
+res = s.wallets.void_hold(request=operations.VoidHoldRequest(
+    hold_id='<value>',
+))
 
 if res is not None:
     # handle response

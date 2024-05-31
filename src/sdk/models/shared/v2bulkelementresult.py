@@ -5,7 +5,7 @@ import dataclasses
 from .v2transaction import V2Transaction
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
-from typing import Optional
+from typing import Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -51,3 +51,5 @@ class V2BulkElementResultCreateTransactionSchemas:
     response_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('responseType') }})
     
 
+
+V2BulkElementResult = Union['V2BulkElementResultCreateTransactionSchemas', 'Schemas', 'V2BulkElementResultRevertTransactionSchemas', 'V2BulkElementResultDeleteMetadataSchemas', 'V2BulkElementResultErrorSchemas']
