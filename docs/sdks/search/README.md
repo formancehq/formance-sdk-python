@@ -20,14 +20,22 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.Query(
+
+res = s.search.search(request=shared.Query(
+    after=[
+        'users:002',
+    ],
     cursor='YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=',
+    ledgers=[
+        'quickstart',
+    ],
     policy='OR',
     raw=shared.QueryRaw(),
     sort='id:asc',
-)
-
-res = s.search.search(req)
+    terms=[
+        'destination=central_bank1',
+    ],
+))
 
 if res.response is not None:
     # handle response

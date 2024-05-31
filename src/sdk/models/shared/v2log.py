@@ -9,6 +9,7 @@ from enum import Enum
 from sdk import utils
 from typing import Any, Dict
 
+
 class V2LogType(str, Enum):
     NEW_TRANSACTION = 'NEW_TRANSACTION'
     SET_METADATA = 'SET_METADATA'

@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 import dataclasses
-from .ledgeraccountsubject import LedgerAccountSubject
-from .walletsubject import WalletSubject
+from .subject import Subject
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
-from typing import Dict, Optional, Union
+from typing import Dict, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -19,6 +18,6 @@ class Hold:
     r"""Metadata associated with the hold."""
     wallet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('walletID') }})
     r"""The ID of the wallet the hold is associated with."""
-    destination: Optional[Union[LedgerAccountSubject, WalletSubject]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destination'), 'exclude': lambda f: f is None }})
+    destination: Optional[Subject] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destination'), 'exclude': lambda f: f is None }})
     
 

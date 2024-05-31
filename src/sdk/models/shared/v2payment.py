@@ -18,6 +18,7 @@ from typing import List, Optional
 class V2PaymentRaw:
     pass
 
+
 class Scheme(str, Enum):
     VISA = 'visa'
     MASTERCARD = 'mastercard'
@@ -37,6 +38,7 @@ class Scheme(str, Enum):
     RTP = 'rtp'
     UNKNOWN = 'unknown'
     OTHER = 'other'
+
 
 class V2PaymentType(str, Enum):
     PAY_IN = 'PAY-IN'

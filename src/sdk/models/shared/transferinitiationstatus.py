@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class TransferInitiationStatus(str, Enum):
     WAITING_FOR_VALIDATION = 'WAITING_FOR_VALIDATION'
     PROCESSING = 'PROCESSING'

@@ -21,3 +21,9 @@ v2Stage: shared.V2StageDelay = /* values here */
 v2Stage: shared.V2StageWaitEvent = /* values here */
 ```
 
+### V2Update
+
+```python
+v2Stage: shared.V2Update = /* values here */
+```
+

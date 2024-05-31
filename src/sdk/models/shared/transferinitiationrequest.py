@@ -10,6 +10,7 @@ from enum import Enum
 from sdk import utils
 from typing import Dict, Optional
 
+
 class TransferInitiationRequestType(str, Enum):
     TRANSFER = 'TRANSFER'
     PAYOUT = 'PAYOUT'

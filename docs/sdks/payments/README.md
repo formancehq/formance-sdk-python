@@ -61,14 +61,13 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.AddAccountToPoolRequest(
+
+res = s.payments.add_account_to_pool(request=operations.AddAccountToPoolRequest(
     add_account_to_pool_request=shared.AddAccountToPoolRequest(
         account_id='<value>',
     ),
-    pool_id='<value>',
-)
-
-res = s.payments.add_account_to_pool(req)
+    pool_id='XXX',
+))
 
 if res is not None:
     # handle response
@@ -88,9 +87,10 @@ if res is not None:
 **[operations.AddAccountToPoolResponse](../../models/operations/addaccounttopoolresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## connectors_transfer
 
@@ -106,7 +106,8 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ConnectorsTransferRequest(
+
+res = s.payments.connectors_transfer(request=operations.ConnectorsTransferRequest(
     transfer_request=shared.TransferRequest(
         amount=100,
         asset='USD',
@@ -114,9 +115,7 @@ req = operations.ConnectorsTransferRequest(
         source='acct_1Gqj58KZcSIg2N2q',
     ),
     connector=shared.Connector.BANKING_CIRCLE,
-)
-
-res = s.payments.connectors_transfer(req)
+))
 
 if res.transfer_response is not None:
     # handle response
@@ -136,9 +135,10 @@ if res.transfer_response is not None:
 **[operations.ConnectorsTransferResponse](../../models/operations/connectorstransferresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## create_account
 
@@ -155,14 +155,13 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.AccountRequest(
+
+res = s.payments.create_account(request=shared.AccountRequest(
     connector_id='<value>',
     created_at=dateutil.parser.isoparse('2024-08-19T02:15:08.668Z'),
     reference='<value>',
     type=shared.AccountType.UNKNOWN,
-)
-
-res = s.payments.create_account(req)
+))
 
 if res.payments_account_response is not None:
     # handle response
@@ -182,9 +181,10 @@ if res.payments_account_response is not None:
 **[operations.CreateAccountResponse](../../models/operations/createaccountresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## create_bank_account
 
@@ -200,13 +200,12 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.BankAccountRequest(
+
+res = s.payments.create_bank_account(request=shared.BankAccountRequest(
     connector_id='<value>',
     country='GB',
     name='My account',
-)
-
-res = s.payments.create_bank_account(req)
+))
 
 if res.bank_account_response is not None:
     # handle response
@@ -226,9 +225,10 @@ if res.bank_account_response is not None:
 **[operations.CreateBankAccountResponse](../../models/operations/createbankaccountresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## create_payment
 
@@ -245,7 +245,8 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.PaymentRequest(
+
+res = s.payments.create_payment(request=shared.PaymentRequest(
     amount=100,
     asset='USD',
     connector_id='<value>',
@@ -254,9 +255,7 @@ req = shared.PaymentRequest(
     scheme=shared.PaymentScheme.GOOGLE_PAY,
     status=shared.PaymentStatus.DISPUTE_WON,
     type=shared.PaymentType.TRANSFER,
-)
-
-res = s.payments.create_payment(req)
+))
 
 if res.payment_response is not None:
     # handle response
@@ -276,9 +275,10 @@ if res.payment_response is not None:
 **[operations.CreatePaymentResponse](../../models/operations/createpaymentresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## create_pool
 
@@ -294,14 +294,13 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.PoolRequest(
+
+res = s.payments.create_pool(request=shared.PoolRequest(
     account_i_ds=[
         '<value>',
     ],
     name='<value>',
-)
-
-res = s.payments.create_pool(req)
+))
 
 if res.pool_response is not None:
     # handle response
@@ -321,9 +320,10 @@ if res.pool_response is not None:
 **[operations.CreatePoolResponse](../../models/operations/createpoolresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## create_transfer_initiation
 
@@ -340,7 +340,8 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.TransferInitiationRequest(
+
+res = s.payments.create_transfer_initiation(request=shared.TransferInitiationRequest(
     amount=256698,
     asset='USD',
     description='Multi-tiered incremental methodology',
@@ -350,9 +351,7 @@ req = shared.TransferInitiationRequest(
     source_account_id='<value>',
     type=shared.TransferInitiationRequestType.TRANSFER,
     validated=False,
-)
-
-res = s.payments.create_transfer_initiation(req)
+))
 
 if res.transfer_initiation_response is not None:
     # handle response
@@ -372,9 +371,10 @@ if res.transfer_initiation_response is not None:
 **[operations.CreateTransferInitiationResponse](../../models/operations/createtransferinitiationresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## delete_pool
 
@@ -390,11 +390,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.DeletePoolRequest(
-    pool_id='<value>',
-)
 
-res = s.payments.delete_pool(req)
+res = s.payments.delete_pool(request=operations.DeletePoolRequest(
+    pool_id='XXX',
+))
 
 if res is not None:
     # handle response
@@ -414,9 +413,10 @@ if res is not None:
 **[operations.DeletePoolResponse](../../models/operations/deletepoolresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## delete_transfer_initiation
 
@@ -432,11 +432,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.DeleteTransferInitiationRequest(
-    transfer_id='<value>',
-)
 
-res = s.payments.delete_transfer_initiation(req)
+res = s.payments.delete_transfer_initiation(request=operations.DeleteTransferInitiationRequest(
+    transfer_id='XXX',
+))
 
 if res is not None:
     # handle response
@@ -456,9 +455,10 @@ if res is not None:
 **[operations.DeleteTransferInitiationResponse](../../models/operations/deletetransferinitiationresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## forward_bank_account
 
@@ -474,14 +474,13 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ForwardBankAccountRequest(
+
+res = s.payments.forward_bank_account(request=operations.ForwardBankAccountRequest(
     forward_bank_account_request=shared.ForwardBankAccountRequest(
         connector_id='<value>',
     ),
-    bank_account_id='<value>',
-)
-
-res = s.payments.forward_bank_account(req)
+    bank_account_id='XXX',
+))
 
 if res.bank_account_response is not None:
     # handle response
@@ -501,9 +500,10 @@ if res.bank_account_response is not None:
 **[operations.ForwardBankAccountResponse](../../models/operations/forwardbankaccountresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## get_account_balances
 
@@ -519,12 +519,16 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetAccountBalancesRequest(
-    account_id='<value>',
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.payments.get_account_balances(req)
+res = s.payments.get_account_balances(request=operations.GetAccountBalancesRequest(
+    account_id='XXX',
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+    sort=[
+        'date:asc',
+        'status:desc',
+    ],
+))
 
 if res.balances_cursor is not None:
     # handle response
@@ -544,9 +548,10 @@ if res.balances_cursor is not None:
 **[operations.GetAccountBalancesResponse](../../models/operations/getaccountbalancesresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## get_bank_account
 
@@ -562,11 +567,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetBankAccountRequest(
-    bank_account_id='<value>',
-)
 
-res = s.payments.get_bank_account(req)
+res = s.payments.get_bank_account(request=operations.GetBankAccountRequest(
+    bank_account_id='XXX',
+))
 
 if res.bank_account_response is not None:
     # handle response
@@ -586,9 +590,10 @@ if res.bank_account_response is not None:
 **[operations.GetBankAccountResponse](../../models/operations/getbankaccountresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## ~~get_connector_task~~
 
@@ -606,12 +611,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetConnectorTaskRequest(
-    connector=shared.Connector.ADYEN,
-    task_id='<value>',
-)
 
-res = s.payments.get_connector_task(req)
+res = s.payments.get_connector_task(request=operations.GetConnectorTaskRequest(
+    connector=shared.Connector.ADYEN,
+    task_id='task1',
+))
 
 if res.task_response is not None:
     # handle response
@@ -631,9 +635,10 @@ if res.task_response is not None:
 **[operations.GetConnectorTaskResponse](../../models/operations/getconnectortaskresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## get_connector_task_v1
 
@@ -649,13 +654,12 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetConnectorTaskV1Request(
-    connector=shared.Connector.BANKING_CIRCLE,
-    connector_id='<value>',
-    task_id='<value>',
-)
 
-res = s.payments.get_connector_task_v1(req)
+res = s.payments.get_connector_task_v1(request=operations.GetConnectorTaskV1Request(
+    connector=shared.Connector.BANKING_CIRCLE,
+    connector_id='XXX',
+    task_id='task1',
+))
 
 if res.task_response is not None:
     # handle response
@@ -675,9 +679,10 @@ if res.task_response is not None:
 **[operations.GetConnectorTaskV1Response](../../models/operations/getconnectortaskv1response.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## get_payment
 
@@ -693,11 +698,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetPaymentRequest(
-    payment_id='<value>',
-)
 
-res = s.payments.get_payment(req)
+res = s.payments.get_payment(request=operations.GetPaymentRequest(
+    payment_id='XXX',
+))
 
 if res.payment_response is not None:
     # handle response
@@ -717,9 +721,10 @@ if res.payment_response is not None:
 **[operations.GetPaymentResponse](../../models/operations/getpaymentresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## get_pool
 
@@ -735,11 +740,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetPoolRequest(
-    pool_id='<value>',
-)
 
-res = s.payments.get_pool(req)
+res = s.payments.get_pool(request=operations.GetPoolRequest(
+    pool_id='XXX',
+))
 
 if res.pool_response is not None:
     # handle response
@@ -759,9 +763,10 @@ if res.pool_response is not None:
 **[operations.GetPoolResponse](../../models/operations/getpoolresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## get_pool_balances
 
@@ -778,12 +783,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetPoolBalancesRequest(
-    at=dateutil.parser.isoparse('2023-05-05T06:40:23.018Z'),
-    pool_id='<value>',
-)
 
-res = s.payments.get_pool_balances(req)
+res = s.payments.get_pool_balances(request=operations.GetPoolBalancesRequest(
+    at=dateutil.parser.isoparse('2023-05-05T06:40:23.018Z'),
+    pool_id='XXX',
+))
 
 if res.pool_balances_response is not None:
     # handle response
@@ -803,9 +807,10 @@ if res.pool_balances_response is not None:
 **[operations.GetPoolBalancesResponse](../../models/operations/getpoolbalancesresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## get_transfer_initiation
 
@@ -821,11 +826,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.GetTransferInitiationRequest(
-    transfer_id='<value>',
-)
 
-res = s.payments.get_transfer_initiation(req)
+res = s.payments.get_transfer_initiation(request=operations.GetTransferInitiationRequest(
+    transfer_id='XXX',
+))
 
 if res.transfer_initiation_response is not None:
     # handle response
@@ -845,9 +849,10 @@ if res.transfer_initiation_response is not None:
 **[operations.GetTransferInitiationResponse](../../models/operations/gettransferinitiationresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## install_connector
 
@@ -863,16 +868,15 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.InstallConnectorRequest(
+
+res = s.payments.install_connector(request=operations.InstallConnectorRequest(
     connector_config=shared.WiseConfig(
         api_key='XXX',
         name='My Wise Account',
         polling_period='60s',
     ),
     connector=shared.Connector.ADYEN,
-)
-
-res = s.payments.install_connector(req)
+))
 
 if res.connector_response is not None:
     # handle response
@@ -892,9 +896,10 @@ if res.connector_response is not None:
 **[operations.InstallConnectorResponse](../../models/operations/installconnectorresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## list_all_connectors
 
@@ -924,9 +929,10 @@ if res.connectors_response is not None:
 **[operations.ListAllConnectorsResponse](../../models/operations/listallconnectorsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## list_bank_accounts
 
@@ -942,11 +948,15 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListBankAccountsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.payments.list_bank_accounts(req)
+res = s.payments.list_bank_accounts(request=operations.ListBankAccountsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+    sort=[
+        'date:asc',
+        'status:desc',
+    ],
+))
 
 if res.bank_accounts_cursor is not None:
     # handle response
@@ -966,9 +976,10 @@ if res.bank_accounts_cursor is not None:
 **[operations.ListBankAccountsResponse](../../models/operations/listbankaccountsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## list_configs_available_connectors
 
@@ -998,9 +1009,10 @@ if res.connectors_configs_response is not None:
 **[operations.ListConfigsAvailableConnectorsResponse](../../models/operations/listconfigsavailableconnectorsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## ~~list_connector_tasks~~
 
@@ -1018,12 +1030,12 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListConnectorTasksRequest(
+
+res = s.payments.list_connector_tasks(request=operations.ListConnectorTasksRequest(
     connector=shared.Connector.MODULR,
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
-
-res = s.payments.list_connector_tasks(req)
+    page_size=100,
+))
 
 if res.tasks_cursor is not None:
     # handle response
@@ -1043,9 +1055,10 @@ if res.tasks_cursor is not None:
 **[operations.ListConnectorTasksResponse](../../models/operations/listconnectortasksresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## list_connector_tasks_v1
 
@@ -1061,13 +1074,13 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListConnectorTasksV1Request(
-    connector=shared.Connector.BANKING_CIRCLE,
-    connector_id='<value>',
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.payments.list_connector_tasks_v1(req)
+res = s.payments.list_connector_tasks_v1(request=operations.ListConnectorTasksV1Request(
+    connector=shared.Connector.BANKING_CIRCLE,
+    connector_id='XXX',
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+))
 
 if res.tasks_cursor is not None:
     # handle response
@@ -1087,9 +1100,10 @@ if res.tasks_cursor is not None:
 **[operations.ListConnectorTasksV1Response](../../models/operations/listconnectortasksv1response.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## list_payments
 
@@ -1105,11 +1119,15 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListPaymentsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.payments.list_payments(req)
+res = s.payments.list_payments(request=operations.ListPaymentsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+    sort=[
+        'date:asc',
+        'status:desc',
+    ],
+))
 
 if res.payments_cursor is not None:
     # handle response
@@ -1129,9 +1147,10 @@ if res.payments_cursor is not None:
 **[operations.ListPaymentsResponse](../../models/operations/listpaymentsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## list_pools
 
@@ -1147,11 +1166,15 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListPoolsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.payments.list_pools(req)
+res = s.payments.list_pools(request=operations.ListPoolsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+    sort=[
+        'date:asc',
+        'status:desc',
+    ],
+))
 
 if res.pools_cursor is not None:
     # handle response
@@ -1171,9 +1194,10 @@ if res.pools_cursor is not None:
 **[operations.ListPoolsResponse](../../models/operations/listpoolsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## list_transfer_initiations
 
@@ -1189,11 +1213,15 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ListTransferInitiationsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.payments.list_transfer_initiations(req)
+res = s.payments.list_transfer_initiations(request=operations.ListTransferInitiationsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+    sort=[
+        'date:asc',
+        'status:desc',
+    ],
+))
 
 if res.transfer_initiations_cursor is not None:
     # handle response
@@ -1213,9 +1241,10 @@ if res.transfer_initiations_cursor is not None:
 **[operations.ListTransferInitiationsResponse](../../models/operations/listtransferinitiationsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## paymentsget_account
 
@@ -1231,11 +1260,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.PaymentsgetAccountRequest(
-    account_id='<value>',
-)
 
-res = s.payments.paymentsget_account(req)
+res = s.payments.paymentsget_account(request=operations.PaymentsgetAccountRequest(
+    account_id='XXX',
+))
 
 if res.payments_account_response is not None:
     # handle response
@@ -1255,9 +1283,10 @@ if res.payments_account_response is not None:
 **[operations.PaymentsgetAccountResponse](../../models/operations/paymentsgetaccountresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## paymentsget_server_info
 
@@ -1287,9 +1316,10 @@ if res.server_info is not None:
 **[operations.PaymentsgetServerInfoResponse](../../models/operations/paymentsgetserverinforesponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## paymentslist_accounts
 
@@ -1305,11 +1335,15 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.PaymentslistAccountsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-)
 
-res = s.payments.paymentslist_accounts(req)
+res = s.payments.paymentslist_accounts(request=operations.PaymentslistAccountsRequest(
+    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    page_size=100,
+    sort=[
+        'date:asc',
+        'status:desc',
+    ],
+))
 
 if res.accounts_cursor is not None:
     # handle response
@@ -1329,9 +1363,10 @@ if res.accounts_cursor is not None:
 **[operations.PaymentslistAccountsResponse](../../models/operations/paymentslistaccountsresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## ~~read_connector_config~~
 
@@ -1349,11 +1384,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ReadConnectorConfigRequest(
-    connector=shared.Connector.GENERIC,
-)
 
-res = s.payments.read_connector_config(req)
+res = s.payments.read_connector_config(request=operations.ReadConnectorConfigRequest(
+    connector=shared.Connector.GENERIC,
+))
 
 if res.connector_config_response is not None:
     # handle response
@@ -1373,9 +1407,10 @@ if res.connector_config_response is not None:
 **[operations.ReadConnectorConfigResponse](../../models/operations/readconnectorconfigresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## read_connector_config_v1
 
@@ -1391,12 +1426,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ReadConnectorConfigV1Request(
-    connector=shared.Connector.CURRENCY_CLOUD,
-    connector_id='<value>',
-)
 
-res = s.payments.read_connector_config_v1(req)
+res = s.payments.read_connector_config_v1(request=operations.ReadConnectorConfigV1Request(
+    connector=shared.Connector.CURRENCY_CLOUD,
+    connector_id='XXX',
+))
 
 if res.connector_config_response is not None:
     # handle response
@@ -1416,9 +1450,10 @@ if res.connector_config_response is not None:
 **[operations.ReadConnectorConfigV1Response](../../models/operations/readconnectorconfigv1response.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## remove_account_from_pool
 
@@ -1434,12 +1469,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.RemoveAccountFromPoolRequest(
-    account_id='<value>',
-    pool_id='<value>',
-)
 
-res = s.payments.remove_account_from_pool(req)
+res = s.payments.remove_account_from_pool(request=operations.RemoveAccountFromPoolRequest(
+    account_id='XXX',
+    pool_id='XXX',
+))
 
 if res is not None:
     # handle response
@@ -1459,9 +1493,10 @@ if res is not None:
 **[operations.RemoveAccountFromPoolResponse](../../models/operations/removeaccountfrompoolresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## ~~reset_connector~~
 
@@ -1481,11 +1516,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ResetConnectorRequest(
-    connector=shared.Connector.ATLAR,
-)
 
-res = s.payments.reset_connector(req)
+res = s.payments.reset_connector(request=operations.ResetConnectorRequest(
+    connector=shared.Connector.ATLAR,
+))
 
 if res is not None:
     # handle response
@@ -1505,9 +1539,10 @@ if res is not None:
 **[operations.ResetConnectorResponse](../../models/operations/resetconnectorresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## reset_connector_v1
 
@@ -1525,12 +1560,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ResetConnectorV1Request(
-    connector=shared.Connector.GENERIC,
-    connector_id='<value>',
-)
 
-res = s.payments.reset_connector_v1(req)
+res = s.payments.reset_connector_v1(request=operations.ResetConnectorV1Request(
+    connector=shared.Connector.GENERIC,
+    connector_id='XXX',
+))
 
 if res is not None:
     # handle response
@@ -1550,9 +1584,10 @@ if res is not None:
 **[operations.ResetConnectorV1Response](../../models/operations/resetconnectorv1response.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## retry_transfer_initiation
 
@@ -1568,11 +1603,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.RetryTransferInitiationRequest(
-    transfer_id='<value>',
-)
 
-res = s.payments.retry_transfer_initiation(req)
+res = s.payments.retry_transfer_initiation(request=operations.RetryTransferInitiationRequest(
+    transfer_id='XXX',
+))
 
 if res is not None:
     # handle response
@@ -1592,9 +1626,10 @@ if res is not None:
 **[operations.RetryTransferInitiationResponse](../../models/operations/retrytransferinitiationresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## reverse_transfer_initiation
 
@@ -1610,7 +1645,8 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ReverseTransferInitiationRequest(
+
+res = s.payments.reverse_transfer_initiation(request=operations.ReverseTransferInitiationRequest(
     reverse_transfer_initiation_request=shared.ReverseTransferInitiationRequest(
         amount=327549,
         asset='USD',
@@ -1620,10 +1656,8 @@ req = operations.ReverseTransferInitiationRequest(
         },
         reference='XXX',
     ),
-    transfer_id='<value>',
-)
-
-res = s.payments.reverse_transfer_initiation(req)
+    transfer_id='XXX',
+))
 
 if res is not None:
     # handle response
@@ -1643,9 +1677,10 @@ if res is not None:
 **[operations.ReverseTransferInitiationResponse](../../models/operations/reversetransferinitiationresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## udpate_transfer_initiation_status
 
@@ -1661,14 +1696,13 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.UdpateTransferInitiationStatusRequest(
+
+res = s.payments.udpate_transfer_initiation_status(request=operations.UdpateTransferInitiationStatusRequest(
     update_transfer_initiation_status_request=shared.UpdateTransferInitiationStatusRequest(
         status=shared.Status.VALIDATED,
     ),
-    transfer_id='<value>',
-)
-
-res = s.payments.udpate_transfer_initiation_status(req)
+    transfer_id='XXX',
+))
 
 if res is not None:
     # handle response
@@ -1688,9 +1722,10 @@ if res is not None:
 **[operations.UdpateTransferInitiationStatusResponse](../../models/operations/udpatetransferinitiationstatusresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## ~~uninstall_connector~~
 
@@ -1708,11 +1743,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.UninstallConnectorRequest(
-    connector=shared.Connector.MODULR,
-)
 
-res = s.payments.uninstall_connector(req)
+res = s.payments.uninstall_connector(request=operations.UninstallConnectorRequest(
+    connector=shared.Connector.MODULR,
+))
 
 if res is not None:
     # handle response
@@ -1732,9 +1766,10 @@ if res is not None:
 **[operations.UninstallConnectorResponse](../../models/operations/uninstallconnectorresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## uninstall_connector_v1
 
@@ -1750,12 +1785,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.UninstallConnectorV1Request(
-    connector=shared.Connector.GENERIC,
-    connector_id='<value>',
-)
 
-res = s.payments.uninstall_connector_v1(req)
+res = s.payments.uninstall_connector_v1(request=operations.UninstallConnectorV1Request(
+    connector=shared.Connector.GENERIC,
+    connector_id='XXX',
+))
 
 if res is not None:
     # handle response
@@ -1775,9 +1809,10 @@ if res is not None:
 **[operations.UninstallConnectorV1Response](../../models/operations/uninstallconnectorv1response.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## update_bank_account_metadata
 
@@ -1793,16 +1828,15 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.UpdateBankAccountMetadataRequest(
+
+res = s.payments.update_bank_account_metadata(request=operations.UpdateBankAccountMetadataRequest(
     update_bank_account_metadata_request=shared.UpdateBankAccountMetadataRequest(
         metadata={
             'key': '<value>',
         },
     ),
-    bank_account_id='<value>',
-)
-
-res = s.payments.update_bank_account_metadata(req)
+    bank_account_id='XXX',
+))
 
 if res is not None:
     # handle response
@@ -1822,9 +1856,10 @@ if res is not None:
 **[operations.UpdateBankAccountMetadataResponse](../../models/operations/updatebankaccountmetadataresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## update_connector_config_v1
 
@@ -1840,7 +1875,8 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.UpdateConnectorConfigV1Request(
+
+res = s.payments.update_connector_config_v1(request=operations.UpdateConnectorConfigV1Request(
     connector_config=shared.StripeConfig(
         api_key='XXX',
         name='My Stripe Account',
@@ -1848,10 +1884,8 @@ req = operations.UpdateConnectorConfigV1Request(
         polling_period='60s',
     ),
     connector=shared.Connector.STRIPE,
-    connector_id='<value>',
-)
-
-res = s.payments.update_connector_config_v1(req)
+    connector_id='XXX',
+))
 
 if res is not None:
     # handle response
@@ -1871,9 +1905,10 @@ if res is not None:
 **[operations.UpdateConnectorConfigV1Response](../../models/operations/updateconnectorconfigv1response.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## update_metadata
 
@@ -1889,14 +1924,13 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.UpdateMetadataRequest(
+
+res = s.payments.update_metadata(request=operations.UpdateMetadataRequest(
     request_body={
         'key': '<value>',
     },
-    payment_id='<value>',
-)
-
-res = s.payments.update_metadata(req)
+    payment_id='XXX',
+))
 
 if res is not None:
     # handle response
@@ -1916,6 +1950,7 @@ if res is not None:
 **[operations.UpdateMetadataResponse](../../models/operations/updatemetadataresponse.md)**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |

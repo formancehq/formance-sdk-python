@@ -27,11 +27,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = shared.CreateClientRequest(
-    name='<value>',
-)
 
-res = s.auth.create_client(req)
+res = s.auth.create_client(request=shared.CreateClientRequest(
+    name='<value>',
+))
 
 if res.create_client_response is not None:
     # handle response
@@ -69,11 +68,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.CreateSecretRequest(
-    client_id='<value>',
-)
 
-res = s.auth.create_secret(req)
+res = s.auth.create_secret(request=operations.CreateSecretRequest(
+    client_id='<value>',
+))
 
 if res.create_secret_response is not None:
     # handle response
@@ -111,11 +109,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.DeleteClientRequest(
-    client_id='<value>',
-)
 
-res = s.auth.delete_client(req)
+res = s.auth.delete_client(request=operations.DeleteClientRequest(
+    client_id='<value>',
+))
 
 if res is not None:
     # handle response
@@ -153,12 +150,11 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.DeleteSecretRequest(
+
+res = s.auth.delete_secret(request=operations.DeleteSecretRequest(
     client_id='<value>',
     secret_id='<value>',
-)
-
-res = s.auth.delete_secret(req)
+))
 
 if res is not None:
     # handle response
@@ -260,11 +256,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ReadClientRequest(
-    client_id='<value>',
-)
 
-res = s.auth.read_client(req)
+res = s.auth.read_client(request=operations.ReadClientRequest(
+    client_id='<value>',
+))
 
 if res.read_client_response is not None:
     # handle response
@@ -302,11 +297,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.ReadUserRequest(
-    user_id='<value>',
-)
 
-res = s.auth.read_user(req)
+res = s.auth.read_user(request=operations.ReadUserRequest(
+    user_id='<value>',
+))
 
 if res.read_user_response is not None:
     # handle response
@@ -344,11 +338,10 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.UpdateClientRequest(
-    client_id='<value>',
-)
 
-res = s.auth.update_client(req)
+res = s.auth.update_client(request=operations.UpdateClientRequest(
+    client_id='<value>',
+))
 
 if res.update_client_response is not None:
     # handle response

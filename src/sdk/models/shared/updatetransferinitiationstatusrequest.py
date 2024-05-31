@@ -6,6 +6,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from sdk import utils
 
+
 class Status(str, Enum):
     WAITING_FOR_VALIDATION = 'WAITING_FOR_VALIDATION'
     PROCESSING = 'PROCESSING'

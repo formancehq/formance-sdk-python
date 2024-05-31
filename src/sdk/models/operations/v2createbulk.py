@@ -3,19 +3,16 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.shared import v2bulkelementaddmetadata as shared_v2bulkelementaddmetadata
-from ...models.shared import v2bulkelementcreatetransaction as shared_v2bulkelementcreatetransaction
-from ...models.shared import v2bulkelementdeletemetadata as shared_v2bulkelementdeletemetadata
-from ...models.shared import v2bulkelementreverttransaction as shared_v2bulkelementreverttransaction
+from ...models.shared import v2bulkelement as shared_v2bulkelement
 from ...models.shared import v2bulkresponse as shared_v2bulkresponse
-from typing import List, Optional, Union
+from typing import List, Optional
 
 
 @dataclasses.dataclass
 class V2CreateBulkRequest:
     ledger: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ledger', 'style': 'simple', 'explode': False }})
     r"""Name of the ledger."""
-    request_body: Optional[List[Union[shared_v2bulkelementcreatetransaction.V2BulkElementCreateTransaction, shared_v2bulkelementaddmetadata.V2BulkElementAddMetadata, shared_v2bulkelementreverttransaction.V2BulkElementRevertTransaction, shared_v2bulkelementdeletemetadata.V2BulkElementDeleteMetadata]]] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
+    request_body: Optional[List[shared_v2bulkelement.V2BulkElement]] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
     
 
 

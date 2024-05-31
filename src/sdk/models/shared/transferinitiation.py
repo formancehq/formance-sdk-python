@@ -12,6 +12,7 @@ from enum import Enum
 from sdk import utils
 from typing import Dict, List, Optional
 
+
 class TransferInitiationType(str, Enum):
     TRANSFER = 'TRANSFER'
     PAYOUT = 'PAYOUT'

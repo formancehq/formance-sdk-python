@@ -263,7 +263,9 @@ s = sdk.SDK(
     authorization="<YOUR_AUTHORIZATION_HERE>",
 )
 
-req = operations.CreateTransactionsRequest(
+res = None
+try:
+    res = s.ledger.create_transactions(request=operations.CreateTransactionsRequest(
     transactions=shared.Transactions(
         transactions=[
             shared.TransactionData(
@@ -280,11 +282,8 @@ req = operations.CreateTransactionsRequest(
         ],
     ),
     ledger='ledger001',
-)
+))
 
-res = None
-try:
-    res = s.ledger.create_transactions(req)
 except errors.ErrorResponse as e:
     # handle exception
     raise(e)

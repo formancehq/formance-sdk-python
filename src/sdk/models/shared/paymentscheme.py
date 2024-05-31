@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class PaymentScheme(str, Enum):
     UNKNOWN = 'unknown'
     OTHER = 'other'

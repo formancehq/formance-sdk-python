@@ -3,13 +3,12 @@
 from __future__ import annotations
 import dataclasses
 import dateutil.parser
-from .ledgeraccountsubject import LedgerAccountSubject
 from .monetary import Monetary
-from .walletsubject import WalletSubject
+from .subject import Subject
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from sdk import utils
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -18,7 +17,7 @@ class CreditWalletRequest:
     amount: Monetary = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('amount') }})
     metadata: Dict[str, str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata') }})
     r"""Metadata associated with the wallet."""
-    sources: List[Union[LedgerAccountSubject, WalletSubject]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sources') }})
+    sources: List[Subject] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sources') }})
     balance: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('balance'), 'exclude': lambda f: f is None }})
     r"""The balance to credit"""
     reference: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reference'), 'exclude': lambda f: f is None }})

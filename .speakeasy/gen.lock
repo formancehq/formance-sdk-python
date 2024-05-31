@@ -1,29 +1,34 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: de4ce37109543835d271fd330d36d4f0
-  docVersion: v2.0.0-rc.26
-  speakeasyVersion: 1.276.0
-  generationVersion: 2.314.0
-  releaseVersion: 2.2.3
-  configChecksum: a8e36e7ec87dc3d47cd7292eefdc7bb3
+  docChecksum: e567423a9ded9ae8d147cb079b72d691
+  docVersion: v2.0.0-rc.31
+  speakeasyVersion: 1.299.3
+  generationVersion: 2.338.7
+  releaseVersion: 2.3.0
+  configChecksum: 227b5f2bd17ca7e1cd1281ef890bc059
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
   published: true
 features:
   python:
+    additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.3
-    core: 4.6.5
+    core: 4.6.8
     deprecations: 2.81.1
-    errors: 2.81.9
+    errors: 2.81.10
     getRequestBodies: 2.81.1
     globalSecurity: 2.83.5
+    globalSecurityCallbacks: 0.1.0
+    globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.2
     groups: 2.81.2
     ignores: 2.81.1
+    nullables: 0.1.0
     responseFormat: 0.1.0
-    unions: 2.82.6
+    sdkHooks: 0.1.0
+    unions: 2.82.7
 generatedFiles:
   - src/sdk/sdkconfiguration.py
   - src/sdk/auth.py
@@ -43,7 +48,6 @@ generatedFiles:
   - src/sdk/utils/retries.py
   - src/sdk/utils/utils.py
   - src/sdk/models/errors/sdkerror.py
-  - tests/helpers.py
   - src/sdk/models/operations/getoidcwellknowns.py
   - src/sdk/models/operations/getversions.py
   - src/sdk/models/operations/createclient.py
@@ -263,10 +267,12 @@ generatedFiles:
   - src/sdk/models/shared/v2bulkelementresult.py
   - src/sdk/models/shared/v2transaction.py
   - src/sdk/models/shared/v2posting.py
+  - src/sdk/models/shared/v2bulkelement.py
   - src/sdk/models/shared/v2bulkelementcreatetransaction.py
   - src/sdk/models/shared/v2posttransaction.py
   - src/sdk/models/shared/v2bulkelementaddmetadata.py
   - src/sdk/models/shared/v2targettype.py
+  - src/sdk/models/shared/v2targetid.py
   - src/sdk/models/shared/v2bulkelementreverttransaction.py
   - src/sdk/models/shared/v2bulkelementdeletemetadata.py
   - src/sdk/models/shared/v2createledgerrequest.py
@@ -305,6 +311,7 @@ generatedFiles:
   - src/sdk/models/shared/stagestatus.py
   - src/sdk/models/shared/getworkflowinstancehistoryresponse.py
   - src/sdk/models/shared/workflowinstancehistory.py
+  - src/sdk/models/shared/stage.py
   - src/sdk/models/shared/stagesend.py
   - src/sdk/models/shared/stagesendsource.py
   - src/sdk/models/shared/stagesendsourcewallet.py
@@ -317,6 +324,8 @@ generatedFiles:
   - src/sdk/models/shared/monetary.py
   - src/sdk/models/shared/stagedelay.py
   - src/sdk/models/shared/stagewaitevent.py
+  - src/sdk/models/shared/update.py
+  - src/sdk/models/shared/updateaccount.py
   - src/sdk/models/shared/getworkflowinstancehistorystageresponse.py
   - src/sdk/models/shared/workflowinstancehistorystage.py
   - src/sdk/models/shared/workflowinstancehistorystageoutput.py
@@ -337,6 +346,7 @@ generatedFiles:
   - src/sdk/models/shared/orchestrationaccount.py
   - src/sdk/models/shared/activitydebitwalletoutput.py
   - src/sdk/models/shared/hold.py
+  - src/sdk/models/shared/subject.py
   - src/sdk/models/shared/ledgeraccountsubject.py
   - src/sdk/models/shared/walletsubject.py
   - src/sdk/models/shared/activitycreatetransactionoutput.py
@@ -355,6 +365,7 @@ generatedFiles:
   - src/sdk/models/shared/activitycreatetransaction.py
   - src/sdk/models/shared/orchestrationposttransaction.py
   - src/sdk/models/shared/activityconfirmhold.py
+  - src/sdk/models/shared/activityaddaccountmetadata.py
   - src/sdk/models/shared/getworkflowresponse.py
   - src/sdk/models/shared/listrunsresponse.py
   - src/sdk/models/shared/listtriggersresponse.py
@@ -378,6 +389,7 @@ generatedFiles:
   - src/sdk/models/shared/v2stagestatus.py
   - src/sdk/models/shared/v2getworkflowinstancehistoryresponse.py
   - src/sdk/models/shared/v2workflowinstancehistory.py
+  - src/sdk/models/shared/v2stage.py
   - src/sdk/models/shared/v2stagesend.py
   - src/sdk/models/shared/v2stagesendsource.py
   - src/sdk/models/shared/v2stagesendsourcewallet.py
@@ -390,6 +402,8 @@ generatedFiles:
   - src/sdk/models/shared/v2monetary.py
   - src/sdk/models/shared/v2stagedelay.py
   - src/sdk/models/shared/v2stagewaitevent.py
+  - src/sdk/models/shared/v2update.py
+  - src/sdk/models/shared/v2updateaccount.py
   - src/sdk/models/shared/v2getworkflowinstancehistorystageresponse.py
   - src/sdk/models/shared/v2workflowinstancehistorystage.py
   - src/sdk/models/shared/v2workflowinstancehistorystageoutput.py
@@ -407,6 +421,7 @@ generatedFiles:
   - src/sdk/models/shared/v2activitygetaccountoutput.py
   - src/sdk/models/shared/v2activitydebitwalletoutput.py
   - src/sdk/models/shared/v2hold.py
+  - src/sdk/models/shared/v2subject.py
   - src/sdk/models/shared/v2ledgeraccountsubject.py
   - src/sdk/models/shared/v2walletsubject.py
   - src/sdk/models/shared/v2activitycreatetransactionoutput.py
@@ -424,6 +439,7 @@ generatedFiles:
   - src/sdk/models/shared/v2creditwalletrequest.py
   - src/sdk/models/shared/v2activitycreatetransaction.py
   - src/sdk/models/shared/v2activityconfirmhold.py
+  - src/sdk/models/shared/v2activityaddaccountmetadata.py
   - src/sdk/models/shared/v2serverinfo.py
   - src/sdk/models/shared/v2getworkflowresponse.py
   - src/sdk/models/shared/v2listrunsresponse.py
@@ -433,6 +449,7 @@ generatedFiles:
   - src/sdk/models/shared/v2listworkflowsresponse.py
   - src/sdk/models/shared/v2readtriggerresponse.py
   - src/sdk/models/shared/v2runworkflowresponse.py
+  - src/sdk/models/shared/paymentserrorsenum.py
   - src/sdk/models/shared/addaccounttopoolrequest.py
   - src/sdk/models/shared/transferresponse.py
   - src/sdk/models/shared/connector.py
@@ -477,6 +494,7 @@ generatedFiles:
   - src/sdk/models/shared/poolbalances.py
   - src/sdk/models/shared/poolbalance.py
   - src/sdk/models/shared/connectorresponse.py
+  - src/sdk/models/shared/connectorconfig.py
   - src/sdk/models/shared/stripeconfig.py
   - src/sdk/models/shared/dummypayconfig.py
   - src/sdk/models/shared/wiseconfig.py
@@ -542,6 +560,7 @@ generatedFiles:
   - src/sdk/models/errors/v2errorresponse.py
   - src/sdk/models/errors/error.py
   - src/sdk/models/errors/v2error.py
+  - src/sdk/models/errors/paymentserrorresponse.py
   - src/sdk/models/errors/reconciliationerrorresponse.py
   - src/sdk/models/errors/walletserrorresponse.py
   - src/sdk/models/errors/webhookserrorresponse.py
@@ -992,6 +1011,8 @@ generatedFiles:
   - docs/models/shared/monetary.md
   - docs/models/shared/stagedelay.md
   - docs/models/shared/stagewaitevent.md
+  - docs/models/shared/update.md
+  - docs/models/shared/updateaccount.md
   - docs/models/shared/getworkflowinstancehistorystageresponse.md
   - docs/models/shared/workflowinstancehistorystage.md
   - docs/models/shared/workflowinstancehistorystageoutput.md
@@ -1039,6 +1060,7 @@ generatedFiles:
   - docs/models/shared/orchestrationposttransactionscript.md
   - docs/models/shared/orchestrationposttransaction.md
   - docs/models/shared/activityconfirmhold.md
+  - docs/models/shared/activityaddaccountmetadata.md
   - docs/models/shared/getworkflowresponse.md
   - docs/models/shared/listrunsresponse.md
   - docs/models/shared/listtriggersresponse.md
@@ -1077,6 +1099,8 @@ generatedFiles:
   - docs/models/shared/v2monetary.md
   - docs/models/shared/v2stagedelay.md
   - docs/models/shared/v2stagewaitevent.md
+  - docs/models/shared/v2update.md
+  - docs/models/shared/v2updateaccount.md
   - docs/models/shared/v2getworkflowinstancehistorystageresponse.md
   - docs/models/shared/v2workflowinstancehistorystage.md
   - docs/models/shared/v2workflowinstancehistorystageoutput.md
@@ -1119,6 +1143,7 @@ generatedFiles:
   - docs/models/shared/v2creditwalletrequest.md
   - docs/models/shared/v2activitycreatetransaction.md
   - docs/models/shared/v2activityconfirmhold.md
+  - docs/models/shared/v2activityaddaccountmetadata.md
   - docs/models/shared/v2serverinfo.md
   - docs/models/shared/v2getworkflowresponse.md
   - docs/models/shared/v2listrunsresponsecursor.md
@@ -1132,6 +1157,7 @@ generatedFiles:
   - docs/models/shared/v2listworkflowsresponse.md
   - docs/models/shared/v2readtriggerresponse.md
   - docs/models/shared/v2runworkflowresponse.md
+  - docs/models/shared/paymentserrorsenum.md
   - docs/models/shared/addaccounttopoolrequest.md
   - docs/models/shared/transferresponse.md
   - docs/models/shared/connector.md
@@ -1290,6 +1316,7 @@ generatedFiles:
   - docs/models/errors/error.md
   - docs/models/errors/schemaserrorcode.md
   - docs/models/errors/v2error.md
+  - docs/models/errors/paymentserrorresponse.md
   - docs/models/errors/reconciliationerrorresponse.md
   - docs/models/errors/schemaswalletserrorresponseerrorcode.md
   - docs/models/errors/walletserrorresponse.md

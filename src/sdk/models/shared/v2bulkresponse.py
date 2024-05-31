@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 import dataclasses
-from .v2bulkelementresult import Schemas, V2BulkElementResultCreateTransactionSchemas, V2BulkElementResultDeleteMetadataSchemas, V2BulkElementResultErrorSchemas, V2BulkElementResultRevertTransactionSchemas
+from .v2bulkelementresult import V2BulkElementResult
 from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
-from typing import List, Union
+from typing import List
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class V2BulkResponse:
-    data: List[Union[V2BulkElementResultCreateTransactionSchemas, Schemas, V2BulkElementResultRevertTransactionSchemas, V2BulkElementResultDeleteMetadataSchemas, V2BulkElementResultErrorSchemas]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
+    data: List[V2BulkElementResult] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
 

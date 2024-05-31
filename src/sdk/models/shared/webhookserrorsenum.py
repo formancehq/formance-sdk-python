@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class WebhooksErrorsEnum(str, Enum):
     INTERNAL = 'INTERNAL'
     VALIDATION = 'VALIDATION'

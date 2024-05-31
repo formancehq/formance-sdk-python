@@ -3,19 +3,17 @@
 from __future__ import annotations
 import dataclasses
 import dateutil.parser
-from .stagedelay import StageDelay
-from .stagesend import StageSend
-from .stagewaitevent import StageWaitEvent
+from .stage import Stage
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from sdk import utils
-from typing import Optional, Union
+from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class WorkflowInstanceHistory:
-    input: Union[StageSend, StageDelay, StageWaitEvent] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('input') }})
+    input: Stage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('input') }})
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     started_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('startedAt'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     terminated: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('terminated') }})
