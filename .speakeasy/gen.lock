@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: e567423a9ded9ae8d147cb079b72d691
-  docVersion: v2.0.0-rc.31
-  speakeasyVersion: 1.299.3
-  generationVersion: 2.338.7
-  releaseVersion: 2.3.0
-  configChecksum: 227b5f2bd17ca7e1cd1281ef890bc059
+  docChecksum: 90b8a240f2307f0383af66f212b0e35e
+  docVersion: v2.0.0-rc.33
+  speakeasyVersion: 1.306.0
+  generationVersion: 2.340.3
+  releaseVersion: 2.3.1
+  configChecksum: 7cd69437d1748415f50593e2df20ae04
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -15,7 +15,7 @@ features:
   python:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.3
-    core: 4.6.8
+    core: 4.6.9
     deprecations: 2.81.1
     errors: 2.81.10
     getRequestBodies: 2.81.1
@@ -28,7 +28,7 @@ features:
     nullables: 0.1.0
     responseFormat: 0.1.0
     sdkHooks: 0.1.0
-    unions: 2.82.7
+    unions: 2.82.8
 generatedFiles:
   - src/sdk/sdkconfiguration.py
   - src/sdk/auth.py

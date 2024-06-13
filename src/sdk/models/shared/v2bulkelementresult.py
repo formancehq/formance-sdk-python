@@ -52,4 +52,4 @@ class V2BulkElementResultCreateTransactionSchemas:
     
 
 
-V2BulkElementResult = Union['V2BulkElementResultCreateTransactionSchemas', 'Schemas', 'V2BulkElementResultRevertTransactionSchemas', 'V2BulkElementResultDeleteMetadataSchemas', 'V2BulkElementResultErrorSchemas']
+V2BulkElementResult = Union[V2BulkElementResultCreateTransactionSchemas, Schemas, V2BulkElementResultRevertTransactionSchemas, V2BulkElementResultDeleteMetadataSchemas, V2BulkElementResultErrorSchemas]
