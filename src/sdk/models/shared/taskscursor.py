@@ -14,8 +14,6 @@ from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 from typing import List, Optional, Union
 
-TasksCursorData = Union[TaskStripe, TaskWise, TaskCurrencyCloud, TaskDummyPay, TaskModulr, TaskBankingCircle, TaskMangoPay, TaskMoneycorp]
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -35,3 +33,5 @@ class TasksCursor:
     cursor: TasksCursorCursor = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cursor') }})
     
 
+
+TasksCursorData = Union[TaskStripe, TaskWise, TaskCurrencyCloud, TaskDummyPay, TaskModulr, TaskBankingCircle, TaskMangoPay, TaskMoneycorp]
