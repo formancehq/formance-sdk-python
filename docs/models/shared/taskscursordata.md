@@ -3,51 +3,51 @@
 
 ## Supported Types
 
-### TaskStripe
+### `shared.TaskStripe`
 
 ```python
-tasksCursorData: shared.TaskStripe = /* values here */
+value: shared.TaskStripe = /* values here */
 ```
 
-### TaskWise
+### `shared.TaskWise`
 
 ```python
-tasksCursorData: shared.TaskWise = /* values here */
+value: shared.TaskWise = /* values here */
 ```
 
-### TaskCurrencyCloud
+### `shared.TaskCurrencyCloud`
 
 ```python
-tasksCursorData: shared.TaskCurrencyCloud = /* values here */
+value: shared.TaskCurrencyCloud = /* values here */
 ```
 
-### TaskDummyPay
+### `shared.TaskDummyPay`
 
 ```python
-tasksCursorData: shared.TaskDummyPay = /* values here */
+value: shared.TaskDummyPay = /* values here */
 ```
 
-### TaskModulr
+### `shared.TaskModulr`
 
 ```python
-tasksCursorData: shared.TaskModulr = /* values here */
+value: shared.TaskModulr = /* values here */
 ```
 
-### TaskBankingCircle
+### `shared.TaskBankingCircle`
 
 ```python
-tasksCursorData: shared.TaskBankingCircle = /* values here */
+value: shared.TaskBankingCircle = /* values here */
 ```
 
-### TaskMangoPay
+### `shared.TaskMangoPay`
 
 ```python
-tasksCursorData: shared.TaskMangoPay = /* values here */
+value: shared.TaskMangoPay = /* values here */
 ```
 
-### TaskMoneycorp
+### `shared.TaskMoneycorp`
 
 ```python
-tasksCursorData: shared.TaskMoneycorp = /* values here */
+value: shared.TaskMoneycorp = /* values here */
 ```
 

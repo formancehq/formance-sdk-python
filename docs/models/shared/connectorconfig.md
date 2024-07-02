@@ -3,69 +3,69 @@
 
 ## Supported Types
 
-### StripeConfig
+### `shared.StripeConfig`
 
 ```python
-connectorConfig: shared.StripeConfig = /* values here */
+value: shared.StripeConfig = /* values here */
 ```
 
-### DummyPayConfig
+### `shared.DummyPayConfig`
 
 ```python
-connectorConfig: shared.DummyPayConfig = /* values here */
+value: shared.DummyPayConfig = /* values here */
 ```
 
-### WiseConfig
+### `shared.WiseConfig`
 
 ```python
-connectorConfig: shared.WiseConfig = /* values here */
+value: shared.WiseConfig = /* values here */
 ```
 
-### ModulrConfig
+### `shared.ModulrConfig`
 
 ```python
-connectorConfig: shared.ModulrConfig = /* values here */
+value: shared.ModulrConfig = /* values here */
 ```
 
-### CurrencyCloudConfig
+### `shared.CurrencyCloudConfig`
 
 ```python
-connectorConfig: shared.CurrencyCloudConfig = /* values here */
+value: shared.CurrencyCloudConfig = /* values here */
 ```
 
-### BankingCircleConfig
+### `shared.BankingCircleConfig`
 
 ```python
-connectorConfig: shared.BankingCircleConfig = /* values here */
+value: shared.BankingCircleConfig = /* values here */
 ```
 
-### MangoPayConfig
+### `shared.MangoPayConfig`
 
 ```python
-connectorConfig: shared.MangoPayConfig = /* values here */
+value: shared.MangoPayConfig = /* values here */
 ```
 
-### MoneycorpConfig
+### `shared.MoneycorpConfig`
 
 ```python
-connectorConfig: shared.MoneycorpConfig = /* values here */
+value: shared.MoneycorpConfig = /* values here */
 ```
 
-### AtlarConfig
+### `shared.AtlarConfig`
 
 ```python
-connectorConfig: shared.AtlarConfig = /* values here */
+value: shared.AtlarConfig = /* values here */
 ```
 
-### AdyenConfig
+### `shared.AdyenConfig`
 
 ```python
-connectorConfig: shared.AdyenConfig = /* values here */
+value: shared.AdyenConfig = /* values here */
 ```
 
-### GenericConfig
+### `shared.GenericConfig`
 
 ```python
-connectorConfig: shared.GenericConfig = /* values here */
+value: shared.GenericConfig = /* values here */
 ```
 
