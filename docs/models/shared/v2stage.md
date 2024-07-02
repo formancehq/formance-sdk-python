@@ -3,27 +3,27 @@
 
 ## Supported Types
 
-### V2StageSend
+### `shared.V2StageSend`
 
 ```python
-v2Stage: shared.V2StageSend = /* values here */
+value: shared.V2StageSend = /* values here */
 ```
 
-### V2StageDelay
+### `shared.V2StageDelay`
 
 ```python
-v2Stage: shared.V2StageDelay = /* values here */
+value: shared.V2StageDelay = /* values here */
 ```
 
-### V2StageWaitEvent
+### `shared.V2StageWaitEvent`
 
 ```python
-v2Stage: shared.V2StageWaitEvent = /* values here */
+value: shared.V2StageWaitEvent = /* values here */
 ```
 
-### V2Update
+### `shared.V2Update`
 
 ```python
-v2Stage: shared.V2Update = /* values here */
+value: shared.V2Update = /* values here */
 ```
 

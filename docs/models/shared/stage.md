@@ -3,27 +3,27 @@
 
 ## Supported Types
 
-### StageSend
+### `shared.StageSend`
 
 ```python
-stage: shared.StageSend = /* values here */
+value: shared.StageSend = /* values here */
 ```
 
-### StageDelay
+### `shared.StageDelay`
 
 ```python
-stage: shared.StageDelay = /* values here */
+value: shared.StageDelay = /* values here */
 ```
 
-### StageWaitEvent
+### `shared.StageWaitEvent`
 
 ```python
-stage: shared.StageWaitEvent = /* values here */
+value: shared.StageWaitEvent = /* values here */
 ```
 
-### Update
+### `shared.Update`
 
 ```python
-stage: shared.Update = /* values here */
+value: shared.Update = /* values here */
 ```
 

@@ -15,6 +15,7 @@ class ListWalletsRequest:
     Set to the value of previous for the previous page of results.
     No other parameters can be set when the pagination token is set.
     """
+    expand: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'expand', 'style': 'form', 'explode': True }})
     metadata: Optional[Dict[str, str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
     r"""Filter wallets by metadata key value pairs. Nested objects can be used as seen in the example below."""
     name: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'name', 'style': 'form', 'explode': True }})
