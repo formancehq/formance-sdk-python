@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### 
+### `str`
 
 ```python
-v2TargetID: str = /* values here */
+value: str = /* values here */
 ```
 
-### 
+### `int`
 
 ```python
-v2TargetID: int = /* values here */
+value: int = /* values here */
 ```
 

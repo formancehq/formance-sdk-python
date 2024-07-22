@@ -3,33 +3,33 @@
 
 ## Supported Types
 
-### Schemas
+### `shared.Schemas`
 
 ```python
-v2BulkElementResult: shared.Schemas = /* values here */
+value: shared.Schemas = /* values here */
 ```
 
-### V2BulkElementResultCreateTransactionSchemas
+### `shared.V2BulkElementResultCreateTransactionSchemas`
 
 ```python
-v2BulkElementResult: shared.V2BulkElementResultCreateTransactionSchemas = /* values here */
+value: shared.V2BulkElementResultCreateTransactionSchemas = /* values here */
 ```
 
-### V2BulkElementResultDeleteMetadataSchemas
+### `shared.V2BulkElementResultDeleteMetadataSchemas`
 
 ```python
-v2BulkElementResult: shared.V2BulkElementResultDeleteMetadataSchemas = /* values here */
+value: shared.V2BulkElementResultDeleteMetadataSchemas = /* values here */
 ```
 
-### V2BulkElementResultErrorSchemas
+### `shared.V2BulkElementResultErrorSchemas`
 
 ```python
-v2BulkElementResult: shared.V2BulkElementResultErrorSchemas = /* values here */
+value: shared.V2BulkElementResultErrorSchemas = /* values here */
 ```
 
-### V2BulkElementResultRevertTransactionSchemas
+### `shared.V2BulkElementResultRevertTransactionSchemas`
 
 ```python
-v2BulkElementResult: shared.V2BulkElementResultRevertTransactionSchemas = /* values here */
+value: shared.V2BulkElementResultRevertTransactionSchemas = /* values here */
 ```
 

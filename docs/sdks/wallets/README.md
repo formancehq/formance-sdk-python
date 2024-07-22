@@ -578,6 +578,7 @@ s = sdk.SDK(
 
 res = s.wallets.list_wallets(request=operations.ListWalletsRequest(
     cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    expand='balances',
     metadata={
         'admin': 'true',
     },
