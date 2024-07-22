@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### V2LedgerAccountSubject
+### `shared.V2LedgerAccountSubject`
 
 ```python
-v2Subject: shared.V2LedgerAccountSubject = /* values here */
+value: shared.V2LedgerAccountSubject = /* values here */
 ```
 
-### V2WalletSubject
+### `shared.V2WalletSubject`
 
 ```python
-v2Subject: shared.V2WalletSubject = /* values here */
+value: shared.V2WalletSubject = /* values here */
 ```
 

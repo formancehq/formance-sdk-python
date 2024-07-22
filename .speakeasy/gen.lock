@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: 90b8a240f2307f0383af66f212b0e35e
-  docVersion: v2.0.0-rc.33
-  speakeasyVersion: 1.306.0
-  generationVersion: 2.340.3
-  releaseVersion: 2.3.1
-  configChecksum: 7cd69437d1748415f50593e2df20ae04
+  docChecksum: b490ac2541da61a0ac7ae9eaf933e4ca
+  docVersion: v2.0.3
+  speakeasyVersion: 1.344.1
+  generationVersion: 2.376.2
+  releaseVersion: 2.4.0
+  configChecksum: 13cc360c2e5959e3213e9358041ad16c
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -15,7 +15,7 @@ features:
   python:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.3
-    core: 4.6.9
+    core: 4.8.2
     deprecations: 2.81.1
     errors: 2.81.10
     getRequestBodies: 2.81.1
@@ -42,6 +42,7 @@ generatedFiles:
   - src/sdk/sdk.py
   - py.typed
   - pylintrc
+  - scripts/publish.sh
   - setup.py
   - src/sdk/__init__.py
   - src/sdk/utils/__init__.py
@@ -332,7 +333,7 @@ generatedFiles:
   - src/sdk/models/shared/activityreverttransactionoutput.py
   - src/sdk/models/shared/orchestrationtransaction.py
   - src/sdk/models/shared/orchestrationlistwalletsresponse.py
-  - src/sdk/models/shared/wallet.py
+  - src/sdk/models/shared/orchestrationwallet.py
   - src/sdk/models/shared/activitygetwalletoutput.py
   - src/sdk/models/shared/walletwithbalances.py
   - src/sdk/models/shared/assetholder.py
@@ -361,7 +362,7 @@ generatedFiles:
   - src/sdk/models/shared/activitydebitwallet.py
   - src/sdk/models/shared/debitwalletrequest.py
   - src/sdk/models/shared/activitycreditwallet.py
-  - src/sdk/models/shared/creditwalletrequest.py
+  - src/sdk/models/shared/orchestrationcreditwalletrequest.py
   - src/sdk/models/shared/activitycreatetransaction.py
   - src/sdk/models/shared/orchestrationposttransaction.py
   - src/sdk/models/shared/activityconfirmhold.py
@@ -533,7 +534,9 @@ generatedFiles:
   - src/sdk/models/shared/balance.py
   - src/sdk/models/shared/createbalancerequest.py
   - src/sdk/models/shared/createwalletresponse.py
+  - src/sdk/models/shared/wallet.py
   - src/sdk/models/shared/createwalletrequest.py
+  - src/sdk/models/shared/creditwalletrequest.py
   - src/sdk/models/shared/debitwalletresponse.py
   - src/sdk/models/shared/getbalanceresponse.py
   - src/sdk/models/shared/balancewithassets.py
@@ -1020,7 +1023,7 @@ generatedFiles:
   - docs/models/shared/orchestrationtransaction.md
   - docs/models/shared/orchestrationlistwalletsresponsecursor.md
   - docs/models/shared/orchestrationlistwalletsresponse.md
-  - docs/models/shared/wallet.md
+  - docs/models/shared/orchestrationwallet.md
   - docs/models/shared/activitygetwalletoutput.md
   - docs/models/shared/walletwithbalancesbalances.md
   - docs/models/shared/walletwithbalances.md
@@ -1055,7 +1058,7 @@ generatedFiles:
   - docs/models/shared/activitydebitwallet.md
   - docs/models/shared/debitwalletrequest.md
   - docs/models/shared/activitycreditwallet.md
-  - docs/models/shared/creditwalletrequest.md
+  - docs/models/shared/orchestrationcreditwalletrequest.md
   - docs/models/shared/activitycreatetransaction.md
   - docs/models/shared/orchestrationposttransactionscript.md
   - docs/models/shared/orchestrationposttransaction.md
@@ -1282,7 +1285,10 @@ generatedFiles:
   - docs/models/shared/balance.md
   - docs/models/shared/createbalancerequest.md
   - docs/models/shared/createwalletresponse.md
+  - docs/models/shared/walletbalances.md
+  - docs/models/shared/wallet.md
   - docs/models/shared/createwalletrequest.md
+  - docs/models/shared/creditwalletrequest.md
   - docs/models/shared/debitwalletresponse.md
   - docs/models/shared/getbalanceresponse.md
   - docs/models/shared/balancewithassets.md
@@ -1335,3 +1341,4 @@ generatedFiles:
   - src/sdk/_hooks/sdkhooks.py
   - src/sdk/_hooks/types.py
   - src/sdk/_hooks/__init__.py
+  - CONTRIBUTING.md

@@ -3,24 +3,15 @@
 from __future__ import annotations
 import dataclasses
 import dateutil.parser
-from .assetholder import AssetHolder
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from sdk import utils
-from typing import Dict, Optional
+from typing import Dict
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class WalletBalances:
-    main: AssetHolder = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('main') }})
-    
-
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class Wallet:
+class OrchestrationWallet:
     created_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('createdAt'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id') }})
     r"""The unique ID of the wallet."""
@@ -28,6 +19,5 @@ class Wallet:
     metadata: Dict[str, str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata') }})
     r"""Metadata associated with the wallet."""
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
-    balances: Optional[WalletBalances] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('balances'), 'exclude': lambda f: f is None }})
     
 
