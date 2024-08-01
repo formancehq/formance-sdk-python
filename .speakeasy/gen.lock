@@ -5,8 +5,8 @@ management:
   docVersion: v0.0.0
   speakeasyVersion: 1.349.2
   generationVersion: 2.382.2
-  releaseVersion: 2.6.0
-  configChecksum: 9eed56b677a668012bb3d4c20a5ccacf
+  releaseVersion: 2.7.0
+  configChecksum: b1032317678e19b28e5e255a4f7e987e
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -45,11 +45,11 @@ features:
     getRequestBodies: 2.81.1
     globalSecurity: 2.83.5
     globalSecurityCallbacks: 0.1.0
-    globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.2
     groups: 2.81.2
     ignores: 2.81.1
     nullables: 0.1.0
+    oauth2ClientCredentials: 0.1.2
     responseFormat: 0.1.0
     sdkHooks: 0.1.0
     unions: 2.82.8
@@ -1372,4 +1372,5 @@ generatedFiles:
   - src/sdk/_hooks/sdkhooks.py
   - src/sdk/_hooks/types.py
   - src/sdk/_hooks/__init__.py
+  - src/sdk/_hooks/clientcredentials.py
   - CONTRIBUTING.md

@@ -41,7 +41,7 @@ class SDK:
     sdk_configuration: SDKConfiguration
 
     def __init__(self,
-                 authorization: Union[str, Callable[[], str]],
+                 security: Union[shared.Security,Callable[[], shared.Security]] = None,
                  server_idx: Optional[int] = None,
                  server_url: Optional[str] = None,
                  url_params: Optional[Dict[str, str]] = None,
@@ -50,8 +50,8 @@ class SDK:
                  ) -> None:
         """Instantiates the SDK configuring it with the provided parameters.
 
-        :param authorization: The authorization required for authentication
-        :type authorization: Union[str, Callable[[], str]]
+        :param security: The security details required for authentication
+        :type security: Union[shared.Security,Callable[[], shared.Security]]
         :param server_idx: The index of the server to use for all operations
         :type server_idx: int
         :param server_url: The server URL to use for all operations
@@ -65,12 +65,6 @@ class SDK:
         """
         if client is None:
             client = requests_http.Session()
-
-        if callable(authorization):
-            def security():
-                return shared.Security(authorization = authorization())
-        else:
-            security = shared.Security(authorization = authorization)
 
         if server_url is not None:
             if url_params is not None:
