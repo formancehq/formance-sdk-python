@@ -98,6 +98,7 @@ if res is not None:
 * [v2_delete_account_metadata](docs/sdks/ledger/README.md#v2_delete_account_metadata) - Delete metadata by key
 * [v2_delete_ledger_metadata](docs/sdks/ledger/README.md#v2_delete_ledger_metadata) - Delete ledger metadata by key
 * [v2_delete_transaction_metadata](docs/sdks/ledger/README.md#v2_delete_transaction_metadata) - Delete metadata by key
+* [v2_export_logs](docs/sdks/ledger/README.md#v2_export_logs) - Export logs
 * [v2_get_account](docs/sdks/ledger/README.md#v2_get_account) - Get account by its address
 * [v2_get_balances_aggregated](docs/sdks/ledger/README.md#v2_get_balances_aggregated) - Get the aggregated balances from selected accounts
 * [v2_get_info](docs/sdks/ledger/README.md#v2_get_info) - Show server information
@@ -105,6 +106,7 @@ if res is not None:
 * [v2_get_ledger_info](docs/sdks/ledger/README.md#v2_get_ledger_info) - Get information about a ledger
 * [v2_get_transaction](docs/sdks/ledger/README.md#v2_get_transaction) - Get transaction from a ledger by its ID
 * [v2_get_volumes_with_balances](docs/sdks/ledger/README.md#v2_get_volumes_with_balances) - Get list of volumes with balances for (account/asset)
+* [v2_import_logs](docs/sdks/ledger/README.md#v2_import_logs) - Import logs
 * [v2_list_accounts](docs/sdks/ledger/README.md#v2_list_accounts) - List accounts from a ledger
 * [v2_list_ledgers](docs/sdks/ledger/README.md#v2_list_ledgers) - List ledgers
 * [v2_list_logs](docs/sdks/ledger/README.md#v2_list_logs) - List the logs from a ledger
@@ -394,6 +396,12 @@ if res is not None:
 
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Special Types [types] -->
+## Special Types
+
+
+<!-- End Special Types [types] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

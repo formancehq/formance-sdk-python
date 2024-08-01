@@ -33,6 +33,7 @@
 * [v2_delete_account_metadata](#v2_delete_account_metadata) - Delete metadata by key
 * [v2_delete_ledger_metadata](#v2_delete_ledger_metadata) - Delete ledger metadata by key
 * [v2_delete_transaction_metadata](#v2_delete_transaction_metadata) - Delete metadata by key
+* [v2_export_logs](#v2_export_logs) - Export logs
 * [v2_get_account](#v2_get_account) - Get account by its address
 * [v2_get_balances_aggregated](#v2_get_balances_aggregated) - Get the aggregated balances from selected accounts
 * [v2_get_info](#v2_get_info) - Show server information
@@ -40,6 +41,7 @@
 * [v2_get_ledger_info](#v2_get_ledger_info) - Get information about a ledger
 * [v2_get_transaction](#v2_get_transaction) - Get transaction from a ledger by its ID
 * [v2_get_volumes_with_balances](#v2_get_volumes_with_balances) - Get list of volumes with balances for (account/asset)
+* [v2_import_logs](#v2_import_logs) - Import logs
 * [v2_list_accounts](#v2_list_accounts) - List accounts from a ledger
 * [v2_list_ledgers](#v2_list_ledgers) - List ledgers
 * [v2_list_logs](#v2_list_logs) - List the logs from a ledger
@@ -1554,6 +1556,47 @@ if res is not None:
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
 
+## v2_export_logs
+
+Export logs
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK(
+    authorization="<YOUR_AUTHORIZATION_HERE>",
+)
+
+
+res = s.ledger.v2_export_logs(request=operations.V2ExportLogsRequest(
+    ledger='ledger001',
+))
+
+if res is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [operations.V2ExportLogsRequest](../../models/operations/v2exportlogsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+
+
+### Response
+
+**[operations.V2ExportLogsResponse](../../models/operations/v2exportlogsresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
 ## v2_get_account
 
 Get account by its address
@@ -1837,6 +1880,48 @@ if res.v2_volumes_with_balance_cursor_response is not None:
 ### Response
 
 **[operations.V2GetVolumesWithBalancesResponse](../../models/operations/v2getvolumeswithbalancesresponse.md)**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
+
+## v2_import_logs
+
+Import logs
+
+### Example Usage
+
+```python
+import sdk
+from sdk.models import operations
+
+s = sdk.SDK(
+    authorization="<YOUR_AUTHORIZATION_HERE>",
+)
+
+
+res = s.ledger.v2_import_logs(request=operations.V2ImportLogsRequest(
+    ledger='ledger001',
+))
+
+if res is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [operations.V2ImportLogsRequest](../../models/operations/v2importlogsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+
+
+### Response
+
+**[operations.V2ImportLogsResponse](../../models/operations/v2importlogsresponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
