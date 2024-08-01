@@ -17,7 +17,10 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -67,9 +70,13 @@ Get server info
 
 ```python
 import sdk
+from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 

@@ -19,10 +19,13 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -68,7 +71,10 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -110,10 +116,13 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -152,10 +161,13 @@ Delete a webhooks config by ID.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -194,10 +206,13 @@ Sorted by updated date descending
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -249,7 +264,10 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -294,10 +312,13 @@ Test a config by sending a webhook to its endpoint.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 

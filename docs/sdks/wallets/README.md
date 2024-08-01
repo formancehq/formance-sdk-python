@@ -31,7 +31,10 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -74,10 +77,13 @@ Create a balance
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -119,7 +125,10 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -164,7 +173,10 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -221,7 +233,10 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -270,10 +285,13 @@ Get detailed balance
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -313,10 +331,13 @@ Get a hold
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -355,10 +376,13 @@ Get all holds for a wallet
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -400,10 +424,13 @@ if res.get_holds_response is not None:
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -444,10 +471,13 @@ Get a wallet
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -486,10 +516,13 @@ Get wallet summary
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -528,10 +561,13 @@ List balances of a wallet
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -569,10 +605,13 @@ List all wallets
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -617,10 +656,13 @@ Update a wallet
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -659,10 +701,13 @@ Cancel a hold
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -701,9 +746,13 @@ Get server info
 
 ```python
 import sdk
+from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 

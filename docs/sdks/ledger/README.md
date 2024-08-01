@@ -59,7 +59,10 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -113,10 +116,13 @@ Set the metadata of a transaction by its ID
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -156,10 +162,13 @@ Add metadata to an account
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -202,10 +211,13 @@ Count the accounts from a ledger
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -297,10 +309,13 @@ Count the transactions from a ledger
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -347,7 +362,10 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -411,10 +429,13 @@ Get account by its address
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -454,10 +475,13 @@ Get the balances from a ledger's account
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -499,10 +523,13 @@ Get the aggregated balances from selected accounts
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -542,9 +569,13 @@ Show server information
 
 ```python
 import sdk
+from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -575,10 +606,13 @@ Get information about a ledger
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -617,10 +651,13 @@ Get the mapping of a ledger
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -659,10 +696,13 @@ Get transaction from a ledger by its ID
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -702,10 +742,13 @@ List accounts from a ledger, sorted by address in descending order.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -801,10 +844,13 @@ List the logs from a ledger, sorted by ID in descending order.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -846,10 +892,13 @@ List transactions from a ledger, sorted by txid in descending order.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -896,10 +945,13 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -938,10 +990,13 @@ Revert a ledger transaction by its ID
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -987,7 +1042,10 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1043,7 +1101,10 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1090,10 +1151,13 @@ Set the metadata of a transaction by its ID
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1137,10 +1201,13 @@ Add metadata to an account
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1184,10 +1251,13 @@ Count the accounts from a ledger
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1226,10 +1296,13 @@ Count the transactions from a ledger
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1271,7 +1344,10 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1318,7 +1394,10 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1365,7 +1444,10 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1432,10 +1514,13 @@ Delete metadata by key
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1475,10 +1560,13 @@ Delete ledger metadata by key
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1518,10 +1606,13 @@ Delete metadata by key
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1562,10 +1653,13 @@ Get account by its address
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1605,10 +1699,13 @@ Get the aggregated balances from selected accounts
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1647,9 +1744,13 @@ Show server information
 
 ```python
 import sdk
+from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1680,10 +1781,13 @@ Get a ledger
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1722,10 +1826,13 @@ Get information about a ledger
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1764,10 +1871,13 @@ Get transaction from a ledger by its ID
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1807,10 +1917,13 @@ Get list of volumes with balances for (account/asset)
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1852,10 +1965,13 @@ List accounts from a ledger, sorted by address in descending order.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1896,10 +2012,13 @@ List ledgers
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1939,10 +2058,13 @@ List the logs from a ledger, sorted by ID in descending order.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -1983,10 +2105,13 @@ List transactions from a ledger, sorted by id in descending order.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -2028,10 +2153,13 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -2070,10 +2198,13 @@ Revert a ledger transaction by its ID
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -2113,10 +2244,13 @@ Update ledger metadata
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 

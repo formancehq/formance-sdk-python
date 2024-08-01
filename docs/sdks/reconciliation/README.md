@@ -23,7 +23,10 @@ import sdk
 from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -67,10 +70,13 @@ Delete a policy by its id.
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -109,10 +115,13 @@ Get a policy
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -151,10 +160,13 @@ Get a reconciliation
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -193,10 +205,13 @@ List policies
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -236,10 +251,13 @@ List reconciliations
 
 ```python
 import sdk
-from sdk.models import operations
+from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -283,7 +301,10 @@ import sdk
 from sdk.models import operations, shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
@@ -326,9 +347,13 @@ Get server info
 
 ```python
 import sdk
+from sdk.models import shared
 
 s = sdk.SDK(
-    authorization="<YOUR_AUTHORIZATION_HERE>",
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
 )
 
 
