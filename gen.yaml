@@ -8,11 +8,11 @@ generation:
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
   auth:
-    oAuth2ClientCredentialsEnabled: false
+    oAuth2ClientCredentialsEnabled: true
   comments: {}
   telemetryEnabled: false
 python:
-  version: 2.4.1
+  version: 3.0.0
   additionalDependencies:
     dependencies: {}
     extraDependencies:
