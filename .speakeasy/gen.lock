@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: 750e45f3841a6c3b143811c47586f973
-  docVersion: v2.0.4
-  speakeasyVersion: 1.349.2
-  generationVersion: 2.382.2
-  releaseVersion: 3.0.0
-  configChecksum: 3553de0446313b35708cd68fa986f362
+  docChecksum: 6a25fc36d60daf84b9bab95b01aee73b
+  docVersion: v2.0.8
+  speakeasyVersion: 1.352.2
+  generationVersion: 2.385.2
+  releaseVersion: 3.0.1
+  configChecksum: 617409fce728a2033108dd793ca47ae7
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -19,7 +19,7 @@ features:
     deprecations: 2.81.1
     errors: 2.81.10
     getRequestBodies: 2.81.1
-    globalSecurity: 2.83.5
+    globalSecurity: 2.83.6
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
     groups: 2.81.2
@@ -838,6 +838,7 @@ generatedFiles:
   - docs/models/operations/confirmholdresponse.md
   - docs/models/operations/createbalancerequest.md
   - docs/models/operations/createbalanceresponse.md
+  - docs/models/operations/createwalletrequest.md
   - docs/models/operations/createwalletresponse.md
   - docs/models/operations/creditwalletrequest.md
   - docs/models/operations/creditwalletresponse.md

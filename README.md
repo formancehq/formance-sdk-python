@@ -386,14 +386,13 @@ s = sdk.SDK(client=http_client)
 
 ### Per-Client Security Schemes
 
-This SDK supports the following security schemes globally:
+This SDK supports the following security scheme globally:
 
-| Name            | Type            | Scheme          |
-| --------------- | --------------- | --------------- |
-| `client_id`     | oauth2          | OAuth2 token    |
-| `client_secret` | oauth2          | OAuth2 token    |
+| Name                           | Type                           | Scheme                         |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| `client_id` `client_secret`    | oauth2                         | OAuth2 Client Credentials Flow |
 
-You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
+You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```python
 import sdk
 from sdk.models import shared

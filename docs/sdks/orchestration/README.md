@@ -102,10 +102,7 @@ s = sdk.SDK(
 )
 
 
-res = s.orchestration.create_trigger(request=shared.TriggerData(
-    event='<value>',
-    workflow_id='<value>',
-))
+res = s.orchestration.create_trigger()
 
 if res.create_trigger_response is not None:
     # handle response
@@ -148,13 +145,7 @@ s = sdk.SDK(
 )
 
 
-res = s.orchestration.create_workflow(request=shared.CreateWorkflowRequest(
-    stages=[
-        {
-            'key': '<value>',
-        },
-    ],
-))
+res = s.orchestration.create_workflow()
 
 if res.create_workflow_response is not None:
     # handle response
@@ -504,7 +495,7 @@ List triggers
 
 ```python
 import sdk
-from sdk.models import operations, shared
+from sdk.models import shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -514,7 +505,7 @@ s = sdk.SDK(
 )
 
 
-res = s.orchestration.list_triggers(request=operations.ListTriggersRequest())
+res = s.orchestration.list_triggers()
 
 if res.list_triggers_response is not None:
     # handle response
@@ -901,10 +892,7 @@ s = sdk.SDK(
 )
 
 
-res = s.orchestration.v2_create_trigger(request=shared.V2TriggerData(
-    event='<value>',
-    workflow_id='<value>',
-))
+res = s.orchestration.v2_create_trigger()
 
 if res.v2_create_trigger_response is not None:
     # handle response
@@ -947,13 +935,7 @@ s = sdk.SDK(
 )
 
 
-res = s.orchestration.v2_create_workflow(request=shared.V2CreateWorkflowRequest(
-    stages=[
-        {
-            'key': '<value>',
-        },
-    ],
-))
+res = s.orchestration.v2_create_workflow()
 
 if res.v2_create_workflow_response is not None:
     # handle response

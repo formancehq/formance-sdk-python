@@ -12,6 +12,8 @@ from typing import Optional
 class DebitWalletRequest:
     id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'id', 'style': 'simple', 'explode': False }})
     debit_wallet_request: Optional[shared_debitwalletrequest.DebitWalletRequest] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
+    idempotency_key: Optional[str] = dataclasses.field(default=None, metadata={'header': { 'field_name': 'Idempotency-Key', 'style': 'simple', 'explode': False }})
+    r"""Use an idempotency key"""
     
 
 
