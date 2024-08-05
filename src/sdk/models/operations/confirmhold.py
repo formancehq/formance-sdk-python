@@ -11,6 +11,8 @@ from typing import Optional
 class ConfirmHoldRequest:
     hold_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'hold_id', 'style': 'simple', 'explode': False }})
     confirm_hold_request: Optional[shared_confirmholdrequest.ConfirmHoldRequest] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
+    idempotency_key: Optional[str] = dataclasses.field(default=None, metadata={'header': { 'field_name': 'Idempotency-Key', 'style': 'simple', 'explode': False }})
+    r"""Use an idempotency key"""
     
 
 

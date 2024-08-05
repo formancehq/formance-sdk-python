@@ -31,9 +31,7 @@ s = sdk.SDK(
 )
 
 
-res = s.auth.create_client(request=shared.CreateClientRequest(
-    name='<value>',
-))
+res = s.auth.create_client()
 
 if res.create_client_response is not None:
     # handle response

@@ -27,6 +27,7 @@ class Wallets:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
+        headers = { **utils.get_headers(request), **headers }
         req_content_type, data, form = utils.serialize_request_body(request, operations.ConfirmHoldRequest, "confirm_hold_request", False, True, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
@@ -83,6 +84,7 @@ class Wallets:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
+        headers = { **utils.get_headers(request), **headers }
         req_content_type, data, form = utils.serialize_request_body(request, operations.CreateBalanceRequest, "create_balance_request", False, True, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
@@ -133,7 +135,7 @@ class Wallets:
 
     
     
-    def create_wallet(self, request: Optional[shared.CreateWalletRequest] = None) -> operations.CreateWalletResponse:
+    def create_wallet(self, request: operations.CreateWalletRequest) -> operations.CreateWalletResponse:
         r"""Create a new wallet"""
         hook_ctx = HookContext(operation_id='createWallet', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -145,7 +147,8 @@ class Wallets:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
-        req_content_type, data, form = utils.serialize_request_body(request, Optional[shared.CreateWalletRequest], "request", False, True, 'json')
+        headers = { **utils.get_headers(request), **headers }
+        req_content_type, data, form = utils.serialize_request_body(request, operations.CreateWalletRequest, "create_wallet_request", False, True, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = 'application/json'
@@ -207,6 +210,7 @@ class Wallets:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
+        headers = { **utils.get_headers(request), **headers }
         req_content_type, data, form = utils.serialize_request_body(request, operations.CreditWalletRequest, "credit_wallet_request", False, True, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
@@ -263,6 +267,7 @@ class Wallets:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
+        headers = { **utils.get_headers(request), **headers }
         req_content_type, data, form = utils.serialize_request_body(request, operations.DebitWalletRequest, "debit_wallet_request", False, True, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
@@ -799,6 +804,7 @@ class Wallets:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
+        headers = { **utils.get_headers(request), **headers }
         req_content_type, data, form = utils.serialize_request_body(request, operations.UpdateWalletRequest, "request_body", False, True, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
@@ -855,6 +861,7 @@ class Wallets:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
+        headers = { **utils.get_headers(request), **headers }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client

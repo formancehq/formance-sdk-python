@@ -3,11 +3,14 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
+from typing import Optional
 
 
 @dataclasses.dataclass
 class VoidHoldRequest:
     hold_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'hold_id', 'style': 'simple', 'explode': False }})
+    idempotency_key: Optional[str] = dataclasses.field(default=None, metadata={'header': { 'field_name': 'Idempotency-Key', 'style': 'simple', 'explode': False }})
+    r"""Use an idempotency key"""
     
 
 

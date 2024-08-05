@@ -132,12 +132,7 @@ s = sdk.SDK(
 )
 
 
-res = s.wallets.create_wallet(request=shared.CreateWalletRequest(
-    metadata={
-        'key': '<value>',
-    },
-    name='<value>',
-))
+res = s.wallets.create_wallet()
 
 if res.create_wallet_response is not None:
     # handle response
@@ -147,9 +142,9 @@ if res.create_wallet_response is not None:
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `request`                                                                | [shared.CreateWalletRequest](../../models/shared/createwalletrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [operations.CreateWalletRequest](../../models/operations/createwalletrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 
 ### Response
