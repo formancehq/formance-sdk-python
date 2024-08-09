@@ -1354,9 +1354,7 @@ s = sdk.SDK(
 res = s.ledger.v2_create_bulk(request=operations.V2CreateBulkRequest(
     ledger='ledger001',
     request_body=[
-        shared.V2BulkElementAddMetadata(
-            action='<value>',
-        ),
+
     ],
 ))
 
