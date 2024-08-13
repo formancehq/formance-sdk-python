@@ -48,6 +48,8 @@ if res is not None:
 ```
 
 
+
+
 ### Response
 
 **[operations.GetOIDCWellKnownsResponse](../../models/operations/getoidcwellknownsresponse.md)**
@@ -82,6 +84,8 @@ if res.get_versions_response is not None:
     pass
 
 ```
+
+
 
 
 ### Response

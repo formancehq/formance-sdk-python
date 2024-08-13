@@ -52,6 +52,8 @@ if res is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
@@ -97,6 +99,8 @@ if res.create_balance_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
@@ -139,6 +143,8 @@ if res.create_wallet_response is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -200,6 +206,8 @@ if res is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
@@ -255,6 +263,8 @@ if res.debit_wallet_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
@@ -301,6 +311,8 @@ if res.get_balance_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
@@ -345,6 +357,8 @@ if res.get_hold_response is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -396,6 +410,8 @@ if res.get_holds_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
@@ -440,6 +456,8 @@ if res.get_transactions_response is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -486,6 +504,8 @@ if res.get_wallet_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
@@ -531,6 +551,8 @@ if res.get_wallet_summary_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
@@ -575,6 +597,8 @@ if res.list_balances_response is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -626,6 +650,8 @@ if res.list_wallets_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
@@ -670,6 +696,8 @@ if res is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -716,6 +744,8 @@ if res is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
@@ -758,6 +788,8 @@ if res.server_info is not None:
     pass
 
 ```
+
+
 
 
 ### Response

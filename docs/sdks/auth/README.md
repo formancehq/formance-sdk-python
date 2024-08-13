@@ -39,6 +39,8 @@ if res.create_client_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
@@ -83,6 +85,8 @@ if res.create_secret_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
@@ -126,6 +130,8 @@ if res is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -172,6 +178,8 @@ if res is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
@@ -215,6 +223,8 @@ if res.list_clients_response is not None:
 ```
 
 
+
+
 ### Response
 
 **[operations.ListClientsResponse](../../models/operations/listclientsresponse.md)**
@@ -249,6 +259,8 @@ if res.list_users_response is not None:
     pass
 
 ```
+
+
 
 
 ### Response
@@ -287,6 +299,8 @@ if res.read_client_response is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -332,6 +346,8 @@ if res.read_user_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
@@ -375,6 +391,8 @@ if res.update_client_response is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 

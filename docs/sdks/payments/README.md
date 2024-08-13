@@ -78,6 +78,8 @@ if res is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
@@ -129,6 +131,8 @@ if res.transfer_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
@@ -178,6 +182,8 @@ if res.payments_account_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
@@ -224,6 +230,8 @@ if res.bank_account_response is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -278,6 +286,8 @@ if res.payment_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
@@ -325,6 +335,8 @@ if res.pool_response is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -380,6 +392,8 @@ if res.transfer_initiation_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
@@ -425,6 +439,8 @@ if res is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
@@ -469,6 +485,8 @@ if res is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -517,6 +535,8 @@ if res.bank_account_response is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -569,6 +589,8 @@ if res.balances_cursor is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
@@ -613,6 +635,8 @@ if res.bank_account_response is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -662,6 +686,8 @@ if res.task_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
@@ -709,6 +735,8 @@ if res.task_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
@@ -754,6 +782,8 @@ if res.payment_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
@@ -798,6 +828,8 @@ if res.pool_response is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -846,6 +878,8 @@ if res.pool_balances_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
@@ -890,6 +924,8 @@ if res.transfer_initiation_response is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -941,6 +977,8 @@ if res.connector_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
@@ -983,6 +1021,8 @@ if res.connectors_response is not None:
     pass
 
 ```
+
+
 
 
 ### Response
@@ -1028,6 +1068,8 @@ if res.bank_accounts_cursor is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
@@ -1072,6 +1114,8 @@ if res.connectors_configs_response is not None:
 ```
 
 
+
+
 ### Response
 
 **[operations.ListConfigsAvailableConnectorsResponse](../../models/operations/listconfigsavailableconnectorsresponse.md)**
@@ -1113,6 +1157,8 @@ if res.tasks_cursor is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -1161,6 +1207,8 @@ if res.tasks_cursor is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -1212,6 +1260,8 @@ if res.payments_cursor is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
@@ -1261,6 +1311,8 @@ if res.pools_cursor is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -1312,6 +1364,8 @@ if res.transfer_initiations_cursor is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
@@ -1357,6 +1411,8 @@ if res.payments_account_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
@@ -1401,6 +1457,8 @@ if res.server_info is not None:
 ```
 
 
+
+
 ### Response
 
 **[operations.PaymentsgetServerInfoResponse](../../models/operations/paymentsgetserverinforesponse.md)**
@@ -1443,6 +1501,8 @@ if res.accounts_cursor is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -1491,6 +1551,8 @@ if res.connector_config_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
@@ -1537,6 +1599,8 @@ if res.connector_config_response is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
@@ -1582,6 +1646,8 @@ if res is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -1632,6 +1698,8 @@ if res is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
@@ -1680,6 +1748,8 @@ if res is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
@@ -1724,6 +1794,8 @@ if res is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -1779,6 +1851,8 @@ if res is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
@@ -1827,6 +1901,8 @@ if res is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
@@ -1874,6 +1950,8 @@ if res is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
@@ -1919,6 +1997,8 @@ if res is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -1969,6 +2049,8 @@ if res is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 
@@ -2022,6 +2104,8 @@ if res is not None:
 
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
@@ -2069,6 +2153,8 @@ if res is not None:
     pass
 
 ```
+
+
 
 ### Parameters
 

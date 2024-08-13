@@ -3,10 +3,10 @@ id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
   docChecksum: ce7ade45ab46c0be01f2b9f40d460d3a
   docVersion: v2.0.9
-  speakeasyVersion: 1.358.0
-  generationVersion: 2.390.6
-  releaseVersion: 3.0.2
-  configChecksum: d053dd1fa3b8d75cfb52e928bb394cc0
+  speakeasyVersion: 1.363.1
+  generationVersion: 2.396.0
+  releaseVersion: 3.1.0
+  configChecksum: 935454a702419d40c6d446e2beef15e3
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -25,10 +25,10 @@ features:
     groups: 2.81.2
     ignores: 2.81.1
     nullables: 0.1.0
-    oauth2ClientCredentials: 0.1.2
+    oauth2ClientCredentials: 0.2.0
     responseFormat: 0.1.0
     sdkHooks: 0.1.0
-    unions: 2.82.8
+    unions: 2.82.9
 generatedFiles:
   - src/sdk/sdkconfiguration.py
   - src/sdk/auth.py
