@@ -23,10 +23,10 @@ class SDKConfiguration:
     server_url: Optional[str] = ''
     server_idx: Optional[int] = 0
     language: str = 'python'
-    openapi_doc_version: str = 'v2.0.11'
-    sdk_version: str = '3.1.1'
-    gen_version: str = '2.402.5'
-    user_agent: str = 'speakeasy-sdk/python 3.1.1 2.402.5 v2.0.11 formance-sdk-python'
+    openapi_doc_version: str = 'v2.0.13'
+    sdk_version: str = '3.1.2'
+    gen_version: str = '2.404.2'
+    user_agent: str = 'speakeasy-sdk/python 3.1.2 2.404.2 v2.0.13 formance-sdk-python'
     retry_config: Optional[RetryConfig] = None
 
     def __post_init__(self):

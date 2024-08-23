@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: a81ca98f038918e8b31083bd003e071d
-  docVersion: v2.0.11
-  speakeasyVersion: 1.376.0
-  generationVersion: 2.402.5
-  releaseVersion: 3.1.1
-  configChecksum: 417e9c03630553c2d626755e6bb1c731
+  docChecksum: 77cfa5d5a02379814b93e9b234868d87
+  docVersion: v2.0.13
+  speakeasyVersion: 1.377.3
+  generationVersion: 2.404.2
+  releaseVersion: 3.1.2
+  configChecksum: 61ad58588e51b5b0aaae260eb0a967d6
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git

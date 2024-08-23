@@ -1,6 +1,8 @@
 # Wallets
 (*wallets*)
 
+## Overview
+
 ### Available Operations
 
 * [confirm_hold](#confirm_hold) - Confirm a hold
@@ -52,24 +54,23 @@ if res is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.ConfirmHoldRequest](../../models/operations/confirmholdrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
-
 ### Response
 
 **[operations.ConfirmHoldResponse](../../models/operations/confirmholdresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## create_balance
 
@@ -99,24 +100,23 @@ if res.create_balance_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.CreateBalanceRequest](../../models/operations/createbalancerequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
-
 ### Response
 
 **[operations.CreateBalanceResponse](../../models/operations/createbalanceresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## create_wallet
 
@@ -144,24 +144,23 @@ if res.create_wallet_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.CreateWalletRequest](../../models/operations/createwalletrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[operations.CreateWalletResponse](../../models/operations/createwalletresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## credit_wallet
 
@@ -206,24 +205,23 @@ if res is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.CreditWalletRequest](../../models/operations/creditwalletrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[operations.CreditWalletResponse](../../models/operations/creditwalletresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## debit_wallet
 
@@ -263,24 +261,23 @@ if res.debit_wallet_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.DebitWalletRequest](../../models/operations/debitwalletrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
-
 ### Response
 
 **[operations.DebitWalletResponse](../../models/operations/debitwalletresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## get_balance
 
@@ -311,24 +308,23 @@ if res.get_balance_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.GetBalanceRequest](../../models/operations/getbalancerequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
-
 ### Response
 
 **[operations.GetBalanceResponse](../../models/operations/getbalanceresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## get_hold
 
@@ -358,24 +354,23 @@ if res.get_hold_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `request`                                                              | [operations.GetHoldRequest](../../models/operations/getholdrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
 
-
 ### Response
 
 **[operations.GetHoldResponse](../../models/operations/getholdresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## get_holds
 
@@ -410,24 +405,23 @@ if res.get_holds_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `request`                                                                | [operations.GetHoldsRequest](../../models/operations/getholdsrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 
-
 ### Response
 
 **[operations.GetHoldsResponse](../../models/operations/getholdsresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## get_transactions
 
@@ -457,24 +451,23 @@ if res.get_transactions_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `request`                                                                              | [operations.GetTransactionsRequest](../../models/operations/gettransactionsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
-
 ### Response
 
 **[operations.GetTransactionsResponse](../../models/operations/gettransactionsresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## get_wallet
 
@@ -504,24 +497,23 @@ if res.get_wallet_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.GetWalletRequest](../../models/operations/getwalletrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
-
 ### Response
 
 **[operations.GetWalletResponse](../../models/operations/getwalletresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## get_wallet_summary
 
@@ -551,24 +543,23 @@ if res.get_wallet_summary_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.GetWalletSummaryRequest](../../models/operations/getwalletsummaryrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[operations.GetWalletSummaryResponse](../../models/operations/getwalletsummaryresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## list_balances
 
@@ -598,23 +589,22 @@ if res.list_balances_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.ListBalancesRequest](../../models/operations/listbalancesrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[operations.ListBalancesResponse](../../models/operations/listbalancesresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## list_wallets
 
@@ -650,24 +640,23 @@ if res.list_wallets_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.ListWalletsRequest](../../models/operations/listwalletsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
-
 ### Response
 
 **[operations.ListWalletsResponse](../../models/operations/listwalletsresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## update_wallet
 
@@ -697,24 +686,23 @@ if res is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.UpdateWalletRequest](../../models/operations/updatewalletrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[operations.UpdateWalletResponse](../../models/operations/updatewalletresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## void_hold
 
@@ -744,24 +732,23 @@ if res is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `request`                                                                | [operations.VoidHoldRequest](../../models/operations/voidholdrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 
-
 ### Response
 
 **[operations.VoidHoldResponse](../../models/operations/voidholdresponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## walletsget_server_info
 
@@ -789,12 +776,10 @@ if res.server_info is not None:
 
 ```
 
-
-
-
 ### Response
 
 **[operations.WalletsgetServerInfoResponse](../../models/operations/walletsgetserverinforesponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

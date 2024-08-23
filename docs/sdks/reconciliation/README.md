@@ -1,6 +1,8 @@
 # Reconciliation
 (*reconciliation*)
 
+## Overview
+
 ### Available Operations
 
 * [create_policy](#create_policy) - Create a policy
@@ -45,24 +47,23 @@ if res.policy_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `request`                                                    | [shared.PolicyRequest](../../models/shared/policyrequest.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
 
-
 ### Response
 
 **[operations.CreatePolicyResponse](../../models/operations/createpolicyresponse.md)**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## delete_policy
 
@@ -92,24 +93,23 @@ if res is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.DeletePolicyRequest](../../models/operations/deletepolicyrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[operations.DeletePolicyResponse](../../models/operations/deletepolicyresponse.md)**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## get_policy
 
@@ -139,24 +139,23 @@ if res.policy_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.GetPolicyRequest](../../models/operations/getpolicyrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
-
 ### Response
 
 **[operations.GetPolicyResponse](../../models/operations/getpolicyresponse.md)**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## get_reconciliation
 
@@ -186,24 +185,23 @@ if res.reconciliation_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `request`                                                                                  | [operations.GetReconciliationRequest](../../models/operations/getreconciliationrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
-
 ### Response
 
 **[operations.GetReconciliationResponse](../../models/operations/getreconciliationresponse.md)**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## list_policies
 
@@ -234,24 +232,23 @@ if res.policies_cursor_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.ListPoliciesRequest](../../models/operations/listpoliciesrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[operations.ListPoliciesResponse](../../models/operations/listpoliciesresponse.md)**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## list_reconciliations
 
@@ -282,24 +279,23 @@ if res.reconciliations_cursor_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `request`                                                                                      | [operations.ListReconciliationsRequest](../../models/operations/listreconciliationsrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
-
 ### Response
 
 **[operations.ListReconciliationsResponse](../../models/operations/listreconciliationsresponse.md)**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## reconcile
 
@@ -334,24 +330,23 @@ if res.reconciliation_response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.ReconcileRequest](../../models/operations/reconcilerequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
-
 ### Response
 
 **[operations.ReconcileResponse](../../models/operations/reconcileresponse.md)**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## reconciliationget_server_info
 
@@ -379,12 +374,10 @@ if res.server_info is not None:
 
 ```
 
-
-
-
 ### Response
 
 **[operations.ReconciliationgetServerInfoResponse](../../models/operations/reconciliationgetserverinforesponse.md)**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |

@@ -1,6 +1,8 @@
 # Search
 (*search*)
 
+## Overview
+
 ### Available Operations
 
 * [search](#search) - Search
@@ -46,23 +48,22 @@ if res.response is not None:
 
 ```
 
-
-
 ### Parameters
 
 | Parameter                                    | Type                                         | Required                                     | Description                                  |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | `request`                                    | [shared.Query](../../models/shared/query.md) | :heavy_check_mark:                           | The request object to use for the request.   |
 
-
 ### Response
 
 **[operations.SearchResponse](../../models/operations/searchresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## searchget_server_info
 
@@ -90,12 +91,10 @@ if res.server_info is not None:
 
 ```
 
-
-
-
 ### Response
 
 **[operations.SearchgetServerInfoResponse](../../models/operations/searchgetserverinforesponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

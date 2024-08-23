@@ -1,6 +1,5 @@
 # SDK
 
-
 ## Overview
 
 Formance Stack API: Open, modular foundation for unique payments flows
@@ -47,17 +46,16 @@ if res is not None:
 
 ```
 
-
-
-
 ### Response
 
 **[operations.GetOIDCWellKnownsResponse](../../models/operations/getoidcwellknownsresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get_versions
 
@@ -85,12 +83,10 @@ if res.get_versions_response is not None:
 
 ```
 
-
-
-
 ### Response
 
 **[operations.GetVersionsResponse](../../models/operations/getversionsresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
