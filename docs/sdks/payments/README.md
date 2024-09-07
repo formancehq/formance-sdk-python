@@ -947,9 +947,10 @@ s = sdk.SDK(
 
 
 res = s.payments.install_connector(request=operations.InstallConnectorRequest(
-    connector_config=shared.WiseConfig(
+    connector_config=shared.StripeConfig(
         api_key='XXX',
         name='My Wise Account',
+        page_size=50,
         polling_period='60s',
     ),
     connector=shared.Connector.ADYEN,
@@ -1805,6 +1806,8 @@ res = s.payments.reverse_transfer_initiation(request=operations.ReverseTransferI
         description='Streamlined high-level local area network',
         metadata={
             'key': '<value>',
+            'key1': '<value>',
+            'key2': '<value>',
         },
         reference='XXX',
     ),
@@ -2000,7 +2003,7 @@ s = sdk.SDK(
 res = s.payments.update_bank_account_metadata(request=operations.UpdateBankAccountMetadataRequest(
     update_bank_account_metadata_request=shared.UpdateBankAccountMetadataRequest(
         metadata={
-            'key': '<value>',
+
         },
     ),
     bank_account_id='XXX',
@@ -2104,6 +2107,7 @@ s = sdk.SDK(
 res = s.payments.update_metadata(request=operations.UpdateMetadataRequest(
     request_body={
         'key': '<value>',
+        'key1': '<value>',
     },
     payment_id='XXX',
 ))

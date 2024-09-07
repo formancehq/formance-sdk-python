@@ -178,7 +178,7 @@ s = sdk.SDK(
 
 res = s.ledger.add_metadata_to_account(request=operations.AddMetadataToAccountRequest(
     request_body={
-        'key': '<value>',
+
     },
     address='users:001',
     ledger='ledger001',
@@ -388,14 +388,14 @@ res = s.ledger.create_transaction(request=operations.CreateTransactionRequest(
         ],
         reference='ref:001',
         script=shared.PostTransactionScript(
-            plain='vars {
-        account $user
-        }
-        send [COIN 10] (
-        	source = @world
-        	destination = $user
-        )
-        ',
+            plain='vars {\n' +
+        'account $user\n' +
+        '}\n' +
+        'send [COIN 10] (\n' +
+        '	source = @world\n' +
+        '	destination = $user\n' +
+        ')\n' +
+        '',
             vars={
                 'user': 'users:042',
             },
@@ -1071,14 +1071,14 @@ s = sdk.SDK(
 
 res = s.ledger.run_script(request=operations.RunScriptRequest(
     script=shared.Script(
-        plain='vars {
-    account $user
-    }
-    send [COIN 10] (
-    	source = @world
-    	destination = $user
-    )
-    ',
+        plain='vars {\n' +
+    'account $user\n' +
+    '}\n' +
+    'send [COIN 10] (\n' +
+    '	source = @world\n' +
+    '	destination = $user\n' +
+    ')\n' +
+    '',
         reference='order_1234',
         vars={
             'user': 'users:042',
@@ -1492,14 +1492,14 @@ res = s.ledger.v2_create_transaction(request=operations.V2CreateTransactionReque
         ],
         reference='ref:001',
         script=shared.V2PostTransactionScript(
-            plain='vars {
-        account $user
-        }
-        send [COIN 10] (
-        	source = @world
-        	destination = $user
-        )
-        ',
+            plain='vars {\n' +
+        'account $user\n' +
+        '}\n' +
+        'send [COIN 10] (\n' +
+        '	source = @world\n' +
+        '	destination = $user\n' +
+        ')\n' +
+        '',
             vars={
                 'user': 'users:042',
             },
