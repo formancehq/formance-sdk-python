@@ -126,7 +126,7 @@ Create a new wallet
 
 ```python
 import sdk
-from sdk.models import shared
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -136,7 +136,7 @@ s = sdk.SDK(
 )
 
 
-res = s.wallets.v1.create_wallet()
+res = s.wallets.v1.create_wallet(request=operations.CreateWalletRequest())
 
 if res.create_wallet_response is not None:
     # handle response

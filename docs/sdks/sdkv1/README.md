@@ -365,13 +365,13 @@ res = s.ledger.v1.create_transaction(request=operations.CreateTransactionRequest
         reference='ref:001',
         script=shared.PostTransactionScript(
             plain='vars {\n' +
-        'account $user\n' +
-        '}\n' +
-        'send [COIN 10] (\n' +
-        '	source = @world\n' +
-        '	destination = $user\n' +
-        ')\n' +
-        '',
+            'account $user\n' +
+            '}\n' +
+            'send [COIN 10] (\n' +
+            '	source = @world\n' +
+            '	destination = $user\n' +
+            ')\n' +
+            '',
             vars={
                 'user': 'users:042',
             },
@@ -1048,13 +1048,13 @@ s = sdk.SDK(
 res = s.ledger.v1.run_script(request=operations.RunScriptRequest(
     script=shared.Script(
         plain='vars {\n' +
-    'account $user\n' +
-    '}\n' +
-    'send [COIN 10] (\n' +
-    '	source = @world\n' +
-    '	destination = $user\n' +
-    ')\n' +
-    '',
+        'account $user\n' +
+        '}\n' +
+        'send [COIN 10] (\n' +
+        '	source = @world\n' +
+        '	destination = $user\n' +
+        ')\n' +
+        '',
         reference='order_1234',
         vars={
             'user': 'users:042',

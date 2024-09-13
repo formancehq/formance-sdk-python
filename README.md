@@ -55,12 +55,13 @@ if res.get_versions_response is not None:
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [SDK](docs/sdks/sdk/README.md)
+<details open>
+<summary>Available methods</summary>
 
-* [get_versions](docs/sdks/sdk/README.md#get_versions) - Show stack version information
+### [auth](docs/sdks/auth/README.md)
 
 
-### [auth.v1](docs/sdks/v1/README.md)
+#### [auth.v1](docs/sdks/v1/README.md)
 
 * [create_client](docs/sdks/v1/README.md#create_client) - Create client
 * [create_secret](docs/sdks/v1/README.md#create_secret) - Add a secret to a client
@@ -74,8 +75,10 @@ if res.get_versions_response is not None:
 * [read_user](docs/sdks/v1/README.md#read_user) - Read user
 * [update_client](docs/sdks/v1/README.md#update_client) - Update client
 
+### [ledger](docs/sdks/ledger/README.md)
 
-### [ledger.v1](docs/sdks/sdkv1/README.md)
+
+#### [ledger.v1](docs/sdks/sdkv1/README.md)
 
 * [create_transactions](docs/sdks/sdkv1/README.md#create_transactions) - Create a new batch of transactions to a ledger
 * [add_metadata_on_transaction](docs/sdks/sdkv1/README.md#add_metadata_on_transaction) - Set the metadata of a transaction by its ID
@@ -98,7 +101,7 @@ if res.get_versions_response is not None:
 * [~~run_script~~](docs/sdks/sdkv1/README.md#run_script) - Execute a Numscript :warning: **Deprecated**
 * [update_mapping](docs/sdks/sdkv1/README.md#update_mapping) - Update the mapping of a ledger
 
-### [ledger.v2](docs/sdks/v2/README.md)
+#### [ledger.v2](docs/sdks/v2/README.md)
 
 * [add_metadata_on_transaction](docs/sdks/v2/README.md#add_metadata_on_transaction) - Set the metadata of a transaction by its ID
 * [add_metadata_to_account](docs/sdks/v2/README.md#add_metadata_to_account) - Add metadata to an account
@@ -127,8 +130,10 @@ if res.get_versions_response is not None:
 * [revert_transaction](docs/sdks/v2/README.md#revert_transaction) - Revert a ledger transaction by its ID
 * [update_ledger_metadata](docs/sdks/v2/README.md#update_ledger_metadata) - Update ledger metadata
 
+### [orchestration](docs/sdks/orchestration/README.md)
 
-### [orchestration.v1](docs/sdks/sdkorchestrationv1/README.md)
+
+#### [orchestration.v1](docs/sdks/sdkorchestrationv1/README.md)
 
 * [cancel_event](docs/sdks/sdkorchestrationv1/README.md#cancel_event) - Cancel a running workflow
 * [create_trigger](docs/sdks/sdkorchestrationv1/README.md#create_trigger) - Create trigger
@@ -148,7 +153,7 @@ if res.get_versions_response is not None:
 * [run_workflow](docs/sdks/sdkorchestrationv1/README.md#run_workflow) - Run workflow
 * [send_event](docs/sdks/sdkorchestrationv1/README.md#send_event) - Send an event to a running workflow
 
-### [orchestration.v2](docs/sdks/sdkv2/README.md)
+#### [orchestration.v2](docs/sdks/sdkv2/README.md)
 
 * [cancel_event](docs/sdks/sdkv2/README.md#cancel_event) - Cancel a running workflow
 * [create_trigger](docs/sdks/sdkv2/README.md#create_trigger) - Create trigger
@@ -169,8 +174,10 @@ if res.get_versions_response is not None:
 * [send_event](docs/sdks/sdkv2/README.md#send_event) - Send an event to a running workflow
 * [test_trigger](docs/sdks/sdkv2/README.md#test_trigger) - Test trigger
 
+### [payments](docs/sdks/payments/README.md)
 
-### [payments.v1](docs/sdks/sdkpaymentsv1/README.md)
+
+#### [payments.v1](docs/sdks/sdkpaymentsv1/README.md)
 
 * [add_account_to_pool](docs/sdks/sdkpaymentsv1/README.md#add_account_to_pool) - Add an account to a pool
 * [connectors_transfer](docs/sdks/sdkpaymentsv1/README.md#connectors_transfer) - Transfer funds between Connector accounts
@@ -216,8 +223,10 @@ if res.get_versions_response is not None:
 * [update_connector_config_v1](docs/sdks/sdkpaymentsv1/README.md#update_connector_config_v1) - Update the config of a connector
 * [update_metadata](docs/sdks/sdkpaymentsv1/README.md#update_metadata) - Update metadata
 
+### [reconciliation](docs/sdks/reconciliation/README.md)
 
-### [reconciliation.v1](docs/sdks/sdkreconciliationv1/README.md)
+
+#### [reconciliation.v1](docs/sdks/sdkreconciliationv1/README.md)
 
 * [create_policy](docs/sdks/sdkreconciliationv1/README.md#create_policy) - Create a policy
 * [delete_policy](docs/sdks/sdkreconciliationv1/README.md#delete_policy) - Delete a policy
@@ -228,14 +237,22 @@ if res.get_versions_response is not None:
 * [reconcile](docs/sdks/sdkreconciliationv1/README.md#reconcile) - Reconcile using a policy
 * [reconciliationget_server_info](docs/sdks/sdkreconciliationv1/README.md#reconciliationget_server_info) - Get server info
 
+### [SDK](docs/sdks/sdk/README.md)
 
-### [search.v1](docs/sdks/sdksearchv1/README.md)
+* [get_versions](docs/sdks/sdk/README.md#get_versions) - Show stack version information
+
+### [search](docs/sdks/search/README.md)
+
+
+#### [search.v1](docs/sdks/sdksearchv1/README.md)
 
 * [search](docs/sdks/sdksearchv1/README.md#search) - search.v1
 * [searchget_server_info](docs/sdks/sdksearchv1/README.md#searchget_server_info) - Get server info
 
+### [wallets](docs/sdks/wallets/README.md)
 
-### [wallets.v1](docs/sdks/sdkwalletsv1/README.md)
+
+#### [wallets.v1](docs/sdks/sdkwalletsv1/README.md)
 
 * [confirm_hold](docs/sdks/sdkwalletsv1/README.md#confirm_hold) - Confirm a hold
 * [create_balance](docs/sdks/sdkwalletsv1/README.md#create_balance) - Create a balance
@@ -254,8 +271,10 @@ if res.get_versions_response is not None:
 * [void_hold](docs/sdks/sdkwalletsv1/README.md#void_hold) - Cancel a hold
 * [walletsget_server_info](docs/sdks/sdkwalletsv1/README.md#walletsget_server_info) - Get server info
 
+### [webhooks](docs/sdks/webhooks/README.md)
 
-### [webhooks.v1](docs/sdks/sdkwebhooksv1/README.md)
+
+#### [webhooks.v1](docs/sdks/sdkwebhooksv1/README.md)
 
 * [activate_config](docs/sdks/sdkwebhooksv1/README.md#activate_config) - Activate one config
 * [change_config_secret](docs/sdks/sdkwebhooksv1/README.md#change_config_secret) - Change the signing secret of a config
@@ -264,6 +283,8 @@ if res.get_versions_response is not None:
 * [get_many_configs](docs/sdks/sdkwebhooksv1/README.md#get_many_configs) - Get many configs
 * [insert_config](docs/sdks/sdkwebhooksv1/README.md#insert_config) - Insert a new config
 * [test_config](docs/sdks/sdkwebhooksv1/README.md#test_config) - Test one config
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->

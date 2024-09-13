@@ -489,7 +489,7 @@ List triggers
 
 ```python
 import sdk
-from sdk.models import shared
+from sdk.models import operations, shared
 
 s = sdk.SDK(
     security=shared.Security(
@@ -499,7 +499,7 @@ s = sdk.SDK(
 )
 
 
-res = s.orchestration.v1.list_triggers()
+res = s.orchestration.v1.list_triggers(request=operations.ListTriggersRequest())
 
 if res.list_triggers_response is not None:
     # handle response

@@ -3,10 +3,10 @@ id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
   docChecksum: bb72b9e5f65512abfc137f36f5e4fd02
   docVersion: v2.1.0-beta.1
-  speakeasyVersion: 1.395.1
-  generationVersion: 2.415.0
-  releaseVersion: 3.2.0
-  configChecksum: cfbc0899d33c779bb00b43b4b87218e5
+  speakeasyVersion: 1.396.6
+  generationVersion: 2.415.6
+  releaseVersion: 3.2.1
+  configChecksum: 7a4046e2368a291e778e1b03eb50fc4a
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -15,7 +15,7 @@ features:
   python:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 4.8.7
+    core: 4.8.9
     deprecations: 2.81.1
     downloadStreams: 0.0.2
     errors: 2.81.10

@@ -360,13 +360,13 @@ res = s.ledger.v2.create_transaction(request=operations.V2CreateTransactionReque
         reference='ref:001',
         script=shared.V2PostTransactionScript(
             plain='vars {\n' +
-        'account $user\n' +
-        '}\n' +
-        'send [COIN 10] (\n' +
-        '	source = @world\n' +
-        '	destination = $user\n' +
-        ')\n' +
-        '',
+            'account $user\n' +
+            '}\n' +
+            'send [COIN 10] (\n' +
+            '	source = @world\n' +
+            '	destination = $user\n' +
+            ')\n' +
+            '',
             vars={
                 'user': 'users:042',
             },
