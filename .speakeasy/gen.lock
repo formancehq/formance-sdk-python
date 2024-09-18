@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: bb72b9e5f65512abfc137f36f5e4fd02
-  docVersion: v2.1.0-beta.1
-  speakeasyVersion: 1.396.6
-  generationVersion: 2.415.6
-  releaseVersion: 3.2.1
-  configChecksum: 7a4046e2368a291e778e1b03eb50fc4a
+  docChecksum: 706ea24f6e5943004b89faa8c7200702
+  docVersion: v2.0.17
+  speakeasyVersion: 1.399.0
+  generationVersion: 2.415.8
+  releaseVersion: 3.3.0
+  configChecksum: f818835a7568fad88378341f0d15691d
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -17,14 +17,13 @@ features:
     constsAndDefaults: 0.1.4
     core: 4.8.9
     deprecations: 2.81.1
-    downloadStreams: 0.0.2
     errors: 2.81.10
     getRequestBodies: 2.81.1
     globalSecurity: 2.83.7
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
+    groups: 2.81.2
     ignores: 2.81.1
-    nameOverrides: 2.81.2
     nullables: 0.1.0
     oauth2ClientCredentials: 0.2.0
     responseFormat: 0.1.0
@@ -152,7 +151,6 @@ generatedFiles:
   - docs/models/operations/getpoolresponse.md
   - docs/models/operations/getreconciliationrequest.md
   - docs/models/operations/getreconciliationresponse.md
-  - docs/models/operations/getserverinforesponse.md
   - docs/models/operations/gettransactionrequest.md
   - docs/models/operations/gettransactionresponse.md
   - docs/models/operations/gettransactionsrequest.md
@@ -208,7 +206,6 @@ generatedFiles:
   - docs/models/operations/listworkflowsresponse.md
   - docs/models/operations/metadata.md
   - docs/models/operations/orchestrationgetserverinforesponse.md
-  - docs/models/operations/order.md
   - docs/models/operations/paymentsgetaccountrequest.md
   - docs/models/operations/paymentsgetaccountresponse.md
   - docs/models/operations/paymentsgetserverinforesponse.md
@@ -301,8 +298,6 @@ generatedFiles:
   - docs/models/operations/v2deletetriggerresponse.md
   - docs/models/operations/v2deleteworkflowrequest.md
   - docs/models/operations/v2deleteworkflowresponse.md
-  - docs/models/operations/v2exportlogsrequest.md
-  - docs/models/operations/v2exportlogsresponse.md
   - docs/models/operations/v2getaccountrequest.md
   - docs/models/operations/v2getaccountresponse.md
   - docs/models/operations/v2getbalancesaggregatedrequest.md
@@ -325,8 +320,6 @@ generatedFiles:
   - docs/models/operations/v2getvolumeswithbalancesresponse.md
   - docs/models/operations/v2getworkflowrequest.md
   - docs/models/operations/v2getworkflowresponse.md
-  - docs/models/operations/v2importlogsrequest.md
-  - docs/models/operations/v2importlogsresponse.md
   - docs/models/operations/v2listaccountsrequest.md
   - docs/models/operations/v2listaccountsresponse.md
   - docs/models/operations/v2listinstancesrequest.md
@@ -803,17 +796,7 @@ generatedFiles:
   - docs/sdks/payments/README.md
   - docs/sdks/reconciliation/README.md
   - docs/sdks/sdk/README.md
-  - docs/sdks/sdkorchestrationv1/README.md
-  - docs/sdks/sdkpaymentsv1/README.md
-  - docs/sdks/sdkreconciliationv1/README.md
-  - docs/sdks/sdksearchv1/README.md
-  - docs/sdks/sdkv1/README.md
-  - docs/sdks/sdkv2/README.md
-  - docs/sdks/sdkwalletsv1/README.md
-  - docs/sdks/sdkwebhooksv1/README.md
   - docs/sdks/search/README.md
-  - docs/sdks/v1/README.md
-  - docs/sdks/v2/README.md
   - docs/sdks/wallets/README.md
   - docs/sdks/webhooks/README.md
   - py.typed
@@ -898,7 +881,6 @@ generatedFiles:
   - src/sdk/models/operations/getpool.py
   - src/sdk/models/operations/getpoolbalances.py
   - src/sdk/models/operations/getreconciliation.py
-  - src/sdk/models/operations/getserverinfo.py
   - src/sdk/models/operations/gettransaction.py
   - src/sdk/models/operations/gettransactions.py
   - src/sdk/models/operations/gettransferinitiation.py
@@ -978,7 +960,6 @@ generatedFiles:
   - src/sdk/models/operations/v2deletetransactionmetadata.py
   - src/sdk/models/operations/v2deletetrigger.py
   - src/sdk/models/operations/v2deleteworkflow.py
-  - src/sdk/models/operations/v2exportlogs.py
   - src/sdk/models/operations/v2getaccount.py
   - src/sdk/models/operations/v2getbalancesaggregated.py
   - src/sdk/models/operations/v2getinfo.py
@@ -991,7 +972,6 @@ generatedFiles:
   - src/sdk/models/operations/v2gettransaction.py
   - src/sdk/models/operations/v2getvolumeswithbalances.py
   - src/sdk/models/operations/v2getworkflow.py
-  - src/sdk/models/operations/v2importlogs.py
   - src/sdk/models/operations/v2listaccounts.py
   - src/sdk/models/operations/v2listinstances.py
   - src/sdk/models/operations/v2listledgers.py
@@ -1357,21 +1337,11 @@ generatedFiles:
   - src/sdk/payments.py
   - src/sdk/reconciliation.py
   - src/sdk/sdk.py
-  - src/sdk/sdk_orchestration_v1.py
-  - src/sdk/sdk_payments_v1.py
-  - src/sdk/sdk_reconciliation_v1.py
-  - src/sdk/sdk_search_v1.py
-  - src/sdk/sdk_v1.py
-  - src/sdk/sdk_v2.py
-  - src/sdk/sdk_wallets_v1.py
-  - src/sdk/sdk_webhooks_v1.py
   - src/sdk/sdkconfiguration.py
   - src/sdk/search.py
   - src/sdk/utils/__init__.py
   - src/sdk/utils/retries.py
   - src/sdk/utils/utils.py
-  - src/sdk/v1.py
-  - src/sdk/v2.py
   - src/sdk/wallets.py
   - src/sdk/webhooks.py
 examples:

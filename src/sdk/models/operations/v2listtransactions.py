@@ -5,12 +5,7 @@ import dataclasses
 import requests as requests_http
 from ...models.shared import v2transactionscursorresponse as shared_v2transactionscursorresponse
 from datetime import datetime
-from enum import Enum
 from typing import Any, Dict, Optional
-
-
-class Order(str, Enum):
-    EFFECTIVE = 'effective'
 
 
 @dataclasses.dataclass
@@ -25,11 +20,9 @@ class V2ListTransactionsRequest:
     No other parameters can be set when this parameter is set.
     """
     expand: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'expand', 'style': 'form', 'explode': True }})
-    order: Optional[Order] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'order', 'style': 'form', 'explode': True }})
     page_size: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'pageSize', 'style': 'form', 'explode': True }})
     r"""The maximum number of results to return per page."""
     pit: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'pit', 'style': 'form', 'explode': True }})
-    reverse: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'reverse', 'style': 'form', 'explode': True }})
     
 
 

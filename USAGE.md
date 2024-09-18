@@ -11,9 +11,9 @@ s = sdk.SDK(
 )
 
 
-res = s.get_versions()
+res = s.get_oidc_well_knowns()
 
-if res.get_versions_response is not None:
+if res is not None:
     # handle response
     pass
 
