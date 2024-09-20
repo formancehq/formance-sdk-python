@@ -826,6 +826,7 @@ res = s.ledger.list_accounts(request=operations.ListAccountsRequest(
         '49': '2',
     },
     page_size=100,
+    pagination_token='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
 ))
 
 if res.accounts_cursor_response is not None:
@@ -1380,7 +1381,9 @@ s = sdk.SDK(
 res = s.ledger.v2_create_bulk(request=operations.V2CreateBulkRequest(
     ledger='ledger001',
     request_body=[
-
+        shared.V2BulkElementAddMetadata(
+            action='<value>',
+        ),
     ],
 ))
 

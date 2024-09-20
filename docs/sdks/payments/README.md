@@ -949,7 +949,7 @@ s = sdk.SDK(
 res = s.payments.install_connector(request=operations.InstallConnectorRequest(
     connector_config=shared.StripeConfig(
         api_key='XXX',
-        name='My Wise Account',
+        name='My Stripe Account',
         page_size=50,
         polling_period='60s',
     ),
