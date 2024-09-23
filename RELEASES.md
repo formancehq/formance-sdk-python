@@ -119,3 +119,13 @@ Based on:
 - [python v3.0.1] .
 ### Releases
 - [PyPI v3.0.1] https://pypi.org/project/formance-sdk-python/3.0.1 - .
+
+## 2024-09-23 14:55:41
+### Changes
+Based on:
+- OpenAPI Doc v2.0.17 
+- Speakeasy CLI 1.401.4 (2.421.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v4.0.0] .
+### Releases
+- [PyPI v4.0.0] https://pypi.org/project/formance-sdk-python/4.0.0 - .

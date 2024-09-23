@@ -16,8 +16,38 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 - [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/productionize-sdks/publish-sdks)
 - [ ] ✨ When ready to productionize, delete this section from the README
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Formance Stack API: Open, modular foundation for unique payments flows
+
+# Introduction
+This API is documented in **OpenAPI format**.
+
+# Authentication
+Formance Stack offers one forms of authentication:
+  - OAuth2
+OAuth2 - an open protocol to allow secure authorization in a simple
+and standard method from web, mobile and desktop applications.
+<SecurityDefinitions />
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
+
+The SDK can be installed using the *pip* package manager, with dependencies and metadata stored in the `setup.py` file.
 
 ```bash
 pip install formance-sdk-python
@@ -53,10 +83,8 @@ if res is not None:
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [SDK](docs/sdks/sdk/README.md)
-
-* [get_oidc_well_knowns](docs/sdks/sdk/README.md#get_oidc_well_knowns) - Retrieve OpenID connect well-knowns.
-* [get_versions](docs/sdks/sdk/README.md#get_versions) - Show stack version information
+<details open>
+<summary>Available methods</summary>
 
 ### [auth](docs/sdks/auth/README.md)
 
@@ -212,6 +240,11 @@ if res is not None:
 * [reconcile](docs/sdks/reconciliation/README.md#reconcile) - Reconcile using a policy
 * [reconciliationget_server_info](docs/sdks/reconciliation/README.md#reconciliationget_server_info) - Get server info
 
+### [SDK](docs/sdks/sdk/README.md)
+
+* [get_oidc_well_knowns](docs/sdks/sdk/README.md#get_oidc_well_knowns) - Retrieve OpenID connect well-knowns.
+* [get_versions](docs/sdks/sdk/README.md#get_versions) - Show stack version information
+
 ### [search](docs/sdks/search/README.md)
 
 * [search](docs/sdks/search/README.md#search) - Search
@@ -245,6 +278,8 @@ if res is not None:
 * [get_many_configs](docs/sdks/webhooks/README.md#get_many_configs) - Get many configs
 * [insert_config](docs/sdks/webhooks/README.md#insert_config) - Insert a new config
 * [test_config](docs/sdks/webhooks/README.md#test_config) - Test one config
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -277,6 +312,18 @@ try:
         transactions=[
             shared.TransactionData(
                 postings=[
+                    shared.Posting(
+                        amount=100,
+                        asset='COIN',
+                        destination='users:002',
+                        source='users:001',
+                    ),
+                    shared.Posting(
+                        amount=100,
+                        asset='COIN',
+                        destination='users:002',
+                        source='users:001',
+                    ),
                     shared.Posting(
                         amount=100,
                         asset='COIN',
