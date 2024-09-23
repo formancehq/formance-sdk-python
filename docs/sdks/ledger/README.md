@@ -1,6 +1,8 @@
 # Ledger
 (*ledger*)
 
+## Overview
+
 ### Available Operations
 
 * [create_transactions](#create_transactions) - Create a new batch of transactions to a ledger
@@ -77,6 +79,18 @@ res = s.ledger.create_transactions(request=operations.CreateTransactionsRequest(
                         destination='users:002',
                         source='users:001',
                     ),
+                    shared.Posting(
+                        amount=100,
+                        asset='COIN',
+                        destination='users:002',
+                        source='users:001',
+                    ),
+                    shared.Posting(
+                        amount=100,
+                        asset='COIN',
+                        destination='users:002',
+                        source='users:001',
+                    ),
                 ],
                 reference='ref:001',
             ),
@@ -97,16 +111,17 @@ if res.transactions_response is not None:
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.CreateTransactionsRequest](../../models/operations/createtransactionsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[operations.CreateTransactionsResponse](../../models/operations/createtransactionsresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## add_metadata_on_transaction
 
@@ -143,16 +158,17 @@ if res is not None:
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                | [operations.AddMetadataOnTransactionRequest](../../models/operations/addmetadataontransactionrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 
-
 ### Response
 
 **[operations.AddMetadataOnTransactionResponse](../../models/operations/addmetadataontransactionresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## add_metadata_to_account
 
@@ -174,7 +190,7 @@ s = sdk.SDK(
 
 res = s.ledger.add_metadata_to_account(request=operations.AddMetadataToAccountRequest(
     request_body={
-        'key': '<value>',
+
     },
     address='users:001',
     ledger='ledger001',
@@ -192,16 +208,17 @@ if res is not None:
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.AddMetadataToAccountRequest](../../models/operations/addmetadatatoaccountrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 
-
 ### Response
 
 **[operations.AddMetadataToAccountResponse](../../models/operations/addmetadatatoaccountresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## count_accounts
 
@@ -290,16 +307,17 @@ if res is not None:
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.CountAccountsRequest](../../models/operations/countaccountsrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
-
 ### Response
 
 **[operations.CountAccountsResponse](../../models/operations/countaccountsresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## count_transactions
 
@@ -340,16 +358,17 @@ if res is not None:
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `request`                                                                                  | [operations.CountTransactionsRequest](../../models/operations/counttransactionsrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
-
 ### Response
 
 **[operations.CountTransactionsResponse](../../models/operations/counttransactionsresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## create_transaction
 
@@ -378,17 +397,29 @@ res = s.ledger.create_transaction(request=operations.CreateTransactionRequest(
                 destination='users:002',
                 source='users:001',
             ),
+            shared.Posting(
+                amount=100,
+                asset='COIN',
+                destination='users:002',
+                source='users:001',
+            ),
+            shared.Posting(
+                amount=100,
+                asset='COIN',
+                destination='users:002',
+                source='users:001',
+            ),
         ],
         reference='ref:001',
         script=shared.PostTransactionScript(
-            plain='vars {
-        account $user
-        }
-        send [COIN 10] (
-        	source = @world
-        	destination = $user
-        )
-        ',
+            plain='vars {\n' +
+            'account $user\n' +
+            '}\n' +
+            'send [COIN 10] (\n' +
+            '	source = @world\n' +
+            '	destination = $user\n' +
+            ')\n' +
+            '',
             vars={
                 'user': 'users:042',
             },
@@ -410,16 +441,17 @@ if res.transactions_response is not None:
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `request`                                                                                  | [operations.CreateTransactionRequest](../../models/operations/createtransactionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
-
 ### Response
 
 **[operations.CreateTransactionResponse](../../models/operations/createtransactionresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## get_account
 
@@ -456,16 +488,17 @@ if res.account_response is not None:
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.GetAccountRequest](../../models/operations/getaccountrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
-
 ### Response
 
 **[operations.GetAccountResponse](../../models/operations/getaccountresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## get_balances
 
@@ -504,16 +537,17 @@ if res.balances_cursor_response is not None:
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.GetBalancesRequest](../../models/operations/getbalancesrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
-
 ### Response
 
 **[operations.GetBalancesResponse](../../models/operations/getbalancesresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## get_balances_aggregated
 
@@ -550,16 +584,17 @@ if res.aggregate_balances_response is not None:
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `request`                                                                                          | [operations.GetBalancesAggregatedRequest](../../models/operations/getbalancesaggregatedrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 
-
 ### Response
 
 **[operations.GetBalancesAggregatedResponse](../../models/operations/getbalancesaggregatedresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## get_info
 
@@ -587,16 +622,17 @@ if res.config_info_response is not None:
 
 ```
 
-
 ### Response
 
 **[operations.GetInfoResponse](../../models/operations/getinforesponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## get_ledger_info
 
@@ -632,16 +668,17 @@ if res.ledger_info_response is not None:
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.GetLedgerInfoRequest](../../models/operations/getledgerinforequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
-
 ### Response
 
 **[operations.GetLedgerInfoResponse](../../models/operations/getledgerinforesponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## get_mapping
 
@@ -677,16 +714,17 @@ if res.mapping_response is not None:
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.GetMappingRequest](../../models/operations/getmappingrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
-
 ### Response
 
 **[operations.GetMappingResponse](../../models/operations/getmappingresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## get_transaction
 
@@ -723,16 +761,17 @@ if res.transaction_response is not None:
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.GetTransactionRequest](../../models/operations/gettransactionrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
-
 ### Response
 
 **[operations.GetTransactionResponse](../../models/operations/gettransactionresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## list_accounts
 
@@ -811,6 +850,7 @@ res = s.ledger.list_accounts(request=operations.ListAccountsRequest(
         '49': '2',
     },
     page_size=100,
+    pagination_token='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
 ))
 
 if res.accounts_cursor_response is not None:
@@ -825,16 +865,17 @@ if res.accounts_cursor_response is not None:
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.ListAccountsRequest](../../models/operations/listaccountsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[operations.ListAccountsResponse](../../models/operations/listaccountsresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## list_logs
 
@@ -873,16 +914,17 @@ if res.logs_cursor_response is not None:
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `request`                                                                | [operations.ListLogsRequest](../../models/operations/listlogsrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 
-
 ### Response
 
 **[operations.ListLogsResponse](../../models/operations/listlogsresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## list_transactions
 
@@ -925,16 +967,17 @@ if res.transactions_cursor_response is not None:
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.ListTransactionsRequest](../../models/operations/listtransactionsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[operations.ListTransactionsResponse](../../models/operations/listtransactionsresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## read_stats
 
@@ -971,16 +1014,17 @@ if res.stats_response is not None:
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.ReadStatsRequest](../../models/operations/readstatsrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
-
 ### Response
 
 **[operations.ReadStatsResponse](../../models/operations/readstatsresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## revert_transaction
 
@@ -1017,16 +1061,17 @@ if res.transaction_response is not None:
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `request`                                                                                  | [operations.RevertTransactionRequest](../../models/operations/reverttransactionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
-
 ### Response
 
 **[operations.RevertTransactionResponse](../../models/operations/reverttransactionresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## ~~run_script~~
 
@@ -1051,14 +1096,14 @@ s = sdk.SDK(
 
 res = s.ledger.run_script(request=operations.RunScriptRequest(
     script=shared.Script(
-        plain='vars {
-    account $user
-    }
-    send [COIN 10] (
-    	source = @world
-    	destination = $user
-    )
-    ',
+        plain='vars {\n' +
+        'account $user\n' +
+        '}\n' +
+        'send [COIN 10] (\n' +
+        '	source = @world\n' +
+        '	destination = $user\n' +
+        ')\n' +
+        '',
         reference='order_1234',
         vars={
             'user': 'users:042',
@@ -1080,15 +1125,16 @@ if res.script_response is not None:
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.RunScriptRequest](../../models/operations/runscriptrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
-
 ### Response
 
 **[operations.RunScriptResponse](../../models/operations/runscriptresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## update_mapping
 
@@ -1115,6 +1161,10 @@ res = s.ledger.update_mapping(request=operations.UpdateMappingRequest(
                 expr=shared.Expr(),
                 account='users:001',
             ),
+            shared.Contract(
+                expr=shared.Expr(),
+                account='users:001',
+            ),
         ],
     ),
     ledger='ledger001',
@@ -1132,16 +1182,17 @@ if res.mapping_response is not None:
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.UpdateMappingRequest](../../models/operations/updatemappingrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
-
 ### Response
 
 **[operations.UpdateMappingResponse](../../models/operations/updatemappingresponse.md)**
+
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
+
 
 ## v2_add_metadata_on_transaction
 
@@ -1182,16 +1233,17 @@ if res is not None:
 | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                    | [operations.V2AddMetadataOnTransactionRequest](../../models/operations/v2addmetadataontransactionrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 
-
 ### Response
 
 **[operations.V2AddMetadataOnTransactionResponse](../../models/operations/v2addmetadataontransactionresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_add_metadata_to_account
 
@@ -1232,16 +1284,17 @@ if res is not None:
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `request`                                                                                            | [operations.V2AddMetadataToAccountRequest](../../models/operations/v2addmetadatatoaccountrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 
-
 ### Response
 
 **[operations.V2AddMetadataToAccountResponse](../../models/operations/v2addmetadatatoaccountresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_count_accounts
 
@@ -1277,16 +1330,17 @@ if res is not None:
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `request`                                                                              | [operations.V2CountAccountsRequest](../../models/operations/v2countaccountsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
-
 ### Response
 
 **[operations.V2CountAccountsResponse](../../models/operations/v2countaccountsresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_count_transactions
 
@@ -1322,16 +1376,17 @@ if res is not None:
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `request`                                                                                      | [operations.V2CountTransactionsRequest](../../models/operations/v2counttransactionsrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
-
 ### Response
 
 **[operations.V2CountTransactionsResponse](../../models/operations/v2counttransactionsresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_create_bulk
 
@@ -1372,16 +1427,17 @@ if res.v2_bulk_response is not None:
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.V2CreateBulkRequest](../../models/operations/v2createbulkrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[operations.V2CreateBulkResponse](../../models/operations/v2createbulkresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_create_ledger
 
@@ -1422,16 +1478,17 @@ if res is not None:
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.V2CreateLedgerRequest](../../models/operations/v2createledgerrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
-
 ### Response
 
 **[operations.V2CreateLedgerResponse](../../models/operations/v2createledgerresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_create_transaction
 
@@ -1463,17 +1520,29 @@ res = s.ledger.v2_create_transaction(request=operations.V2CreateTransactionReque
                 destination='users:002',
                 source='users:001',
             ),
+            shared.V2Posting(
+                amount=100,
+                asset='COIN',
+                destination='users:002',
+                source='users:001',
+            ),
+            shared.V2Posting(
+                amount=100,
+                asset='COIN',
+                destination='users:002',
+                source='users:001',
+            ),
         ],
         reference='ref:001',
         script=shared.V2PostTransactionScript(
-            plain='vars {
-        account $user
-        }
-        send [COIN 10] (
-        	source = @world
-        	destination = $user
-        )
-        ',
+            plain='vars {\n' +
+            'account $user\n' +
+            '}\n' +
+            'send [COIN 10] (\n' +
+            '	source = @world\n' +
+            '	destination = $user\n' +
+            ')\n' +
+            '',
             vars={
                 'user': 'users:042',
             },
@@ -1495,16 +1564,17 @@ if res.v2_create_transaction_response is not None:
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `request`                                                                                      | [operations.V2CreateTransactionRequest](../../models/operations/v2createtransactionrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
-
 ### Response
 
 **[operations.V2CreateTransactionResponse](../../models/operations/v2createtransactionresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_delete_account_metadata
 
@@ -1525,7 +1595,7 @@ s = sdk.SDK(
 
 
 res = s.ledger.v2_delete_account_metadata(request=operations.V2DeleteAccountMetadataRequest(
-    address='3680 Emile Grove',
+    address='6032 Larkin Prairie',
     key='foo',
     ledger='ledger001',
 ))
@@ -1542,15 +1612,16 @@ if res is not None:
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.V2DeleteAccountMetadataRequest](../../models/operations/v2deleteaccountmetadatarequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 
-
 ### Response
 
 **[operations.V2DeleteAccountMetadataResponse](../../models/operations/v2deleteaccountmetadataresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## v2_delete_ledger_metadata
 
@@ -1587,16 +1658,17 @@ if res is not None:
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `request`                                                                                            | [operations.V2DeleteLedgerMetadataRequest](../../models/operations/v2deleteledgermetadatarequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 
-
 ### Response
 
 **[operations.V2DeleteLedgerMetadataResponse](../../models/operations/v2deleteledgermetadataresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_delete_transaction_metadata
 
@@ -1634,16 +1706,17 @@ if res is not None:
 | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                      | [operations.V2DeleteTransactionMetadataRequest](../../models/operations/v2deletetransactionmetadatarequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 
-
 ### Response
 
 **[operations.V2DeleteTransactionMetadataResponse](../../models/operations/v2deletetransactionmetadataresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_get_account
 
@@ -1680,16 +1753,17 @@ if res.v2_account_response is not None:
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.V2GetAccountRequest](../../models/operations/v2getaccountrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[operations.V2GetAccountResponse](../../models/operations/v2getaccountresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_get_balances_aggregated
 
@@ -1725,16 +1799,17 @@ if res.v2_aggregate_balances_response is not None:
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.V2GetBalancesAggregatedRequest](../../models/operations/v2getbalancesaggregatedrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 
-
 ### Response
 
 **[operations.V2GetBalancesAggregatedResponse](../../models/operations/v2getbalancesaggregatedresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_get_info
 
@@ -1762,16 +1837,17 @@ if res.v2_config_info_response is not None:
 
 ```
 
-
 ### Response
 
 **[operations.V2GetInfoResponse](../../models/operations/v2getinforesponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_get_ledger
 
@@ -1807,16 +1883,17 @@ if res.v2_get_ledger_response is not None:
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.V2GetLedgerRequest](../../models/operations/v2getledgerrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
-
 ### Response
 
 **[operations.V2GetLedgerResponse](../../models/operations/v2getledgerresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_get_ledger_info
 
@@ -1852,16 +1929,17 @@ if res.v2_ledger_info_response is not None:
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `request`                                                                              | [operations.V2GetLedgerInfoRequest](../../models/operations/v2getledgerinforequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
-
 ### Response
 
 **[operations.V2GetLedgerInfoResponse](../../models/operations/v2getledgerinforesponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_get_transaction
 
@@ -1898,16 +1976,17 @@ if res.v2_get_transaction_response is not None:
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.V2GetTransactionRequest](../../models/operations/v2gettransactionrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[operations.V2GetTransactionResponse](../../models/operations/v2gettransactionresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_get_volumes_with_balances
 
@@ -1946,16 +2025,17 @@ if res.v2_volumes_with_balance_cursor_response is not None:
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                | [operations.V2GetVolumesWithBalancesRequest](../../models/operations/v2getvolumeswithbalancesrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 
-
 ### Response
 
 **[operations.V2GetVolumesWithBalancesResponse](../../models/operations/v2getvolumeswithbalancesresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_list_accounts
 
@@ -1993,16 +2073,17 @@ if res.v2_accounts_cursor_response is not None:
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.V2ListAccountsRequest](../../models/operations/v2listaccountsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
-
 ### Response
 
 **[operations.V2ListAccountsResponse](../../models/operations/v2listaccountsresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_list_ledgers
 
@@ -2039,16 +2120,17 @@ if res.v2_ledger_list_response is not None:
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.V2ListLedgersRequest](../../models/operations/v2listledgersrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
-
 ### Response
 
 **[operations.V2ListLedgersResponse](../../models/operations/v2listledgersresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_list_logs
 
@@ -2086,16 +2168,17 @@ if res.v2_logs_cursor_response is not None:
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.V2ListLogsRequest](../../models/operations/v2listlogsrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
-
 ### Response
 
 **[operations.V2ListLogsResponse](../../models/operations/v2listlogsresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_list_transactions
 
@@ -2133,16 +2216,17 @@ if res.v2_transactions_cursor_response is not None:
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.V2ListTransactionsRequest](../../models/operations/v2listtransactionsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[operations.V2ListTransactionsResponse](../../models/operations/v2listtransactionsresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_read_stats
 
@@ -2179,16 +2263,17 @@ if res.v2_stats_response is not None:
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.V2ReadStatsRequest](../../models/operations/v2readstatsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
-
 ### Response
 
 **[operations.V2ReadStatsResponse](../../models/operations/v2readstatsresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_revert_transaction
 
@@ -2225,16 +2310,17 @@ if res.v2_revert_transaction_response is not None:
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `request`                                                                                      | [operations.V2RevertTransactionRequest](../../models/operations/v2reverttransactionrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
-
 ### Response
 
 **[operations.V2RevertTransactionResponse](../../models/operations/v2reverttransactionresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
+
 
 ## v2_update_ledger_metadata
 
@@ -2273,10 +2359,10 @@ if res is not None:
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `request`                                                                                            | [operations.V2UpdateLedgerMetadataRequest](../../models/operations/v2updateledgermetadatarequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 
-
 ### Response
 
 **[operations.V2UpdateLedgerMetadataResponse](../../models/operations/v2updateledgermetadataresponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

@@ -99,7 +99,7 @@ class ClientCredentialsHook(SDKInitHook, BeforeRequestHook, AfterErrorHook):
         return Credentials(
             client_id=security.client_id,
             client_secret=security.client_secret,
-            token_url=security.TOKEN_URL
+            token_url=security.token_url
         )
 
     def do_token_request(self, credentials: Credentials, scopes: Optional[List[str]]) -> Session:

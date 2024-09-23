@@ -1,6 +1,8 @@
 # Payments
 (*payments*)
 
+## Overview
+
 ### Available Operations
 
 * [add_account_to_pool](#add_account_to_pool) - Add an account to a pool
@@ -84,16 +86,17 @@ if res is not None:
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.AddAccountToPoolRequest](../../models/operations/addaccounttopoolrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[operations.AddAccountToPoolResponse](../../models/operations/addaccounttopoolresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## connectors_transfer
 
@@ -135,16 +138,17 @@ if res.transfer_response is not None:
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.ConnectorsTransferRequest](../../models/operations/connectorstransferrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[operations.ConnectorsTransferResponse](../../models/operations/connectorstransferresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## create_account
 
@@ -167,9 +171,9 @@ s = sdk.SDK(
 
 res = s.payments.create_account(request=shared.AccountRequest(
     connector_id='<value>',
-    created_at=dateutil.parser.isoparse('2024-08-19T02:15:08.668Z'),
+    created_at=dateutil.parser.isoparse('2024-08-19T02:15:08.152Z'),
     reference='<value>',
-    type=shared.AccountType.UNKNOWN,
+    type=shared.AccountType.INTERNAL,
 ))
 
 if res.payments_account_response is not None:
@@ -184,16 +188,17 @@ if res.payments_account_response is not None:
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
 | `request`                                                      | [shared.AccountRequest](../../models/shared/accountrequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
 
-
 ### Response
 
 **[operations.CreateAccountResponse](../../models/operations/createaccountresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## create_bank_account
 
@@ -231,16 +236,17 @@ if res.bank_account_response is not None:
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `request`                                                              | [shared.BankAccountRequest](../../models/shared/bankaccountrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
 
-
 ### Response
 
 **[operations.CreateBankAccountResponse](../../models/operations/createbankaccountresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## create_payment
 
@@ -265,11 +271,11 @@ res = s.payments.create_payment(request=shared.PaymentRequest(
     amount=100,
     asset='USD',
     connector_id='<value>',
-    created_at=dateutil.parser.isoparse('2024-11-09T01:03:21.153Z'),
+    created_at=dateutil.parser.isoparse('2024-11-09T01:03:21.011Z'),
     reference='<value>',
-    scheme=shared.PaymentScheme.GOOGLE_PAY,
-    status=shared.PaymentStatus.DISPUTE_WON,
-    type=shared.PaymentType.TRANSFER,
+    scheme=shared.PaymentScheme.MOLPAY,
+    status=shared.PaymentStatus.REFUNDED_FAILURE,
+    type=shared.PaymentType.PAYOUT,
 ))
 
 if res.payment_response is not None:
@@ -284,16 +290,17 @@ if res.payment_response is not None:
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
 | `request`                                                      | [shared.PaymentRequest](../../models/shared/paymentrequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
 
-
 ### Response
 
 **[operations.CreatePaymentResponse](../../models/operations/createpaymentresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## create_pool
 
@@ -316,6 +323,8 @@ s = sdk.SDK(
 res = s.payments.create_pool(request=shared.PoolRequest(
     account_i_ds=[
         '<value>',
+        '<value>',
+        '<value>',
     ],
     name='<value>',
 ))
@@ -332,16 +341,17 @@ if res.pool_response is not None:
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `request`                                                | [shared.PoolRequest](../../models/shared/poolrequest.md) | :heavy_check_mark:                                       | The request object to use for the request.               |
 
-
 ### Response
 
 **[operations.CreatePoolResponse](../../models/operations/createpoolresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## create_transfer_initiation
 
@@ -365,12 +375,12 @@ s = sdk.SDK(
 res = s.payments.create_transfer_initiation(request=shared.TransferInitiationRequest(
     amount=256698,
     asset='USD',
-    description='Multi-tiered incremental methodology',
+    description='Open-architected heuristic knowledge user',
     destination_account_id='<value>',
     reference='XXX',
-    scheduled_at=dateutil.parser.isoparse('2023-05-04T22:47:54.364Z'),
+    scheduled_at=dateutil.parser.isoparse('2024-05-21T00:04:35.840Z'),
     source_account_id='<value>',
-    type=shared.TransferInitiationRequestType.TRANSFER,
+    type=shared.TransferInitiationRequestType.PAYOUT,
     validated=False,
 ))
 
@@ -386,16 +396,17 @@ if res.transfer_initiation_response is not None:
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [shared.TransferInitiationRequest](../../models/shared/transferinitiationrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
-
 ### Response
 
 **[operations.CreateTransferInitiationResponse](../../models/operations/createtransferinitiationresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## delete_pool
 
@@ -431,16 +442,17 @@ if res is not None:
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.DeletePoolRequest](../../models/operations/deletepoolrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
-
 ### Response
 
 **[operations.DeletePoolResponse](../../models/operations/deletepoolresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## delete_transfer_initiation
 
@@ -476,16 +488,17 @@ if res is not None:
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                | [operations.DeleteTransferInitiationRequest](../../models/operations/deletetransferinitiationrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 
-
 ### Response
 
 **[operations.DeleteTransferInitiationResponse](../../models/operations/deletetransferinitiationresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## forward_bank_account
 
@@ -524,16 +537,17 @@ if res.bank_account_response is not None:
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.ForwardBankAccountRequest](../../models/operations/forwardbankaccountrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[operations.ForwardBankAccountResponse](../../models/operations/forwardbankaccountresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## get_account_balances
 
@@ -575,16 +589,17 @@ if res.balances_cursor is not None:
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.GetAccountBalancesRequest](../../models/operations/getaccountbalancesrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[operations.GetAccountBalancesResponse](../../models/operations/getaccountbalancesresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## get_bank_account
 
@@ -620,16 +635,17 @@ if res.bank_account_response is not None:
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.GetBankAccountRequest](../../models/operations/getbankaccountrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
-
 ### Response
 
 **[operations.GetBankAccountResponse](../../models/operations/getbankaccountresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## ~~get_connector_task~~
 
@@ -668,16 +684,17 @@ if res.task_response is not None:
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.GetConnectorTaskRequest](../../models/operations/getconnectortaskrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[operations.GetConnectorTaskResponse](../../models/operations/getconnectortaskresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## get_connector_task_v1
 
@@ -715,16 +732,17 @@ if res.task_response is not None:
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.GetConnectorTaskV1Request](../../models/operations/getconnectortaskv1request.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[operations.GetConnectorTaskV1Response](../../models/operations/getconnectortaskv1response.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## get_payment
 
@@ -760,16 +778,17 @@ if res.payment_response is not None:
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.GetPaymentRequest](../../models/operations/getpaymentrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
-
 ### Response
 
 **[operations.GetPaymentResponse](../../models/operations/getpaymentresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## get_pool
 
@@ -805,16 +824,17 @@ if res.pool_response is not None:
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `request`                                                              | [operations.GetPoolRequest](../../models/operations/getpoolrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
 
-
 ### Response
 
 **[operations.GetPoolResponse](../../models/operations/getpoolresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## get_pool_balances
 
@@ -836,7 +856,7 @@ s = sdk.SDK(
 
 
 res = s.payments.get_pool_balances(request=operations.GetPoolBalancesRequest(
-    at=dateutil.parser.isoparse('2023-05-05T06:40:23.018Z'),
+    at=dateutil.parser.isoparse('2023-05-05T06:40:23.119Z'),
     pool_id='XXX',
 ))
 
@@ -852,16 +872,17 @@ if res.pool_balances_response is not None:
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `request`                                                                              | [operations.GetPoolBalancesRequest](../../models/operations/getpoolbalancesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
-
 ### Response
 
 **[operations.GetPoolBalancesResponse](../../models/operations/getpoolbalancesresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## get_transfer_initiation
 
@@ -897,16 +918,17 @@ if res.transfer_initiation_response is not None:
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `request`                                                                                          | [operations.GetTransferInitiationRequest](../../models/operations/gettransferinitiationrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 
-
 ### Response
 
 **[operations.GetTransferInitiationResponse](../../models/operations/gettransferinitiationresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## install_connector
 
@@ -927,12 +949,13 @@ s = sdk.SDK(
 
 
 res = s.payments.install_connector(request=operations.InstallConnectorRequest(
-    connector_config=shared.WiseConfig(
+    connector_config=shared.StripeConfig(
         api_key='XXX',
         name='My Wise Account',
+        page_size=50,
         polling_period='60s',
     ),
-    connector=shared.Connector.ADYEN,
+    connector=shared.Connector.ATLAR,
 ))
 
 if res.connector_response is not None:
@@ -947,16 +970,17 @@ if res.connector_response is not None:
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.InstallConnectorRequest](../../models/operations/installconnectorrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[operations.InstallConnectorResponse](../../models/operations/installconnectorresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## list_all_connectors
 
@@ -984,16 +1008,17 @@ if res.connectors_response is not None:
 
 ```
 
-
 ### Response
 
 **[operations.ListAllConnectorsResponse](../../models/operations/listallconnectorsresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## list_bank_accounts
 
@@ -1034,16 +1059,17 @@ if res.bank_accounts_cursor is not None:
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.ListBankAccountsRequest](../../models/operations/listbankaccountsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[operations.ListBankAccountsResponse](../../models/operations/listbankaccountsresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## list_configs_available_connectors
 
@@ -1071,16 +1097,17 @@ if res.connectors_configs_response is not None:
 
 ```
 
-
 ### Response
 
 **[operations.ListConfigsAvailableConnectorsResponse](../../models/operations/listconfigsavailableconnectorsresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## ~~list_connector_tasks~~
 
@@ -1120,16 +1147,17 @@ if res.tasks_cursor is not None:
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.ListConnectorTasksRequest](../../models/operations/listconnectortasksrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[operations.ListConnectorTasksResponse](../../models/operations/listconnectortasksresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## list_connector_tasks_v1
 
@@ -1168,16 +1196,17 @@ if res.tasks_cursor is not None:
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.ListConnectorTasksV1Request](../../models/operations/listconnectortasksv1request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 
-
 ### Response
 
 **[operations.ListConnectorTasksV1Response](../../models/operations/listconnectortasksv1response.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## list_payments
 
@@ -1218,16 +1247,17 @@ if res.payments_cursor is not None:
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.ListPaymentsRequest](../../models/operations/listpaymentsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[operations.ListPaymentsResponse](../../models/operations/listpaymentsresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## list_pools
 
@@ -1268,16 +1298,17 @@ if res.pools_cursor is not None:
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.ListPoolsRequest](../../models/operations/listpoolsrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
-
 ### Response
 
 **[operations.ListPoolsResponse](../../models/operations/listpoolsresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## list_transfer_initiations
 
@@ -1318,16 +1349,17 @@ if res.transfer_initiations_cursor is not None:
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.ListTransferInitiationsRequest](../../models/operations/listtransferinitiationsrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 
-
 ### Response
 
 **[operations.ListTransferInitiationsResponse](../../models/operations/listtransferinitiationsresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## paymentsget_account
 
@@ -1363,16 +1395,17 @@ if res.payments_account_response is not None:
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.PaymentsgetAccountRequest](../../models/operations/paymentsgetaccountrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[operations.PaymentsgetAccountResponse](../../models/operations/paymentsgetaccountresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## paymentsget_server_info
 
@@ -1400,16 +1433,17 @@ if res.server_info is not None:
 
 ```
 
-
 ### Response
 
 **[operations.PaymentsgetServerInfoResponse](../../models/operations/paymentsgetserverinforesponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## paymentslist_accounts
 
@@ -1450,16 +1484,17 @@ if res.accounts_cursor is not None:
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.PaymentslistAccountsRequest](../../models/operations/paymentslistaccountsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 
-
 ### Response
 
 **[operations.PaymentslistAccountsResponse](../../models/operations/paymentslistaccountsresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## ~~read_connector_config~~
 
@@ -1497,16 +1532,17 @@ if res.connector_config_response is not None:
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `request`                                                                                      | [operations.ReadConnectorConfigRequest](../../models/operations/readconnectorconfigrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
-
 ### Response
 
 **[operations.ReadConnectorConfigResponse](../../models/operations/readconnectorconfigresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## read_connector_config_v1
 
@@ -1543,16 +1579,17 @@ if res.connector_config_response is not None:
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `request`                                                                                          | [operations.ReadConnectorConfigV1Request](../../models/operations/readconnectorconfigv1request.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 
-
 ### Response
 
 **[operations.ReadConnectorConfigV1Response](../../models/operations/readconnectorconfigv1response.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## remove_account_from_pool
 
@@ -1589,16 +1626,17 @@ if res is not None:
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `request`                                                                                          | [operations.RemoveAccountFromPoolRequest](../../models/operations/removeaccountfrompoolrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 
-
 ### Response
 
 **[operations.RemoveAccountFromPoolResponse](../../models/operations/removeaccountfrompoolresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## ~~reset_connector~~
 
@@ -1638,16 +1676,17 @@ if res is not None:
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.ResetConnectorRequest](../../models/operations/resetconnectorrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
-
 ### Response
 
 **[operations.ResetConnectorResponse](../../models/operations/resetconnectorresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## reset_connector_v1
 
@@ -1686,16 +1725,17 @@ if res is not None:
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.ResetConnectorV1Request](../../models/operations/resetconnectorv1request.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[operations.ResetConnectorV1Response](../../models/operations/resetconnectorv1response.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## retry_transfer_initiation
 
@@ -1731,16 +1771,17 @@ if res is not None:
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.RetryTransferInitiationRequest](../../models/operations/retrytransferinitiationrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 
-
 ### Response
 
 **[operations.RetryTransferInitiationResponse](../../models/operations/retrytransferinitiationresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## reverse_transfer_initiation
 
@@ -1764,9 +1805,10 @@ res = s.payments.reverse_transfer_initiation(request=operations.ReverseTransferI
     reverse_transfer_initiation_request=shared.ReverseTransferInitiationRequest(
         amount=327549,
         asset='USD',
-        description='Streamlined high-level local area network',
+        description='Multi-channelled responsive capability',
         metadata={
             'key': '<value>',
+            'key1': '<value>',
         },
         reference='XXX',
     ),
@@ -1785,16 +1827,17 @@ if res is not None:
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                  | [operations.ReverseTransferInitiationRequest](../../models/operations/reversetransferinitiationrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 
-
 ### Response
 
 **[operations.ReverseTransferInitiationResponse](../../models/operations/reversetransferinitiationresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## udpate_transfer_initiation_status
 
@@ -1833,16 +1876,17 @@ if res is not None:
 | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                            | [operations.UdpateTransferInitiationStatusRequest](../../models/operations/udpatetransferinitiationstatusrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
 
-
 ### Response
 
 **[operations.UdpateTransferInitiationStatusResponse](../../models/operations/udpatetransferinitiationstatusresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## ~~uninstall_connector~~
 
@@ -1880,16 +1924,17 @@ if res is not None:
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.UninstallConnectorRequest](../../models/operations/uninstallconnectorrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[operations.UninstallConnectorResponse](../../models/operations/uninstallconnectorresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## uninstall_connector_v1
 
@@ -1926,16 +1971,17 @@ if res is not None:
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.UninstallConnectorV1Request](../../models/operations/uninstallconnectorv1request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 
-
 ### Response
 
 **[operations.UninstallConnectorV1Response](../../models/operations/uninstallconnectorv1response.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## update_bank_account_metadata
 
@@ -1958,7 +2004,7 @@ s = sdk.SDK(
 res = s.payments.update_bank_account_metadata(request=operations.UpdateBankAccountMetadataRequest(
     update_bank_account_metadata_request=shared.UpdateBankAccountMetadataRequest(
         metadata={
-            'key': '<value>',
+
         },
     ),
     bank_account_id='XXX',
@@ -1976,16 +2022,17 @@ if res is not None:
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                  | [operations.UpdateBankAccountMetadataRequest](../../models/operations/updatebankaccountmetadatarequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 
-
 ### Response
 
 **[operations.UpdateBankAccountMetadataResponse](../../models/operations/updatebankaccountmetadataresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## update_connector_config_v1
 
@@ -2012,7 +2059,7 @@ res = s.payments.update_connector_config_v1(request=operations.UpdateConnectorCo
         page_size=50,
         polling_period='60s',
     ),
-    connector=shared.Connector.STRIPE,
+    connector=shared.Connector.ADYEN,
     connector_id='XXX',
 ))
 
@@ -2028,16 +2075,17 @@ if res is not None:
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.UpdateConnectorConfigV1Request](../../models/operations/updateconnectorconfigv1request.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 
-
 ### Response
 
 **[operations.UpdateConnectorConfigV1Response](../../models/operations/updateconnectorconfigv1response.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## update_metadata
 
@@ -2060,6 +2108,7 @@ s = sdk.SDK(
 res = s.payments.update_metadata(request=operations.UpdateMetadataRequest(
     request_body={
         'key': '<value>',
+        'key1': '<value>',
     },
     payment_id='XXX',
 ))
@@ -2076,10 +2125,10 @@ if res is not None:
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.UpdateMetadataRequest](../../models/operations/updatemetadatarequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
-
 ### Response
 
 **[operations.UpdateMetadataResponse](../../models/operations/updatemetadataresponse.md)**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
