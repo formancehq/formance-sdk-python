@@ -3,10 +3,10 @@ id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
   docChecksum: 706ea24f6e5943004b89faa8c7200702
   docVersion: v2.0.17
-  speakeasyVersion: 1.400.0
-  generationVersion: 2.420.2
-  releaseVersion: 3.3.1
-  configChecksum: bc8f98d92bee38b59caf4b560ae317e6
+  speakeasyVersion: 1.401.3
+  generationVersion: 2.421.3
+  releaseVersion: 3.3.2
+  configChecksum: 50614fb25f9ff1d7e02c3ff3dfbe6080
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -2364,7 +2364,7 @@ examples:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-03-04T09:03:44.079Z", "id": "37bc89db-43a4-47f1-bb9a-24050795f422", "status": "PENDING", "updatedAt": "2023-12-20T20:12:51.365Z"}}
+          application/json: {"data": {"connectorID": "<value>", "createdAt": "2022-09-14T18:08:36.551Z", "id": "b8d4a71b-a457-4542-9afd-b17eed3b13ec", "status": "EXPIRED", "updatedAt": "2022-08-01T16:40:57.832Z"}}
   getConnectorTaskV1:
     "":
       parameters:
@@ -2376,7 +2376,7 @@ examples:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2024-08-05T22:20:59.377Z", "id": "752d569d-25c8-43ca-a84b-5a32c806dcf9", "status": "SUCCEEDED", "updatedAt": "2022-06-02T20:15:28.566Z"}}
+          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-05-15T09:04:44.604Z", "id": "2592c3a8-ba28-46c9-923f-e1c798f795cd", "status": "CANCELLED", "updatedAt": "2022-05-07T01:38:27.888Z"}}
   getPayment:
     "":
       parameters:
