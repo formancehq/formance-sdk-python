@@ -18,6 +18,7 @@ from typing import Union
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class TaskResponse:
+    r"""OK"""
     data: TaskResponseData = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
 

@@ -23,6 +23,7 @@ class BalancesCursorCursor:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class BalancesCursor:
+    r"""OK"""
     cursor: BalancesCursorCursor = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cursor') }})
     
 

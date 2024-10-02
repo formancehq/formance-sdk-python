@@ -18,7 +18,6 @@ class SchemasWalletsErrorResponseErrorCode(str, Enum):
 
 @dataclasses.dataclass
 class WalletsErrorResponse(Exception):
-    r"""Error"""
     error_code: SchemasWalletsErrorResponseErrorCode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorCode') }})
     error_message: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('errorMessage') }})
     

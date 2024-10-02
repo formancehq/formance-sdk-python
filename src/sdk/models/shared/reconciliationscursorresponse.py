@@ -23,6 +23,7 @@ class ReconciliationsCursorResponseCursor:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ReconciliationsCursorResponse:
+    r"""OK"""
     cursor: ReconciliationsCursorResponseCursor = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cursor') }})
     
 

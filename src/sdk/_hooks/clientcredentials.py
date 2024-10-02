@@ -93,7 +93,7 @@ class ClientCredentialsHook(SDKInitHook, BeforeRequestHook, AfterErrorHook):
 
         security = source() if callable(source) else source
 
-        if security is None:
+        if security is None or security.client_id is None or security.client_secret is None:
             return None
         
         return Credentials(
