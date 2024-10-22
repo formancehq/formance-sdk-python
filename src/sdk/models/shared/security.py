@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 import dataclasses
+from typing import Optional
 
 
 @dataclasses.dataclass
 class Security:
-    client_id: str = dataclasses.field(metadata={'security': { 'scheme': True, 'type': 'oauth2', 'sub_type': 'client_credentials', 'field_name': 'clientID' }})
-    client_secret: str = dataclasses.field(metadata={'security': { 'scheme': True, 'type': 'oauth2', 'sub_type': 'client_credentials', 'field_name': 'clientSecret' }})
-    token_url: str = dataclasses.field(default='/api/auth/oauth/token')
+    client_id: Optional[str] = dataclasses.field(default=None, metadata={'security': { 'scheme': True, 'type': 'oauth2', 'sub_type': 'client_credentials', 'field_name': 'clientID' }})
+    client_secret: Optional[str] = dataclasses.field(default=None, metadata={'security': { 'scheme': True, 'type': 'oauth2', 'sub_type': 'client_credentials', 'field_name': 'clientSecret' }})
+    token_url: Optional[str] = dataclasses.field(default='/api/auth/oauth/token')
     
 

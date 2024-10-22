@@ -6,7 +6,7 @@ from .ledger import Ledger
 from .orchestration import Orchestration
 from .payments import Payments
 from .reconciliation import Reconciliation
-from .sdkconfiguration import SDKConfiguration
+from .sdkconfiguration import SDKConfiguration, ServerEnvironment
 from .search import Search
 from .utils.retries import RetryConfig
 from .wallets import Wallets
@@ -42,6 +42,8 @@ class SDK:
 
     def __init__(self,
                  security: Union[shared.Security,Callable[[], shared.Security]] = None,
+                 environment: ServerEnvironment = None,
+                 organization: str = None,
                  server_idx: Optional[int] = None,
                  server_url: Optional[str] = None,
                  url_params: Optional[Dict[str, str]] = None,
@@ -52,6 +54,10 @@ class SDK:
 
         :param security: The security details required for authentication
         :type security: Union[shared.Security,Callable[[], shared.Security]]
+        :param environment: Allows setting the environment variable for url substitution
+        :type environment: ServerEnvironment
+        :param organization: Allows setting the organization variable for url substitution
+        :type organization: str
         :param server_idx: The index of the server to use for all operations
         :type server_idx: int
         :param server_url: The server URL to use for all operations
@@ -69,6 +75,14 @@ class SDK:
         if server_url is not None:
             if url_params is not None:
                 server_url = utils.template_url(server_url, url_params)
+        server_defaults = [
+            {
+            },
+            {
+                'environment': environment or 'sandbox',
+                'organization': organization or 'orgID-stackID',
+            },
+        ]
     
 
         self.sdk_configuration = SDKConfiguration(
@@ -76,6 +90,7 @@ class SDK:
             security,
             server_url,
             server_idx,
+            server_defaults,
             retry_config=retry_config
         )
 
@@ -103,56 +118,9 @@ class SDK:
         self.webhooks = Webhooks(self.sdk_configuration)
 
 
-    def get_oidc_well_knowns(self) -> operations.GetOIDCWellKnownsResponse:
-        r"""Retrieve OpenID connect well-knowns."""
-        hook_ctx = HookContext(operation_id='getOIDCWellKnowns', oauth2_scopes=[], security_source=self.sdk_configuration.security)
-        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
-        
-        url = base_url + '/api/auth/.well-known/openid-configuration'
-        
-        if callable(self.sdk_configuration.security):
-            headers, query_params = utils.get_security(self.sdk_configuration.security())
-        else:
-            headers, query_params = utils.get_security(self.sdk_configuration.security)
-        
-        headers['Accept'] = '*/*'
-        headers['user-agent'] = self.sdk_configuration.user_agent
-        client = self.sdk_configuration.client
-        
-        try:
-            req = client.prepare_request(requests_http.Request('GET', url, params=query_params, headers=headers))
-            req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
-            http_res = client.send(req)
-        except Exception as e:
-            _, e = self.sdk_configuration.get_hooks().after_error(AfterErrorContext(hook_ctx), None, e)
-            if e is not None:
-                raise e
-
-        if utils.match_status_codes(['default'], http_res.status_code):
-            result, e = self.sdk_configuration.get_hooks().after_error(AfterErrorContext(hook_ctx), http_res, None)
-            if e is not None:
-                raise e
-            if result is not None:
-                http_res = result
-        else:
-            http_res = self.sdk_configuration.get_hooks().after_success(AfterSuccessContext(hook_ctx), http_res)
-            
-        
-        
-        res = operations.GetOIDCWellKnownsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
-        
-        if http_res.status_code == 200:
-            pass
-        else:
-            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
-
-        return res
-
-
-
     def get_versions(self) -> operations.GetVersionsResponse:
         r"""Show stack version information"""
-        hook_ctx = HookContext(operation_id='getVersions', oauth2_scopes=[], security_source=self.sdk_configuration.security)
+        hook_ctx = HookContext(operation_id='getVersions', oauth2_scopes=['auth:read'], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/versions'
