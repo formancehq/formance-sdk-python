@@ -1,0 +1,31 @@
+speakeasyVersion: 1.420.0
+sources:
+    my-source:
+        sourceNamespace: my-source
+        sourceRevisionDigest: sha256:152423917e28f7ab99b5eaadc6f18ad1a813ee5670a8253272671db8592a4d12
+        sourceBlobDigest: sha256:289baef68db829be9ab3b7d551c2c8f06c9adf872c08c55eb3d4fb8cc570d555
+        tags:
+            - latest
+            - main
+targets:
+    formance-python-sdk:
+        source: my-source
+        sourceNamespace: my-source
+        sourceRevisionDigest: sha256:152423917e28f7ab99b5eaadc6f18ad1a813ee5670a8253272671db8592a4d12
+        sourceBlobDigest: sha256:289baef68db829be9ab3b7d551c2c8f06c9adf872c08c55eb3d4fb8cc570d555
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        my-source:
+            inputs:
+                - location: https://github.com/formancehq/stack/releases/download/v2.1.0-beta.3/generate.json
+            registry:
+                location: registry.speakeasyapi.dev/formance/formance/my-source
+    targets:
+        formance-python-sdk:
+            target: python
+            source: my-source
+            publish:
+                pypi:
+                    token: $PYPI_TOKEN

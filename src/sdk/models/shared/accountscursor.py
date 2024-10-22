@@ -23,6 +23,7 @@ class Cursor:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class AccountsCursor:
+    r"""OK"""
     cursor: Cursor = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cursor') }})
     
 

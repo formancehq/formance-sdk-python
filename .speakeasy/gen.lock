@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: 706ea24f6e5943004b89faa8c7200702
-  docVersion: v2.0.17
-  speakeasyVersion: 1.401.4
-  generationVersion: 2.421.3
-  releaseVersion: 4.0.0
-  configChecksum: b0d1b934df50e25af94c4d9a883c96f4
+  docChecksum: d5d12540f5ed5f4996d23aae4cd97c31
+  docVersion: v2.1.0-beta.3
+  speakeasyVersion: 1.420.0
+  generationVersion: 2.438.15
+  releaseVersion: 4.1.0
+  configChecksum: ee43f498ed18b8fb5cf323c92b594a42
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -14,16 +14,18 @@ management:
 features:
   python:
     additionalDependencies: 0.1.0
+    bigint: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 4.8.10
+    core: 4.8.14
     deprecations: 2.81.1
-    errors: 2.81.10
+    downloadStreams: 0.0.2
+    errors: 2.81.11
     getRequestBodies: 2.81.1
     globalSecurity: 2.83.7
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
-    groups: 2.81.2
     ignores: 2.81.1
+    nameOverrides: 2.81.2
     nullables: 0.1.0
     oauth2ClientCredentials: 0.2.0
     responseFormat: 0.1.0
@@ -151,6 +153,7 @@ generatedFiles:
   - docs/models/operations/getpoolresponse.md
   - docs/models/operations/getreconciliationrequest.md
   - docs/models/operations/getreconciliationresponse.md
+  - docs/models/operations/getserverinforesponse.md
   - docs/models/operations/gettransactionrequest.md
   - docs/models/operations/gettransactionresponse.md
   - docs/models/operations/gettransactionsrequest.md
@@ -206,6 +209,7 @@ generatedFiles:
   - docs/models/operations/listworkflowsresponse.md
   - docs/models/operations/metadata.md
   - docs/models/operations/orchestrationgetserverinforesponse.md
+  - docs/models/operations/order.md
   - docs/models/operations/paymentsgetaccountrequest.md
   - docs/models/operations/paymentsgetaccountresponse.md
   - docs/models/operations/paymentsgetserverinforesponse.md
@@ -298,6 +302,8 @@ generatedFiles:
   - docs/models/operations/v2deletetriggerresponse.md
   - docs/models/operations/v2deleteworkflowrequest.md
   - docs/models/operations/v2deleteworkflowresponse.md
+  - docs/models/operations/v2exportlogsrequest.md
+  - docs/models/operations/v2exportlogsresponse.md
   - docs/models/operations/v2getaccountrequest.md
   - docs/models/operations/v2getaccountresponse.md
   - docs/models/operations/v2getbalancesaggregatedrequest.md
@@ -320,6 +326,8 @@ generatedFiles:
   - docs/models/operations/v2getvolumeswithbalancesresponse.md
   - docs/models/operations/v2getworkflowrequest.md
   - docs/models/operations/v2getworkflowresponse.md
+  - docs/models/operations/v2importlogsrequest.md
+  - docs/models/operations/v2importlogsresponse.md
   - docs/models/operations/v2listaccountsrequest.md
   - docs/models/operations/v2listaccountsresponse.md
   - docs/models/operations/v2listinstancesrequest.md
@@ -440,6 +448,7 @@ generatedFiles:
   - docs/models/shared/debitwalletresponse.md
   - docs/models/shared/descriptor.md
   - docs/models/shared/dummypayconfig.md
+  - docs/models/shared/errorresponse.md
   - docs/models/shared/errorsenum.md
   - docs/models/shared/expandeddebithold.md
   - docs/models/shared/expr.md
@@ -681,6 +690,7 @@ generatedFiles:
   - docs/models/shared/v2createworkflowresponse.md
   - docs/models/shared/v2creditwalletrequest.md
   - docs/models/shared/v2debitwalletrequest.md
+  - docs/models/shared/v2errorresponse.md
   - docs/models/shared/v2errorsenum.md
   - docs/models/shared/v2expandedtransaction.md
   - docs/models/shared/v2getledgerresponse.md
@@ -796,7 +806,17 @@ generatedFiles:
   - docs/sdks/payments/README.md
   - docs/sdks/reconciliation/README.md
   - docs/sdks/sdk/README.md
+  - docs/sdks/sdkorchestrationv1/README.md
+  - docs/sdks/sdkpaymentsv1/README.md
+  - docs/sdks/sdkreconciliationv1/README.md
+  - docs/sdks/sdksearchv1/README.md
+  - docs/sdks/sdkv1/README.md
+  - docs/sdks/sdkv2/README.md
+  - docs/sdks/sdkwalletsv1/README.md
+  - docs/sdks/sdkwebhooksv1/README.md
   - docs/sdks/search/README.md
+  - docs/sdks/v1/README.md
+  - docs/sdks/v2/README.md
   - docs/sdks/wallets/README.md
   - docs/sdks/webhooks/README.md
   - py.typed
@@ -881,6 +901,7 @@ generatedFiles:
   - src/sdk/models/operations/getpool.py
   - src/sdk/models/operations/getpoolbalances.py
   - src/sdk/models/operations/getreconciliation.py
+  - src/sdk/models/operations/getserverinfo.py
   - src/sdk/models/operations/gettransaction.py
   - src/sdk/models/operations/gettransactions.py
   - src/sdk/models/operations/gettransferinitiation.py
@@ -960,6 +981,7 @@ generatedFiles:
   - src/sdk/models/operations/v2deletetransactionmetadata.py
   - src/sdk/models/operations/v2deletetrigger.py
   - src/sdk/models/operations/v2deleteworkflow.py
+  - src/sdk/models/operations/v2exportlogs.py
   - src/sdk/models/operations/v2getaccount.py
   - src/sdk/models/operations/v2getbalancesaggregated.py
   - src/sdk/models/operations/v2getinfo.py
@@ -972,6 +994,7 @@ generatedFiles:
   - src/sdk/models/operations/v2gettransaction.py
   - src/sdk/models/operations/v2getvolumeswithbalances.py
   - src/sdk/models/operations/v2getworkflow.py
+  - src/sdk/models/operations/v2importlogs.py
   - src/sdk/models/operations/v2listaccounts.py
   - src/sdk/models/operations/v2listinstances.py
   - src/sdk/models/operations/v2listledgers.py
@@ -1065,6 +1088,7 @@ generatedFiles:
   - src/sdk/models/shared/debitwalletrequest.py
   - src/sdk/models/shared/debitwalletresponse.py
   - src/sdk/models/shared/dummypayconfig.py
+  - src/sdk/models/shared/errorresponse.py
   - src/sdk/models/shared/errorsenum.py
   - src/sdk/models/shared/expandeddebithold.py
   - src/sdk/models/shared/forwardbankaccountrequest.py
@@ -1243,6 +1267,7 @@ generatedFiles:
   - src/sdk/models/shared/v2createworkflowresponse.py
   - src/sdk/models/shared/v2creditwalletrequest.py
   - src/sdk/models/shared/v2debitwalletrequest.py
+  - src/sdk/models/shared/v2errorresponse.py
   - src/sdk/models/shared/v2errorsenum.py
   - src/sdk/models/shared/v2expandedtransaction.py
   - src/sdk/models/shared/v2getledgerresponse.py
@@ -1337,11 +1362,21 @@ generatedFiles:
   - src/sdk/payments.py
   - src/sdk/reconciliation.py
   - src/sdk/sdk.py
+  - src/sdk/sdk_orchestration_v1.py
+  - src/sdk/sdk_payments_v1.py
+  - src/sdk/sdk_reconciliation_v1.py
+  - src/sdk/sdk_search_v1.py
+  - src/sdk/sdk_v1.py
+  - src/sdk/sdk_v2.py
+  - src/sdk/sdk_wallets_v1.py
+  - src/sdk/sdk_webhooks_v1.py
   - src/sdk/sdkconfiguration.py
   - src/sdk/search.py
   - src/sdk/utils/__init__.py
   - src/sdk/utils/retries.py
   - src/sdk/utils/utils.py
+  - src/sdk/v1.py
+  - src/sdk/v2.py
   - src/sdk/wallets.py
   - src/sdk/webhooks.py
 examples:
@@ -1690,7 +1725,7 @@ examples:
         application/json: []
       responses:
         "200":
-          application/json: {"data": [{"data": {"id": 934717, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "reverted": false, "timestamp": "2022-11-30T18:44:50.351Z"}, "responseType": "<value>"}, {"responseType": "<value>"}]}
+          application/json: {"data": [{"data": {"id": 675402, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "reverted": true, "timestamp": "2023-12-06T13:18:01.588Z"}, "responseType": "<value>"}, {"responseType": "<value>"}]}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   v2CreateLedger:
@@ -1725,6 +1760,9 @@ examples:
           ledger: "ledger001"
           address: "6032 Larkin Prairie"
           key: "foo"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   v2DeleteLedgerMetadata:
     speakeasy-default-v2-delete-ledger-metadata:
       parameters:
@@ -1773,6 +1811,8 @@ examples:
         "200":
           application/json: {"server": "<value>", "version": "<value>"}
         default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+        5XX:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   v2GetLedger:
     speakeasy-default-v2-get-ledger:
@@ -1901,6 +1941,8 @@ examples:
         application/json: {"admin": "true"}
       responses:
         default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+        5XX:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   cancelEvent:
     "":
@@ -2245,6 +2287,7 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200": {}
   createAccount:
     speakeasy-default-create-account:
       requestBody:
@@ -2350,7 +2393,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2024-02-09T17:39:38.418Z", "id": "8d4a71ba-4575-442a-9fdb-17eed3b13ec7", "status": "CANCELLED", "updatedAt": "2024-04-25T00:27:47.982Z"}}
+          application/json: {"data": {"connectorID": "<id>", "createdAt": "2022-09-14T18:08:36.551Z", "id": "b8d4a71b-a457-4542-9afd-b17eed3b13ec", "status": "EXPIRED", "updatedAt": "2022-08-01T16:40:57.832Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getConnectorTaskV1:
@@ -2362,7 +2405,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2022-06-20T11:48:17.213Z", "id": "592c3a8b-a286-4c92-93fe-1c798f795cd7", "status": "SUCCEEDED", "updatedAt": "2024-11-10T01:58:07.691Z"}}
+          application/json: {"data": {"connectorID": "<id>", "createdAt": "2023-05-15T09:04:44.604Z", "id": "2592c3a8-ba28-46c9-923f-e1c798f795cd", "status": "CANCELLED", "updatedAt": "2022-05-07T01:38:27.888Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getPayment:
@@ -2413,7 +2456,7 @@ examples:
         path:
           connector: "ATLAR"
       requestBody:
-        application/json: {"apiKey": "XXX", "name": "My Wise Account", "pollingPeriod": "60s"}
+        application/json: {"apiKey": "XXX", "name": "My Stripe Account", "pageSize": 50, "pollingPeriod": "60s"}
       responses:
         "201":
           application/json: {"data": {"connectorID": "<value>"}}
@@ -2455,7 +2498,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"connectorID": "<value>", "createdAt": "2023-03-31T15:06:52.730Z", "id": "943abad6-1f7a-4a0d-b991-cf9266dd4814", "status": "REFUNDED_FAILURE", "updatedAt": "2023-10-16T18:08:06.313Z"}, {"connectorID": "<value>", "createdAt": "2022-09-08T19:27:52.424Z", "id": "f678351b-c600-4cf3-beff-e2c5cad006d4", "status": "DISPUTE_LOST", "updatedAt": "2023-02-03T08:52:20.456Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"connectorID": "<id>", "createdAt": "2023-08-25T00:07:31.663Z", "id": "86943aba-d61f-47aa-80d9-91cf9266dd48", "status": "FAILED", "updatedAt": "2024-07-04T01:56:37.650Z"}, {"connectorID": "<id>", "createdAt": "2023-10-16T18:08:06.313Z", "id": "c3f67835-1bc6-400c-bf3e-ffe2c5cad006", "status": "FAILED", "updatedAt": "2024-12-26T02:29:47.666Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   listConnectorTasksV1:
@@ -2469,7 +2512,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"connectorID": "<value>", "createdAt": "2023-08-31T08:25:15.703Z", "id": "119bf1d7-7f0d-47a9-85f6-d1de55906fa5", "status": "EXPIRED", "updatedAt": "2022-03-08T11:32:23.574Z"}, {"connectorID": "<value>", "createdAt": "2023-12-27T08:45:38.166Z", "id": "636e772b-1d53-4e6e-b1a0-f8d94fbd4d08", "status": "CANCELLED", "updatedAt": "2024-04-25T04:53:52.895Z"}, {"connectorID": "<value>", "createdAt": "2024-04-15T21:11:42.740Z", "id": "3d5edc7f-3fcd-42b1-a430-91094b0590aa", "status": "REFUNDED", "updatedAt": "2022-02-23T06:58:36.788Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"connectorID": "<id>", "createdAt": "2024-06-21T02:32:58.781Z", "id": "98119bf1-d77f-40d7-aa95-f6d1de55906f", "status": "EXPIRED", "updatedAt": "2022-05-12T10:18:09.979Z"}, {"connectorID": "<id>", "createdAt": "2022-03-08T11:32:23.574Z", "id": "6a636e77-2b1d-453e-86e1-a0f8d94fbd4d", "status": "REFUNDED", "updatedAt": "2024-05-01T19:24:21.069Z"}, {"connectorID": "<id>", "createdAt": "2024-04-25T04:53:52.895Z", "id": "dc3d5edc-7f3f-4cd2-ab14-3091094b0590", "status": "DISPUTE", "updatedAt": "2024-01-15T12:09:57.416Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   listPayments:
@@ -2984,5 +3027,23 @@ examples:
       responses:
         "200":
           application/json: {"data": {"config": {"active": true, "createdAt": "2023-05-30T09:53:58.891Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "86054b6d-7f7e-4fb8-8f2f-b6a855cea0c7", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2022-04-25T07:02:46.380Z"}, "createdAt": "2024-06-16T21:37:32.643Z", "id": "c7827ed3-469f-4c48-a7d1-c853b7f1271e", "payload": "{\"data\":\"test\"}", "retryAttempt": 1, "status": "success", "statusCode": 200, "updatedAt": "2023-10-19T10:47:20.940Z", "webhookID": "05f47970-be91-4384-9266-38e01d5768d6"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  getServerInfo:
+    speakeasy-default-get-server-info:
+      responses:
+        "200":
+          application/json: {"version": "<value>"}
+  v2ExportLogs:
+    speakeasy-default-v2-export-logs:
+      parameters:
+        path:
+          ledger: "ledger001"
+  v2ImportLogs:
+    speakeasy-default-v2-import-logs:
+      parameters:
+        path:
+          ledger: "ledger001"
+      responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}

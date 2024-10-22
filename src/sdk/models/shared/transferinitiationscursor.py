@@ -23,6 +23,7 @@ class TransferInitiationsCursorCursor:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class TransferInitiationsCursor:
+    r"""OK"""
     cursor: TransferInitiationsCursorCursor = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cursor') }})
     
 
