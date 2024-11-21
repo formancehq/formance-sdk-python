@@ -35,10 +35,10 @@ class SDKConfiguration:
     server_idx: Optional[int] = 0
     server_defaults: List[Dict[str, str]] = field(default_factory=List)
     language: str = 'python'
-    openapi_doc_version: str = 'v2.1.0-beta.3'
-    sdk_version: str = '4.1.0'
-    gen_version: str = '2.438.15'
-    user_agent: str = 'speakeasy-sdk/python 4.1.0 2.438.15 v2.1.0-beta.3 formance-sdk-python'
+    openapi_doc_version: str = 'v2.1.1'
+    sdk_version: str = '4.2.0'
+    gen_version: str = '2.461.2'
+    user_agent: str = 'speakeasy-sdk/python 4.2.0 2.461.2 v2.1.1 formance-sdk-python'
     retry_config: Optional[RetryConfig] = None
 
     def __post_init__(self):

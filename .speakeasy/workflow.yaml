@@ -13,3 +13,7 @@ targets:
         publish:
             pypi:
                 token: $PYPI_TOKEN
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
+            blocking: false

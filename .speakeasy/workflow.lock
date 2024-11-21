@@ -1,18 +1,20 @@
-speakeasyVersion: 1.420.0
+speakeasyVersion: 1.441.1
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:152423917e28f7ab99b5eaadc6f18ad1a813ee5670a8253272671db8592a4d12
-        sourceBlobDigest: sha256:289baef68db829be9ab3b7d551c2c8f06c9adf872c08c55eb3d4fb8cc570d555
+        sourceRevisionDigest: sha256:3d90913dcec5c3f43e376f878b576fd3ade0f87090d5a6457f7aa72f314e0966
+        sourceBlobDigest: sha256:32629e12788197e47087a513dddd7268e312e34ebcdf92b037a278687f751892
         tags:
             - latest
-            - main
+            - speakeasy-sdk-regen-1732202878
 targets:
     formance-python-sdk:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:152423917e28f7ab99b5eaadc6f18ad1a813ee5670a8253272671db8592a4d12
-        sourceBlobDigest: sha256:289baef68db829be9ab3b7d551c2c8f06c9adf872c08c55eb3d4fb8cc570d555
+        sourceRevisionDigest: sha256:3d90913dcec5c3f43e376f878b576fd3ade0f87090d5a6457f7aa72f314e0966
+        sourceBlobDigest: sha256:32629e12788197e47087a513dddd7268e312e34ebcdf92b037a278687f751892
+        codeSamplesNamespace: my-source-code-samples
+        codeSamplesRevisionDigest: sha256:7dbd43f57b4e50ba2962b7ab4a61c7524283a4ae2474ab30922a7db0913676ce
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -29,3 +31,7 @@ workflow:
             publish:
                 pypi:
                     token: $PYPI_TOKEN
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
+                blocking: false

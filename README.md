@@ -269,13 +269,13 @@ if res.get_versions_response is not None:
 
 * [get_versions](docs/sdks/sdk/README.md#get_versions) - Show stack version information
 
-### [search](docs/sdks/search/README.md)
+### [~~search~~](docs/sdks/search/README.md)
 
 
-#### [search.v1](docs/sdks/sdksearchv1/README.md)
+#### [~~search.v1~~](docs/sdks/sdksearchv1/README.md)
 
-* [search](docs/sdks/sdksearchv1/README.md#search) - search.v1
-* [searchget_server_info](docs/sdks/sdksearchv1/README.md#searchget_server_info) - Get server info
+* [~~search~~](docs/sdks/sdksearchv1/README.md#search) - search.v1 :warning: **Deprecated**
+* [~~searchget_server_info~~](docs/sdks/sdksearchv1/README.md#searchget_server_info) - Get server info :warning: **Deprecated**
 
 ### [wallets](docs/sdks/wallets/README.md)
 
@@ -331,10 +331,10 @@ By default, an API error will raise a errors.SDKError exception, which has the f
 
 When custom error responses are specified for an operation, the SDK may also raise their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `create_transactions` method may raise the following exceptions:
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type           | Status Code | Content Type     |
+| -------------------- | ----------- | ---------------- |
+| errors.ErrorResponse | default     | application/json |
+| errors.SDKError      | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -403,10 +403,12 @@ if res.transactions_response is not None:
 
 You can override the default server globally by passing a server index to the `server_idx: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `http://localhost` | None |
-| 1 | `https://{organization}.{environment}.formance.cloud` | `environment` (default is `sandbox`), `organization` (default is `orgID-stackID`) |
+| #   | Server                                                | Variables                                                       | Default values                    |
+| --- | ----------------------------------------------------- | --------------------------------------------------------------- | --------------------------------- |
+| 0   | `http://localhost`                                    |                                                                 |                                   |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `environment: models.ServerEnvironment`<br/>`organization: str` | `"sandbox"`<br/>`"orgID-stackID"` |
+
+If the selected server has variables, you may override their default values through the additional parameters made available in the SDK constructor.
 
 #### Example
 
@@ -430,12 +432,6 @@ if res.get_versions_response is not None:
     pass
 
 ```
-
-#### Variables
-
-Some of the server options above contain variables. If you want to set the values of those variables, the following optional parameters are available when initializing the SDK client instance:
- * `environment: models.ServerEnvironment`
- * `organization: str`
 
 ### Override Server URL Per-Client
 
@@ -485,9 +481,9 @@ s = sdk.SDK(client=http_client)
 
 This SDK supports the following security scheme globally:
 
-| Name                           | Type                           | Scheme                         |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| `client_id` `client_secret`    | oauth2                         | OAuth2 Client Credentials Flow |
+| Name                            | Type   | Scheme                         |
+| ------------------------------- | ------ | ------------------------------ |
+| `client_id`<br/>`client_secret` | oauth2 | OAuth2 Client Credentials Flow |
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```python
