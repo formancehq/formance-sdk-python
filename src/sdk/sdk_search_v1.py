@@ -18,6 +18,8 @@ class SDKSearchV1:
     def search(self, request: shared.Query) -> operations.SearchResponse:
         r"""search.v1
         Elasticsearch.v1 query engine
+
+        Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
         """
         hook_ctx = HookContext(operation_id='search', oauth2_scopes=['auth:read','search:write'], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -76,7 +78,10 @@ class SDKSearchV1:
     
     
     def searchget_server_info(self) -> operations.SearchgetServerInfoResponse:
-        r"""Get server info"""
+        r"""Get server info
+
+        Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+        """
         hook_ctx = HookContext(operation_id='searchgetServerInfo', oauth2_scopes=['auth:read','search:read'], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
