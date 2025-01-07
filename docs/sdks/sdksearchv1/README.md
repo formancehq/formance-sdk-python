@@ -17,44 +17,44 @@ Elasticsearch.v1 query engine
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.search.v1.search(request={
+        "after": [
+            "users:002",
+        ],
+        "cursor": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        "ledgers": [
+            "quickstart",
+        ],
+        "policy": "OR",
+        "sort": "id:asc",
+        "terms": [
+            "destination=central_bank1",
+        ],
+    })
 
-res = s.search.v1.search(request=shared.Query(
-    after=[
-        'users:002',
-    ],
-    cursor='YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=',
-    ledgers=[
-        'quickstart',
-    ],
-    policy='OR',
-    raw=shared.QueryRaw(),
-    sort='id:asc',
-    terms=[
-        'destination=central_bank1',
-    ],
-))
+    assert res.response is not None
 
-if res.response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.response)
 
 ```
 
 ### Parameters
 
-| Parameter                                    | Type                                         | Required                                     | Description                                  |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| `request`                                    | [shared.Query](../../models/shared/query.md) | :heavy_check_mark:                           | The request object to use for the request.   |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [shared.Query](../../models/shared/query.md)                        | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -75,24 +75,30 @@ Get server info
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.search.v1.searchget_server_info()
 
-res = s.search.v1.searchget_server_info()
+    assert res.server_info is not None
 
-if res.server_info is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.server_info)
 
 ```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 

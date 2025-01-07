@@ -20,24 +20,24 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.webhooks.v1.activate_config(request={
+        "id": "4997257d-dfb6-445b-929c-cbe2ab182818",
+    })
 
-res = s.webhooks.v1.activate_config(request=operations.ActivateConfigRequest(
-    id='4997257d-dfb6-445b-929c-cbe2ab182818',
-))
+    assert res.config_response is not None
 
-if res.config_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.config_response)
 
 ```
 
@@ -46,6 +46,7 @@ if res.config_response is not None:
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.ActivateConfigRequest](../../models/operations/activateconfigrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
 
 ### Response
 
@@ -69,27 +70,27 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.webhooks.v1.change_config_secret(request={
+        "id": "4997257d-dfb6-445b-929c-cbe2ab182818",
+        "config_change_secret": {
+            "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
+        },
+    })
 
-res = s.webhooks.v1.change_config_secret(request=operations.ChangeConfigSecretRequest(
-    id='4997257d-dfb6-445b-929c-cbe2ab182818',
-    config_change_secret=shared.ConfigChangeSecret(
-        secret='V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
-    ),
-))
+    assert res.config_response is not None
 
-if res.config_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.config_response)
 
 ```
 
@@ -98,6 +99,7 @@ if res.config_response is not None:
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.ChangeConfigSecretRequest](../../models/operations/changeconfigsecretrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
 ### Response
 
@@ -117,24 +119,24 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.webhooks.v1.deactivate_config(request={
+        "id": "4997257d-dfb6-445b-929c-cbe2ab182818",
+    })
 
-res = s.webhooks.v1.deactivate_config(request=operations.DeactivateConfigRequest(
-    id='4997257d-dfb6-445b-929c-cbe2ab182818',
-))
+    assert res.config_response is not None
 
-if res.config_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.config_response)
 
 ```
 
@@ -143,6 +145,7 @@ if res.config_response is not None:
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.DeactivateConfigRequest](../../models/operations/deactivateconfigrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
 
 ### Response
 
@@ -162,24 +165,24 @@ Delete a webhooks config by ID.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.webhooks.v1.delete_config(request={
+        "id": "4997257d-dfb6-445b-929c-cbe2ab182818",
+    })
 
-res = s.webhooks.v1.delete_config(request=operations.DeleteConfigRequest(
-    id='4997257d-dfb6-445b-929c-cbe2ab182818',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -188,6 +191,7 @@ if res is not None:
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.DeleteConfigRequest](../../models/operations/deleteconfigrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
 
 ### Response
 
@@ -207,25 +211,25 @@ Sorted by updated date descending
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.webhooks.v1.get_many_configs(request={
+        "endpoint": "https://example.com",
+        "id": "4997257d-dfb6-445b-929c-cbe2ab182818",
+    })
 
-res = s.webhooks.v1.get_many_configs(request=operations.GetManyConfigsRequest(
-    endpoint='https://example.com',
-    id='4997257d-dfb6-445b-929c-cbe2ab182818',
-))
+    assert res.configs_response is not None
 
-if res.configs_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.configs_response)
 
 ```
 
@@ -234,6 +238,7 @@ if res.configs_response is not None:
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.GetManyConfigsRequest](../../models/operations/getmanyconfigsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
 
 ### Response
 
@@ -262,37 +267,38 @@ All eventTypes are converted to lower-case when inserted.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.webhooks.v1.insert_config(request={
+        "endpoint": "https://example.com",
+        "event_types": [
+            "TYPE1",
+        ],
+        "name": "customer_payment",
+        "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
+    })
 
-res = s.webhooks.v1.insert_config(request=shared.ConfigUser(
-    endpoint='https://example.com',
-    event_types=[
-        'TYPE1',
-    ],
-    name='customer_payment',
-    secret='V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
-))
+    assert res.config_response is not None
 
-if res.config_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.config_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                              | Type                                                   | Required                                               | Description                                            |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `request`                                              | [shared.ConfigUser](../../models/shared/configuser.md) | :heavy_check_mark:                                     | The request object to use for the request.             |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [shared.ConfigUser](../../models/shared/configuser.md)              | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -312,24 +318,24 @@ Test a config by sending a webhook to its endpoint.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.webhooks.v1.test_config(request={
+        "id": "4997257d-dfb6-445b-929c-cbe2ab182818",
+    })
 
-res = s.webhooks.v1.test_config(request=operations.TestConfigRequest(
-    id='4997257d-dfb6-445b-929c-cbe2ab182818',
-))
+    assert res.attempt_response is not None
 
-if res.attempt_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.attempt_response)
 
 ```
 
@@ -338,6 +344,7 @@ if res.attempt_response is not None:
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.TestConfigRequest](../../models/operations/testconfigrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
 
 ### Response
 

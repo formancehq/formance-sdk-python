@@ -56,27 +56,27 @@ Add an account to a pool
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.add_account_to_pool(request={
+        "add_account_to_pool_request": {
+            "account_id": "<value>",
+        },
+        "pool_id": "XXX",
+    })
 
-res = s.payments.v1.add_account_to_pool(request=operations.AddAccountToPoolRequest(
-    add_account_to_pool_request=shared.AddAccountToPoolRequest(
-        account_id='<value>',
-    ),
-    pool_id='XXX',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -85,6 +85,7 @@ if res is not None:
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.AddAccountToPoolRequest](../../models/operations/addaccounttopoolrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
 
 ### Response
 
@@ -104,30 +105,30 @@ Execute a transfer between two accounts.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.connectors_transfer(request={
+        "transfer_request": {
+            "amount": 100,
+            "asset": "USD",
+            "destination": "acct_1Gqj58KZcSIg2N2q",
+            "source": "acct_1Gqj58KZcSIg2N2q",
+        },
+        "connector": shared.Connector.BANKING_CIRCLE,
+    })
 
-res = s.payments.v1.connectors_transfer(request=operations.ConnectorsTransferRequest(
-    transfer_request=shared.TransferRequest(
-        amount=100,
-        asset='USD',
-        destination='acct_1Gqj58KZcSIg2N2q',
-        source='acct_1Gqj58KZcSIg2N2q',
-    ),
-    connector=shared.Connector.BANKING_CIRCLE,
-))
+    assert res.transfer_response is not None
 
-if res.transfer_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.transfer_response)
 
 ```
 
@@ -136,6 +137,7 @@ if res.transfer_response is not None:
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.ConnectorsTransferRequest](../../models/operations/connectorstransferrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
 ### Response
 
@@ -156,35 +158,36 @@ Create an account
 
 ```python
 import dateutil.parser
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.create_account(request={
+        "connector_id": "<value>",
+        "created_at": dateutil.parser.isoparse("2024-08-19T02:15:08.152Z"),
+        "reference": "<value>",
+        "type": shared.AccountType.INTERNAL,
+    })
 
-res = s.payments.v1.create_account(request=shared.AccountRequest(
-    connector_id='<value>',
-    created_at=dateutil.parser.isoparse('2024-08-19T02:15:08.152Z'),
-    reference='<value>',
-    type=shared.AccountType.INTERNAL,
-))
+    assert res.payments_account_response is not None
 
-if res.payments_account_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.payments_account_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `request`                                                      | [shared.AccountRequest](../../models/shared/accountrequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [shared.AccountRequest](../../models/shared/accountrequest.md)      | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -204,26 +207,26 @@ Create a bank account in Payments and on the PSP.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.create_bank_account(request={
+        "connector_id": "<value>",
+        "country": "GB",
+        "name": "My account",
+    })
 
-res = s.payments.v1.create_bank_account(request=shared.BankAccountRequest(
-    connector_id='<value>',
-    country='GB',
-    name='My account',
-))
+    assert res.bank_account_response is not None
 
-if res.bank_account_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.bank_account_response)
 
 ```
 
@@ -232,6 +235,7 @@ if res.bank_account_response is not None:
 | Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `request`                                                              | [shared.BankAccountRequest](../../models/shared/bankaccountrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| `retries`                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)       | :heavy_minus_sign:                                                     | Configuration to override the default retry behavior of the client.    |
 
 ### Response
 
@@ -252,39 +256,40 @@ Create a payment
 
 ```python
 import dateutil.parser
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.create_payment(request={
+        "amount": 100,
+        "asset": "USD",
+        "connector_id": "<value>",
+        "created_at": dateutil.parser.isoparse("2024-11-09T01:03:21.011Z"),
+        "reference": "<value>",
+        "scheme": shared.PaymentScheme.MOLPAY,
+        "status": shared.PaymentStatus.REFUNDED_FAILURE,
+        "type": shared.PaymentType.PAYOUT,
+    })
 
-res = s.payments.v1.create_payment(request=shared.PaymentRequest(
-    amount=100,
-    asset='USD',
-    connector_id='<value>',
-    created_at=dateutil.parser.isoparse('2024-11-09T01:03:21.011Z'),
-    reference='<value>',
-    scheme=shared.PaymentScheme.MOLPAY,
-    status=shared.PaymentStatus.REFUNDED_FAILURE,
-    type=shared.PaymentType.PAYOUT,
-))
+    assert res.payment_response is not None
 
-if res.payment_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.payment_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `request`                                                      | [shared.PaymentRequest](../../models/shared/paymentrequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [shared.PaymentRequest](../../models/shared/paymentrequest.md)      | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -304,37 +309,38 @@ Create a Pool
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.create_pool(request={
+        "account_i_ds": [
+            "<value>",
+            "<value>",
+            "<value>",
+        ],
+        "name": "<value>",
+    })
 
-res = s.payments.v1.create_pool(request=shared.PoolRequest(
-    account_i_ds=[
-        '<value>',
-        '<value>',
-        '<value>',
-    ],
-    name='<value>',
-))
+    assert res.pool_response is not None
 
-if res.pool_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.pool_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `request`                                                | [shared.PoolRequest](../../models/shared/poolrequest.md) | :heavy_check_mark:                                       | The request object to use for the request.               |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [shared.PoolRequest](../../models/shared/poolrequest.md)            | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -355,32 +361,32 @@ Create a transfer initiation
 
 ```python
 import dateutil.parser
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.create_transfer_initiation(request={
+        "amount": 256698,
+        "asset": "USD",
+        "description": "Open-architected heuristic knowledge user",
+        "destination_account_id": "<value>",
+        "reference": "XXX",
+        "scheduled_at": dateutil.parser.isoparse("2024-05-21T00:04:35.840Z"),
+        "source_account_id": "<value>",
+        "type": shared.TransferInitiationRequestType.PAYOUT,
+        "validated": False,
+    })
 
-res = s.payments.v1.create_transfer_initiation(request=shared.TransferInitiationRequest(
-    amount=256698,
-    asset='USD',
-    description='Open-architected heuristic knowledge user',
-    destination_account_id='<value>',
-    reference='XXX',
-    scheduled_at=dateutil.parser.isoparse('2024-05-21T00:04:35.840Z'),
-    source_account_id='<value>',
-    type=shared.TransferInitiationRequestType.PAYOUT,
-    validated=False,
-))
+    assert res.transfer_initiation_response is not None
 
-if res.transfer_initiation_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.transfer_initiation_response)
 
 ```
 
@@ -389,6 +395,7 @@ if res.transfer_initiation_response is not None:
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [shared.TransferInitiationRequest](../../models/shared/transferinitiationrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
 
 ### Response
 
@@ -408,24 +415,24 @@ Delete a pool by its id.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.delete_pool(request={
+        "pool_id": "XXX",
+    })
 
-res = s.payments.v1.delete_pool(request=operations.DeletePoolRequest(
-    pool_id='XXX',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -434,6 +441,7 @@ if res is not None:
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.DeletePoolRequest](../../models/operations/deletepoolrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
 
 ### Response
 
@@ -453,24 +461,24 @@ Delete a transfer initiation by its id.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.delete_transfer_initiation(request={
+        "transfer_id": "XXX",
+    })
 
-res = s.payments.v1.delete_transfer_initiation(request=operations.DeleteTransferInitiationRequest(
-    transfer_id='XXX',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -479,6 +487,7 @@ if res is not None:
 | Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                | [operations.DeleteTransferInitiationRequest](../../models/operations/deletetransferinitiationrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `retries`                                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                         | :heavy_minus_sign:                                                                                       | Configuration to override the default retry behavior of the client.                                      |
 
 ### Response
 
@@ -498,27 +507,27 @@ Forward a bank account to a connector
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.forward_bank_account(request={
+        "forward_bank_account_request": {
+            "connector_id": "<value>",
+        },
+        "bank_account_id": "XXX",
+    })
 
-res = s.payments.v1.forward_bank_account(request=operations.ForwardBankAccountRequest(
-    forward_bank_account_request=shared.ForwardBankAccountRequest(
-        connector_id='<value>',
-    ),
-    bank_account_id='XXX',
-))
+    assert res.bank_account_response is not None
 
-if res.bank_account_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.bank_account_response)
 
 ```
 
@@ -527,6 +536,7 @@ if res.bank_account_response is not None:
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.ForwardBankAccountRequest](../../models/operations/forwardbankaccountrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
 ### Response
 
@@ -546,30 +556,30 @@ Get account balances
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.get_account_balances(request={
+        "account_id": "XXX",
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+        "sort": [
+            "date:asc",
+            "status:desc",
+        ],
+    })
 
-res = s.payments.v1.get_account_balances(request=operations.GetAccountBalancesRequest(
-    account_id='XXX',
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-    sort=[
-        'date:asc',
-        'status:desc',
-    ],
-))
+    assert res.balances_cursor is not None
 
-if res.balances_cursor is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.balances_cursor)
 
 ```
 
@@ -578,6 +588,7 @@ if res.balances_cursor is not None:
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.GetAccountBalancesRequest](../../models/operations/getaccountbalancesrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
 ### Response
 
@@ -597,24 +608,24 @@ Get a bank account created by user on Formance
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.get_bank_account(request={
+        "bank_account_id": "XXX",
+    })
 
-res = s.payments.v1.get_bank_account(request=operations.GetBankAccountRequest(
-    bank_account_id='XXX',
-))
+    assert res.bank_account_response is not None
 
-if res.bank_account_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.bank_account_response)
 
 ```
 
@@ -623,6 +634,7 @@ if res.bank_account_response is not None:
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.GetBankAccountRequest](../../models/operations/getbankaccountrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
 
 ### Response
 
@@ -644,25 +656,25 @@ Get a specific task associated to the connector.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.get_connector_task(request={
+        "connector": shared.Connector.ADYEN,
+        "task_id": "task1",
+    })
 
-res = s.payments.v1.get_connector_task(request=operations.GetConnectorTaskRequest(
-    connector=shared.Connector.ADYEN,
-    task_id='task1',
-))
+    assert res.task_response is not None
 
-if res.task_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.task_response)
 
 ```
 
@@ -671,6 +683,7 @@ if res.task_response is not None:
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.GetConnectorTaskRequest](../../models/operations/getconnectortaskrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
 
 ### Response
 
@@ -690,26 +703,26 @@ Get a specific task associated to the connector.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.get_connector_task_v1(request={
+        "connector": shared.Connector.BANKING_CIRCLE,
+        "connector_id": "XXX",
+        "task_id": "task1",
+    })
 
-res = s.payments.v1.get_connector_task_v1(request=operations.GetConnectorTaskV1Request(
-    connector=shared.Connector.BANKING_CIRCLE,
-    connector_id='XXX',
-    task_id='task1',
-))
+    assert res.task_response is not None
 
-if res.task_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.task_response)
 
 ```
 
@@ -718,6 +731,7 @@ if res.task_response is not None:
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.GetConnectorTaskV1Request](../../models/operations/getconnectortaskv1request.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
 ### Response
 
@@ -737,24 +751,24 @@ Get a payment
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.get_payment(request={
+        "payment_id": "XXX",
+    })
 
-res = s.payments.v1.get_payment(request=operations.GetPaymentRequest(
-    payment_id='XXX',
-))
+    assert res.payment_response is not None
 
-if res.payment_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.payment_response)
 
 ```
 
@@ -763,6 +777,7 @@ if res.payment_response is not None:
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.GetPaymentRequest](../../models/operations/getpaymentrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
 
 ### Response
 
@@ -782,24 +797,24 @@ Get a Pool
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.get_pool(request={
+        "pool_id": "XXX",
+    })
 
-res = s.payments.v1.get_pool(request=operations.GetPoolRequest(
-    pool_id='XXX',
-))
+    assert res.pool_response is not None
 
-if res.pool_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.pool_response)
 
 ```
 
@@ -808,6 +823,7 @@ if res.pool_response is not None:
 | Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `request`                                                              | [operations.GetPoolRequest](../../models/operations/getpoolrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| `retries`                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)       | :heavy_minus_sign:                                                     | Configuration to override the default retry behavior of the client.    |
 
 ### Response
 
@@ -828,25 +844,25 @@ Get pool balances
 
 ```python
 import dateutil.parser
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.get_pool_balances(request={
+        "at": dateutil.parser.isoparse("2023-05-05T06:40:23.119Z"),
+        "pool_id": "XXX",
+    })
 
-res = s.payments.v1.get_pool_balances(request=operations.GetPoolBalancesRequest(
-    at=dateutil.parser.isoparse('2023-05-05T06:40:23.119Z'),
-    pool_id='XXX',
-))
+    assert res.pool_balances_response is not None
 
-if res.pool_balances_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.pool_balances_response)
 
 ```
 
@@ -855,6 +871,7 @@ if res.pool_balances_response is not None:
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `request`                                                                              | [operations.GetPoolBalancesRequest](../../models/operations/getpoolbalancesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
 
 ### Response
 
@@ -874,24 +891,24 @@ Get a transfer initiation
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.get_transfer_initiation(request={
+        "transfer_id": "XXX",
+    })
 
-res = s.payments.v1.get_transfer_initiation(request=operations.GetTransferInitiationRequest(
-    transfer_id='XXX',
-))
+    assert res.transfer_initiation_response is not None
 
-if res.transfer_initiation_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.transfer_initiation_response)
 
 ```
 
@@ -900,6 +917,7 @@ if res.transfer_initiation_response is not None:
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `request`                                                                                          | [operations.GetTransferInitiationRequest](../../models/operations/gettransferinitiationrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `retries`                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                   | :heavy_minus_sign:                                                                                 | Configuration to override the default retry behavior of the client.                                |
 
 ### Response
 
@@ -919,30 +937,30 @@ Install a connector by its name and config.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.install_connector(request={
+        "connector_config": {
+            "api_key": "XXX",
+            "name": "My Stripe Account",
+            "page_size": 50,
+            "polling_period": "60s",
+        },
+        "connector": shared.Connector.ATLAR,
+    })
 
-res = s.payments.v1.install_connector(request=operations.InstallConnectorRequest(
-    connector_config=shared.StripeConfig(
-        api_key='XXX',
-        name='My Stripe Account',
-        page_size=50,
-        polling_period='60s',
-    ),
-    connector=shared.Connector.ATLAR,
-))
+    assert res.connector_response is not None
 
-if res.connector_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.connector_response)
 
 ```
 
@@ -951,6 +969,7 @@ if res.connector_response is not None:
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.InstallConnectorRequest](../../models/operations/installconnectorrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
 
 ### Response
 
@@ -970,24 +989,30 @@ List all installed connectors.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.list_all_connectors()
 
-res = s.payments.v1.list_all_connectors()
+    assert res.connectors_response is not None
 
-if res.connectors_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.connectors_response)
 
 ```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -1007,29 +1032,29 @@ List all bank accounts created by user on Formance.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.list_bank_accounts(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+        "sort": [
+            "date:asc",
+            "status:desc",
+        ],
+    })
 
-res = s.payments.v1.list_bank_accounts(request=operations.ListBankAccountsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-    sort=[
-        'date:asc',
-        'status:desc',
-    ],
-))
+    assert res.bank_accounts_cursor is not None
 
-if res.bank_accounts_cursor is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.bank_accounts_cursor)
 
 ```
 
@@ -1038,6 +1063,7 @@ if res.bank_accounts_cursor is not None:
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.ListBankAccountsRequest](../../models/operations/listbankaccountsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
 
 ### Response
 
@@ -1057,24 +1083,30 @@ List the configs of each available connector.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.list_configs_available_connectors()
 
-res = s.payments.v1.list_configs_available_connectors()
+    assert res.connectors_configs_response is not None
 
-if res.connectors_configs_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.connectors_configs_response)
 
 ```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -1096,26 +1128,26 @@ List all tasks associated with this connector.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.list_connector_tasks(request={
+        "connector": shared.Connector.MODULR,
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+    })
 
-res = s.payments.v1.list_connector_tasks(request=operations.ListConnectorTasksRequest(
-    connector=shared.Connector.MODULR,
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-))
+    assert res.tasks_cursor is not None
 
-if res.tasks_cursor is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.tasks_cursor)
 
 ```
 
@@ -1124,6 +1156,7 @@ if res.tasks_cursor is not None:
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.ListConnectorTasksRequest](../../models/operations/listconnectortasksrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
 ### Response
 
@@ -1143,27 +1176,27 @@ List all tasks associated with this connector.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.list_connector_tasks_v1(request={
+        "connector": shared.Connector.BANKING_CIRCLE,
+        "connector_id": "XXX",
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+    })
 
-res = s.payments.v1.list_connector_tasks_v1(request=operations.ListConnectorTasksV1Request(
-    connector=shared.Connector.BANKING_CIRCLE,
-    connector_id='XXX',
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-))
+    assert res.tasks_cursor is not None
 
-if res.tasks_cursor is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.tasks_cursor)
 
 ```
 
@@ -1172,6 +1205,7 @@ if res.tasks_cursor is not None:
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.ListConnectorTasksV1Request](../../models/operations/listconnectortasksv1request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
 
 ### Response
 
@@ -1191,29 +1225,29 @@ List payments
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.list_payments(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+        "sort": [
+            "date:asc",
+            "status:desc",
+        ],
+    })
 
-res = s.payments.v1.list_payments(request=operations.ListPaymentsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-    sort=[
-        'date:asc',
-        'status:desc',
-    ],
-))
+    assert res.payments_cursor is not None
 
-if res.payments_cursor is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.payments_cursor)
 
 ```
 
@@ -1222,6 +1256,7 @@ if res.payments_cursor is not None:
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.ListPaymentsRequest](../../models/operations/listpaymentsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
 
 ### Response
 
@@ -1241,29 +1276,29 @@ List Pools
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.list_pools(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+        "sort": [
+            "date:asc",
+            "status:desc",
+        ],
+    })
 
-res = s.payments.v1.list_pools(request=operations.ListPoolsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-    sort=[
-        'date:asc',
-        'status:desc',
-    ],
-))
+    assert res.pools_cursor is not None
 
-if res.pools_cursor is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.pools_cursor)
 
 ```
 
@@ -1272,6 +1307,7 @@ if res.pools_cursor is not None:
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.ListPoolsRequest](../../models/operations/listpoolsrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
 
 ### Response
 
@@ -1291,29 +1327,29 @@ List Transfer Initiations
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.list_transfer_initiations(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+        "sort": [
+            "date:asc",
+            "status:desc",
+        ],
+    })
 
-res = s.payments.v1.list_transfer_initiations(request=operations.ListTransferInitiationsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-    sort=[
-        'date:asc',
-        'status:desc',
-    ],
-))
+    assert res.transfer_initiations_cursor is not None
 
-if res.transfer_initiations_cursor is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.transfer_initiations_cursor)
 
 ```
 
@@ -1322,6 +1358,7 @@ if res.transfer_initiations_cursor is not None:
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.ListTransferInitiationsRequest](../../models/operations/listtransferinitiationsrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
 
 ### Response
 
@@ -1341,24 +1378,24 @@ Get an account
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.paymentsget_account(request={
+        "account_id": "XXX",
+    })
 
-res = s.payments.v1.paymentsget_account(request=operations.PaymentsgetAccountRequest(
-    account_id='XXX',
-))
+    assert res.payments_account_response is not None
 
-if res.payments_account_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.payments_account_response)
 
 ```
 
@@ -1367,6 +1404,7 @@ if res.payments_account_response is not None:
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.PaymentsgetAccountRequest](../../models/operations/paymentsgetaccountrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
 ### Response
 
@@ -1386,24 +1424,30 @@ Get server info
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.paymentsget_server_info()
 
-res = s.payments.v1.paymentsget_server_info()
+    assert res.server_info is not None
 
-if res.server_info is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.server_info)
 
 ```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -1423,29 +1467,29 @@ List accounts
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.paymentslist_accounts(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+        "sort": [
+            "date:asc",
+            "status:desc",
+        ],
+    })
 
-res = s.payments.v1.paymentslist_accounts(request=operations.PaymentslistAccountsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-    sort=[
-        'date:asc',
-        'status:desc',
-    ],
-))
+    assert res.accounts_cursor is not None
 
-if res.accounts_cursor is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.accounts_cursor)
 
 ```
 
@@ -1454,6 +1498,7 @@ if res.accounts_cursor is not None:
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.PaymentslistAccountsRequest](../../models/operations/paymentslistaccountsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
 
 ### Response
 
@@ -1475,24 +1520,24 @@ Read connector config
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.read_connector_config(request={
+        "connector": shared.Connector.GENERIC,
+    })
 
-res = s.payments.v1.read_connector_config(request=operations.ReadConnectorConfigRequest(
-    connector=shared.Connector.GENERIC,
-))
+    assert res.connector_config_response is not None
 
-if res.connector_config_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.connector_config_response)
 
 ```
 
@@ -1501,6 +1546,7 @@ if res.connector_config_response is not None:
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `request`                                                                                      | [operations.ReadConnectorConfigRequest](../../models/operations/readconnectorconfigrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `retries`                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                               | :heavy_minus_sign:                                                                             | Configuration to override the default retry behavior of the client.                            |
 
 ### Response
 
@@ -1520,25 +1566,25 @@ Read connector config
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.read_connector_config_v1(request={
+        "connector": shared.Connector.CURRENCY_CLOUD,
+        "connector_id": "XXX",
+    })
 
-res = s.payments.v1.read_connector_config_v1(request=operations.ReadConnectorConfigV1Request(
-    connector=shared.Connector.CURRENCY_CLOUD,
-    connector_id='XXX',
-))
+    assert res.connector_config_response is not None
 
-if res.connector_config_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.connector_config_response)
 
 ```
 
@@ -1547,6 +1593,7 @@ if res.connector_config_response is not None:
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `request`                                                                                          | [operations.ReadConnectorConfigV1Request](../../models/operations/readconnectorconfigv1request.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `retries`                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                   | :heavy_minus_sign:                                                                                 | Configuration to override the default retry behavior of the client.                                |
 
 ### Response
 
@@ -1566,25 +1613,25 @@ Remove an account from a pool by its id.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.remove_account_from_pool(request={
+        "account_id": "XXX",
+        "pool_id": "XXX",
+    })
 
-res = s.payments.v1.remove_account_from_pool(request=operations.RemoveAccountFromPoolRequest(
-    account_id='XXX',
-    pool_id='XXX',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -1593,6 +1640,7 @@ if res is not None:
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `request`                                                                                          | [operations.RemoveAccountFromPoolRequest](../../models/operations/removeaccountfrompoolrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `retries`                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                   | :heavy_minus_sign:                                                                                 | Configuration to override the default retry behavior of the client.                                |
 
 ### Response
 
@@ -1616,24 +1664,24 @@ It will remove the connector and ALL PAYMENTS generated with it.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.reset_connector(request={
+        "connector": shared.Connector.ATLAR,
+    })
 
-res = s.payments.v1.reset_connector(request=operations.ResetConnectorRequest(
-    connector=shared.Connector.ATLAR,
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -1642,6 +1690,7 @@ if res is not None:
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.ResetConnectorRequest](../../models/operations/resetconnectorrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
 
 ### Response
 
@@ -1663,25 +1712,25 @@ It will remove the connector and ALL PAYMENTS generated with it.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.reset_connector_v1(request={
+        "connector": shared.Connector.GENERIC,
+        "connector_id": "XXX",
+    })
 
-res = s.payments.v1.reset_connector_v1(request=operations.ResetConnectorV1Request(
-    connector=shared.Connector.GENERIC,
-    connector_id='XXX',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -1690,6 +1739,7 @@ if res is not None:
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.ResetConnectorV1Request](../../models/operations/resetconnectorv1request.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
 
 ### Response
 
@@ -1709,24 +1759,24 @@ Retry a failed transfer initiation
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.retry_transfer_initiation(request={
+        "transfer_id": "XXX",
+    })
 
-res = s.payments.v1.retry_transfer_initiation(request=operations.RetryTransferInitiationRequest(
-    transfer_id='XXX',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -1735,6 +1785,7 @@ if res is not None:
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.RetryTransferInitiationRequest](../../models/operations/retrytransferinitiationrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
 
 ### Response
 
@@ -1754,34 +1805,34 @@ Reverse transfer initiation
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
-
-res = s.payments.v1.reverse_transfer_initiation(request=operations.ReverseTransferInitiationRequest(
-    reverse_transfer_initiation_request=shared.ReverseTransferInitiationRequest(
-        amount=327549,
-        asset='USD',
-        description='Multi-channelled responsive capability',
-        metadata={
-            'key': '<value>',
-            'key1': '<value>',
+    res = sdk.payments.v1.reverse_transfer_initiation(request={
+        "reverse_transfer_initiation_request": {
+            "amount": 327549,
+            "asset": "USD",
+            "description": "Multi-channelled responsive capability",
+            "metadata": {
+                "key": "<value>",
+                "key1": "<value>",
+            },
+            "reference": "XXX",
         },
-        reference='XXX',
-    ),
-    transfer_id='XXX',
-))
+        "transfer_id": "XXX",
+    })
 
-if res is not None:
-    # handle response
-    pass
+    assert res is not None
+
+    # Handle response
+    print(res)
 
 ```
 
@@ -1790,6 +1841,7 @@ if res is not None:
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                  | [operations.ReverseTransferInitiationRequest](../../models/operations/reversetransferinitiationrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `retries`                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                           | :heavy_minus_sign:                                                                                         | Configuration to override the default retry behavior of the client.                                        |
 
 ### Response
 
@@ -1809,27 +1861,27 @@ Update a transfer initiation status
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.udpate_transfer_initiation_status(request={
+        "update_transfer_initiation_status_request": {
+            "status": shared.Status.VALIDATED,
+        },
+        "transfer_id": "XXX",
+    })
 
-res = s.payments.v1.udpate_transfer_initiation_status(request=operations.UdpateTransferInitiationStatusRequest(
-    update_transfer_initiation_status_request=shared.UpdateTransferInitiationStatusRequest(
-        status=shared.Status.VALIDATED,
-    ),
-    transfer_id='XXX',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -1838,6 +1890,7 @@ if res is not None:
 | Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
 | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                            | [operations.UdpateTransferInitiationStatusRequest](../../models/operations/udpatetransferinitiationstatusrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
+| `retries`                                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                     | :heavy_minus_sign:                                                                                                   | Configuration to override the default retry behavior of the client.                                                  |
 
 ### Response
 
@@ -1859,24 +1912,24 @@ Uninstall a connector by its name.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.uninstall_connector(request={
+        "connector": shared.Connector.MODULR,
+    })
 
-res = s.payments.v1.uninstall_connector(request=operations.UninstallConnectorRequest(
-    connector=shared.Connector.MODULR,
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -1885,6 +1938,7 @@ if res is not None:
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.UninstallConnectorRequest](../../models/operations/uninstallconnectorrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
 ### Response
 
@@ -1904,25 +1958,25 @@ Uninstall a connector by its name.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.uninstall_connector_v1(request={
+        "connector": shared.Connector.GENERIC,
+        "connector_id": "XXX",
+    })
 
-res = s.payments.v1.uninstall_connector_v1(request=operations.UninstallConnectorV1Request(
-    connector=shared.Connector.GENERIC,
-    connector_id='XXX',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -1931,6 +1985,7 @@ if res is not None:
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.UninstallConnectorV1Request](../../models/operations/uninstallconnectorv1request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
 
 ### Response
 
@@ -1950,29 +2005,29 @@ Update metadata of a bank account
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.update_bank_account_metadata(request={
+        "update_bank_account_metadata_request": {
+            "metadata": {
 
-res = s.payments.v1.update_bank_account_metadata(request=operations.UpdateBankAccountMetadataRequest(
-    update_bank_account_metadata_request=shared.UpdateBankAccountMetadataRequest(
-        metadata={
-
+            },
         },
-    ),
-    bank_account_id='XXX',
-))
+        "bank_account_id": "XXX",
+    })
 
-if res is not None:
-    # handle response
-    pass
+    assert res is not None
+
+    # Handle response
+    print(res)
 
 ```
 
@@ -1981,6 +2036,7 @@ if res is not None:
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                  | [operations.UpdateBankAccountMetadataRequest](../../models/operations/updatebankaccountmetadatarequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `retries`                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                           | :heavy_minus_sign:                                                                                         | Configuration to override the default retry behavior of the client.                                        |
 
 ### Response
 
@@ -2000,31 +2056,31 @@ Update connector config
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.update_connector_config_v1(request={
+        "connector_config": {
+            "api_key": "XXX",
+            "name": "My Stripe Account",
+            "page_size": 50,
+            "polling_period": "60s",
+        },
+        "connector": shared.Connector.ADYEN,
+        "connector_id": "XXX",
+    })
 
-res = s.payments.v1.update_connector_config_v1(request=operations.UpdateConnectorConfigV1Request(
-    connector_config=shared.StripeConfig(
-        api_key='XXX',
-        name='My Stripe Account',
-        page_size=50,
-        polling_period='60s',
-    ),
-    connector=shared.Connector.ADYEN,
-    connector_id='XXX',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -2033,6 +2089,7 @@ if res is not None:
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.UpdateConnectorConfigV1Request](../../models/operations/updateconnectorconfigv1request.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
 
 ### Response
 
@@ -2052,28 +2109,28 @@ Update metadata
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.payments.v1.update_metadata(request={
+        "request_body": {
+            "key": "<value>",
+            "key1": "<value>",
+        },
+        "payment_id": "XXX",
+    })
 
-res = s.payments.v1.update_metadata(request=operations.UpdateMetadataRequest(
-    request_body={
-        'key': '<value>',
-        'key1': '<value>',
-    },
-    payment_id='XXX',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -2082,6 +2139,7 @@ if res is not None:
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.UpdateMetadataRequest](../../models/operations/updatemetadatarequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
 
 ### Response
 

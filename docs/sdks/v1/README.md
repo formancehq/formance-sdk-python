@@ -24,22 +24,22 @@ Create client
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.auth.v1.create_client()
 
-res = s.auth.v1.create_client()
+    assert res.create_client_response is not None
 
-if res.create_client_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.create_client_response)
 
 ```
 
@@ -48,6 +48,7 @@ if res.create_client_response is not None:
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `request`                                                                | [shared.CreateClientRequest](../../models/shared/createclientrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `retries`                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)         | :heavy_minus_sign:                                                       | Configuration to override the default retry behavior of the client.      |
 
 ### Response
 
@@ -66,24 +67,24 @@ Add a secret to a client
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.auth.v1.create_secret(request={
+        "client_id": "<value>",
+    })
 
-res = s.auth.v1.create_secret(request=operations.CreateSecretRequest(
-    client_id='<value>',
-))
+    assert res.create_secret_response is not None
 
-if res.create_secret_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.create_secret_response)
 
 ```
 
@@ -92,6 +93,7 @@ if res.create_secret_response is not None:
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.CreateSecretRequest](../../models/operations/createsecretrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
 
 ### Response
 
@@ -110,24 +112,24 @@ Delete client
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.auth.v1.delete_client(request={
+        "client_id": "<value>",
+    })
 
-res = s.auth.v1.delete_client(request=operations.DeleteClientRequest(
-    client_id='<value>',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -136,6 +138,7 @@ if res is not None:
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.DeleteClientRequest](../../models/operations/deleteclientrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
 
 ### Response
 
@@ -154,25 +157,25 @@ Delete a secret from a client
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.auth.v1.delete_secret(request={
+        "client_id": "<value>",
+        "secret_id": "<value>",
+    })
 
-res = s.auth.v1.delete_secret(request=operations.DeleteSecretRequest(
-    client_id='<value>',
-    secret_id='<value>',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -181,6 +184,7 @@ if res is not None:
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.DeleteSecretRequest](../../models/operations/deletesecretrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
 
 ### Response
 
@@ -199,24 +203,30 @@ Retrieve OpenID connect well-knowns.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.auth.v1.get_oidc_well_knowns()
 
-res = s.auth.v1.get_oidc_well_knowns()
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -235,24 +245,30 @@ Get server info
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.auth.v1.get_server_info()
 
-res = s.auth.v1.get_server_info()
+    assert res.server_info is not None
 
-if res.server_info is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.server_info)
 
 ```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -271,24 +287,30 @@ List clients
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.auth.v1.list_clients()
 
-res = s.auth.v1.list_clients()
+    assert res.list_clients_response is not None
 
-if res.list_clients_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.list_clients_response)
 
 ```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -307,24 +329,30 @@ List users
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.auth.v1.list_users()
 
-res = s.auth.v1.list_users()
+    assert res.list_users_response is not None
 
-if res.list_users_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.list_users_response)
 
 ```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -343,24 +371,24 @@ Read client
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.auth.v1.read_client(request={
+        "client_id": "<value>",
+    })
 
-res = s.auth.v1.read_client(request=operations.ReadClientRequest(
-    client_id='<value>',
-))
+    assert res.read_client_response is not None
 
-if res.read_client_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.read_client_response)
 
 ```
 
@@ -369,6 +397,7 @@ if res.read_client_response is not None:
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.ReadClientRequest](../../models/operations/readclientrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
 
 ### Response
 
@@ -387,24 +416,24 @@ Read user
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.auth.v1.read_user(request={
+        "user_id": "<value>",
+    })
 
-res = s.auth.v1.read_user(request=operations.ReadUserRequest(
-    user_id='<value>',
-))
+    assert res.read_user_response is not None
 
-if res.read_user_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.read_user_response)
 
 ```
 
@@ -413,6 +442,7 @@ if res.read_user_response is not None:
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `request`                                                                | [operations.ReadUserRequest](../../models/operations/readuserrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `retries`                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)         | :heavy_minus_sign:                                                       | Configuration to override the default retry behavior of the client.      |
 
 ### Response
 
@@ -431,24 +461,24 @@ Update client
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.auth.v1.update_client(request={
+        "client_id": "<value>",
+    })
 
-res = s.auth.v1.update_client(request=operations.UpdateClientRequest(
-    client_id='<value>',
-))
+    assert res.update_client_response is not None
 
-if res.update_client_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.update_client_response)
 
 ```
 
@@ -457,6 +487,7 @@ if res.update_client_response is not None:
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.UpdateClientRequest](../../models/operations/updateclientrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
 
 ### Response
 
