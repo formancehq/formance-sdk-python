@@ -34,25 +34,58 @@ and standard method from web, mobile and desktop applications.
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
-
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
+<!-- $toc-max-depth=2 -->
+* [formance-sdk-python](#formance-sdk-python)
+  * [🏗 **Welcome to your new SDK!** 🏗](#welcome-to-your-new-sdk)
+* [Introduction](#introduction)
 * [Authentication](#authentication)
+  * [SDK Installation](#sdk-installation)
+  * [IDE Support](#ide-support)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Retries](#retries)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication-1)
+  * [Debugging](#debugging)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
+
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-The SDK can be installed using the *pip* package manager, with dependencies and metadata stored in the `setup.py` file.
+The SDK can be installed with either *pip* or *poetry* package managers.
+
+### PIP
+
+*PIP* is the default package installer for Python, enabling easy installation and management of packages from PyPI via the command line.
 
 ```bash
 pip install formance-sdk-python
 ```
+
+### Poetry
+
+*Poetry* is a modern tool that simplifies dependency management and package publishing by using a single `pyproject.toml` file to handle project metadata and dependencies.
+
+```bash
+poetry add formance-sdk-python
+```
 <!-- End SDK Installation [installation] -->
+
+<!-- Start IDE Support [idesupport] -->
+## IDE Support
+
+### PyCharm
+
+Generally, the SDK will work well with most IDEs out of the box. However, when using PyCharm, you can enjoy much better integration with Pydantic by installing an additional plugin.
+
+- [PyCharm Pydantic Plugin](https://docs.pydantic.dev/latest/integrations/pycharm/)
+<!-- End IDE Support [idesupport] -->
 
 <!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
@@ -60,23 +93,50 @@ pip install formance-sdk-python
 ### Example
 
 ```python
-import sdk
-from sdk.models import shared
+# Synchronous Example
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.get_versions()
 
-res = s.get_versions()
+    assert res.get_versions_response is not None
 
-if res.get_versions_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.get_versions_response)
+```
 
+</br>
+
+The same SDK client can also be used to make asychronous requests by importing asyncio.
+```python
+# Asynchronous Example
+import asyncio
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+async def main():
+    async with SDK(
+        security=shared.Security(
+            client_id="<YOUR_CLIENT_ID_HERE>",
+            client_secret="<YOUR_CLIENT_SECRET_HERE>",
+        ),
+    ) as sdk:
+
+        res = await sdk.get_versions_async()
+
+        assert res.get_versions_response is not None
+
+        # Handle response
+        print(res.get_versions_response)
+
+asyncio.run(main())
 ```
 <!-- End SDK Example Usage [usage] -->
 
@@ -315,6 +375,58 @@ if res.get_versions_response is not None:
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call:
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+from formance_sdk_python.utils import BackoffStrategy, RetryConfig
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.get_versions(,
+        RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
+
+    assert res.get_versions_response is not None
+
+    # Handle response
+    print(res.get_versions_response)
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `retry_config` optional parameter when initializing the SDK:
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+from formance_sdk_python.utils import BackoffStrategy, RetryConfig
+
+with SDK(
+    retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.get_versions()
+
+    assert res.get_versions_response is not None
+
+    # Handle response
+    print(res.get_versions_response)
+
+```
+<!-- End Retries [retries] -->
+
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
@@ -329,7 +441,7 @@ By default, an API error will raise a errors.SDKError exception, which has the f
 | `.raw_response` | *httpx.Response* | The raw HTTP response |
 | `.body`         | *str*            | The response content  |
 
-When custom error responses are specified for an operation, the SDK may also raise their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `create_transactions` method may raise the following exceptions:
+When custom error responses are specified for an operation, the SDK may also raise their associated exceptions. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `create_transactions_async` method may raise the following exceptions:
 
 | Error Type           | Status Code | Content Type     |
 | -------------------- | ----------- | ---------------- |
@@ -339,60 +451,60 @@ When custom error responses are specified for an operation, the SDK may also rai
 ### Example
 
 ```python
-import sdk
-from sdk.models import errors, operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import errors, shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
+    res = None
+    try:
 
-res = None
-try:
-    res = s.ledger.v1.create_transactions(request=operations.CreateTransactionsRequest(
-    transactions=shared.Transactions(
-        transactions=[
-            shared.TransactionData(
-                postings=[
-                    shared.Posting(
-                        amount=100,
-                        asset='COIN',
-                        destination='users:002',
-                        source='users:001',
-                    ),
-                    shared.Posting(
-                        amount=100,
-                        asset='COIN',
-                        destination='users:002',
-                        source='users:001',
-                    ),
-                    shared.Posting(
-                        amount=100,
-                        asset='COIN',
-                        destination='users:002',
-                        source='users:001',
-                    ),
+        res = sdk.ledger.v1.create_transactions(request={
+            "transactions": {
+                "transactions": [
+                    {
+                        "postings": [
+                            {
+                                "amount": 100,
+                                "asset": "COIN",
+                                "destination": "users:002",
+                                "source": "users:001",
+                            },
+                            {
+                                "amount": 100,
+                                "asset": "COIN",
+                                "destination": "users:002",
+                                "source": "users:001",
+                            },
+                            {
+                                "amount": 100,
+                                "asset": "COIN",
+                                "destination": "users:002",
+                                "source": "users:001",
+                            },
+                        ],
+                        "reference": "ref:001",
+                    },
                 ],
-                reference='ref:001',
-            ),
-        ],
-    ),
-    ledger='ledger001',
-))
+            },
+            "ledger": "ledger001",
+        })
 
-except errors.ErrorResponse as e:
-    # handle exception
-    raise(e)
-except errors.SDKError as e:
-    # handle exception
-    raise(e)
+        assert res.transactions_response is not None
 
-if res.transactions_response is not None:
-    # handle response
-    pass
+        # Handle response
+        print(res.transactions_response)
 
+    except errors.ErrorResponse as e:
+        # handle e.data: errors.ErrorResponseData
+        raise(e)
+    except errors.SDKError as e:
+        # handle exception
+        raise(e)
 ```
 <!-- End Error Handling [errors] -->
 
@@ -413,23 +525,23 @@ If the selected server has variables, you may override their default values thro
 #### Example
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     server_idx=1,
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.get_versions()
 
-res = s.get_versions()
+    assert res.get_versions_response is not None
 
-if res.get_versions_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.get_versions_response)
 
 ```
 
@@ -437,23 +549,23 @@ if res.get_versions_response is not None:
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     server_url="http://localhost",
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.get_versions()
 
-res = s.get_versions()
+    assert res.get_versions_response is not None
 
-if res.get_versions_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.get_versions_response)
 
 ```
 <!-- End Server Selection [server] -->
@@ -461,16 +573,81 @@ if res.get_versions_response is not None:
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
 
-The Python SDK makes API calls using the [requests](https://pypi.org/project/requests/) HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
+The Python SDK makes API calls using the [httpx](https://www.python-httpx.org/) HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with your own HTTP client instance.
+Depending on whether you are using the sync or async version of the SDK, you can pass an instance of `HttpClient` or `AsyncHttpClient` respectively, which are Protocol's ensuring that the client has the necessary methods to make API calls.
+This allows you to wrap the client with your own custom logic, such as adding custom headers, logging, or error handling, or you can just pass an instance of `httpx.Client` or `httpx.AsyncClient` directly.
 
 For example, you could specify a header for every request that this sdk makes as follows:
 ```python
-import sdk
-import requests
+from formance_sdk_python import SDK
+import httpx
 
-http_client = requests.Session()
-http_client.headers.update({'x-custom-header': 'someValue'})
-s = sdk.SDK(client=http_client)
+http_client = httpx.Client(headers={"x-custom-header": "someValue"})
+s = SDK(client=http_client)
+```
+
+or you could wrap the client with your own custom logic:
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.httpclient import AsyncHttpClient
+import httpx
+
+class CustomClient(AsyncHttpClient):
+    client: AsyncHttpClient
+
+    def __init__(self, client: AsyncHttpClient):
+        self.client = client
+
+    async def send(
+        self,
+        request: httpx.Request,
+        *,
+        stream: bool = False,
+        auth: Union[
+            httpx._types.AuthTypes, httpx._client.UseClientDefault, None
+        ] = httpx.USE_CLIENT_DEFAULT,
+        follow_redirects: Union[
+            bool, httpx._client.UseClientDefault
+        ] = httpx.USE_CLIENT_DEFAULT,
+    ) -> httpx.Response:
+        request.headers["Client-Level-Header"] = "added by client"
+
+        return await self.client.send(
+            request, stream=stream, auth=auth, follow_redirects=follow_redirects
+        )
+
+    def build_request(
+        self,
+        method: str,
+        url: httpx._types.URLTypes,
+        *,
+        content: Optional[httpx._types.RequestContent] = None,
+        data: Optional[httpx._types.RequestData] = None,
+        files: Optional[httpx._types.RequestFiles] = None,
+        json: Optional[Any] = None,
+        params: Optional[httpx._types.QueryParamTypes] = None,
+        headers: Optional[httpx._types.HeaderTypes] = None,
+        cookies: Optional[httpx._types.CookieTypes] = None,
+        timeout: Union[
+            httpx._types.TimeoutTypes, httpx._client.UseClientDefault
+        ] = httpx.USE_CLIENT_DEFAULT,
+        extensions: Optional[httpx._types.RequestExtensions] = None,
+    ) -> httpx.Request:
+        return self.client.build_request(
+            method,
+            url,
+            content=content,
+            data=data,
+            files=files,
+            json=json,
+            params=params,
+            headers=headers,
+            cookies=cookies,
+            timeout=timeout,
+            extensions=extensions,
+        )
+
+s = SDK(async_client=CustomClient(httpx.AsyncClient()))
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -487,25 +664,40 @@ This SDK supports the following security scheme globally:
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.get_versions()
 
-res = s.get_versions()
+    assert res.get_versions_response is not None
 
-if res.get_versions_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.get_versions_response)
 
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+You can setup your SDK to emit debug logs for SDK requests and responses.
+
+You can pass your own logger class directly into your SDK.
+```python
+from formance_sdk_python import SDK
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+s = SDK(debug_logger=logging.getLogger("formance_sdk_python"))
+```
+<!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

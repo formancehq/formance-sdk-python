@@ -31,24 +31,24 @@ Cancel a running workflow
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.cancel_event(request={
+        "instance_id": "xxx",
+    })
 
-res = s.orchestration.v2.cancel_event(request=operations.V2CancelEventRequest(
-    instance_id='xxx',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -57,6 +57,7 @@ if res is not None:
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.V2CancelEventRequest](../../models/operations/v2canceleventrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
 
 ### Response
 
@@ -76,30 +77,31 @@ Create trigger
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.create_trigger()
 
-res = s.orchestration.v2.create_trigger()
+    assert res.v2_create_trigger_response is not None
 
-if res.v2_create_trigger_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_create_trigger_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `request`                                                    | [shared.V2TriggerData](../../models/shared/v2triggerdata.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [shared.V2TriggerData](../../models/shared/v2triggerdata.md)        | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -119,22 +121,22 @@ Create a workflow
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.create_workflow()
 
-res = s.orchestration.v2.create_workflow()
+    assert res.v2_create_workflow_response is not None
 
-if res.v2_create_workflow_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_create_workflow_response)
 
 ```
 
@@ -143,6 +145,7 @@ if res.v2_create_workflow_response is not None:
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [shared.V2CreateWorkflowRequest](../../models/shared/v2createworkflowrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
 
 ### Response
 
@@ -162,24 +165,24 @@ Read trigger
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.delete_trigger(request={
+        "trigger_id": "<value>",
+    })
 
-res = s.orchestration.v2.delete_trigger(request=operations.V2DeleteTriggerRequest(
-    trigger_id='<value>',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -188,6 +191,7 @@ if res is not None:
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `request`                                                                              | [operations.V2DeleteTriggerRequest](../../models/operations/v2deletetriggerrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
 
 ### Response
 
@@ -207,24 +211,24 @@ Delete a flow by id
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.delete_workflow(request={
+        "flow_id": "xxx",
+    })
 
-res = s.orchestration.v2.delete_workflow(request=operations.V2DeleteWorkflowRequest(
-    flow_id='xxx',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -233,6 +237,7 @@ if res is not None:
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.V2DeleteWorkflowRequest](../../models/operations/v2deleteworkflowrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
 
 ### Response
 
@@ -252,24 +257,24 @@ Get a workflow instance by id
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.get_instance(request={
+        "instance_id": "xxx",
+    })
 
-res = s.orchestration.v2.get_instance(request=operations.V2GetInstanceRequest(
-    instance_id='xxx',
-))
+    assert res.v2_get_workflow_instance_response is not None
 
-if res.v2_get_workflow_instance_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_get_workflow_instance_response)
 
 ```
 
@@ -278,6 +283,7 @@ if res.v2_get_workflow_instance_response is not None:
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.V2GetInstanceRequest](../../models/operations/v2getinstancerequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
 
 ### Response
 
@@ -297,24 +303,24 @@ Get a workflow instance history by id
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.get_instance_history(request={
+        "instance_id": "xxx",
+    })
 
-res = s.orchestration.v2.get_instance_history(request=operations.V2GetInstanceHistoryRequest(
-    instance_id='xxx',
-))
+    assert res.v2_get_workflow_instance_history_response is not None
 
-if res.v2_get_workflow_instance_history_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_get_workflow_instance_history_response)
 
 ```
 
@@ -323,6 +329,7 @@ if res.v2_get_workflow_instance_history_response is not None:
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.V2GetInstanceHistoryRequest](../../models/operations/v2getinstancehistoryrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
 
 ### Response
 
@@ -342,25 +349,25 @@ Get a workflow instance stage history
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.get_instance_stage_history(request={
+        "instance_id": "xxx",
+        "number": 0,
+    })
 
-res = s.orchestration.v2.get_instance_stage_history(request=operations.V2GetInstanceStageHistoryRequest(
-    instance_id='xxx',
-    number=0,
-))
+    assert res.v2_get_workflow_instance_history_stage_response is not None
 
-if res.v2_get_workflow_instance_history_stage_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_get_workflow_instance_history_stage_response)
 
 ```
 
@@ -369,6 +376,7 @@ if res.v2_get_workflow_instance_history_stage_response is not None:
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                  | [operations.V2GetInstanceStageHistoryRequest](../../models/operations/v2getinstancestagehistoryrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `retries`                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                           | :heavy_minus_sign:                                                                                         | Configuration to override the default retry behavior of the client.                                        |
 
 ### Response
 
@@ -388,24 +396,30 @@ Get server info
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.get_server_info()
 
-res = s.orchestration.v2.get_server_info()
+    assert res.v2_server_info is not None
 
-if res.v2_server_info is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_server_info)
 
 ```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -425,24 +439,24 @@ Get a flow by id
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.get_workflow(request={
+        "flow_id": "xxx",
+    })
 
-res = s.orchestration.v2.get_workflow(request=operations.V2GetWorkflowRequest(
-    flow_id='xxx',
-))
+    assert res.v2_get_workflow_response is not None
 
-if res.v2_get_workflow_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_get_workflow_response)
 
 ```
 
@@ -451,6 +465,7 @@ if res.v2_get_workflow_response is not None:
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.V2GetWorkflowRequest](../../models/operations/v2getworkflowrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
 
 ### Response
 
@@ -470,27 +485,27 @@ List instances of a workflow
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.list_instances(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+        "running": True,
+        "workflow_id": "xxx",
+    })
 
-res = s.orchestration.v2.list_instances(request=operations.V2ListInstancesRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-    running=True,
-    workflow_id='xxx',
-))
+    assert res.v2_list_runs_response is not None
 
-if res.v2_list_runs_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_list_runs_response)
 
 ```
 
@@ -499,6 +514,7 @@ if res.v2_list_runs_response is not None:
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `request`                                                                              | [operations.V2ListInstancesRequest](../../models/operations/v2listinstancesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
 
 ### Response
 
@@ -518,25 +534,25 @@ List triggers
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.list_triggers(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+    })
 
-res = s.orchestration.v2.list_triggers(request=operations.V2ListTriggersRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-))
+    assert res.v2_list_triggers_response is not None
 
-if res.v2_list_triggers_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_list_triggers_response)
 
 ```
 
@@ -545,6 +561,7 @@ if res.v2_list_triggers_response is not None:
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.V2ListTriggersRequest](../../models/operations/v2listtriggersrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
 
 ### Response
 
@@ -564,26 +581,26 @@ List triggers occurrences
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.list_triggers_occurrences(request={
+        "trigger_id": "<value>",
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+    })
 
-res = s.orchestration.v2.list_triggers_occurrences(request=operations.V2ListTriggersOccurrencesRequest(
-    trigger_id='<value>',
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-))
+    assert res.v2_list_triggers_occurrences_response is not None
 
-if res.v2_list_triggers_occurrences_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_list_triggers_occurrences_response)
 
 ```
 
@@ -592,6 +609,7 @@ if res.v2_list_triggers_occurrences_response is not None:
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                  | [operations.V2ListTriggersOccurrencesRequest](../../models/operations/v2listtriggersoccurrencesrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `retries`                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                           | :heavy_minus_sign:                                                                                         | Configuration to override the default retry behavior of the client.                                        |
 
 ### Response
 
@@ -611,25 +629,25 @@ List registered workflows
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.list_workflows(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+    })
 
-res = s.orchestration.v2.list_workflows(request=operations.V2ListWorkflowsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-))
+    assert res.v2_list_workflows_response is not None
 
-if res.v2_list_workflows_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_list_workflows_response)
 
 ```
 
@@ -638,6 +656,7 @@ if res.v2_list_workflows_response is not None:
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `request`                                                                              | [operations.V2ListWorkflowsRequest](../../models/operations/v2listworkflowsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
 
 ### Response
 
@@ -657,24 +676,24 @@ Read trigger
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.read_trigger(request={
+        "trigger_id": "<value>",
+    })
 
-res = s.orchestration.v2.read_trigger(request=operations.V2ReadTriggerRequest(
-    trigger_id='<value>',
-))
+    assert res.v2_read_trigger_response is not None
 
-if res.v2_read_trigger_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_read_trigger_response)
 
 ```
 
@@ -683,6 +702,7 @@ if res.v2_read_trigger_response is not None:
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.V2ReadTriggerRequest](../../models/operations/v2readtriggerrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
 
 ### Response
 
@@ -702,24 +722,24 @@ Run workflow
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.run_workflow(request={
+        "workflow_id": "xxx",
+    })
 
-res = s.orchestration.v2.run_workflow(request=operations.V2RunWorkflowRequest(
-    workflow_id='xxx',
-))
+    assert res.v2_run_workflow_response is not None
 
-if res.v2_run_workflow_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_run_workflow_response)
 
 ```
 
@@ -728,6 +748,7 @@ if res.v2_run_workflow_response is not None:
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.V2RunWorkflowRequest](../../models/operations/v2runworkflowrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
 
 ### Response
 
@@ -747,24 +768,24 @@ Send an event to a running workflow
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.send_event(request={
+        "instance_id": "xxx",
+    })
 
-res = s.orchestration.v2.send_event(request=operations.V2SendEventRequest(
-    instance_id='xxx',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -773,6 +794,7 @@ if res is not None:
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.V2SendEventRequest](../../models/operations/v2sendeventrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
 
 ### Response
 
@@ -792,24 +814,24 @@ Test trigger
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.orchestration.v2.test_trigger(request={
+        "trigger_id": "<value>",
+    })
 
-res = s.orchestration.v2.test_trigger(request=operations.TestTriggerRequest(
-    trigger_id='<value>',
-))
+    assert res.v2_test_trigger_response is not None
 
-if res.v2_test_trigger_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.v2_test_trigger_response)
 
 ```
 
@@ -818,6 +840,7 @@ if res.v2_test_trigger_response is not None:
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.TestTriggerRequest](../../models/operations/testtriggerrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
 
 ### Response
 

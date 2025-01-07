@@ -21,37 +21,38 @@ Create a policy
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.reconciliation.v1.create_policy(request={
+        "ledger_name": "default",
+        "ledger_query": {
+            "key": "<value>",
+        },
+        "name": "XXX",
+        "payments_pool_id": "XXX",
+    })
 
-res = s.reconciliation.v1.create_policy(request=shared.PolicyRequest(
-    ledger_name='default',
-    ledger_query={
-        'key': '<value>',
-    },
-    name='XXX',
-    payments_pool_id='XXX',
-))
+    assert res.policy_response is not None
 
-if res.policy_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.policy_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `request`                                                    | [shared.PolicyRequest](../../models/shared/policyrequest.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [shared.PolicyRequest](../../models/shared/policyrequest.md)        | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -71,24 +72,24 @@ Delete a policy by its id.
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.reconciliation.v1.delete_policy(request={
+        "policy_id": "XXX",
+    })
 
-res = s.reconciliation.v1.delete_policy(request=operations.DeletePolicyRequest(
-    policy_id='XXX',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -97,6 +98,7 @@ if res is not None:
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.DeletePolicyRequest](../../models/operations/deletepolicyrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
 
 ### Response
 
@@ -116,24 +118,24 @@ Get a policy
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.reconciliation.v1.get_policy(request={
+        "policy_id": "XXX",
+    })
 
-res = s.reconciliation.v1.get_policy(request=operations.GetPolicyRequest(
-    policy_id='XXX',
-))
+    assert res.policy_response is not None
 
-if res.policy_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.policy_response)
 
 ```
 
@@ -142,6 +144,7 @@ if res.policy_response is not None:
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.GetPolicyRequest](../../models/operations/getpolicyrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
 
 ### Response
 
@@ -161,24 +164,24 @@ Get a reconciliation
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.reconciliation.v1.get_reconciliation(request={
+        "reconciliation_id": "XXX",
+    })
 
-res = s.reconciliation.v1.get_reconciliation(request=operations.GetReconciliationRequest(
-    reconciliation_id='XXX',
-))
+    assert res.reconciliation_response is not None
 
-if res.reconciliation_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.reconciliation_response)
 
 ```
 
@@ -187,6 +190,7 @@ if res.reconciliation_response is not None:
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `request`                                                                                  | [operations.GetReconciliationRequest](../../models/operations/getreconciliationrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
 
 ### Response
 
@@ -206,25 +210,25 @@ List policies
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.reconciliation.v1.list_policies(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+    })
 
-res = s.reconciliation.v1.list_policies(request=operations.ListPoliciesRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-))
+    assert res.policies_cursor_response is not None
 
-if res.policies_cursor_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.policies_cursor_response)
 
 ```
 
@@ -233,6 +237,7 @@ if res.policies_cursor_response is not None:
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.ListPoliciesRequest](../../models/operations/listpoliciesrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
 
 ### Response
 
@@ -252,25 +257,25 @@ List reconciliations
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.reconciliation.v1.list_reconciliations(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+    })
 
-res = s.reconciliation.v1.list_reconciliations(request=operations.ListReconciliationsRequest(
-    cursor='aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    page_size=100,
-))
+    assert res.reconciliations_cursor_response is not None
 
-if res.reconciliations_cursor_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.reconciliations_cursor_response)
 
 ```
 
@@ -279,6 +284,7 @@ if res.reconciliations_cursor_response is not None:
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `request`                                                                                      | [operations.ListReconciliationsRequest](../../models/operations/listreconciliationsrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `retries`                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                               | :heavy_minus_sign:                                                                             | Configuration to override the default retry behavior of the client.                            |
 
 ### Response
 
@@ -299,28 +305,28 @@ Reconcile using a policy
 
 ```python
 import dateutil.parser
-import sdk
-from sdk.models import operations, shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.reconciliation.v1.reconcile(request={
+        "reconciliation_request": {
+            "reconciled_at_ledger": dateutil.parser.isoparse("2021-01-01T00:00:00.000Z"),
+            "reconciled_at_payments": dateutil.parser.isoparse("2021-01-01T00:00:00.000Z"),
+        },
+        "policy_id": "XXX",
+    })
 
-res = s.reconciliation.v1.reconcile(request=operations.ReconcileRequest(
-    reconciliation_request=shared.ReconciliationRequest(
-        reconciled_at_ledger=dateutil.parser.isoparse('2021-01-01T00:00:00.000Z'),
-        reconciled_at_payments=dateutil.parser.isoparse('2021-01-01T00:00:00.000Z'),
-    ),
-    policy_id='XXX',
-))
+    assert res.reconciliation_response is not None
 
-if res.reconciliation_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.reconciliation_response)
 
 ```
 
@@ -329,6 +335,7 @@ if res.reconciliation_response is not None:
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.ReconcileRequest](../../models/operations/reconcilerequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
 
 ### Response
 
@@ -348,24 +355,30 @@ Get server info
 ### Example Usage
 
 ```python
-import sdk
-from sdk.models import shared
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
 
-s = sdk.SDK(
+with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
     ),
-)
+) as sdk:
 
+    res = sdk.reconciliation.v1.reconciliationget_server_info()
 
-res = s.reconciliation.v1.reconciliationget_server_info()
+    assert res.server_info is not None
 
-if res.server_info is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.server_info)
 
 ```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 

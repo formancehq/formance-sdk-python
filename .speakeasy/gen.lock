@@ -3,37 +3,42 @@ id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
   docChecksum: 26dc51843f72f8922c6265f03b5e50f2
   docVersion: v2.1.1
-  speakeasyVersion: 1.441.1
-  generationVersion: 2.461.2
-  releaseVersion: 4.2.0
-  configChecksum: 5edce78524c7b06521fca2b4d4f4d70f
+  speakeasyVersion: 1.464.0
+  generationVersion: 2.486.6
+  releaseVersion: 5.0.0
+  configChecksum: de8164929e9322833f851a6ada036afb
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
   published: true
 features:
   python:
-    additionalDependencies: 0.1.0
-    bigint: 0.1.0
-    constsAndDefaults: 0.1.4
-    core: 4.8.16
-    deprecations: 2.81.1
-    downloadStreams: 0.0.2
-    errors: 2.83.0
-    getRequestBodies: 2.81.1
-    globalSecurity: 2.83.7
-    globalSecurityCallbacks: 0.1.0
-    globalServerURLs: 2.82.2
-    ignores: 2.81.1
-    nameOverrides: 2.81.2
-    nullables: 0.1.0
-    oauth2ClientCredentials: 0.2.0
-    responseFormat: 0.1.0
-    sdkHooks: 0.1.0
-    tests: 0.4.0
-    unions: 2.82.10
+    additionalDependencies: 1.0.0
+    bigint: 1.0.0
+    constsAndDefaults: 1.0.5
+    core: 5.7.5
+    defaultEnabledRetries: 0.2.0
+    deprecations: 3.0.2
+    downloadStreams: 1.0.1
+    enumUnions: 0.1.0
+    envVarSecurityUsage: 0.3.2
+    errors: 3.2.0
+    getRequestBodies: 3.0.0
+    globalSecurity: 3.0.2
+    globalSecurityCallbacks: 1.0.0
+    globalServerURLs: 3.1.0
+    ignores: 3.0.1
+    nameOverrides: 3.0.1
+    nullables: 1.0.0
+    oauth2ClientCredentials: 1.1.0
+    responseFormat: 1.0.1
+    retries: 3.0.2
+    sdkHooks: 1.0.0
+    unions: 3.0.4
 generatedFiles:
   - .gitattributes
+  - .python-version
+  - .vscode/settings.json
   - CONTRIBUTING.md
   - USAGE.md
   - docs/models/errors/error.md
@@ -801,6 +806,7 @@ generatedFiles:
   - docs/models/shared/workflowinstancehistorystage.md
   - docs/models/shared/workflowinstancehistorystageinput.md
   - docs/models/shared/workflowinstancehistorystageoutput.md
+  - docs/models/utils/retryconfig.md
   - docs/sdks/auth/README.md
   - docs/sdks/ledger/README.md
   - docs/sdks/orchestration/README.md
@@ -820,566 +826,585 @@ generatedFiles:
   - docs/sdks/v2/README.md
   - docs/sdks/wallets/README.md
   - docs/sdks/webhooks/README.md
+  - poetry.toml
   - py.typed
   - pylintrc
+  - pyproject.toml
+  - scripts/prepare-readme.py
   - scripts/publish.sh
-  - setup.py
-  - src/sdk/__init__.py
-  - src/sdk/_hooks/__init__.py
-  - src/sdk/_hooks/clientcredentials.py
-  - src/sdk/_hooks/sdkhooks.py
-  - src/sdk/_hooks/types.py
-  - src/sdk/auth.py
-  - src/sdk/ledger.py
-  - src/sdk/models/__init__.py
-  - src/sdk/models/errors/__init__.py
-  - src/sdk/models/errors/error.py
-  - src/sdk/models/errors/errorresponse.py
-  - src/sdk/models/errors/paymentserrorresponse.py
-  - src/sdk/models/errors/reconciliationerrorresponse.py
-  - src/sdk/models/errors/sdkerror.py
-  - src/sdk/models/errors/v2error.py
-  - src/sdk/models/errors/v2errorresponse.py
-  - src/sdk/models/errors/walletserrorresponse.py
-  - src/sdk/models/errors/webhookserrorresponse.py
-  - src/sdk/models/operations/__init__.py
-  - src/sdk/models/operations/activateconfig.py
-  - src/sdk/models/operations/addaccounttopool.py
-  - src/sdk/models/operations/addmetadataontransaction.py
-  - src/sdk/models/operations/addmetadatatoaccount.py
-  - src/sdk/models/operations/cancelevent.py
-  - src/sdk/models/operations/changeconfigsecret.py
-  - src/sdk/models/operations/confirmhold.py
-  - src/sdk/models/operations/connectorstransfer.py
-  - src/sdk/models/operations/countaccounts.py
-  - src/sdk/models/operations/counttransactions.py
-  - src/sdk/models/operations/createaccount.py
-  - src/sdk/models/operations/createbalance.py
-  - src/sdk/models/operations/createbankaccount.py
-  - src/sdk/models/operations/createclient.py
-  - src/sdk/models/operations/createpayment.py
-  - src/sdk/models/operations/createpolicy.py
-  - src/sdk/models/operations/createpool.py
-  - src/sdk/models/operations/createsecret.py
-  - src/sdk/models/operations/createtransaction.py
-  - src/sdk/models/operations/createtransactions.py
-  - src/sdk/models/operations/createtransferinitiation.py
-  - src/sdk/models/operations/createtrigger.py
-  - src/sdk/models/operations/createwallet.py
-  - src/sdk/models/operations/createworkflow.py
-  - src/sdk/models/operations/creditwallet.py
-  - src/sdk/models/operations/deactivateconfig.py
-  - src/sdk/models/operations/debitwallet.py
-  - src/sdk/models/operations/deleteclient.py
-  - src/sdk/models/operations/deleteconfig.py
-  - src/sdk/models/operations/deletepolicy.py
-  - src/sdk/models/operations/deletepool.py
-  - src/sdk/models/operations/deletesecret.py
-  - src/sdk/models/operations/deletetransferinitiation.py
-  - src/sdk/models/operations/deletetrigger.py
-  - src/sdk/models/operations/deleteworkflow.py
-  - src/sdk/models/operations/forwardbankaccount.py
-  - src/sdk/models/operations/getaccount.py
-  - src/sdk/models/operations/getaccountbalances.py
-  - src/sdk/models/operations/getbalance.py
-  - src/sdk/models/operations/getbalances.py
-  - src/sdk/models/operations/getbalancesaggregated.py
-  - src/sdk/models/operations/getbankaccount.py
-  - src/sdk/models/operations/getconnectortask.py
-  - src/sdk/models/operations/getconnectortaskv1.py
-  - src/sdk/models/operations/gethold.py
-  - src/sdk/models/operations/getholds.py
-  - src/sdk/models/operations/getinfo.py
-  - src/sdk/models/operations/getinstance.py
-  - src/sdk/models/operations/getinstancehistory.py
-  - src/sdk/models/operations/getinstancestagehistory.py
-  - src/sdk/models/operations/getledgerinfo.py
-  - src/sdk/models/operations/getmanyconfigs.py
-  - src/sdk/models/operations/getmapping.py
-  - src/sdk/models/operations/getoidcwellknowns.py
-  - src/sdk/models/operations/getpayment.py
-  - src/sdk/models/operations/getpolicy.py
-  - src/sdk/models/operations/getpool.py
-  - src/sdk/models/operations/getpoolbalances.py
-  - src/sdk/models/operations/getreconciliation.py
-  - src/sdk/models/operations/getserverinfo.py
-  - src/sdk/models/operations/gettransaction.py
-  - src/sdk/models/operations/gettransactions.py
-  - src/sdk/models/operations/gettransferinitiation.py
-  - src/sdk/models/operations/getversions.py
-  - src/sdk/models/operations/getwallet.py
-  - src/sdk/models/operations/getwalletsummary.py
-  - src/sdk/models/operations/getworkflow.py
-  - src/sdk/models/operations/insertconfig.py
-  - src/sdk/models/operations/installconnector.py
-  - src/sdk/models/operations/listaccounts.py
-  - src/sdk/models/operations/listallconnectors.py
-  - src/sdk/models/operations/listbalances.py
-  - src/sdk/models/operations/listbankaccounts.py
-  - src/sdk/models/operations/listclients.py
-  - src/sdk/models/operations/listconfigsavailableconnectors.py
-  - src/sdk/models/operations/listconnectortasks.py
-  - src/sdk/models/operations/listconnectortasksv1.py
-  - src/sdk/models/operations/listinstances.py
-  - src/sdk/models/operations/listlogs.py
-  - src/sdk/models/operations/listpayments.py
-  - src/sdk/models/operations/listpolicies.py
-  - src/sdk/models/operations/listpools.py
-  - src/sdk/models/operations/listreconciliations.py
-  - src/sdk/models/operations/listtransactions.py
-  - src/sdk/models/operations/listtransferinitiations.py
-  - src/sdk/models/operations/listtriggers.py
-  - src/sdk/models/operations/listtriggersoccurrences.py
-  - src/sdk/models/operations/listusers.py
-  - src/sdk/models/operations/listwallets.py
-  - src/sdk/models/operations/listworkflows.py
-  - src/sdk/models/operations/orchestrationgetserverinfo.py
-  - src/sdk/models/operations/paymentsgetaccount.py
-  - src/sdk/models/operations/paymentsgetserverinfo.py
-  - src/sdk/models/operations/paymentslistaccounts.py
-  - src/sdk/models/operations/readclient.py
-  - src/sdk/models/operations/readconnectorconfig.py
-  - src/sdk/models/operations/readconnectorconfigv1.py
-  - src/sdk/models/operations/readstats.py
-  - src/sdk/models/operations/readtrigger.py
-  - src/sdk/models/operations/readuser.py
-  - src/sdk/models/operations/reconcile.py
-  - src/sdk/models/operations/reconciliationgetserverinfo.py
-  - src/sdk/models/operations/removeaccountfrompool.py
-  - src/sdk/models/operations/resetconnector.py
-  - src/sdk/models/operations/resetconnectorv1.py
-  - src/sdk/models/operations/retrytransferinitiation.py
-  - src/sdk/models/operations/reversetransferinitiation.py
-  - src/sdk/models/operations/reverttransaction.py
-  - src/sdk/models/operations/runscript.py
-  - src/sdk/models/operations/runworkflow.py
-  - src/sdk/models/operations/search.py
-  - src/sdk/models/operations/searchgetserverinfo.py
-  - src/sdk/models/operations/sendevent.py
-  - src/sdk/models/operations/testconfig.py
-  - src/sdk/models/operations/testtrigger.py
-  - src/sdk/models/operations/udpatetransferinitiationstatus.py
-  - src/sdk/models/operations/uninstallconnector.py
-  - src/sdk/models/operations/uninstallconnectorv1.py
-  - src/sdk/models/operations/updatebankaccountmetadata.py
-  - src/sdk/models/operations/updateclient.py
-  - src/sdk/models/operations/updateconnectorconfigv1.py
-  - src/sdk/models/operations/updatemapping.py
-  - src/sdk/models/operations/updatemetadata.py
-  - src/sdk/models/operations/updatewallet.py
-  - src/sdk/models/operations/v2addmetadataontransaction.py
-  - src/sdk/models/operations/v2addmetadatatoaccount.py
-  - src/sdk/models/operations/v2cancelevent.py
-  - src/sdk/models/operations/v2countaccounts.py
-  - src/sdk/models/operations/v2counttransactions.py
-  - src/sdk/models/operations/v2createbulk.py
-  - src/sdk/models/operations/v2createledger.py
-  - src/sdk/models/operations/v2createtransaction.py
-  - src/sdk/models/operations/v2createtrigger.py
-  - src/sdk/models/operations/v2createworkflow.py
-  - src/sdk/models/operations/v2deleteaccountmetadata.py
-  - src/sdk/models/operations/v2deleteledgermetadata.py
-  - src/sdk/models/operations/v2deletetransactionmetadata.py
-  - src/sdk/models/operations/v2deletetrigger.py
-  - src/sdk/models/operations/v2deleteworkflow.py
-  - src/sdk/models/operations/v2exportlogs.py
-  - src/sdk/models/operations/v2getaccount.py
-  - src/sdk/models/operations/v2getbalancesaggregated.py
-  - src/sdk/models/operations/v2getinfo.py
-  - src/sdk/models/operations/v2getinstance.py
-  - src/sdk/models/operations/v2getinstancehistory.py
-  - src/sdk/models/operations/v2getinstancestagehistory.py
-  - src/sdk/models/operations/v2getledger.py
-  - src/sdk/models/operations/v2getledgerinfo.py
-  - src/sdk/models/operations/v2getserverinfo.py
-  - src/sdk/models/operations/v2gettransaction.py
-  - src/sdk/models/operations/v2getvolumeswithbalances.py
-  - src/sdk/models/operations/v2getworkflow.py
-  - src/sdk/models/operations/v2importlogs.py
-  - src/sdk/models/operations/v2listaccounts.py
-  - src/sdk/models/operations/v2listinstances.py
-  - src/sdk/models/operations/v2listledgers.py
-  - src/sdk/models/operations/v2listlogs.py
-  - src/sdk/models/operations/v2listtransactions.py
-  - src/sdk/models/operations/v2listtriggers.py
-  - src/sdk/models/operations/v2listtriggersoccurrences.py
-  - src/sdk/models/operations/v2listworkflows.py
-  - src/sdk/models/operations/v2readstats.py
-  - src/sdk/models/operations/v2readtrigger.py
-  - src/sdk/models/operations/v2reverttransaction.py
-  - src/sdk/models/operations/v2runworkflow.py
-  - src/sdk/models/operations/v2sendevent.py
-  - src/sdk/models/operations/v2updateledgermetadata.py
-  - src/sdk/models/operations/voidhold.py
-  - src/sdk/models/operations/walletsgetserverinfo.py
-  - src/sdk/models/shared/__init__.py
-  - src/sdk/models/shared/account.py
-  - src/sdk/models/shared/accountbalance.py
-  - src/sdk/models/shared/accountrequest.py
-  - src/sdk/models/shared/accountresponse.py
-  - src/sdk/models/shared/accountscursor.py
-  - src/sdk/models/shared/accountscursorresponse.py
-  - src/sdk/models/shared/accounttype.py
-  - src/sdk/models/shared/accountwithvolumesandbalances.py
-  - src/sdk/models/shared/activityaddaccountmetadata.py
-  - src/sdk/models/shared/activityconfirmhold.py
-  - src/sdk/models/shared/activitycreatetransaction.py
-  - src/sdk/models/shared/activitycreatetransactionoutput.py
-  - src/sdk/models/shared/activitycreditwallet.py
-  - src/sdk/models/shared/activitydebitwallet.py
-  - src/sdk/models/shared/activitydebitwalletoutput.py
-  - src/sdk/models/shared/activitygetaccount.py
-  - src/sdk/models/shared/activitygetaccountoutput.py
-  - src/sdk/models/shared/activitygetpayment.py
-  - src/sdk/models/shared/activitygetpaymentoutput.py
-  - src/sdk/models/shared/activitygetwallet.py
-  - src/sdk/models/shared/activitygetwalletoutput.py
-  - src/sdk/models/shared/activitylistwallets.py
-  - src/sdk/models/shared/activityreverttransaction.py
-  - src/sdk/models/shared/activityreverttransactionoutput.py
-  - src/sdk/models/shared/activitystripetransfer.py
-  - src/sdk/models/shared/activityvoidhold.py
-  - src/sdk/models/shared/addaccounttopoolrequest.py
-  - src/sdk/models/shared/adyenconfig.py
-  - src/sdk/models/shared/aggregatebalancesresponse.py
-  - src/sdk/models/shared/assetholder.py
-  - src/sdk/models/shared/atlarconfig.py
-  - src/sdk/models/shared/attempt.py
-  - src/sdk/models/shared/attemptresponse.py
-  - src/sdk/models/shared/balance.py
-  - src/sdk/models/shared/balancescursor.py
-  - src/sdk/models/shared/balancescursorresponse.py
-  - src/sdk/models/shared/balancewithassets.py
-  - src/sdk/models/shared/bankaccount.py
-  - src/sdk/models/shared/bankaccountrelatedaccounts.py
-  - src/sdk/models/shared/bankaccountrequest.py
-  - src/sdk/models/shared/bankaccountresponse.py
-  - src/sdk/models/shared/bankaccountscursor.py
-  - src/sdk/models/shared/bankingcircleconfig.py
-  - src/sdk/models/shared/client.py
-  - src/sdk/models/shared/clientsecret.py
-  - src/sdk/models/shared/config.py
-  - src/sdk/models/shared/configchangesecret.py
-  - src/sdk/models/shared/configinfo.py
-  - src/sdk/models/shared/configinforesponse.py
-  - src/sdk/models/shared/configresponse.py
-  - src/sdk/models/shared/configsresponse.py
-  - src/sdk/models/shared/configuser.py
-  - src/sdk/models/shared/confirmholdrequest.py
-  - src/sdk/models/shared/connector.py
-  - src/sdk/models/shared/connectorconfig.py
-  - src/sdk/models/shared/connectorconfigresponse.py
-  - src/sdk/models/shared/connectorresponse.py
-  - src/sdk/models/shared/connectorsconfigsresponse.py
-  - src/sdk/models/shared/connectorsresponse.py
-  - src/sdk/models/shared/contract.py
-  - src/sdk/models/shared/createbalancerequest.py
-  - src/sdk/models/shared/createbalanceresponse.py
-  - src/sdk/models/shared/createclientrequest.py
-  - src/sdk/models/shared/createclientresponse.py
-  - src/sdk/models/shared/createsecretrequest.py
-  - src/sdk/models/shared/createsecretresponse.py
-  - src/sdk/models/shared/createtriggerresponse.py
-  - src/sdk/models/shared/createwalletrequest.py
-  - src/sdk/models/shared/createwalletresponse.py
-  - src/sdk/models/shared/createworkflowrequest.py
-  - src/sdk/models/shared/createworkflowresponse.py
-  - src/sdk/models/shared/creditwalletrequest.py
-  - src/sdk/models/shared/currencycloudconfig.py
-  - src/sdk/models/shared/debitwalletrequest.py
-  - src/sdk/models/shared/debitwalletresponse.py
-  - src/sdk/models/shared/dummypayconfig.py
-  - src/sdk/models/shared/errorresponse.py
-  - src/sdk/models/shared/errorsenum.py
-  - src/sdk/models/shared/expandeddebithold.py
-  - src/sdk/models/shared/forwardbankaccountrequest.py
-  - src/sdk/models/shared/genericconfig.py
-  - src/sdk/models/shared/getbalanceresponse.py
-  - src/sdk/models/shared/getholdresponse.py
-  - src/sdk/models/shared/getholdsresponse.py
-  - src/sdk/models/shared/gettransactionsresponse.py
-  - src/sdk/models/shared/getversionsresponse.py
-  - src/sdk/models/shared/getwalletresponse.py
-  - src/sdk/models/shared/getwalletsummaryresponse.py
-  - src/sdk/models/shared/getworkflowinstancehistoryresponse.py
-  - src/sdk/models/shared/getworkflowinstancehistorystageresponse.py
-  - src/sdk/models/shared/getworkflowinstanceresponse.py
-  - src/sdk/models/shared/getworkflowresponse.py
-  - src/sdk/models/shared/hold.py
-  - src/sdk/models/shared/ledgeraccountsubject.py
-  - src/sdk/models/shared/ledgerinfo.py
-  - src/sdk/models/shared/ledgerinforesponse.py
-  - src/sdk/models/shared/ledgerstorage.py
-  - src/sdk/models/shared/listbalancesresponse.py
-  - src/sdk/models/shared/listclientsresponse.py
-  - src/sdk/models/shared/listrunsresponse.py
-  - src/sdk/models/shared/listtriggersoccurrencesresponse.py
-  - src/sdk/models/shared/listtriggersresponse.py
-  - src/sdk/models/shared/listusersresponse.py
-  - src/sdk/models/shared/listwalletsresponse.py
-  - src/sdk/models/shared/listworkflowsresponse.py
-  - src/sdk/models/shared/log.py
-  - src/sdk/models/shared/logscursorresponse.py
-  - src/sdk/models/shared/mangopayconfig.py
-  - src/sdk/models/shared/mapping.py
-  - src/sdk/models/shared/mappingresponse.py
-  - src/sdk/models/shared/migrationinfo.py
-  - src/sdk/models/shared/modulrconfig.py
-  - src/sdk/models/shared/monetary.py
-  - src/sdk/models/shared/moneycorpconfig.py
-  - src/sdk/models/shared/orchestrationaccount.py
-  - src/sdk/models/shared/orchestrationconnector.py
-  - src/sdk/models/shared/orchestrationcreditwalletrequest.py
-  - src/sdk/models/shared/orchestrationlistwalletsresponse.py
-  - src/sdk/models/shared/orchestrationpayment.py
-  - src/sdk/models/shared/orchestrationpaymentadjustment.py
-  - src/sdk/models/shared/orchestrationpaymentmetadata.py
-  - src/sdk/models/shared/orchestrationpaymentstatus.py
-  - src/sdk/models/shared/orchestrationposttransaction.py
-  - src/sdk/models/shared/orchestrationtransaction.py
-  - src/sdk/models/shared/orchestrationv2transaction.py
-  - src/sdk/models/shared/orchestrationwallet.py
-  - src/sdk/models/shared/payment.py
-  - src/sdk/models/shared/paymentadjustment.py
-  - src/sdk/models/shared/paymentrequest.py
-  - src/sdk/models/shared/paymentresponse.py
-  - src/sdk/models/shared/paymentsaccount.py
-  - src/sdk/models/shared/paymentsaccountresponse.py
-  - src/sdk/models/shared/paymentscheme.py
-  - src/sdk/models/shared/paymentscursor.py
-  - src/sdk/models/shared/paymentserrorsenum.py
-  - src/sdk/models/shared/paymentstatus.py
-  - src/sdk/models/shared/paymenttype.py
-  - src/sdk/models/shared/policiescursorresponse.py
-  - src/sdk/models/shared/policy.py
-  - src/sdk/models/shared/policyrequest.py
-  - src/sdk/models/shared/policyresponse.py
-  - src/sdk/models/shared/pool.py
-  - src/sdk/models/shared/poolbalance.py
-  - src/sdk/models/shared/poolbalances.py
-  - src/sdk/models/shared/poolbalancesresponse.py
-  - src/sdk/models/shared/poolrequest.py
-  - src/sdk/models/shared/poolresponse.py
-  - src/sdk/models/shared/poolscursor.py
-  - src/sdk/models/shared/posting.py
-  - src/sdk/models/shared/posttransaction.py
-  - src/sdk/models/shared/query.py
-  - src/sdk/models/shared/readclientresponse.py
-  - src/sdk/models/shared/readtriggerresponse.py
-  - src/sdk/models/shared/readuserresponse.py
-  - src/sdk/models/shared/reconciliation.py
-  - src/sdk/models/shared/reconciliationrequest.py
-  - src/sdk/models/shared/reconciliationresponse.py
-  - src/sdk/models/shared/reconciliationscursorresponse.py
-  - src/sdk/models/shared/response.py
-  - src/sdk/models/shared/reversetransferinitiationrequest.py
-  - src/sdk/models/shared/runworkflowresponse.py
-  - src/sdk/models/shared/script.py
-  - src/sdk/models/shared/scriptresponse.py
-  - src/sdk/models/shared/secret.py
-  - src/sdk/models/shared/security.py
-  - src/sdk/models/shared/serverinfo.py
-  - src/sdk/models/shared/stage.py
-  - src/sdk/models/shared/stagedelay.py
-  - src/sdk/models/shared/stagesend.py
-  - src/sdk/models/shared/stagesenddestination.py
-  - src/sdk/models/shared/stagesenddestinationaccount.py
-  - src/sdk/models/shared/stagesenddestinationpayment.py
-  - src/sdk/models/shared/stagesenddestinationwallet.py
-  - src/sdk/models/shared/stagesendsource.py
-  - src/sdk/models/shared/stagesendsourceaccount.py
-  - src/sdk/models/shared/stagesendsourcepayment.py
-  - src/sdk/models/shared/stagesendsourcewallet.py
-  - src/sdk/models/shared/stagestatus.py
-  - src/sdk/models/shared/stagewaitevent.py
-  - src/sdk/models/shared/stats.py
-  - src/sdk/models/shared/statsresponse.py
-  - src/sdk/models/shared/stripeconfig.py
-  - src/sdk/models/shared/subject.py
-  - src/sdk/models/shared/taskbankingcircle.py
-  - src/sdk/models/shared/taskcurrencycloud.py
-  - src/sdk/models/shared/taskdummypay.py
-  - src/sdk/models/shared/taskmangopay.py
-  - src/sdk/models/shared/taskmodulr.py
-  - src/sdk/models/shared/taskmoneycorp.py
-  - src/sdk/models/shared/taskresponse.py
-  - src/sdk/models/shared/taskscursor.py
-  - src/sdk/models/shared/taskstripe.py
-  - src/sdk/models/shared/taskwise.py
-  - src/sdk/models/shared/transaction.py
-  - src/sdk/models/shared/transactiondata.py
-  - src/sdk/models/shared/transactionresponse.py
-  - src/sdk/models/shared/transactions.py
-  - src/sdk/models/shared/transactionscursorresponse.py
-  - src/sdk/models/shared/transactionsresponse.py
-  - src/sdk/models/shared/transferinitiation.py
-  - src/sdk/models/shared/transferinitiationadjusments.py
-  - src/sdk/models/shared/transferinitiationpayments.py
-  - src/sdk/models/shared/transferinitiationrequest.py
-  - src/sdk/models/shared/transferinitiationresponse.py
-  - src/sdk/models/shared/transferinitiationscursor.py
-  - src/sdk/models/shared/transferinitiationstatus.py
-  - src/sdk/models/shared/transferrequest.py
-  - src/sdk/models/shared/transferresponse.py
-  - src/sdk/models/shared/trigger.py
-  - src/sdk/models/shared/triggerdata.py
-  - src/sdk/models/shared/triggeroccurrence.py
-  - src/sdk/models/shared/update.py
-  - src/sdk/models/shared/updateaccount.py
-  - src/sdk/models/shared/updatebankaccountmetadatarequest.py
-  - src/sdk/models/shared/updateclientrequest.py
-  - src/sdk/models/shared/updateclientresponse.py
-  - src/sdk/models/shared/updatetransferinitiationstatusrequest.py
-  - src/sdk/models/shared/user.py
-  - src/sdk/models/shared/v2account.py
-  - src/sdk/models/shared/v2accountresponse.py
-  - src/sdk/models/shared/v2accountscursorresponse.py
-  - src/sdk/models/shared/v2activityaddaccountmetadata.py
-  - src/sdk/models/shared/v2activityconfirmhold.py
-  - src/sdk/models/shared/v2activitycreatetransaction.py
-  - src/sdk/models/shared/v2activitycreatetransactionoutput.py
-  - src/sdk/models/shared/v2activitycreditwallet.py
-  - src/sdk/models/shared/v2activitydebitwallet.py
-  - src/sdk/models/shared/v2activitydebitwalletoutput.py
-  - src/sdk/models/shared/v2activitygetaccount.py
-  - src/sdk/models/shared/v2activitygetaccountoutput.py
-  - src/sdk/models/shared/v2activitygetpayment.py
-  - src/sdk/models/shared/v2activitygetpaymentoutput.py
-  - src/sdk/models/shared/v2activitygetwallet.py
-  - src/sdk/models/shared/v2activitygetwalletoutput.py
-  - src/sdk/models/shared/v2activitylistwallets.py
-  - src/sdk/models/shared/v2activitystripetransfer.py
-  - src/sdk/models/shared/v2activityvoidhold.py
-  - src/sdk/models/shared/v2aggregatebalancesresponse.py
-  - src/sdk/models/shared/v2assetholder.py
-  - src/sdk/models/shared/v2bulkelement.py
-  - src/sdk/models/shared/v2bulkelementaddmetadata.py
-  - src/sdk/models/shared/v2bulkelementcreatetransaction.py
-  - src/sdk/models/shared/v2bulkelementdeletemetadata.py
-  - src/sdk/models/shared/v2bulkelementresult.py
-  - src/sdk/models/shared/v2bulkelementreverttransaction.py
-  - src/sdk/models/shared/v2bulkresponse.py
-  - src/sdk/models/shared/v2configinforesponse.py
-  - src/sdk/models/shared/v2connector.py
-  - src/sdk/models/shared/v2createledgerrequest.py
-  - src/sdk/models/shared/v2createtransactionresponse.py
-  - src/sdk/models/shared/v2createtriggerresponse.py
-  - src/sdk/models/shared/v2createworkflowrequest.py
-  - src/sdk/models/shared/v2createworkflowresponse.py
-  - src/sdk/models/shared/v2creditwalletrequest.py
-  - src/sdk/models/shared/v2debitwalletrequest.py
-  - src/sdk/models/shared/v2errorresponse.py
-  - src/sdk/models/shared/v2errorsenum.py
-  - src/sdk/models/shared/v2expandedtransaction.py
-  - src/sdk/models/shared/v2getledgerresponse.py
-  - src/sdk/models/shared/v2gettransactionresponse.py
-  - src/sdk/models/shared/v2getworkflowinstancehistoryresponse.py
-  - src/sdk/models/shared/v2getworkflowinstancehistorystageresponse.py
-  - src/sdk/models/shared/v2getworkflowinstanceresponse.py
-  - src/sdk/models/shared/v2getworkflowresponse.py
-  - src/sdk/models/shared/v2hold.py
-  - src/sdk/models/shared/v2ledger.py
-  - src/sdk/models/shared/v2ledgeraccountsubject.py
-  - src/sdk/models/shared/v2ledgerinfo.py
-  - src/sdk/models/shared/v2ledgerinforesponse.py
-  - src/sdk/models/shared/v2ledgerlistresponse.py
-  - src/sdk/models/shared/v2listrunsresponse.py
-  - src/sdk/models/shared/v2listtriggersoccurrencesresponse.py
-  - src/sdk/models/shared/v2listtriggersresponse.py
-  - src/sdk/models/shared/v2listwalletsresponse.py
-  - src/sdk/models/shared/v2listworkflowsresponse.py
-  - src/sdk/models/shared/v2log.py
-  - src/sdk/models/shared/v2logscursorresponse.py
-  - src/sdk/models/shared/v2migrationinfo.py
-  - src/sdk/models/shared/v2monetary.py
-  - src/sdk/models/shared/v2payment.py
-  - src/sdk/models/shared/v2paymentadjustment.py
-  - src/sdk/models/shared/v2paymentmetadata.py
-  - src/sdk/models/shared/v2paymentstatus.py
-  - src/sdk/models/shared/v2posting.py
-  - src/sdk/models/shared/v2posttransaction.py
-  - src/sdk/models/shared/v2readtriggerresponse.py
-  - src/sdk/models/shared/v2reverttransactionresponse.py
-  - src/sdk/models/shared/v2runworkflowresponse.py
-  - src/sdk/models/shared/v2serverinfo.py
-  - src/sdk/models/shared/v2stage.py
-  - src/sdk/models/shared/v2stagedelay.py
-  - src/sdk/models/shared/v2stagesend.py
-  - src/sdk/models/shared/v2stagesenddestination.py
-  - src/sdk/models/shared/v2stagesenddestinationaccount.py
-  - src/sdk/models/shared/v2stagesenddestinationpayment.py
-  - src/sdk/models/shared/v2stagesenddestinationwallet.py
-  - src/sdk/models/shared/v2stagesendsource.py
-  - src/sdk/models/shared/v2stagesendsourceaccount.py
-  - src/sdk/models/shared/v2stagesendsourcepayment.py
-  - src/sdk/models/shared/v2stagesendsourcewallet.py
-  - src/sdk/models/shared/v2stagestatus.py
-  - src/sdk/models/shared/v2stagewaitevent.py
-  - src/sdk/models/shared/v2stats.py
-  - src/sdk/models/shared/v2statsresponse.py
-  - src/sdk/models/shared/v2subject.py
-  - src/sdk/models/shared/v2targetid.py
-  - src/sdk/models/shared/v2targettype.py
-  - src/sdk/models/shared/v2testtriggerresponse.py
-  - src/sdk/models/shared/v2transaction.py
-  - src/sdk/models/shared/v2transactionscursorresponse.py
-  - src/sdk/models/shared/v2trigger.py
-  - src/sdk/models/shared/v2triggerdata.py
-  - src/sdk/models/shared/v2triggeroccurrence.py
-  - src/sdk/models/shared/v2triggertest.py
-  - src/sdk/models/shared/v2update.py
-  - src/sdk/models/shared/v2updateaccount.py
-  - src/sdk/models/shared/v2volume.py
-  - src/sdk/models/shared/v2volumeswithbalance.py
-  - src/sdk/models/shared/v2volumeswithbalancecursorresponse.py
-  - src/sdk/models/shared/v2wallet.py
-  - src/sdk/models/shared/v2walletsubject.py
-  - src/sdk/models/shared/v2walletwithbalances.py
-  - src/sdk/models/shared/v2workflow.py
-  - src/sdk/models/shared/v2workflowconfig.py
-  - src/sdk/models/shared/v2workflowinstance.py
-  - src/sdk/models/shared/v2workflowinstancehistory.py
-  - src/sdk/models/shared/v2workflowinstancehistorystage.py
-  - src/sdk/models/shared/v2workflowinstancehistorystageinput.py
-  - src/sdk/models/shared/v2workflowinstancehistorystageoutput.py
-  - src/sdk/models/shared/version.py
-  - src/sdk/models/shared/volume.py
-  - src/sdk/models/shared/wallet.py
-  - src/sdk/models/shared/walletstransaction.py
-  - src/sdk/models/shared/walletsubject.py
-  - src/sdk/models/shared/walletsvolume.py
-  - src/sdk/models/shared/walletwithbalances.py
-  - src/sdk/models/shared/webhooksconfig.py
-  - src/sdk/models/shared/webhookserrorsenum.py
-  - src/sdk/models/shared/wiseconfig.py
-  - src/sdk/models/shared/workflow.py
-  - src/sdk/models/shared/workflowconfig.py
-  - src/sdk/models/shared/workflowinstance.py
-  - src/sdk/models/shared/workflowinstancehistory.py
-  - src/sdk/models/shared/workflowinstancehistorystage.py
-  - src/sdk/models/shared/workflowinstancehistorystageinput.py
-  - src/sdk/models/shared/workflowinstancehistorystageoutput.py
-  - src/sdk/orchestration.py
-  - src/sdk/payments.py
-  - src/sdk/reconciliation.py
-  - src/sdk/sdk.py
-  - src/sdk/sdk_orchestration_v1.py
-  - src/sdk/sdk_payments_v1.py
-  - src/sdk/sdk_reconciliation_v1.py
-  - src/sdk/sdk_search_v1.py
-  - src/sdk/sdk_v1.py
-  - src/sdk/sdk_v2.py
-  - src/sdk/sdk_wallets_v1.py
-  - src/sdk/sdk_webhooks_v1.py
-  - src/sdk/sdkconfiguration.py
-  - src/sdk/search.py
-  - src/sdk/utils/__init__.py
-  - src/sdk/utils/retries.py
-  - src/sdk/utils/utils.py
-  - src/sdk/v1.py
-  - src/sdk/v2.py
-  - src/sdk/wallets.py
-  - src/sdk/webhooks.py
+  - src/formance_sdk_python/__init__.py
+  - src/formance_sdk_python/_hooks/__init__.py
+  - src/formance_sdk_python/_hooks/clientcredentials.py
+  - src/formance_sdk_python/_hooks/sdkhooks.py
+  - src/formance_sdk_python/_hooks/types.py
+  - src/formance_sdk_python/_version.py
+  - src/formance_sdk_python/auth.py
+  - src/formance_sdk_python/basesdk.py
+  - src/formance_sdk_python/httpclient.py
+  - src/formance_sdk_python/ledger.py
+  - src/formance_sdk_python/models/errors/__init__.py
+  - src/formance_sdk_python/models/errors/error.py
+  - src/formance_sdk_python/models/errors/errorresponse.py
+  - src/formance_sdk_python/models/errors/paymentserrorresponse.py
+  - src/formance_sdk_python/models/errors/reconciliationerrorresponse.py
+  - src/formance_sdk_python/models/errors/sdkerror.py
+  - src/formance_sdk_python/models/errors/v2error.py
+  - src/formance_sdk_python/models/errors/v2errorresponse.py
+  - src/formance_sdk_python/models/errors/walletserrorresponse.py
+  - src/formance_sdk_python/models/errors/webhookserrorresponse.py
+  - src/formance_sdk_python/models/operations/__init__.py
+  - src/formance_sdk_python/models/operations/activateconfig.py
+  - src/formance_sdk_python/models/operations/addaccounttopool.py
+  - src/formance_sdk_python/models/operations/addmetadataontransaction.py
+  - src/formance_sdk_python/models/operations/addmetadatatoaccount.py
+  - src/formance_sdk_python/models/operations/cancelevent.py
+  - src/formance_sdk_python/models/operations/changeconfigsecret.py
+  - src/formance_sdk_python/models/operations/confirmhold.py
+  - src/formance_sdk_python/models/operations/connectorstransfer.py
+  - src/formance_sdk_python/models/operations/countaccounts.py
+  - src/formance_sdk_python/models/operations/counttransactions.py
+  - src/formance_sdk_python/models/operations/createaccount.py
+  - src/formance_sdk_python/models/operations/createbalance.py
+  - src/formance_sdk_python/models/operations/createbankaccount.py
+  - src/formance_sdk_python/models/operations/createclient.py
+  - src/formance_sdk_python/models/operations/createpayment.py
+  - src/formance_sdk_python/models/operations/createpolicy.py
+  - src/formance_sdk_python/models/operations/createpool.py
+  - src/formance_sdk_python/models/operations/createsecret.py
+  - src/formance_sdk_python/models/operations/createtransaction.py
+  - src/formance_sdk_python/models/operations/createtransactions.py
+  - src/formance_sdk_python/models/operations/createtransferinitiation.py
+  - src/formance_sdk_python/models/operations/createtrigger.py
+  - src/formance_sdk_python/models/operations/createwallet.py
+  - src/formance_sdk_python/models/operations/createworkflow.py
+  - src/formance_sdk_python/models/operations/creditwallet.py
+  - src/formance_sdk_python/models/operations/deactivateconfig.py
+  - src/formance_sdk_python/models/operations/debitwallet.py
+  - src/formance_sdk_python/models/operations/deleteclient.py
+  - src/formance_sdk_python/models/operations/deleteconfig.py
+  - src/formance_sdk_python/models/operations/deletepolicy.py
+  - src/formance_sdk_python/models/operations/deletepool.py
+  - src/formance_sdk_python/models/operations/deletesecret.py
+  - src/formance_sdk_python/models/operations/deletetransferinitiation.py
+  - src/formance_sdk_python/models/operations/deletetrigger.py
+  - src/formance_sdk_python/models/operations/deleteworkflow.py
+  - src/formance_sdk_python/models/operations/forwardbankaccount.py
+  - src/formance_sdk_python/models/operations/getaccount.py
+  - src/formance_sdk_python/models/operations/getaccountbalances.py
+  - src/formance_sdk_python/models/operations/getbalance.py
+  - src/formance_sdk_python/models/operations/getbalances.py
+  - src/formance_sdk_python/models/operations/getbalancesaggregated.py
+  - src/formance_sdk_python/models/operations/getbankaccount.py
+  - src/formance_sdk_python/models/operations/getconnectortask.py
+  - src/formance_sdk_python/models/operations/getconnectortaskv1.py
+  - src/formance_sdk_python/models/operations/gethold.py
+  - src/formance_sdk_python/models/operations/getholds.py
+  - src/formance_sdk_python/models/operations/getinfo.py
+  - src/formance_sdk_python/models/operations/getinstance.py
+  - src/formance_sdk_python/models/operations/getinstancehistory.py
+  - src/formance_sdk_python/models/operations/getinstancestagehistory.py
+  - src/formance_sdk_python/models/operations/getledgerinfo.py
+  - src/formance_sdk_python/models/operations/getmanyconfigs.py
+  - src/formance_sdk_python/models/operations/getmapping.py
+  - src/formance_sdk_python/models/operations/getoidcwellknowns.py
+  - src/formance_sdk_python/models/operations/getpayment.py
+  - src/formance_sdk_python/models/operations/getpolicy.py
+  - src/formance_sdk_python/models/operations/getpool.py
+  - src/formance_sdk_python/models/operations/getpoolbalances.py
+  - src/formance_sdk_python/models/operations/getreconciliation.py
+  - src/formance_sdk_python/models/operations/getserverinfo.py
+  - src/formance_sdk_python/models/operations/gettransaction.py
+  - src/formance_sdk_python/models/operations/gettransactions.py
+  - src/formance_sdk_python/models/operations/gettransferinitiation.py
+  - src/formance_sdk_python/models/operations/getversions.py
+  - src/formance_sdk_python/models/operations/getwallet.py
+  - src/formance_sdk_python/models/operations/getwalletsummary.py
+  - src/formance_sdk_python/models/operations/getworkflow.py
+  - src/formance_sdk_python/models/operations/insertconfig.py
+  - src/formance_sdk_python/models/operations/installconnector.py
+  - src/formance_sdk_python/models/operations/listaccounts.py
+  - src/formance_sdk_python/models/operations/listallconnectors.py
+  - src/formance_sdk_python/models/operations/listbalances.py
+  - src/formance_sdk_python/models/operations/listbankaccounts.py
+  - src/formance_sdk_python/models/operations/listclients.py
+  - src/formance_sdk_python/models/operations/listconfigsavailableconnectors.py
+  - src/formance_sdk_python/models/operations/listconnectortasks.py
+  - src/formance_sdk_python/models/operations/listconnectortasksv1.py
+  - src/formance_sdk_python/models/operations/listinstances.py
+  - src/formance_sdk_python/models/operations/listlogs.py
+  - src/formance_sdk_python/models/operations/listpayments.py
+  - src/formance_sdk_python/models/operations/listpolicies.py
+  - src/formance_sdk_python/models/operations/listpools.py
+  - src/formance_sdk_python/models/operations/listreconciliations.py
+  - src/formance_sdk_python/models/operations/listtransactions.py
+  - src/formance_sdk_python/models/operations/listtransferinitiations.py
+  - src/formance_sdk_python/models/operations/listtriggers.py
+  - src/formance_sdk_python/models/operations/listtriggersoccurrences.py
+  - src/formance_sdk_python/models/operations/listusers.py
+  - src/formance_sdk_python/models/operations/listwallets.py
+  - src/formance_sdk_python/models/operations/listworkflows.py
+  - src/formance_sdk_python/models/operations/orchestrationgetserverinfo.py
+  - src/formance_sdk_python/models/operations/paymentsgetaccount.py
+  - src/formance_sdk_python/models/operations/paymentsgetserverinfo.py
+  - src/formance_sdk_python/models/operations/paymentslistaccounts.py
+  - src/formance_sdk_python/models/operations/readclient.py
+  - src/formance_sdk_python/models/operations/readconnectorconfig.py
+  - src/formance_sdk_python/models/operations/readconnectorconfigv1.py
+  - src/formance_sdk_python/models/operations/readstats.py
+  - src/formance_sdk_python/models/operations/readtrigger.py
+  - src/formance_sdk_python/models/operations/readuser.py
+  - src/formance_sdk_python/models/operations/reconcile.py
+  - src/formance_sdk_python/models/operations/reconciliationgetserverinfo.py
+  - src/formance_sdk_python/models/operations/removeaccountfrompool.py
+  - src/formance_sdk_python/models/operations/resetconnector.py
+  - src/formance_sdk_python/models/operations/resetconnectorv1.py
+  - src/formance_sdk_python/models/operations/retrytransferinitiation.py
+  - src/formance_sdk_python/models/operations/reversetransferinitiation.py
+  - src/formance_sdk_python/models/operations/reverttransaction.py
+  - src/formance_sdk_python/models/operations/runscript.py
+  - src/formance_sdk_python/models/operations/runworkflow.py
+  - src/formance_sdk_python/models/operations/search.py
+  - src/formance_sdk_python/models/operations/searchgetserverinfo.py
+  - src/formance_sdk_python/models/operations/sendevent.py
+  - src/formance_sdk_python/models/operations/testconfig.py
+  - src/formance_sdk_python/models/operations/testtrigger.py
+  - src/formance_sdk_python/models/operations/udpatetransferinitiationstatus.py
+  - src/formance_sdk_python/models/operations/uninstallconnector.py
+  - src/formance_sdk_python/models/operations/uninstallconnectorv1.py
+  - src/formance_sdk_python/models/operations/updatebankaccountmetadata.py
+  - src/formance_sdk_python/models/operations/updateclient.py
+  - src/formance_sdk_python/models/operations/updateconnectorconfigv1.py
+  - src/formance_sdk_python/models/operations/updatemapping.py
+  - src/formance_sdk_python/models/operations/updatemetadata.py
+  - src/formance_sdk_python/models/operations/updatewallet.py
+  - src/formance_sdk_python/models/operations/v2addmetadataontransaction.py
+  - src/formance_sdk_python/models/operations/v2addmetadatatoaccount.py
+  - src/formance_sdk_python/models/operations/v2cancelevent.py
+  - src/formance_sdk_python/models/operations/v2countaccounts.py
+  - src/formance_sdk_python/models/operations/v2counttransactions.py
+  - src/formance_sdk_python/models/operations/v2createbulk.py
+  - src/formance_sdk_python/models/operations/v2createledger.py
+  - src/formance_sdk_python/models/operations/v2createtransaction.py
+  - src/formance_sdk_python/models/operations/v2createtrigger.py
+  - src/formance_sdk_python/models/operations/v2createworkflow.py
+  - src/formance_sdk_python/models/operations/v2deleteaccountmetadata.py
+  - src/formance_sdk_python/models/operations/v2deleteledgermetadata.py
+  - src/formance_sdk_python/models/operations/v2deletetransactionmetadata.py
+  - src/formance_sdk_python/models/operations/v2deletetrigger.py
+  - src/formance_sdk_python/models/operations/v2deleteworkflow.py
+  - src/formance_sdk_python/models/operations/v2exportlogs.py
+  - src/formance_sdk_python/models/operations/v2getaccount.py
+  - src/formance_sdk_python/models/operations/v2getbalancesaggregated.py
+  - src/formance_sdk_python/models/operations/v2getinfo.py
+  - src/formance_sdk_python/models/operations/v2getinstance.py
+  - src/formance_sdk_python/models/operations/v2getinstancehistory.py
+  - src/formance_sdk_python/models/operations/v2getinstancestagehistory.py
+  - src/formance_sdk_python/models/operations/v2getledger.py
+  - src/formance_sdk_python/models/operations/v2getledgerinfo.py
+  - src/formance_sdk_python/models/operations/v2getserverinfo.py
+  - src/formance_sdk_python/models/operations/v2gettransaction.py
+  - src/formance_sdk_python/models/operations/v2getvolumeswithbalances.py
+  - src/formance_sdk_python/models/operations/v2getworkflow.py
+  - src/formance_sdk_python/models/operations/v2importlogs.py
+  - src/formance_sdk_python/models/operations/v2listaccounts.py
+  - src/formance_sdk_python/models/operations/v2listinstances.py
+  - src/formance_sdk_python/models/operations/v2listledgers.py
+  - src/formance_sdk_python/models/operations/v2listlogs.py
+  - src/formance_sdk_python/models/operations/v2listtransactions.py
+  - src/formance_sdk_python/models/operations/v2listtriggers.py
+  - src/formance_sdk_python/models/operations/v2listtriggersoccurrences.py
+  - src/formance_sdk_python/models/operations/v2listworkflows.py
+  - src/formance_sdk_python/models/operations/v2readstats.py
+  - src/formance_sdk_python/models/operations/v2readtrigger.py
+  - src/formance_sdk_python/models/operations/v2reverttransaction.py
+  - src/formance_sdk_python/models/operations/v2runworkflow.py
+  - src/formance_sdk_python/models/operations/v2sendevent.py
+  - src/formance_sdk_python/models/operations/v2updateledgermetadata.py
+  - src/formance_sdk_python/models/operations/voidhold.py
+  - src/formance_sdk_python/models/operations/walletsgetserverinfo.py
+  - src/formance_sdk_python/models/shared/__init__.py
+  - src/formance_sdk_python/models/shared/account.py
+  - src/formance_sdk_python/models/shared/accountbalance.py
+  - src/formance_sdk_python/models/shared/accountrequest.py
+  - src/formance_sdk_python/models/shared/accountresponse.py
+  - src/formance_sdk_python/models/shared/accountscursor.py
+  - src/formance_sdk_python/models/shared/accountscursorresponse.py
+  - src/formance_sdk_python/models/shared/accounttype.py
+  - src/formance_sdk_python/models/shared/accountwithvolumesandbalances.py
+  - src/formance_sdk_python/models/shared/activityaddaccountmetadata.py
+  - src/formance_sdk_python/models/shared/activityconfirmhold.py
+  - src/formance_sdk_python/models/shared/activitycreatetransaction.py
+  - src/formance_sdk_python/models/shared/activitycreatetransactionoutput.py
+  - src/formance_sdk_python/models/shared/activitycreditwallet.py
+  - src/formance_sdk_python/models/shared/activitydebitwallet.py
+  - src/formance_sdk_python/models/shared/activitydebitwalletoutput.py
+  - src/formance_sdk_python/models/shared/activitygetaccount.py
+  - src/formance_sdk_python/models/shared/activitygetaccountoutput.py
+  - src/formance_sdk_python/models/shared/activitygetpayment.py
+  - src/formance_sdk_python/models/shared/activitygetpaymentoutput.py
+  - src/formance_sdk_python/models/shared/activitygetwallet.py
+  - src/formance_sdk_python/models/shared/activitygetwalletoutput.py
+  - src/formance_sdk_python/models/shared/activitylistwallets.py
+  - src/formance_sdk_python/models/shared/activityreverttransaction.py
+  - src/formance_sdk_python/models/shared/activityreverttransactionoutput.py
+  - src/formance_sdk_python/models/shared/activitystripetransfer.py
+  - src/formance_sdk_python/models/shared/activityvoidhold.py
+  - src/formance_sdk_python/models/shared/addaccounttopoolrequest.py
+  - src/formance_sdk_python/models/shared/adyenconfig.py
+  - src/formance_sdk_python/models/shared/aggregatebalancesresponse.py
+  - src/formance_sdk_python/models/shared/assetholder.py
+  - src/formance_sdk_python/models/shared/atlarconfig.py
+  - src/formance_sdk_python/models/shared/attempt.py
+  - src/formance_sdk_python/models/shared/attemptresponse.py
+  - src/formance_sdk_python/models/shared/balance.py
+  - src/formance_sdk_python/models/shared/balancescursor.py
+  - src/formance_sdk_python/models/shared/balancescursorresponse.py
+  - src/formance_sdk_python/models/shared/balancewithassets.py
+  - src/formance_sdk_python/models/shared/bankaccount.py
+  - src/formance_sdk_python/models/shared/bankaccountrelatedaccounts.py
+  - src/formance_sdk_python/models/shared/bankaccountrequest.py
+  - src/formance_sdk_python/models/shared/bankaccountresponse.py
+  - src/formance_sdk_python/models/shared/bankaccountscursor.py
+  - src/formance_sdk_python/models/shared/bankingcircleconfig.py
+  - src/formance_sdk_python/models/shared/client.py
+  - src/formance_sdk_python/models/shared/clientsecret.py
+  - src/formance_sdk_python/models/shared/config.py
+  - src/formance_sdk_python/models/shared/configchangesecret.py
+  - src/formance_sdk_python/models/shared/configinfo.py
+  - src/formance_sdk_python/models/shared/configinforesponse.py
+  - src/formance_sdk_python/models/shared/configresponse.py
+  - src/formance_sdk_python/models/shared/configsresponse.py
+  - src/formance_sdk_python/models/shared/configuser.py
+  - src/formance_sdk_python/models/shared/confirmholdrequest.py
+  - src/formance_sdk_python/models/shared/connector.py
+  - src/formance_sdk_python/models/shared/connectorconfig.py
+  - src/formance_sdk_python/models/shared/connectorconfigresponse.py
+  - src/formance_sdk_python/models/shared/connectorresponse.py
+  - src/formance_sdk_python/models/shared/connectorsconfigsresponse.py
+  - src/formance_sdk_python/models/shared/connectorsresponse.py
+  - src/formance_sdk_python/models/shared/contract.py
+  - src/formance_sdk_python/models/shared/createbalancerequest.py
+  - src/formance_sdk_python/models/shared/createbalanceresponse.py
+  - src/formance_sdk_python/models/shared/createclientrequest.py
+  - src/formance_sdk_python/models/shared/createclientresponse.py
+  - src/formance_sdk_python/models/shared/createsecretrequest.py
+  - src/formance_sdk_python/models/shared/createsecretresponse.py
+  - src/formance_sdk_python/models/shared/createtriggerresponse.py
+  - src/formance_sdk_python/models/shared/createwalletrequest.py
+  - src/formance_sdk_python/models/shared/createwalletresponse.py
+  - src/formance_sdk_python/models/shared/createworkflowrequest.py
+  - src/formance_sdk_python/models/shared/createworkflowresponse.py
+  - src/formance_sdk_python/models/shared/creditwalletrequest.py
+  - src/formance_sdk_python/models/shared/currencycloudconfig.py
+  - src/formance_sdk_python/models/shared/debitwalletrequest.py
+  - src/formance_sdk_python/models/shared/debitwalletresponse.py
+  - src/formance_sdk_python/models/shared/dummypayconfig.py
+  - src/formance_sdk_python/models/shared/errorresponse.py
+  - src/formance_sdk_python/models/shared/errorsenum.py
+  - src/formance_sdk_python/models/shared/expandeddebithold.py
+  - src/formance_sdk_python/models/shared/forwardbankaccountrequest.py
+  - src/formance_sdk_python/models/shared/genericconfig.py
+  - src/formance_sdk_python/models/shared/getbalanceresponse.py
+  - src/formance_sdk_python/models/shared/getholdresponse.py
+  - src/formance_sdk_python/models/shared/getholdsresponse.py
+  - src/formance_sdk_python/models/shared/gettransactionsresponse.py
+  - src/formance_sdk_python/models/shared/getversionsresponse.py
+  - src/formance_sdk_python/models/shared/getwalletresponse.py
+  - src/formance_sdk_python/models/shared/getwalletsummaryresponse.py
+  - src/formance_sdk_python/models/shared/getworkflowinstancehistoryresponse.py
+  - src/formance_sdk_python/models/shared/getworkflowinstancehistorystageresponse.py
+  - src/formance_sdk_python/models/shared/getworkflowinstanceresponse.py
+  - src/formance_sdk_python/models/shared/getworkflowresponse.py
+  - src/formance_sdk_python/models/shared/hold.py
+  - src/formance_sdk_python/models/shared/ledgeraccountsubject.py
+  - src/formance_sdk_python/models/shared/ledgerinfo.py
+  - src/formance_sdk_python/models/shared/ledgerinforesponse.py
+  - src/formance_sdk_python/models/shared/ledgerstorage.py
+  - src/formance_sdk_python/models/shared/listbalancesresponse.py
+  - src/formance_sdk_python/models/shared/listclientsresponse.py
+  - src/formance_sdk_python/models/shared/listrunsresponse.py
+  - src/formance_sdk_python/models/shared/listtriggersoccurrencesresponse.py
+  - src/formance_sdk_python/models/shared/listtriggersresponse.py
+  - src/formance_sdk_python/models/shared/listusersresponse.py
+  - src/formance_sdk_python/models/shared/listwalletsresponse.py
+  - src/formance_sdk_python/models/shared/listworkflowsresponse.py
+  - src/formance_sdk_python/models/shared/log.py
+  - src/formance_sdk_python/models/shared/logscursorresponse.py
+  - src/formance_sdk_python/models/shared/mangopayconfig.py
+  - src/formance_sdk_python/models/shared/mapping.py
+  - src/formance_sdk_python/models/shared/mappingresponse.py
+  - src/formance_sdk_python/models/shared/migrationinfo.py
+  - src/formance_sdk_python/models/shared/modulrconfig.py
+  - src/formance_sdk_python/models/shared/monetary.py
+  - src/formance_sdk_python/models/shared/moneycorpconfig.py
+  - src/formance_sdk_python/models/shared/orchestrationaccount.py
+  - src/formance_sdk_python/models/shared/orchestrationconnector.py
+  - src/formance_sdk_python/models/shared/orchestrationcreditwalletrequest.py
+  - src/formance_sdk_python/models/shared/orchestrationlistwalletsresponse.py
+  - src/formance_sdk_python/models/shared/orchestrationpayment.py
+  - src/formance_sdk_python/models/shared/orchestrationpaymentadjustment.py
+  - src/formance_sdk_python/models/shared/orchestrationpaymentmetadata.py
+  - src/formance_sdk_python/models/shared/orchestrationpaymentstatus.py
+  - src/formance_sdk_python/models/shared/orchestrationposttransaction.py
+  - src/formance_sdk_python/models/shared/orchestrationtransaction.py
+  - src/formance_sdk_python/models/shared/orchestrationv2transaction.py
+  - src/formance_sdk_python/models/shared/orchestrationwallet.py
+  - src/formance_sdk_python/models/shared/payment.py
+  - src/formance_sdk_python/models/shared/paymentadjustment.py
+  - src/formance_sdk_python/models/shared/paymentrequest.py
+  - src/formance_sdk_python/models/shared/paymentresponse.py
+  - src/formance_sdk_python/models/shared/paymentsaccount.py
+  - src/formance_sdk_python/models/shared/paymentsaccountresponse.py
+  - src/formance_sdk_python/models/shared/paymentscheme.py
+  - src/formance_sdk_python/models/shared/paymentscursor.py
+  - src/formance_sdk_python/models/shared/paymentserrorsenum.py
+  - src/formance_sdk_python/models/shared/paymentstatus.py
+  - src/formance_sdk_python/models/shared/paymenttype.py
+  - src/formance_sdk_python/models/shared/policiescursorresponse.py
+  - src/formance_sdk_python/models/shared/policy.py
+  - src/formance_sdk_python/models/shared/policyrequest.py
+  - src/formance_sdk_python/models/shared/policyresponse.py
+  - src/formance_sdk_python/models/shared/pool.py
+  - src/formance_sdk_python/models/shared/poolbalance.py
+  - src/formance_sdk_python/models/shared/poolbalances.py
+  - src/formance_sdk_python/models/shared/poolbalancesresponse.py
+  - src/formance_sdk_python/models/shared/poolrequest.py
+  - src/formance_sdk_python/models/shared/poolresponse.py
+  - src/formance_sdk_python/models/shared/poolscursor.py
+  - src/formance_sdk_python/models/shared/posting.py
+  - src/formance_sdk_python/models/shared/posttransaction.py
+  - src/formance_sdk_python/models/shared/query.py
+  - src/formance_sdk_python/models/shared/readclientresponse.py
+  - src/formance_sdk_python/models/shared/readtriggerresponse.py
+  - src/formance_sdk_python/models/shared/readuserresponse.py
+  - src/formance_sdk_python/models/shared/reconciliation.py
+  - src/formance_sdk_python/models/shared/reconciliationrequest.py
+  - src/formance_sdk_python/models/shared/reconciliationresponse.py
+  - src/formance_sdk_python/models/shared/reconciliationscursorresponse.py
+  - src/formance_sdk_python/models/shared/response.py
+  - src/formance_sdk_python/models/shared/reversetransferinitiationrequest.py
+  - src/formance_sdk_python/models/shared/runworkflowresponse.py
+  - src/formance_sdk_python/models/shared/script.py
+  - src/formance_sdk_python/models/shared/scriptresponse.py
+  - src/formance_sdk_python/models/shared/secret.py
+  - src/formance_sdk_python/models/shared/security.py
+  - src/formance_sdk_python/models/shared/serverinfo.py
+  - src/formance_sdk_python/models/shared/stage.py
+  - src/formance_sdk_python/models/shared/stagedelay.py
+  - src/formance_sdk_python/models/shared/stagesend.py
+  - src/formance_sdk_python/models/shared/stagesenddestination.py
+  - src/formance_sdk_python/models/shared/stagesenddestinationaccount.py
+  - src/formance_sdk_python/models/shared/stagesenddestinationpayment.py
+  - src/formance_sdk_python/models/shared/stagesenddestinationwallet.py
+  - src/formance_sdk_python/models/shared/stagesendsource.py
+  - src/formance_sdk_python/models/shared/stagesendsourceaccount.py
+  - src/formance_sdk_python/models/shared/stagesendsourcepayment.py
+  - src/formance_sdk_python/models/shared/stagesendsourcewallet.py
+  - src/formance_sdk_python/models/shared/stagestatus.py
+  - src/formance_sdk_python/models/shared/stagewaitevent.py
+  - src/formance_sdk_python/models/shared/stats.py
+  - src/formance_sdk_python/models/shared/statsresponse.py
+  - src/formance_sdk_python/models/shared/stripeconfig.py
+  - src/formance_sdk_python/models/shared/subject.py
+  - src/formance_sdk_python/models/shared/taskbankingcircle.py
+  - src/formance_sdk_python/models/shared/taskcurrencycloud.py
+  - src/formance_sdk_python/models/shared/taskdummypay.py
+  - src/formance_sdk_python/models/shared/taskmangopay.py
+  - src/formance_sdk_python/models/shared/taskmodulr.py
+  - src/formance_sdk_python/models/shared/taskmoneycorp.py
+  - src/formance_sdk_python/models/shared/taskresponse.py
+  - src/formance_sdk_python/models/shared/taskscursor.py
+  - src/formance_sdk_python/models/shared/taskstripe.py
+  - src/formance_sdk_python/models/shared/taskwise.py
+  - src/formance_sdk_python/models/shared/transaction.py
+  - src/formance_sdk_python/models/shared/transactiondata.py
+  - src/formance_sdk_python/models/shared/transactionresponse.py
+  - src/formance_sdk_python/models/shared/transactions.py
+  - src/formance_sdk_python/models/shared/transactionscursorresponse.py
+  - src/formance_sdk_python/models/shared/transactionsresponse.py
+  - src/formance_sdk_python/models/shared/transferinitiation.py
+  - src/formance_sdk_python/models/shared/transferinitiationadjusments.py
+  - src/formance_sdk_python/models/shared/transferinitiationpayments.py
+  - src/formance_sdk_python/models/shared/transferinitiationrequest.py
+  - src/formance_sdk_python/models/shared/transferinitiationresponse.py
+  - src/formance_sdk_python/models/shared/transferinitiationscursor.py
+  - src/formance_sdk_python/models/shared/transferinitiationstatus.py
+  - src/formance_sdk_python/models/shared/transferrequest.py
+  - src/formance_sdk_python/models/shared/transferresponse.py
+  - src/formance_sdk_python/models/shared/trigger.py
+  - src/formance_sdk_python/models/shared/triggerdata.py
+  - src/formance_sdk_python/models/shared/triggeroccurrence.py
+  - src/formance_sdk_python/models/shared/update.py
+  - src/formance_sdk_python/models/shared/updateaccount.py
+  - src/formance_sdk_python/models/shared/updatebankaccountmetadatarequest.py
+  - src/formance_sdk_python/models/shared/updateclientrequest.py
+  - src/formance_sdk_python/models/shared/updateclientresponse.py
+  - src/formance_sdk_python/models/shared/updatetransferinitiationstatusrequest.py
+  - src/formance_sdk_python/models/shared/user.py
+  - src/formance_sdk_python/models/shared/v2account.py
+  - src/formance_sdk_python/models/shared/v2accountresponse.py
+  - src/formance_sdk_python/models/shared/v2accountscursorresponse.py
+  - src/formance_sdk_python/models/shared/v2activityaddaccountmetadata.py
+  - src/formance_sdk_python/models/shared/v2activityconfirmhold.py
+  - src/formance_sdk_python/models/shared/v2activitycreatetransaction.py
+  - src/formance_sdk_python/models/shared/v2activitycreatetransactionoutput.py
+  - src/formance_sdk_python/models/shared/v2activitycreditwallet.py
+  - src/formance_sdk_python/models/shared/v2activitydebitwallet.py
+  - src/formance_sdk_python/models/shared/v2activitydebitwalletoutput.py
+  - src/formance_sdk_python/models/shared/v2activitygetaccount.py
+  - src/formance_sdk_python/models/shared/v2activitygetaccountoutput.py
+  - src/formance_sdk_python/models/shared/v2activitygetpayment.py
+  - src/formance_sdk_python/models/shared/v2activitygetpaymentoutput.py
+  - src/formance_sdk_python/models/shared/v2activitygetwallet.py
+  - src/formance_sdk_python/models/shared/v2activitygetwalletoutput.py
+  - src/formance_sdk_python/models/shared/v2activitylistwallets.py
+  - src/formance_sdk_python/models/shared/v2activitystripetransfer.py
+  - src/formance_sdk_python/models/shared/v2activityvoidhold.py
+  - src/formance_sdk_python/models/shared/v2aggregatebalancesresponse.py
+  - src/formance_sdk_python/models/shared/v2assetholder.py
+  - src/formance_sdk_python/models/shared/v2bulkelement.py
+  - src/formance_sdk_python/models/shared/v2bulkelementaddmetadata.py
+  - src/formance_sdk_python/models/shared/v2bulkelementcreatetransaction.py
+  - src/formance_sdk_python/models/shared/v2bulkelementdeletemetadata.py
+  - src/formance_sdk_python/models/shared/v2bulkelementresult.py
+  - src/formance_sdk_python/models/shared/v2bulkelementreverttransaction.py
+  - src/formance_sdk_python/models/shared/v2bulkresponse.py
+  - src/formance_sdk_python/models/shared/v2configinforesponse.py
+  - src/formance_sdk_python/models/shared/v2connector.py
+  - src/formance_sdk_python/models/shared/v2createledgerrequest.py
+  - src/formance_sdk_python/models/shared/v2createtransactionresponse.py
+  - src/formance_sdk_python/models/shared/v2createtriggerresponse.py
+  - src/formance_sdk_python/models/shared/v2createworkflowrequest.py
+  - src/formance_sdk_python/models/shared/v2createworkflowresponse.py
+  - src/formance_sdk_python/models/shared/v2creditwalletrequest.py
+  - src/formance_sdk_python/models/shared/v2debitwalletrequest.py
+  - src/formance_sdk_python/models/shared/v2errorresponse.py
+  - src/formance_sdk_python/models/shared/v2errorsenum.py
+  - src/formance_sdk_python/models/shared/v2expandedtransaction.py
+  - src/formance_sdk_python/models/shared/v2getledgerresponse.py
+  - src/formance_sdk_python/models/shared/v2gettransactionresponse.py
+  - src/formance_sdk_python/models/shared/v2getworkflowinstancehistoryresponse.py
+  - src/formance_sdk_python/models/shared/v2getworkflowinstancehistorystageresponse.py
+  - src/formance_sdk_python/models/shared/v2getworkflowinstanceresponse.py
+  - src/formance_sdk_python/models/shared/v2getworkflowresponse.py
+  - src/formance_sdk_python/models/shared/v2hold.py
+  - src/formance_sdk_python/models/shared/v2ledger.py
+  - src/formance_sdk_python/models/shared/v2ledgeraccountsubject.py
+  - src/formance_sdk_python/models/shared/v2ledgerinfo.py
+  - src/formance_sdk_python/models/shared/v2ledgerinforesponse.py
+  - src/formance_sdk_python/models/shared/v2ledgerlistresponse.py
+  - src/formance_sdk_python/models/shared/v2listrunsresponse.py
+  - src/formance_sdk_python/models/shared/v2listtriggersoccurrencesresponse.py
+  - src/formance_sdk_python/models/shared/v2listtriggersresponse.py
+  - src/formance_sdk_python/models/shared/v2listwalletsresponse.py
+  - src/formance_sdk_python/models/shared/v2listworkflowsresponse.py
+  - src/formance_sdk_python/models/shared/v2log.py
+  - src/formance_sdk_python/models/shared/v2logscursorresponse.py
+  - src/formance_sdk_python/models/shared/v2migrationinfo.py
+  - src/formance_sdk_python/models/shared/v2monetary.py
+  - src/formance_sdk_python/models/shared/v2payment.py
+  - src/formance_sdk_python/models/shared/v2paymentadjustment.py
+  - src/formance_sdk_python/models/shared/v2paymentmetadata.py
+  - src/formance_sdk_python/models/shared/v2paymentstatus.py
+  - src/formance_sdk_python/models/shared/v2posting.py
+  - src/formance_sdk_python/models/shared/v2posttransaction.py
+  - src/formance_sdk_python/models/shared/v2readtriggerresponse.py
+  - src/formance_sdk_python/models/shared/v2reverttransactionresponse.py
+  - src/formance_sdk_python/models/shared/v2runworkflowresponse.py
+  - src/formance_sdk_python/models/shared/v2serverinfo.py
+  - src/formance_sdk_python/models/shared/v2stage.py
+  - src/formance_sdk_python/models/shared/v2stagedelay.py
+  - src/formance_sdk_python/models/shared/v2stagesend.py
+  - src/formance_sdk_python/models/shared/v2stagesenddestination.py
+  - src/formance_sdk_python/models/shared/v2stagesenddestinationaccount.py
+  - src/formance_sdk_python/models/shared/v2stagesenddestinationpayment.py
+  - src/formance_sdk_python/models/shared/v2stagesenddestinationwallet.py
+  - src/formance_sdk_python/models/shared/v2stagesendsource.py
+  - src/formance_sdk_python/models/shared/v2stagesendsourceaccount.py
+  - src/formance_sdk_python/models/shared/v2stagesendsourcepayment.py
+  - src/formance_sdk_python/models/shared/v2stagesendsourcewallet.py
+  - src/formance_sdk_python/models/shared/v2stagestatus.py
+  - src/formance_sdk_python/models/shared/v2stagewaitevent.py
+  - src/formance_sdk_python/models/shared/v2stats.py
+  - src/formance_sdk_python/models/shared/v2statsresponse.py
+  - src/formance_sdk_python/models/shared/v2subject.py
+  - src/formance_sdk_python/models/shared/v2targetid.py
+  - src/formance_sdk_python/models/shared/v2targettype.py
+  - src/formance_sdk_python/models/shared/v2testtriggerresponse.py
+  - src/formance_sdk_python/models/shared/v2transaction.py
+  - src/formance_sdk_python/models/shared/v2transactionscursorresponse.py
+  - src/formance_sdk_python/models/shared/v2trigger.py
+  - src/formance_sdk_python/models/shared/v2triggerdata.py
+  - src/formance_sdk_python/models/shared/v2triggeroccurrence.py
+  - src/formance_sdk_python/models/shared/v2triggertest.py
+  - src/formance_sdk_python/models/shared/v2update.py
+  - src/formance_sdk_python/models/shared/v2updateaccount.py
+  - src/formance_sdk_python/models/shared/v2volume.py
+  - src/formance_sdk_python/models/shared/v2volumeswithbalance.py
+  - src/formance_sdk_python/models/shared/v2volumeswithbalancecursorresponse.py
+  - src/formance_sdk_python/models/shared/v2wallet.py
+  - src/formance_sdk_python/models/shared/v2walletsubject.py
+  - src/formance_sdk_python/models/shared/v2walletwithbalances.py
+  - src/formance_sdk_python/models/shared/v2workflow.py
+  - src/formance_sdk_python/models/shared/v2workflowconfig.py
+  - src/formance_sdk_python/models/shared/v2workflowinstance.py
+  - src/formance_sdk_python/models/shared/v2workflowinstancehistory.py
+  - src/formance_sdk_python/models/shared/v2workflowinstancehistorystage.py
+  - src/formance_sdk_python/models/shared/v2workflowinstancehistorystageinput.py
+  - src/formance_sdk_python/models/shared/v2workflowinstancehistorystageoutput.py
+  - src/formance_sdk_python/models/shared/version.py
+  - src/formance_sdk_python/models/shared/volume.py
+  - src/formance_sdk_python/models/shared/wallet.py
+  - src/formance_sdk_python/models/shared/walletstransaction.py
+  - src/formance_sdk_python/models/shared/walletsubject.py
+  - src/formance_sdk_python/models/shared/walletsvolume.py
+  - src/formance_sdk_python/models/shared/walletwithbalances.py
+  - src/formance_sdk_python/models/shared/webhooksconfig.py
+  - src/formance_sdk_python/models/shared/webhookserrorsenum.py
+  - src/formance_sdk_python/models/shared/wiseconfig.py
+  - src/formance_sdk_python/models/shared/workflow.py
+  - src/formance_sdk_python/models/shared/workflowconfig.py
+  - src/formance_sdk_python/models/shared/workflowinstance.py
+  - src/formance_sdk_python/models/shared/workflowinstancehistory.py
+  - src/formance_sdk_python/models/shared/workflowinstancehistorystage.py
+  - src/formance_sdk_python/models/shared/workflowinstancehistorystageinput.py
+  - src/formance_sdk_python/models/shared/workflowinstancehistorystageoutput.py
+  - src/formance_sdk_python/orchestration.py
+  - src/formance_sdk_python/payments.py
+  - src/formance_sdk_python/py.typed
+  - src/formance_sdk_python/reconciliation.py
+  - src/formance_sdk_python/sdk.py
+  - src/formance_sdk_python/sdk_orchestration_v1.py
+  - src/formance_sdk_python/sdk_payments_v1.py
+  - src/formance_sdk_python/sdk_reconciliation_v1.py
+  - src/formance_sdk_python/sdk_search_v1.py
+  - src/formance_sdk_python/sdk_v1.py
+  - src/formance_sdk_python/sdk_v2.py
+  - src/formance_sdk_python/sdk_wallets_v1.py
+  - src/formance_sdk_python/sdk_webhooks_v1.py
+  - src/formance_sdk_python/sdkconfiguration.py
+  - src/formance_sdk_python/search.py
+  - src/formance_sdk_python/types/__init__.py
+  - src/formance_sdk_python/types/basemodel.py
+  - src/formance_sdk_python/utils/__init__.py
+  - src/formance_sdk_python/utils/annotations.py
+  - src/formance_sdk_python/utils/enums.py
+  - src/formance_sdk_python/utils/eventstreaming.py
+  - src/formance_sdk_python/utils/forms.py
+  - src/formance_sdk_python/utils/headers.py
+  - src/formance_sdk_python/utils/logger.py
+  - src/formance_sdk_python/utils/metadata.py
+  - src/formance_sdk_python/utils/queryparams.py
+  - src/formance_sdk_python/utils/requestbodies.py
+  - src/formance_sdk_python/utils/retries.py
+  - src/formance_sdk_python/utils/security.py
+  - src/formance_sdk_python/utils/serializers.py
+  - src/formance_sdk_python/utils/url.py
+  - src/formance_sdk_python/utils/values.py
+  - src/formance_sdk_python/v1.py
+  - src/formance_sdk_python/v2.py
+  - src/formance_sdk_python/wallets.py
+  - src/formance_sdk_python/webhooks.py
 examples:
   getOIDCWellKnowns: {}
   getVersions:
@@ -1387,12 +1412,19 @@ examples:
       responses:
         "200":
           application/json: {"env": "<value>", "region": "<value>", "versions": [{"health": true, "name": "<value>", "version": "<value>"}]}
-  createClient: {}
+  createClient:
+    speakeasy-default-create-client:
+      responses:
+        "201":
+          application/json: {}
   createSecret:
     speakeasy-default-create-secret:
       parameters:
         path:
           clientId: "<value>"
+      responses:
+        "200":
+          application/json: {}
   deleteClient:
     speakeasy-default-delete-client:
       parameters:
@@ -1404,7 +1436,11 @@ examples:
         path:
           clientId: "<value>"
           secretId: "<value>"
-  listClients: {}
+  listClients:
+    speakeasy-default-list-clients:
+      responses:
+        "200":
+          application/json: {}
   listUsers:
     speakeasy-default-list-users:
       responses:
@@ -1415,6 +1451,9 @@ examples:
       parameters:
         path:
           clientId: "<value>"
+      responses:
+        "200":
+          application/json: {}
   readUser:
     speakeasy-default-read-user:
       parameters:
@@ -1428,6 +1467,9 @@ examples:
       parameters:
         path:
           clientId: "<value>"
+      responses:
+        "200":
+          application/json: {}
   CreateTransactions:
     speakeasy-default-create-transactions:
       parameters:
@@ -1726,7 +1768,7 @@ examples:
         application/json: []
       responses:
         "200":
-          application/json: {"data": [{"data": {"id": 675402, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "reverted": true, "timestamp": "2023-12-06T13:18:01.588Z"}, "responseType": "<value>"}, {"responseType": "<value>"}]}
+          application/json: {"data": [{"data": {"id": 675402, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "reverted": true, "timestamp": "2024-12-05T13:18:01.588Z"}, "responseType": "<value>"}, {"responseType": "<value>"}]}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   v2CreateLedger:
@@ -2288,7 +2330,8 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
-        "200": {}
+        "200":
+          application/json: {}
   createAccount:
     speakeasy-default-create-account:
       requestBody:
@@ -2394,7 +2437,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<id>", "createdAt": "2022-09-14T18:08:36.551Z", "id": "b8d4a71b-a457-4542-9afd-b17eed3b13ec", "status": "EXPIRED", "updatedAt": "2022-08-01T16:40:57.832Z"}}
+          application/json: {"data": {"connectorID": "<id>", "createdAt": "2023-09-14T18:08:36.551Z", "id": "b8d4a71b-a457-4542-9afd-b17eed3b13ec", "status": "EXPIRED", "updatedAt": "2023-08-01T16:40:57.832Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getConnectorTaskV1:
@@ -2406,7 +2449,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<id>", "createdAt": "2023-05-15T09:04:44.604Z", "id": "2592c3a8-ba28-46c9-923f-e1c798f795cd", "status": "CANCELLED", "updatedAt": "2022-05-07T01:38:27.888Z"}}
+          application/json: {"data": {"connectorID": "<id>", "createdAt": "2024-05-14T09:04:44.604Z", "id": "2592c3a8-ba28-46c9-923f-e1c798f795cd", "status": "CANCELLED", "updatedAt": "2023-05-07T01:38:27.888Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getPayment:
@@ -2499,7 +2542,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"connectorID": "<id>", "createdAt": "2023-08-25T00:07:31.663Z", "id": "86943aba-d61f-47aa-80d9-91cf9266dd48", "status": "FAILED", "updatedAt": "2024-07-04T01:56:37.650Z"}, {"connectorID": "<id>", "createdAt": "2023-10-16T18:08:06.313Z", "id": "c3f67835-1bc6-400c-bf3e-ffe2c5cad006", "status": "FAILED", "updatedAt": "2024-12-26T02:29:47.666Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"connectorID": "<id>", "createdAt": "2024-08-24T00:07:31.663Z", "id": "86943aba-d61f-47aa-80d9-91cf9266dd48", "status": "FAILED", "updatedAt": "2025-07-04T01:56:37.650Z"}, {"connectorID": "<id>", "createdAt": "2024-10-15T18:08:06.313Z", "id": "c3f67835-1bc6-400c-bf3e-ffe2c5cad006", "status": "FAILED", "updatedAt": "2025-12-26T02:29:47.666Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   listConnectorTasksV1:
@@ -2513,7 +2556,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"connectorID": "<id>", "createdAt": "2024-06-21T02:32:58.781Z", "id": "98119bf1-d77f-40d7-aa95-f6d1de55906f", "status": "EXPIRED", "updatedAt": "2022-05-12T10:18:09.979Z"}, {"connectorID": "<id>", "createdAt": "2022-03-08T11:32:23.574Z", "id": "6a636e77-2b1d-453e-86e1-a0f8d94fbd4d", "status": "REFUNDED", "updatedAt": "2024-05-01T19:24:21.069Z"}, {"connectorID": "<id>", "createdAt": "2024-04-25T04:53:52.895Z", "id": "dc3d5edc-7f3f-4cd2-ab14-3091094b0590", "status": "DISPUTE", "updatedAt": "2024-01-15T12:09:57.416Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"connectorID": "<id>", "createdAt": "2025-06-21T02:32:58.781Z", "id": "98119bf1-d77f-40d7-aa95-f6d1de55906f", "status": "EXPIRED", "updatedAt": "2023-05-12T10:18:09.979Z"}, {"connectorID": "<id>", "createdAt": "2023-03-08T11:32:23.574Z", "id": "6a636e77-2b1d-453e-86e1-a0f8d94fbd4d", "status": "REFUNDED", "updatedAt": "2025-05-01T19:24:21.069Z"}, {"connectorID": "<id>", "createdAt": "2025-04-25T04:53:52.895Z", "id": "dc3d5edc-7f3f-4cd2-ab14-3091094b0590", "status": "DISPUTE", "updatedAt": "2025-01-14T12:09:57.416Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   listPayments:
@@ -3048,3 +3091,4 @@ examples:
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+generatedTests: {}
