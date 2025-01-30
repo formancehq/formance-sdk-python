@@ -1,7 +1,7 @@
 speakeasyVersion: 1.464.0
 sources:
-    my-source:
-        sourceNamespace: my-source
+    stacks-source:
+        sourceNamespace: stacks-source
         sourceRevisionDigest: sha256:57f884c55e49fe766c1a69841dd102949c3a805601110376cbab37f5c9b7bc34
         sourceBlobDigest: sha256:ad1bdcc615ebeb9d963920de837261ed561327d8517193955fa61c76702f44fb
         tags:
@@ -10,29 +10,29 @@ sources:
             - v2.1.1
 targets:
     formance-python-sdk:
-        source: my-source
-        sourceNamespace: my-source
+        source: stacks-source
+        sourceNamespace: stacks-source
         sourceRevisionDigest: sha256:57f884c55e49fe766c1a69841dd102949c3a805601110376cbab37f5c9b7bc34
         sourceBlobDigest: sha256:ad1bdcc615ebeb9d963920de837261ed561327d8517193955fa61c76702f44fb
-        codeSamplesNamespace: my-source-python-code-samples
+        codeSamplesNamespace: stacks-source-python-code-samples
         codeSamplesRevisionDigest: sha256:4b644ae405d3bf120112437cbde1efa347c60731af1725dc3f99b052341167ab
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
-        my-source:
+        stacks-source:
             inputs:
-                - location: https://github.com/formancehq/stack/releases/download/v2.1.2/generate.json
+                - location: https://github.com/formancehq/stack/releases/download/v3.0.0-rc.1/generate.json
             registry:
-                location: registry.speakeasyapi.dev/formance/formance/my-source
+                location: registry.speakeasyapi.dev/formance/formance/stacks-source
     targets:
         formance-python-sdk:
             target: python
-            source: my-source
+            source: stacks-source
             publish:
                 pypi:
                     token: $PYPI_TOKEN
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/formance/formance/my-source-python-code-samples
+                    location: registry.speakeasyapi.dev/formance/formance/stacks-source-python-code-samples
                 blocking: false

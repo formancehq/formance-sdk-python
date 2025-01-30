@@ -1,19 +1,15 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-    my-source:
+    stacks-source:
         inputs:
-            - location: https://github.com/formancehq/stack/releases/download/v2.1.2/generate.json
+            - location: https://github.com/formancehq/stack/releases/download/v3.0.0-rc.1/generate.json
         registry:
-            location: registry.speakeasyapi.dev/formance/formance/my-source
+            location: registry.speakeasyapi.dev/formance/formance/stacks-source
 targets:
     formance-python-sdk:
         target: python
-        source: my-source
+        source: stacks-source
         publish:
             pypi:
                 token: $PYPI_TOKEN
-        codeSamples:
-            registry:
-                location: registry.speakeasyapi.dev/formance/formance/my-source-python-code-samples
-            blocking: false
