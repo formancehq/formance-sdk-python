@@ -73,7 +73,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2AddMetadataOnTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -81,7 +81,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2AddMetadataOnTransactionResponse(
                 status_code=http_res.status_code,
@@ -89,8 +89,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -165,7 +167,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2AddMetadataOnTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -173,7 +175,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2AddMetadataOnTransactionResponse(
                 status_code=http_res.status_code,
@@ -181,8 +183,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -255,7 +259,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2AddMetadataToAccount",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -263,7 +267,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2AddMetadataToAccountResponse(
                 status_code=http_res.status_code,
@@ -271,8 +275,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -345,7 +351,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2AddMetadataToAccount",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -353,7 +359,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2AddMetadataToAccountResponse(
                 status_code=http_res.status_code,
@@ -361,8 +367,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -435,7 +443,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2CountAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -443,7 +451,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2CountAccountsResponse(
                 status_code=http_res.status_code,
@@ -452,8 +460,10 @@ class V2(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -526,7 +536,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2CountAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -534,7 +544,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2CountAccountsResponse(
                 status_code=http_res.status_code,
@@ -543,8 +553,10 @@ class V2(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -617,7 +629,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2CountTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -625,7 +637,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2CountTransactionsResponse(
                 status_code=http_res.status_code,
@@ -634,8 +646,10 @@ class V2(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -708,7 +722,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2CountTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -716,7 +730,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2CountTransactionsResponse(
                 status_code=http_res.status_code,
@@ -725,8 +739,10 @@ class V2(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -802,7 +818,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2CreateBulk",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -810,8 +826,17 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
-        if utils.match_response(http_res, ["200", "400"], "application/json"):
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V2CreateBulkResponse(
+                v2_bulk_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.V2BulkResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "400", "application/json"):
             return operations.V2CreateBulkResponse(
                 v2_bulk_response=utils.unmarshal_json(
                     http_res.text, Optional[shared.V2BulkResponse]
@@ -821,8 +846,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -898,7 +925,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2CreateBulk",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -906,8 +933,17 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
-        if utils.match_response(http_res, ["200", "400"], "application/json"):
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V2CreateBulkResponse(
+                v2_bulk_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.V2BulkResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "400", "application/json"):
             return operations.V2CreateBulkResponse(
                 v2_bulk_response=utils.unmarshal_json(
                     http_res.text, Optional[shared.V2BulkResponse]
@@ -917,8 +953,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -994,7 +1032,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2CreateLedger",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1002,7 +1040,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2CreateLedgerResponse(
                 status_code=http_res.status_code,
@@ -1010,8 +1048,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1087,7 +1127,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2CreateLedger",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1095,7 +1135,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2CreateLedgerResponse(
                 status_code=http_res.status_code,
@@ -1103,8 +1143,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1181,7 +1223,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2CreateTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1189,7 +1231,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2CreateTransactionResponse(
                 v2_create_transaction_response=utils.unmarshal_json(
@@ -1200,8 +1242,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1278,7 +1322,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2CreateTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1286,7 +1330,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2CreateTransactionResponse(
                 v2_create_transaction_response=utils.unmarshal_json(
@@ -1297,8 +1341,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1372,7 +1418,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2DeleteAccountMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1380,7 +1426,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.V2DeleteAccountMetadataResponse(
                 status_code=http_res.status_code,
@@ -1388,8 +1434,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1463,7 +1511,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2DeleteAccountMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1471,7 +1519,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.V2DeleteAccountMetadataResponse(
                 status_code=http_res.status_code,
@@ -1479,8 +1527,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1550,7 +1600,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2DeleteLedgerMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1558,7 +1608,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2DeleteLedgerMetadataResponse(
                 status_code=http_res.status_code,
@@ -1566,8 +1616,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1637,7 +1689,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2DeleteLedgerMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1645,7 +1697,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2DeleteLedgerMetadataResponse(
                 status_code=http_res.status_code,
@@ -1653,8 +1705,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1728,7 +1782,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2DeleteTransactionMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1736,7 +1790,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.V2DeleteTransactionMetadataResponse(
                 status_code=http_res.status_code,
@@ -1744,8 +1798,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1819,7 +1875,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2DeleteTransactionMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1827,7 +1883,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.V2DeleteTransactionMetadataResponse(
                 status_code=http_res.status_code,
@@ -1835,8 +1891,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1905,7 +1963,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2ExportLogs",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1992,7 +2050,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2ExportLogs",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2079,7 +2137,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2GetAccount",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2087,7 +2145,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetAccountResponse(
                 v2_account_response=utils.unmarshal_json(
@@ -2098,8 +2156,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2168,7 +2228,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2GetAccount",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2176,7 +2236,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetAccountResponse(
                 v2_account_response=utils.unmarshal_json(
@@ -2187,8 +2247,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2263,7 +2325,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2GetBalancesAggregated",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2271,7 +2333,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetBalancesAggregatedResponse(
                 v2_aggregate_balances_response=utils.unmarshal_json(
@@ -2282,8 +2344,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2358,7 +2422,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2GetBalancesAggregated",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2366,7 +2430,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetBalancesAggregatedResponse(
                 v2_aggregate_balances_response=utils.unmarshal_json(
@@ -2377,8 +2441,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2438,7 +2504,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2GetInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2446,7 +2512,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInfoResponse(
                 v2_config_info_response=utils.unmarshal_json(
@@ -2466,8 +2532,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2527,7 +2595,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2GetInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2535,7 +2603,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInfoResponse(
                 v2_config_info_response=utils.unmarshal_json(
@@ -2555,8 +2623,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2625,7 +2695,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2GetLedger",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2633,7 +2703,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetLedgerResponse(
                 v2_get_ledger_response=utils.unmarshal_json(
@@ -2644,8 +2714,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2714,7 +2786,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2GetLedger",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2722,7 +2794,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetLedgerResponse(
                 v2_get_ledger_response=utils.unmarshal_json(
@@ -2733,8 +2805,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2804,7 +2878,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2GetLedgerInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2812,7 +2886,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetLedgerInfoResponse(
                 v2_ledger_info_response=utils.unmarshal_json(
@@ -2823,8 +2897,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2894,7 +2970,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2GetLedgerInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2902,7 +2978,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetLedgerInfoResponse(
                 v2_ledger_info_response=utils.unmarshal_json(
@@ -2913,8 +2989,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2984,7 +3062,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2GetTransaction",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2992,7 +3070,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetTransactionResponse(
                 v2_get_transaction_response=utils.unmarshal_json(
@@ -3003,8 +3081,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3074,7 +3154,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2GetTransaction",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3082,7 +3162,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetTransactionResponse(
                 v2_get_transaction_response=utils.unmarshal_json(
@@ -3093,8 +3173,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3169,7 +3251,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2GetVolumesWithBalances",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3177,7 +3259,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetVolumesWithBalancesResponse(
                 v2_volumes_with_balance_cursor_response=utils.unmarshal_json(
@@ -3188,8 +3270,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3264,7 +3348,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2GetVolumesWithBalances",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3272,7 +3356,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetVolumesWithBalancesResponse(
                 v2_volumes_with_balance_cursor_response=utils.unmarshal_json(
@@ -3283,8 +3367,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3355,7 +3441,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2ImportLogs",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3363,7 +3449,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2ImportLogsResponse(
                 status_code=http_res.status_code,
@@ -3371,8 +3457,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3443,7 +3531,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2ImportLogs",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3451,7 +3539,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2ImportLogsResponse(
                 status_code=http_res.status_code,
@@ -3459,8 +3547,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3534,7 +3624,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2ListAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3542,7 +3632,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListAccountsResponse(
                 v2_accounts_cursor_response=utils.unmarshal_json(
@@ -3553,8 +3643,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3628,7 +3720,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2ListAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3636,7 +3728,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListAccountsResponse(
                 v2_accounts_cursor_response=utils.unmarshal_json(
@@ -3647,8 +3739,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3717,7 +3811,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2ListLedgers",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3725,7 +3819,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListLedgersResponse(
                 v2_ledger_list_response=utils.unmarshal_json(
@@ -3736,8 +3830,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3806,7 +3902,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2ListLedgers",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3814,7 +3910,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListLedgersResponse(
                 v2_ledger_list_response=utils.unmarshal_json(
@@ -3825,8 +3921,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3900,7 +3998,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2ListLogs",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3908,7 +4006,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListLogsResponse(
                 v2_logs_cursor_response=utils.unmarshal_json(
@@ -3919,8 +4017,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3994,7 +4094,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2ListLogs",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4002,7 +4102,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListLogsResponse(
                 v2_logs_cursor_response=utils.unmarshal_json(
@@ -4013,8 +4113,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -4089,7 +4191,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2ListTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4097,7 +4199,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListTransactionsResponse(
                 v2_transactions_cursor_response=utils.unmarshal_json(
@@ -4108,8 +4210,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -4184,7 +4288,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2ListTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4192,7 +4296,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListTransactionsResponse(
                 v2_transactions_cursor_response=utils.unmarshal_json(
@@ -4203,8 +4307,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -4276,7 +4382,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2ReadStats",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4284,7 +4390,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ReadStatsResponse(
                 v2_stats_response=utils.unmarshal_json(
@@ -4295,8 +4401,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -4368,7 +4476,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2ReadStats",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4376,7 +4484,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ReadStatsResponse(
                 v2_stats_response=utils.unmarshal_json(
@@ -4387,8 +4495,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -4458,7 +4568,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2RevertTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4466,7 +4576,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2RevertTransactionResponse(
                 v2_revert_transaction_response=utils.unmarshal_json(
@@ -4477,8 +4587,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -4548,7 +4660,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2RevertTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4556,7 +4668,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2RevertTransactionResponse(
                 v2_revert_transaction_response=utils.unmarshal_json(
@@ -4567,8 +4679,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -4641,7 +4755,7 @@ class V2(BaseSDK):
         http_res = self.do_request(
             hook_ctx=HookContext(
                 operation_id="v2UpdateLedgerMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4649,7 +4763,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2UpdateLedgerMetadataResponse(
                 status_code=http_res.status_code,
@@ -4666,8 +4780,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -4740,7 +4856,7 @@ class V2(BaseSDK):
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
                 operation_id="v2UpdateLedgerMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4748,7 +4864,7 @@ class V2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2UpdateLedgerMetadataResponse(
                 status_code=http_res.status_code,
@@ -4765,8 +4881,10 @@ class V2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorResponseData)
-            raise errors.V2ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.V2ErrorResponseData
+            )
+            raise errors.V2ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)

@@ -48,6 +48,7 @@ and standard method from web, mobile and desktop applications.
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Authentication](#authentication-1)
+  * [Resource Management](#resource-management)
   * [Debugging](#debugging)
 * [Development](#development)
   * [Maturity](#maturity)
@@ -57,6 +58,11 @@ and standard method from web, mobile and desktop applications.
 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
+
+> [!NOTE]
+> **Python version upgrade policy**
+>
+> Once a Python version reaches its [official end of life date](https://devguide.python.org/versions/), a 3-month grace period is provided for users to upgrade. Following this grace period, the minimum python version supported in the SDK will be updated.
 
 The SDK can be installed with either *pip* or *poetry* package managers.
 
@@ -75,6 +81,37 @@ pip install formance-sdk-python
 ```bash
 poetry add formance-sdk-python
 ```
+
+### Shell and script usage with `uv`
+
+You can use this SDK in a Python shell with [uv](https://docs.astral.sh/uv/) and the `uvx` command that comes with it like so:
+
+```shell
+uvx --from formance-sdk-python python
+```
+
+It's also possible to write a standalone Python script without needing to set up a whole project like so:
+
+```python
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.9"
+# dependencies = [
+#     "formance-sdk-python",
+# ]
+# ///
+
+from formance_sdk_python import SDK
+
+sdk = SDK(
+  # SDK arguments
+)
+
+# Rest of script here...
+```
+
+Once that is saved to a file, you can run it with `uv run script.py` where
+`script.py` can be replaced with the actual file name.
 <!-- End SDK Installation [installation] -->
 
 <!-- Start IDE Support [idesupport] -->
@@ -104,12 +141,12 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.get_versions()
+    res = sdk.get_oidc_well_knowns()
 
-    assert res.get_versions_response is not None
+    assert res is not None
 
     # Handle response
-    print(res.get_versions_response)
+    print(res)
 ```
 
 </br>
@@ -129,12 +166,12 @@ async def main():
         ),
     ) as sdk:
 
-        res = await sdk.get_versions_async()
+        res = await sdk.get_oidc_well_knowns_async()
 
-        assert res.get_versions_response is not None
+        assert res is not None
 
         # Handle response
-        print(res.get_versions_response)
+        print(res)
 
 asyncio.run(main())
 ```
@@ -148,46 +185,42 @@ asyncio.run(main())
 
 ### [auth](docs/sdks/auth/README.md)
 
-
-#### [auth.v1](docs/sdks/v1/README.md)
-
-* [create_client](docs/sdks/v1/README.md#create_client) - Create client
-* [create_secret](docs/sdks/v1/README.md#create_secret) - Add a secret to a client
-* [delete_client](docs/sdks/v1/README.md#delete_client) - Delete client
-* [delete_secret](docs/sdks/v1/README.md#delete_secret) - Delete a secret from a client
-* [get_oidc_well_knowns](docs/sdks/v1/README.md#get_oidc_well_knowns) - Retrieve OpenID connect well-knowns.
-* [get_server_info](docs/sdks/v1/README.md#get_server_info) - Get server info
-* [list_clients](docs/sdks/v1/README.md#list_clients) - List clients
-* [list_users](docs/sdks/v1/README.md#list_users) - List users
-* [read_client](docs/sdks/v1/README.md#read_client) - Read client
-* [read_user](docs/sdks/v1/README.md#read_user) - Read user
-* [update_client](docs/sdks/v1/README.md#update_client) - Update client
+* [get_server_info](docs/sdks/auth/README.md#get_server_info) - Get server info
+* [create_client](docs/sdks/auth/README.md#create_client) - Create client
+* [create_secret](docs/sdks/auth/README.md#create_secret) - Add a secret to a client
+* [delete_client](docs/sdks/auth/README.md#delete_client) - Delete client
+* [delete_secret](docs/sdks/auth/README.md#delete_secret) - Delete a secret from a client
+* [list_clients](docs/sdks/auth/README.md#list_clients) - List clients
+* [list_users](docs/sdks/auth/README.md#list_users) - List users
+* [read_client](docs/sdks/auth/README.md#read_client) - Read client
+* [read_user](docs/sdks/auth/README.md#read_user) - Read user
+* [update_client](docs/sdks/auth/README.md#update_client) - Update client
 
 ### [ledger](docs/sdks/ledger/README.md)
 
 
-#### [ledger.v1](docs/sdks/sdkv1/README.md)
+#### [ledger.v1](docs/sdks/v1/README.md)
 
-* [create_transactions](docs/sdks/sdkv1/README.md#create_transactions) - Create a new batch of transactions to a ledger
-* [add_metadata_on_transaction](docs/sdks/sdkv1/README.md#add_metadata_on_transaction) - Set the metadata of a transaction by its ID
-* [add_metadata_to_account](docs/sdks/sdkv1/README.md#add_metadata_to_account) - Add metadata to an account
-* [count_accounts](docs/sdks/sdkv1/README.md#count_accounts) - Count the accounts from a ledger
-* [count_transactions](docs/sdks/sdkv1/README.md#count_transactions) - Count the transactions from a ledger
-* [create_transaction](docs/sdks/sdkv1/README.md#create_transaction) - Create a new transaction to a ledger
-* [get_account](docs/sdks/sdkv1/README.md#get_account) - Get account by its address
-* [get_balances](docs/sdks/sdkv1/README.md#get_balances) - Get the balances from a ledger's account
-* [get_balances_aggregated](docs/sdks/sdkv1/README.md#get_balances_aggregated) - Get the aggregated balances from selected accounts
-* [get_info](docs/sdks/sdkv1/README.md#get_info) - Show server information
-* [get_ledger_info](docs/sdks/sdkv1/README.md#get_ledger_info) - Get information about a ledger
-* [get_mapping](docs/sdks/sdkv1/README.md#get_mapping) - Get the mapping of a ledger
-* [get_transaction](docs/sdks/sdkv1/README.md#get_transaction) - Get transaction from a ledger by its ID
-* [list_accounts](docs/sdks/sdkv1/README.md#list_accounts) - List accounts from a ledger
-* [list_logs](docs/sdks/sdkv1/README.md#list_logs) - List the logs from a ledger
-* [list_transactions](docs/sdks/sdkv1/README.md#list_transactions) - List transactions from a ledger
-* [read_stats](docs/sdks/sdkv1/README.md#read_stats) - Get statistics from a ledger
-* [revert_transaction](docs/sdks/sdkv1/README.md#revert_transaction) - Revert a ledger transaction by its ID
-* [~~run_script~~](docs/sdks/sdkv1/README.md#run_script) - Execute a Numscript :warning: **Deprecated**
-* [update_mapping](docs/sdks/sdkv1/README.md#update_mapping) - Update the mapping of a ledger
+* [create_transactions](docs/sdks/v1/README.md#create_transactions) - Create a new batch of transactions to a ledger
+* [add_metadata_on_transaction](docs/sdks/v1/README.md#add_metadata_on_transaction) - Set the metadata of a transaction by its ID
+* [add_metadata_to_account](docs/sdks/v1/README.md#add_metadata_to_account) - Add metadata to an account
+* [count_accounts](docs/sdks/v1/README.md#count_accounts) - Count the accounts from a ledger
+* [count_transactions](docs/sdks/v1/README.md#count_transactions) - Count the transactions from a ledger
+* [create_transaction](docs/sdks/v1/README.md#create_transaction) - Create a new transaction to a ledger
+* [get_account](docs/sdks/v1/README.md#get_account) - Get account by its address
+* [get_balances](docs/sdks/v1/README.md#get_balances) - Get the balances from a ledger's account
+* [get_balances_aggregated](docs/sdks/v1/README.md#get_balances_aggregated) - Get the aggregated balances from selected accounts
+* [get_info](docs/sdks/v1/README.md#get_info) - Show server information
+* [get_ledger_info](docs/sdks/v1/README.md#get_ledger_info) - Get information about a ledger
+* [get_mapping](docs/sdks/v1/README.md#get_mapping) - Get the mapping of a ledger
+* [get_transaction](docs/sdks/v1/README.md#get_transaction) - Get transaction from a ledger by its ID
+* [list_accounts](docs/sdks/v1/README.md#list_accounts) - List accounts from a ledger
+* [list_logs](docs/sdks/v1/README.md#list_logs) - List the logs from a ledger
+* [list_transactions](docs/sdks/v1/README.md#list_transactions) - List transactions from a ledger
+* [read_stats](docs/sdks/v1/README.md#read_stats) - Get statistics from a ledger
+* [revert_transaction](docs/sdks/v1/README.md#revert_transaction) - Revert a ledger transaction by its ID
+* [~~run_script~~](docs/sdks/v1/README.md#run_script) - Execute a Numscript :warning: **Deprecated**
+* [update_mapping](docs/sdks/v1/README.md#update_mapping) - Update the mapping of a ledger
 
 #### [ledger.v2](docs/sdks/v2/README.md)
 
@@ -220,157 +253,140 @@ asyncio.run(main())
 
 ### [orchestration](docs/sdks/orchestration/README.md)
 
-
-#### [orchestration.v1](docs/sdks/sdkorchestrationv1/README.md)
-
-* [cancel_event](docs/sdks/sdkorchestrationv1/README.md#cancel_event) - Cancel a running workflow
-* [create_trigger](docs/sdks/sdkorchestrationv1/README.md#create_trigger) - Create trigger
-* [create_workflow](docs/sdks/sdkorchestrationv1/README.md#create_workflow) - Create workflow
-* [delete_trigger](docs/sdks/sdkorchestrationv1/README.md#delete_trigger) - Delete trigger
-* [delete_workflow](docs/sdks/sdkorchestrationv1/README.md#delete_workflow) - Delete a flow by id
-* [get_instance](docs/sdks/sdkorchestrationv1/README.md#get_instance) - Get a workflow instance by id
-* [get_instance_history](docs/sdks/sdkorchestrationv1/README.md#get_instance_history) - Get a workflow instance history by id
-* [get_instance_stage_history](docs/sdks/sdkorchestrationv1/README.md#get_instance_stage_history) - Get a workflow instance stage history
-* [get_workflow](docs/sdks/sdkorchestrationv1/README.md#get_workflow) - Get a flow by id
-* [list_instances](docs/sdks/sdkorchestrationv1/README.md#list_instances) - List instances of a workflow
-* [list_triggers](docs/sdks/sdkorchestrationv1/README.md#list_triggers) - List triggers
-* [list_triggers_occurrences](docs/sdks/sdkorchestrationv1/README.md#list_triggers_occurrences) - List triggers occurrences
-* [list_workflows](docs/sdks/sdkorchestrationv1/README.md#list_workflows) - List registered workflows
-* [orchestrationget_server_info](docs/sdks/sdkorchestrationv1/README.md#orchestrationget_server_info) - Get server info
-* [read_trigger](docs/sdks/sdkorchestrationv1/README.md#read_trigger) - Read trigger
-* [run_workflow](docs/sdks/sdkorchestrationv1/README.md#run_workflow) - Run workflow
-* [send_event](docs/sdks/sdkorchestrationv1/README.md#send_event) - Send an event to a running workflow
-
-#### [orchestration.v2](docs/sdks/sdkv2/README.md)
-
-* [cancel_event](docs/sdks/sdkv2/README.md#cancel_event) - Cancel a running workflow
-* [create_trigger](docs/sdks/sdkv2/README.md#create_trigger) - Create trigger
-* [create_workflow](docs/sdks/sdkv2/README.md#create_workflow) - Create workflow
-* [delete_trigger](docs/sdks/sdkv2/README.md#delete_trigger) - Delete trigger
-* [delete_workflow](docs/sdks/sdkv2/README.md#delete_workflow) - Delete a flow by id
-* [get_instance](docs/sdks/sdkv2/README.md#get_instance) - Get a workflow instance by id
-* [get_instance_history](docs/sdks/sdkv2/README.md#get_instance_history) - Get a workflow instance history by id
-* [get_instance_stage_history](docs/sdks/sdkv2/README.md#get_instance_stage_history) - Get a workflow instance stage history
-* [get_server_info](docs/sdks/sdkv2/README.md#get_server_info) - Get server info
-* [get_workflow](docs/sdks/sdkv2/README.md#get_workflow) - Get a flow by id
-* [list_instances](docs/sdks/sdkv2/README.md#list_instances) - List instances of a workflow
-* [list_triggers](docs/sdks/sdkv2/README.md#list_triggers) - List triggers
-* [list_triggers_occurrences](docs/sdks/sdkv2/README.md#list_triggers_occurrences) - List triggers occurrences
-* [list_workflows](docs/sdks/sdkv2/README.md#list_workflows) - List registered workflows
-* [read_trigger](docs/sdks/sdkv2/README.md#read_trigger) - Read trigger
-* [run_workflow](docs/sdks/sdkv2/README.md#run_workflow) - Run workflow
-* [send_event](docs/sdks/sdkv2/README.md#send_event) - Send an event to a running workflow
-* [test_trigger](docs/sdks/sdkv2/README.md#test_trigger) - Test trigger
+* [cancel_event](docs/sdks/orchestration/README.md#cancel_event) - Cancel a running workflow
+* [create_trigger](docs/sdks/orchestration/README.md#create_trigger) - Create trigger
+* [create_workflow](docs/sdks/orchestration/README.md#create_workflow) - Create workflow
+* [delete_trigger](docs/sdks/orchestration/README.md#delete_trigger) - Delete trigger
+* [delete_workflow](docs/sdks/orchestration/README.md#delete_workflow) - Delete a flow by id
+* [get_instance](docs/sdks/orchestration/README.md#get_instance) - Get a workflow instance by id
+* [get_instance_history](docs/sdks/orchestration/README.md#get_instance_history) - Get a workflow instance history by id
+* [get_instance_stage_history](docs/sdks/orchestration/README.md#get_instance_stage_history) - Get a workflow instance stage history
+* [get_workflow](docs/sdks/orchestration/README.md#get_workflow) - Get a flow by id
+* [list_instances](docs/sdks/orchestration/README.md#list_instances) - List instances of a workflow
+* [list_triggers](docs/sdks/orchestration/README.md#list_triggers) - List triggers
+* [list_triggers_occurrences](docs/sdks/orchestration/README.md#list_triggers_occurrences) - List triggers occurrences
+* [list_workflows](docs/sdks/orchestration/README.md#list_workflows) - List registered workflows
+* [orchestrationget_server_info](docs/sdks/orchestration/README.md#orchestrationget_server_info) - Get server info
+* [read_trigger](docs/sdks/orchestration/README.md#read_trigger) - Read trigger
+* [run_workflow](docs/sdks/orchestration/README.md#run_workflow) - Run workflow
+* [send_event](docs/sdks/orchestration/README.md#send_event) - Send an event to a running workflow
+* [test_trigger](docs/sdks/orchestration/README.md#test_trigger) - Test trigger
+* [v2_cancel_event](docs/sdks/orchestration/README.md#v2_cancel_event) - Cancel a running workflow
+* [v2_create_trigger](docs/sdks/orchestration/README.md#v2_create_trigger) - Create trigger
+* [v2_create_workflow](docs/sdks/orchestration/README.md#v2_create_workflow) - Create workflow
+* [v2_delete_trigger](docs/sdks/orchestration/README.md#v2_delete_trigger) - Delete trigger
+* [v2_delete_workflow](docs/sdks/orchestration/README.md#v2_delete_workflow) - Delete a flow by id
+* [v2_get_instance](docs/sdks/orchestration/README.md#v2_get_instance) - Get a workflow instance by id
+* [v2_get_instance_history](docs/sdks/orchestration/README.md#v2_get_instance_history) - Get a workflow instance history by id
+* [v2_get_instance_stage_history](docs/sdks/orchestration/README.md#v2_get_instance_stage_history) - Get a workflow instance stage history
+* [v2_get_server_info](docs/sdks/orchestration/README.md#v2_get_server_info) - Get server info
+* [v2_get_workflow](docs/sdks/orchestration/README.md#v2_get_workflow) - Get a flow by id
+* [v2_list_instances](docs/sdks/orchestration/README.md#v2_list_instances) - List instances of a workflow
+* [v2_list_triggers](docs/sdks/orchestration/README.md#v2_list_triggers) - List triggers
+* [v2_list_triggers_occurrences](docs/sdks/orchestration/README.md#v2_list_triggers_occurrences) - List triggers occurrences
+* [v2_list_workflows](docs/sdks/orchestration/README.md#v2_list_workflows) - List registered workflows
+* [v2_read_trigger](docs/sdks/orchestration/README.md#v2_read_trigger) - Read trigger
+* [v2_run_workflow](docs/sdks/orchestration/README.md#v2_run_workflow) - Run workflow
+* [v2_send_event](docs/sdks/orchestration/README.md#v2_send_event) - Send an event to a running workflow
 
 ### [payments](docs/sdks/payments/README.md)
 
-
-#### [payments.v1](docs/sdks/sdkpaymentsv1/README.md)
-
-* [add_account_to_pool](docs/sdks/sdkpaymentsv1/README.md#add_account_to_pool) - Add an account to a pool
-* [connectors_transfer](docs/sdks/sdkpaymentsv1/README.md#connectors_transfer) - Transfer funds between Connector accounts
-* [create_account](docs/sdks/sdkpaymentsv1/README.md#create_account) - Create an account
-* [create_bank_account](docs/sdks/sdkpaymentsv1/README.md#create_bank_account) - Create a BankAccount in Payments and on the PSP
-* [create_payment](docs/sdks/sdkpaymentsv1/README.md#create_payment) - Create a payment
-* [create_pool](docs/sdks/sdkpaymentsv1/README.md#create_pool) - Create a Pool
-* [create_transfer_initiation](docs/sdks/sdkpaymentsv1/README.md#create_transfer_initiation) - Create a TransferInitiation
-* [delete_pool](docs/sdks/sdkpaymentsv1/README.md#delete_pool) - Delete a Pool
-* [delete_transfer_initiation](docs/sdks/sdkpaymentsv1/README.md#delete_transfer_initiation) - Delete a transfer initiation
-* [forward_bank_account](docs/sdks/sdkpaymentsv1/README.md#forward_bank_account) - Forward a bank account to a connector
-* [get_account_balances](docs/sdks/sdkpaymentsv1/README.md#get_account_balances) - Get account balances
-* [get_bank_account](docs/sdks/sdkpaymentsv1/README.md#get_bank_account) - Get a bank account created by user on Formance
-* [~~get_connector_task~~](docs/sdks/sdkpaymentsv1/README.md#get_connector_task) - Read a specific task of the connector :warning: **Deprecated**
-* [get_connector_task_v1](docs/sdks/sdkpaymentsv1/README.md#get_connector_task_v1) - Read a specific task of the connector
-* [get_payment](docs/sdks/sdkpaymentsv1/README.md#get_payment) - Get a payment
-* [get_pool](docs/sdks/sdkpaymentsv1/README.md#get_pool) - Get a Pool
-* [get_pool_balances](docs/sdks/sdkpaymentsv1/README.md#get_pool_balances) - Get pool balances
-* [get_transfer_initiation](docs/sdks/sdkpaymentsv1/README.md#get_transfer_initiation) - Get a transfer initiation
-* [install_connector](docs/sdks/sdkpaymentsv1/README.md#install_connector) - Install a connector
-* [list_all_connectors](docs/sdks/sdkpaymentsv1/README.md#list_all_connectors) - List all installed connectors
-* [list_bank_accounts](docs/sdks/sdkpaymentsv1/README.md#list_bank_accounts) - List bank accounts created by user on Formance
-* [list_configs_available_connectors](docs/sdks/sdkpaymentsv1/README.md#list_configs_available_connectors) - List the configs of each available connector
-* [~~list_connector_tasks~~](docs/sdks/sdkpaymentsv1/README.md#list_connector_tasks) - List tasks from a connector :warning: **Deprecated**
-* [list_connector_tasks_v1](docs/sdks/sdkpaymentsv1/README.md#list_connector_tasks_v1) - List tasks from a connector
-* [list_payments](docs/sdks/sdkpaymentsv1/README.md#list_payments) - List payments
-* [list_pools](docs/sdks/sdkpaymentsv1/README.md#list_pools) - List Pools
-* [list_transfer_initiations](docs/sdks/sdkpaymentsv1/README.md#list_transfer_initiations) - List Transfer Initiations
-* [paymentsget_account](docs/sdks/sdkpaymentsv1/README.md#paymentsget_account) - Get an account
-* [paymentsget_server_info](docs/sdks/sdkpaymentsv1/README.md#paymentsget_server_info) - Get server info
-* [paymentslist_accounts](docs/sdks/sdkpaymentsv1/README.md#paymentslist_accounts) - List accounts
-* [~~read_connector_config~~](docs/sdks/sdkpaymentsv1/README.md#read_connector_config) - Read the config of a connector :warning: **Deprecated**
-* [read_connector_config_v1](docs/sdks/sdkpaymentsv1/README.md#read_connector_config_v1) - Read the config of a connector
-* [remove_account_from_pool](docs/sdks/sdkpaymentsv1/README.md#remove_account_from_pool) - Remove an account from a pool
-* [~~reset_connector~~](docs/sdks/sdkpaymentsv1/README.md#reset_connector) - Reset a connector :warning: **Deprecated**
-* [reset_connector_v1](docs/sdks/sdkpaymentsv1/README.md#reset_connector_v1) - Reset a connector
-* [retry_transfer_initiation](docs/sdks/sdkpaymentsv1/README.md#retry_transfer_initiation) - Retry a failed transfer initiation
-* [reverse_transfer_initiation](docs/sdks/sdkpaymentsv1/README.md#reverse_transfer_initiation) - Reverse a transfer initiation
-* [udpate_transfer_initiation_status](docs/sdks/sdkpaymentsv1/README.md#udpate_transfer_initiation_status) - Update the status of a transfer initiation
-* [~~uninstall_connector~~](docs/sdks/sdkpaymentsv1/README.md#uninstall_connector) - Uninstall a connector :warning: **Deprecated**
-* [uninstall_connector_v1](docs/sdks/sdkpaymentsv1/README.md#uninstall_connector_v1) - Uninstall a connector
-* [update_bank_account_metadata](docs/sdks/sdkpaymentsv1/README.md#update_bank_account_metadata) - Update metadata of a bank account
-* [update_connector_config_v1](docs/sdks/sdkpaymentsv1/README.md#update_connector_config_v1) - Update the config of a connector
-* [update_metadata](docs/sdks/sdkpaymentsv1/README.md#update_metadata) - Update metadata
+* [add_account_to_pool](docs/sdks/payments/README.md#add_account_to_pool) - Add an account to a pool
+* [connectors_transfer](docs/sdks/payments/README.md#connectors_transfer) - Transfer funds between Connector accounts
+* [create_account](docs/sdks/payments/README.md#create_account) - Create an account
+* [create_bank_account](docs/sdks/payments/README.md#create_bank_account) - Create a BankAccount in Payments and on the PSP
+* [create_payment](docs/sdks/payments/README.md#create_payment) - Create a payment
+* [create_pool](docs/sdks/payments/README.md#create_pool) - Create a Pool
+* [create_transfer_initiation](docs/sdks/payments/README.md#create_transfer_initiation) - Create a TransferInitiation
+* [delete_pool](docs/sdks/payments/README.md#delete_pool) - Delete a Pool
+* [delete_transfer_initiation](docs/sdks/payments/README.md#delete_transfer_initiation) - Delete a transfer initiation
+* [forward_bank_account](docs/sdks/payments/README.md#forward_bank_account) - Forward a bank account to a connector
+* [get_account_balances](docs/sdks/payments/README.md#get_account_balances) - Get account balances
+* [get_bank_account](docs/sdks/payments/README.md#get_bank_account) - Get a bank account created by user on Formance
+* [~~get_connector_task~~](docs/sdks/payments/README.md#get_connector_task) - Read a specific task of the connector :warning: **Deprecated**
+* [get_connector_task_v1](docs/sdks/payments/README.md#get_connector_task_v1) - Read a specific task of the connector
+* [get_payment](docs/sdks/payments/README.md#get_payment) - Get a payment
+* [get_pool](docs/sdks/payments/README.md#get_pool) - Get a Pool
+* [get_pool_balances](docs/sdks/payments/README.md#get_pool_balances) - Get pool balances
+* [get_transfer_initiation](docs/sdks/payments/README.md#get_transfer_initiation) - Get a transfer initiation
+* [install_connector](docs/sdks/payments/README.md#install_connector) - Install a connector
+* [list_all_connectors](docs/sdks/payments/README.md#list_all_connectors) - List all installed connectors
+* [list_bank_accounts](docs/sdks/payments/README.md#list_bank_accounts) - List bank accounts created by user on Formance
+* [list_configs_available_connectors](docs/sdks/payments/README.md#list_configs_available_connectors) - List the configs of each available connector
+* [~~list_connector_tasks~~](docs/sdks/payments/README.md#list_connector_tasks) - List tasks from a connector :warning: **Deprecated**
+* [list_connector_tasks_v1](docs/sdks/payments/README.md#list_connector_tasks_v1) - List tasks from a connector
+* [list_payments](docs/sdks/payments/README.md#list_payments) - List payments
+* [list_pools](docs/sdks/payments/README.md#list_pools) - List Pools
+* [list_transfer_initiations](docs/sdks/payments/README.md#list_transfer_initiations) - List Transfer Initiations
+* [paymentsget_account](docs/sdks/payments/README.md#paymentsget_account) - Get an account
+* [paymentsget_server_info](docs/sdks/payments/README.md#paymentsget_server_info) - Get server info
+* [paymentslist_accounts](docs/sdks/payments/README.md#paymentslist_accounts) - List accounts
+* [~~read_connector_config~~](docs/sdks/payments/README.md#read_connector_config) - Read the config of a connector :warning: **Deprecated**
+* [read_connector_config_v1](docs/sdks/payments/README.md#read_connector_config_v1) - Read the config of a connector
+* [remove_account_from_pool](docs/sdks/payments/README.md#remove_account_from_pool) - Remove an account from a pool
+* [~~reset_connector~~](docs/sdks/payments/README.md#reset_connector) - Reset a connector :warning: **Deprecated**
+* [reset_connector_v1](docs/sdks/payments/README.md#reset_connector_v1) - Reset a connector
+* [retry_transfer_initiation](docs/sdks/payments/README.md#retry_transfer_initiation) - Retry a failed transfer initiation
+* [reverse_transfer_initiation](docs/sdks/payments/README.md#reverse_transfer_initiation) - Reverse a transfer initiation
+* [udpate_transfer_initiation_status](docs/sdks/payments/README.md#udpate_transfer_initiation_status) - Update the status of a transfer initiation
+* [~~uninstall_connector~~](docs/sdks/payments/README.md#uninstall_connector) - Uninstall a connector :warning: **Deprecated**
+* [uninstall_connector_v1](docs/sdks/payments/README.md#uninstall_connector_v1) - Uninstall a connector
+* [update_bank_account_metadata](docs/sdks/payments/README.md#update_bank_account_metadata) - Update metadata of a bank account
+* [update_connector_config_v1](docs/sdks/payments/README.md#update_connector_config_v1) - Update the config of a connector
+* [update_metadata](docs/sdks/payments/README.md#update_metadata) - Update metadata
 
 ### [reconciliation](docs/sdks/reconciliation/README.md)
 
-
-#### [reconciliation.v1](docs/sdks/sdkreconciliationv1/README.md)
-
-* [create_policy](docs/sdks/sdkreconciliationv1/README.md#create_policy) - Create a policy
-* [delete_policy](docs/sdks/sdkreconciliationv1/README.md#delete_policy) - Delete a policy
-* [get_policy](docs/sdks/sdkreconciliationv1/README.md#get_policy) - Get a policy
-* [get_reconciliation](docs/sdks/sdkreconciliationv1/README.md#get_reconciliation) - Get a reconciliation
-* [list_policies](docs/sdks/sdkreconciliationv1/README.md#list_policies) - List policies
-* [list_reconciliations](docs/sdks/sdkreconciliationv1/README.md#list_reconciliations) - List reconciliations
-* [reconcile](docs/sdks/sdkreconciliationv1/README.md#reconcile) - Reconcile using a policy
-* [reconciliationget_server_info](docs/sdks/sdkreconciliationv1/README.md#reconciliationget_server_info) - Get server info
+* [create_policy](docs/sdks/reconciliation/README.md#create_policy) - Create a policy
+* [delete_policy](docs/sdks/reconciliation/README.md#delete_policy) - Delete a policy
+* [get_policy](docs/sdks/reconciliation/README.md#get_policy) - Get a policy
+* [get_reconciliation](docs/sdks/reconciliation/README.md#get_reconciliation) - Get a reconciliation
+* [list_policies](docs/sdks/reconciliation/README.md#list_policies) - List policies
+* [list_reconciliations](docs/sdks/reconciliation/README.md#list_reconciliations) - List reconciliations
+* [reconcile](docs/sdks/reconciliation/README.md#reconcile) - Reconcile using a policy
+* [reconciliationget_server_info](docs/sdks/reconciliation/README.md#reconciliationget_server_info) - Get server info
 
 ### [SDK](docs/sdks/sdk/README.md)
 
+* [get_oidc_well_knowns](docs/sdks/sdk/README.md#get_oidc_well_knowns) - Retrieve OpenID connect well-knowns.
 * [get_versions](docs/sdks/sdk/README.md#get_versions) - Show stack version information
 
-### [~~search~~](docs/sdks/search/README.md)
+### [search](docs/sdks/search/README.md)
 
-
-#### [~~search.v1~~](docs/sdks/sdksearchv1/README.md)
-
-* [~~search~~](docs/sdks/sdksearchv1/README.md#search) - search.v1 :warning: **Deprecated**
-* [~~searchget_server_info~~](docs/sdks/sdksearchv1/README.md#searchget_server_info) - Get server info :warning: **Deprecated**
+* [search](docs/sdks/search/README.md#search) - Search
+* [searchget_server_info](docs/sdks/search/README.md#searchget_server_info) - Get server info
 
 ### [wallets](docs/sdks/wallets/README.md)
 
 
-#### [wallets.v1](docs/sdks/sdkwalletsv1/README.md)
+#### [wallets.v1](docs/sdks/sdkv1/README.md)
 
-* [confirm_hold](docs/sdks/sdkwalletsv1/README.md#confirm_hold) - Confirm a hold
-* [create_balance](docs/sdks/sdkwalletsv1/README.md#create_balance) - Create a balance
-* [create_wallet](docs/sdks/sdkwalletsv1/README.md#create_wallet) - Create a new wallet
-* [credit_wallet](docs/sdks/sdkwalletsv1/README.md#credit_wallet) - Credit a wallet
-* [debit_wallet](docs/sdks/sdkwalletsv1/README.md#debit_wallet) - Debit a wallet
-* [get_balance](docs/sdks/sdkwalletsv1/README.md#get_balance) - Get detailed balance
-* [get_hold](docs/sdks/sdkwalletsv1/README.md#get_hold) - Get a hold
-* [get_holds](docs/sdks/sdkwalletsv1/README.md#get_holds) - Get all holds for a wallet
-* [get_transactions](docs/sdks/sdkwalletsv1/README.md#get_transactions)
-* [get_wallet](docs/sdks/sdkwalletsv1/README.md#get_wallet) - Get a wallet
-* [get_wallet_summary](docs/sdks/sdkwalletsv1/README.md#get_wallet_summary) - Get wallet summary
-* [list_balances](docs/sdks/sdkwalletsv1/README.md#list_balances) - List balances of a wallet
-* [list_wallets](docs/sdks/sdkwalletsv1/README.md#list_wallets) - List all wallets
-* [update_wallet](docs/sdks/sdkwalletsv1/README.md#update_wallet) - Update a wallet
-* [void_hold](docs/sdks/sdkwalletsv1/README.md#void_hold) - Cancel a hold
-* [walletsget_server_info](docs/sdks/sdkwalletsv1/README.md#walletsget_server_info) - Get server info
+* [confirm_hold](docs/sdks/sdkv1/README.md#confirm_hold) - Confirm a hold
+* [create_balance](docs/sdks/sdkv1/README.md#create_balance) - Create a balance
+* [create_wallet](docs/sdks/sdkv1/README.md#create_wallet) - Create a new wallet
+* [credit_wallet](docs/sdks/sdkv1/README.md#credit_wallet) - Credit a wallet
+* [debit_wallet](docs/sdks/sdkv1/README.md#debit_wallet) - Debit a wallet
+* [get_balance](docs/sdks/sdkv1/README.md#get_balance) - Get detailed balance
+* [get_hold](docs/sdks/sdkv1/README.md#get_hold) - Get a hold
+* [get_holds](docs/sdks/sdkv1/README.md#get_holds) - Get all holds for a wallet
+* [get_transactions](docs/sdks/sdkv1/README.md#get_transactions)
+* [get_wallet](docs/sdks/sdkv1/README.md#get_wallet) - Get a wallet
+* [get_wallet_summary](docs/sdks/sdkv1/README.md#get_wallet_summary) - Get wallet summary
+* [list_balances](docs/sdks/sdkv1/README.md#list_balances) - List balances of a wallet
+* [list_wallets](docs/sdks/sdkv1/README.md#list_wallets) - List all wallets
+* [update_wallet](docs/sdks/sdkv1/README.md#update_wallet) - Update a wallet
+* [void_hold](docs/sdks/sdkv1/README.md#void_hold) - Cancel a hold
+* [walletsget_server_info](docs/sdks/sdkv1/README.md#walletsget_server_info) - Get server info
 
 ### [webhooks](docs/sdks/webhooks/README.md)
 
-
-#### [webhooks.v1](docs/sdks/sdkwebhooksv1/README.md)
-
-* [activate_config](docs/sdks/sdkwebhooksv1/README.md#activate_config) - Activate one config
-* [change_config_secret](docs/sdks/sdkwebhooksv1/README.md#change_config_secret) - Change the signing secret of a config
-* [deactivate_config](docs/sdks/sdkwebhooksv1/README.md#deactivate_config) - Deactivate one config
-* [delete_config](docs/sdks/sdkwebhooksv1/README.md#delete_config) - Delete one config
-* [get_many_configs](docs/sdks/sdkwebhooksv1/README.md#get_many_configs) - Get many configs
-* [insert_config](docs/sdks/sdkwebhooksv1/README.md#insert_config) - Insert a new config
-* [test_config](docs/sdks/sdkwebhooksv1/README.md#test_config) - Test one config
+* [activate_config](docs/sdks/webhooks/README.md#activate_config) - Activate one config
+* [change_config_secret](docs/sdks/webhooks/README.md#change_config_secret) - Change the signing secret of a config
+* [deactivate_config](docs/sdks/webhooks/README.md#deactivate_config) - Deactivate one config
+* [delete_config](docs/sdks/webhooks/README.md#delete_config) - Delete one config
+* [get_many_configs](docs/sdks/webhooks/README.md#get_many_configs) - Get many configs
+* [insert_config](docs/sdks/webhooks/README.md#insert_config) - Insert a new config
+* [test_config](docs/sdks/webhooks/README.md#test_config) - Test one config
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -393,13 +409,13 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.get_versions(,
+    res = sdk.get_oidc_well_knowns(,
         RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
 
-    assert res.get_versions_response is not None
+    assert res is not None
 
     # Handle response
-    print(res.get_versions_response)
+    print(res)
 
 ```
 
@@ -417,12 +433,12 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.get_versions()
+    res = sdk.get_oidc_well_knowns()
 
-    assert res.get_versions_response is not None
+    assert res is not None
 
     # Handle response
-    print(res.get_versions_response)
+    print(res)
 
 ```
 <!-- End Retries [retries] -->
@@ -536,12 +552,12 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.get_versions()
+    res = sdk.get_oidc_well_knowns()
 
-    assert res.get_versions_response is not None
+    assert res is not None
 
     # Handle response
-    print(res.get_versions_response)
+    print(res)
 
 ```
 
@@ -560,12 +576,12 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.get_versions()
+    res = sdk.get_oidc_well_knowns()
 
-    assert res.get_versions_response is not None
+    assert res is not None
 
     # Handle response
-    print(res.get_versions_response)
+    print(res)
 
 ```
 <!-- End Server Selection [server] -->
@@ -674,15 +690,47 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.get_versions()
+    res = sdk.get_oidc_well_knowns()
 
-    assert res.get_versions_response is not None
+    assert res is not None
 
     # Handle response
-    print(res.get_versions_response)
+    print(res)
 
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Resource Management [resource-management] -->
+## Resource Management
+
+The `SDK` class implements the context manager protocol and registers a finalizer function to close the underlying sync and async HTTPX clients it uses under the hood. This will close HTTP connections, release memory and free up other resources held by the SDK. In short-lived Python programs and notebooks that make a few SDK method calls, resource management may not be a concern. However, in longer-lived programs, it is beneficial to create a single SDK instance via a [context manager][context-manager] and reuse it across the application.
+
+[context-manager]: https://docs.python.org/3/reference/datamodel.html#context-managers
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+def main():
+    with SDK(
+        security=shared.Security(
+            client_id="<YOUR_CLIENT_ID_HERE>",
+            client_secret="<YOUR_CLIENT_SECRET_HERE>",
+        ),
+    ) as sdk:
+        # Rest of application here...
+
+
+# Or when using async:
+async def amain():
+    async with SDK(
+        security=shared.Security(
+            client_id="<YOUR_CLIENT_ID_HERE>",
+            client_secret="<YOUR_CLIENT_SECRET_HERE>",
+        ),
+    ) as sdk:
+        # Rest of application here...
+```
+<!-- End Resource Management [resource-management] -->
 
 <!-- Start Debugging [debug] -->
 ## Debugging

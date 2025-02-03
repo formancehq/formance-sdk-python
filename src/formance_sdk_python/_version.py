@@ -3,7 +3,10 @@
 import importlib.metadata
 
 __title__: str = "formance-sdk-python"
-__version__: str = "5.0.0"
+__version__: str = "5.1.0"
+__openapi_doc_version__: str = "v2.1.2"
+__gen_version__: str = "2.500.5"
+__user_agent__: str = "speakeasy-sdk/python 5.1.0 2.500.5 v2.1.2 formance-sdk-python"
 
 try:
     if __package__ is not None:
