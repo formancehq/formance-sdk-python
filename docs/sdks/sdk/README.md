@@ -17,7 +17,50 @@ and standard method from web, mobile and desktop applications.
 
 ### Available Operations
 
+* [get_oidc_well_knowns](#get_oidc_well_knowns) - Retrieve OpenID connect well-knowns.
 * [get_versions](#get_versions) - Show stack version information
+
+## get_oidc_well_knowns
+
+Retrieve OpenID connect well-knowns.
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.get_oidc_well_knowns()
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[operations.GetOIDCWellKnownsResponse](../../models/operations/getoidcwellknownsresponse.md)**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get_versions
 

@@ -11,12 +11,12 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.get_versions()
+    res = sdk.get_oidc_well_knowns()
 
-    assert res.get_versions_response is not None
+    assert res is not None
 
     # Handle response
-    print(res.get_versions_response)
+    print(res)
 ```
 
 </br>
@@ -36,12 +36,12 @@ async def main():
         ),
     ) as sdk:
 
-        res = await sdk.get_versions_async()
+        res = await sdk.get_oidc_well_knowns_async()
 
-        assert res.get_versions_response is not None
+        assert res is not None
 
         # Handle response
-        print(res.get_versions_response)
+        print(res)
 
 asyncio.run(main())
 ```

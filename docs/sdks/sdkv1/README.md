@@ -1,34 +1,30 @@
 # SDKV1
-(*ledger.v1*)
+(*wallets.v1*)
 
 ## Overview
 
 ### Available Operations
 
-* [create_transactions](#create_transactions) - Create a new batch of transactions to a ledger
-* [add_metadata_on_transaction](#add_metadata_on_transaction) - Set the metadata of a transaction by its ID
-* [add_metadata_to_account](#add_metadata_to_account) - Add metadata to an account
-* [count_accounts](#count_accounts) - Count the accounts from a ledger
-* [count_transactions](#count_transactions) - Count the transactions from a ledger
-* [create_transaction](#create_transaction) - Create a new transaction to a ledger
-* [get_account](#get_account) - Get account by its address
-* [get_balances](#get_balances) - Get the balances from a ledger's account
-* [get_balances_aggregated](#get_balances_aggregated) - Get the aggregated balances from selected accounts
-* [get_info](#get_info) - Show server information
-* [get_ledger_info](#get_ledger_info) - Get information about a ledger
-* [get_mapping](#get_mapping) - Get the mapping of a ledger
-* [get_transaction](#get_transaction) - Get transaction from a ledger by its ID
-* [list_accounts](#list_accounts) - List accounts from a ledger
-* [list_logs](#list_logs) - List the logs from a ledger
-* [list_transactions](#list_transactions) - List transactions from a ledger
-* [read_stats](#read_stats) - Get statistics from a ledger
-* [revert_transaction](#revert_transaction) - Revert a ledger transaction by its ID
-* [~~run_script~~](#run_script) - Execute a Numscript :warning: **Deprecated**
-* [update_mapping](#update_mapping) - Update the mapping of a ledger
+* [confirm_hold](#confirm_hold) - Confirm a hold
+* [create_balance](#create_balance) - Create a balance
+* [create_wallet](#create_wallet) - Create a new wallet
+* [credit_wallet](#credit_wallet) - Credit a wallet
+* [debit_wallet](#debit_wallet) - Debit a wallet
+* [get_balance](#get_balance) - Get detailed balance
+* [get_hold](#get_hold) - Get a hold
+* [get_holds](#get_holds) - Get all holds for a wallet
+* [get_transactions](#get_transactions)
+* [get_wallet](#get_wallet) - Get a wallet
+* [get_wallet_summary](#get_wallet_summary) - Get wallet summary
+* [list_balances](#list_balances) - List balances of a wallet
+* [list_wallets](#list_wallets) - List all wallets
+* [update_wallet](#update_wallet) - Update a wallet
+* [void_hold](#void_hold) - Cancel a hold
+* [walletsget_server_info](#walletsget_server_info) - Get server info
 
-## create_transactions
+## confirm_hold
 
-Create a new batch of transactions to a ledger
+Confirm a hold
 
 ### Example Usage
 
@@ -43,230 +39,11 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.ledger.v1.create_transactions(request={
-        "transactions": {
-            "transactions": [
-                {
-                    "postings": [
-                        {
-                            "amount": 100,
-                            "asset": "COIN",
-                            "destination": "users:002",
-                            "source": "users:001",
-                        },
-                        {
-                            "amount": 100,
-                            "asset": "COIN",
-                            "destination": "users:002",
-                            "source": "users:001",
-                        },
-                        {
-                            "amount": 100,
-                            "asset": "COIN",
-                            "destination": "users:002",
-                            "source": "users:001",
-                        },
-                    ],
-                    "reference": "ref:001",
-                },
-            ],
-        },
-        "ledger": "ledger001",
-    })
-
-    assert res.transactions_response is not None
-
-    # Handle response
-    print(res.transactions_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [operations.CreateTransactionsRequest](../../models/operations/createtransactionsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
-
-### Response
-
-**[operations.CreateTransactionsResponse](../../models/operations/createtransactionsresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## add_metadata_on_transaction
-
-Set the metadata of a transaction by its ID
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.add_metadata_on_transaction(request={
-        "ledger": "ledger001",
-        "txid": 1234,
-    })
-
-    assert res is not None
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                | [operations.AddMetadataOnTransactionRequest](../../models/operations/addmetadataontransactionrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `retries`                                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                         | :heavy_minus_sign:                                                                                       | Configuration to override the default retry behavior of the client.                                      |
-
-### Response
-
-**[operations.AddMetadataOnTransactionResponse](../../models/operations/addmetadataontransactionresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## add_metadata_to_account
-
-Add metadata to an account
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.add_metadata_to_account(request={
-        "request_body": {
-
-        },
-        "address": "users:001",
-        "ledger": "ledger001",
-    })
-
-    assert res is not None
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `request`                                                                                        | [operations.AddMetadataToAccountRequest](../../models/operations/addmetadatatoaccountrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
-
-### Response
-
-**[operations.AddMetadataToAccountResponse](../../models/operations/addmetadatatoaccountresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## count_accounts
-
-Count the accounts from a ledger
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.count_accounts(request={
-        "ledger": "ledger001",
-        "address": "users:.+",
-        "metadata": {
-            "0": "m",
-            "1": "e",
-            "2": "t",
-            "3": "a",
-            "4": "d",
-            "5": "a",
-            "6": "t",
-            "7": "a",
-            "8": "[",
-            "9": "k",
-            "10": "e",
-            "11": "y",
-            "12": "]",
-            "13": "=",
-            "14": "v",
-            "15": "a",
-            "16": "l",
-            "17": "u",
-            "18": "e",
-            "19": "1",
-            "20": "&",
-            "21": "m",
-            "22": "e",
-            "23": "t",
-            "24": "a",
-            "25": "d",
-            "26": "a",
-            "27": "t",
-            "28": "a",
-            "29": "[",
-            "30": "a",
-            "31": ".",
-            "32": "n",
-            "33": "e",
-            "34": "s",
-            "35": "t",
-            "36": "e",
-            "37": "d",
-            "38": ".",
-            "39": "k",
-            "40": "e",
-            "41": "y",
-            "42": "]",
-            "43": "=",
-            "44": "v",
-            "45": "a",
-            "46": "l",
-            "47": "u",
-            "48": "e",
-            "49": "2",
+    res = sdk.wallets.v1.confirm_hold(request={
+        "hold_id": "<id>",
+        "confirm_hold_request": {
+            "amount": 100,
+            "final": True,
         },
     })
 
@@ -274,236 +51,6 @@ with SDK(
 
     # Handle response
     print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `request`                                                                          | [operations.CountAccountsRequest](../../models/operations/countaccountsrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
-
-### Response
-
-**[operations.CountAccountsResponse](../../models/operations/countaccountsresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## count_transactions
-
-Count the transactions from a ledger
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.count_transactions(request={
-        "ledger": "ledger001",
-        "account": "users:001",
-        "destination": "users:001",
-        "metadata": {},
-        "reference": "ref:001",
-        "source": "users:001",
-    })
-
-    assert res is not None
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `request`                                                                                  | [operations.CountTransactionsRequest](../../models/operations/counttransactionsrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-| `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
-
-### Response
-
-**[operations.CountTransactionsResponse](../../models/operations/counttransactionsresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## create_transaction
-
-Create a new transaction to a ledger
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.create_transaction(request={
-        "post_transaction": {
-            "postings": [
-                {
-                    "amount": 100,
-                    "asset": "COIN",
-                    "destination": "users:002",
-                    "source": "users:001",
-                },
-                {
-                    "amount": 100,
-                    "asset": "COIN",
-                    "destination": "users:002",
-                    "source": "users:001",
-                },
-                {
-                    "amount": 100,
-                    "asset": "COIN",
-                    "destination": "users:002",
-                    "source": "users:001",
-                },
-            ],
-            "reference": "ref:001",
-            "script": {
-                "plain": "vars {\n" +
-                "account $user\n" +
-                "}\n" +
-                "send [COIN 10] (\n" +
-                "	source = @world\n" +
-                "	destination = $user\n" +
-                ")\n" +
-                "",
-                "vars": {
-                    "user": "users:042",
-                },
-            },
-        },
-        "ledger": "ledger001",
-        "preview": True,
-    })
-
-    assert res.transactions_response is not None
-
-    # Handle response
-    print(res.transactions_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `request`                                                                                  | [operations.CreateTransactionRequest](../../models/operations/createtransactionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-| `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
-
-### Response
-
-**[operations.CreateTransactionResponse](../../models/operations/createtransactionresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## get_account
-
-Get account by its address
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.get_account(request={
-        "address": "users:001",
-        "ledger": "ledger001",
-    })
-
-    assert res.account_response is not None
-
-    # Handle response
-    print(res.account_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `request`                                                                    | [operations.GetAccountRequest](../../models/operations/getaccountrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
-
-### Response
-
-**[operations.GetAccountResponse](../../models/operations/getaccountresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## get_balances
-
-Get the balances from a ledger's account
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.get_balances(request={
-        "ledger": "ledger001",
-        "address": "users:001",
-        "after": "users:003",
-        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    })
-
-    assert res.balances_cursor_response is not None
-
-    # Handle response
-    print(res.balances_cursor_response)
 
 ```
 
@@ -511,23 +58,23 @@ with SDK(
 
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [operations.GetBalancesRequest](../../models/operations/getbalancesrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `request`                                                                      | [operations.ConfirmHoldRequest](../../models/operations/confirmholdrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
 
 ### Response
 
-**[operations.GetBalancesResponse](../../models/operations/getbalancesresponse.md)**
+**[operations.ConfirmHoldResponse](../../models/operations/confirmholdresponse.md)**
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
 
-## get_balances_aggregated
+## create_balance
 
-Get the aggregated balances from selected accounts
+Create a balance
 
 ### Example Usage
 
@@ -542,39 +89,38 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.ledger.v1.get_balances_aggregated(request={
-        "ledger": "ledger001",
-        "address": "users:001",
+    res = sdk.wallets.v1.create_balance(request={
+        "id": "<id>",
     })
 
-    assert res.aggregate_balances_response is not None
+    assert res.create_balance_response is not None
 
     # Handle response
-    print(res.aggregate_balances_response)
+    print(res.create_balance_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `request`                                                                                          | [operations.GetBalancesAggregatedRequest](../../models/operations/getbalancesaggregatedrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `retries`                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                   | :heavy_minus_sign:                                                                                 | Configuration to override the default retry behavior of the client.                                |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `request`                                                                          | [operations.CreateBalanceRequest](../../models/operations/createbalancerequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
 
 ### Response
 
-**[operations.GetBalancesAggregatedResponse](../../models/operations/getbalancesaggregatedresponse.md)**
+**[operations.CreateBalanceResponse](../../models/operations/createbalanceresponse.md)**
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
 
-## get_info
+## create_wallet
 
-Show server information
+Create a new wallet
 
 ### Example Usage
 
@@ -589,12 +135,638 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.ledger.v1.get_info()
+    res = sdk.wallets.v1.create_wallet(request={})
 
-    assert res.config_info_response is not None
+    assert res.create_wallet_response is not None
 
     # Handle response
-    print(res.config_info_response)
+    print(res.create_wallet_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [operations.CreateWalletRequest](../../models/operations/createwalletrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+
+### Response
+
+**[operations.CreateWalletResponse](../../models/operations/createwalletresponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+
+## credit_wallet
+
+Credit a wallet
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.credit_wallet(request={
+        "id": "<id>",
+        "credit_wallet_request": {
+            "amount": {
+                "amount": 100,
+                "asset": "USD/2",
+            },
+            "metadata": {
+                "key": "",
+            },
+            "sources": [
+
+            ],
+        },
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [operations.CreditWalletRequest](../../models/operations/creditwalletrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+
+### Response
+
+**[operations.CreditWalletResponse](../../models/operations/creditwalletresponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+
+## debit_wallet
+
+Debit a wallet
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.debit_wallet(request={
+        "id": "<id>",
+        "debit_wallet_request": {
+            "amount": {
+                "amount": 100,
+                "asset": "USD/2",
+            },
+            "metadata": {
+                "key": "",
+            },
+            "pending": True,
+        },
+    })
+
+    assert res.debit_wallet_response is not None
+
+    # Handle response
+    print(res.debit_wallet_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `request`                                                                      | [operations.DebitWalletRequest](../../models/operations/debitwalletrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+
+### Response
+
+**[operations.DebitWalletResponse](../../models/operations/debitwalletresponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+
+## get_balance
+
+Get detailed balance
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.get_balance(request={
+        "balance_name": "<value>",
+        "id": "<id>",
+    })
+
+    assert res.get_balance_response is not None
+
+    # Handle response
+    print(res.get_balance_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `request`                                                                    | [operations.GetBalanceRequest](../../models/operations/getbalancerequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
+
+### Response
+
+**[operations.GetBalanceResponse](../../models/operations/getbalanceresponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+
+## get_hold
+
+Get a hold
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.get_hold(request={
+        "hold_id": "<id>",
+    })
+
+    assert res.get_hold_response is not None
+
+    # Handle response
+    print(res.get_hold_response)
+
+```
+
+### Parameters
+
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `request`                                                              | [operations.GetHoldRequest](../../models/operations/getholdrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| `retries`                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)       | :heavy_minus_sign:                                                     | Configuration to override the default retry behavior of the client.    |
+
+### Response
+
+**[operations.GetHoldResponse](../../models/operations/getholdresponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+
+## get_holds
+
+Get all holds for a wallet
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.get_holds(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "metadata": {
+            "admin": "true",
+        },
+        "wallet_id": "wallet1",
+    })
+
+    assert res.get_holds_response is not None
+
+    # Handle response
+    print(res.get_holds_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `request`                                                                | [operations.GetHoldsRequest](../../models/operations/getholdsrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `retries`                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)         | :heavy_minus_sign:                                                       | Configuration to override the default retry behavior of the client.      |
+
+### Response
+
+**[operations.GetHoldsResponse](../../models/operations/getholdsresponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+
+## get_transactions
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.get_transactions(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "wallet_id": "wallet1",
+    })
+
+    assert res.get_transactions_response is not None
+
+    # Handle response
+    print(res.get_transactions_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `request`                                                                              | [operations.GetTransactionsRequest](../../models/operations/gettransactionsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
+
+### Response
+
+**[operations.GetTransactionsResponse](../../models/operations/gettransactionsresponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+
+## get_wallet
+
+Get a wallet
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.get_wallet(request={
+        "id": "<id>",
+    })
+
+    assert res.get_wallet_response is not None
+
+    # Handle response
+    print(res.get_wallet_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `request`                                                                  | [operations.GetWalletRequest](../../models/operations/getwalletrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
+
+### Response
+
+**[operations.GetWalletResponse](../../models/operations/getwalletresponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+
+## get_wallet_summary
+
+Get wallet summary
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.get_wallet_summary(request={
+        "id": "<id>",
+    })
+
+    assert res.get_wallet_summary_response is not None
+
+    # Handle response
+    print(res.get_wallet_summary_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.GetWalletSummaryRequest](../../models/operations/getwalletsummaryrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+
+### Response
+
+**[operations.GetWalletSummaryResponse](../../models/operations/getwalletsummaryresponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+
+## list_balances
+
+List balances of a wallet
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.list_balances(request={
+        "id": "<id>",
+    })
+
+    assert res.list_balances_response is not None
+
+    # Handle response
+    print(res.list_balances_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [operations.ListBalancesRequest](../../models/operations/listbalancesrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+
+### Response
+
+**[operations.ListBalancesResponse](../../models/operations/listbalancesresponse.md)**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## list_wallets
+
+List all wallets
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.list_wallets(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "expand": "balances",
+        "metadata": {
+            "admin": "true",
+        },
+        "name": "wallet1",
+    })
+
+    assert res.list_wallets_response is not None
+
+    # Handle response
+    print(res.list_wallets_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `request`                                                                      | [operations.ListWalletsRequest](../../models/operations/listwalletsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+
+### Response
+
+**[operations.ListWalletsResponse](../../models/operations/listwalletsresponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+
+## update_wallet
+
+Update a wallet
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.update_wallet(request={
+        "id": "<id>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [operations.UpdateWalletRequest](../../models/operations/updatewalletrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+
+### Response
+
+**[operations.UpdateWalletResponse](../../models/operations/updatewalletresponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+
+## void_hold
+
+Cancel a hold
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.void_hold(request={
+        "hold_id": "<id>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `request`                                                                | [operations.VoidHoldRequest](../../models/operations/voidholdrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `retries`                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)         | :heavy_minus_sign:                                                       | Configuration to override the default retry behavior of the client.      |
+
+### Response
+
+**[operations.VoidHoldResponse](../../models/operations/voidholdresponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+
+## walletsget_server_info
+
+Get server info
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.walletsget_server_info()
+
+    assert res.server_info is not None
+
+    # Handle response
+    print(res.server_info)
 
 ```
 
@@ -606,571 +778,11 @@ with SDK(
 
 ### Response
 
-**[operations.GetInfoResponse](../../models/operations/getinforesponse.md)**
+**[operations.WalletsgetServerInfoResponse](../../models/operations/walletsgetserverinforesponse.md)**
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## get_ledger_info
-
-Get information about a ledger
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.get_ledger_info(request={
-        "ledger": "ledger001",
-    })
-
-    assert res.ledger_info_response is not None
-
-    # Handle response
-    print(res.ledger_info_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `request`                                                                          | [operations.GetLedgerInfoRequest](../../models/operations/getledgerinforequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
-
-### Response
-
-**[operations.GetLedgerInfoResponse](../../models/operations/getledgerinforesponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## get_mapping
-
-Get the mapping of a ledger
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.get_mapping(request={
-        "ledger": "ledger001",
-    })
-
-    assert res.mapping_response is not None
-
-    # Handle response
-    print(res.mapping_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `request`                                                                    | [operations.GetMappingRequest](../../models/operations/getmappingrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
-
-### Response
-
-**[operations.GetMappingResponse](../../models/operations/getmappingresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## get_transaction
-
-Get transaction from a ledger by its ID
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.get_transaction(request={
-        "ledger": "ledger001",
-        "txid": 1234,
-    })
-
-    assert res.transaction_response is not None
-
-    # Handle response
-    print(res.transaction_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `request`                                                                            | [operations.GetTransactionRequest](../../models/operations/gettransactionrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
-
-### Response
-
-**[operations.GetTransactionResponse](../../models/operations/gettransactionresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## list_accounts
-
-List accounts from a ledger, sorted by address in descending order.
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.list_accounts(request={
-        "ledger": "ledger001",
-        "address": "users:.+",
-        "after": "users:003",
-        "balance": 2400,
-        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-        "metadata": {
-            "0": "m",
-            "1": "e",
-            "2": "t",
-            "3": "a",
-            "4": "d",
-            "5": "a",
-            "6": "t",
-            "7": "a",
-            "8": "[",
-            "9": "k",
-            "10": "e",
-            "11": "y",
-            "12": "]",
-            "13": "=",
-            "14": "v",
-            "15": "a",
-            "16": "l",
-            "17": "u",
-            "18": "e",
-            "19": "1",
-            "20": "&",
-            "21": "m",
-            "22": "e",
-            "23": "t",
-            "24": "a",
-            "25": "d",
-            "26": "a",
-            "27": "t",
-            "28": "a",
-            "29": "[",
-            "30": "a",
-            "31": ".",
-            "32": "n",
-            "33": "e",
-            "34": "s",
-            "35": "t",
-            "36": "e",
-            "37": "d",
-            "38": ".",
-            "39": "k",
-            "40": "e",
-            "41": "y",
-            "42": "]",
-            "43": "=",
-            "44": "v",
-            "45": "a",
-            "46": "l",
-            "47": "u",
-            "48": "e",
-            "49": "2",
-        },
-        "page_size": 100,
-        "pagination_token": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    })
-
-    assert res.accounts_cursor_response is not None
-
-    # Handle response
-    print(res.accounts_cursor_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [operations.ListAccountsRequest](../../models/operations/listaccountsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
-
-### Response
-
-**[operations.ListAccountsResponse](../../models/operations/listaccountsresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## list_logs
-
-List the logs from a ledger, sorted by ID in descending order.
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.list_logs(request={
-        "ledger": "ledger001",
-        "after": "1234",
-        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-        "page_size": 100,
-    })
-
-    assert res.logs_cursor_response is not None
-
-    # Handle response
-    print(res.logs_cursor_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `request`                                                                | [operations.ListLogsRequest](../../models/operations/listlogsrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
-| `retries`                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)         | :heavy_minus_sign:                                                       | Configuration to override the default retry behavior of the client.      |
-
-### Response
-
-**[operations.ListLogsResponse](../../models/operations/listlogsresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## list_transactions
-
-List transactions from a ledger, sorted by txid in descending order.
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.list_transactions(request={
-        "ledger": "ledger001",
-        "account": "users:001",
-        "after": "1234",
-        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-        "destination": "users:001",
-        "page_size": 100,
-        "reference": "ref:001",
-        "source": "users:001",
-    })
-
-    assert res.transactions_cursor_response is not None
-
-    # Handle response
-    print(res.transactions_cursor_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `request`                                                                                | [operations.ListTransactionsRequest](../../models/operations/listtransactionsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
-
-### Response
-
-**[operations.ListTransactionsResponse](../../models/operations/listtransactionsresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## read_stats
-
-Get statistics from a ledger. (aggregate metrics on accounts and transactions)
-
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.read_stats(request={
-        "ledger": "ledger001",
-    })
-
-    assert res.stats_response is not None
-
-    # Handle response
-    print(res.stats_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `request`                                                                  | [operations.ReadStatsRequest](../../models/operations/readstatsrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
-
-### Response
-
-**[operations.ReadStatsResponse](../../models/operations/readstatsresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## revert_transaction
-
-Revert a ledger transaction by its ID
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.revert_transaction(request={
-        "ledger": "ledger001",
-        "txid": 1234,
-    })
-
-    assert res.transaction_response is not None
-
-    # Handle response
-    print(res.transaction_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `request`                                                                                  | [operations.RevertTransactionRequest](../../models/operations/reverttransactionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-| `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
-
-### Response
-
-**[operations.RevertTransactionResponse](../../models/operations/reverttransactionresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
-
-## ~~run_script~~
-
-This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
-
-
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.run_script(request={
-        "script": {
-            "plain": "vars {\n" +
-            "account $user\n" +
-            "}\n" +
-            "send [COIN 10] (\n" +
-            "	source = @world\n" +
-            "	destination = $user\n" +
-            ")\n" +
-            "",
-            "reference": "order_1234",
-            "vars": {
-                "user": "users:042",
-            },
-        },
-        "ledger": "ledger001",
-        "preview": True,
-    })
-
-    assert res.script_response is not None
-
-    # Handle response
-    print(res.script_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `request`                                                                  | [operations.RunScriptRequest](../../models/operations/runscriptrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
-
-### Response
-
-**[operations.RunScriptResponse](../../models/operations/runscriptresponse.md)**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
-
-## update_mapping
-
-Update the mapping of a ledger
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.update_mapping(request={
-        "mapping": {
-            "contracts": [
-                {
-                    "expr": {},
-                    "account": "users:001",
-                },
-                {
-                    "expr": {},
-                    "account": "users:001",
-                },
-            ],
-        },
-        "ledger": "ledger001",
-    })
-
-    assert res.mapping_response is not None
-
-    # Handle response
-    print(res.mapping_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `request`                                                                          | [operations.UpdateMappingRequest](../../models/operations/updatemappingrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
-
-### Response
-
-**[operations.UpdateMappingResponse](../../models/operations/updatemappingresponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
