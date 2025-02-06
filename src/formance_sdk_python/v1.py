@@ -4,23 +4,25 @@ from .basesdk import BaseSDK
 from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import errors, operations, shared
-from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
-from typing import Mapping, Optional, Union, cast
+from formance_sdk_python.types import BaseModel, Nullable, OptionalNullable, UNSET
+from typing import Any, Dict, Mapping, Optional, Union, cast
+from typing_extensions import deprecated
 
 
 class V1(BaseSDK):
-    def create_client(
+    def create_transactions(
         self,
         *,
-        request: Optional[
-            Union[shared.CreateClientRequest, shared.CreateClientRequestTypedDict]
-        ] = None,
+        request: Union[
+            operations.CreateTransactionsRequest,
+            operations.CreateTransactionsRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.CreateClientResponse:
-        r"""Create client
+    ) -> operations.CreateTransactionsResponse:
+        r"""Create a new batch of transactions to a ledger
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -37,24 +39,24 @@ class V1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[shared.CreateClientRequest])
-        request = cast(Optional[shared.CreateClientRequest], request)
+            request = utils.unmarshal(request, operations.CreateTransactionsRequest)
+        request = cast(operations.CreateTransactionsRequest, request)
 
         req = self._build_request(
             method="POST",
-            path="/api/auth/clients",
+            path="/api/ledger/{ledger}/transactions/batch",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
-            request_has_path_params=False,
+            request_body_required=True,
+            request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[shared.CreateClientRequest]
+                request.transactions, False, False, "json", shared.Transactions
             ),
             timeout_ms=timeout_ms,
         )
@@ -69,8 +71,8 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="createClient",
-                oauth2_scopes=["auth:read", "auth:write"],
+                operation_id="CreateTransactions",
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -78,20 +80,21 @@ class V1(BaseSDK):
             retry_config=retry_config,
         )
 
-        if utils.match_response(http_res, "201", "application/json"):
-            return operations.CreateClientResponse(
-                create_client_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateClientResponse]
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.CreateTransactionsResponse(
+                transactions_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.TransactionsResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
             )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -102,18 +105,19 @@ class V1(BaseSDK):
             http_res,
         )
 
-    async def create_client_async(
+    async def create_transactions_async(
         self,
         *,
-        request: Optional[
-            Union[shared.CreateClientRequest, shared.CreateClientRequestTypedDict]
-        ] = None,
+        request: Union[
+            operations.CreateTransactionsRequest,
+            operations.CreateTransactionsRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.CreateClientResponse:
-        r"""Create client
+    ) -> operations.CreateTransactionsResponse:
+        r"""Create a new batch of transactions to a ledger
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -130,24 +134,24 @@ class V1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[shared.CreateClientRequest])
-        request = cast(Optional[shared.CreateClientRequest], request)
+            request = utils.unmarshal(request, operations.CreateTransactionsRequest)
+        request = cast(operations.CreateTransactionsRequest, request)
 
         req = self._build_request_async(
             method="POST",
-            path="/api/auth/clients",
+            path="/api/ledger/{ledger}/transactions/batch",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
-            request_has_path_params=False,
+            request_body_required=True,
+            request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[shared.CreateClientRequest]
+                request.transactions, False, False, "json", shared.Transactions
             ),
             timeout_ms=timeout_ms,
         )
@@ -162,8 +166,8 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="createClient",
-                oauth2_scopes=["auth:read", "auth:write"],
+                operation_id="CreateTransactions",
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -171,20 +175,21 @@ class V1(BaseSDK):
             retry_config=retry_config,
         )
 
-        if utils.match_response(http_res, "201", "application/json"):
-            return operations.CreateClientResponse(
-                create_client_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateClientResponse]
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.CreateTransactionsResponse(
+                transactions_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.TransactionsResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
             )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -195,18 +200,19 @@ class V1(BaseSDK):
             http_res,
         )
 
-    def create_secret(
+    def add_metadata_on_transaction(
         self,
         *,
         request: Union[
-            operations.CreateSecretRequest, operations.CreateSecretRequestTypedDict
+            operations.AddMetadataOnTransactionRequest,
+            operations.AddMetadataOnTransactionRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.CreateSecretResponse:
-        r"""Add a secret to a client
+    ) -> operations.AddMetadataOnTransactionResponse:
+        r"""Set the metadata of a transaction by its ID
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -223,12 +229,14 @@ class V1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.CreateSecretRequest)
-        request = cast(operations.CreateSecretRequest, request)
+            request = utils.unmarshal(
+                request, operations.AddMetadataOnTransactionRequest
+            )
+        request = cast(operations.AddMetadataOnTransactionRequest, request)
 
         req = self._build_request(
             method="POST",
-            path="/api/auth/clients/{clientId}/secrets",
+            path="/api/ledger/{ledger}/transactions/{txid}/metadata",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -240,11 +248,11 @@ class V1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_secret_request,
-                False,
+                request.request_body,
+                True,
                 True,
                 "json",
-                Optional[shared.CreateSecretRequest],
+                OptionalNullable[Dict[str, Any]],
             ),
             timeout_ms=timeout_ms,
         )
@@ -259,8 +267,8 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="createSecret",
-                oauth2_scopes=["auth:read", "auth:write"],
+                operation_id="addMetadataOnTransaction",
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -268,20 +276,18 @@ class V1(BaseSDK):
             retry_config=retry_config,
         )
 
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.CreateSecretResponse(
-                create_secret_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateSecretResponse]
-                ),
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.AddMetadataOnTransactionResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
             )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -292,18 +298,19 @@ class V1(BaseSDK):
             http_res,
         )
 
-    async def create_secret_async(
+    async def add_metadata_on_transaction_async(
         self,
         *,
         request: Union[
-            operations.CreateSecretRequest, operations.CreateSecretRequestTypedDict
+            operations.AddMetadataOnTransactionRequest,
+            operations.AddMetadataOnTransactionRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.CreateSecretResponse:
-        r"""Add a secret to a client
+    ) -> operations.AddMetadataOnTransactionResponse:
+        r"""Set the metadata of a transaction by its ID
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -320,12 +327,14 @@ class V1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.CreateSecretRequest)
-        request = cast(operations.CreateSecretRequest, request)
+            request = utils.unmarshal(
+                request, operations.AddMetadataOnTransactionRequest
+            )
+        request = cast(operations.AddMetadataOnTransactionRequest, request)
 
         req = self._build_request_async(
             method="POST",
-            path="/api/auth/clients/{clientId}/secrets",
+            path="/api/ledger/{ledger}/transactions/{txid}/metadata",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -337,11 +346,11 @@ class V1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_secret_request,
-                False,
+                request.request_body,
+                True,
                 True,
                 "json",
-                Optional[shared.CreateSecretRequest],
+                OptionalNullable[Dict[str, Any]],
             ),
             timeout_ms=timeout_ms,
         )
@@ -356,8 +365,8 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="createSecret",
-                oauth2_scopes=["auth:read", "auth:write"],
+                operation_id="addMetadataOnTransaction",
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -365,20 +374,18 @@ class V1(BaseSDK):
             retry_config=retry_config,
         )
 
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.CreateSecretResponse(
-                create_secret_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateSecretResponse]
-                ),
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.AddMetadataOnTransactionResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
             )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -389,18 +396,19 @@ class V1(BaseSDK):
             http_res,
         )
 
-    def delete_client(
+    def add_metadata_to_account(
         self,
         *,
         request: Union[
-            operations.DeleteClientRequest, operations.DeleteClientRequestTypedDict
+            operations.AddMetadataToAccountRequest,
+            operations.AddMetadataToAccountRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.DeleteClientResponse:
-        r"""Delete client
+    ) -> operations.AddMetadataToAccountResponse:
+        r"""Add metadata to an account
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -417,22 +425,25 @@ class V1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.DeleteClientRequest)
-        request = cast(operations.DeleteClientRequest, request)
+            request = utils.unmarshal(request, operations.AddMetadataToAccountRequest)
+        request = cast(operations.AddMetadataToAccountRequest, request)
 
         req = self._build_request(
-            method="DELETE",
-            path="/api/auth/clients/{clientId}",
+            method="POST",
+            path="/api/ledger/{ledger}/accounts/{address}/metadata",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body, True, False, "json", Nullable[Dict[str, Any]]
+            ),
             timeout_ms=timeout_ms,
         )
 
@@ -446,8 +457,8 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="deleteClient",
-                oauth2_scopes=["auth:read", "auth:write"],
+                operation_id="addMetadataToAccount",
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -455,17 +466,18 @@ class V1(BaseSDK):
             retry_config=retry_config,
         )
 
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
-            return operations.DeleteClientResponse(
+            return operations.AddMetadataToAccountResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
             )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -476,18 +488,19 @@ class V1(BaseSDK):
             http_res,
         )
 
-    async def delete_client_async(
+    async def add_metadata_to_account_async(
         self,
         *,
         request: Union[
-            operations.DeleteClientRequest, operations.DeleteClientRequestTypedDict
+            operations.AddMetadataToAccountRequest,
+            operations.AddMetadataToAccountRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.DeleteClientResponse:
-        r"""Delete client
+    ) -> operations.AddMetadataToAccountResponse:
+        r"""Add metadata to an account
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -504,22 +517,25 @@ class V1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.DeleteClientRequest)
-        request = cast(operations.DeleteClientRequest, request)
+            request = utils.unmarshal(request, operations.AddMetadataToAccountRequest)
+        request = cast(operations.AddMetadataToAccountRequest, request)
 
         req = self._build_request_async(
-            method="DELETE",
-            path="/api/auth/clients/{clientId}",
+            method="POST",
+            path="/api/ledger/{ledger}/accounts/{address}/metadata",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body, True, False, "json", Nullable[Dict[str, Any]]
+            ),
             timeout_ms=timeout_ms,
         )
 
@@ -533,8 +549,8 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="deleteClient",
-                oauth2_scopes=["auth:read", "auth:write"],
+                operation_id="addMetadataToAccount",
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -542,17 +558,18 @@ class V1(BaseSDK):
             retry_config=retry_config,
         )
 
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
-            return operations.DeleteClientResponse(
+            return operations.AddMetadataToAccountResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
             )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -563,18 +580,18 @@ class V1(BaseSDK):
             http_res,
         )
 
-    def delete_secret(
+    def count_accounts(
         self,
         *,
         request: Union[
-            operations.DeleteSecretRequest, operations.DeleteSecretRequestTypedDict
+            operations.CountAccountsRequest, operations.CountAccountsRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.DeleteSecretResponse:
-        r"""Delete a secret from a client
+    ) -> operations.CountAccountsResponse:
+        r"""Count the accounts from a ledger
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -591,12 +608,12 @@ class V1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.DeleteSecretRequest)
-        request = cast(operations.DeleteSecretRequest, request)
+            request = utils.unmarshal(request, operations.CountAccountsRequest)
+        request = cast(operations.CountAccountsRequest, request)
 
         req = self._build_request(
-            method="DELETE",
-            path="/api/auth/clients/{clientId}/secrets/{secretId}",
+            method="HEAD",
+            path="/api/ledger/{ledger}/accounts",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -604,7 +621,7 @@ class V1(BaseSDK):
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
@@ -620,8 +637,8 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="deleteSecret",
-                oauth2_scopes=["auth:read", "auth:write"],
+                operation_id="countAccounts",
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -629,182 +646,19 @@ class V1(BaseSDK):
             retry_config=retry_config,
         )
 
-        if utils.match_response(http_res, "204", "*"):
-            return operations.DeleteSecretResponse(
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def delete_secret_async(
-        self,
-        *,
-        request: Union[
-            operations.DeleteSecretRequest, operations.DeleteSecretRequestTypedDict
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.DeleteSecretResponse:
-        r"""Delete a secret from a client
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.DeleteSecretRequest)
-        request = cast(operations.DeleteSecretRequest, request)
-
-        req = self._build_request_async(
-            method="DELETE",
-            path="/api/auth/clients/{clientId}/secrets/{secretId}",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="*/*",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="deleteSecret",
-                oauth2_scopes=["auth:read", "auth:write"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "204", "*"):
-            return operations.DeleteSecretResponse(
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def get_oidc_well_knowns(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetOIDCWellKnownsResponse:
-        r"""Retrieve OpenID connect well-knowns.
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        req = self._build_request(
-            method="GET",
-            path="/api/auth/.well-known/openid-configuration",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="*/*",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="getOIDCWellKnowns",
-                oauth2_scopes=["auth:read", "auth:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
+        response_data: Any = None
         if utils.match_response(http_res, "200", "*"):
-            return operations.GetOIDCWellKnownsResponse(
+            return operations.CountAccountsResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
             )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -815,16 +669,20 @@ class V1(BaseSDK):
             http_res,
         )
 
-    async def get_oidc_well_knowns_async(
+    async def count_accounts_async(
         self,
         *,
+        request: Union[
+            operations.CountAccountsRequest, operations.CountAccountsRequestTypedDict
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetOIDCWellKnownsResponse:
-        r"""Retrieve OpenID connect well-knowns.
+    ) -> operations.CountAccountsResponse:
+        r"""Count the accounts from a ledger
 
+        :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -837,17 +695,22 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.CountAccountsRequest)
+        request = cast(operations.CountAccountsRequest, request)
+
         req = self._build_request_async(
-            method="GET",
-            path="/api/auth/.well-known/openid-configuration",
+            method="HEAD",
+            path="/api/ledger/{ledger}/accounts",
             base_url=base_url,
             url_variables=url_variables,
-            request=None,
+            request=request,
             request_body_required=False,
-            request_has_path_params=False,
+            request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
@@ -863,8 +726,8 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="getOIDCWellKnowns",
-                oauth2_scopes=["auth:read", "auth:read"],
+                operation_id="countAccounts",
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -872,17 +735,19 @@ class V1(BaseSDK):
             retry_config=retry_config,
         )
 
+        response_data: Any = None
         if utils.match_response(http_res, "200", "*"):
-            return operations.GetOIDCWellKnownsResponse(
+            return operations.CountAccountsResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
             )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -893,508 +758,19 @@ class V1(BaseSDK):
             http_res,
         )
 
-    def get_server_info(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetServerInfoResponse:
-        r"""Get server info
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        req = self._build_request(
-            method="GET",
-            path="/api/auth/_info",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="getServerInfo",
-                oauth2_scopes=["auth:read", "auth:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetServerInfoResponse(
-                server_info=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ServerInfo]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def get_server_info_async(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetServerInfoResponse:
-        r"""Get server info
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        req = self._build_request_async(
-            method="GET",
-            path="/api/auth/_info",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="getServerInfo",
-                oauth2_scopes=["auth:read", "auth:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetServerInfoResponse(
-                server_info=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ServerInfo]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def list_clients(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ListClientsResponse:
-        r"""List clients
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        req = self._build_request(
-            method="GET",
-            path="/api/auth/clients",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="listClients",
-                oauth2_scopes=["auth:read", "auth:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ListClientsResponse(
-                list_clients_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ListClientsResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def list_clients_async(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ListClientsResponse:
-        r"""List clients
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        req = self._build_request_async(
-            method="GET",
-            path="/api/auth/clients",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="listClients",
-                oauth2_scopes=["auth:read", "auth:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ListClientsResponse(
-                list_clients_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ListClientsResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def list_users(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ListUsersResponse:
-        r"""List users
-
-        List users
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        req = self._build_request(
-            method="GET",
-            path="/api/auth/users",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="listUsers",
-                oauth2_scopes=["auth:read", "auth:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ListUsersResponse(
-                list_users_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ListUsersResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def list_users_async(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ListUsersResponse:
-        r"""List users
-
-        List users
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        req = self._build_request_async(
-            method="GET",
-            path="/api/auth/users",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="listUsers",
-                oauth2_scopes=["auth:read", "auth:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ListUsersResponse(
-                list_users_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ListUsersResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def read_client(
+    def count_transactions(
         self,
         *,
         request: Union[
-            operations.ReadClientRequest, operations.ReadClientRequestTypedDict
+            operations.CountTransactionsRequest,
+            operations.CountTransactionsRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ReadClientResponse:
-        r"""Read client
+    ) -> operations.CountTransactionsResponse:
+        r"""Count the transactions from a ledger
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1411,12 +787,12 @@ class V1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ReadClientRequest)
-        request = cast(operations.ReadClientRequest, request)
+            request = utils.unmarshal(request, operations.CountTransactionsRequest)
+        request = cast(operations.CountTransactionsRequest, request)
 
         req = self._build_request(
-            method="GET",
-            path="/api/auth/clients/{clientId}",
+            method="HEAD",
+            path="/api/ledger/{ledger}/transactions",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1440,8 +816,8 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="readClient",
-                oauth2_scopes=["auth:read", "auth:read"],
+                operation_id="countTransactions",
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1449,20 +825,19 @@ class V1(BaseSDK):
             retry_config=retry_config,
         )
 
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ReadClientResponse(
-                read_client_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReadClientResponse]
-                ),
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "*"):
+            return operations.CountTransactionsResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
             )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1473,18 +848,19 @@ class V1(BaseSDK):
             http_res,
         )
 
-    async def read_client_async(
+    async def count_transactions_async(
         self,
         *,
         request: Union[
-            operations.ReadClientRequest, operations.ReadClientRequestTypedDict
+            operations.CountTransactionsRequest,
+            operations.CountTransactionsRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ReadClientResponse:
-        r"""Read client
+    ) -> operations.CountTransactionsResponse:
+        r"""Count the transactions from a ledger
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1501,12 +877,12 @@ class V1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ReadClientRequest)
-        request = cast(operations.ReadClientRequest, request)
+            request = utils.unmarshal(request, operations.CountTransactionsRequest)
+        request = cast(operations.CountTransactionsRequest, request)
 
         req = self._build_request_async(
-            method="GET",
-            path="/api/auth/clients/{clientId}",
+            method="HEAD",
+            path="/api/ledger/{ledger}/transactions",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1530,8 +906,8 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="readClient",
-                oauth2_scopes=["auth:read", "auth:read"],
+                operation_id="countTransactions",
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1539,20 +915,19 @@ class V1(BaseSDK):
             retry_config=retry_config,
         )
 
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ReadClientResponse(
-                read_client_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReadClientResponse]
-                ),
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "*"):
+            return operations.CountTransactionsResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
             )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1563,18 +938,19 @@ class V1(BaseSDK):
             http_res,
         )
 
-    def read_user(
+    def create_transaction(
         self,
         *,
-        request: Union[operations.ReadUserRequest, operations.ReadUserRequestTypedDict],
+        request: Union[
+            operations.CreateTransactionRequest,
+            operations.CreateTransactionRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ReadUserResponse:
-        r"""Read user
-
-        Read user
+    ) -> operations.CreateTransactionResponse:
+        r"""Create a new transaction to a ledger
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1591,12 +967,201 @@ class V1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ReadUserRequest)
-        request = cast(operations.ReadUserRequest, request)
+            request = utils.unmarshal(request, operations.CreateTransactionRequest)
+        request = cast(operations.CreateTransactionRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/ledger/{ledger}/transactions",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.post_transaction, False, False, "json", shared.PostTransaction
+            ),
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="createTransaction",
+                oauth2_scopes=["ledger:read", "ledger:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.CreateTransactionResponse(
+                transactions_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.TransactionsResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def create_transaction_async(
+        self,
+        *,
+        request: Union[
+            operations.CreateTransactionRequest,
+            operations.CreateTransactionRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.CreateTransactionResponse:
+        r"""Create a new transaction to a ledger
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.CreateTransactionRequest)
+        request = cast(operations.CreateTransactionRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/ledger/{ledger}/transactions",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.post_transaction, False, False, "json", shared.PostTransaction
+            ),
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="createTransaction",
+                oauth2_scopes=["ledger:read", "ledger:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.CreateTransactionResponse(
+                transactions_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.TransactionsResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def get_account(
+        self,
+        *,
+        request: Union[
+            operations.GetAccountRequest, operations.GetAccountRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetAccountResponse:
+        r"""Get account by its address
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetAccountRequest)
+        request = cast(operations.GetAccountRequest, request)
 
         req = self._build_request(
             method="GET",
-            path="/api/auth/users/{userId}",
+            path="/api/ledger/{ledger}/accounts/{address}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1620,8 +1185,8 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="readUser",
-                oauth2_scopes=["auth:read", "auth:read"],
+                operation_id="getAccount",
+                oauth2_scopes=["ledger:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1629,20 +1194,21 @@ class V1(BaseSDK):
             retry_config=retry_config,
         )
 
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.ReadUserResponse(
-                read_user_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReadUserResponse]
+            return operations.GetAccountResponse(
+                account_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.AccountResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
             )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1653,18 +1219,18 @@ class V1(BaseSDK):
             http_res,
         )
 
-    async def read_user_async(
+    async def get_account_async(
         self,
         *,
-        request: Union[operations.ReadUserRequest, operations.ReadUserRequestTypedDict],
+        request: Union[
+            operations.GetAccountRequest, operations.GetAccountRequestTypedDict
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ReadUserResponse:
-        r"""Read user
-
-        Read user
+    ) -> operations.GetAccountResponse:
+        r"""Get account by its address
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1681,12 +1247,12 @@ class V1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ReadUserRequest)
-        request = cast(operations.ReadUserRequest, request)
+            request = utils.unmarshal(request, operations.GetAccountRequest)
+        request = cast(operations.GetAccountRequest, request)
 
         req = self._build_request_async(
             method="GET",
-            path="/api/auth/users/{userId}",
+            path="/api/ledger/{ledger}/accounts/{address}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1710,8 +1276,2130 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="readUser",
-                oauth2_scopes=["auth:read", "auth:read"],
+                operation_id="getAccount",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetAccountResponse(
+                account_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.AccountResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def get_balances(
+        self,
+        *,
+        request: Union[
+            operations.GetBalancesRequest, operations.GetBalancesRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetBalancesResponse:
+        r"""Get the balances from a ledger's account
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetBalancesRequest)
+        request = cast(operations.GetBalancesRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/ledger/{ledger}/balances",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="getBalances",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetBalancesResponse(
+                balances_cursor_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.BalancesCursorResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def get_balances_async(
+        self,
+        *,
+        request: Union[
+            operations.GetBalancesRequest, operations.GetBalancesRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetBalancesResponse:
+        r"""Get the balances from a ledger's account
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetBalancesRequest)
+        request = cast(operations.GetBalancesRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/ledger/{ledger}/balances",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="getBalances",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetBalancesResponse(
+                balances_cursor_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.BalancesCursorResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def get_balances_aggregated(
+        self,
+        *,
+        request: Union[
+            operations.GetBalancesAggregatedRequest,
+            operations.GetBalancesAggregatedRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetBalancesAggregatedResponse:
+        r"""Get the aggregated balances from selected accounts
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetBalancesAggregatedRequest)
+        request = cast(operations.GetBalancesAggregatedRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/ledger/{ledger}/aggregate/balances",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="getBalancesAggregated",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetBalancesAggregatedResponse(
+                aggregate_balances_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.AggregateBalancesResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def get_balances_aggregated_async(
+        self,
+        *,
+        request: Union[
+            operations.GetBalancesAggregatedRequest,
+            operations.GetBalancesAggregatedRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetBalancesAggregatedResponse:
+        r"""Get the aggregated balances from selected accounts
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetBalancesAggregatedRequest)
+        request = cast(operations.GetBalancesAggregatedRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/ledger/{ledger}/aggregate/balances",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="getBalancesAggregated",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetBalancesAggregatedResponse(
+                aggregate_balances_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.AggregateBalancesResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def get_info(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetInfoResponse:
+        r"""Show server information
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        req = self._build_request(
+            method="GET",
+            path="/api/ledger/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="getInfo",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetInfoResponse(
+                config_info_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.ConfigInfoResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def get_info_async(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetInfoResponse:
+        r"""Show server information
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        req = self._build_request_async(
+            method="GET",
+            path="/api/ledger/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="getInfo",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetInfoResponse(
+                config_info_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.ConfigInfoResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def get_ledger_info(
+        self,
+        *,
+        request: Union[
+            operations.GetLedgerInfoRequest, operations.GetLedgerInfoRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetLedgerInfoResponse:
+        r"""Get information about a ledger
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetLedgerInfoRequest)
+        request = cast(operations.GetLedgerInfoRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/ledger/{ledger}/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="getLedgerInfo",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetLedgerInfoResponse(
+                ledger_info_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.LedgerInfoResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def get_ledger_info_async(
+        self,
+        *,
+        request: Union[
+            operations.GetLedgerInfoRequest, operations.GetLedgerInfoRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetLedgerInfoResponse:
+        r"""Get information about a ledger
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetLedgerInfoRequest)
+        request = cast(operations.GetLedgerInfoRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/ledger/{ledger}/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="getLedgerInfo",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetLedgerInfoResponse(
+                ledger_info_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.LedgerInfoResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def get_mapping(
+        self,
+        *,
+        request: Union[
+            operations.GetMappingRequest, operations.GetMappingRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetMappingResponse:
+        r"""Get the mapping of a ledger
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetMappingRequest)
+        request = cast(operations.GetMappingRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/ledger/{ledger}/mapping",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="getMapping",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetMappingResponse(
+                mapping_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.MappingResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def get_mapping_async(
+        self,
+        *,
+        request: Union[
+            operations.GetMappingRequest, operations.GetMappingRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetMappingResponse:
+        r"""Get the mapping of a ledger
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetMappingRequest)
+        request = cast(operations.GetMappingRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/ledger/{ledger}/mapping",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="getMapping",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetMappingResponse(
+                mapping_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.MappingResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def get_transaction(
+        self,
+        *,
+        request: Union[
+            operations.GetTransactionRequest, operations.GetTransactionRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetTransactionResponse:
+        r"""Get transaction from a ledger by its ID
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetTransactionRequest)
+        request = cast(operations.GetTransactionRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/ledger/{ledger}/transactions/{txid}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="getTransaction",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetTransactionResponse(
+                transaction_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.TransactionResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def get_transaction_async(
+        self,
+        *,
+        request: Union[
+            operations.GetTransactionRequest, operations.GetTransactionRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetTransactionResponse:
+        r"""Get transaction from a ledger by its ID
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetTransactionRequest)
+        request = cast(operations.GetTransactionRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/ledger/{ledger}/transactions/{txid}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="getTransaction",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetTransactionResponse(
+                transaction_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.TransactionResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def list_accounts(
+        self,
+        *,
+        request: Union[
+            operations.ListAccountsRequest, operations.ListAccountsRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListAccountsResponse:
+        r"""List accounts from a ledger
+
+        List accounts from a ledger, sorted by address in descending order.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListAccountsRequest)
+        request = cast(operations.ListAccountsRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/ledger/{ledger}/accounts",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="listAccounts",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListAccountsResponse(
+                accounts_cursor_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.AccountsCursorResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "404", "application/json"):
+            return operations.ListAccountsResponse(
+                error_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.ErrorResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def list_accounts_async(
+        self,
+        *,
+        request: Union[
+            operations.ListAccountsRequest, operations.ListAccountsRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListAccountsResponse:
+        r"""List accounts from a ledger
+
+        List accounts from a ledger, sorted by address in descending order.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListAccountsRequest)
+        request = cast(operations.ListAccountsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/ledger/{ledger}/accounts",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="listAccounts",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListAccountsResponse(
+                accounts_cursor_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.AccountsCursorResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "404", "application/json"):
+            return operations.ListAccountsResponse(
+                error_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.ErrorResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def list_logs(
+        self,
+        *,
+        request: Union[operations.ListLogsRequest, operations.ListLogsRequestTypedDict],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListLogsResponse:
+        r"""List the logs from a ledger
+
+        List the logs from a ledger, sorted by ID in descending order.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListLogsRequest)
+        request = cast(operations.ListLogsRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/ledger/{ledger}/logs",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="listLogs",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListLogsResponse(
+                logs_cursor_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.LogsCursorResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def list_logs_async(
+        self,
+        *,
+        request: Union[operations.ListLogsRequest, operations.ListLogsRequestTypedDict],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListLogsResponse:
+        r"""List the logs from a ledger
+
+        List the logs from a ledger, sorted by ID in descending order.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListLogsRequest)
+        request = cast(operations.ListLogsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/ledger/{ledger}/logs",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="listLogs",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListLogsResponse(
+                logs_cursor_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.LogsCursorResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def list_transactions(
+        self,
+        *,
+        request: Union[
+            operations.ListTransactionsRequest,
+            operations.ListTransactionsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListTransactionsResponse:
+        r"""List transactions from a ledger
+
+        List transactions from a ledger, sorted by txid in descending order.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListTransactionsRequest)
+        request = cast(operations.ListTransactionsRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/ledger/{ledger}/transactions",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="listTransactions",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListTransactionsResponse(
+                transactions_cursor_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.TransactionsCursorResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def list_transactions_async(
+        self,
+        *,
+        request: Union[
+            operations.ListTransactionsRequest,
+            operations.ListTransactionsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListTransactionsResponse:
+        r"""List transactions from a ledger
+
+        List transactions from a ledger, sorted by txid in descending order.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListTransactionsRequest)
+        request = cast(operations.ListTransactionsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/ledger/{ledger}/transactions",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="listTransactions",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListTransactionsResponse(
+                transactions_cursor_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.TransactionsCursorResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def read_stats(
+        self,
+        *,
+        request: Union[
+            operations.ReadStatsRequest, operations.ReadStatsRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ReadStatsResponse:
+        r"""Get statistics from a ledger
+
+        Get statistics from a ledger. (aggregate metrics on accounts and transactions)
+
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ReadStatsRequest)
+        request = cast(operations.ReadStatsRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/ledger/{ledger}/stats",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="readStats",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ReadStatsResponse(
+                stats_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.StatsResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def read_stats_async(
+        self,
+        *,
+        request: Union[
+            operations.ReadStatsRequest, operations.ReadStatsRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ReadStatsResponse:
+        r"""Get statistics from a ledger
+
+        Get statistics from a ledger. (aggregate metrics on accounts and transactions)
+
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ReadStatsRequest)
+        request = cast(operations.ReadStatsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/ledger/{ledger}/stats",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="readStats",
+                oauth2_scopes=["ledger:read", "ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ReadStatsResponse(
+                stats_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.StatsResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def revert_transaction(
+        self,
+        *,
+        request: Union[
+            operations.RevertTransactionRequest,
+            operations.RevertTransactionRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.RevertTransactionResponse:
+        r"""Revert a ledger transaction by its ID
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.RevertTransactionRequest)
+        request = cast(operations.RevertTransactionRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/ledger/{ledger}/transactions/{txid}/revert",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="revertTransaction",
+                oauth2_scopes=["ledger:read", "ledger:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.RevertTransactionResponse(
+                transaction_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.TransactionResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def revert_transaction_async(
+        self,
+        *,
+        request: Union[
+            operations.RevertTransactionRequest,
+            operations.RevertTransactionRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.RevertTransactionResponse:
+        r"""Revert a ledger transaction by its ID
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.RevertTransactionRequest)
+        request = cast(operations.RevertTransactionRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/ledger/{ledger}/transactions/{txid}/revert",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="revertTransaction",
+                oauth2_scopes=["ledger:read", "ledger:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.RevertTransactionResponse(
+                transaction_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.TransactionResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    @deprecated(
+        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+    )
+    def run_script(
+        self,
+        *,
+        request: Union[
+            operations.RunScriptRequest, operations.RunScriptRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.RunScriptResponse:
+        r"""Execute a Numscript
+
+        This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
+
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.RunScriptRequest)
+        request = cast(operations.RunScriptRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/ledger/{ledger}/script",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.script, False, False, "json", shared.Script
+            ),
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="runScript",
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1720,9 +3408,108 @@ class V1(BaseSDK):
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.ReadUserResponse(
-                read_user_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReadUserResponse]
+            return operations.RunScriptResponse(
+                script_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.ScriptResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    @deprecated(
+        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+    )
+    async def run_script_async(
+        self,
+        *,
+        request: Union[
+            operations.RunScriptRequest, operations.RunScriptRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.RunScriptResponse:
+        r"""Execute a Numscript
+
+        This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
+
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.RunScriptRequest)
+        request = cast(operations.RunScriptRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/ledger/{ledger}/script",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.script, False, False, "json", shared.Script
+            ),
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="runScript",
+                oauth2_scopes=["ledger:read", "ledger:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.RunScriptResponse(
+                script_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.ScriptResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1743,18 +3530,18 @@ class V1(BaseSDK):
             http_res,
         )
 
-    def update_client(
+    def update_mapping(
         self,
         *,
         request: Union[
-            operations.UpdateClientRequest, operations.UpdateClientRequestTypedDict
+            operations.UpdateMappingRequest, operations.UpdateMappingRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.UpdateClientResponse:
-        r"""Update client
+    ) -> operations.UpdateMappingResponse:
+        r"""Update the mapping of a ledger
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1771,16 +3558,16 @@ class V1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.UpdateClientRequest)
-        request = cast(operations.UpdateClientRequest, request)
+            request = utils.unmarshal(request, operations.UpdateMappingRequest)
+        request = cast(operations.UpdateMappingRequest, request)
 
         req = self._build_request(
             method="PUT",
-            path="/api/auth/clients/{clientId}",
+            path="/api/ledger/{ledger}/mapping",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -1788,11 +3575,7 @@ class V1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.update_client_request,
-                False,
-                True,
-                "json",
-                Optional[shared.UpdateClientRequest],
+                request.mapping, True, False, "json", Nullable[shared.Mapping]
             ),
             timeout_ms=timeout_ms,
         )
@@ -1807,8 +3590,8 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="updateClient",
-                oauth2_scopes=["auth:read", "auth:write"],
+                operation_id="updateMapping",
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1816,20 +3599,21 @@ class V1(BaseSDK):
             retry_config=retry_config,
         )
 
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.UpdateClientResponse(
-                update_client_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.UpdateClientResponse]
+            return operations.UpdateMappingResponse(
+                mapping_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.MappingResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
             )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1840,18 +3624,18 @@ class V1(BaseSDK):
             http_res,
         )
 
-    async def update_client_async(
+    async def update_mapping_async(
         self,
         *,
         request: Union[
-            operations.UpdateClientRequest, operations.UpdateClientRequestTypedDict
+            operations.UpdateMappingRequest, operations.UpdateMappingRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.UpdateClientResponse:
-        r"""Update client
+    ) -> operations.UpdateMappingResponse:
+        r"""Update the mapping of a ledger
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1868,16 +3652,16 @@ class V1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.UpdateClientRequest)
-        request = cast(operations.UpdateClientRequest, request)
+            request = utils.unmarshal(request, operations.UpdateMappingRequest)
+        request = cast(operations.UpdateMappingRequest, request)
 
         req = self._build_request_async(
             method="PUT",
-            path="/api/auth/clients/{clientId}",
+            path="/api/ledger/{ledger}/mapping",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -1885,11 +3669,7 @@ class V1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.update_client_request,
-                False,
-                True,
-                "json",
-                Optional[shared.UpdateClientRequest],
+                request.mapping, True, False, "json", Nullable[shared.Mapping]
             ),
             timeout_ms=timeout_ms,
         )
@@ -1904,8 +3684,8 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="updateClient",
-                oauth2_scopes=["auth:read", "auth:write"],
+                operation_id="updateMapping",
+                oauth2_scopes=["ledger:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1913,20 +3693,21 @@ class V1(BaseSDK):
             retry_config=retry_config,
         )
 
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.UpdateClientResponse(
-                update_client_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.UpdateClientResponse]
+            return operations.UpdateMappingResponse(
+                mapping_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.MappingResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, "default", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
             )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)

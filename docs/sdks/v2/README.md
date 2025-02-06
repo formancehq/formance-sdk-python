@@ -363,12 +363,6 @@ with SDK(
                     "destination": "users:002",
                     "source": "users:001",
                 },
-                {
-                    "amount": 100,
-                    "asset": "COIN",
-                    "destination": "users:002",
-                    "source": "users:001",
-                },
             ],
             "reference": "ref:001",
             "script": {
@@ -432,7 +426,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.delete_account_metadata(request={
-        "address": "6032 Larkin Prairie",
+        "address": "96609 Cummings Canyon",
         "key": "foo",
         "ledger": "ledger001",
     })
