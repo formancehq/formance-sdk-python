@@ -17,6 +17,7 @@ from .walletserrorresponse import (
 )
 from .webhookserrorresponse import WebhooksErrorResponse, WebhooksErrorResponseData
 
+
 __all__ = [
     "Error",
     "ErrorCode",

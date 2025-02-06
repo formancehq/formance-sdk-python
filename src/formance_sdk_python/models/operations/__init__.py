@@ -912,6 +912,7 @@ from .walletsgetserverinfo import (
     WalletsgetServerInfoResponseTypedDict,
 )
 
+
 __all__ = [
     "ActivateConfigRequest",
     "ActivateConfigRequestTypedDict",

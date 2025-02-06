@@ -4,25 +4,23 @@ from .basesdk import BaseSDK
 from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import errors, operations, shared
-from formance_sdk_python.types import BaseModel, Nullable, OptionalNullable, UNSET
-from typing import Any, Dict, Mapping, Optional, Union, cast
-from typing_extensions import deprecated
+from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
+from typing import Any, Mapping, Optional, Union, cast
 
 
 class SDKV1(BaseSDK):
-    def create_transactions(
+    def confirm_hold(
         self,
         *,
         request: Union[
-            operations.CreateTransactionsRequest,
-            operations.CreateTransactionsRequestTypedDict,
+            operations.ConfirmHoldRequest, operations.ConfirmHoldRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.CreateTransactionsResponse:
-        r"""Create a new batch of transactions to a ledger
+    ) -> operations.ConfirmHoldResponse:
+        r"""Confirm a hold
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -39,200 +37,12 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.CreateTransactionsRequest)
-        request = cast(operations.CreateTransactionsRequest, request)
+            request = utils.unmarshal(request, operations.ConfirmHoldRequest)
+        request = cast(operations.ConfirmHoldRequest, request)
 
         req = self._build_request(
             method="POST",
-            path="/api/ledger/{ledger}/transactions/batch",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=True,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.transactions, False, False, "json", shared.Transactions
-            ),
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="CreateTransactions",
-                oauth2_scopes=["auth:read", "ledger:write"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.CreateTransactionsResponse(
-                transactions_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.TransactionsResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def create_transactions_async(
-        self,
-        *,
-        request: Union[
-            operations.CreateTransactionsRequest,
-            operations.CreateTransactionsRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.CreateTransactionsResponse:
-        r"""Create a new batch of transactions to a ledger
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.CreateTransactionsRequest)
-        request = cast(operations.CreateTransactionsRequest, request)
-
-        req = self._build_request_async(
-            method="POST",
-            path="/api/ledger/{ledger}/transactions/batch",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=True,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.transactions, False, False, "json", shared.Transactions
-            ),
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="CreateTransactions",
-                oauth2_scopes=["auth:read", "ledger:write"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.CreateTransactionsResponse(
-                transactions_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.TransactionsResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def add_metadata_on_transaction(
-        self,
-        *,
-        request: Union[
-            operations.AddMetadataOnTransactionRequest,
-            operations.AddMetadataOnTransactionRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.AddMetadataOnTransactionResponse:
-        r"""Set the metadata of a transaction by its ID
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(
-                request, operations.AddMetadataOnTransactionRequest
-            )
-        request = cast(operations.AddMetadataOnTransactionRequest, request)
-
-        req = self._build_request(
-            method="POST",
-            path="/api/ledger/{ledger}/transactions/{txid}/metadata",
+            path="/api/wallets/holds/{hold_id}/confirm",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -244,11 +54,11 @@ class SDKV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body,
-                True,
+                request.confirm_hold_request,
+                False,
                 True,
                 "json",
-                OptionalNullable[Dict[str, Any]],
+                Optional[shared.ConfirmHoldRequest],
             ),
             timeout_ms=timeout_ms,
         )
@@ -263,8 +73,8 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="addMetadataOnTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                operation_id="confirmHold",
+                oauth2_scopes=["ledger:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -272,16 +82,18 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
-            return operations.AddMetadataOnTransactionResponse(
+            return operations.ConfirmHoldResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -292,19 +104,18 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    async def add_metadata_on_transaction_async(
+    async def confirm_hold_async(
         self,
         *,
         request: Union[
-            operations.AddMetadataOnTransactionRequest,
-            operations.AddMetadataOnTransactionRequestTypedDict,
+            operations.ConfirmHoldRequest, operations.ConfirmHoldRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.AddMetadataOnTransactionResponse:
-        r"""Set the metadata of a transaction by its ID
+    ) -> operations.ConfirmHoldResponse:
+        r"""Confirm a hold
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -321,14 +132,12 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(
-                request, operations.AddMetadataOnTransactionRequest
-            )
-        request = cast(operations.AddMetadataOnTransactionRequest, request)
+            request = utils.unmarshal(request, operations.ConfirmHoldRequest)
+        request = cast(operations.ConfirmHoldRequest, request)
 
         req = self._build_request_async(
             method="POST",
-            path="/api/ledger/{ledger}/transactions/{txid}/metadata",
+            path="/api/wallets/holds/{hold_id}/confirm",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -340,11 +149,11 @@ class SDKV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body,
-                True,
+                request.confirm_hold_request,
+                False,
                 True,
                 "json",
-                OptionalNullable[Dict[str, Any]],
+                Optional[shared.ConfirmHoldRequest],
             ),
             timeout_ms=timeout_ms,
         )
@@ -359,8 +168,8 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="addMetadataOnTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                operation_id="confirmHold",
+                oauth2_scopes=["ledger:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -368,16 +177,18 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
-            return operations.AddMetadataOnTransactionResponse(
+            return operations.ConfirmHoldResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -388,19 +199,18 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    def add_metadata_to_account(
+    def create_balance(
         self,
         *,
         request: Union[
-            operations.AddMetadataToAccountRequest,
-            operations.AddMetadataToAccountRequestTypedDict,
+            operations.CreateBalanceRequest, operations.CreateBalanceRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.AddMetadataToAccountResponse:
-        r"""Add metadata to an account
+    ) -> operations.CreateBalanceResponse:
+        r"""Create a balance
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -417,16 +227,16 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.AddMetadataToAccountRequest)
-        request = cast(operations.AddMetadataToAccountRequest, request)
+            request = utils.unmarshal(request, operations.CreateBalanceRequest)
+        request = cast(operations.CreateBalanceRequest, request)
 
         req = self._build_request(
             method="POST",
-            path="/api/ledger/{ledger}/accounts/{address}/metadata",
+            path="/api/wallets/wallets/{id}/balances",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -434,7 +244,11 @@ class SDKV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, True, False, "json", Nullable[Dict[str, Any]]
+                request.create_balance_request,
+                False,
+                True,
+                "json",
+                Optional[shared.CreateBalanceRequest],
             ),
             timeout_ms=timeout_ms,
         )
@@ -449,8 +263,8 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="addMetadataToAccount",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                operation_id="createBalance",
+                oauth2_scopes=["ledger:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -458,16 +272,410 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.CreateBalanceResponse(
+                create_balance_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.CreateBalanceResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def create_balance_async(
+        self,
+        *,
+        request: Union[
+            operations.CreateBalanceRequest, operations.CreateBalanceRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.CreateBalanceResponse:
+        r"""Create a balance
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.CreateBalanceRequest)
+        request = cast(operations.CreateBalanceRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/wallets/wallets/{id}/balances",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.create_balance_request,
+                False,
+                True,
+                "json",
+                Optional[shared.CreateBalanceRequest],
+            ),
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="createBalance",
+                oauth2_scopes=["ledger:read", "wallets:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.CreateBalanceResponse(
+                create_balance_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.CreateBalanceResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def create_wallet(
+        self,
+        *,
+        request: Union[
+            operations.CreateWalletRequest, operations.CreateWalletRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.CreateWalletResponse:
+        r"""Create a new wallet
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.CreateWalletRequest)
+        request = cast(operations.CreateWalletRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/wallets/wallets",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.create_wallet_request,
+                False,
+                True,
+                "json",
+                Optional[shared.CreateWalletRequest],
+            ),
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="createWallet",
+                oauth2_scopes=["ledger:read", "wallets:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.CreateWalletResponse(
+                create_wallet_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.CreateWalletResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def create_wallet_async(
+        self,
+        *,
+        request: Union[
+            operations.CreateWalletRequest, operations.CreateWalletRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.CreateWalletResponse:
+        r"""Create a new wallet
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.CreateWalletRequest)
+        request = cast(operations.CreateWalletRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/wallets/wallets",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.create_wallet_request,
+                False,
+                True,
+                "json",
+                Optional[shared.CreateWalletRequest],
+            ),
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="createWallet",
+                oauth2_scopes=["ledger:read", "wallets:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.CreateWalletResponse(
+                create_wallet_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.CreateWalletResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def credit_wallet(
+        self,
+        *,
+        request: Union[
+            operations.CreditWalletRequest, operations.CreditWalletRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.CreditWalletResponse:
+        r"""Credit a wallet
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.CreditWalletRequest)
+        request = cast(operations.CreditWalletRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/wallets/wallets/{id}/credit",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.credit_wallet_request,
+                False,
+                True,
+                "json",
+                Optional[shared.CreditWalletRequest],
+            ),
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="creditWallet",
+                oauth2_scopes=["ledger:read", "wallets:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
-            return operations.AddMetadataToAccountResponse(
+            return operations.CreditWalletResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -478,19 +686,18 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    async def add_metadata_to_account_async(
+    async def credit_wallet_async(
         self,
         *,
         request: Union[
-            operations.AddMetadataToAccountRequest,
-            operations.AddMetadataToAccountRequestTypedDict,
+            operations.CreditWalletRequest, operations.CreditWalletRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.AddMetadataToAccountResponse:
-        r"""Add metadata to an account
+    ) -> operations.CreditWalletResponse:
+        r"""Credit a wallet
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -507,16 +714,16 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.AddMetadataToAccountRequest)
-        request = cast(operations.AddMetadataToAccountRequest, request)
+            request = utils.unmarshal(request, operations.CreditWalletRequest)
+        request = cast(operations.CreditWalletRequest, request)
 
         req = self._build_request_async(
             method="POST",
-            path="/api/ledger/{ledger}/accounts/{address}/metadata",
+            path="/api/wallets/wallets/{id}/credit",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -524,7 +731,11 @@ class SDKV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, True, False, "json", Nullable[Dict[str, Any]]
+                request.credit_wallet_request,
+                False,
+                True,
+                "json",
+                Optional[shared.CreditWalletRequest],
             ),
             timeout_ms=timeout_ms,
         )
@@ -539,8 +750,8 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="addMetadataToAccount",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                operation_id="creditWallet",
+                oauth2_scopes=["ledger:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -548,16 +759,18 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
-            return operations.AddMetadataToAccountResponse(
+            return operations.CreditWalletResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -568,18 +781,18 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    def count_accounts(
+    def debit_wallet(
         self,
         *,
         request: Union[
-            operations.CountAccountsRequest, operations.CountAccountsRequestTypedDict
+            operations.DebitWalletRequest, operations.DebitWalletRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.CountAccountsResponse:
-        r"""Count the accounts from a ledger
+    ) -> operations.DebitWalletResponse:
+        r"""Debit a wallet
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -596,367 +809,16 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.CountAccountsRequest)
-        request = cast(operations.CountAccountsRequest, request)
-
-        req = self._build_request(
-            method="HEAD",
-            path="/api/ledger/{ledger}/accounts",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="countAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "*"):
-            return operations.CountAccountsResponse(
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-                headers=utils.get_response_headers(http_res.headers),
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def count_accounts_async(
-        self,
-        *,
-        request: Union[
-            operations.CountAccountsRequest, operations.CountAccountsRequestTypedDict
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.CountAccountsResponse:
-        r"""Count the accounts from a ledger
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.CountAccountsRequest)
-        request = cast(operations.CountAccountsRequest, request)
-
-        req = self._build_request_async(
-            method="HEAD",
-            path="/api/ledger/{ledger}/accounts",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="countAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "*"):
-            return operations.CountAccountsResponse(
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-                headers=utils.get_response_headers(http_res.headers),
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def count_transactions(
-        self,
-        *,
-        request: Union[
-            operations.CountTransactionsRequest,
-            operations.CountTransactionsRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.CountTransactionsResponse:
-        r"""Count the transactions from a ledger
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.CountTransactionsRequest)
-        request = cast(operations.CountTransactionsRequest, request)
-
-        req = self._build_request(
-            method="HEAD",
-            path="/api/ledger/{ledger}/transactions",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="countTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "*"):
-            return operations.CountTransactionsResponse(
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-                headers=utils.get_response_headers(http_res.headers),
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def count_transactions_async(
-        self,
-        *,
-        request: Union[
-            operations.CountTransactionsRequest,
-            operations.CountTransactionsRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.CountTransactionsResponse:
-        r"""Count the transactions from a ledger
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.CountTransactionsRequest)
-        request = cast(operations.CountTransactionsRequest, request)
-
-        req = self._build_request_async(
-            method="HEAD",
-            path="/api/ledger/{ledger}/transactions",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="countTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "*"):
-            return operations.CountTransactionsResponse(
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-                headers=utils.get_response_headers(http_res.headers),
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def create_transaction(
-        self,
-        *,
-        request: Union[
-            operations.CreateTransactionRequest,
-            operations.CreateTransactionRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.CreateTransactionResponse:
-        r"""Create a new transaction to a ledger
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.CreateTransactionRequest)
-        request = cast(operations.CreateTransactionRequest, request)
+            request = utils.unmarshal(request, operations.DebitWalletRequest)
+        request = cast(operations.DebitWalletRequest, request)
 
         req = self._build_request(
             method="POST",
-            path="/api/ledger/{ledger}/transactions",
+            path="/api/wallets/wallets/{id}/debit",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -964,7 +826,11 @@ class SDKV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.post_transaction, False, False, "json", shared.PostTransaction
+                request.debit_wallet_request,
+                False,
+                True,
+                "json",
+                Optional[shared.DebitWalletRequest],
             ),
             timeout_ms=timeout_ms,
         )
@@ -979,8 +845,8 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="createTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                operation_id="debitWallet",
+                oauth2_scopes=["ledger:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -988,19 +854,27 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.CreateTransactionResponse(
-                transactions_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.TransactionsResponse]
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.DebitWalletResponse(
+                debit_wallet_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.DebitWalletResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
+        if utils.match_response(http_res, "204", "*"):
+            return operations.DebitWalletResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1011,19 +885,18 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    async def create_transaction_async(
+    async def debit_wallet_async(
         self,
         *,
         request: Union[
-            operations.CreateTransactionRequest,
-            operations.CreateTransactionRequestTypedDict,
+            operations.DebitWalletRequest, operations.DebitWalletRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.CreateTransactionResponse:
-        r"""Create a new transaction to a ledger
+    ) -> operations.DebitWalletResponse:
+        r"""Debit a wallet
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1040,16 +913,16 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.CreateTransactionRequest)
-        request = cast(operations.CreateTransactionRequest, request)
+            request = utils.unmarshal(request, operations.DebitWalletRequest)
+        request = cast(operations.DebitWalletRequest, request)
 
         req = self._build_request_async(
             method="POST",
-            path="/api/ledger/{ledger}/transactions",
+            path="/api/wallets/wallets/{id}/debit",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -1057,7 +930,11 @@ class SDKV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.post_transaction, False, False, "json", shared.PostTransaction
+                request.debit_wallet_request,
+                False,
+                True,
+                "json",
+                Optional[shared.DebitWalletRequest],
             ),
             timeout_ms=timeout_ms,
         )
@@ -1072,8 +949,8 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="createTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                operation_id="debitWallet",
+                oauth2_scopes=["ledger:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1081,19 +958,27 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.CreateTransactionResponse(
-                transactions_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.TransactionsResponse]
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.DebitWalletResponse(
+                debit_wallet_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.DebitWalletResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
+        if utils.match_response(http_res, "204", "*"):
+            return operations.DebitWalletResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1104,18 +989,18 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    def get_account(
+    def get_balance(
         self,
         *,
         request: Union[
-            operations.GetAccountRequest, operations.GetAccountRequestTypedDict
+            operations.GetBalanceRequest, operations.GetBalanceRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetAccountResponse:
-        r"""Get account by its address
+    ) -> operations.GetBalanceResponse:
+        r"""Get detailed balance
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1132,12 +1017,12 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetAccountRequest)
-        request = cast(operations.GetAccountRequest, request)
+            request = utils.unmarshal(request, operations.GetBalanceRequest)
+        request = cast(operations.GetBalanceRequest, request)
 
         req = self._build_request(
             method="GET",
-            path="/api/ledger/{ledger}/accounts/{address}",
+            path="/api/wallets/wallets/{id}/balances/{balanceName}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1161,8 +1046,8 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="getAccount",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                operation_id="getBalance",
+                oauth2_scopes=["ledger:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1170,19 +1055,21 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetAccountResponse(
-                account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.AccountResponse]
+            return operations.GetBalanceResponse(
+                get_balance_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GetBalanceResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1193,18 +1080,18 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    async def get_account_async(
+    async def get_balance_async(
         self,
         *,
         request: Union[
-            operations.GetAccountRequest, operations.GetAccountRequestTypedDict
+            operations.GetBalanceRequest, operations.GetBalanceRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetAccountResponse:
-        r"""Get account by its address
+    ) -> operations.GetBalanceResponse:
+        r"""Get detailed balance
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1221,12 +1108,12 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetAccountRequest)
-        request = cast(operations.GetAccountRequest, request)
+            request = utils.unmarshal(request, operations.GetBalanceRequest)
+        request = cast(operations.GetBalanceRequest, request)
 
         req = self._build_request_async(
             method="GET",
-            path="/api/ledger/{ledger}/accounts/{address}",
+            path="/api/wallets/wallets/{id}/balances/{balanceName}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1250,8 +1137,8 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="getAccount",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                operation_id="getBalance",
+                oauth2_scopes=["ledger:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1259,19 +1146,21 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetAccountResponse(
-                account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.AccountResponse]
+            return operations.GetBalanceResponse(
+                get_balance_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GetBalanceResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1282,18 +1171,16 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    def get_balances(
+    def get_hold(
         self,
         *,
-        request: Union[
-            operations.GetBalancesRequest, operations.GetBalancesRequestTypedDict
-        ],
+        request: Union[operations.GetHoldRequest, operations.GetHoldRequestTypedDict],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetBalancesResponse:
-        r"""Get the balances from a ledger's account
+    ) -> operations.GetHoldResponse:
+        r"""Get a hold
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1310,12 +1197,12 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetBalancesRequest)
-        request = cast(operations.GetBalancesRequest, request)
+            request = utils.unmarshal(request, operations.GetHoldRequest)
+        request = cast(operations.GetHoldRequest, request)
 
         req = self._build_request(
             method="GET",
-            path="/api/ledger/{ledger}/balances",
+            path="/api/wallets/holds/{holdID}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1339,8 +1226,8 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="getBalances",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                operation_id="getHold",
+                oauth2_scopes=["ledger:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1348,19 +1235,21 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetBalancesResponse(
-                balances_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.BalancesCursorResponse]
+            return operations.GetHoldResponse(
+                get_hold_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GetHoldResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1371,18 +1260,16 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    async def get_balances_async(
+    async def get_hold_async(
         self,
         *,
-        request: Union[
-            operations.GetBalancesRequest, operations.GetBalancesRequestTypedDict
-        ],
+        request: Union[operations.GetHoldRequest, operations.GetHoldRequestTypedDict],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetBalancesResponse:
-        r"""Get the balances from a ledger's account
+    ) -> operations.GetHoldResponse:
+        r"""Get a hold
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1399,12 +1286,12 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetBalancesRequest)
-        request = cast(operations.GetBalancesRequest, request)
+            request = utils.unmarshal(request, operations.GetHoldRequest)
+        request = cast(operations.GetHoldRequest, request)
 
         req = self._build_request_async(
             method="GET",
-            path="/api/ledger/{ledger}/balances",
+            path="/api/wallets/holds/{holdID}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1428,8 +1315,8 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="getBalances",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                operation_id="getHold",
+                oauth2_scopes=["ledger:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1437,19 +1324,21 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetBalancesResponse(
-                balances_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.BalancesCursorResponse]
+            return operations.GetHoldResponse(
+                get_hold_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GetHoldResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1460,19 +1349,16 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    def get_balances_aggregated(
+    def get_holds(
         self,
         *,
-        request: Union[
-            operations.GetBalancesAggregatedRequest,
-            operations.GetBalancesAggregatedRequestTypedDict,
-        ],
+        request: Union[operations.GetHoldsRequest, operations.GetHoldsRequestTypedDict],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetBalancesAggregatedResponse:
-        r"""Get the aggregated balances from selected accounts
+    ) -> operations.GetHoldsResponse:
+        r"""Get all holds for a wallet
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1489,185 +1375,15 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetBalancesAggregatedRequest)
-        request = cast(operations.GetBalancesAggregatedRequest, request)
+            request = utils.unmarshal(request, operations.GetHoldsRequest)
+        request = cast(operations.GetHoldsRequest, request)
 
         req = self._build_request(
             method="GET",
-            path="/api/ledger/{ledger}/aggregate/balances",
+            path="/api/wallets/holds",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="getBalancesAggregated",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetBalancesAggregatedResponse(
-                aggregate_balances_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.AggregateBalancesResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def get_balances_aggregated_async(
-        self,
-        *,
-        request: Union[
-            operations.GetBalancesAggregatedRequest,
-            operations.GetBalancesAggregatedRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetBalancesAggregatedResponse:
-        r"""Get the aggregated balances from selected accounts
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetBalancesAggregatedRequest)
-        request = cast(operations.GetBalancesAggregatedRequest, request)
-
-        req = self._build_request_async(
-            method="GET",
-            path="/api/ledger/{ledger}/aggregate/balances",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="getBalancesAggregated",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetBalancesAggregatedResponse(
-                aggregate_balances_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.AggregateBalancesResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def get_info(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetInfoResponse:
-        r"""Show server information
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        req = self._build_request(
-            method="GET",
-            path="/api/ledger/_info",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
             request_body_required=False,
             request_has_path_params=False,
             request_has_query_params=True,
@@ -1688,8 +1404,8 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="getInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                operation_id="getHolds",
+                oauth2_scopes=["ledger:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1697,19 +1413,21 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetInfoResponse(
-                config_info_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ConfigInfoResponse]
+            return operations.GetHoldsResponse(
+                get_holds_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GetHoldsResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1720,16 +1438,18 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    async def get_info_async(
+    async def get_holds_async(
         self,
         *,
+        request: Union[operations.GetHoldsRequest, operations.GetHoldsRequestTypedDict],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetInfoResponse:
-        r"""Show server information
+    ) -> operations.GetHoldsResponse:
+        r"""Get all holds for a wallet
 
+        :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1742,12 +1462,17 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetHoldsRequest)
+        request = cast(operations.GetHoldsRequest, request)
+
         req = self._build_request_async(
             method="GET",
-            path="/api/ledger/_info",
+            path="/api/wallets/holds",
             base_url=base_url,
             url_variables=url_variables,
-            request=None,
+            request=request,
             request_body_required=False,
             request_has_path_params=False,
             request_has_query_params=True,
@@ -1768,8 +1493,8 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="getInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                operation_id="getHolds",
+                oauth2_scopes=["ledger:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1777,19 +1502,21 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetInfoResponse(
-                config_info_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ConfigInfoResponse]
+            return operations.GetHoldsResponse(
+                get_holds_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GetHoldsResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1800,18 +1527,200 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    def get_ledger_info(
+    def get_transactions(
         self,
         *,
         request: Union[
-            operations.GetLedgerInfoRequest, operations.GetLedgerInfoRequestTypedDict
+            operations.GetTransactionsRequest,
+            operations.GetTransactionsRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetLedgerInfoResponse:
-        r"""Get information about a ledger
+    ) -> operations.GetTransactionsResponse:
+        r"""
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetTransactionsRequest)
+        request = cast(operations.GetTransactionsRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/wallets/transactions",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="getTransactions",
+                oauth2_scopes=["ledger:read", "wallets:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetTransactionsResponse(
+                get_transactions_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GetTransactionsResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def get_transactions_async(
+        self,
+        *,
+        request: Union[
+            operations.GetTransactionsRequest,
+            operations.GetTransactionsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetTransactionsResponse:
+        r"""
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetTransactionsRequest)
+        request = cast(operations.GetTransactionsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/wallets/transactions",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="getTransactions",
+                oauth2_scopes=["ledger:read", "wallets:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetTransactionsResponse(
+                get_transactions_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GetTransactionsResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def get_wallet(
+        self,
+        *,
+        request: Union[
+            operations.GetWalletRequest, operations.GetWalletRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetWalletResponse:
+        r"""Get a wallet
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1828,12 +1737,12 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetLedgerInfoRequest)
-        request = cast(operations.GetLedgerInfoRequest, request)
+            request = utils.unmarshal(request, operations.GetWalletRequest)
+        request = cast(operations.GetWalletRequest, request)
 
         req = self._build_request(
             method="GET",
-            path="/api/ledger/{ledger}/_info",
+            path="/api/wallets/wallets/{id}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1857,8 +1766,8 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="getLedgerInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                operation_id="getWallet",
+                oauth2_scopes=["ledger:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1866,19 +1775,27 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetLedgerInfoResponse(
-                ledger_info_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.LedgerInfoResponse]
+            return operations.GetWalletResponse(
+                get_wallet_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GetWalletResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
+        if utils.match_response(http_res, "404", "*"):
+            return operations.GetWalletResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1889,18 +1806,18 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    async def get_ledger_info_async(
+    async def get_wallet_async(
         self,
         *,
         request: Union[
-            operations.GetLedgerInfoRequest, operations.GetLedgerInfoRequestTypedDict
+            operations.GetWalletRequest, operations.GetWalletRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetLedgerInfoResponse:
-        r"""Get information about a ledger
+    ) -> operations.GetWalletResponse:
+        r"""Get a wallet
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1917,12 +1834,12 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetLedgerInfoRequest)
-        request = cast(operations.GetLedgerInfoRequest, request)
+            request = utils.unmarshal(request, operations.GetWalletRequest)
+        request = cast(operations.GetWalletRequest, request)
 
         req = self._build_request_async(
             method="GET",
-            path="/api/ledger/{ledger}/_info",
+            path="/api/wallets/wallets/{id}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1946,8 +1863,8 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="getLedgerInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                operation_id="getWallet",
+                oauth2_scopes=["ledger:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1955,19 +1872,27 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetLedgerInfoResponse(
-                ledger_info_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.LedgerInfoResponse]
+            return operations.GetWalletResponse(
+                get_wallet_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GetWalletResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
+        if utils.match_response(http_res, "404", "*"):
+            return operations.GetWalletResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1978,18 +1903,19 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    def get_mapping(
+    def get_wallet_summary(
         self,
         *,
         request: Union[
-            operations.GetMappingRequest, operations.GetMappingRequestTypedDict
+            operations.GetWalletSummaryRequest,
+            operations.GetWalletSummaryRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetMappingResponse:
-        r"""Get the mapping of a ledger
+    ) -> operations.GetWalletSummaryResponse:
+        r"""Get wallet summary
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -2006,12 +1932,12 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetMappingRequest)
-        request = cast(operations.GetMappingRequest, request)
+            request = utils.unmarshal(request, operations.GetWalletSummaryRequest)
+        request = cast(operations.GetWalletSummaryRequest, request)
 
         req = self._build_request(
             method="GET",
-            path="/api/ledger/{ledger}/mapping",
+            path="/api/wallets/wallets/{id}/summary",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -2035,8 +1961,8 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="getMapping",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                operation_id="getWalletSummary",
+                oauth2_scopes=["ledger:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2044,19 +1970,27 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetMappingResponse(
-                mapping_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.MappingResponse]
+            return operations.GetWalletSummaryResponse(
+                get_wallet_summary_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GetWalletSummaryResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
+        if utils.match_response(http_res, "404", "*"):
+            return operations.GetWalletSummaryResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2067,18 +2001,19 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    async def get_mapping_async(
+    async def get_wallet_summary_async(
         self,
         *,
         request: Union[
-            operations.GetMappingRequest, operations.GetMappingRequestTypedDict
+            operations.GetWalletSummaryRequest,
+            operations.GetWalletSummaryRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetMappingResponse:
-        r"""Get the mapping of a ledger
+    ) -> operations.GetWalletSummaryResponse:
+        r"""Get wallet summary
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -2095,12 +2030,12 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetMappingRequest)
-        request = cast(operations.GetMappingRequest, request)
+            request = utils.unmarshal(request, operations.GetWalletSummaryRequest)
+        request = cast(operations.GetWalletSummaryRequest, request)
 
         req = self._build_request_async(
             method="GET",
-            path="/api/ledger/{ledger}/mapping",
+            path="/api/wallets/wallets/{id}/summary",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -2124,8 +2059,8 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="getMapping",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                operation_id="getWalletSummary",
+                oauth2_scopes=["ledger:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2133,19 +2068,27 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetMappingResponse(
-                mapping_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.MappingResponse]
+            return operations.GetWalletSummaryResponse(
+                get_wallet_summary_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GetWalletSummaryResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
+        if utils.match_response(http_res, "404", "*"):
+            return operations.GetWalletSummaryResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2156,18 +2099,18 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    def get_transaction(
+    def list_balances(
         self,
         *,
         request: Union[
-            operations.GetTransactionRequest, operations.GetTransactionRequestTypedDict
+            operations.ListBalancesRequest, operations.ListBalancesRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetTransactionResponse:
-        r"""Get transaction from a ledger by its ID
+    ) -> operations.ListBalancesResponse:
+        r"""List balances of a wallet
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -2184,12 +2127,12 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetTransactionRequest)
-        request = cast(operations.GetTransactionRequest, request)
+            request = utils.unmarshal(request, operations.ListBalancesRequest)
+        request = cast(operations.ListBalancesRequest, request)
 
         req = self._build_request(
             method="GET",
-            path="/api/ledger/{ledger}/transactions/{txid}",
+            path="/api/wallets/wallets/{id}/balances",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -2213,1121 +2156,8 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="getTransaction",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetTransactionResponse(
-                transaction_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.TransactionResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def get_transaction_async(
-        self,
-        *,
-        request: Union[
-            operations.GetTransactionRequest, operations.GetTransactionRequestTypedDict
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetTransactionResponse:
-        r"""Get transaction from a ledger by its ID
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetTransactionRequest)
-        request = cast(operations.GetTransactionRequest, request)
-
-        req = self._build_request_async(
-            method="GET",
-            path="/api/ledger/{ledger}/transactions/{txid}",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="getTransaction",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetTransactionResponse(
-                transaction_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.TransactionResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def list_accounts(
-        self,
-        *,
-        request: Union[
-            operations.ListAccountsRequest, operations.ListAccountsRequestTypedDict
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ListAccountsResponse:
-        r"""List accounts from a ledger
-
-        List accounts from a ledger, sorted by address in descending order.
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ListAccountsRequest)
-        request = cast(operations.ListAccountsRequest, request)
-
-        req = self._build_request(
-            method="GET",
-            path="/api/ledger/{ledger}/accounts",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="listAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ListAccountsResponse(
-                accounts_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.AccountsCursorResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "404", "application/json"):
-            return operations.ListAccountsResponse(
-                error_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ErrorResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def list_accounts_async(
-        self,
-        *,
-        request: Union[
-            operations.ListAccountsRequest, operations.ListAccountsRequestTypedDict
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ListAccountsResponse:
-        r"""List accounts from a ledger
-
-        List accounts from a ledger, sorted by address in descending order.
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ListAccountsRequest)
-        request = cast(operations.ListAccountsRequest, request)
-
-        req = self._build_request_async(
-            method="GET",
-            path="/api/ledger/{ledger}/accounts",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="listAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ListAccountsResponse(
-                accounts_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.AccountsCursorResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "404", "application/json"):
-            return operations.ListAccountsResponse(
-                error_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ErrorResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def list_logs(
-        self,
-        *,
-        request: Union[operations.ListLogsRequest, operations.ListLogsRequestTypedDict],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ListLogsResponse:
-        r"""List the logs from a ledger
-
-        List the logs from a ledger, sorted by ID in descending order.
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ListLogsRequest)
-        request = cast(operations.ListLogsRequest, request)
-
-        req = self._build_request(
-            method="GET",
-            path="/api/ledger/{ledger}/logs",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="listLogs",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ListLogsResponse(
-                logs_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.LogsCursorResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def list_logs_async(
-        self,
-        *,
-        request: Union[operations.ListLogsRequest, operations.ListLogsRequestTypedDict],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ListLogsResponse:
-        r"""List the logs from a ledger
-
-        List the logs from a ledger, sorted by ID in descending order.
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ListLogsRequest)
-        request = cast(operations.ListLogsRequest, request)
-
-        req = self._build_request_async(
-            method="GET",
-            path="/api/ledger/{ledger}/logs",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="listLogs",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ListLogsResponse(
-                logs_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.LogsCursorResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def list_transactions(
-        self,
-        *,
-        request: Union[
-            operations.ListTransactionsRequest,
-            operations.ListTransactionsRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ListTransactionsResponse:
-        r"""List transactions from a ledger
-
-        List transactions from a ledger, sorted by txid in descending order.
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ListTransactionsRequest)
-        request = cast(operations.ListTransactionsRequest, request)
-
-        req = self._build_request(
-            method="GET",
-            path="/api/ledger/{ledger}/transactions",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="listTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ListTransactionsResponse(
-                transactions_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.TransactionsCursorResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def list_transactions_async(
-        self,
-        *,
-        request: Union[
-            operations.ListTransactionsRequest,
-            operations.ListTransactionsRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ListTransactionsResponse:
-        r"""List transactions from a ledger
-
-        List transactions from a ledger, sorted by txid in descending order.
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ListTransactionsRequest)
-        request = cast(operations.ListTransactionsRequest, request)
-
-        req = self._build_request_async(
-            method="GET",
-            path="/api/ledger/{ledger}/transactions",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="listTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ListTransactionsResponse(
-                transactions_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.TransactionsCursorResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def read_stats(
-        self,
-        *,
-        request: Union[
-            operations.ReadStatsRequest, operations.ReadStatsRequestTypedDict
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ReadStatsResponse:
-        r"""Get statistics from a ledger
-
-        Get statistics from a ledger. (aggregate metrics on accounts and transactions)
-
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ReadStatsRequest)
-        request = cast(operations.ReadStatsRequest, request)
-
-        req = self._build_request(
-            method="GET",
-            path="/api/ledger/{ledger}/stats",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="readStats",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ReadStatsResponse(
-                stats_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.StatsResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def read_stats_async(
-        self,
-        *,
-        request: Union[
-            operations.ReadStatsRequest, operations.ReadStatsRequestTypedDict
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ReadStatsResponse:
-        r"""Get statistics from a ledger
-
-        Get statistics from a ledger. (aggregate metrics on accounts and transactions)
-
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ReadStatsRequest)
-        request = cast(operations.ReadStatsRequest, request)
-
-        req = self._build_request_async(
-            method="GET",
-            path="/api/ledger/{ledger}/stats",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="readStats",
-                oauth2_scopes=["auth:read", "ledger:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ReadStatsResponse(
-                stats_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.StatsResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def revert_transaction(
-        self,
-        *,
-        request: Union[
-            operations.RevertTransactionRequest,
-            operations.RevertTransactionRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.RevertTransactionResponse:
-        r"""Revert a ledger transaction by its ID
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.RevertTransactionRequest)
-        request = cast(operations.RevertTransactionRequest, request)
-
-        req = self._build_request(
-            method="POST",
-            path="/api/ledger/{ledger}/transactions/{txid}/revert",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="revertTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "201", "application/json"):
-            return operations.RevertTransactionResponse(
-                transaction_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.TransactionResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def revert_transaction_async(
-        self,
-        *,
-        request: Union[
-            operations.RevertTransactionRequest,
-            operations.RevertTransactionRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.RevertTransactionResponse:
-        r"""Revert a ledger transaction by its ID
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.RevertTransactionRequest)
-        request = cast(operations.RevertTransactionRequest, request)
-
-        req = self._build_request_async(
-            method="POST",
-            path="/api/ledger/{ledger}/transactions/{txid}/revert",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="revertTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        data: Any = None
-        if utils.match_response(http_res, "201", "application/json"):
-            return operations.RevertTransactionResponse(
-                transaction_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.TransactionResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    @deprecated(
-        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
-    )
-    def run_script(
-        self,
-        *,
-        request: Union[
-            operations.RunScriptRequest, operations.RunScriptRequestTypedDict
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.RunScriptResponse:
-        r"""Execute a Numscript
-
-        This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
-
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.RunScriptRequest)
-        request = cast(operations.RunScriptRequest, request)
-
-        req = self._build_request(
-            method="POST",
-            path="/api/ledger/{ledger}/script",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=True,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.script, False, False, "json", shared.Script
-            ),
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="runScript",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                operation_id="listBalances",
+                oauth2_scopes=["ledger:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3336,9 +2166,9 @@ class SDKV1(BaseSDK):
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.RunScriptResponse(
-                script_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ScriptResponse]
+            return operations.ListBalancesResponse(
+                list_balances_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.ListBalancesResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3359,24 +2189,18 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    @deprecated(
-        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
-    )
-    async def run_script_async(
+    async def list_balances_async(
         self,
         *,
         request: Union[
-            operations.RunScriptRequest, operations.RunScriptRequestTypedDict
+            operations.ListBalancesRequest, operations.ListBalancesRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.RunScriptResponse:
-        r"""Execute a Numscript
-
-        This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
-
+    ) -> operations.ListBalancesResponse:
+        r"""List balances of a wallet
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -3393,25 +2217,22 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.RunScriptRequest)
-        request = cast(operations.RunScriptRequest, request)
+            request = utils.unmarshal(request, operations.ListBalancesRequest)
+        request = cast(operations.ListBalancesRequest, request)
 
         req = self._build_request_async(
-            method="POST",
-            path="/api/ledger/{ledger}/script",
+            method="GET",
+            path="/api/wallets/wallets/{id}/balances",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.script, False, False, "json", shared.Script
-            ),
             timeout_ms=timeout_ms,
         )
 
@@ -3425,8 +2246,8 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="runScript",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                operation_id="listBalances",
+                oauth2_scopes=["ledger:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3435,9 +2256,9 @@ class SDKV1(BaseSDK):
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.RunScriptResponse(
-                script_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ScriptResponse]
+            return operations.ListBalancesResponse(
+                list_balances_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.ListBalancesResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3458,18 +2279,18 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    def update_mapping(
+    def list_wallets(
         self,
         *,
         request: Union[
-            operations.UpdateMappingRequest, operations.UpdateMappingRequestTypedDict
+            operations.ListWalletsRequest, operations.ListWalletsRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.UpdateMappingResponse:
-        r"""Update the mapping of a ledger
+    ) -> operations.ListWalletsResponse:
+        r"""List all wallets
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -3486,16 +2307,198 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.UpdateMappingRequest)
-        request = cast(operations.UpdateMappingRequest, request)
+            request = utils.unmarshal(request, operations.ListWalletsRequest)
+        request = cast(operations.ListWalletsRequest, request)
 
         req = self._build_request(
-            method="PUT",
-            path="/api/ledger/{ledger}/mapping",
+            method="GET",
+            path="/api/wallets/wallets",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="listWallets",
+                oauth2_scopes=["ledger:read", "wallets:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListWalletsResponse(
+                list_wallets_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.ListWalletsResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def list_wallets_async(
+        self,
+        *,
+        request: Union[
+            operations.ListWalletsRequest, operations.ListWalletsRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListWalletsResponse:
+        r"""List all wallets
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListWalletsRequest)
+        request = cast(operations.ListWalletsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/wallets/wallets",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="listWallets",
+                oauth2_scopes=["ledger:read", "wallets:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListWalletsResponse(
+                list_wallets_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.ListWalletsResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def update_wallet(
+        self,
+        *,
+        request: Union[
+            operations.UpdateWalletRequest, operations.UpdateWalletRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.UpdateWalletResponse:
+        r"""Update a wallet
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.UpdateWalletRequest)
+        request = cast(operations.UpdateWalletRequest, request)
+
+        req = self._build_request(
+            method="PATCH",
+            path="/api/wallets/wallets/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -3503,7 +2506,11 @@ class SDKV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.mapping, True, False, "json", Nullable[shared.Mapping]
+                request.request_body,
+                False,
+                True,
+                "json",
+                Optional[operations.UpdateWalletRequestBody],
             ),
             timeout_ms=timeout_ms,
         )
@@ -3518,8 +2525,8 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="updateMapping",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                operation_id="updateWallet",
+                oauth2_scopes=["ledger:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3527,19 +2534,18 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.UpdateMappingResponse(
-                mapping_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.MappingResponse]
-                ),
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.UpdateWalletResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3550,18 +2556,18 @@ class SDKV1(BaseSDK):
             http_res,
         )
 
-    async def update_mapping_async(
+    async def update_wallet_async(
         self,
         *,
         request: Union[
-            operations.UpdateMappingRequest, operations.UpdateMappingRequestTypedDict
+            operations.UpdateWalletRequest, operations.UpdateWalletRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.UpdateMappingResponse:
-        r"""Update the mapping of a ledger
+    ) -> operations.UpdateWalletResponse:
+        r"""Update a wallet
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -3578,16 +2584,16 @@ class SDKV1(BaseSDK):
             base_url = server_url
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.UpdateMappingRequest)
-        request = cast(operations.UpdateMappingRequest, request)
+            request = utils.unmarshal(request, operations.UpdateWalletRequest)
+        request = cast(operations.UpdateWalletRequest, request)
 
         req = self._build_request_async(
-            method="PUT",
-            path="/api/ledger/{ledger}/mapping",
+            method="PATCH",
+            path="/api/wallets/wallets/{id}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -3595,7 +2601,11 @@ class SDKV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.mapping, True, False, "json", Nullable[shared.Mapping]
+                request.request_body,
+                False,
+                True,
+                "json",
+                Optional[operations.UpdateWalletRequestBody],
             ),
             timeout_ms=timeout_ms,
         )
@@ -3610,8 +2620,8 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="updateMapping",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                operation_id="updateWallet",
+                oauth2_scopes=["ledger:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3619,19 +2629,354 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.UpdateWalletResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def void_hold(
+        self,
+        *,
+        request: Union[operations.VoidHoldRequest, operations.VoidHoldRequestTypedDict],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.VoidHoldResponse:
+        r"""Cancel a hold
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.VoidHoldRequest)
+        request = cast(operations.VoidHoldRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/wallets/holds/{hold_id}/void",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="voidHold",
+                oauth2_scopes=["ledger:read", "wallets:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.VoidHoldResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def void_hold_async(
+        self,
+        *,
+        request: Union[operations.VoidHoldRequest, operations.VoidHoldRequestTypedDict],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.VoidHoldResponse:
+        r"""Cancel a hold
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.VoidHoldRequest)
+        request = cast(operations.VoidHoldRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/wallets/holds/{hold_id}/void",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="voidHold",
+                oauth2_scopes=["ledger:read", "wallets:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.VoidHoldResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def walletsget_server_info(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.WalletsgetServerInfoResponse:
+        r"""Get server info
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        req = self._build_request(
+            method="GET",
+            path="/api/wallets/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="walletsgetServerInfo",
+                oauth2_scopes=["ledger:read", "wallets:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.UpdateMappingResponse(
-                mapping_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.MappingResponse]
+            return operations.WalletsgetServerInfoResponse(
+                server_info=utils.unmarshal_json(
+                    http_res.text, Optional[shared.ServerInfo]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def walletsget_server_info_async(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.WalletsgetServerInfoResponse:
+        r"""Get server info
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        req = self._build_request_async(
+            method="GET",
+            path="/api/wallets/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="walletsgetServerInfo",
+                oauth2_scopes=["ledger:read", "wallets:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.WalletsgetServerInfoResponse(
+                server_info=utils.unmarshal_json(
+                    http_res.text, Optional[shared.ServerInfo]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
