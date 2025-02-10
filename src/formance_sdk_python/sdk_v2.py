@@ -77,7 +77,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2CancelEventResponse(
                 status_code=http_res.status_code,
@@ -85,8 +85,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -165,7 +165,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2CancelEventResponse(
                 status_code=http_res.status_code,
@@ -173,8 +173,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -256,7 +256,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2CreateTriggerResponse(
                 v2_create_trigger_response=utils.unmarshal_json(
@@ -267,8 +267,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -350,7 +350,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2CreateTriggerResponse(
                 v2_create_trigger_response=utils.unmarshal_json(
@@ -361,8 +361,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -446,7 +446,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2CreateWorkflowResponse(
                 v2_create_workflow_response=utils.unmarshal_json(
@@ -457,8 +457,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -542,7 +542,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2CreateWorkflowResponse(
                 v2_create_workflow_response=utils.unmarshal_json(
@@ -553,8 +553,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -634,7 +634,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2DeleteTriggerResponse(
                 status_code=http_res.status_code,
@@ -642,8 +642,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -723,7 +723,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2DeleteTriggerResponse(
                 status_code=http_res.status_code,
@@ -731,8 +731,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -812,7 +812,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2DeleteWorkflowResponse(
                 status_code=http_res.status_code,
@@ -820,8 +820,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -901,7 +901,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2DeleteWorkflowResponse(
                 status_code=http_res.status_code,
@@ -909,8 +909,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -989,7 +989,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInstanceResponse(
                 v2_get_workflow_instance_response=utils.unmarshal_json(
@@ -1000,8 +1000,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1080,7 +1080,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInstanceResponse(
                 v2_get_workflow_instance_response=utils.unmarshal_json(
@@ -1091,8 +1091,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1172,7 +1172,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInstanceHistoryResponse(
                 v2_get_workflow_instance_history_response=utils.unmarshal_json(
@@ -1183,8 +1183,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1264,7 +1264,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInstanceHistoryResponse(
                 v2_get_workflow_instance_history_response=utils.unmarshal_json(
@@ -1275,8 +1275,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1358,7 +1358,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInstanceStageHistoryResponse(
                 v2_get_workflow_instance_history_stage_response=utils.unmarshal_json(
@@ -1370,8 +1370,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1453,7 +1453,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInstanceStageHistoryResponse(
                 v2_get_workflow_instance_history_stage_response=utils.unmarshal_json(
@@ -1465,8 +1465,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1534,7 +1534,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetServerInfoResponse(
                 v2_server_info=utils.unmarshal_json(
@@ -1545,8 +1545,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1614,7 +1614,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetServerInfoResponse(
                 v2_server_info=utils.unmarshal_json(
@@ -1625,8 +1625,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1705,7 +1705,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetWorkflowResponse(
                 v2_get_workflow_response=utils.unmarshal_json(
@@ -1716,8 +1716,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1796,7 +1796,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetWorkflowResponse(
                 v2_get_workflow_response=utils.unmarshal_json(
@@ -1807,8 +1807,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1888,7 +1888,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListInstancesResponse(
                 v2_list_runs_response=utils.unmarshal_json(
@@ -1899,8 +1899,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1980,7 +1980,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListInstancesResponse(
                 v2_list_runs_response=utils.unmarshal_json(
@@ -1991,8 +1991,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2071,7 +2071,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListTriggersResponse(
                 v2_list_triggers_response=utils.unmarshal_json(
@@ -2082,8 +2082,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2162,7 +2162,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListTriggersResponse(
                 v2_list_triggers_response=utils.unmarshal_json(
@@ -2173,8 +2173,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2256,7 +2256,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListTriggersOccurrencesResponse(
                 v2_list_triggers_occurrences_response=utils.unmarshal_json(
@@ -2267,8 +2267,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2350,7 +2350,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListTriggersOccurrencesResponse(
                 v2_list_triggers_occurrences_response=utils.unmarshal_json(
@@ -2361,8 +2361,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2442,7 +2442,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListWorkflowsResponse(
                 v2_list_workflows_response=utils.unmarshal_json(
@@ -2453,8 +2453,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2534,7 +2534,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListWorkflowsResponse(
                 v2_list_workflows_response=utils.unmarshal_json(
@@ -2545,8 +2545,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2625,7 +2625,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ReadTriggerResponse(
                 v2_read_trigger_response=utils.unmarshal_json(
@@ -2636,8 +2636,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2716,7 +2716,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ReadTriggerResponse(
                 v2_read_trigger_response=utils.unmarshal_json(
@@ -2727,8 +2727,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2810,7 +2810,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2RunWorkflowResponse(
                 v2_run_workflow_response=utils.unmarshal_json(
@@ -2821,8 +2821,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2904,7 +2904,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2RunWorkflowResponse(
                 v2_run_workflow_response=utils.unmarshal_json(
@@ -2915,8 +2915,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3002,7 +3002,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2SendEventResponse(
                 status_code=http_res.status_code,
@@ -3010,8 +3010,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3097,7 +3097,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V2SendEventResponse(
                 status_code=http_res.status_code,
@@ -3105,8 +3105,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3188,7 +3188,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.TestTriggerResponse(
                 v2_test_trigger_response=utils.unmarshal_json(
@@ -3199,8 +3199,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3282,7 +3282,7 @@ class SDKV2(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.TestTriggerResponse(
                 v2_test_trigger_response=utils.unmarshal_json(
@@ -3293,8 +3293,8 @@ class SDKV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
+            raise errors.V2Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)

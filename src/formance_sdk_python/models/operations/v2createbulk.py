@@ -6,8 +6,14 @@ from formance_sdk_python.models.shared import (
     v2bulkresponse as shared_v2bulkresponse,
 )
 from formance_sdk_python.types import BaseModel
-from formance_sdk_python.utils import FieldMetadata, PathParamMetadata, RequestMetadata
+from formance_sdk_python.utils import (
+    FieldMetadata,
+    PathParamMetadata,
+    QueryParamMetadata,
+    RequestMetadata,
+)
 import httpx
+import pydantic
 from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -16,6 +22,12 @@ class V2CreateBulkRequestTypedDict(TypedDict):
     ledger: str
     r"""Name of the ledger."""
     request_body: NotRequired[List[shared_v2bulkelement.V2BulkElementTypedDict]]
+    atomic: NotRequired[bool]
+    r"""Make bulk atomic"""
+    continue_on_failure: NotRequired[bool]
+    r"""Continue on failure"""
+    parallel: NotRequired[bool]
+    r"""Process bulk elements in parallel"""
 
 
 class V2CreateBulkRequest(BaseModel):
@@ -28,6 +40,25 @@ class V2CreateBulkRequest(BaseModel):
         Optional[List[shared_v2bulkelement.V2BulkElement]],
         FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ] = None
+
+    atomic: Annotated[
+        Optional[bool],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Make bulk atomic"""
+
+    continue_on_failure: Annotated[
+        Optional[bool],
+        pydantic.Field(alias="continueOnFailure"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Continue on failure"""
+
+    parallel: Annotated[
+        Optional[bool],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Process bulk elements in parallel"""
 
 
 class V2CreateBulkResponseTypedDict(TypedDict):

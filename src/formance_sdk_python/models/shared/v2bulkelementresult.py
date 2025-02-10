@@ -13,6 +13,7 @@ from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 class V2BulkElementResultErrorSchemasTypedDict(TypedDict):
     error_code: str
     error_description: str
+    log_id: int
     response_type: str
     error_details: NotRequired[str]
 
@@ -22,45 +23,59 @@ class V2BulkElementResultErrorSchemas(BaseModel):
 
     error_description: Annotated[str, pydantic.Field(alias="errorDescription")]
 
+    log_id: Annotated[int, pydantic.Field(alias="logID")]
+
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
 
     error_details: Annotated[Optional[str], pydantic.Field(alias="errorDetails")] = None
 
 
 class V2BulkElementResultDeleteMetadataSchemasTypedDict(TypedDict):
+    log_id: int
     response_type: str
 
 
 class V2BulkElementResultDeleteMetadataSchemas(BaseModel):
+    log_id: Annotated[int, pydantic.Field(alias="logID")]
+
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
 
 
 class V2BulkElementResultRevertTransactionSchemasTypedDict(TypedDict):
     data: V2TransactionTypedDict
+    log_id: int
     response_type: str
 
 
 class V2BulkElementResultRevertTransactionSchemas(BaseModel):
     data: V2Transaction
 
+    log_id: Annotated[int, pydantic.Field(alias="logID")]
+
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
 
 
 class SchemasTypedDict(TypedDict):
+    log_id: int
     response_type: str
 
 
 class Schemas(BaseModel):
+    log_id: Annotated[int, pydantic.Field(alias="logID")]
+
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
 
 
 class V2BulkElementResultCreateTransactionSchemasTypedDict(TypedDict):
     data: V2TransactionTypedDict
+    log_id: int
     response_type: str
 
 
 class V2BulkElementResultCreateTransactionSchemas(BaseModel):
     data: V2Transaction
+
+    log_id: Annotated[int, pydantic.Field(alias="logID")]
 
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
 

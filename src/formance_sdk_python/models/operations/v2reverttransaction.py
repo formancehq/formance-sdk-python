@@ -25,6 +25,8 @@ class V2RevertTransactionRequestTypedDict(TypedDict):
     r"""Name of the ledger."""
     at_effective_date: NotRequired[bool]
     r"""Revert transaction at effective date of the original tx"""
+    dry_run: NotRequired[bool]
+    r"""Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker."""
     force: NotRequired[bool]
     r"""Force revert"""
 
@@ -47,6 +49,13 @@ class V2RevertTransactionRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
     r"""Revert transaction at effective date of the original tx"""
+
+    dry_run: Annotated[
+        Optional[bool],
+        pydantic.Field(alias="dryRun"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker."""
 
     force: Annotated[
         Optional[bool],

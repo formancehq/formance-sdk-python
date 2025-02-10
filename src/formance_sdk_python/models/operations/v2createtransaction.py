@@ -32,6 +32,8 @@ class V2CreateTransactionRequestTypedDict(TypedDict):
     r"""Use an idempotency key"""
     dry_run: NotRequired[bool]
     r"""Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker."""
+    force: NotRequired[bool]
+    r"""Disable balance checks when passing postings"""
 
 
 class V2CreateTransactionRequest(BaseModel):
@@ -63,6 +65,12 @@ class V2CreateTransactionRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
     r"""Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker."""
+
+    force: Annotated[
+        Optional[bool],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Disable balance checks when passing postings"""
 
 
 class V2CreateTransactionResponseTypedDict(TypedDict):

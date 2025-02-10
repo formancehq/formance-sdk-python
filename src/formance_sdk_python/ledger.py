@@ -7,8 +7,8 @@ from formance_sdk_python.v2 import V2
 
 
 class Ledger(BaseSDK):
-    v1: SDKV1
     v2: V2
+    v1: SDKV1
 
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
@@ -16,5 +16,5 @@ class Ledger(BaseSDK):
         self._init_sdks()
 
     def _init_sdks(self):
-        self.v1 = SDKV1(self.sdk_configuration)
         self.v2 = V2(self.sdk_configuration)
+        self.v1 = SDKV1(self.sdk_configuration)

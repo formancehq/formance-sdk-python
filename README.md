@@ -48,6 +48,7 @@ and standard method from web, mobile and desktop applications.
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Authentication](#authentication-1)
+  * [Resource Management](#resource-management)
   * [Debugging](#debugging)
 * [Development](#development)
   * [Maturity](#maturity)
@@ -57,6 +58,11 @@ and standard method from web, mobile and desktop applications.
 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
+
+> [!NOTE]
+> **Python version upgrade policy**
+>
+> Once a Python version reaches its [official end of life date](https://devguide.python.org/versions/), a 3-month grace period is provided for users to upgrade. Following this grace period, the minimum python version supported in the SDK will be updated.
 
 The SDK can be installed with either *pip* or *poetry* package managers.
 
@@ -75,6 +81,37 @@ pip install formance-sdk-python
 ```bash
 poetry add formance-sdk-python
 ```
+
+### Shell and script usage with `uv`
+
+You can use this SDK in a Python shell with [uv](https://docs.astral.sh/uv/) and the `uvx` command that comes with it like so:
+
+```shell
+uvx --from formance-sdk-python python
+```
+
+It's also possible to write a standalone Python script without needing to set up a whole project like so:
+
+```python
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.9"
+# dependencies = [
+#     "formance-sdk-python",
+# ]
+# ///
+
+from formance_sdk_python import SDK
+
+sdk = SDK(
+  # SDK arguments
+)
+
+# Rest of script here...
+```
+
+Once that is saved to a file, you can run it with `uv run script.py` where
+`script.py` can be replaced with the actual file name.
 <!-- End SDK Installation [installation] -->
 
 <!-- Start IDE Support [idesupport] -->
@@ -207,6 +244,7 @@ asyncio.run(main())
 * [get_info](docs/sdks/v2/README.md#get_info) - Show server information
 * [get_ledger](docs/sdks/v2/README.md#get_ledger) - Get a ledger
 * [get_ledger_info](docs/sdks/v2/README.md#get_ledger_info) - Get information about a ledger
+* [get_metrics](docs/sdks/v2/README.md#get_metrics) - Read in memory metrics
 * [get_transaction](docs/sdks/v2/README.md#get_transaction) - Get transaction from a ledger by its ID
 * [get_volumes_with_balances](docs/sdks/v2/README.md#get_volumes_with_balances) - Get list of volumes with balances for (account/asset)
 * [import_logs](docs/sdks/v2/README.md#import_logs)
@@ -311,6 +349,53 @@ asyncio.run(main())
 * [update_connector_config_v1](docs/sdks/sdkpaymentsv1/README.md#update_connector_config_v1) - Update the config of a connector
 * [update_metadata](docs/sdks/sdkpaymentsv1/README.md#update_metadata) - Update metadata
 
+#### [payments.v3](docs/sdks/v3/README.md)
+
+* [add_account_to_pool](docs/sdks/v3/README.md#add_account_to_pool) - Add an account to a pool
+* [approve_payment_initiation](docs/sdks/v3/README.md#approve_payment_initiation) - Approve a payment initiation
+* [create_account](docs/sdks/v3/README.md#create_account) - Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
+
+* [create_bank_account](docs/sdks/v3/README.md#create_bank_account) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
+
+* [create_payment](docs/sdks/v3/README.md#create_payment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
+
+* [create_pool](docs/sdks/v3/README.md#create_pool) - Create a formance pool object
+* [delete_payment_initiation](docs/sdks/v3/README.md#delete_payment_initiation) - Delete a payment initiation by ID
+* [delete_pool](docs/sdks/v3/README.md#delete_pool) - Delete a pool by ID
+* [forward_bank_account](docs/sdks/v3/README.md#forward_bank_account) - Forward a Bank Account to a PSP for creation
+* [get_account](docs/sdks/v3/README.md#get_account) - Get an account by ID
+* [get_account_balances](docs/sdks/v3/README.md#get_account_balances) - Get account balances
+* [get_bank_account](docs/sdks/v3/README.md#get_bank_account) - Get a Bank Account by ID
+* [get_connector_config](docs/sdks/v3/README.md#get_connector_config) - Get a connector configuration by ID
+* [get_connector_schedule](docs/sdks/v3/README.md#get_connector_schedule) - Get a connector schedule by ID
+* [get_info](docs/sdks/v3/README.md#get_info) - Show server information
+* [get_payment](docs/sdks/v3/README.md#get_payment) - Get a payment by ID
+* [get_payment_initiation](docs/sdks/v3/README.md#get_payment_initiation) - Get a payment initiation by ID
+* [get_pool](docs/sdks/v3/README.md#get_pool) - Get a pool by ID
+* [get_pool_balances](docs/sdks/v3/README.md#get_pool_balances) - Get pool balances
+* [get_task](docs/sdks/v3/README.md#get_task) - Get a task and its result by ID
+* [initiate_payment](docs/sdks/v3/README.md#initiate_payment) - Initiate a payment
+* [install_connector](docs/sdks/v3/README.md#install_connector) - Install a connector
+* [list_accounts](docs/sdks/v3/README.md#list_accounts) - List all accounts
+* [list_bank_accounts](docs/sdks/v3/README.md#list_bank_accounts) - List all bank accounts
+* [list_connector_configs](docs/sdks/v3/README.md#list_connector_configs) - List all connector configurations
+* [list_connector_schedule_instances](docs/sdks/v3/README.md#list_connector_schedule_instances) - List all connector schedule instances
+* [list_connector_schedules](docs/sdks/v3/README.md#list_connector_schedules) - List all connector schedules
+* [list_connectors](docs/sdks/v3/README.md#list_connectors) - List all connectors
+* [list_payment_initiation_adjustments](docs/sdks/v3/README.md#list_payment_initiation_adjustments) - List all payment initiation adjustments
+* [list_payment_initiation_related_payments](docs/sdks/v3/README.md#list_payment_initiation_related_payments) - List all payments related to a payment initiation
+* [list_payment_initiations](docs/sdks/v3/README.md#list_payment_initiations) - List all payment initiations
+* [list_payments](docs/sdks/v3/README.md#list_payments) - List all payments
+* [list_pools](docs/sdks/v3/README.md#list_pools) - List all pools
+* [reject_payment_initiation](docs/sdks/v3/README.md#reject_payment_initiation) - Reject a payment initiation
+* [remove_account_from_pool](docs/sdks/v3/README.md#remove_account_from_pool) - Remove an account from a pool
+* [reset_connector](docs/sdks/v3/README.md#reset_connector) - Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
+* [retry_payment_initiation](docs/sdks/v3/README.md#retry_payment_initiation) - Retry a payment initiation
+* [reverse_payment_initiation](docs/sdks/v3/README.md#reverse_payment_initiation) - Reverse a payment initiation
+* [uninstall_connector](docs/sdks/v3/README.md#uninstall_connector) - Uninstall a connector
+* [update_bank_account_metadata](docs/sdks/v3/README.md#update_bank_account_metadata) - Update a bank account's metadata
+* [update_payment_metadata](docs/sdks/v3/README.md#update_payment_metadata) - Update a payment's metadata
+
 ### [reconciliation](docs/sdks/reconciliation/README.md)
 
 
@@ -371,6 +456,7 @@ asyncio.run(main())
 * [get_many_configs](docs/sdks/sdkwebhooksv1/README.md#get_many_configs) - Get many configs
 * [insert_config](docs/sdks/sdkwebhooksv1/README.md#insert_config) - Insert a new config
 * [test_config](docs/sdks/sdkwebhooksv1/README.md#test_config) - Test one config
+* [update_config](docs/sdks/sdkwebhooksv1/README.md#update_config) - Update one config
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -441,12 +527,12 @@ By default, an API error will raise a errors.SDKError exception, which has the f
 | `.raw_response` | *httpx.Response* | The raw HTTP response |
 | `.body`         | *str*            | The response content  |
 
-When custom error responses are specified for an operation, the SDK may also raise their associated exceptions. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `create_transactions_async` method may raise the following exceptions:
+When custom error responses are specified for an operation, the SDK may also raise their associated exceptions. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `add_metadata_on_transaction_async` method may raise the following exceptions:
 
-| Error Type           | Status Code | Content Type     |
-| -------------------- | ----------- | ---------------- |
-| errors.ErrorResponse | default     | application/json |
-| errors.SDKError      | 4XX, 5XX    | \*/\*            |
+| Error Type             | Status Code | Content Type     |
+| ---------------------- | ----------- | ---------------- |
+| errors.V2ErrorResponse | default     | application/json |
+| errors.SDKError        | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -463,44 +549,22 @@ with SDK(
     res = None
     try:
 
-        res = sdk.ledger.v1.create_transactions(request={
-            "transactions": {
-                "transactions": [
-                    {
-                        "postings": [
-                            {
-                                "amount": 100,
-                                "asset": "COIN",
-                                "destination": "users:002",
-                                "source": "users:001",
-                            },
-                            {
-                                "amount": 100,
-                                "asset": "COIN",
-                                "destination": "users:002",
-                                "source": "users:001",
-                            },
-                            {
-                                "amount": 100,
-                                "asset": "COIN",
-                                "destination": "users:002",
-                                "source": "users:001",
-                            },
-                        ],
-                        "reference": "ref:001",
-                    },
-                ],
-            },
+        res = sdk.ledger.v2.add_metadata_on_transaction(request={
+            "id": 1234,
             "ledger": "ledger001",
+            "request_body": {
+                "admin": "true",
+            },
+            "dry_run": True,
         })
 
-        assert res.transactions_response is not None
+        assert res is not None
 
         # Handle response
-        print(res.transactions_response)
+        print(res)
 
-    except errors.ErrorResponse as e:
-        # handle e.data: errors.ErrorResponseData
+    except errors.V2ErrorResponse as e:
+        # handle e.data: errors.V2ErrorResponseData
         raise(e)
     except errors.SDKError as e:
         # handle exception
@@ -515,10 +579,10 @@ with SDK(
 
 You can override the default server globally by passing a server index to the `server_idx: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                                                | Variables                                                       | Default values                    |
-| --- | ----------------------------------------------------- | --------------------------------------------------------------- | --------------------------------- |
-| 0   | `http://localhost`                                    |                                                                 |                                   |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `environment: models.ServerEnvironment`<br/>`organization: str` | `"sandbox"`<br/>`"orgID-stackID"` |
+| #   | Server                                                | Variables                                                       | Default values                       |
+| --- | ----------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------ |
+| 0   | `http://localhost`                                    |                                                                 |                                      |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `environment: models.ServerEnvironment`<br/>`organization: str` | `"eu.sandbox"`<br/>`"orgID-stackID"` |
 
 If the selected server has variables, you may override their default values through the additional parameters made available in the SDK constructor.
 
@@ -683,6 +747,38 @@ with SDK(
 
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Resource Management [resource-management] -->
+## Resource Management
+
+The `SDK` class implements the context manager protocol and registers a finalizer function to close the underlying sync and async HTTPX clients it uses under the hood. This will close HTTP connections, release memory and free up other resources held by the SDK. In short-lived Python programs and notebooks that make a few SDK method calls, resource management may not be a concern. However, in longer-lived programs, it is beneficial to create a single SDK instance via a [context manager][context-manager] and reuse it across the application.
+
+[context-manager]: https://docs.python.org/3/reference/datamodel.html#context-managers
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+def main():
+    with SDK(
+        security=shared.Security(
+            client_id="<YOUR_CLIENT_ID_HERE>",
+            client_secret="<YOUR_CLIENT_SECRET_HERE>",
+        ),
+    ) as sdk:
+        # Rest of application here...
+
+
+# Or when using async:
+async def amain():
+    async with SDK(
+        security=shared.Security(
+            client_id="<YOUR_CLIENT_ID_HERE>",
+            client_secret="<YOUR_CLIENT_SECRET_HERE>",
+        ),
+    ) as sdk:
+        # Rest of application here...
+```
+<!-- End Resource Management [resource-management] -->
 
 <!-- Start Debugging [debug] -->
 ## Debugging

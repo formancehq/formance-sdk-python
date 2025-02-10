@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 from .v2posting import V2Posting, V2PostingTypedDict
+from .v2volume import V2Volume, V2VolumeTypedDict
 from datetime import datetime
 from formance_sdk_python.types import BaseModel
 from formance_sdk_python.utils import validate_int
+import pydantic
 from pydantic.functional_validators import BeforeValidator
 from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
@@ -16,7 +18,13 @@ class V2TransactionTypedDict(TypedDict):
     postings: List[V2PostingTypedDict]
     reverted: bool
     timestamp: datetime
+    inserted_at: NotRequired[datetime]
+    post_commit_effective_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    post_commit_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    pre_commit_effective_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    pre_commit_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
     reference: NotRequired[str]
+    reverted_at: NotRequired[datetime]
 
 
 class V2Transaction(BaseModel):
@@ -30,4 +38,32 @@ class V2Transaction(BaseModel):
 
     timestamp: datetime
 
+    inserted_at: Annotated[Optional[datetime], pydantic.Field(alias="insertedAt")] = (
+        None
+    )
+
+    post_commit_effective_volumes: Annotated[
+        Optional[Dict[str, Dict[str, V2Volume]]],
+        pydantic.Field(alias="postCommitEffectiveVolumes"),
+    ] = None
+
+    post_commit_volumes: Annotated[
+        Optional[Dict[str, Dict[str, V2Volume]]],
+        pydantic.Field(alias="postCommitVolumes"),
+    ] = None
+
+    pre_commit_effective_volumes: Annotated[
+        Optional[Dict[str, Dict[str, V2Volume]]],
+        pydantic.Field(alias="preCommitEffectiveVolumes"),
+    ] = None
+
+    pre_commit_volumes: Annotated[
+        Optional[Dict[str, Dict[str, V2Volume]]],
+        pydantic.Field(alias="preCommitVolumes"),
+    ] = None
+
     reference: Optional[str] = None
+
+    reverted_at: Annotated[Optional[datetime], pydantic.Field(alias="revertedAt")] = (
+        None
+    )

@@ -1,0 +1,13 @@
+# V3CreatePaymentAdjustmentRequest
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `created_at`                                                             | [date](https://docs.python.org/3/library/datetime.html#date-objects)     | :heavy_check_mark:                                                       | N/A                                                                      |
+| `reference`                                                              | *str*                                                                    | :heavy_check_mark:                                                       | N/A                                                                      |
+| `status`                                                                 | [shared.V3PaymentStatusEnum](../../models/shared/v3paymentstatusenum.md) | :heavy_check_mark:                                                       | N/A                                                                      |
+| `amount`                                                                 | *Optional[int]*                                                          | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `asset`                                                                  | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `metadata`                                                               | Dict[str, *str*]                                                         | :heavy_minus_sign:                                                       | N/A                                                                      |

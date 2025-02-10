@@ -86,7 +86,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.AddAccountToPoolResponse(
                 status_code=http_res.status_code,
@@ -94,8 +94,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -182,7 +184,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.AddAccountToPoolResponse(
                 status_code=http_res.status_code,
@@ -190,8 +192,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -274,7 +278,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ConnectorsTransferResponse(
                 transfer_response=utils.unmarshal_json(
@@ -285,8 +289,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -369,7 +375,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ConnectorsTransferResponse(
                 transfer_response=utils.unmarshal_json(
@@ -380,8 +386,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -461,7 +469,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateAccountResponse(
                 payments_account_response=utils.unmarshal_json(
@@ -472,8 +480,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -553,7 +563,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateAccountResponse(
                 payments_account_response=utils.unmarshal_json(
@@ -564,8 +574,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -645,7 +657,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateBankAccountResponse(
                 bank_account_response=utils.unmarshal_json(
@@ -656,8 +668,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -737,7 +751,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateBankAccountResponse(
                 bank_account_response=utils.unmarshal_json(
@@ -748,8 +762,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -829,7 +845,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreatePaymentResponse(
                 payment_response=utils.unmarshal_json(
@@ -840,8 +856,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -921,7 +939,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreatePaymentResponse(
                 payment_response=utils.unmarshal_json(
@@ -932,8 +950,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1013,7 +1033,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreatePoolResponse(
                 pool_response=utils.unmarshal_json(
@@ -1024,8 +1044,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1105,7 +1127,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreatePoolResponse(
                 pool_response=utils.unmarshal_json(
@@ -1116,8 +1138,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1199,7 +1223,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateTransferInitiationResponse(
                 transfer_initiation_response=utils.unmarshal_json(
@@ -1210,8 +1234,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1293,7 +1319,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateTransferInitiationResponse(
                 transfer_initiation_response=utils.unmarshal_json(
@@ -1304,8 +1330,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1384,7 +1412,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.DeletePoolResponse(
                 status_code=http_res.status_code,
@@ -1392,8 +1420,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1472,7 +1502,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.DeletePoolResponse(
                 status_code=http_res.status_code,
@@ -1480,8 +1510,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1563,7 +1595,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.DeleteTransferInitiationResponse(
                 status_code=http_res.status_code,
@@ -1571,8 +1603,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1654,7 +1688,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.DeleteTransferInitiationResponse(
                 status_code=http_res.status_code,
@@ -1662,8 +1696,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1748,7 +1784,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ForwardBankAccountResponse(
                 bank_account_response=utils.unmarshal_json(
@@ -1759,8 +1795,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1845,7 +1883,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ForwardBankAccountResponse(
                 bank_account_response=utils.unmarshal_json(
@@ -1856,8 +1894,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1935,7 +1975,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetAccountBalancesResponse(
                 balances_cursor=utils.unmarshal_json(
@@ -1946,8 +1986,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2025,7 +2067,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetAccountBalancesResponse(
                 balances_cursor=utils.unmarshal_json(
@@ -2036,8 +2078,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2114,7 +2158,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBankAccountResponse(
                 bank_account_response=utils.unmarshal_json(
@@ -2125,8 +2169,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2203,7 +2249,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBankAccountResponse(
                 bank_account_response=utils.unmarshal_json(
@@ -2214,8 +2260,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2298,7 +2346,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetConnectorTaskResponse(
                 task_response=utils.unmarshal_json(
@@ -2309,8 +2357,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2393,7 +2443,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetConnectorTaskResponse(
                 task_response=utils.unmarshal_json(
@@ -2404,8 +2454,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2485,7 +2537,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetConnectorTaskV1Response(
                 task_response=utils.unmarshal_json(
@@ -2496,8 +2548,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2577,7 +2631,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetConnectorTaskV1Response(
                 task_response=utils.unmarshal_json(
@@ -2588,8 +2642,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2666,7 +2722,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPaymentResponse(
                 payment_response=utils.unmarshal_json(
@@ -2677,8 +2733,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2755,7 +2813,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPaymentResponse(
                 payment_response=utils.unmarshal_json(
@@ -2766,8 +2824,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2842,7 +2902,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPoolResponse(
                 pool_response=utils.unmarshal_json(
@@ -2853,8 +2913,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2929,7 +2991,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPoolResponse(
                 pool_response=utils.unmarshal_json(
@@ -2940,8 +3002,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3019,7 +3083,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPoolBalancesResponse(
                 pool_balances_response=utils.unmarshal_json(
@@ -3030,8 +3094,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3109,7 +3175,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPoolBalancesResponse(
                 pool_balances_response=utils.unmarshal_json(
@@ -3120,8 +3186,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3199,7 +3267,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransferInitiationResponse(
                 transfer_initiation_response=utils.unmarshal_json(
@@ -3210,8 +3278,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3289,7 +3359,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransferInitiationResponse(
                 transfer_initiation_response=utils.unmarshal_json(
@@ -3300,8 +3370,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3384,7 +3456,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.InstallConnectorResponse(
                 connector_response=utils.unmarshal_json(
@@ -3395,8 +3467,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3479,7 +3553,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.InstallConnectorResponse(
                 connector_response=utils.unmarshal_json(
@@ -3490,8 +3564,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3561,7 +3637,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListAllConnectorsResponse(
                 connectors_response=utils.unmarshal_json(
@@ -3572,8 +3648,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3643,7 +3721,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListAllConnectorsResponse(
                 connectors_response=utils.unmarshal_json(
@@ -3654,8 +3732,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3735,7 +3815,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListBankAccountsResponse(
                 bank_accounts_cursor=utils.unmarshal_json(
@@ -3746,8 +3826,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3827,7 +3909,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListBankAccountsResponse(
                 bank_accounts_cursor=utils.unmarshal_json(
@@ -3838,8 +3920,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3909,7 +3993,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListConfigsAvailableConnectorsResponse(
                 connectors_configs_response=utils.unmarshal_json(
@@ -3920,8 +4004,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3991,7 +4077,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListConfigsAvailableConnectorsResponse(
                 connectors_configs_response=utils.unmarshal_json(
@@ -4002,8 +4088,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -4086,7 +4174,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListConnectorTasksResponse(
                 tasks_cursor=utils.unmarshal_json(
@@ -4097,8 +4185,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -4181,7 +4271,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListConnectorTasksResponse(
                 tasks_cursor=utils.unmarshal_json(
@@ -4192,8 +4282,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -4273,7 +4365,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListConnectorTasksV1Response(
                 tasks_cursor=utils.unmarshal_json(
@@ -4284,8 +4376,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -4365,7 +4459,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListConnectorTasksV1Response(
                 tasks_cursor=utils.unmarshal_json(
@@ -4376,8 +4470,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -4454,7 +4550,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListPaymentsResponse(
                 payments_cursor=utils.unmarshal_json(
@@ -4465,8 +4561,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -4543,7 +4641,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListPaymentsResponse(
                 payments_cursor=utils.unmarshal_json(
@@ -4554,8 +4652,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -4632,7 +4732,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListPoolsResponse(
                 pools_cursor=utils.unmarshal_json(
@@ -4643,8 +4743,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -4721,7 +4823,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListPoolsResponse(
                 pools_cursor=utils.unmarshal_json(
@@ -4732,8 +4834,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -4813,7 +4917,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTransferInitiationsResponse(
                 transfer_initiations_cursor=utils.unmarshal_json(
@@ -4824,8 +4928,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -4905,7 +5011,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTransferInitiationsResponse(
                 transfer_initiations_cursor=utils.unmarshal_json(
@@ -4916,8 +5022,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -4995,7 +5103,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.PaymentsgetAccountResponse(
                 payments_account_response=utils.unmarshal_json(
@@ -5006,8 +5114,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -5085,7 +5195,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.PaymentsgetAccountResponse(
                 payments_account_response=utils.unmarshal_json(
@@ -5096,8 +5206,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -5165,7 +5277,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.PaymentsgetServerInfoResponse(
                 server_info=utils.unmarshal_json(
@@ -5176,8 +5288,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -5245,7 +5359,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.PaymentsgetServerInfoResponse(
                 server_info=utils.unmarshal_json(
@@ -5256,8 +5370,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -5338,7 +5454,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.PaymentslistAccountsResponse(
                 accounts_cursor=utils.unmarshal_json(
@@ -5349,8 +5465,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -5431,7 +5549,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.PaymentslistAccountsResponse(
                 accounts_cursor=utils.unmarshal_json(
@@ -5442,8 +5560,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -5526,7 +5646,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadConnectorConfigResponse(
                 connector_config_response=utils.unmarshal_json(
@@ -5537,8 +5657,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -5621,7 +5743,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadConnectorConfigResponse(
                 connector_config_response=utils.unmarshal_json(
@@ -5632,8 +5754,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -5713,7 +5837,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadConnectorConfigV1Response(
                 connector_config_response=utils.unmarshal_json(
@@ -5724,8 +5848,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -5805,7 +5931,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadConnectorConfigV1Response(
                 connector_config_response=utils.unmarshal_json(
@@ -5816,8 +5942,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -5897,7 +6025,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.RemoveAccountFromPoolResponse(
                 status_code=http_res.status_code,
@@ -5905,8 +6033,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -5986,7 +6116,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.RemoveAccountFromPoolResponse(
                 status_code=http_res.status_code,
@@ -5994,8 +6124,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -6079,7 +6211,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.ResetConnectorResponse(
                 status_code=http_res.status_code,
@@ -6087,8 +6219,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -6172,7 +6306,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.ResetConnectorResponse(
                 status_code=http_res.status_code,
@@ -6180,8 +6314,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -6263,7 +6399,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.ResetConnectorV1Response(
                 status_code=http_res.status_code,
@@ -6271,8 +6407,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -6354,7 +6492,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.ResetConnectorV1Response(
                 status_code=http_res.status_code,
@@ -6362,8 +6500,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -6445,7 +6585,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.RetryTransferInitiationResponse(
                 status_code=http_res.status_code,
@@ -6453,8 +6593,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -6536,7 +6678,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.RetryTransferInitiationResponse(
                 status_code=http_res.status_code,
@@ -6544,8 +6686,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -6634,7 +6778,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.ReverseTransferInitiationResponse(
                 status_code=http_res.status_code,
@@ -6642,8 +6786,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -6732,7 +6878,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.ReverseTransferInitiationResponse(
                 status_code=http_res.status_code,
@@ -6740,8 +6886,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -6830,7 +6978,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UdpateTransferInitiationStatusResponse(
                 status_code=http_res.status_code,
@@ -6838,8 +6986,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -6928,7 +7078,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UdpateTransferInitiationStatusResponse(
                 status_code=http_res.status_code,
@@ -6936,8 +7086,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -7020,7 +7172,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UninstallConnectorResponse(
                 status_code=http_res.status_code,
@@ -7028,8 +7180,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -7112,7 +7266,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UninstallConnectorResponse(
                 status_code=http_res.status_code,
@@ -7120,8 +7274,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -7201,7 +7357,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UninstallConnectorV1Response(
                 status_code=http_res.status_code,
@@ -7209,8 +7365,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -7290,7 +7448,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UninstallConnectorV1Response(
                 status_code=http_res.status_code,
@@ -7298,8 +7456,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -7386,7 +7546,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UpdateBankAccountMetadataResponse(
                 status_code=http_res.status_code,
@@ -7394,8 +7554,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -7482,7 +7644,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UpdateBankAccountMetadataResponse(
                 status_code=http_res.status_code,
@@ -7490,8 +7652,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -7576,7 +7740,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UpdateConnectorConfigV1Response(
                 status_code=http_res.status_code,
@@ -7584,8 +7748,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -7670,7 +7836,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UpdateConnectorConfigV1Response(
                 status_code=http_res.status_code,
@@ -7678,8 +7844,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -7759,7 +7927,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UpdateMetadataResponse(
                 status_code=http_res.status_code,
@@ -7767,8 +7935,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -7848,7 +8018,7 @@ class SDKPaymentsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UpdateMetadataResponse(
                 status_code=http_res.status_code,
@@ -7856,8 +8026,10 @@ class SDKPaymentsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.PaymentsErrorResponseData)
-            raise errors.PaymentsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.PaymentsErrorResponseData
+            )
+            raise errors.PaymentsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)

@@ -80,7 +80,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateTransactionsResponse(
                 transactions_response=utils.unmarshal_json(
@@ -91,8 +91,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -173,7 +175,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateTransactionsResponse(
                 transactions_response=utils.unmarshal_json(
@@ -184,8 +186,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -272,7 +276,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.AddMetadataOnTransactionResponse(
                 status_code=http_res.status_code,
@@ -280,8 +284,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -368,7 +374,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.AddMetadataOnTransactionResponse(
                 status_code=http_res.status_code,
@@ -376,8 +382,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -458,7 +466,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.AddMetadataToAccountResponse(
                 status_code=http_res.status_code,
@@ -466,8 +474,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -548,7 +558,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.AddMetadataToAccountResponse(
                 status_code=http_res.status_code,
@@ -556,8 +566,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -634,7 +646,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "*"):
             return operations.CountAccountsResponse(
                 status_code=http_res.status_code,
@@ -643,8 +655,10 @@ class SDKV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -721,7 +735,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "*"):
             return operations.CountAccountsResponse(
                 status_code=http_res.status_code,
@@ -730,8 +744,10 @@ class SDKV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -809,7 +825,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "*"):
             return operations.CountTransactionsResponse(
                 status_code=http_res.status_code,
@@ -818,8 +834,10 @@ class SDKV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -897,7 +915,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "*"):
             return operations.CountTransactionsResponse(
                 status_code=http_res.status_code,
@@ -906,8 +924,10 @@ class SDKV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -988,7 +1008,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateTransactionResponse(
                 transactions_response=utils.unmarshal_json(
@@ -999,8 +1019,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1081,7 +1103,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateTransactionResponse(
                 transactions_response=utils.unmarshal_json(
@@ -1092,8 +1114,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1170,7 +1194,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetAccountResponse(
                 account_response=utils.unmarshal_json(
@@ -1181,8 +1205,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1259,7 +1285,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetAccountResponse(
                 account_response=utils.unmarshal_json(
@@ -1270,8 +1296,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1348,7 +1376,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalancesResponse(
                 balances_cursor_response=utils.unmarshal_json(
@@ -1359,8 +1387,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1437,7 +1467,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalancesResponse(
                 balances_cursor_response=utils.unmarshal_json(
@@ -1448,8 +1478,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1527,7 +1559,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalancesAggregatedResponse(
                 aggregate_balances_response=utils.unmarshal_json(
@@ -1538,8 +1570,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1617,7 +1651,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalancesAggregatedResponse(
                 aggregate_balances_response=utils.unmarshal_json(
@@ -1628,8 +1662,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1697,7 +1733,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInfoResponse(
                 config_info_response=utils.unmarshal_json(
@@ -1708,8 +1744,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1777,7 +1815,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInfoResponse(
                 config_info_response=utils.unmarshal_json(
@@ -1788,8 +1826,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1866,7 +1906,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetLedgerInfoResponse(
                 ledger_info_response=utils.unmarshal_json(
@@ -1877,8 +1917,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1955,7 +1997,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetLedgerInfoResponse(
                 ledger_info_response=utils.unmarshal_json(
@@ -1966,8 +2008,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2044,7 +2088,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetMappingResponse(
                 mapping_response=utils.unmarshal_json(
@@ -2055,8 +2099,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2133,7 +2179,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetMappingResponse(
                 mapping_response=utils.unmarshal_json(
@@ -2144,8 +2190,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2222,7 +2270,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransactionResponse(
                 transaction_response=utils.unmarshal_json(
@@ -2233,8 +2281,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2311,7 +2361,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransactionResponse(
                 transaction_response=utils.unmarshal_json(
@@ -2322,8 +2372,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2402,7 +2454,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListAccountsResponse(
                 accounts_cursor_response=utils.unmarshal_json(
@@ -2422,8 +2474,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2502,7 +2556,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListAccountsResponse(
                 accounts_cursor_response=utils.unmarshal_json(
@@ -2522,8 +2576,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2600,7 +2656,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListLogsResponse(
                 logs_cursor_response=utils.unmarshal_json(
@@ -2611,8 +2667,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2689,7 +2747,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListLogsResponse(
                 logs_cursor_response=utils.unmarshal_json(
@@ -2700,8 +2758,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2781,7 +2841,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTransactionsResponse(
                 transactions_cursor_response=utils.unmarshal_json(
@@ -2792,8 +2852,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2873,7 +2935,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTransactionsResponse(
                 transactions_cursor_response=utils.unmarshal_json(
@@ -2884,8 +2946,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2965,7 +3029,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadStatsResponse(
                 stats_response=utils.unmarshal_json(
@@ -2976,8 +3040,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3057,7 +3123,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadStatsResponse(
                 stats_response=utils.unmarshal_json(
@@ -3068,8 +3134,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3147,7 +3215,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.RevertTransactionResponse(
                 transaction_response=utils.unmarshal_json(
@@ -3158,8 +3226,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3237,7 +3307,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.RevertTransactionResponse(
                 transaction_response=utils.unmarshal_json(
@@ -3248,8 +3318,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -3527,7 +3599,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.UpdateMappingResponse(
                 mapping_response=utils.unmarshal_json(
@@ -3538,8 +3610,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3619,7 +3693,7 @@ class SDKV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.UpdateMappingResponse(
                 mapping_response=utils.unmarshal_json(
@@ -3630,8 +3704,10 @@ class SDKV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorResponseData)
-            raise errors.ErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.ErrorResponseData
+            )
+            raise errors.ErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)

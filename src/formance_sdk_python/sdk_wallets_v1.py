@@ -82,7 +82,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.ConfirmHoldResponse(
                 status_code=http_res.status_code,
@@ -90,8 +90,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -175,7 +177,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.ConfirmHoldResponse(
                 status_code=http_res.status_code,
@@ -183,8 +185,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -268,7 +272,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateBalanceResponse(
                 create_balance_response=utils.unmarshal_json(
@@ -279,8 +283,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -364,7 +370,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateBalanceResponse(
                 create_balance_response=utils.unmarshal_json(
@@ -375,8 +381,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -460,7 +468,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateWalletResponse(
                 create_wallet_response=utils.unmarshal_json(
@@ -471,8 +479,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -556,7 +566,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateWalletResponse(
                 create_wallet_response=utils.unmarshal_json(
@@ -567,8 +577,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -652,7 +664,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.CreditWalletResponse(
                 status_code=http_res.status_code,
@@ -660,8 +672,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -745,7 +759,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.CreditWalletResponse(
                 status_code=http_res.status_code,
@@ -753,8 +767,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -838,7 +854,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.DebitWalletResponse(
                 debit_wallet_response=utils.unmarshal_json(
@@ -855,8 +871,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -940,7 +958,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.DebitWalletResponse(
                 debit_wallet_response=utils.unmarshal_json(
@@ -957,8 +975,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1035,7 +1055,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalanceResponse(
                 get_balance_response=utils.unmarshal_json(
@@ -1046,8 +1066,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1124,7 +1146,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalanceResponse(
                 get_balance_response=utils.unmarshal_json(
@@ -1135,8 +1157,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1211,7 +1235,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetHoldResponse(
                 get_hold_response=utils.unmarshal_json(
@@ -1222,8 +1246,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1298,7 +1324,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetHoldResponse(
                 get_hold_response=utils.unmarshal_json(
@@ -1309,8 +1335,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1385,7 +1413,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetHoldsResponse(
                 get_holds_response=utils.unmarshal_json(
@@ -1396,8 +1424,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1472,7 +1502,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetHoldsResponse(
                 get_holds_response=utils.unmarshal_json(
@@ -1483,8 +1513,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1561,7 +1593,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransactionsResponse(
                 get_transactions_response=utils.unmarshal_json(
@@ -1572,8 +1604,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1650,7 +1684,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransactionsResponse(
                 get_transactions_response=utils.unmarshal_json(
@@ -1661,8 +1695,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1739,7 +1775,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletResponse(
                 get_wallet_response=utils.unmarshal_json(
@@ -1756,8 +1792,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1834,7 +1872,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletResponse(
                 get_wallet_response=utils.unmarshal_json(
@@ -1851,8 +1889,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1930,7 +1970,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletSummaryResponse(
                 get_wallet_summary_response=utils.unmarshal_json(
@@ -1947,8 +1987,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2026,7 +2068,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletSummaryResponse(
                 get_wallet_summary_response=utils.unmarshal_json(
@@ -2043,8 +2085,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2301,7 +2345,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListWalletsResponse(
                 list_wallets_response=utils.unmarshal_json(
@@ -2312,8 +2356,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2390,7 +2436,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListWalletsResponse(
                 list_wallets_response=utils.unmarshal_json(
@@ -2401,8 +2447,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2486,7 +2534,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UpdateWalletResponse(
                 status_code=http_res.status_code,
@@ -2494,8 +2542,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2579,7 +2629,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.UpdateWalletResponse(
                 status_code=http_res.status_code,
@@ -2587,8 +2637,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2663,7 +2715,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.VoidHoldResponse(
                 status_code=http_res.status_code,
@@ -2671,8 +2723,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2747,7 +2801,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.VoidHoldResponse(
                 status_code=http_res.status_code,
@@ -2755,8 +2809,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2824,7 +2880,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.WalletsgetServerInfoResponse(
                 server_info=utils.unmarshal_json(
@@ -2835,8 +2891,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2904,7 +2962,7 @@ class SDKWalletsV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.WalletsgetServerInfoResponse(
                 server_info=utils.unmarshal_json(
@@ -2915,8 +2973,10 @@ class SDKWalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.WalletsErrorResponseData)
-            raise errors.WalletsErrorResponse(data=data)
+            response_data = utils.unmarshal_json(
+                http_res.text, errors.WalletsErrorResponseData
+            )
+            raise errors.WalletsErrorResponse(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)

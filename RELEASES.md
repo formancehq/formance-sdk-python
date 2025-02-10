@@ -159,3 +159,13 @@ Based on:
 - [python v5.0.0] .
 ### Releases
 - [PyPI v5.0.0] https://pypi.org/project/formance-sdk-python/5.0.0 - .
+
+## 2025-02-10 15:24:53
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.487.1 (2.506.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v6.0.0] .
+### Releases
+- [PyPI v6.0.0] https://pypi.org/project/formance-sdk-python/6.0.0 - .

@@ -12,6 +12,7 @@
 * [get_many_configs](#get_many_configs) - Get many configs
 * [insert_config](#insert_config) - Insert a new config
 * [test_config](#test_config) - Test one config
+* [update_config](#update_config) - Update one config
 
 ## activate_config
 
@@ -349,6 +350,60 @@ with SDK(
 ### Response
 
 **[operations.TestConfigResponse](../../models/operations/testconfigresponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.WebhooksErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+
+## update_config
+
+Update a webhooks config by ID.
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.webhooks.v1.update_config(request={
+        "config_user": {
+            "endpoint": "https://example.com",
+            "event_types": [
+                "TYPE1",
+            ],
+            "name": "customer_payment",
+            "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
+        },
+        "id": "4997257d-dfb6-445b-929c-cbe2ab182818",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [operations.UpdateConfigRequest](../../models/operations/updateconfigrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+
+### Response
+
+**[operations.UpdateConfigResponse](../../models/operations/updateconfigresponse.md)**
 
 ### Errors
 

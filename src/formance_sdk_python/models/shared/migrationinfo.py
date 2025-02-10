@@ -18,7 +18,7 @@ class MigrationInfoTypedDict(TypedDict):
     date_: NotRequired[datetime]
     name: NotRequired[str]
     state: NotRequired[State]
-    version: NotRequired[int]
+    version: NotRequired[str]
 
 
 class MigrationInfo(BaseModel):
@@ -28,4 +28,4 @@ class MigrationInfo(BaseModel):
 
     state: Optional[State] = None
 
-    version: Optional[int] = None
+    version: Optional[str] = None

@@ -165,7 +165,7 @@ with SDK(
 
     res = sdk.ledger.v1.add_metadata_to_account(request={
         "request_body": {
-
+            "key": "<value>",
         },
         "address": "users:001",
         "ledger": "ledger001",
