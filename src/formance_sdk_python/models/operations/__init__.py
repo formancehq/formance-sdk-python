@@ -276,6 +276,7 @@ from .getmapping import (
     GetMappingResponse,
     GetMappingResponseTypedDict,
 )
+from .getmetrics import GetMetricsResponse, GetMetricsResponseTypedDict
 from .getoidcwellknowns import (
     GetOIDCWellKnownsResponse,
     GetOIDCWellKnownsResponseTypedDict,
@@ -631,6 +632,12 @@ from .updateclient import (
     UpdateClientResponse,
     UpdateClientResponseTypedDict,
 )
+from .updateconfig import (
+    UpdateConfigRequest,
+    UpdateConfigRequestTypedDict,
+    UpdateConfigResponse,
+    UpdateConfigResponseTypedDict,
+)
 from .updateconnectorconfigv1 import (
     UpdateConnectorConfigV1Request,
     UpdateConnectorConfigV1RequestTypedDict,
@@ -901,6 +908,228 @@ from .v2updateledgermetadata import (
     V2UpdateLedgerMetadataResponse,
     V2UpdateLedgerMetadataResponseTypedDict,
 )
+from .v3addaccounttopool import (
+    V3AddAccountToPoolRequest,
+    V3AddAccountToPoolRequestTypedDict,
+    V3AddAccountToPoolResponse,
+    V3AddAccountToPoolResponseTypedDict,
+)
+from .v3approvepaymentinitiation import (
+    V3ApprovePaymentInitiationRequest,
+    V3ApprovePaymentInitiationRequestTypedDict,
+    V3ApprovePaymentInitiationResponse,
+    V3ApprovePaymentInitiationResponseTypedDict,
+)
+from .v3createaccount import V3CreateAccountResponse, V3CreateAccountResponseTypedDict
+from .v3createbankaccount import (
+    V3CreateBankAccountResponse,
+    V3CreateBankAccountResponseTypedDict,
+)
+from .v3createpayment import V3CreatePaymentResponse, V3CreatePaymentResponseTypedDict
+from .v3createpool import V3CreatePoolResponse, V3CreatePoolResponseTypedDict
+from .v3deletepaymentinitiation import (
+    V3DeletePaymentInitiationRequest,
+    V3DeletePaymentInitiationRequestTypedDict,
+    V3DeletePaymentInitiationResponse,
+    V3DeletePaymentInitiationResponseTypedDict,
+)
+from .v3deletepool import (
+    V3DeletePoolRequest,
+    V3DeletePoolRequestTypedDict,
+    V3DeletePoolResponse,
+    V3DeletePoolResponseTypedDict,
+)
+from .v3forwardbankaccount import (
+    V3ForwardBankAccountRequest,
+    V3ForwardBankAccountRequestTypedDict,
+    V3ForwardBankAccountResponse,
+    V3ForwardBankAccountResponseTypedDict,
+)
+from .v3getaccount import (
+    V3GetAccountRequest,
+    V3GetAccountRequestTypedDict,
+    V3GetAccountResponse,
+    V3GetAccountResponseTypedDict,
+)
+from .v3getaccountbalances import (
+    V3GetAccountBalancesRequest,
+    V3GetAccountBalancesRequestTypedDict,
+    V3GetAccountBalancesResponse,
+    V3GetAccountBalancesResponseTypedDict,
+)
+from .v3getbankaccount import (
+    V3GetBankAccountRequest,
+    V3GetBankAccountRequestTypedDict,
+    V3GetBankAccountResponse,
+    V3GetBankAccountResponseTypedDict,
+)
+from .v3getconnectorconfig import (
+    V3GetConnectorConfigRequest,
+    V3GetConnectorConfigRequestTypedDict,
+    V3GetConnectorConfigResponse,
+    V3GetConnectorConfigResponseTypedDict,
+)
+from .v3getconnectorschedule import (
+    V3GetConnectorScheduleRequest,
+    V3GetConnectorScheduleRequestTypedDict,
+    V3GetConnectorScheduleResponse,
+    V3GetConnectorScheduleResponseTypedDict,
+)
+from .v3getinfo import V3GetInfoResponse, V3GetInfoResponseTypedDict
+from .v3getpayment import (
+    V3GetPaymentRequest,
+    V3GetPaymentRequestTypedDict,
+    V3GetPaymentResponse,
+    V3GetPaymentResponseTypedDict,
+)
+from .v3getpaymentinitiation import (
+    V3GetPaymentInitiationRequest,
+    V3GetPaymentInitiationRequestTypedDict,
+    V3GetPaymentInitiationResponse,
+    V3GetPaymentInitiationResponseTypedDict,
+)
+from .v3getpool import (
+    V3GetPoolRequest,
+    V3GetPoolRequestTypedDict,
+    V3GetPoolResponse,
+    V3GetPoolResponseTypedDict,
+)
+from .v3getpoolbalances import (
+    V3GetPoolBalancesRequest,
+    V3GetPoolBalancesRequestTypedDict,
+    V3GetPoolBalancesResponse,
+    V3GetPoolBalancesResponseTypedDict,
+)
+from .v3gettask import (
+    V3GetTaskRequest,
+    V3GetTaskRequestTypedDict,
+    V3GetTaskResponse,
+    V3GetTaskResponseTypedDict,
+)
+from .v3initiatepayment import (
+    V3InitiatePaymentRequest,
+    V3InitiatePaymentRequestTypedDict,
+    V3InitiatePaymentResponse,
+    V3InitiatePaymentResponseTypedDict,
+)
+from .v3installconnector import (
+    V3InstallConnectorRequest,
+    V3InstallConnectorRequestTypedDict,
+    V3InstallConnectorResponse,
+    V3InstallConnectorResponseTypedDict,
+)
+from .v3listaccounts import (
+    V3ListAccountsRequest,
+    V3ListAccountsRequestTypedDict,
+    V3ListAccountsResponse,
+    V3ListAccountsResponseTypedDict,
+)
+from .v3listbankaccounts import (
+    V3ListBankAccountsRequest,
+    V3ListBankAccountsRequestTypedDict,
+    V3ListBankAccountsResponse,
+    V3ListBankAccountsResponseTypedDict,
+)
+from .v3listconnectorconfigs import (
+    V3ListConnectorConfigsResponse,
+    V3ListConnectorConfigsResponseTypedDict,
+)
+from .v3listconnectors import (
+    V3ListConnectorsRequest,
+    V3ListConnectorsRequestTypedDict,
+    V3ListConnectorsResponse,
+    V3ListConnectorsResponseTypedDict,
+)
+from .v3listconnectorscheduleinstances import (
+    V3ListConnectorScheduleInstancesRequest,
+    V3ListConnectorScheduleInstancesRequestTypedDict,
+    V3ListConnectorScheduleInstancesResponse,
+    V3ListConnectorScheduleInstancesResponseTypedDict,
+)
+from .v3listconnectorschedules import (
+    V3ListConnectorSchedulesRequest,
+    V3ListConnectorSchedulesRequestTypedDict,
+    V3ListConnectorSchedulesResponse,
+    V3ListConnectorSchedulesResponseTypedDict,
+)
+from .v3listpaymentinitiationadjustments import (
+    V3ListPaymentInitiationAdjustmentsRequest,
+    V3ListPaymentInitiationAdjustmentsRequestTypedDict,
+    V3ListPaymentInitiationAdjustmentsResponse,
+    V3ListPaymentInitiationAdjustmentsResponseTypedDict,
+)
+from .v3listpaymentinitiationrelatedpayments import (
+    V3ListPaymentInitiationRelatedPaymentsRequest,
+    V3ListPaymentInitiationRelatedPaymentsRequestTypedDict,
+    V3ListPaymentInitiationRelatedPaymentsResponse,
+    V3ListPaymentInitiationRelatedPaymentsResponseTypedDict,
+)
+from .v3listpaymentinitiations import (
+    V3ListPaymentInitiationsRequest,
+    V3ListPaymentInitiationsRequestTypedDict,
+    V3ListPaymentInitiationsResponse,
+    V3ListPaymentInitiationsResponseTypedDict,
+)
+from .v3listpayments import (
+    V3ListPaymentsRequest,
+    V3ListPaymentsRequestTypedDict,
+    V3ListPaymentsResponse,
+    V3ListPaymentsResponseTypedDict,
+)
+from .v3listpools import (
+    V3ListPoolsRequest,
+    V3ListPoolsRequestTypedDict,
+    V3ListPoolsResponse,
+    V3ListPoolsResponseTypedDict,
+)
+from .v3rejectpaymentinitiation import (
+    V3RejectPaymentInitiationRequest,
+    V3RejectPaymentInitiationRequestTypedDict,
+    V3RejectPaymentInitiationResponse,
+    V3RejectPaymentInitiationResponseTypedDict,
+)
+from .v3removeaccountfrompool import (
+    V3RemoveAccountFromPoolRequest,
+    V3RemoveAccountFromPoolRequestTypedDict,
+    V3RemoveAccountFromPoolResponse,
+    V3RemoveAccountFromPoolResponseTypedDict,
+)
+from .v3resetconnector import (
+    V3ResetConnectorRequest,
+    V3ResetConnectorRequestTypedDict,
+    V3ResetConnectorResponse,
+    V3ResetConnectorResponseTypedDict,
+)
+from .v3retrypaymentinitiation import (
+    V3RetryPaymentInitiationRequest,
+    V3RetryPaymentInitiationRequestTypedDict,
+    V3RetryPaymentInitiationResponse,
+    V3RetryPaymentInitiationResponseTypedDict,
+)
+from .v3reversepaymentinitiation import (
+    V3ReversePaymentInitiationRequest,
+    V3ReversePaymentInitiationRequestTypedDict,
+    V3ReversePaymentInitiationResponse,
+    V3ReversePaymentInitiationResponseTypedDict,
+)
+from .v3uninstallconnector import (
+    V3UninstallConnectorRequest,
+    V3UninstallConnectorRequestTypedDict,
+    V3UninstallConnectorResponse,
+    V3UninstallConnectorResponseTypedDict,
+)
+from .v3updatebankaccountmetadata import (
+    V3UpdateBankAccountMetadataRequest,
+    V3UpdateBankAccountMetadataRequestTypedDict,
+    V3UpdateBankAccountMetadataResponse,
+    V3UpdateBankAccountMetadataResponseTypedDict,
+)
+from .v3updatepaymentmetadata import (
+    V3UpdatePaymentMetadataRequest,
+    V3UpdatePaymentMetadataRequestTypedDict,
+    V3UpdatePaymentMetadataResponse,
+    V3UpdatePaymentMetadataResponseTypedDict,
+)
 from .voidhold import (
     VoidHoldRequest,
     VoidHoldRequestTypedDict,
@@ -911,6 +1140,7 @@ from .walletsgetserverinfo import (
     WalletsgetServerInfoResponse,
     WalletsgetServerInfoResponseTypedDict,
 )
+
 
 __all__ = [
     "ActivateConfigRequest",
@@ -1105,6 +1335,8 @@ __all__ = [
     "GetMappingRequestTypedDict",
     "GetMappingResponse",
     "GetMappingResponseTypedDict",
+    "GetMetricsResponse",
+    "GetMetricsResponseTypedDict",
     "GetOIDCWellKnownsResponse",
     "GetOIDCWellKnownsResponseTypedDict",
     "GetPaymentRequest",
@@ -1350,6 +1582,10 @@ __all__ = [
     "UpdateClientRequestTypedDict",
     "UpdateClientResponse",
     "UpdateClientResponseTypedDict",
+    "UpdateConfigRequest",
+    "UpdateConfigRequestTypedDict",
+    "UpdateConfigResponse",
+    "UpdateConfigResponseTypedDict",
     "UpdateConnectorConfigV1Request",
     "UpdateConnectorConfigV1RequestTypedDict",
     "UpdateConnectorConfigV1Response",
@@ -1534,6 +1770,158 @@ __all__ = [
     "V2UpdateLedgerMetadataRequestTypedDict",
     "V2UpdateLedgerMetadataResponse",
     "V2UpdateLedgerMetadataResponseTypedDict",
+    "V3AddAccountToPoolRequest",
+    "V3AddAccountToPoolRequestTypedDict",
+    "V3AddAccountToPoolResponse",
+    "V3AddAccountToPoolResponseTypedDict",
+    "V3ApprovePaymentInitiationRequest",
+    "V3ApprovePaymentInitiationRequestTypedDict",
+    "V3ApprovePaymentInitiationResponse",
+    "V3ApprovePaymentInitiationResponseTypedDict",
+    "V3CreateAccountResponse",
+    "V3CreateAccountResponseTypedDict",
+    "V3CreateBankAccountResponse",
+    "V3CreateBankAccountResponseTypedDict",
+    "V3CreatePaymentResponse",
+    "V3CreatePaymentResponseTypedDict",
+    "V3CreatePoolResponse",
+    "V3CreatePoolResponseTypedDict",
+    "V3DeletePaymentInitiationRequest",
+    "V3DeletePaymentInitiationRequestTypedDict",
+    "V3DeletePaymentInitiationResponse",
+    "V3DeletePaymentInitiationResponseTypedDict",
+    "V3DeletePoolRequest",
+    "V3DeletePoolRequestTypedDict",
+    "V3DeletePoolResponse",
+    "V3DeletePoolResponseTypedDict",
+    "V3ForwardBankAccountRequest",
+    "V3ForwardBankAccountRequestTypedDict",
+    "V3ForwardBankAccountResponse",
+    "V3ForwardBankAccountResponseTypedDict",
+    "V3GetAccountBalancesRequest",
+    "V3GetAccountBalancesRequestTypedDict",
+    "V3GetAccountBalancesResponse",
+    "V3GetAccountBalancesResponseTypedDict",
+    "V3GetAccountRequest",
+    "V3GetAccountRequestTypedDict",
+    "V3GetAccountResponse",
+    "V3GetAccountResponseTypedDict",
+    "V3GetBankAccountRequest",
+    "V3GetBankAccountRequestTypedDict",
+    "V3GetBankAccountResponse",
+    "V3GetBankAccountResponseTypedDict",
+    "V3GetConnectorConfigRequest",
+    "V3GetConnectorConfigRequestTypedDict",
+    "V3GetConnectorConfigResponse",
+    "V3GetConnectorConfigResponseTypedDict",
+    "V3GetConnectorScheduleRequest",
+    "V3GetConnectorScheduleRequestTypedDict",
+    "V3GetConnectorScheduleResponse",
+    "V3GetConnectorScheduleResponseTypedDict",
+    "V3GetInfoResponse",
+    "V3GetInfoResponseTypedDict",
+    "V3GetPaymentInitiationRequest",
+    "V3GetPaymentInitiationRequestTypedDict",
+    "V3GetPaymentInitiationResponse",
+    "V3GetPaymentInitiationResponseTypedDict",
+    "V3GetPaymentRequest",
+    "V3GetPaymentRequestTypedDict",
+    "V3GetPaymentResponse",
+    "V3GetPaymentResponseTypedDict",
+    "V3GetPoolBalancesRequest",
+    "V3GetPoolBalancesRequestTypedDict",
+    "V3GetPoolBalancesResponse",
+    "V3GetPoolBalancesResponseTypedDict",
+    "V3GetPoolRequest",
+    "V3GetPoolRequestTypedDict",
+    "V3GetPoolResponse",
+    "V3GetPoolResponseTypedDict",
+    "V3GetTaskRequest",
+    "V3GetTaskRequestTypedDict",
+    "V3GetTaskResponse",
+    "V3GetTaskResponseTypedDict",
+    "V3InitiatePaymentRequest",
+    "V3InitiatePaymentRequestTypedDict",
+    "V3InitiatePaymentResponse",
+    "V3InitiatePaymentResponseTypedDict",
+    "V3InstallConnectorRequest",
+    "V3InstallConnectorRequestTypedDict",
+    "V3InstallConnectorResponse",
+    "V3InstallConnectorResponseTypedDict",
+    "V3ListAccountsRequest",
+    "V3ListAccountsRequestTypedDict",
+    "V3ListAccountsResponse",
+    "V3ListAccountsResponseTypedDict",
+    "V3ListBankAccountsRequest",
+    "V3ListBankAccountsRequestTypedDict",
+    "V3ListBankAccountsResponse",
+    "V3ListBankAccountsResponseTypedDict",
+    "V3ListConnectorConfigsResponse",
+    "V3ListConnectorConfigsResponseTypedDict",
+    "V3ListConnectorScheduleInstancesRequest",
+    "V3ListConnectorScheduleInstancesRequestTypedDict",
+    "V3ListConnectorScheduleInstancesResponse",
+    "V3ListConnectorScheduleInstancesResponseTypedDict",
+    "V3ListConnectorSchedulesRequest",
+    "V3ListConnectorSchedulesRequestTypedDict",
+    "V3ListConnectorSchedulesResponse",
+    "V3ListConnectorSchedulesResponseTypedDict",
+    "V3ListConnectorsRequest",
+    "V3ListConnectorsRequestTypedDict",
+    "V3ListConnectorsResponse",
+    "V3ListConnectorsResponseTypedDict",
+    "V3ListPaymentInitiationAdjustmentsRequest",
+    "V3ListPaymentInitiationAdjustmentsRequestTypedDict",
+    "V3ListPaymentInitiationAdjustmentsResponse",
+    "V3ListPaymentInitiationAdjustmentsResponseTypedDict",
+    "V3ListPaymentInitiationRelatedPaymentsRequest",
+    "V3ListPaymentInitiationRelatedPaymentsRequestTypedDict",
+    "V3ListPaymentInitiationRelatedPaymentsResponse",
+    "V3ListPaymentInitiationRelatedPaymentsResponseTypedDict",
+    "V3ListPaymentInitiationsRequest",
+    "V3ListPaymentInitiationsRequestTypedDict",
+    "V3ListPaymentInitiationsResponse",
+    "V3ListPaymentInitiationsResponseTypedDict",
+    "V3ListPaymentsRequest",
+    "V3ListPaymentsRequestTypedDict",
+    "V3ListPaymentsResponse",
+    "V3ListPaymentsResponseTypedDict",
+    "V3ListPoolsRequest",
+    "V3ListPoolsRequestTypedDict",
+    "V3ListPoolsResponse",
+    "V3ListPoolsResponseTypedDict",
+    "V3RejectPaymentInitiationRequest",
+    "V3RejectPaymentInitiationRequestTypedDict",
+    "V3RejectPaymentInitiationResponse",
+    "V3RejectPaymentInitiationResponseTypedDict",
+    "V3RemoveAccountFromPoolRequest",
+    "V3RemoveAccountFromPoolRequestTypedDict",
+    "V3RemoveAccountFromPoolResponse",
+    "V3RemoveAccountFromPoolResponseTypedDict",
+    "V3ResetConnectorRequest",
+    "V3ResetConnectorRequestTypedDict",
+    "V3ResetConnectorResponse",
+    "V3ResetConnectorResponseTypedDict",
+    "V3RetryPaymentInitiationRequest",
+    "V3RetryPaymentInitiationRequestTypedDict",
+    "V3RetryPaymentInitiationResponse",
+    "V3RetryPaymentInitiationResponseTypedDict",
+    "V3ReversePaymentInitiationRequest",
+    "V3ReversePaymentInitiationRequestTypedDict",
+    "V3ReversePaymentInitiationResponse",
+    "V3ReversePaymentInitiationResponseTypedDict",
+    "V3UninstallConnectorRequest",
+    "V3UninstallConnectorRequestTypedDict",
+    "V3UninstallConnectorResponse",
+    "V3UninstallConnectorResponseTypedDict",
+    "V3UpdateBankAccountMetadataRequest",
+    "V3UpdateBankAccountMetadataRequestTypedDict",
+    "V3UpdateBankAccountMetadataResponse",
+    "V3UpdateBankAccountMetadataResponseTypedDict",
+    "V3UpdatePaymentMetadataRequest",
+    "V3UpdatePaymentMetadataRequestTypedDict",
+    "V3UpdatePaymentMetadataResponse",
+    "V3UpdatePaymentMetadataResponseTypedDict",
     "VoidHoldRequest",
     "VoidHoldRequestTypedDict",
     "VoidHoldResponse",

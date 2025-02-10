@@ -40,7 +40,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.wallets.v1.confirm_hold(request={
-        "hold_id": "<value>",
+        "hold_id": "<id>",
         "confirm_hold_request": {
             "amount": 100,
             "final": True,
@@ -190,10 +190,7 @@ with SDK(
                 "key": "",
             },
             "sources": [
-                {
-                    "identifier": "<value>",
-                    "type": "<value>",
-                },
+
             ],
         },
     })
@@ -344,7 +341,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.wallets.v1.get_hold(request={
-        "hold_id": "<value>",
+        "hold_id": "<id>",
     })
 
     assert res.get_hold_response is not None
@@ -394,7 +391,6 @@ with SDK(
         "metadata": {
             "admin": "true",
         },
-        "page_size": 100,
         "wallet_id": "wallet1",
     })
 
@@ -440,7 +436,6 @@ with SDK(
 
     res = sdk.wallets.v1.get_transactions(request={
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-        "page_size": 100,
         "wallet_id": "wallet1",
     })
 
@@ -630,7 +625,6 @@ with SDK(
             "admin": "true",
         },
         "name": "wallet1",
-        "page_size": 100,
     })
 
     assert res.list_wallets_response is not None
@@ -722,7 +716,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.wallets.v1.void_hold(request={
-        "hold_id": "<value>",
+        "hold_id": "<id>",
     })
 
     assert res is not None

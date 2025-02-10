@@ -18,7 +18,7 @@ class V2MigrationInfoTypedDict(TypedDict):
     date_: NotRequired[datetime]
     name: NotRequired[str]
     state: NotRequired[V2MigrationInfoState]
-    version: NotRequired[int]
+    version: NotRequired[str]
 
 
 class V2MigrationInfo(BaseModel):
@@ -28,4 +28,4 @@ class V2MigrationInfo(BaseModel):
 
     state: Optional[V2MigrationInfoState] = None
 
-    version: Optional[int] = None
+    version: Optional[str] = None

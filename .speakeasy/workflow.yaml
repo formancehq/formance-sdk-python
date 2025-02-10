@@ -13,3 +13,9 @@ targets:
         publish:
             pypi:
                 token: $PYPI_TOKEN
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/formance/formance/stacks-source-python-code-samples
+            labelOverride:
+                fixedValue: Python (SDK)
+            blocking: false

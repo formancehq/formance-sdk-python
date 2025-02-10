@@ -68,7 +68,7 @@ with SDK(
 
     res = sdk.payments.v1.add_account_to_pool(request={
         "add_account_to_pool_request": {
-            "account_id": "<value>",
+            "account_id": "<id>",
         },
         "pool_id": "XXX",
     })
@@ -169,8 +169,8 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.create_account(request={
-        "connector_id": "<value>",
-        "created_at": dateutil.parser.isoparse("2024-08-19T02:15:08.152Z"),
+        "connector_id": "<id>",
+        "created_at": dateutil.parser.isoparse("2025-08-19T02:15:08.152Z"),
         "reference": "<value>",
         "type": shared.AccountType.INTERNAL,
     })
@@ -218,7 +218,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.create_bank_account(request={
-        "connector_id": "<value>",
+        "connector_id": "<id>",
         "country": "GB",
         "name": "My account",
     })
@@ -269,8 +269,8 @@ with SDK(
     res = sdk.payments.v1.create_payment(request={
         "amount": 100,
         "asset": "USD",
-        "connector_id": "<value>",
-        "created_at": dateutil.parser.isoparse("2024-11-09T01:03:21.011Z"),
+        "connector_id": "<id>",
+        "created_at": dateutil.parser.isoparse("2025-11-09T01:03:21.011Z"),
         "reference": "<value>",
         "scheme": shared.PaymentScheme.MOLPAY,
         "status": shared.PaymentStatus.REFUNDED_FAILURE,
@@ -374,13 +374,13 @@ with SDK(
     res = sdk.payments.v1.create_transfer_initiation(request={
         "amount": 256698,
         "asset": "USD",
-        "description": "Open-architected heuristic knowledge user",
-        "destination_account_id": "<value>",
+        "description": "worthy pace vague ick liberalize between um",
+        "destination_account_id": "<id>",
         "reference": "XXX",
-        "scheduled_at": dateutil.parser.isoparse("2024-05-21T00:04:35.840Z"),
-        "source_account_id": "<value>",
+        "scheduled_at": dateutil.parser.isoparse("2025-05-02T09:50:03.622Z"),
+        "source_account_id": "<id>",
         "type": shared.TransferInitiationRequestType.PAYOUT,
-        "validated": False,
+        "validated": True,
     })
 
     assert res.transfer_initiation_response is not None
@@ -519,7 +519,7 @@ with SDK(
 
     res = sdk.payments.v1.forward_bank_account(request={
         "forward_bank_account_request": {
-            "connector_id": "<value>",
+            "connector_id": "<id>",
         },
         "bank_account_id": "XXX",
     })
@@ -569,7 +569,6 @@ with SDK(
     res = sdk.payments.v1.get_account_balances(request={
         "account_id": "XXX",
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-        "page_size": 100,
         "sort": [
             "date:asc",
             "status:desc",
@@ -855,7 +854,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.get_pool_balances(request={
-        "at": dateutil.parser.isoparse("2023-05-05T06:40:23.119Z"),
+        "at": dateutil.parser.isoparse("2024-05-04T06:40:23.119Z"),
         "pool_id": "XXX",
     })
 
@@ -950,8 +949,8 @@ with SDK(
     res = sdk.payments.v1.install_connector(request={
         "connector_config": {
             "api_key": "XXX",
-            "name": "My Stripe Account",
-            "page_size": 50,
+            "name": "My Wise Account",
+            "page_size": 10,
             "polling_period": "60s",
         },
         "connector": shared.Connector.ATLAR,
@@ -1044,7 +1043,6 @@ with SDK(
 
     res = sdk.payments.v1.list_bank_accounts(request={
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-        "page_size": 100,
         "sort": [
             "date:asc",
             "status:desc",
@@ -1141,7 +1139,6 @@ with SDK(
     res = sdk.payments.v1.list_connector_tasks(request={
         "connector": shared.Connector.MODULR,
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-        "page_size": 100,
     })
 
     assert res.tasks_cursor is not None
@@ -1190,7 +1187,6 @@ with SDK(
         "connector": shared.Connector.BANKING_CIRCLE,
         "connector_id": "XXX",
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-        "page_size": 100,
     })
 
     assert res.tasks_cursor is not None
@@ -1237,7 +1233,6 @@ with SDK(
 
     res = sdk.payments.v1.list_payments(request={
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-        "page_size": 100,
         "sort": [
             "date:asc",
             "status:desc",
@@ -1288,7 +1283,6 @@ with SDK(
 
     res = sdk.payments.v1.list_pools(request={
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-        "page_size": 100,
         "sort": [
             "date:asc",
             "status:desc",
@@ -1339,7 +1333,6 @@ with SDK(
 
     res = sdk.payments.v1.list_transfer_initiations(request={
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-        "page_size": 100,
         "sort": [
             "date:asc",
             "status:desc",
@@ -1479,7 +1472,6 @@ with SDK(
 
     res = sdk.payments.v1.paymentslist_accounts(request={
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-        "page_size": 100,
         "sort": [
             "date:asc",
             "status:desc",
@@ -1819,10 +1811,9 @@ with SDK(
         "reverse_transfer_initiation_request": {
             "amount": 327549,
             "asset": "USD",
-            "description": "Multi-channelled responsive capability",
+            "description": "till gosh how proselytise worriedly whoa",
             "metadata": {
                 "key": "<value>",
-                "key1": "<value>",
             },
             "reference": "XXX",
         },
@@ -2018,7 +2009,7 @@ with SDK(
     res = sdk.payments.v1.update_bank_account_metadata(request={
         "update_bank_account_metadata_request": {
             "metadata": {
-
+                "key": "<value>",
             },
         },
         "bank_account_id": "XXX",
@@ -2070,8 +2061,8 @@ with SDK(
         "connector_config": {
             "api_key": "XXX",
             "name": "My Stripe Account",
-            "page_size": 50,
-            "polling_period": "60s",
+            "page_size": 10,
+            "polling_period": "120s",
         },
         "connector": shared.Connector.ADYEN,
         "connector_id": "XXX",

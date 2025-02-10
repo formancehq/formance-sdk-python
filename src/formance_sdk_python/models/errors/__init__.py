@@ -10,12 +10,14 @@ from .reconciliationerrorresponse import (
 from .sdkerror import SDKError
 from .v2error import SchemasErrorCode, V2Error, V2ErrorData
 from .v2errorresponse import V2ErrorResponse, V2ErrorResponseData
+from .v3errorresponse import V3ErrorResponse, V3ErrorResponseData
 from .walletserrorresponse import (
     SchemasWalletsErrorResponseErrorCode,
     WalletsErrorResponse,
     WalletsErrorResponseData,
 )
 from .webhookserrorresponse import WebhooksErrorResponse, WebhooksErrorResponseData
+
 
 __all__ = [
     "Error",
@@ -34,6 +36,8 @@ __all__ = [
     "V2ErrorData",
     "V2ErrorResponse",
     "V2ErrorResponseData",
+    "V3ErrorResponse",
+    "V3ErrorResponseData",
     "WalletsErrorResponse",
     "WalletsErrorResponseData",
     "WebhooksErrorResponse",

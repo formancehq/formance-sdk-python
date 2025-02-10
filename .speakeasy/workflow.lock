@@ -1,21 +1,21 @@
-speakeasyVersion: 1.464.0
+speakeasyVersion: 1.487.1
 sources:
     stacks-source:
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:57f884c55e49fe766c1a69841dd102949c3a805601110376cbab37f5c9b7bc34
-        sourceBlobDigest: sha256:ad1bdcc615ebeb9d963920de837261ed561327d8517193955fa61c76702f44fb
+        sourceRevisionDigest: sha256:cef7a7121c861e51aa294de3a2ebddaf1f1030e27ea843d053cbed8b760d4f1c
+        sourceBlobDigest: sha256:c4b18881641c3898b7b6dd5676a2f39abfbb54a22bbe8516e5135e67b373dbd5
         tags:
             - latest
-            - speakeasy-sdk-regen-1736263653
-            - v2.1.1
+            - speakeasy-sdk-regen-1737417732
+            - v3.0.0
 targets:
     formance-python-sdk:
         source: stacks-source
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:57f884c55e49fe766c1a69841dd102949c3a805601110376cbab37f5c9b7bc34
-        sourceBlobDigest: sha256:ad1bdcc615ebeb9d963920de837261ed561327d8517193955fa61c76702f44fb
+        sourceRevisionDigest: sha256:cef7a7121c861e51aa294de3a2ebddaf1f1030e27ea843d053cbed8b760d4f1c
+        sourceBlobDigest: sha256:c4b18881641c3898b7b6dd5676a2f39abfbb54a22bbe8516e5135e67b373dbd5
         codeSamplesNamespace: stacks-source-python-code-samples
-        codeSamplesRevisionDigest: sha256:4b644ae405d3bf120112437cbde1efa347c60731af1725dc3f99b052341167ab
+        codeSamplesRevisionDigest: sha256:9bff3a060388e5f2c6d57911c249f16ac30fbe332974119305191a91bbaafebd
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -35,4 +35,6 @@ workflow:
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/formance/formance/stacks-source-python-code-samples
+                labelOverride:
+                    fixedValue: Python (SDK)
                 blocking: false

@@ -77,7 +77,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.CancelEventResponse(
                 status_code=http_res.status_code,
@@ -85,8 +85,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -165,7 +165,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.CancelEventResponse(
                 status_code=http_res.status_code,
@@ -173,8 +173,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -256,7 +256,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateTriggerResponse(
                 create_trigger_response=utils.unmarshal_json(
@@ -267,8 +267,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -350,7 +350,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateTriggerResponse(
                 create_trigger_response=utils.unmarshal_json(
@@ -361,8 +361,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -444,7 +444,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateWorkflowResponse(
                 create_workflow_response=utils.unmarshal_json(
@@ -455,8 +455,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -538,7 +538,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateWorkflowResponse(
                 create_workflow_response=utils.unmarshal_json(
@@ -549,8 +549,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -629,7 +629,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.DeleteTriggerResponse(
                 status_code=http_res.status_code,
@@ -637,8 +637,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -717,7 +717,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.DeleteTriggerResponse(
                 status_code=http_res.status_code,
@@ -725,8 +725,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -805,7 +805,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.DeleteWorkflowResponse(
                 status_code=http_res.status_code,
@@ -813,8 +813,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -893,7 +893,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.DeleteWorkflowResponse(
                 status_code=http_res.status_code,
@@ -901,8 +901,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -981,7 +981,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInstanceResponse(
                 get_workflow_instance_response=utils.unmarshal_json(
@@ -992,8 +992,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1072,7 +1072,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInstanceResponse(
                 get_workflow_instance_response=utils.unmarshal_json(
@@ -1083,8 +1083,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1164,7 +1164,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInstanceHistoryResponse(
                 get_workflow_instance_history_response=utils.unmarshal_json(
@@ -1175,8 +1175,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1256,7 +1256,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInstanceHistoryResponse(
                 get_workflow_instance_history_response=utils.unmarshal_json(
@@ -1267,8 +1267,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1350,7 +1350,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInstanceStageHistoryResponse(
                 get_workflow_instance_history_stage_response=utils.unmarshal_json(
@@ -1362,8 +1362,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1445,7 +1445,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInstanceStageHistoryResponse(
                 get_workflow_instance_history_stage_response=utils.unmarshal_json(
@@ -1457,8 +1457,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1537,7 +1537,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWorkflowResponse(
                 get_workflow_response=utils.unmarshal_json(
@@ -1548,8 +1548,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1628,7 +1628,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWorkflowResponse(
                 get_workflow_response=utils.unmarshal_json(
@@ -1639,8 +1639,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1719,7 +1719,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListInstancesResponse(
                 list_runs_response=utils.unmarshal_json(
@@ -1730,8 +1730,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1810,7 +1810,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListInstancesResponse(
                 list_runs_response=utils.unmarshal_json(
@@ -1821,8 +1821,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1901,7 +1901,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTriggersResponse(
                 list_triggers_response=utils.unmarshal_json(
@@ -1912,8 +1912,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1992,7 +1992,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTriggersResponse(
                 list_triggers_response=utils.unmarshal_json(
@@ -2003,8 +2003,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2086,7 +2086,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTriggersOccurrencesResponse(
                 list_triggers_occurrences_response=utils.unmarshal_json(
@@ -2097,8 +2097,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2180,7 +2180,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTriggersOccurrencesResponse(
                 list_triggers_occurrences_response=utils.unmarshal_json(
@@ -2191,8 +2191,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2262,7 +2262,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListWorkflowsResponse(
                 list_workflows_response=utils.unmarshal_json(
@@ -2273,8 +2273,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2344,7 +2344,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListWorkflowsResponse(
                 list_workflows_response=utils.unmarshal_json(
@@ -2355,8 +2355,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2424,7 +2424,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.OrchestrationgetServerInfoResponse(
                 server_info=utils.unmarshal_json(
@@ -2435,8 +2435,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2504,7 +2504,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.OrchestrationgetServerInfoResponse(
                 server_info=utils.unmarshal_json(
@@ -2515,8 +2515,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2595,7 +2595,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadTriggerResponse(
                 read_trigger_response=utils.unmarshal_json(
@@ -2606,8 +2606,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2686,7 +2686,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadTriggerResponse(
                 read_trigger_response=utils.unmarshal_json(
@@ -2697,8 +2697,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2780,7 +2780,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.RunWorkflowResponse(
                 run_workflow_response=utils.unmarshal_json(
@@ -2791,8 +2791,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -2874,7 +2874,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.RunWorkflowResponse(
                 run_workflow_response=utils.unmarshal_json(
@@ -2885,8 +2885,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2972,7 +2972,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.SendEventResponse(
                 status_code=http_res.status_code,
@@ -2980,8 +2980,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -3067,7 +3067,7 @@ class SDKOrchestrationV1(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.SendEventResponse(
                 status_code=http_res.status_code,
@@ -3075,8 +3075,8 @@ class SDKOrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)

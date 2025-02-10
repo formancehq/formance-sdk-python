@@ -3,10 +3,12 @@
 from .basesdk import BaseSDK
 from .sdkconfiguration import SDKConfiguration
 from formance_sdk_python.sdk_payments_v1 import SDKPaymentsV1
+from formance_sdk_python.v3 import V3
 
 
 class Payments(BaseSDK):
     v1: SDKPaymentsV1
+    v3: V3
 
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
@@ -15,3 +17,4 @@ class Payments(BaseSDK):
 
     def _init_sdks(self):
         self.v1 = SDKPaymentsV1(self.sdk_configuration)
+        self.v3 = V3(self.sdk_configuration)

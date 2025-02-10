@@ -8,10 +8,13 @@ from typing_extensions import NotRequired, TypedDict
 
 class V2CreateLedgerRequestTypedDict(TypedDict):
     bucket: NotRequired[str]
+    features: NotRequired[Dict[str, str]]
     metadata: NotRequired[Dict[str, str]]
 
 
 class V2CreateLedgerRequest(BaseModel):
     bucket: Optional[str] = None
+
+    features: Optional[Dict[str, str]] = None
 
     metadata: Optional[Dict[str, str]] = None

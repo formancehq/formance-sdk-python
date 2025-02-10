@@ -21,6 +21,7 @@
 * [get_info](#get_info) - Show server information
 * [get_ledger](#get_ledger) - Get a ledger
 * [get_ledger_info](#get_ledger_info) - Get information about a ledger
+* [get_metrics](#get_metrics) - Read in memory metrics
 * [get_transaction](#get_transaction) - Get transaction from a ledger by its ID
 * [get_volumes_with_balances](#get_volumes_with_balances) - Get list of volumes with balances for (account/asset)
 * [import_logs](#import_logs)
@@ -250,6 +251,9 @@ with SDK(
                 "action": "<value>",
             },
         ],
+        "atomic": True,
+        "continue_on_failure": True,
+        "parallel": True,
     })
 
     assert res.v2_bulk_response is not None
@@ -363,12 +367,6 @@ with SDK(
                     "destination": "users:002",
                     "source": "users:001",
                 },
-                {
-                    "amount": 100,
-                    "asset": "COIN",
-                    "destination": "users:002",
-                    "source": "users:001",
-                },
             ],
             "reference": "ref:001",
             "script": {
@@ -387,6 +385,7 @@ with SDK(
         },
         "ledger": "ledger001",
         "dry_run": True,
+        "force": True,
     })
 
     assert res.v2_create_transaction_response is not None
@@ -432,7 +431,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.delete_account_metadata(request={
-        "address": "6032 Larkin Prairie",
+        "address": "96609 Cummings Canyon",
         "key": "foo",
         "ledger": "ledger001",
     })
@@ -822,6 +821,49 @@ with SDK(
 ### Response
 
 **[operations.V2GetLedgerInfoResponse](../../models/operations/v2getledgerinforesponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## get_metrics
+
+Read in memory metrics
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.get_metrics()
+
+    assert res.object is not None
+
+    # Handle response
+    print(res.object)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[operations.GetMetricsResponse](../../models/operations/getmetricsresponse.md)**
 
 ### Errors
 
@@ -1228,6 +1270,7 @@ with SDK(
     res = sdk.ledger.v2.revert_transaction(request={
         "id": 1234,
         "ledger": "ledger001",
+        "dry_run": True,
     })
 
     assert res.v2_revert_transaction_response is not None

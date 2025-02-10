@@ -94,7 +94,7 @@ class ListAccountsRequest(BaseModel):
         Optional[int],
         pydantic.Field(alias="pageSize"),
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = 15
+    ] = None
     r"""The maximum number of results to return per page.
 
     """

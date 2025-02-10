@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: 26dc51843f72f8922c6265f03b5e50f2
-  docVersion: v2.1.1
-  speakeasyVersion: 1.464.0
-  generationVersion: 2.486.6
-  releaseVersion: 5.0.0
-  configChecksum: de8164929e9322833f851a6ada036afb
+  docChecksum: 98f21a9b47a7a10e2efba8e8081d5312
+  docVersion: v3.0.0
+  speakeasyVersion: 1.487.1
+  generationVersion: 2.506.0
+  releaseVersion: 6.0.0
+  configChecksum: ef29963a3477ce12087d3725f0329915
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -16,7 +16,7 @@ features:
     additionalDependencies: 1.0.0
     bigint: 1.0.0
     constsAndDefaults: 1.0.5
-    core: 5.7.5
+    core: 5.11.0
     defaultEnabledRetries: 0.2.0
     deprecations: 3.0.2
     downloadStreams: 1.0.1
@@ -39,7 +39,6 @@ generatedFiles:
   - .gitattributes
   - .python-version
   - .vscode/settings.json
-  - CONTRIBUTING.md
   - USAGE.md
   - docs/models/errors/error.md
   - docs/models/errors/errorcode.md
@@ -50,6 +49,7 @@ generatedFiles:
   - docs/models/errors/schemaswalletserrorresponseerrorcode.md
   - docs/models/errors/v2error.md
   - docs/models/errors/v2errorresponse.md
+  - docs/models/errors/v3errorresponse.md
   - docs/models/errors/walletserrorresponse.md
   - docs/models/errors/webhookserrorresponse.md
   - docs/models/operations/activateconfigrequest.md
@@ -148,6 +148,7 @@ generatedFiles:
   - docs/models/operations/getmanyconfigsresponse.md
   - docs/models/operations/getmappingrequest.md
   - docs/models/operations/getmappingresponse.md
+  - docs/models/operations/getmetricsresponse.md
   - docs/models/operations/getoidcwellknownsresponse.md
   - docs/models/operations/getpaymentrequest.md
   - docs/models/operations/getpaymentresponse.md
@@ -271,6 +272,8 @@ generatedFiles:
   - docs/models/operations/updatebankaccountmetadataresponse.md
   - docs/models/operations/updateclientrequest.md
   - docs/models/operations/updateclientresponse.md
+  - docs/models/operations/updateconfigrequest.md
+  - docs/models/operations/updateconfigresponse.md
   - docs/models/operations/updateconnectorconfigv1request.md
   - docs/models/operations/updateconnectorconfigv1response.md
   - docs/models/operations/updatemappingrequest.md
@@ -363,6 +366,82 @@ generatedFiles:
   - docs/models/operations/v2sendeventresponse.md
   - docs/models/operations/v2updateledgermetadatarequest.md
   - docs/models/operations/v2updateledgermetadataresponse.md
+  - docs/models/operations/v3addaccounttopoolrequest.md
+  - docs/models/operations/v3addaccounttopoolresponse.md
+  - docs/models/operations/v3approvepaymentinitiationrequest.md
+  - docs/models/operations/v3approvepaymentinitiationresponse.md
+  - docs/models/operations/v3createaccountresponse.md
+  - docs/models/operations/v3createbankaccountresponse.md
+  - docs/models/operations/v3createpaymentresponse.md
+  - docs/models/operations/v3createpoolresponse.md
+  - docs/models/operations/v3deletepaymentinitiationrequest.md
+  - docs/models/operations/v3deletepaymentinitiationresponse.md
+  - docs/models/operations/v3deletepoolrequest.md
+  - docs/models/operations/v3deletepoolresponse.md
+  - docs/models/operations/v3forwardbankaccountrequest.md
+  - docs/models/operations/v3forwardbankaccountresponse.md
+  - docs/models/operations/v3getaccountbalancesrequest.md
+  - docs/models/operations/v3getaccountbalancesresponse.md
+  - docs/models/operations/v3getaccountrequest.md
+  - docs/models/operations/v3getaccountresponse.md
+  - docs/models/operations/v3getbankaccountrequest.md
+  - docs/models/operations/v3getbankaccountresponse.md
+  - docs/models/operations/v3getconnectorconfigrequest.md
+  - docs/models/operations/v3getconnectorconfigresponse.md
+  - docs/models/operations/v3getconnectorschedulerequest.md
+  - docs/models/operations/v3getconnectorscheduleresponse.md
+  - docs/models/operations/v3getinforesponse.md
+  - docs/models/operations/v3getpaymentinitiationrequest.md
+  - docs/models/operations/v3getpaymentinitiationresponse.md
+  - docs/models/operations/v3getpaymentrequest.md
+  - docs/models/operations/v3getpaymentresponse.md
+  - docs/models/operations/v3getpoolbalancesrequest.md
+  - docs/models/operations/v3getpoolbalancesresponse.md
+  - docs/models/operations/v3getpoolrequest.md
+  - docs/models/operations/v3getpoolresponse.md
+  - docs/models/operations/v3gettaskrequest.md
+  - docs/models/operations/v3gettaskresponse.md
+  - docs/models/operations/v3initiatepaymentrequest.md
+  - docs/models/operations/v3initiatepaymentresponse.md
+  - docs/models/operations/v3installconnectorrequest.md
+  - docs/models/operations/v3installconnectorresponse.md
+  - docs/models/operations/v3listaccountsrequest.md
+  - docs/models/operations/v3listaccountsresponse.md
+  - docs/models/operations/v3listbankaccountsrequest.md
+  - docs/models/operations/v3listbankaccountsresponse.md
+  - docs/models/operations/v3listconnectorconfigsresponse.md
+  - docs/models/operations/v3listconnectorscheduleinstancesrequest.md
+  - docs/models/operations/v3listconnectorscheduleinstancesresponse.md
+  - docs/models/operations/v3listconnectorschedulesrequest.md
+  - docs/models/operations/v3listconnectorschedulesresponse.md
+  - docs/models/operations/v3listconnectorsrequest.md
+  - docs/models/operations/v3listconnectorsresponse.md
+  - docs/models/operations/v3listpaymentinitiationadjustmentsrequest.md
+  - docs/models/operations/v3listpaymentinitiationadjustmentsresponse.md
+  - docs/models/operations/v3listpaymentinitiationrelatedpaymentsrequest.md
+  - docs/models/operations/v3listpaymentinitiationrelatedpaymentsresponse.md
+  - docs/models/operations/v3listpaymentinitiationsrequest.md
+  - docs/models/operations/v3listpaymentinitiationsresponse.md
+  - docs/models/operations/v3listpaymentsrequest.md
+  - docs/models/operations/v3listpaymentsresponse.md
+  - docs/models/operations/v3listpoolsrequest.md
+  - docs/models/operations/v3listpoolsresponse.md
+  - docs/models/operations/v3rejectpaymentinitiationrequest.md
+  - docs/models/operations/v3rejectpaymentinitiationresponse.md
+  - docs/models/operations/v3removeaccountfrompoolrequest.md
+  - docs/models/operations/v3removeaccountfrompoolresponse.md
+  - docs/models/operations/v3resetconnectorrequest.md
+  - docs/models/operations/v3resetconnectorresponse.md
+  - docs/models/operations/v3retrypaymentinitiationrequest.md
+  - docs/models/operations/v3retrypaymentinitiationresponse.md
+  - docs/models/operations/v3reversepaymentinitiationrequest.md
+  - docs/models/operations/v3reversepaymentinitiationresponse.md
+  - docs/models/operations/v3uninstallconnectorrequest.md
+  - docs/models/operations/v3uninstallconnectorresponse.md
+  - docs/models/operations/v3updatebankaccountmetadatarequest.md
+  - docs/models/operations/v3updatebankaccountmetadataresponse.md
+  - docs/models/operations/v3updatepaymentmetadatarequest.md
+  - docs/models/operations/v3updatepaymentmetadataresponse.md
   - docs/models/operations/voidholdrequest.md
   - docs/models/operations/voidholdresponse.md
   - docs/models/operations/walletsgetserverinforesponse.md
@@ -517,6 +596,8 @@ generatedFiles:
   - docs/models/shared/orchestrationposttransaction.md
   - docs/models/shared/orchestrationposttransactionscript.md
   - docs/models/shared/orchestrationtransaction.md
+  - docs/models/shared/orchestrationv2posttransaction.md
+  - docs/models/shared/orchestrationv2posttransactionscript.md
   - docs/models/shared/orchestrationv2transaction.md
   - docs/models/shared/orchestrationwallet.md
   - docs/models/shared/payment.md
@@ -613,6 +694,7 @@ generatedFiles:
   - docs/models/shared/taskscursor.md
   - docs/models/shared/taskscursorcursor.md
   - docs/models/shared/taskscursordata.md
+  - docs/models/shared/taskstatus.md
   - docs/models/shared/taskstripe.md
   - docs/models/shared/taskstripedescriptor.md
   - docs/models/shared/taskstripestate.md
@@ -698,7 +780,6 @@ generatedFiles:
   - docs/models/shared/v2debitwalletrequest.md
   - docs/models/shared/v2errorresponse.md
   - docs/models/shared/v2errorsenum.md
-  - docs/models/shared/v2expandedtransaction.md
   - docs/models/shared/v2getledgerresponse.md
   - docs/models/shared/v2gettransactionresponse.md
   - docs/models/shared/v2getworkflowinstancehistoryresponse.md
@@ -786,6 +867,107 @@ generatedFiles:
   - docs/models/shared/v2workflowinstancehistorystage.md
   - docs/models/shared/v2workflowinstancehistorystageinput.md
   - docs/models/shared/v2workflowinstancehistorystageoutput.md
+  - docs/models/shared/v3account.md
+  - docs/models/shared/v3accountraw.md
+  - docs/models/shared/v3accountscursorresponse.md
+  - docs/models/shared/v3accountscursorresponsecursor.md
+  - docs/models/shared/v3accounttypeenum.md
+  - docs/models/shared/v3adyenconfig.md
+  - docs/models/shared/v3approvepaymentinitiationresponse.md
+  - docs/models/shared/v3approvepaymentinitiationresponsedata.md
+  - docs/models/shared/v3atlarconfig.md
+  - docs/models/shared/v3balance.md
+  - docs/models/shared/v3balancescursorresponse.md
+  - docs/models/shared/v3balancescursorresponsecursor.md
+  - docs/models/shared/v3bankaccount.md
+  - docs/models/shared/v3bankaccountrelatedaccount.md
+  - docs/models/shared/v3bankaccountscursorresponse.md
+  - docs/models/shared/v3bankaccountscursorresponsecursor.md
+  - docs/models/shared/v3bankingcircleconfig.md
+  - docs/models/shared/v3configinforesponse.md
+  - docs/models/shared/v3connector.md
+  - docs/models/shared/v3connectorconfig.md
+  - docs/models/shared/v3connectorconfigsresponse.md
+  - docs/models/shared/v3connectorconfigsresponseconnector.md
+  - docs/models/shared/v3connectorconfigsresponsedata.md
+  - docs/models/shared/v3connectorconfigsresponsekey.md
+  - docs/models/shared/v3connectorscheduleinstancescursorresponse.md
+  - docs/models/shared/v3connectorscheduleinstancescursorresponsecursor.md
+  - docs/models/shared/v3connectorscheduleresponse.md
+  - docs/models/shared/v3connectorschedulescursorresponse.md
+  - docs/models/shared/v3connectorschedulescursorresponsecursor.md
+  - docs/models/shared/v3connectorschemasconfig.md
+  - docs/models/shared/v3connectorscursorresponse.md
+  - docs/models/shared/v3connectorscursorresponsecursor.md
+  - docs/models/shared/v3createaccountrequest.md
+  - docs/models/shared/v3createaccountresponse.md
+  - docs/models/shared/v3createbankaccountrequest.md
+  - docs/models/shared/v3createbankaccountresponse.md
+  - docs/models/shared/v3createpaymentadjustmentrequest.md
+  - docs/models/shared/v3createpaymentrequest.md
+  - docs/models/shared/v3createpaymentresponse.md
+  - docs/models/shared/v3createpoolrequest.md
+  - docs/models/shared/v3createpoolresponse.md
+  - docs/models/shared/v3currencycloudconfig.md
+  - docs/models/shared/v3dummypayconfig.md
+  - docs/models/shared/v3errorsenum.md
+  - docs/models/shared/v3forwardbankaccountrequest.md
+  - docs/models/shared/v3forwardbankaccountresponse.md
+  - docs/models/shared/v3forwardbankaccountresponsedata.md
+  - docs/models/shared/v3genericconfig.md
+  - docs/models/shared/v3getaccountresponse.md
+  - docs/models/shared/v3getbankaccountresponse.md
+  - docs/models/shared/v3getconnectorconfigresponse.md
+  - docs/models/shared/v3getpaymentinitiationresponse.md
+  - docs/models/shared/v3getpaymentresponse.md
+  - docs/models/shared/v3getpoolresponse.md
+  - docs/models/shared/v3gettaskresponse.md
+  - docs/models/shared/v3initiatepaymentrequest.md
+  - docs/models/shared/v3initiatepaymentresponse.md
+  - docs/models/shared/v3initiatepaymentresponsedata.md
+  - docs/models/shared/v3installconnectorrequest.md
+  - docs/models/shared/v3installconnectorresponse.md
+  - docs/models/shared/v3instance.md
+  - docs/models/shared/v3mangopayconfig.md
+  - docs/models/shared/v3modulrconfig.md
+  - docs/models/shared/v3moneycorpconfig.md
+  - docs/models/shared/v3payment.md
+  - docs/models/shared/v3paymentadjustment.md
+  - docs/models/shared/v3paymentadjustmentraw.md
+  - docs/models/shared/v3paymentinitiation.md
+  - docs/models/shared/v3paymentinitiationadjustment.md
+  - docs/models/shared/v3paymentinitiationadjustmentscursorresponse.md
+  - docs/models/shared/v3paymentinitiationadjustmentscursorresponsecursor.md
+  - docs/models/shared/v3paymentinitiationrelatedpaymentscursorresponse.md
+  - docs/models/shared/v3paymentinitiationrelatedpaymentscursorresponsecursor.md
+  - docs/models/shared/v3paymentinitiationscursorresponse.md
+  - docs/models/shared/v3paymentinitiationscursorresponsecursor.md
+  - docs/models/shared/v3paymentinitiationstatusenum.md
+  - docs/models/shared/v3paymentinitiationtypeenum.md
+  - docs/models/shared/v3paymentscursorresponse.md
+  - docs/models/shared/v3paymentscursorresponsecursor.md
+  - docs/models/shared/v3paymentstatusenum.md
+  - docs/models/shared/v3paymenttypeenum.md
+  - docs/models/shared/v3pool.md
+  - docs/models/shared/v3poolbalance.md
+  - docs/models/shared/v3poolbalancesresponse.md
+  - docs/models/shared/v3poolscursorresponse.md
+  - docs/models/shared/v3poolscursorresponsecursor.md
+  - docs/models/shared/v3resetconnectorresponse.md
+  - docs/models/shared/v3retrypaymentinitiationresponse.md
+  - docs/models/shared/v3retrypaymentinitiationresponsedata.md
+  - docs/models/shared/v3reversepaymentinitiationrequest.md
+  - docs/models/shared/v3reversepaymentinitiationresponse.md
+  - docs/models/shared/v3reversepaymentinitiationresponsedata.md
+  - docs/models/shared/v3schedule.md
+  - docs/models/shared/v3stripeconfig.md
+  - docs/models/shared/v3task.md
+  - docs/models/shared/v3taskstatusenum.md
+  - docs/models/shared/v3uninstallconnectorresponse.md
+  - docs/models/shared/v3uninstallconnectorresponsedata.md
+  - docs/models/shared/v3updatebankaccountmetadatarequest.md
+  - docs/models/shared/v3updatepaymentmetadatarequest.md
+  - docs/models/shared/v3wiseconfig.md
   - docs/models/shared/variables.md
   - docs/models/shared/version.md
   - docs/models/shared/volume.md
@@ -824,6 +1006,7 @@ generatedFiles:
   - docs/sdks/search/README.md
   - docs/sdks/v1/README.md
   - docs/sdks/v2/README.md
+  - docs/sdks/v3/README.md
   - docs/sdks/wallets/README.md
   - docs/sdks/webhooks/README.md
   - poetry.toml
@@ -850,6 +1033,7 @@ generatedFiles:
   - src/formance_sdk_python/models/errors/sdkerror.py
   - src/formance_sdk_python/models/errors/v2error.py
   - src/formance_sdk_python/models/errors/v2errorresponse.py
+  - src/formance_sdk_python/models/errors/v3errorresponse.py
   - src/formance_sdk_python/models/errors/walletserrorresponse.py
   - src/formance_sdk_python/models/errors/webhookserrorresponse.py
   - src/formance_sdk_python/models/operations/__init__.py
@@ -906,6 +1090,7 @@ generatedFiles:
   - src/formance_sdk_python/models/operations/getledgerinfo.py
   - src/formance_sdk_python/models/operations/getmanyconfigs.py
   - src/formance_sdk_python/models/operations/getmapping.py
+  - src/formance_sdk_python/models/operations/getmetrics.py
   - src/formance_sdk_python/models/operations/getoidcwellknowns.py
   - src/formance_sdk_python/models/operations/getpayment.py
   - src/formance_sdk_python/models/operations/getpolicy.py
@@ -973,6 +1158,7 @@ generatedFiles:
   - src/formance_sdk_python/models/operations/uninstallconnectorv1.py
   - src/formance_sdk_python/models/operations/updatebankaccountmetadata.py
   - src/formance_sdk_python/models/operations/updateclient.py
+  - src/formance_sdk_python/models/operations/updateconfig.py
   - src/formance_sdk_python/models/operations/updateconnectorconfigv1.py
   - src/formance_sdk_python/models/operations/updatemapping.py
   - src/formance_sdk_python/models/operations/updatemetadata.py
@@ -1020,6 +1206,47 @@ generatedFiles:
   - src/formance_sdk_python/models/operations/v2runworkflow.py
   - src/formance_sdk_python/models/operations/v2sendevent.py
   - src/formance_sdk_python/models/operations/v2updateledgermetadata.py
+  - src/formance_sdk_python/models/operations/v3addaccounttopool.py
+  - src/formance_sdk_python/models/operations/v3approvepaymentinitiation.py
+  - src/formance_sdk_python/models/operations/v3createaccount.py
+  - src/formance_sdk_python/models/operations/v3createbankaccount.py
+  - src/formance_sdk_python/models/operations/v3createpayment.py
+  - src/formance_sdk_python/models/operations/v3createpool.py
+  - src/formance_sdk_python/models/operations/v3deletepaymentinitiation.py
+  - src/formance_sdk_python/models/operations/v3deletepool.py
+  - src/formance_sdk_python/models/operations/v3forwardbankaccount.py
+  - src/formance_sdk_python/models/operations/v3getaccount.py
+  - src/formance_sdk_python/models/operations/v3getaccountbalances.py
+  - src/formance_sdk_python/models/operations/v3getbankaccount.py
+  - src/formance_sdk_python/models/operations/v3getconnectorconfig.py
+  - src/formance_sdk_python/models/operations/v3getconnectorschedule.py
+  - src/formance_sdk_python/models/operations/v3getinfo.py
+  - src/formance_sdk_python/models/operations/v3getpayment.py
+  - src/formance_sdk_python/models/operations/v3getpaymentinitiation.py
+  - src/formance_sdk_python/models/operations/v3getpool.py
+  - src/formance_sdk_python/models/operations/v3getpoolbalances.py
+  - src/formance_sdk_python/models/operations/v3gettask.py
+  - src/formance_sdk_python/models/operations/v3initiatepayment.py
+  - src/formance_sdk_python/models/operations/v3installconnector.py
+  - src/formance_sdk_python/models/operations/v3listaccounts.py
+  - src/formance_sdk_python/models/operations/v3listbankaccounts.py
+  - src/formance_sdk_python/models/operations/v3listconnectorconfigs.py
+  - src/formance_sdk_python/models/operations/v3listconnectors.py
+  - src/formance_sdk_python/models/operations/v3listconnectorscheduleinstances.py
+  - src/formance_sdk_python/models/operations/v3listconnectorschedules.py
+  - src/formance_sdk_python/models/operations/v3listpaymentinitiationadjustments.py
+  - src/formance_sdk_python/models/operations/v3listpaymentinitiationrelatedpayments.py
+  - src/formance_sdk_python/models/operations/v3listpaymentinitiations.py
+  - src/formance_sdk_python/models/operations/v3listpayments.py
+  - src/formance_sdk_python/models/operations/v3listpools.py
+  - src/formance_sdk_python/models/operations/v3rejectpaymentinitiation.py
+  - src/formance_sdk_python/models/operations/v3removeaccountfrompool.py
+  - src/formance_sdk_python/models/operations/v3resetconnector.py
+  - src/formance_sdk_python/models/operations/v3retrypaymentinitiation.py
+  - src/formance_sdk_python/models/operations/v3reversepaymentinitiation.py
+  - src/formance_sdk_python/models/operations/v3uninstallconnector.py
+  - src/formance_sdk_python/models/operations/v3updatebankaccountmetadata.py
+  - src/formance_sdk_python/models/operations/v3updatepaymentmetadata.py
   - src/formance_sdk_python/models/operations/voidhold.py
   - src/formance_sdk_python/models/operations/walletsgetserverinfo.py
   - src/formance_sdk_python/models/shared/__init__.py
@@ -1147,6 +1374,7 @@ generatedFiles:
   - src/formance_sdk_python/models/shared/orchestrationpaymentstatus.py
   - src/formance_sdk_python/models/shared/orchestrationposttransaction.py
   - src/formance_sdk_python/models/shared/orchestrationtransaction.py
+  - src/formance_sdk_python/models/shared/orchestrationv2posttransaction.py
   - src/formance_sdk_python/models/shared/orchestrationv2transaction.py
   - src/formance_sdk_python/models/shared/orchestrationwallet.py
   - src/formance_sdk_python/models/shared/payment.py
@@ -1214,6 +1442,7 @@ generatedFiles:
   - src/formance_sdk_python/models/shared/taskmoneycorp.py
   - src/formance_sdk_python/models/shared/taskresponse.py
   - src/formance_sdk_python/models/shared/taskscursor.py
+  - src/formance_sdk_python/models/shared/taskstatus.py
   - src/formance_sdk_python/models/shared/taskstripe.py
   - src/formance_sdk_python/models/shared/taskwise.py
   - src/formance_sdk_python/models/shared/transaction.py
@@ -1280,7 +1509,6 @@ generatedFiles:
   - src/formance_sdk_python/models/shared/v2debitwalletrequest.py
   - src/formance_sdk_python/models/shared/v2errorresponse.py
   - src/formance_sdk_python/models/shared/v2errorsenum.py
-  - src/formance_sdk_python/models/shared/v2expandedtransaction.py
   - src/formance_sdk_python/models/shared/v2getledgerresponse.py
   - src/formance_sdk_python/models/shared/v2gettransactionresponse.py
   - src/formance_sdk_python/models/shared/v2getworkflowinstancehistoryresponse.py
@@ -1352,6 +1580,84 @@ generatedFiles:
   - src/formance_sdk_python/models/shared/v2workflowinstancehistorystage.py
   - src/formance_sdk_python/models/shared/v2workflowinstancehistorystageinput.py
   - src/formance_sdk_python/models/shared/v2workflowinstancehistorystageoutput.py
+  - src/formance_sdk_python/models/shared/v3account.py
+  - src/formance_sdk_python/models/shared/v3accountscursorresponse.py
+  - src/formance_sdk_python/models/shared/v3accounttypeenum.py
+  - src/formance_sdk_python/models/shared/v3adyenconfig.py
+  - src/formance_sdk_python/models/shared/v3approvepaymentinitiationresponse.py
+  - src/formance_sdk_python/models/shared/v3atlarconfig.py
+  - src/formance_sdk_python/models/shared/v3balance.py
+  - src/formance_sdk_python/models/shared/v3balancescursorresponse.py
+  - src/formance_sdk_python/models/shared/v3bankaccount.py
+  - src/formance_sdk_python/models/shared/v3bankaccountrelatedaccount.py
+  - src/formance_sdk_python/models/shared/v3bankaccountscursorresponse.py
+  - src/formance_sdk_python/models/shared/v3bankingcircleconfig.py
+  - src/formance_sdk_python/models/shared/v3configinforesponse.py
+  - src/formance_sdk_python/models/shared/v3connector.py
+  - src/formance_sdk_python/models/shared/v3connectorconfig.py
+  - src/formance_sdk_python/models/shared/v3connectorconfigsresponse.py
+  - src/formance_sdk_python/models/shared/v3connectorscheduleinstancescursorresponse.py
+  - src/formance_sdk_python/models/shared/v3connectorscheduleresponse.py
+  - src/formance_sdk_python/models/shared/v3connectorschedulescursorresponse.py
+  - src/formance_sdk_python/models/shared/v3connectorscursorresponse.py
+  - src/formance_sdk_python/models/shared/v3createaccountrequest.py
+  - src/formance_sdk_python/models/shared/v3createaccountresponse.py
+  - src/formance_sdk_python/models/shared/v3createbankaccountrequest.py
+  - src/formance_sdk_python/models/shared/v3createbankaccountresponse.py
+  - src/formance_sdk_python/models/shared/v3createpaymentadjustmentrequest.py
+  - src/formance_sdk_python/models/shared/v3createpaymentrequest.py
+  - src/formance_sdk_python/models/shared/v3createpaymentresponse.py
+  - src/formance_sdk_python/models/shared/v3createpoolrequest.py
+  - src/formance_sdk_python/models/shared/v3createpoolresponse.py
+  - src/formance_sdk_python/models/shared/v3currencycloudconfig.py
+  - src/formance_sdk_python/models/shared/v3dummypayconfig.py
+  - src/formance_sdk_python/models/shared/v3errorsenum.py
+  - src/formance_sdk_python/models/shared/v3forwardbankaccountrequest.py
+  - src/formance_sdk_python/models/shared/v3forwardbankaccountresponse.py
+  - src/formance_sdk_python/models/shared/v3genericconfig.py
+  - src/formance_sdk_python/models/shared/v3getaccountresponse.py
+  - src/formance_sdk_python/models/shared/v3getbankaccountresponse.py
+  - src/formance_sdk_python/models/shared/v3getconnectorconfigresponse.py
+  - src/formance_sdk_python/models/shared/v3getpaymentinitiationresponse.py
+  - src/formance_sdk_python/models/shared/v3getpaymentresponse.py
+  - src/formance_sdk_python/models/shared/v3getpoolresponse.py
+  - src/formance_sdk_python/models/shared/v3gettaskresponse.py
+  - src/formance_sdk_python/models/shared/v3initiatepaymentrequest.py
+  - src/formance_sdk_python/models/shared/v3initiatepaymentresponse.py
+  - src/formance_sdk_python/models/shared/v3installconnectorrequest.py
+  - src/formance_sdk_python/models/shared/v3installconnectorresponse.py
+  - src/formance_sdk_python/models/shared/v3instance.py
+  - src/formance_sdk_python/models/shared/v3mangopayconfig.py
+  - src/formance_sdk_python/models/shared/v3modulrconfig.py
+  - src/formance_sdk_python/models/shared/v3moneycorpconfig.py
+  - src/formance_sdk_python/models/shared/v3payment.py
+  - src/formance_sdk_python/models/shared/v3paymentadjustment.py
+  - src/formance_sdk_python/models/shared/v3paymentinitiation.py
+  - src/formance_sdk_python/models/shared/v3paymentinitiationadjustment.py
+  - src/formance_sdk_python/models/shared/v3paymentinitiationadjustmentscursorresponse.py
+  - src/formance_sdk_python/models/shared/v3paymentinitiationrelatedpaymentscursorresponse.py
+  - src/formance_sdk_python/models/shared/v3paymentinitiationscursorresponse.py
+  - src/formance_sdk_python/models/shared/v3paymentinitiationstatusenum.py
+  - src/formance_sdk_python/models/shared/v3paymentinitiationtypeenum.py
+  - src/formance_sdk_python/models/shared/v3paymentscursorresponse.py
+  - src/formance_sdk_python/models/shared/v3paymentstatusenum.py
+  - src/formance_sdk_python/models/shared/v3paymenttypeenum.py
+  - src/formance_sdk_python/models/shared/v3pool.py
+  - src/formance_sdk_python/models/shared/v3poolbalance.py
+  - src/formance_sdk_python/models/shared/v3poolbalancesresponse.py
+  - src/formance_sdk_python/models/shared/v3poolscursorresponse.py
+  - src/formance_sdk_python/models/shared/v3resetconnectorresponse.py
+  - src/formance_sdk_python/models/shared/v3retrypaymentinitiationresponse.py
+  - src/formance_sdk_python/models/shared/v3reversepaymentinitiationrequest.py
+  - src/formance_sdk_python/models/shared/v3reversepaymentinitiationresponse.py
+  - src/formance_sdk_python/models/shared/v3schedule.py
+  - src/formance_sdk_python/models/shared/v3stripeconfig.py
+  - src/formance_sdk_python/models/shared/v3task.py
+  - src/formance_sdk_python/models/shared/v3taskstatusenum.py
+  - src/formance_sdk_python/models/shared/v3uninstallconnectorresponse.py
+  - src/formance_sdk_python/models/shared/v3updatebankaccountmetadatarequest.py
+  - src/formance_sdk_python/models/shared/v3updatepaymentmetadatarequest.py
+  - src/formance_sdk_python/models/shared/v3wiseconfig.py
   - src/formance_sdk_python/models/shared/version.py
   - src/formance_sdk_python/models/shared/volume.py
   - src/formance_sdk_python/models/shared/wallet.py
@@ -1403,10 +1709,10 @@ generatedFiles:
   - src/formance_sdk_python/utils/values.py
   - src/formance_sdk_python/v1.py
   - src/formance_sdk_python/v2.py
+  - src/formance_sdk_python/v3.py
   - src/formance_sdk_python/wallets.py
   - src/formance_sdk_python/webhooks.py
 examples:
-  getOIDCWellKnowns: {}
   getVersions:
     speakeasy-default-get-versions:
       responses:
@@ -1421,7 +1727,7 @@ examples:
     speakeasy-default-create-secret:
       parameters:
         path:
-          clientId: "<value>"
+          clientId: "<id>"
       responses:
         "200":
           application/json: {}
@@ -1429,13 +1735,19 @@ examples:
     speakeasy-default-delete-client:
       parameters:
         path:
-          clientId: "<value>"
+          clientId: "<id>"
   deleteSecret:
     speakeasy-default-delete-secret:
       parameters:
         path:
-          clientId: "<value>"
-          secretId: "<value>"
+          clientId: "<id>"
+          secretId: "<id>"
+  getOIDCWellKnowns: {}
+  getServerInfo:
+    speakeasy-default-get-server-info:
+      responses:
+        "200":
+          application/json: {"version": "<value>"}
   listClients:
     speakeasy-default-list-clients:
       responses:
@@ -1450,7 +1762,7 @@ examples:
     speakeasy-default-read-client:
       parameters:
         path:
-          clientId: "<value>"
+          clientId: "<id>"
       responses:
         "200":
           application/json: {}
@@ -1458,7 +1770,7 @@ examples:
     speakeasy-default-read-user:
       parameters:
         path:
-          userId: "<value>"
+          userId: "<id>"
       responses:
         "200":
           application/json: {"data": {"email": "user1@orga1.com", "id": "3bb03708-312f-48a0-821a-e765837dc2c4", "subject": "Jane Doe"}}
@@ -1466,10 +1778,312 @@ examples:
     speakeasy-default-update-client:
       parameters:
         path:
-          clientId: "<value>"
+          clientId: "<id>"
       responses:
         "200":
           application/json: {}
+  v2AddMetadataOnTransaction:
+    speakeasy-default-v2-add-metadata-on-transaction:
+      parameters:
+        path:
+          ledger: "ledger001"
+          id: 1234
+        query:
+          dryRun: true
+        header: {}
+      requestBody:
+        application/json: {"admin": "true"}
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2AddMetadataToAccount:
+    speakeasy-default-v2-add-metadata-to-account:
+      parameters:
+        path:
+          ledger: "ledger001"
+          address: "users:001"
+        query:
+          dryRun: true
+        header: {}
+      requestBody:
+        application/json: {"admin": "true"}
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2CountAccounts:
+    speakeasy-default-v2-count-accounts:
+      parameters:
+        path:
+          ledger: "ledger001"
+        query: {}
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2CountTransactions:
+    speakeasy-default-v2-count-transactions:
+      parameters:
+        path:
+          ledger: "ledger001"
+        query: {}
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2CreateBulk:
+    speakeasy-default-v2-create-bulk:
+      parameters:
+        path:
+          ledger: "ledger001"
+        query:
+          continueOnFailure: true
+          atomic: true
+          parallel: true
+      requestBody:
+        application/json: [{"action": "<value>"}]
+      responses:
+        "200":
+          application/json: {"data": [{"logID": 642842, "responseType": "<value>"}], "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+        "400":
+          application/json: {"data": [], "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2CreateLedger:
+    speakeasy-default-v2-create-ledger:
+      parameters:
+        path:
+          ledger: "ledger001"
+      requestBody:
+        application/json: {"metadata": {"admin": "true"}}
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2CreateTransaction:
+    speakeasy-default-v2-create-transaction:
+      parameters:
+        path:
+          ledger: "ledger001"
+        query:
+          dryRun: true
+          force: true
+        header: {}
+      requestBody:
+        application/json: {"metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}}
+      responses:
+        "200":
+          application/json: {"data": {"id": 31495, "metadata": {"admin": "true"}, "postCommitEffectiveVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [], "preCommitEffectiveVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "reverted": false, "timestamp": "2025-09-22T01:21:07.537Z"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2DeleteAccountMetadata:
+    speakeasy-default-v2-delete-account-metadata:
+      parameters:
+        path:
+          ledger: "ledger001"
+          address: "96609 Cummings Canyon"
+          key: "foo"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2DeleteLedgerMetadata:
+    speakeasy-default-v2-delete-ledger-metadata:
+      parameters:
+        path:
+          ledger: "ledger001"
+          key: "foo"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2DeleteTransactionMetadata:
+    speakeasy-default-v2-delete-transaction-metadata:
+      parameters:
+        path:
+          ledger: "ledger001"
+          id: 1234
+          key: "foo"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2ExportLogs:
+    speakeasy-default-v2-export-logs:
+      parameters:
+        path:
+          ledger: "ledger001"
+  v2GetAccount:
+    speakeasy-default-v2-get-account:
+      parameters:
+        path:
+          ledger: "ledger001"
+          address: "users:001"
+        query: {}
+      responses:
+        "200":
+          application/json: {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "metadata": {"admin": "true"}, "volumes": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2GetBalancesAggregated:
+    speakeasy-default-v2-get-balances-aggregated:
+      parameters:
+        path:
+          ledger: "ledger001"
+        query: {}
+      responses:
+        "200":
+          application/json: {"data": {"USD": 100, "EUR": 12}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2GetInfo:
+    speakeasy-default-v2-get-info:
+      responses:
+        "200":
+          application/json: {"server": "<value>", "version": "<value>"}
+        5XX:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2GetLedger:
+    speakeasy-default-v2-get-ledger:
+      parameters:
+        path:
+          ledger: "ledger001"
+      responses:
+        "200":
+          application/json: {"data": {"addedAt": "2024-04-15T03:59:26.558Z", "bucket": "<value>", "metadata": {"admin": "true"}, "name": "<value>"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2GetLedgerInfo:
+    speakeasy-default-v2-get-ledger-info:
+      parameters:
+        path:
+          ledger: "ledger001"
+      responses:
+        "200":
+          application/json: {"data": {"name": "ledger001", "storage": {"migrations": [{"name": "migrations:001", "version": "11"}, {"name": "migrations:001", "version": "11"}, {"name": "migrations:001", "version": "11"}]}}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  getMetrics:
+    speakeasy-default-get-metrics:
+      responses:
+        "200":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2GetTransaction:
+    speakeasy-default-v2-get-transaction:
+      parameters:
+        path:
+          ledger: "ledger001"
+          id: 1234
+        query: {}
+      responses:
+        "200":
+          application/json: {"data": {"id": 546228, "metadata": {"admin": "true"}, "postCommitEffectiveVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [], "preCommitEffectiveVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "reverted": true, "timestamp": "2024-01-04T04:51:12.769Z"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2GetVolumesWithBalances:
+    "":
+      parameters:
+        path:
+          ledger: "ledger001"
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          groupBy: 3
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [{"account": "60079609", "asset": "<value>", "balance": 992275, "input": 894289, "output": 625394}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2ImportLogs:
+    speakeasy-default-v2-import-logs:
+      parameters:
+        path:
+          ledger: "ledger001"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2ListAccounts:
+    "":
+      parameters:
+        path:
+          ledger: "ledger001"
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2ListLedgers:
+    "":
+      parameters:
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [{"addedAt": "2025-08-18T14:16:25.795Z", "bucket": "<value>", "metadata": {"admin": "true"}, "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2ListLogs:
+    "":
+      parameters:
+        path:
+          ledger: "ledger001"
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [{"data": {}, "date": "2024-06-27T07:17:46.078Z", "hash": "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e", "id": 1234, "type": "REVERTED_TRANSACTION"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2ListTransactions:
+    "":
+      parameters:
+        path:
+          ledger: "ledger001"
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2ReadStats:
+    speakeasy-default-v2-read-stats:
+      parameters:
+        path:
+          ledger: "ledger001"
+      responses:
+        "200":
+          application/json: {"data": {"accounts": 144691, "transactions": 882277}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2RevertTransaction:
+    speakeasy-default-v2-revert-transaction:
+      parameters:
+        path:
+          ledger: "ledger001"
+          id: 1234
+        query:
+          dryRun: true
+      responses:
+        "201":
+          application/json: {"data": {"id": 614792, "metadata": {"admin": "true"}, "postCommitEffectiveVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [], "preCommitEffectiveVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "reverted": true, "timestamp": "2024-12-23T06:12:13.815Z"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2UpdateLedgerMetadata:
+    speakeasy-default-v2-update-ledger-metadata:
+      parameters:
+        path:
+          ledger: "ledger001"
+      requestBody:
+        application/json: {"admin": "true"}
+      responses:
+        5XX:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   CreateTransactions:
     speakeasy-default-create-transactions:
       parameters:
@@ -1479,7 +2093,7 @@ examples:
         application/json: {"transactions": [{"postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001"}]}
       responses:
         "200":
-          application/json: {"data": [{"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2023-03-06T12:58:17.302Z", "txid": 969224}, {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2022-01-13T12:20:33.284Z", "txid": 808159}, {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2024-12-27T01:08:16.828Z", "txid": 117566}]}
+          application/json: {"data": [{"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2024-03-05T12:58:17.302Z", "txid": 969224}, {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2023-01-13T12:20:33.284Z", "txid": 808159}, {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2025-12-27T01:08:16.828Z", "txid": 117566}]}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
   addMetadataOnTransaction:
@@ -1497,8 +2111,6 @@ examples:
         path:
           ledger: "ledger001"
           address: "users:001"
-      requestBody:
-        application/json: {}
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
@@ -1537,7 +2149,7 @@ examples:
         application/json: {"postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}}
       responses:
         "200":
-          application/json: {"data": [{"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2024-10-22T08:35:30.999Z", "txid": 339139}, {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2022-04-14T18:14:42.519Z", "txid": 159068}, {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2024-12-15T14:36:30.627Z", "txid": 992364}]}
+          application/json: {"data": [{"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2025-10-22T08:35:30.999Z", "txid": 339139}, {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2023-04-14T18:14:42.519Z", "txid": 159068}, {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2025-12-15T14:36:30.627Z", "txid": 992364}]}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
   getAccount:
@@ -1591,7 +2203,7 @@ examples:
           ledger: "ledger001"
       responses:
         "200":
-          application/json: {"data": {"name": "ledger001", "storage": {"migrations": []}}}
+          application/json: {"data": {"name": "ledger001", "storage": {"migrations": [{"name": "migrations:001", "version": "11"}]}}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
   getMapping:
@@ -1612,7 +2224,7 @@ examples:
           txid: 1234
       responses:
         "200":
-          application/json: {"data": {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2023-01-23T03:49:23.782Z", "txid": 921043}}
+          application/json: {"data": {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2024-01-23T03:49:23.782Z", "txid": 921043}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
   listAccounts:
@@ -1646,7 +2258,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"data": {"key": "<value>"}, "date": "2022-01-03T01:52:56.946Z", "hash": "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e", "id": 1234, "type": "SET_METADATA"}, {"data": {"key": "<value>"}, "date": "2024-08-25T01:03:57.835Z", "hash": "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e", "id": 1234, "type": "NEW_TRANSACTION"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"data": {"key": "<value>"}, "date": "2023-01-03T01:52:56.946Z", "hash": "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e", "id": 1234, "type": "SET_METADATA"}, {"data": {"key": "<value>"}, "date": "2025-08-25T01:03:57.835Z", "hash": "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e", "id": 1234, "type": "NEW_TRANSACTION"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
   listTransactions:
@@ -1664,7 +2276,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"postCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "timestamp": "2022-03-19T19:47:16.768Z", "txid": 533792}, {"postCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "timestamp": "2024-01-30T15:40:15.458Z", "txid": 711700}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"postCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "timestamp": "2023-03-19T19:47:16.768Z", "txid": 533792}, {"postCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "timestamp": "2025-01-29T15:40:15.458Z", "txid": 711700}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
   readStats:
@@ -1686,7 +2298,7 @@ examples:
         query: {}
       responses:
         "201":
-          application/json: {"data": {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2023-09-06T21:38:55.965Z", "txid": 107968}}
+          application/json: {"data": {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2024-09-05T21:38:55.965Z", "txid": 107968}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
   runScript:
@@ -1700,293 +2312,19 @@ examples:
         application/json: {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "reference": "order_1234", "vars": {"user": "users:042"}}
       responses:
         "200":
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "account had insufficient funds", "transaction": {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2023-11-05T15:22:00.380Z", "txid": 737293}}
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "account had insufficient funds", "transaction": {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2024-11-04T15:22:00.380Z", "txid": 737293}}
   updateMapping:
     speakeasy-default-update-mapping:
       parameters:
         path:
           ledger: "ledger001"
       requestBody:
-        application/json: {"contracts": [{"account": "users:001"}, {"account": "users:001"}]}
+        application/json: {"contracts": [{"account": "users:001", "expr": {}}, {"account": "users:001", "expr": {}}]}
       responses:
         "200":
-          application/json: {"data": {"contracts": [{"account": "users:001"}, {"account": "users:001"}]}}
+          application/json: {"data": {"contracts": [{"account": "users:001", "expr": {}}, {"account": "users:001", "expr": {}}]}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
-  v2AddMetadataOnTransaction:
-    speakeasy-default-v2-add-metadata-on-transaction:
-      parameters:
-        path:
-          ledger: "ledger001"
-          id: 1234
-        query:
-          dryRun: true
-        header: {}
-      requestBody:
-        application/json: {"admin": "true"}
-      responses:
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2AddMetadataToAccount:
-    speakeasy-default-v2-add-metadata-to-account:
-      parameters:
-        path:
-          ledger: "ledger001"
-          address: "users:001"
-        query:
-          dryRun: true
-        header: {}
-      requestBody:
-        application/json: {"admin": "true"}
-      responses:
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2CountAccounts:
-    speakeasy-default-v2-count-accounts:
-      parameters:
-        path:
-          ledger: "ledger001"
-        query: {}
-      responses:
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2CountTransactions:
-    speakeasy-default-v2-count-transactions:
-      parameters:
-        path:
-          ledger: "ledger001"
-        query: {}
-      responses:
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2CreateBulk:
-    speakeasy-default-v2-create-bulk:
-      parameters:
-        path:
-          ledger: "ledger001"
-      requestBody:
-        application/json: []
-      responses:
-        "200":
-          application/json: {"data": [{"data": {"id": 675402, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "reverted": true, "timestamp": "2024-12-05T13:18:01.588Z"}, "responseType": "<value>"}, {"responseType": "<value>"}]}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2CreateLedger:
-    speakeasy-default-v2-create-ledger:
-      parameters:
-        path:
-          ledger: "ledger001"
-      requestBody:
-        application/json: {"metadata": {"admin": "true"}}
-      responses:
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2CreateTransaction:
-    speakeasy-default-v2-create-transaction:
-      parameters:
-        path:
-          ledger: "ledger001"
-        query:
-          dryRun: true
-        header: {}
-      requestBody:
-        application/json: {"metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}}
-      responses:
-        "200":
-          application/json: {"data": {"id": 958773, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "reverted": true, "timestamp": "2022-05-16T13:36:21.180Z"}}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2DeleteAccountMetadata:
-    speakeasy-default-v2-delete-account-metadata:
-      parameters:
-        path:
-          ledger: "ledger001"
-          address: "6032 Larkin Prairie"
-          key: "foo"
-      responses:
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2DeleteLedgerMetadata:
-    speakeasy-default-v2-delete-ledger-metadata:
-      parameters:
-        path:
-          ledger: "ledger001"
-          key: "foo"
-      responses:
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2DeleteTransactionMetadata:
-    speakeasy-default-v2-delete-transaction-metadata:
-      parameters:
-        path:
-          ledger: "ledger001"
-          id: 1234
-          key: "foo"
-      responses:
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2GetAccount:
-    speakeasy-default-v2-get-account:
-      parameters:
-        path:
-          ledger: "ledger001"
-          address: "users:001"
-        query: {}
-      responses:
-        "200":
-          application/json: {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "metadata": {"admin": "true"}, "volumes": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2GetBalancesAggregated:
-    speakeasy-default-v2-get-balances-aggregated:
-      parameters:
-        path:
-          ledger: "ledger001"
-        query: {}
-      responses:
-        "200":
-          application/json: {"data": {"USD": 100, "EUR": 12}}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2GetInfo:
-    speakeasy-default-v2-get-info:
-      responses:
-        "200":
-          application/json: {"server": "<value>", "version": "<value>"}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-        5XX:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2GetLedger:
-    speakeasy-default-v2-get-ledger:
-      parameters:
-        path:
-          ledger: "ledger001"
-      responses:
-        "200":
-          application/json: {"data": {"addedAt": "2023-11-18T12:48:23.193Z", "bucket": "<value>", "metadata": {"admin": "true"}, "name": "<value>"}}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2GetLedgerInfo:
-    speakeasy-default-v2-get-ledger-info:
-      parameters:
-        path:
-          ledger: "ledger001"
-      responses:
-        "200":
-          application/json: {"data": {"name": "ledger001", "storage": {"migrations": []}}}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2GetTransaction:
-    speakeasy-default-v2-get-transaction:
-      parameters:
-        path:
-          ledger: "ledger001"
-          id: 1234
-        query: {}
-      responses:
-        "200":
-          application/json: {"data": {"id": 425550, "metadata": {"admin": "true"}, "postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "reverted": false, "timestamp": "2022-04-17T00:49:49.334Z"}}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2GetVolumesWithBalances:
-    "":
-      parameters:
-        path:
-          ledger: "ledger001"
-        query:
-          pageSize: 100
-          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
-          groupBy: 3
-      responses:
-        "200":
-          application/json: {"cursor": {"data": [{"account": "60027266", "asset": "<value>", "balance": 81966, "input": 732692, "output": 556436}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2ListAccounts:
-    "":
-      parameters:
-        path:
-          ledger: "ledger001"
-        query:
-          pageSize: 100
-          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
-      responses:
-        "200":
-          application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2ListLedgers:
-    "":
-      parameters:
-        query:
-          pageSize: 100
-          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
-      responses:
-        "200":
-          application/json: {"cursor": {"data": [{"addedAt": "2022-01-16T00:34:46.578Z", "bucket": "<value>", "metadata": {"admin": "true"}, "name": "<value>"}, {"addedAt": "2022-05-12T08:44:48.936Z", "bucket": "<value>", "metadata": {"admin": "true"}, "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2ListLogs:
-    "":
-      parameters:
-        path:
-          ledger: "ledger001"
-        query:
-          pageSize: 100
-          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
-      responses:
-        "200":
-          application/json: {"cursor": {"data": [{"data": {"key": "<value>", "key1": "<value>"}, "date": "2023-12-01T16:09:31.908Z", "hash": "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e", "id": 1234, "type": "NEW_TRANSACTION"}, {"data": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "date": "2022-08-30T04:43:30.606Z", "hash": "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e", "id": 1234, "type": "NEW_TRANSACTION"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2ListTransactions:
-    "":
-      parameters:
-        path:
-          ledger: "ledger001"
-        query:
-          pageSize: 100
-          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
-      responses:
-        "200":
-          application/json: {"cursor": {"data": [{"id": 167393, "metadata": {"admin": "true"}, "postCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "reverted": true, "timestamp": "2023-10-28T21:37:23.611Z"}, {"id": 394350, "metadata": {"admin": "true"}, "postCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "reverted": false, "timestamp": "2024-09-01T03:22:45.704Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2ReadStats:
-    speakeasy-default-v2-read-stats:
-      parameters:
-        path:
-          ledger: "ledger001"
-      responses:
-        "200":
-          application/json: {"data": {"accounts": 477489, "transactions": 941197}}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2RevertTransaction:
-    speakeasy-default-v2-revert-transaction:
-      parameters:
-        path:
-          ledger: "ledger001"
-          id: 1234
-        query: {}
-      responses:
-        "201":
-          application/json: {"data": {"id": 0, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "reverted": true, "timestamp": "2023-02-09T02:41:05.617Z"}}
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  v2UpdateLedgerMetadata:
-    speakeasy-default-v2-update-ledger-metadata:
-      parameters:
-        path:
-          ledger: "ledger001"
-      requestBody:
-        application/json: {"admin": "true"}
-      responses:
-        default:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-        5XX:
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   cancelEvent:
     "":
       parameters:
@@ -1999,21 +2337,21 @@ examples:
     speakeasy-default-create-trigger:
       responses:
         "201":
-          application/json: {"data": {"createdAt": "2023-01-13T03:40:57.557Z", "event": "<value>", "id": "<id>", "workflowID": "<value>"}}
+          application/json: {"data": {"createdAt": "2024-01-13T03:40:57.557Z", "event": "<value>", "id": "<id>", "workflowID": "<id>"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   createWorkflow:
     speakeasy-default-create-workflow:
       responses:
         "201":
-          application/json: {"data": {"config": {"stages": [{}, {"key": "<value>", "key1": "<value>"}, {}]}, "createdAt": "2024-08-28T15:20:54.999Z", "id": "<id>", "updatedAt": "2023-01-22T19:31:50.523Z"}}
+          application/json: {"data": {"config": {"stages": [{}, {"key": "<value>", "key1": "<value>"}, {}]}, "createdAt": "2025-08-28T15:20:54.999Z", "id": "<id>", "updatedAt": "2024-01-22T19:31:50.523Z"}}
         default:
           application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   deleteTrigger:
     speakeasy-default-delete-trigger:
       parameters:
         path:
-          triggerID: "<value>"
+          triggerID: "<id>"
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
@@ -2032,7 +2370,7 @@ examples:
           instanceID: "xxx"
       responses:
         "200":
-          application/json: {"data": {"createdAt": "2024-12-22T05:06:37.217Z", "id": "<id>", "terminated": true, "updatedAt": "2022-04-26T16:05:05.917Z", "workflowID": "<value>"}}
+          application/json: {"data": {"createdAt": "2025-12-22T05:06:37.217Z", "id": "<id>", "terminated": true, "updatedAt": "2023-04-26T16:05:05.917Z", "workflowID": "<id>"}}
         default:
           application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   getInstanceHistory:
@@ -2053,7 +2391,7 @@ examples:
           number: 0
       responses:
         "200":
-          application/json: {"data": [{"attempt": 1195, "input": {"CreateTransaction": {"data": {"metadata": {"admin": "true"}, "postings": [], "reference": "ref:001", "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}}}, "CreditWallet": {"data": {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "sources": []}}, "DebitWallet": {"data": {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "pending": true}}, "StripeTransfer": {"amount": 100, "asset": "USD", "destination": "acct_1Gqj58KZcSIg2N2q", "waitingValidation": false}}, "name": "<value>", "output": {"CreateTransaction": {"data": {"id": 789895, "metadata": {"admin": "true"}, "postings": [], "reference": "ref:001", "reverted": true, "timestamp": "2022-08-06T02:20:05.010Z"}}, "GetAccount": {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}, "metadata": {"admin": "true"}, "volumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}}, "GetPayment": {"data": {"adjustments": [{"absolute": false, "amount": 100, "date": "2024-04-08T02:48:47.425Z", "status": "CANCELLED"}, {"absolute": true, "amount": 100, "date": "2024-11-11T02:51:20.511Z", "status": "PENDING"}], "asset": "USD", "connectorID": "<value>", "createdAt": "2024-02-02T17:45:57.768Z", "destinationAccountID": "<value>", "id": "XXX", "initialAmount": 100, "reference": "<value>", "scheme": "google pay", "sourceAccountID": "<value>", "status": "TERMINATED", "type": "PAY-IN"}}, "ListWallets": {"cursor": {"data": [{"createdAt": "2024-12-06T17:39:27.860Z", "id": "ffbd66e8-3ce0-4c96-a10c-8f8e0fc37bf1", "ledger": "<value>", "metadata": {}, "name": "<value>"}, {"createdAt": "2022-10-08T10:30:27.460Z", "id": "cc38d81a-72b4-44c3-9e12-1021e7d24c49", "ledger": "<value>", "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "name": "<value>"}, {"createdAt": "2022-08-19T00:05:57.472Z", "id": "52b35c03-d99a-4510-8a1f-81f33c690889", "ledger": "<value>", "metadata": {}, "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}, "RevertTransaction": {"data": {"id": 619586, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "reverted": false, "timestamp": "2022-05-29T15:10:35.259Z"}}}, "startedAt": "2022-07-02T11:58:56.305Z", "terminated": false}, {"attempt": 626222, "input": {"CreateTransaction": {"data": {"metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}}}, "CreditWallet": {"data": {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "sources": []}}, "DebitWallet": {"data": {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "pending": true}}, "StripeTransfer": {"amount": 100, "asset": "USD", "destination": "acct_1Gqj58KZcSIg2N2q", "waitingValidation": false}}, "name": "<value>", "output": {"CreateTransaction": {"data": {"id": 378579, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "reverted": false, "timestamp": "2023-04-16T17:34:05.615Z"}}, "GetAccount": {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}, "metadata": {"admin": "true"}, "volumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}}, "GetPayment": {"data": {"adjustments": [{"absolute": true, "amount": 100, "date": "2022-09-29T18:17:48.825Z", "status": "FAILED"}, {"absolute": false, "amount": 100, "date": "2024-10-19T21:59:00.100Z", "status": "TERMINATED"}, {"absolute": true, "amount": 100, "date": "2023-08-28T16:14:46.808Z", "status": "TERMINATED"}], "asset": "USD", "connectorID": "<value>", "createdAt": "2024-01-08T21:12:58.328Z", "destinationAccountID": "<value>", "id": "XXX", "initialAmount": 100, "reference": "<value>", "scheme": "ach", "sourceAccountID": "<value>", "status": "PENDING", "type": "TRANSFER"}}, "ListWallets": {"cursor": {"data": [{"createdAt": "2024-04-30T04:49:25.662Z", "id": "3b1509a5-fe8d-4e70-9916-180485cfaa61", "ledger": "<value>", "metadata": {"key": "<value>"}, "name": "<value>"}, {"createdAt": "2024-06-23T23:43:36.792Z", "id": "a6d8edb3-a103-4920-bfca-b898a403e10c", "ledger": "<value>", "metadata": {}, "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}, "RevertTransaction": {"data": {"id": 155282, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "reverted": false, "timestamp": "2022-12-07T07:38:05.268Z"}}}, "startedAt": "2022-12-17T14:52:10.553Z", "terminated": true}]}
+          application/json: {"data": [{"attempt": 1195, "input": {"CreateTransaction": {"data": {"metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}}}, "CreditWallet": {"data": {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "sources": []}}, "DebitWallet": {"data": {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "pending": true}}, "StripeTransfer": {"amount": 100, "asset": "USD", "destination": "acct_1Gqj58KZcSIg2N2q", "waitingValidation": false}}, "name": "<value>", "output": {"CreateTransaction": {"data": {"id": 789895, "metadata": {"admin": "true"}, "postings": [], "reference": "ref:001", "reverted": true, "timestamp": "2023-08-06T02:20:05.010Z"}}, "GetAccount": {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}, "metadata": {"admin": "true"}, "volumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}}, "GetPayment": {"data": {"adjustments": [{"absolute": false, "amount": 100, "date": "2025-04-08T02:48:47.425Z", "raw": {}, "status": "CANCELLED"}, {"absolute": true, "amount": 100, "date": "2025-11-11T02:51:20.511Z", "raw": {}, "status": "PENDING"}], "asset": "USD", "connectorID": "<id>", "createdAt": "2025-02-01T17:45:57.768Z", "destinationAccountID": "<id>", "id": "XXX", "initialAmount": 100, "metadata": {}, "raw": {}, "reference": "<value>", "scheme": "google pay", "sourceAccountID": "<id>", "status": "TERMINATED", "type": "PAY-IN"}}, "ListWallets": {"cursor": {"data": [{"createdAt": "2025-12-06T17:39:27.860Z", "id": "ffbd66e8-3ce0-4c96-a10c-8f8e0fc37bf1", "ledger": "<value>", "metadata": {}, "name": "<value>"}, {"createdAt": "2023-10-08T10:30:27.460Z", "id": "cc38d81a-72b4-44c3-9e12-1021e7d24c49", "ledger": "<value>", "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "name": "<value>"}, {"createdAt": "2023-08-19T00:05:57.472Z", "id": "52b35c03-d99a-4510-8a1f-81f33c690889", "ledger": "<value>", "metadata": {}, "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}, "RevertTransaction": {"data": {"id": 619586, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "reverted": false, "timestamp": "2023-05-29T15:10:35.259Z"}}}, "startedAt": "2023-07-02T11:58:56.305Z", "terminated": false}, {"attempt": 626222, "input": {"CreateTransaction": {"data": {"metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}}}, "CreditWallet": {"data": {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "sources": []}}, "DebitWallet": {"data": {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "pending": true}}, "StripeTransfer": {"amount": 100, "asset": "USD", "destination": "acct_1Gqj58KZcSIg2N2q", "waitingValidation": false}}, "name": "<value>", "output": {"CreateTransaction": {"data": {"id": 378579, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "reverted": false, "timestamp": "2024-04-15T17:34:05.615Z"}}, "GetAccount": {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}, "metadata": {"admin": "true"}, "volumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}}, "GetPayment": {"data": {"adjustments": [{"absolute": true, "amount": 100, "date": "2023-09-29T18:17:48.825Z", "raw": {}, "status": "FAILED"}, {"absolute": false, "amount": 100, "date": "2025-10-19T21:59:00.100Z", "raw": {}, "status": "TERMINATED"}, {"absolute": true, "amount": 100, "date": "2024-08-27T16:14:46.808Z", "raw": {}, "status": "TERMINATED"}], "asset": "USD", "connectorID": "<id>", "createdAt": "2025-01-07T21:12:58.328Z", "destinationAccountID": "<id>", "id": "XXX", "initialAmount": 100, "metadata": {}, "raw": {}, "reference": "<value>", "scheme": "ach", "sourceAccountID": "<id>", "status": "PENDING", "type": "TRANSFER"}}, "ListWallets": {"cursor": {"data": [{"createdAt": "2025-04-30T04:49:25.662Z", "id": "3b1509a5-fe8d-4e70-9916-180485cfaa61", "ledger": "<value>", "metadata": {"key": "<value>"}, "name": "<value>"}, {"createdAt": "2025-06-23T23:43:36.792Z", "id": "a6d8edb3-a103-4920-bfca-b898a403e10c", "ledger": "<value>", "metadata": {}, "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}, "RevertTransaction": {"data": {"id": 155282, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "reverted": false, "timestamp": "2023-12-07T07:38:05.268Z"}}}, "startedAt": "2023-12-17T14:52:10.553Z", "terminated": true}]}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   getWorkflow:
@@ -2063,7 +2401,7 @@ examples:
           flowId: "xxx"
       responses:
         "200":
-          application/json: {"data": {"config": {"stages": [{}]}, "createdAt": "2024-03-16T03:14:12.617Z", "id": "<id>", "updatedAt": "2023-11-14T22:03:51.333Z"}}
+          application/json: {"data": {"config": {"stages": [{}]}, "createdAt": "2025-03-16T03:14:12.617Z", "id": "<id>", "updatedAt": "2024-11-13T22:03:51.333Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   listInstances:
@@ -2074,7 +2412,7 @@ examples:
           running: true
       responses:
         "200":
-          application/json: {"data": [{"createdAt": "2023-07-18T08:20:08.742Z", "id": "<id>", "terminated": true, "updatedAt": "2022-05-04T22:49:25.313Z", "workflowID": "<value>"}]}
+          application/json: {"data": [{"createdAt": "2024-07-17T08:20:08.742Z", "id": "<id>", "terminated": true, "updatedAt": "2023-05-04T22:49:25.313Z", "workflowID": "<id>"}]}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   listTriggers:
@@ -2088,10 +2426,10 @@ examples:
     speakeasy-default-list-triggers-occurrences:
       parameters:
         path:
-          triggerID: "<value>"
+          triggerID: "<id>"
       responses:
         "200":
-          application/json: {"data": [{"date": "2023-04-12T13:42:33.759Z", "event": {"key": "<value>", "key1": "<value>"}, "triggerID": "<value>"}, {"date": "2022-04-01T04:29:12.442Z", "event": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "triggerID": "<value>"}, {"date": "2023-11-10T03:51:27.854Z", "event": {}, "triggerID": "<value>"}]}
+          application/json: {"data": [{"date": "2024-04-11T13:42:33.759Z", "event": {"key": "<value>", "key1": "<value>"}, "triggerID": "<id>"}, {"date": "2023-04-01T04:29:12.442Z", "event": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "triggerID": "<id>"}, {"date": "2024-11-09T03:51:27.854Z", "event": {}, "triggerID": "<id>"}]}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   listWorkflows:
@@ -2112,10 +2450,10 @@ examples:
     speakeasy-default-read-trigger:
       parameters:
         path:
-          triggerID: "<value>"
+          triggerID: "<id>"
       responses:
         "200":
-          application/json: {"data": {"createdAt": "2023-08-28T14:30:14.944Z", "event": "<value>", "id": "<id>", "workflowID": "<value>"}}
+          application/json: {"data": {"createdAt": "2024-08-27T14:30:14.944Z", "event": "<value>", "id": "<id>", "workflowID": "<id>"}}
         default:
           application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   runWorkflow:
@@ -2126,7 +2464,7 @@ examples:
         query: {}
       responses:
         "201":
-          application/json: {"data": {"createdAt": "2024-11-19T22:37:10.059Z", "id": "<id>", "terminated": false, "updatedAt": "2024-04-08T02:25:10.274Z", "workflowID": "<value>"}}
+          application/json: {"data": {"createdAt": "2025-11-19T22:37:10.059Z", "id": "<id>", "terminated": false, "updatedAt": "2025-04-08T02:25:10.274Z", "workflowID": "<id>"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   sendEvent:
@@ -2137,16 +2475,6 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
-  testTrigger:
-    speakeasy-default-test-trigger:
-      parameters:
-        path:
-          triggerID: "<value>"
-      responses:
-        "200":
-          application/json: {}
-        default:
-          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   v2CancelEvent:
     "":
       parameters:
@@ -2154,29 +2482,29 @@ examples:
           instanceID: "xxx"
       responses:
         default:
-          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   v2CreateTrigger:
     speakeasy-default-v2-create-trigger:
       responses:
         "201":
-          application/json: {"data": {"createdAt": "2022-11-04T03:41:44.517Z", "event": "<value>", "id": "<id>", "workflowID": "<value>"}}
+          application/json: {"data": {"createdAt": "2023-02-06T04:27:27.896Z", "event": "<value>", "id": "<id>", "workflowID": "<id>"}}
         default:
           application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   v2CreateWorkflow:
     speakeasy-default-v2-create-workflow:
       responses:
         "201":
-          application/json: {"data": {"config": {"stages": [{}, {"key": "<value>", "key1": "<value>"}]}, "createdAt": "2022-02-12T15:53:07.805Z", "id": "<id>", "updatedAt": "2022-07-27T16:59:40.630Z"}}
+          application/json: {"data": {"config": {"stages": []}, "createdAt": "2025-09-25T10:50:45.884Z", "id": "<id>", "updatedAt": "2024-03-06T13:06:20.711Z"}}
         default:
-          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   v2DeleteTrigger:
     speakeasy-default-v2-delete-trigger:
       parameters:
         path:
-          triggerID: "<value>"
+          triggerID: "<id>"
       responses:
         default:
-          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
+          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   v2DeleteWorkflow:
     "":
       parameters:
@@ -2184,7 +2512,7 @@ examples:
           flowId: "xxx"
       responses:
         default:
-          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   v2GetInstance:
     "":
       parameters:
@@ -2192,9 +2520,9 @@ examples:
           instanceID: "xxx"
       responses:
         "200":
-          application/json: {"data": {"createdAt": "2022-04-08T17:02:59.978Z", "id": "<id>", "terminated": true, "updatedAt": "2023-01-21T13:55:08.573Z", "workflowID": "<value>"}}
+          application/json: {"data": {"createdAt": "2025-05-27T18:06:07.805Z", "id": "<id>", "terminated": true, "updatedAt": "2024-12-10T23:41:39.935Z", "workflowID": "<id>"}}
         default:
-          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   v2GetInstanceHistory:
     "":
       parameters:
@@ -2202,9 +2530,9 @@ examples:
           instanceID: "xxx"
       responses:
         "200":
-          application/json: {"data": []}
+          application/json: {"data": [{"input": {}, "name": "<value>", "startedAt": "2024-12-21T06:06:34.439Z", "terminated": true}, {"input": {}, "name": "<value>", "startedAt": "2023-03-31T15:11:10.794Z", "terminated": true}]}
         default:
-          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   v2GetInstanceStageHistory:
     "":
       parameters:
@@ -2213,9 +2541,9 @@ examples:
           number: 0
       responses:
         "200":
-          application/json: {"data": [{"attempt": 841766, "input": {"CreateTransaction": {"data": {"metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}}}, "CreditWallet": {"data": {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "sources": []}}, "DebitWallet": {"data": {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "pending": true}}, "StripeTransfer": {"amount": 100, "asset": "USD", "destination": "acct_1Gqj58KZcSIg2N2q", "waitingValidation": false}}, "name": "<value>", "output": {"CreateTransaction": {"data": []}, "GetAccount": {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}, "metadata": {"admin": "true"}, "volumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}}, "GetPayment": {"data": {"adjustments": [{"absolute": true, "amount": 100, "date": "2024-02-16T03:34:37.893Z", "status": "FAILED"}, {"absolute": false, "amount": 100, "date": "2022-12-11T22:33:57.813Z", "status": "TERMINATED"}, {"absolute": true, "amount": 100, "date": "2024-10-24T23:24:46.598Z", "status": "ACTIVE"}], "asset": "USD", "connectorID": "<value>", "createdAt": "2024-08-28T01:33:17.022Z", "destinationAccountID": "<value>", "id": "XXX", "initialAmount": 100, "reference": "<value>", "scheme": "ach", "sourceAccountID": "<value>", "status": "CANCELLED", "type": "PAY-IN"}}, "ListWallets": {"cursor": {"data": [{"createdAt": "2023-06-12T15:56:41.116Z", "id": "4b14fef9-ea6a-4995-9a1d-56fea045f939", "ledger": "<value>", "metadata": {"key": "<value>"}, "name": "<value>"}, {"createdAt": "2024-01-25T19:07:25.922Z", "id": "530f6213-ce0e-4625-8aef-ef49d934bae2", "ledger": "<value>", "metadata": {"key": "<value>", "key1": "<value>"}, "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}}, "startedAt": "2023-10-10T00:50:47.718Z", "terminated": false}]}
+          application/json: {"data": [{"attempt": 814164, "input": {"CreateTransaction": {"data": {"metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}}}, "CreditWallet": {"data": {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "sources": []}}, "DebitWallet": {"data": {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "pending": true}}, "StripeTransfer": {"amount": 100, "asset": "USD", "destination": "acct_1Gqj58KZcSIg2N2q", "waitingValidation": false}}, "name": "<value>", "output": {"CreateTransaction": {"data": [{"metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "timestamp": "2024-02-25T08:16:25.611Z", "txid": 193963}, {"metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "timestamp": "2024-09-11T04:49:03.408Z", "txid": 512399}, {"metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "timestamp": "2025-12-08T02:58:44.541Z", "txid": 505948}]}, "GetAccount": {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}, "metadata": {"admin": "true"}, "volumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}}, "GetPayment": {"data": {"adjustments": [{"absolute": false, "amount": 100, "date": "2024-07-15T14:04:10.735Z", "raw": {}, "status": "FAILED"}, {"absolute": false, "amount": 100, "date": "2024-04-09T23:19:06.573Z", "raw": {}, "status": "FAILED"}], "asset": "USD", "connectorID": "<id>", "createdAt": "2023-05-09T19:53:15.550Z", "destinationAccountID": "<id>", "id": "XXX", "initialAmount": 100, "metadata": {}, "raw": {}, "reference": "<value>", "scheme": "amex", "sourceAccountID": "<id>", "status": "CANCELLED", "type": "PAY-IN"}}, "ListWallets": {"cursor": {"data": [{"createdAt": "2025-11-27T02:08:52.827Z", "id": "5d3894ae-ce7c-44b7-9c48-3e4cba69dcb9", "ledger": "<value>", "metadata": {}, "name": "<value>"}, {"createdAt": "2025-05-20T17:13:48.350Z", "id": "f5d6610e-e457-43cc-b9c2-41fd8f61b492", "ledger": "<value>", "metadata": {}, "name": "<value>"}, {"createdAt": "2023-01-18T03:26:48.477Z", "id": "26a0c2ea-29e8-484a-bef5-0fac9fda12cb", "ledger": "<value>", "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}}, "startedAt": "2023-11-06T21:00:32.040Z", "terminated": false}]}
         default:
-          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
+          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   v2GetServerInfo:
     speakeasy-default-v2-get-server-info:
       responses:
@@ -2230,9 +2558,9 @@ examples:
           flowId: "xxx"
       responses:
         "200":
-          application/json: {"data": {"config": {"stages": [{"key": "<value>", "key1": "<value>", "key2": "<value>"}, {}, {"key": "<value>", "key1": "<value>", "key2": "<value>"}]}, "createdAt": "2022-03-05T08:27:54.243Z", "id": "<id>", "updatedAt": "2022-11-10T19:11:38.261Z"}}
+          application/json: {"data": {"config": {"stages": [{"key": "<value>"}, {"key": "<value>", "key1": "<value>"}, {}]}, "createdAt": "2025-05-07T16:56:33.373Z", "id": "<id>", "updatedAt": "2023-01-19T02:43:34.985Z"}}
         default:
-          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
+          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   v2ListInstances:
     "":
       parameters:
@@ -2243,9 +2571,9 @@ examples:
           running: true
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"createdAt": "2024-02-21T07:16:58.814Z", "id": "<id>", "terminated": true, "updatedAt": "2022-04-08T16:26:11.879Z", "workflowID": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
-          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
+          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   v2ListTriggers:
     "":
       parameters:
@@ -2254,22 +2582,22 @@ examples:
           pageSize: 100
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"createdAt": "2023-11-07T20:11:26.440Z", "event": "<value>", "id": "<id>", "workflowID": "<value>"}, {"createdAt": "2023-06-30T18:03:09.712Z", "event": "<value>", "id": "<id>", "workflowID": "<value>"}, {"createdAt": "2022-07-20T09:26:29.123Z", "event": "<value>", "id": "<id>", "workflowID": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"createdAt": "2024-09-09T22:34:30.799Z", "event": "<value>", "id": "<id>", "workflowID": "<id>"}, {"createdAt": "2025-10-25T17:04:34.359Z", "event": "<value>", "id": "<id>", "workflowID": "<id>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
-          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   v2ListTriggersOccurrences:
     "":
       parameters:
         path:
-          triggerID: "<value>"
+          triggerID: "<id>"
         query:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
           pageSize: 100
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"date": "2022-03-02T19:38:47.199Z", "event": {}, "triggerID": "<value>"}, {"date": "2022-06-13T06:35:59.010Z", "event": {}, "triggerID": "<value>"}, {"date": "2022-10-11T21:30:54.586Z", "event": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "triggerID": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"date": "2025-10-13T07:55:03.028Z", "event": {"key": "<value>", "key1": "<value>"}, "triggerID": "<id>"}, {"date": "2024-10-03T19:33:42.523Z", "event": {}, "triggerID": "<id>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
-          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   v2ListWorkflows:
     "":
       parameters:
@@ -2285,12 +2613,12 @@ examples:
     speakeasy-default-v2-read-trigger:
       parameters:
         path:
-          triggerID: "<value>"
+          triggerID: "<id>"
       responses:
         "200":
-          application/json: {"data": {"createdAt": "2024-07-19T18:33:02.672Z", "event": "<value>", "id": "<id>", "workflowID": "<value>"}}
+          application/json: {"data": {"createdAt": "2023-03-26T21:52:22.792Z", "event": "<value>", "id": "<id>", "workflowID": "<id>"}}
         default:
-          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   v2RunWorkflow:
     "":
       parameters:
@@ -2299,9 +2627,9 @@ examples:
         query: {}
       responses:
         "201":
-          application/json: {"data": {"createdAt": "2022-09-25T14:53:09.271Z", "id": "<id>", "terminated": true, "updatedAt": "2022-04-09T08:35:46.658Z", "workflowID": "<value>"}}
+          application/json: {"data": {"createdAt": "2023-02-10T15:22:37.507Z", "id": "<id>", "terminated": false, "updatedAt": "2024-10-27T10:56:23.429Z", "workflowID": "<id>"}}
         default:
-          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
+          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   v2SendEvent:
     "":
       parameters:
@@ -2310,13 +2638,23 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
+  testTrigger:
+    speakeasy-default-test-trigger:
+      parameters:
+        path:
+          triggerID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   addAccountToPool:
     "":
       parameters:
         path:
           poolId: "XXX"
       requestBody:
-        application/json: {"accountID": "<value>"}
+        application/json: {"accountID": "<id>"}
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
@@ -2328,35 +2666,35 @@ examples:
       requestBody:
         application/json: {"amount": 100, "asset": "USD", "destination": "acct_1Gqj58KZcSIg2N2q", "source": "acct_1Gqj58KZcSIg2N2q"}
       responses:
-        default:
-          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
         "200":
           application/json: {}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   createAccount:
     speakeasy-default-create-account:
       requestBody:
-        application/json: {"connectorID": "<value>", "createdAt": "2024-08-19T02:15:08.152Z", "reference": "<value>", "type": "INTERNAL"}
+        application/json: {"connectorID": "<id>", "createdAt": "2025-08-19T02:15:08.152Z", "reference": "<value>", "type": "INTERNAL"}
       responses:
         "200":
-          application/json: {"data": {"accountName": "<value>", "connectorID": "<value>", "createdAt": "2022-04-28T00:06:23.447Z", "defaultAsset": "<value>", "defaultCurrency": "<value>", "id": "<id>", "metadata": {"key": "<value>", "key1": "<value>"}, "reference": "<value>", "type": "INTERNAL"}}
+          application/json: {"data": {"accountName": "<value>", "connectorID": "<id>", "createdAt": "2023-04-28T00:06:23.447Z", "defaultAsset": "<value>", "defaultCurrency": "<value>", "id": "<id>", "metadata": {"key": "<value>", "key1": "<value>"}, "raw": {}, "reference": "<value>", "type": "INTERNAL"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   createBankAccount:
     speakeasy-default-create-bank-account:
       requestBody:
-        application/json: {"connectorID": "<value>", "country": "GB", "name": "My account"}
+        application/json: {"connectorID": "<id>", "country": "GB", "name": "My account"}
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "country": "Holy See (Vatican City State)", "createdAt": "2023-09-01T23:24:27.067Z", "id": "<id>", "name": "<value>"}}
+          application/json: {"data": {"country": "Holy See (Vatican City State)", "createdAt": "2024-08-31T23:24:27.067Z", "id": "<id>", "name": "<value>"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   createPayment:
     speakeasy-default-create-payment:
       requestBody:
-        application/json: {"amount": 100, "asset": "USD", "connectorID": "<value>", "createdAt": "2024-11-09T01:03:21.011Z", "reference": "<value>", "scheme": "molpay", "status": "REFUNDED_FAILURE", "type": "PAYOUT"}
+        application/json: {"amount": 100, "asset": "USD", "connectorID": "<id>", "createdAt": "2025-11-09T01:03:21.011Z", "reference": "<value>", "scheme": "molpay", "status": "REFUNDED_FAILURE", "type": "PAYOUT"}
       responses:
         "200":
-          application/json: {"data": {"adjustments": [], "amount": 100, "asset": "USD", "connectorID": "<value>", "createdAt": "2022-02-21T01:47:02.496Z", "destinationAccountID": "<value>", "id": "XXX", "initialAmount": 100, "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "reference": "<value>", "scheme": "cup", "sourceAccountID": "<value>", "status": "OTHER", "type": "PAY-IN"}}
+          application/json: {"data": {"adjustments": [], "amount": 100, "asset": "USD", "connectorID": "<id>", "createdAt": "2023-02-21T01:47:02.496Z", "destinationAccountID": "<id>", "id": "XXX", "initialAmount": 100, "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "raw": {}, "reference": "<value>", "scheme": "cup", "sourceAccountID": "<id>", "status": "OTHER", "type": "PAY-IN"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   createPool:
@@ -2371,10 +2709,10 @@ examples:
   createTransferInitiation:
     speakeasy-default-create-transfer-initiation:
       requestBody:
-        application/json: {"amount": 256698, "asset": "USD", "description": "Open-architected heuristic knowledge user", "destinationAccountID": "<value>", "reference": "XXX", "scheduledAt": "2024-05-21T00:04:35.840Z", "sourceAccountID": "<value>", "type": "PAYOUT", "validated": false}
+        application/json: {"amount": 256698, "asset": "USD", "description": "worthy pace vague ick liberalize between um", "destinationAccountID": "<id>", "reference": "XXX", "scheduledAt": "2025-05-02T09:50:03.622Z", "sourceAccountID": "<id>", "type": "PAYOUT", "validated": true}
       responses:
         "200":
-          application/json: {"data": {"amount": 667943, "asset": "USD", "connectorID": "<value>", "createdAt": "2024-12-15T17:54:39.112Z", "description": "Open-architected optimizing core", "destinationAccountID": "<value>", "error": "<value>", "id": "XXX", "initialAmount": 589663, "reference": "<value>", "scheduledAt": "2022-06-20T17:02:24.720Z", "sourceAccountID": "<value>", "status": "ASK_REVERSED", "type": "PAYOUT"}}
+          application/json: {"data": {"amount": 422655, "asset": "USD", "connectorID": "<id>", "createdAt": "2023-01-07T23:05:45.713Z", "description": "jut profane apud newsstand printer fondly", "destinationAccountID": "<id>", "error": "<value>", "id": "XXX", "initialAmount": 923751, "reference": "<value>", "scheduledAt": "2023-01-12T11:17:22.320Z", "sourceAccountID": "<id>", "status": "PROCESSED", "type": "PAYOUT"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   deletePool:
@@ -2399,10 +2737,10 @@ examples:
         path:
           bankAccountId: "XXX"
       requestBody:
-        application/json: {"connectorID": "<value>"}
+        application/json: {"connectorID": "<id>"}
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "country": "Belize", "createdAt": "2022-01-21T13:08:56.229Z", "id": "<id>", "name": "<value>"}}
+          application/json: {"data": {"country": "Belize", "createdAt": "2023-01-21T13:08:56.229Z", "id": "<id>", "name": "<value>"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getAccountBalances:
@@ -2416,7 +2754,7 @@ examples:
           sort: ["date:asc", "status:desc"]
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"accountId": "<value>", "asset": "<value>", "balance": 125462, "createdAt": "2023-01-30T03:48:20.670Z", "currency": "Argentine Peso", "lastUpdatedAt": "2024-07-01T14:03:15.166Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"accountId": "<id>", "asset": "<value>", "balance": 125462, "createdAt": "2024-01-30T03:48:20.670Z", "currency": "Argentine Peso", "lastUpdatedAt": "2025-07-01T14:03:15.166Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getBankAccount:
@@ -2426,7 +2764,7 @@ examples:
           bankAccountId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "country": "Colombia", "createdAt": "2022-03-04T16:16:17.382Z", "id": "<id>", "name": "<value>"}}
+          application/json: {"data": {"country": "Colombia", "createdAt": "2023-03-04T16:16:17.382Z", "id": "<id>", "name": "<value>"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getConnectorTask:
@@ -2437,7 +2775,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<id>", "createdAt": "2023-09-14T18:08:36.551Z", "id": "b8d4a71b-a457-4542-9afd-b17eed3b13ec", "status": "EXPIRED", "updatedAt": "2023-08-01T16:40:57.832Z"}}
+          application/json: {"data": {"connectorID": "<id>", "createdAt": "2025-02-08T17:39:38.418Z", "descriptor": {}, "id": "8d4a71ba-4575-442a-9fdb-17eed3b13ec7", "status": "PENDING", "updatedAt": "2025-04-25T00:27:47.982Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getConnectorTaskV1:
@@ -2449,7 +2787,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<id>", "createdAt": "2024-05-14T09:04:44.604Z", "id": "2592c3a8-ba28-46c9-923f-e1c798f795cd", "status": "CANCELLED", "updatedAt": "2023-05-07T01:38:27.888Z"}}
+          application/json: {"data": {"connectorID": "<id>", "createdAt": "2023-06-20T11:48:17.213Z", "descriptor": {}, "id": "592c3a8b-a286-4c92-93fe-1c798f795cd7", "status": "PENDING", "updatedAt": "2025-11-10T01:58:07.691Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getPayment:
@@ -2459,7 +2797,7 @@ examples:
           paymentId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"adjustments": [{"amount": 100, "createdAt": "2024-11-19T01:14:15.129Z", "reference": "<value>", "status": "EXPIRED"}], "amount": 100, "asset": "USD", "connectorID": "<value>", "createdAt": "2023-02-18T17:18:36.576Z", "destinationAccountID": "<value>", "id": "XXX", "initialAmount": 100, "metadata": {"key": "<value>", "key1": "<value>"}, "reference": "<value>", "scheme": "unionpay", "sourceAccountID": "<value>", "status": "DISPUTE", "type": "TRANSFER"}}
+          application/json: {"data": {"adjustments": [{"amount": 100, "createdAt": "2025-11-19T01:14:15.129Z", "raw": {}, "reference": "<value>", "status": "EXPIRED"}], "amount": 100, "asset": "USD", "connectorID": "<id>", "createdAt": "2024-02-18T17:18:36.576Z", "destinationAccountID": "<id>", "id": "XXX", "initialAmount": 100, "metadata": {"key": "<value>", "key1": "<value>"}, "raw": {}, "reference": "<value>", "scheme": "unionpay", "sourceAccountID": "<id>", "status": "DISPUTE", "type": "TRANSFER"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getPool:
@@ -2478,7 +2816,7 @@ examples:
         path:
           poolId: "XXX"
         query:
-          at: "2023-05-05T06:40:23.119Z"
+          at: "2024-05-04T06:40:23.119Z"
       responses:
         "200":
           application/json: {"data": {"balances": []}}
@@ -2491,7 +2829,7 @@ examples:
           transferId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"amount": 72812, "asset": "USD", "connectorID": "<value>", "createdAt": "2022-06-13T16:04:12.992Z", "description": "Decentralized static instruction set", "destinationAccountID": "<value>", "error": "<value>", "id": "XXX", "initialAmount": 394563, "reference": "<value>", "scheduledAt": "2022-07-01T22:59:29.875Z", "sourceAccountID": "<value>", "status": "ASK_REVERSED", "type": "PAYOUT"}}
+          application/json: {"data": {"amount": 72812, "asset": "USD", "connectorID": "<id>", "createdAt": "2023-06-13T16:04:12.992Z", "description": "lack sick cheerfully minor", "destinationAccountID": "<id>", "error": "<value>", "id": "XXX", "initialAmount": 849995, "reference": "<value>", "scheduledAt": "2025-01-24T01:47:16.422Z", "sourceAccountID": "<id>", "status": "WAITING_FOR_VALIDATION", "type": "PAYOUT"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   installConnector:
@@ -2500,17 +2838,17 @@ examples:
         path:
           connector: "ATLAR"
       requestBody:
-        application/json: {"apiKey": "XXX", "name": "My Stripe Account", "pageSize": 50, "pollingPeriod": "60s"}
+        application/json: {"apiKey": "XXX", "name": "My Wise Account", "pollingPeriod": "60s"}
       responses:
         "201":
-          application/json: {"data": {"connectorID": "<value>"}}
+          application/json: {"data": {"connectorID": "<id>"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   listAllConnectors:
     speakeasy-default-list-all-connectors:
       responses:
         "200":
-          application/json: {"data": [{"connectorID": "<value>", "name": "<value>", "provider": "MONEYCORP"}, {"connectorID": "<value>", "name": "<value>", "provider": "CURRENCY-CLOUD"}]}
+          application/json: {"data": [{"connectorID": "<id>", "name": "<value>", "provider": "MONEYCORP"}, {"connectorID": "<id>", "name": "<value>", "provider": "CURRENCY-CLOUD"}]}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   listBankAccounts:
@@ -2522,7 +2860,7 @@ examples:
           sort: ["date:asc", "status:desc"]
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"connectorID": "<value>", "country": "Bahrain", "createdAt": "2022-02-23T22:10:49.411Z", "id": "<id>", "name": "<value>"}, {"connectorID": "<value>", "country": "Myanmar", "createdAt": "2022-12-30T23:44:22.122Z", "id": "<id>", "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"country": "Bahrain", "createdAt": "2023-02-23T22:10:49.411Z", "id": "<id>", "name": "<value>"}, {"country": "Myanmar", "createdAt": "2023-12-30T23:44:22.122Z", "id": "<id>", "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   listConfigsAvailableConnectors:
@@ -2542,7 +2880,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"connectorID": "<id>", "createdAt": "2024-08-24T00:07:31.663Z", "id": "86943aba-d61f-47aa-80d9-91cf9266dd48", "status": "FAILED", "updatedAt": "2025-07-04T01:56:37.650Z"}, {"connectorID": "<id>", "createdAt": "2024-10-15T18:08:06.313Z", "id": "c3f67835-1bc6-400c-bf3e-ffe2c5cad006", "status": "FAILED", "updatedAt": "2025-12-26T02:29:47.666Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"connectorID": "<id>", "createdAt": "2024-03-30T15:06:52.730Z", "descriptor": {}, "id": "943abad6-1f7a-4a0d-b991-cf9266dd4814", "status": "STOPPED", "updatedAt": "2024-10-15T18:08:06.313Z"}, {"connectorID": "<id>", "createdAt": "2023-09-08T19:27:52.424Z", "descriptor": {}, "id": "f678351b-c600-4cf3-beff-e2c5cad006d4", "status": "FAILED", "updatedAt": "2024-02-03T08:52:20.456Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   listConnectorTasksV1:
@@ -2556,7 +2894,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"connectorID": "<id>", "createdAt": "2025-06-21T02:32:58.781Z", "id": "98119bf1-d77f-40d7-aa95-f6d1de55906f", "status": "EXPIRED", "updatedAt": "2023-05-12T10:18:09.979Z"}, {"connectorID": "<id>", "createdAt": "2023-03-08T11:32:23.574Z", "id": "6a636e77-2b1d-453e-86e1-a0f8d94fbd4d", "status": "REFUNDED", "updatedAt": "2025-05-01T19:24:21.069Z"}, {"connectorID": "<id>", "createdAt": "2025-04-25T04:53:52.895Z", "id": "dc3d5edc-7f3f-4cd2-ab14-3091094b0590", "status": "DISPUTE", "updatedAt": "2025-01-14T12:09:57.416Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"connectorID": "<id>", "createdAt": "2024-08-30T08:25:15.703Z", "descriptor": {}, "id": "119bf1d7-7f0d-47a9-85f6-d1de55906fa5", "status": "STOPPED", "updatedAt": "2023-03-08T11:32:23.574Z"}, {"connectorID": "<id>", "createdAt": "2024-12-26T08:45:38.166Z", "descriptor": {}, "id": "636e772b-1d53-4e6e-b1a0-f8d94fbd4d08", "status": "PENDING", "updatedAt": "2025-04-25T04:53:52.895Z"}, {"connectorID": "<id>", "createdAt": "2025-04-15T21:11:42.740Z", "descriptor": {}, "id": "3d5edc7f-3fcd-42b1-a430-91094b0590aa", "status": "STOPPED", "updatedAt": "2023-02-23T06:58:36.788Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   listPayments:
@@ -2592,7 +2930,7 @@ examples:
           sort: ["date:asc", "status:desc"]
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"amount": 27378, "asset": "USD", "connectorID": "<value>", "createdAt": "2023-04-13T17:55:51.446Z", "description": "Vision-oriented radical function", "destinationAccountID": "<value>", "error": "<value>", "id": "XXX", "initialAmount": 47897, "reference": "<value>", "scheduledAt": "2022-12-15T03:41:36.930Z", "sourceAccountID": "<value>", "status": "ASK_REVERSED", "type": "TRANSFER"}, {"amount": 807297, "asset": "USD", "connectorID": "<value>", "createdAt": "2024-08-31T18:02:45.179Z", "description": "Adaptive dynamic conglomeration", "destinationAccountID": "<value>", "error": "<value>", "id": "XXX", "initialAmount": 788691, "reference": "<value>", "scheduledAt": "2024-10-10T20:02:17.461Z", "sourceAccountID": "<value>", "status": "ASK_RETRIED", "type": "TRANSFER"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"amount": 27378, "asset": "USD", "connectorID": "<id>", "createdAt": "2024-04-12T17:55:51.446Z", "description": "shovel aw scrutinise delicious a machine provided thongs eek pfft", "destinationAccountID": "<id>", "error": "<value>", "id": "XXX", "initialAmount": 955636, "reference": "<value>", "scheduledAt": "2025-12-22T21:51:13.393Z", "sourceAccountID": "<id>", "status": "ASK_REVERSED", "type": "TRANSFER"}, {"amount": 99452, "asset": "USD", "connectorID": "<id>", "createdAt": "2024-05-14T08:21:14.101Z", "description": "vice programme downchange lucky", "destinationAccountID": "<id>", "error": "<value>", "id": "XXX", "initialAmount": 418039, "reference": "<value>", "scheduledAt": "2024-05-12T21:20:56.584Z", "sourceAccountID": "<id>", "status": "PROCESSED", "type": "TRANSFER"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   paymentsgetAccount:
@@ -2602,7 +2940,7 @@ examples:
           accountId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"accountName": "<value>", "connectorID": "<value>", "createdAt": "2023-11-13T03:25:46.461Z", "defaultAsset": "<value>", "defaultCurrency": "<value>", "id": "<id>", "metadata": {}, "reference": "<value>", "type": "UNKNOWN"}}
+          application/json: {"data": {"accountName": "<value>", "connectorID": "<id>", "createdAt": "2024-11-12T03:25:46.461Z", "defaultAsset": "<value>", "defaultCurrency": "<value>", "id": "<id>", "raw": {}, "reference": "<value>", "type": "UNKNOWN"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   paymentsgetServerInfo:
@@ -2642,7 +2980,7 @@ examples:
           connectorId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"apiKey": "XXX", "apiSecret": "XXX", "endpoint": "XXX", "name": "My Modulr Account", "pollingPeriod": "60s"}}
+          application/json: {"data": {"apiKey": "XXX", "apiSecret": "XXX", "endpoint": "XXX", "name": "My Modulr Account", "pollingPeriod": "120s"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   removeAccountFromPool:
@@ -2685,7 +3023,7 @@ examples:
         path:
           transferId: "XXX"
       requestBody:
-        application/json: {"amount": 327549, "asset": "USD", "description": "Multi-channelled responsive capability", "metadata": {"key": "<value>", "key1": "<value>"}, "reference": "XXX"}
+        application/json: {"amount": 327549, "asset": "USD", "description": "till gosh how proselytise worriedly whoa", "reference": "XXX"}
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
@@ -2722,7 +3060,7 @@ examples:
         path:
           bankAccountId: "XXX"
       requestBody:
-        application/json: {"metadata": {}}
+        application/json: {}
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
@@ -2733,7 +3071,7 @@ examples:
           connector: "ADYEN"
           connectorId: "XXX"
       requestBody:
-        application/json: {"apiKey": "XXX", "name": "My Stripe Account", "pageSize": 50, "pollingPeriod": "60s"}
+        application/json: {"apiKey": "XXX", "name": "My Stripe Account", "pageSize": 10, "pollingPeriod": "120s"}
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
@@ -2747,6 +3085,410 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+  v3AddAccountToPool:
+    speakeasy-default-v3-add-account-to-pool:
+      parameters:
+        path:
+          poolID: "<id>"
+          accountID: "<id>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ApprovePaymentInitiation:
+    speakeasy-default-v3-approve-payment-initiation:
+      parameters:
+        path:
+          paymentInitiationID: "<id>"
+      responses:
+        "202":
+          application/json: {"data": {"taskID": "<id>"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3CreateAccount:
+    speakeasy-default-v3-create-account:
+      responses:
+        "201":
+          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-08-09T11:34:36.410Z", "id": "<id>", "provider": "<value>", "raw": {}, "reference": "<value>", "type": "UNKNOWN"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3CreateBankAccount:
+    speakeasy-default-v3-create-bank-account:
+      responses:
+        "201":
+          application/json: {"data": "<value>"}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3CreatePayment:
+    speakeasy-default-v3-create-payment:
+      responses:
+        "201":
+          application/json: {"data": {"amount": 252554, "asset": "<value>", "connectorID": "<value>", "createdAt": "2024-12-31T19:31:25.838Z", "id": "<id>", "initialAmount": 581056, "provider": "<value>", "reference": "<value>", "scheme": "<value>", "status": "REFUNDED_FAILURE", "type": "UNKNOWN"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3CreatePool:
+    speakeasy-default-v3-create-pool:
+      responses:
+        "201":
+          application/json: {"data": "<value>"}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3DeletePaymentInitiation:
+    speakeasy-default-v3-delete-payment-initiation:
+      parameters:
+        path:
+          paymentInitiationID: "<id>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3DeletePool:
+    speakeasy-default-v3-delete-pool:
+      parameters:
+        path:
+          poolID: "<id>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ForwardBankAccount:
+    speakeasy-default-v3-forward-bank-account:
+      parameters:
+        path:
+          bankAccountID: "<id>"
+      responses:
+        "202":
+          application/json: {"data": {"taskID": "<id>"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3GetAccount:
+    speakeasy-default-v3-get-account:
+      parameters:
+        path:
+          accountID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-06-03T07:35:25.500Z", "id": "<id>", "provider": "<value>", "raw": {}, "reference": "<value>", "type": "INTERNAL"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3GetAccountBalances:
+    "":
+      parameters:
+        path:
+          accountID: "<id>"
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [{"accountID": "<id>", "asset": "<value>", "balance": 401303, "createdAt": "2023-07-10T00:38:07.826Z", "lastUpdatedAt": "2025-07-01T02:16:38.081Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3GetBankAccount:
+    speakeasy-default-v3-get-bank-account:
+      parameters:
+        path:
+          bankAccountID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"createdAt": "2023-11-05T20:09:51.675Z", "id": "<id>", "name": "<value>"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3GetConnectorConfig:
+    speakeasy-default-v3-get-connector-config:
+      parameters:
+        path:
+          connectorID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"apiKey": "<value>", "apiSecret": "<value>", "endpoint": "<value>", "name": "<value>", "pageSize": "25", "pollingPeriod": "2m"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3GetConnectorSchedule:
+    speakeasy-default-v3-get-connector-schedule:
+      parameters:
+        path:
+          connectorID: "<id>"
+          scheduleID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-12-11T20:45:37.151Z", "id": "<id>"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3GetInfo:
+    speakeasy-default-v3-get-info:
+      responses:
+        "200":
+          application/json: {"version": "<value>"}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3GetPayment:
+    speakeasy-default-v3-get-payment:
+      parameters:
+        path:
+          paymentID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"amount": 445486, "asset": "<value>", "connectorID": "<value>", "createdAt": "2025-01-05T13:03:22.264Z", "id": "<id>", "initialAmount": 485409, "provider": "<value>", "reference": "<value>", "scheme": "<value>", "status": "DISPUTE", "type": "PAYOUT"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3GetPaymentInitiation:
+    speakeasy-default-v3-get-payment-initiation:
+      parameters:
+        path:
+          paymentInitiationID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"amount": 42625, "asset": "<value>", "connectorID": "<value>", "createdAt": "2025-07-18T19:40:16.233Z", "description": "off of between vacantly though instead gazebo", "id": "<id>", "reference": "<value>", "scheduledAt": "2025-04-28T02:58:21.926Z", "status": "REVERSE_FAILED", "type": "TRANSFER"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3GetPool:
+    speakeasy-default-v3-get-pool:
+      parameters:
+        path:
+          poolID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"createdAt": "2024-04-23T06:52:21.825Z", "id": "<id>", "name": "<value>", "poolAccounts": ["<value>"]}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3GetPoolBalances:
+    speakeasy-default-v3-get-pool-balances:
+      parameters:
+        path:
+          poolID: "<id>"
+        query: {}
+      responses:
+        "200":
+          application/json: {"data": [{"amount": 857230, "asset": "<value>"}]}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3GetTask:
+    speakeasy-default-v3-get-task:
+      parameters:
+        path:
+          taskID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"createdAt": "2025-04-18T04:31:16.226Z", "id": "<id>", "status": "FAILED", "updatedAt": "2023-03-17T17:53:01.920Z"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3InitiatePayment:
+    speakeasy-default-v3-initiate-payment:
+      parameters:
+        query:
+          noValidation: false
+      responses:
+        "202":
+          application/json: {"data": {}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3InstallConnector:
+    speakeasy-default-v3-install-connector:
+      parameters:
+        path:
+          connector: "<value>"
+      responses:
+        "202":
+          application/json: {"data": "<value>"}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ListAccounts:
+    "":
+      parameters:
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ListBankAccounts:
+    "":
+      parameters:
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [{"createdAt": "2023-04-07T16:35:38.005Z", "id": "<id>", "name": "<value>"}, {"createdAt": "2024-07-11T05:58:56.792Z", "id": "<id>", "name": "<value>"}, {"createdAt": "2025-10-15T15:52:02.711Z", "id": "<id>", "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ListConnectorConfigs:
+    speakeasy-default-v3-list-connector-configs:
+      responses:
+        "200":
+          application/json: {"data": {"connector": {"key": {"dataType": "set", "required": false}}}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ListConnectorScheduleInstances:
+    "":
+      parameters:
+        path:
+          connectorID: "<id>"
+          scheduleID: "<id>"
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [{"connectorID": "<value>", "createdAt": "2024-02-15T21:59:37.501Z", "id": "<id>", "scheduleID": "<id>", "terminated": false}, {"connectorID": "<value>", "createdAt": "2023-09-07T21:29:03.593Z", "id": "<id>", "scheduleID": "<id>", "terminated": true}, {"connectorID": "<value>", "createdAt": "2023-02-18T04:47:10.180Z", "id": "<id>", "scheduleID": "<id>", "terminated": false}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ListConnectorSchedules:
+    "":
+      parameters:
+        path:
+          connectorID: "<id>"
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [{"connectorID": "<value>", "createdAt": "2023-12-07T01:38:17.309Z", "id": "<id>"}, {"connectorID": "<value>", "createdAt": "2023-11-04T20:51:22.049Z", "id": "<id>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ListConnectors:
+    "":
+      parameters:
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [{"config": {}, "createdAt": "2025-09-02T22:23:44.264Z", "id": "<id>", "name": "<value>", "provider": "<value>", "reference": "<value>", "scheduledForDeletion": false}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ListPaymentInitiationAdjustments:
+    "":
+      parameters:
+        path:
+          paymentInitiationID: "<id>"
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [{"createdAt": "2023-08-26T07:31:32.403Z", "id": "<id>", "status": "PROCESSING"}, {"createdAt": "2025-06-06T23:22:17.845Z", "id": "<id>", "status": "FAILED"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ListPaymentInitiationRelatedPayments:
+    "":
+      parameters:
+        path:
+          paymentInitiationID: "<id>"
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [{"amount": 576099, "asset": "<value>", "connectorID": "<value>", "createdAt": "2024-11-01T18:01:53.016Z", "id": "<id>", "initialAmount": 927729, "provider": "<value>", "reference": "<value>", "scheme": "<value>", "status": "CAPTURE_FAILED", "type": "PAYOUT"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ListPaymentInitiations:
+    "":
+      parameters:
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [{"amount": 203475, "asset": "<value>", "connectorID": "<value>", "createdAt": "2024-03-08T03:55:10.091Z", "description": "inside pessimistic small adrenalin reach measly boohoo eek soap amid", "id": "<id>", "reference": "<value>", "scheduledAt": "2025-11-27T20:49:45.578Z", "status": "UNKNOWN", "type": "TRANSFER"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ListPayments:
+    "":
+      parameters:
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [{"amount": 229776, "asset": "<value>", "connectorID": "<value>", "createdAt": "2025-01-18T18:30:54.062Z", "id": "<id>", "initialAmount": 182258, "provider": "<value>", "reference": "<value>", "scheme": "<value>", "status": "SUCCEEDED", "type": "PAY-IN"}, {"amount": 284985, "asset": "<value>", "connectorID": "<value>", "createdAt": "2024-11-11T08:40:21.314Z", "id": "<id>", "initialAmount": 529755, "provider": "<value>", "reference": "<value>", "scheme": "<value>", "status": "REFUNDED", "type": "OTHER"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ListPools:
+    "":
+      parameters:
+        query:
+          pageSize: 100
+          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      responses:
+        "200":
+          application/json: {"cursor": {"data": [{"createdAt": "2025-02-08T15:23:10.325Z", "id": "<id>", "name": "<value>", "poolAccounts": []}, {"createdAt": "2024-04-12T20:16:24.210Z", "id": "<id>", "name": "<value>", "poolAccounts": ["<value>"]}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3RejectPaymentInitiation:
+    speakeasy-default-v3-reject-payment-initiation:
+      parameters:
+        path:
+          paymentInitiationID: "<id>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3RemoveAccountFromPool:
+    speakeasy-default-v3-remove-account-from-pool:
+      parameters:
+        path:
+          poolID: "<id>"
+          accountID: "<id>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ResetConnector:
+    speakeasy-default-v3-reset-connector:
+      parameters:
+        path:
+          connectorID: "<id>"
+      responses:
+        "202":
+          application/json: {"data": "<value>"}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3RetryPaymentInitiation:
+    speakeasy-default-v3-retry-payment-initiation:
+      parameters:
+        path:
+          paymentInitiationID: "<id>"
+      responses:
+        "202":
+          application/json: {"data": {"taskID": "<id>"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ReversePaymentInitiation:
+    speakeasy-default-v3-reverse-payment-initiation:
+      parameters:
+        path:
+          paymentInitiationID: "<id>"
+      responses:
+        "202":
+          application/json: {"data": {}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3UninstallConnector:
+    speakeasy-default-v3-uninstall-connector:
+      parameters:
+        path:
+          connectorID: "<id>"
+      responses:
+        "202":
+          application/json: {"data": {"taskID": "<id>"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3UpdateBankAccountMetadata:
+    speakeasy-default-v3-update-bank-account-metadata:
+      parameters:
+        path:
+          bankAccountID: "<id>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3UpdatePaymentMetadata:
+    speakeasy-default-v3-update-payment-metadata:
+      parameters:
+        path:
+          paymentID: "<id>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
   createPolicy:
     speakeasy-default-create-policy:
       requestBody:
@@ -2841,7 +3583,7 @@ examples:
     speakeasy-default-confirm-hold:
       parameters:
         path:
-          hold_id: "<value>"
+          hold_id: "<id>"
         header: {}
       requestBody:
         application/json: {"amount": 100, "final": true}
@@ -2863,7 +3605,7 @@ examples:
     speakeasy-default-create-wallet:
       responses:
         "201":
-          application/json: {"data": {"createdAt": "2023-08-08T07:13:48.961Z", "id": "28d5e2b6-b532-4ea9-ac35-db845f4bcf19", "ledger": "<value>", "metadata": {"key": "<value>"}, "name": "<value>"}}
+          application/json: {"data": {"createdAt": "2024-08-07T07:13:48.961Z", "id": "28d5e2b6-b532-4ea9-ac35-db845f4bcf19", "ledger": "<value>", "metadata": {"key": "<value>"}, "name": "<value>"}}
         default:
           application/json: {"errorCode": "HOLD_CLOSED", "errorMessage": "<value>"}
   creditWallet:
@@ -2887,7 +3629,7 @@ examples:
         application/json: {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "pending": true}
       responses:
         "201":
-          application/json: {"data": {"description": "Ergonomic regional concept", "id": "e31c9764-aff0-4e32-8438-642504cfcb20", "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "walletID": "<value>"}}
+          application/json: {"data": {"description": "supposing any instead underachieve", "id": "cb202f54-4467-4509-9820-d52190eb2ad6", "metadata": {}, "walletID": "<id>"}}
         default:
           application/json: {"errorCode": "INTERNAL_ERROR", "errorMessage": "<value>"}
   getBalance:
@@ -2905,12 +3647,12 @@ examples:
     speakeasy-default-get-hold:
       parameters:
         path:
-          holdID: "<value>"
+          holdID: "<id>"
       responses:
         "200":
-          application/json: {"data": {"description": "Configurable tertiary structure", "id": "293a3cbc-52a6-4577-8e13-fcd41399917b", "metadata": {"key": "<value>"}, "originalAmount": 100, "remaining": 10, "walletID": "<value>"}}
+          application/json: {"data": {"description": "fooey lest vivaciously", "id": "cd413999-17b3-47c4-95d9-940e9d32963a", "metadata": {"key": "<value>", "key1": "<value>"}, "originalAmount": 100, "remaining": 10, "walletID": "<id>"}}
         default:
-          application/json: {"errorCode": "HOLD_CLOSED", "errorMessage": "<value>"}
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   getHolds:
     "":
       parameters:
@@ -2921,9 +3663,9 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"description": "Right-sized contextually-based installation", "id": "e7f02ffb-79e0-4c5e-8972-b9f4fccdfc8a", "metadata": {"key": "<value>"}, "walletID": "<value>"}, {"description": "Automated scalable productivity", "id": "f786b1b3-d187-4d63-8f89-bfedd25071f7", "metadata": {"key": "<value>", "key1": "<value>"}, "walletID": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"description": "anti all mmm thorough badly what once self-assured bitterly", "id": "71f718aa-973f-455f-8164-685872daf907", "metadata": {}, "walletID": "<id>"}, {"description": "veg before reservation an", "id": "53a74377-2ea1-48a5-98b0-670a65f47f18", "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "walletID": "<id>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
-          application/json: {"errorCode": "INSUFFICIENT_FUND", "errorMessage": "<value>"}
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   getTransactions:
     "":
       parameters:
@@ -2933,7 +3675,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"id": 417503, "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "postCommitVolumes": {}, "postings": [], "preCommitVolumes": {"key": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}, "key1": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "timestamp": "2024-04-16T13:08:57.024Z"}, {"id": 751740, "metadata": {"key": "<value>", "key1": "<value>"}, "postCommitVolumes": {}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {}, "reference": "ref:001", "timestamp": "2022-04-29T22:11:40.809Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"id": 417503, "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "postCommitVolumes": {"key": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}, "postings": [], "preCommitVolumes": {"key": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}, "key1": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "timestamp": "2025-04-16T13:08:57.024Z"}, {"id": 751740, "metadata": {"key": "<value>", "key1": "<value>"}, "postCommitVolumes": {"key": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "preCommitVolumes": {"key": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "timestamp": "2023-04-29T22:11:40.809Z"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   getWallet:
@@ -2943,7 +3685,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"data": {"balances": {"main": {"assets": {"key": 571864}}}, "createdAt": "2023-11-14T05:25:13.185Z", "id": "bec36009-93cb-484f-9620-8873422591bc", "ledger": "<value>", "metadata": {"key": "<value>"}, "name": "<value>"}}
+          application/json: {"data": {"balances": {"main": {"assets": {"key": 571864}}}, "createdAt": "2024-11-13T05:25:13.185Z", "id": "bec36009-93cb-484f-9620-8873422591bc", "ledger": "<value>", "metadata": {"key": "<value>"}, "name": "<value>"}}
         default:
           application/json: {"errorCode": "INSUFFICIENT_FUND", "errorMessage": "<value>"}
   getWalletSummary:
@@ -2975,7 +3717,7 @@ examples:
           expand: "balances"
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"createdAt": "2022-02-28T12:24:12.671Z", "id": "acf390dc-7f51-40b9-8bec-968d375f0c57", "ledger": "<value>", "metadata": {"key": "<value>", "key1": "<value>"}, "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"createdAt": "2023-02-28T12:24:12.671Z", "id": "acf390dc-7f51-40b9-8bec-968d375f0c57", "ledger": "<value>", "metadata": {"key": "<value>", "key1": "<value>"}, "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   updateWallet:
@@ -2991,7 +3733,7 @@ examples:
     speakeasy-default-void-hold:
       parameters:
         path:
-          hold_id: "<value>"
+          hold_id: "<id>"
         header: {}
       responses:
         default:
@@ -3010,7 +3752,7 @@ examples:
           id: "4997257d-dfb6-445b-929c-cbe2ab182818"
       responses:
         "200":
-          application/json: {"data": {"active": true, "createdAt": "2024-04-13T00:54:15.165Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "614a5830-bda0-4680-b1ea-6090dd8532c6", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2022-07-24T14:37:40.680Z"}}
+          application/json: {"data": {"active": true, "createdAt": "2025-04-13T00:54:15.165Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "614a5830-bda0-4680-b1ea-6090dd8532c6", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2023-07-24T14:37:40.680Z"}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   changeConfigSecret:
@@ -3022,7 +3764,7 @@ examples:
         application/json: {"secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3"}
       responses:
         "200":
-          application/json: {"data": {"active": true, "createdAt": "2022-12-07T06:10:53.379Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "8470f220-7a70-4ef7-9be4-3432827b4f03", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2022-11-27T20:14:58.331Z"}}
+          application/json: {"data": {"active": true, "createdAt": "2023-12-07T06:10:53.379Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "8470f220-7a70-4ef7-9be4-3432827b4f03", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2023-11-27T20:14:58.331Z"}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   deactivateConfig:
@@ -3032,7 +3774,7 @@ examples:
           id: "4997257d-dfb6-445b-929c-cbe2ab182818"
       responses:
         "200":
-          application/json: {"data": {"active": true, "createdAt": "2022-11-29T11:20:57.032Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "85e5b25b-022b-4bd7-8c33-fbf5950d0f8f", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2023-05-27T16:43:50.510Z"}}
+          application/json: {"data": {"active": true, "createdAt": "2023-11-29T11:20:57.032Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "85e5b25b-022b-4bd7-8c33-fbf5950d0f8f", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2024-05-26T16:43:50.510Z"}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   deleteConfig:
@@ -3051,7 +3793,7 @@ examples:
           endpoint: "https://example.com"
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"active": true, "createdAt": "2022-10-03T21:24:00.401Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "f1f67d72-d5d3-4e22-8f79-851fcbdc0d83", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2022-02-14T18:49:51.264Z"}], "hasMore": false}}
+          application/json: {"cursor": {"data": [{"active": true, "createdAt": "2023-10-03T21:24:00.401Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "f1f67d72-d5d3-4e22-8f79-851fcbdc0d83", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2023-02-14T18:49:51.264Z"}], "hasMore": false}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   insertConfig:
@@ -3060,7 +3802,7 @@ examples:
         application/json: {"endpoint": "https://example.com", "eventTypes": ["TYPE1"], "name": "customer_payment", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3"}
       responses:
         "200":
-          application/json: {"data": {"active": true, "createdAt": "2024-08-30T14:01:19.887Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "0f756b09-5b38-465b-b8f2-983f240d4f5c", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2023-08-10T10:29:51.537Z"}}
+          application/json: {"data": {"active": true, "createdAt": "2025-08-30T14:01:19.887Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "0f756b09-5b38-465b-b8f2-983f240d4f5c", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2024-08-09T10:29:51.537Z"}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   testConfig:
@@ -3070,25 +3812,18 @@ examples:
           id: "4997257d-dfb6-445b-929c-cbe2ab182818"
       responses:
         "200":
-          application/json: {"data": {"config": {"active": true, "createdAt": "2023-05-30T09:53:58.891Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "86054b6d-7f7e-4fb8-8f2f-b6a855cea0c7", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2022-04-25T07:02:46.380Z"}, "createdAt": "2024-06-16T21:37:32.643Z", "id": "c7827ed3-469f-4c48-a7d1-c853b7f1271e", "payload": "{\"data\":\"test\"}", "retryAttempt": 1, "status": "success", "statusCode": 200, "updatedAt": "2023-10-19T10:47:20.940Z", "webhookID": "05f47970-be91-4384-9266-38e01d5768d6"}}
+          application/json: {"data": {"config": {"active": true, "createdAt": "2024-05-29T09:53:58.891Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "86054b6d-7f7e-4fb8-8f2f-b6a855cea0c7", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2023-04-25T07:02:46.380Z"}, "createdAt": "2025-06-16T21:37:32.643Z", "id": "c7827ed3-469f-4c48-a7d1-c853b7f1271e", "payload": "{\"data\":\"test\"}", "retryAttempt": 1, "status": "success", "statusCode": 200, "updatedAt": "2024-10-18T10:47:20.940Z", "webhookID": "05f47970-be91-4384-9266-38e01d5768d6"}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
-  getServerInfo:
-    speakeasy-default-get-server-info:
-      responses:
-        "200":
-          application/json: {"version": "<value>"}
-  v2ExportLogs:
-    speakeasy-default-v2-export-logs:
+  updateConfig:
+    speakeasy-default-update-config:
       parameters:
         path:
-          ledger: "ledger001"
-  v2ImportLogs:
-    speakeasy-default-v2-import-logs:
-      parameters:
-        path:
-          ledger: "ledger001"
+          id: "4997257d-dfb6-445b-929c-cbe2ab182818"
+      requestBody:
+        application/json: {"endpoint": "https://example.com", "eventTypes": ["TYPE1"], "name": "customer_payment", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3"}
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+examplesVersion: 1.0.0
 generatedTests: {}

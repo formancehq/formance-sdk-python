@@ -176,7 +176,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.orchestration.v2.delete_trigger(request={
-        "trigger_id": "<value>",
+        "trigger_id": "<id>",
     })
 
     assert res is not None
@@ -592,7 +592,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.orchestration.v2.list_triggers_occurrences(request={
-        "trigger_id": "<value>",
+        "trigger_id": "<id>",
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "page_size": 100,
     })
@@ -687,7 +687,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.orchestration.v2.read_trigger(request={
-        "trigger_id": "<value>",
+        "trigger_id": "<id>",
     })
 
     assert res.v2_read_trigger_response is not None
@@ -825,7 +825,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.orchestration.v2.test_trigger(request={
-        "trigger_id": "<value>",
+        "trigger_id": "<id>",
     })
 
     assert res.v2_test_trigger_response is not None

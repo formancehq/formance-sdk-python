@@ -297,6 +297,12 @@ from .orchestrationtransaction import (
     OrchestrationTransaction,
     OrchestrationTransactionTypedDict,
 )
+from .orchestrationv2posttransaction import (
+    OrchestrationV2PostTransaction,
+    OrchestrationV2PostTransactionScript,
+    OrchestrationV2PostTransactionScriptTypedDict,
+    OrchestrationV2PostTransactionTypedDict,
+)
 from .orchestrationv2transaction import (
     OrchestrationV2Transaction,
     OrchestrationV2TransactionTypedDict,
@@ -487,6 +493,7 @@ from .taskscursor import (
     TasksCursorDataTypedDict,
     TasksCursorTypedDict,
 )
+from .taskstatus import TaskStatus
 from .taskstripe import (
     TaskStripe,
     TaskStripeDescriptor,
@@ -681,7 +688,6 @@ from .v2creditwalletrequest import V2CreditWalletRequest, V2CreditWalletRequestT
 from .v2debitwalletrequest import V2DebitWalletRequest, V2DebitWalletRequestTypedDict
 from .v2errorresponse import V2ErrorResponse, V2ErrorResponseTypedDict
 from .v2errorsenum import V2ErrorsEnum
-from .v2expandedtransaction import V2ExpandedTransaction, V2ExpandedTransactionTypedDict
 from .v2getledgerresponse import V2GetLedgerResponse, V2GetLedgerResponseTypedDict
 from .v2gettransactionresponse import (
     V2GetTransactionResponse,
@@ -887,6 +893,259 @@ from .v2workflowinstancehistorystageoutput import (
     V2WorkflowInstanceHistoryStageOutput,
     V2WorkflowInstanceHistoryStageOutputTypedDict,
 )
+from .v3account import (
+    V3Account,
+    V3AccountRaw,
+    V3AccountRawTypedDict,
+    V3AccountTypedDict,
+)
+from .v3accountscursorresponse import (
+    V3AccountsCursorResponse,
+    V3AccountsCursorResponseCursor,
+    V3AccountsCursorResponseCursorTypedDict,
+    V3AccountsCursorResponseTypedDict,
+)
+from .v3accounttypeenum import V3AccountTypeEnum
+from .v3adyenconfig import V3AdyenConfig, V3AdyenConfigTypedDict
+from .v3approvepaymentinitiationresponse import (
+    V3ApprovePaymentInitiationResponse,
+    V3ApprovePaymentInitiationResponseData,
+    V3ApprovePaymentInitiationResponseDataTypedDict,
+    V3ApprovePaymentInitiationResponseTypedDict,
+)
+from .v3atlarconfig import V3AtlarConfig, V3AtlarConfigTypedDict
+from .v3balance import V3Balance, V3BalanceTypedDict
+from .v3balancescursorresponse import (
+    V3BalancesCursorResponse,
+    V3BalancesCursorResponseCursor,
+    V3BalancesCursorResponseCursorTypedDict,
+    V3BalancesCursorResponseTypedDict,
+)
+from .v3bankaccount import V3BankAccount, V3BankAccountTypedDict
+from .v3bankaccountrelatedaccount import (
+    V3BankAccountRelatedAccount,
+    V3BankAccountRelatedAccountTypedDict,
+)
+from .v3bankaccountscursorresponse import (
+    V3BankAccountsCursorResponse,
+    V3BankAccountsCursorResponseCursor,
+    V3BankAccountsCursorResponseCursorTypedDict,
+    V3BankAccountsCursorResponseTypedDict,
+)
+from .v3bankingcircleconfig import V3BankingcircleConfig, V3BankingcircleConfigTypedDict
+from .v3configinforesponse import V3ConfigInfoResponse, V3ConfigInfoResponseTypedDict
+from .v3connector import (
+    V3Connector,
+    V3ConnectorSchemasConfig,
+    V3ConnectorSchemasConfigTypedDict,
+    V3ConnectorTypedDict,
+)
+from .v3connectorconfig import V3ConnectorConfig, V3ConnectorConfigTypedDict
+from .v3connectorconfigsresponse import (
+    V3ConnectorConfigsResponse,
+    V3ConnectorConfigsResponseConnector,
+    V3ConnectorConfigsResponseConnectorTypedDict,
+    V3ConnectorConfigsResponseData,
+    V3ConnectorConfigsResponseDataTypedDict,
+    V3ConnectorConfigsResponseKey,
+    V3ConnectorConfigsResponseKeyTypedDict,
+    V3ConnectorConfigsResponseTypedDict,
+)
+from .v3connectorscheduleinstancescursorresponse import (
+    V3ConnectorScheduleInstancesCursorResponse,
+    V3ConnectorScheduleInstancesCursorResponseCursor,
+    V3ConnectorScheduleInstancesCursorResponseCursorTypedDict,
+    V3ConnectorScheduleInstancesCursorResponseTypedDict,
+)
+from .v3connectorscheduleresponse import (
+    V3ConnectorScheduleResponse,
+    V3ConnectorScheduleResponseTypedDict,
+)
+from .v3connectorschedulescursorresponse import (
+    V3ConnectorSchedulesCursorResponse,
+    V3ConnectorSchedulesCursorResponseCursor,
+    V3ConnectorSchedulesCursorResponseCursorTypedDict,
+    V3ConnectorSchedulesCursorResponseTypedDict,
+)
+from .v3connectorscursorresponse import (
+    V3ConnectorsCursorResponse,
+    V3ConnectorsCursorResponseCursor,
+    V3ConnectorsCursorResponseCursorTypedDict,
+    V3ConnectorsCursorResponseTypedDict,
+)
+from .v3createaccountrequest import (
+    V3CreateAccountRequest,
+    V3CreateAccountRequestTypedDict,
+)
+from .v3createaccountresponse import (
+    V3CreateAccountResponse,
+    V3CreateAccountResponseTypedDict,
+)
+from .v3createbankaccountrequest import (
+    V3CreateBankAccountRequest,
+    V3CreateBankAccountRequestTypedDict,
+)
+from .v3createbankaccountresponse import (
+    V3CreateBankAccountResponse,
+    V3CreateBankAccountResponseTypedDict,
+)
+from .v3createpaymentadjustmentrequest import (
+    V3CreatePaymentAdjustmentRequest,
+    V3CreatePaymentAdjustmentRequestTypedDict,
+)
+from .v3createpaymentrequest import (
+    V3CreatePaymentRequest,
+    V3CreatePaymentRequestTypedDict,
+)
+from .v3createpaymentresponse import (
+    V3CreatePaymentResponse,
+    V3CreatePaymentResponseTypedDict,
+)
+from .v3createpoolrequest import V3CreatePoolRequest, V3CreatePoolRequestTypedDict
+from .v3createpoolresponse import V3CreatePoolResponse, V3CreatePoolResponseTypedDict
+from .v3currencycloudconfig import V3CurrencycloudConfig, V3CurrencycloudConfigTypedDict
+from .v3dummypayconfig import V3DummypayConfig, V3DummypayConfigTypedDict
+from .v3errorsenum import V3ErrorsEnum
+from .v3forwardbankaccountrequest import (
+    V3ForwardBankAccountRequest,
+    V3ForwardBankAccountRequestTypedDict,
+)
+from .v3forwardbankaccountresponse import (
+    V3ForwardBankAccountResponse,
+    V3ForwardBankAccountResponseData,
+    V3ForwardBankAccountResponseDataTypedDict,
+    V3ForwardBankAccountResponseTypedDict,
+)
+from .v3genericconfig import V3GenericConfig, V3GenericConfigTypedDict
+from .v3getaccountresponse import V3GetAccountResponse, V3GetAccountResponseTypedDict
+from .v3getbankaccountresponse import (
+    V3GetBankAccountResponse,
+    V3GetBankAccountResponseTypedDict,
+)
+from .v3getconnectorconfigresponse import (
+    V3GetConnectorConfigResponse,
+    V3GetConnectorConfigResponseTypedDict,
+)
+from .v3getpaymentinitiationresponse import (
+    V3GetPaymentInitiationResponse,
+    V3GetPaymentInitiationResponseTypedDict,
+)
+from .v3getpaymentresponse import V3GetPaymentResponse, V3GetPaymentResponseTypedDict
+from .v3getpoolresponse import V3GetPoolResponse, V3GetPoolResponseTypedDict
+from .v3gettaskresponse import V3GetTaskResponse, V3GetTaskResponseTypedDict
+from .v3initiatepaymentrequest import (
+    V3InitiatePaymentRequest,
+    V3InitiatePaymentRequestTypedDict,
+)
+from .v3initiatepaymentresponse import (
+    V3InitiatePaymentResponse,
+    V3InitiatePaymentResponseData,
+    V3InitiatePaymentResponseDataTypedDict,
+    V3InitiatePaymentResponseTypedDict,
+)
+from .v3installconnectorrequest import (
+    V3InstallConnectorRequest,
+    V3InstallConnectorRequestTypedDict,
+)
+from .v3installconnectorresponse import (
+    V3InstallConnectorResponse,
+    V3InstallConnectorResponseTypedDict,
+)
+from .v3instance import V3Instance, V3InstanceTypedDict
+from .v3mangopayconfig import V3MangopayConfig, V3MangopayConfigTypedDict
+from .v3modulrconfig import V3ModulrConfig, V3ModulrConfigTypedDict
+from .v3moneycorpconfig import V3MoneycorpConfig, V3MoneycorpConfigTypedDict
+from .v3payment import V3Payment, V3PaymentTypedDict
+from .v3paymentadjustment import (
+    V3PaymentAdjustment,
+    V3PaymentAdjustmentRaw,
+    V3PaymentAdjustmentRawTypedDict,
+    V3PaymentAdjustmentTypedDict,
+)
+from .v3paymentinitiation import V3PaymentInitiation, V3PaymentInitiationTypedDict
+from .v3paymentinitiationadjustment import (
+    V3PaymentInitiationAdjustment,
+    V3PaymentInitiationAdjustmentTypedDict,
+)
+from .v3paymentinitiationadjustmentscursorresponse import (
+    V3PaymentInitiationAdjustmentsCursorResponse,
+    V3PaymentInitiationAdjustmentsCursorResponseCursor,
+    V3PaymentInitiationAdjustmentsCursorResponseCursorTypedDict,
+    V3PaymentInitiationAdjustmentsCursorResponseTypedDict,
+)
+from .v3paymentinitiationrelatedpaymentscursorresponse import (
+    V3PaymentInitiationRelatedPaymentsCursorResponse,
+    V3PaymentInitiationRelatedPaymentsCursorResponseCursor,
+    V3PaymentInitiationRelatedPaymentsCursorResponseCursorTypedDict,
+    V3PaymentInitiationRelatedPaymentsCursorResponseTypedDict,
+)
+from .v3paymentinitiationscursorresponse import (
+    V3PaymentInitiationsCursorResponse,
+    V3PaymentInitiationsCursorResponseCursor,
+    V3PaymentInitiationsCursorResponseCursorTypedDict,
+    V3PaymentInitiationsCursorResponseTypedDict,
+)
+from .v3paymentinitiationstatusenum import V3PaymentInitiationStatusEnum
+from .v3paymentinitiationtypeenum import V3PaymentInitiationTypeEnum
+from .v3paymentscursorresponse import (
+    V3PaymentsCursorResponse,
+    V3PaymentsCursorResponseCursor,
+    V3PaymentsCursorResponseCursorTypedDict,
+    V3PaymentsCursorResponseTypedDict,
+)
+from .v3paymentstatusenum import V3PaymentStatusEnum
+from .v3paymenttypeenum import V3PaymentTypeEnum
+from .v3pool import V3Pool, V3PoolTypedDict
+from .v3poolbalance import V3PoolBalance, V3PoolBalanceTypedDict
+from .v3poolbalancesresponse import (
+    V3PoolBalancesResponse,
+    V3PoolBalancesResponseTypedDict,
+)
+from .v3poolscursorresponse import (
+    V3PoolsCursorResponse,
+    V3PoolsCursorResponseCursor,
+    V3PoolsCursorResponseCursorTypedDict,
+    V3PoolsCursorResponseTypedDict,
+)
+from .v3resetconnectorresponse import (
+    V3ResetConnectorResponse,
+    V3ResetConnectorResponseTypedDict,
+)
+from .v3retrypaymentinitiationresponse import (
+    V3RetryPaymentInitiationResponse,
+    V3RetryPaymentInitiationResponseData,
+    V3RetryPaymentInitiationResponseDataTypedDict,
+    V3RetryPaymentInitiationResponseTypedDict,
+)
+from .v3reversepaymentinitiationrequest import (
+    V3ReversePaymentInitiationRequest,
+    V3ReversePaymentInitiationRequestTypedDict,
+)
+from .v3reversepaymentinitiationresponse import (
+    V3ReversePaymentInitiationResponse,
+    V3ReversePaymentInitiationResponseData,
+    V3ReversePaymentInitiationResponseDataTypedDict,
+    V3ReversePaymentInitiationResponseTypedDict,
+)
+from .v3schedule import V3Schedule, V3ScheduleTypedDict
+from .v3stripeconfig import V3StripeConfig, V3StripeConfigTypedDict
+from .v3task import V3Task, V3TaskTypedDict
+from .v3taskstatusenum import V3TaskStatusEnum
+from .v3uninstallconnectorresponse import (
+    V3UninstallConnectorResponse,
+    V3UninstallConnectorResponseData,
+    V3UninstallConnectorResponseDataTypedDict,
+    V3UninstallConnectorResponseTypedDict,
+)
+from .v3updatebankaccountmetadatarequest import (
+    V3UpdateBankAccountMetadataRequest,
+    V3UpdateBankAccountMetadataRequestTypedDict,
+)
+from .v3updatepaymentmetadatarequest import (
+    V3UpdatePaymentMetadataRequest,
+    V3UpdatePaymentMetadataRequestTypedDict,
+)
+from .v3wiseconfig import V3WiseConfig, V3WiseConfigTypedDict
 from .version import Version, VersionTypedDict
 from .volume import Volume, VolumeTypedDict
 from .wallet import Wallet, WalletBalances, WalletBalancesTypedDict, WalletTypedDict
@@ -921,6 +1180,7 @@ from .workflowinstancehistorystageoutput import (
     WorkflowInstanceHistoryStageOutput,
     WorkflowInstanceHistoryStageOutputTypedDict,
 )
+
 
 __all__ = [
     "Account",
@@ -1218,6 +1478,10 @@ __all__ = [
     "OrchestrationPostTransactionTypedDict",
     "OrchestrationTransaction",
     "OrchestrationTransactionTypedDict",
+    "OrchestrationV2PostTransaction",
+    "OrchestrationV2PostTransactionScript",
+    "OrchestrationV2PostTransactionScriptTypedDict",
+    "OrchestrationV2PostTransactionTypedDict",
     "OrchestrationV2Transaction",
     "OrchestrationV2TransactionTypedDict",
     "OrchestrationWallet",
@@ -1397,6 +1661,7 @@ __all__ = [
     "TaskResponseData",
     "TaskResponseDataTypedDict",
     "TaskResponseTypedDict",
+    "TaskStatus",
     "TaskStripe",
     "TaskStripeDescriptor",
     "TaskStripeDescriptorTypedDict",
@@ -1567,8 +1832,6 @@ __all__ = [
     "V2ErrorResponse",
     "V2ErrorResponseTypedDict",
     "V2ErrorsEnum",
-    "V2ExpandedTransaction",
-    "V2ExpandedTransactionTypedDict",
     "V2GetLedgerResponse",
     "V2GetLedgerResponseTypedDict",
     "V2GetTransactionResponse",
@@ -1738,6 +2001,201 @@ __all__ = [
     "V2WorkflowInstanceHistoryTypedDict",
     "V2WorkflowInstanceTypedDict",
     "V2WorkflowTypedDict",
+    "V3Account",
+    "V3AccountRaw",
+    "V3AccountRawTypedDict",
+    "V3AccountTypeEnum",
+    "V3AccountTypedDict",
+    "V3AccountsCursorResponse",
+    "V3AccountsCursorResponseCursor",
+    "V3AccountsCursorResponseCursorTypedDict",
+    "V3AccountsCursorResponseTypedDict",
+    "V3AdyenConfig",
+    "V3AdyenConfigTypedDict",
+    "V3ApprovePaymentInitiationResponse",
+    "V3ApprovePaymentInitiationResponseData",
+    "V3ApprovePaymentInitiationResponseDataTypedDict",
+    "V3ApprovePaymentInitiationResponseTypedDict",
+    "V3AtlarConfig",
+    "V3AtlarConfigTypedDict",
+    "V3Balance",
+    "V3BalanceTypedDict",
+    "V3BalancesCursorResponse",
+    "V3BalancesCursorResponseCursor",
+    "V3BalancesCursorResponseCursorTypedDict",
+    "V3BalancesCursorResponseTypedDict",
+    "V3BankAccount",
+    "V3BankAccountRelatedAccount",
+    "V3BankAccountRelatedAccountTypedDict",
+    "V3BankAccountTypedDict",
+    "V3BankAccountsCursorResponse",
+    "V3BankAccountsCursorResponseCursor",
+    "V3BankAccountsCursorResponseCursorTypedDict",
+    "V3BankAccountsCursorResponseTypedDict",
+    "V3BankingcircleConfig",
+    "V3BankingcircleConfigTypedDict",
+    "V3ConfigInfoResponse",
+    "V3ConfigInfoResponseTypedDict",
+    "V3Connector",
+    "V3ConnectorConfig",
+    "V3ConnectorConfigTypedDict",
+    "V3ConnectorConfigsResponse",
+    "V3ConnectorConfigsResponseConnector",
+    "V3ConnectorConfigsResponseConnectorTypedDict",
+    "V3ConnectorConfigsResponseData",
+    "V3ConnectorConfigsResponseDataTypedDict",
+    "V3ConnectorConfigsResponseKey",
+    "V3ConnectorConfigsResponseKeyTypedDict",
+    "V3ConnectorConfigsResponseTypedDict",
+    "V3ConnectorScheduleInstancesCursorResponse",
+    "V3ConnectorScheduleInstancesCursorResponseCursor",
+    "V3ConnectorScheduleInstancesCursorResponseCursorTypedDict",
+    "V3ConnectorScheduleInstancesCursorResponseTypedDict",
+    "V3ConnectorScheduleResponse",
+    "V3ConnectorScheduleResponseTypedDict",
+    "V3ConnectorSchedulesCursorResponse",
+    "V3ConnectorSchedulesCursorResponseCursor",
+    "V3ConnectorSchedulesCursorResponseCursorTypedDict",
+    "V3ConnectorSchedulesCursorResponseTypedDict",
+    "V3ConnectorSchemasConfig",
+    "V3ConnectorSchemasConfigTypedDict",
+    "V3ConnectorTypedDict",
+    "V3ConnectorsCursorResponse",
+    "V3ConnectorsCursorResponseCursor",
+    "V3ConnectorsCursorResponseCursorTypedDict",
+    "V3ConnectorsCursorResponseTypedDict",
+    "V3CreateAccountRequest",
+    "V3CreateAccountRequestTypedDict",
+    "V3CreateAccountResponse",
+    "V3CreateAccountResponseTypedDict",
+    "V3CreateBankAccountRequest",
+    "V3CreateBankAccountRequestTypedDict",
+    "V3CreateBankAccountResponse",
+    "V3CreateBankAccountResponseTypedDict",
+    "V3CreatePaymentAdjustmentRequest",
+    "V3CreatePaymentAdjustmentRequestTypedDict",
+    "V3CreatePaymentRequest",
+    "V3CreatePaymentRequestTypedDict",
+    "V3CreatePaymentResponse",
+    "V3CreatePaymentResponseTypedDict",
+    "V3CreatePoolRequest",
+    "V3CreatePoolRequestTypedDict",
+    "V3CreatePoolResponse",
+    "V3CreatePoolResponseTypedDict",
+    "V3CurrencycloudConfig",
+    "V3CurrencycloudConfigTypedDict",
+    "V3DummypayConfig",
+    "V3DummypayConfigTypedDict",
+    "V3ErrorsEnum",
+    "V3ForwardBankAccountRequest",
+    "V3ForwardBankAccountRequestTypedDict",
+    "V3ForwardBankAccountResponse",
+    "V3ForwardBankAccountResponseData",
+    "V3ForwardBankAccountResponseDataTypedDict",
+    "V3ForwardBankAccountResponseTypedDict",
+    "V3GenericConfig",
+    "V3GenericConfigTypedDict",
+    "V3GetAccountResponse",
+    "V3GetAccountResponseTypedDict",
+    "V3GetBankAccountResponse",
+    "V3GetBankAccountResponseTypedDict",
+    "V3GetConnectorConfigResponse",
+    "V3GetConnectorConfigResponseTypedDict",
+    "V3GetPaymentInitiationResponse",
+    "V3GetPaymentInitiationResponseTypedDict",
+    "V3GetPaymentResponse",
+    "V3GetPaymentResponseTypedDict",
+    "V3GetPoolResponse",
+    "V3GetPoolResponseTypedDict",
+    "V3GetTaskResponse",
+    "V3GetTaskResponseTypedDict",
+    "V3InitiatePaymentRequest",
+    "V3InitiatePaymentRequestTypedDict",
+    "V3InitiatePaymentResponse",
+    "V3InitiatePaymentResponseData",
+    "V3InitiatePaymentResponseDataTypedDict",
+    "V3InitiatePaymentResponseTypedDict",
+    "V3InstallConnectorRequest",
+    "V3InstallConnectorRequestTypedDict",
+    "V3InstallConnectorResponse",
+    "V3InstallConnectorResponseTypedDict",
+    "V3Instance",
+    "V3InstanceTypedDict",
+    "V3MangopayConfig",
+    "V3MangopayConfigTypedDict",
+    "V3ModulrConfig",
+    "V3ModulrConfigTypedDict",
+    "V3MoneycorpConfig",
+    "V3MoneycorpConfigTypedDict",
+    "V3Payment",
+    "V3PaymentAdjustment",
+    "V3PaymentAdjustmentRaw",
+    "V3PaymentAdjustmentRawTypedDict",
+    "V3PaymentAdjustmentTypedDict",
+    "V3PaymentInitiation",
+    "V3PaymentInitiationAdjustment",
+    "V3PaymentInitiationAdjustmentTypedDict",
+    "V3PaymentInitiationAdjustmentsCursorResponse",
+    "V3PaymentInitiationAdjustmentsCursorResponseCursor",
+    "V3PaymentInitiationAdjustmentsCursorResponseCursorTypedDict",
+    "V3PaymentInitiationAdjustmentsCursorResponseTypedDict",
+    "V3PaymentInitiationRelatedPaymentsCursorResponse",
+    "V3PaymentInitiationRelatedPaymentsCursorResponseCursor",
+    "V3PaymentInitiationRelatedPaymentsCursorResponseCursorTypedDict",
+    "V3PaymentInitiationRelatedPaymentsCursorResponseTypedDict",
+    "V3PaymentInitiationStatusEnum",
+    "V3PaymentInitiationTypeEnum",
+    "V3PaymentInitiationTypedDict",
+    "V3PaymentInitiationsCursorResponse",
+    "V3PaymentInitiationsCursorResponseCursor",
+    "V3PaymentInitiationsCursorResponseCursorTypedDict",
+    "V3PaymentInitiationsCursorResponseTypedDict",
+    "V3PaymentStatusEnum",
+    "V3PaymentTypeEnum",
+    "V3PaymentTypedDict",
+    "V3PaymentsCursorResponse",
+    "V3PaymentsCursorResponseCursor",
+    "V3PaymentsCursorResponseCursorTypedDict",
+    "V3PaymentsCursorResponseTypedDict",
+    "V3Pool",
+    "V3PoolBalance",
+    "V3PoolBalanceTypedDict",
+    "V3PoolBalancesResponse",
+    "V3PoolBalancesResponseTypedDict",
+    "V3PoolTypedDict",
+    "V3PoolsCursorResponse",
+    "V3PoolsCursorResponseCursor",
+    "V3PoolsCursorResponseCursorTypedDict",
+    "V3PoolsCursorResponseTypedDict",
+    "V3ResetConnectorResponse",
+    "V3ResetConnectorResponseTypedDict",
+    "V3RetryPaymentInitiationResponse",
+    "V3RetryPaymentInitiationResponseData",
+    "V3RetryPaymentInitiationResponseDataTypedDict",
+    "V3RetryPaymentInitiationResponseTypedDict",
+    "V3ReversePaymentInitiationRequest",
+    "V3ReversePaymentInitiationRequestTypedDict",
+    "V3ReversePaymentInitiationResponse",
+    "V3ReversePaymentInitiationResponseData",
+    "V3ReversePaymentInitiationResponseDataTypedDict",
+    "V3ReversePaymentInitiationResponseTypedDict",
+    "V3Schedule",
+    "V3ScheduleTypedDict",
+    "V3StripeConfig",
+    "V3StripeConfigTypedDict",
+    "V3Task",
+    "V3TaskStatusEnum",
+    "V3TaskTypedDict",
+    "V3UninstallConnectorResponse",
+    "V3UninstallConnectorResponseData",
+    "V3UninstallConnectorResponseDataTypedDict",
+    "V3UninstallConnectorResponseTypedDict",
+    "V3UpdateBankAccountMetadataRequest",
+    "V3UpdateBankAccountMetadataRequestTypedDict",
+    "V3UpdatePaymentMetadataRequest",
+    "V3UpdatePaymentMetadataRequestTypedDict",
+    "V3WiseConfig",
+    "V3WiseConfigTypedDict",
     "Variables",
     "VariablesTypedDict",
     "Version",

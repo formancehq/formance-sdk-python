@@ -1,0 +1,11 @@
+# V3GetAccountBalancesResponse
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `content_type`                                                                               | *str*                                                                                        | :heavy_check_mark:                                                                           | HTTP response content type for this operation                                                |
+| `status_code`                                                                                | *int*                                                                                        | :heavy_check_mark:                                                                           | HTTP response status code for this operation                                                 |
+| `raw_response`                                                                               | [httpx.Response](https://www.python-httpx.org/api/#response)                                 | :heavy_check_mark:                                                                           | Raw HTTP response; suitable for custom response parsing                                      |
+| `v3_balances_cursor_response`                                                                | [Optional[shared.V3BalancesCursorResponse]](../../models/shared/v3balancescursorresponse.md) | :heavy_minus_sign:                                                                           | OK                                                                                           |

@@ -2,14 +2,25 @@
 
 from __future__ import annotations
 from .v2bulkelementresult import V2BulkElementResult, V2BulkElementResultTypedDict
+from .v2errorsenum import V2ErrorsEnum
 from formance_sdk_python.types import BaseModel
-from typing import List
-from typing_extensions import TypedDict
+import pydantic
+from typing import List, Optional
+from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2BulkResponseTypedDict(TypedDict):
     data: List[V2BulkElementResultTypedDict]
+    error_code: V2ErrorsEnum
+    error_message: str
+    details: NotRequired[str]
 
 
 class V2BulkResponse(BaseModel):
     data: List[V2BulkElementResult]
+
+    error_code: Annotated[V2ErrorsEnum, pydantic.Field(alias="errorCode")]
+
+    error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
+
+    details: Optional[str] = None

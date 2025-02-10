@@ -20,13 +20,13 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class BankAccountTypedDict(TypedDict):
-    connector_id: str
     country: str
     created_at: datetime
     id: str
     name: str
     account_id: NotRequired[str]
     account_number: NotRequired[str]
+    connector_id: NotRequired[str]
     iban: NotRequired[str]
     metadata: NotRequired[Nullable[Dict[str, str]]]
     provider: NotRequired[str]
@@ -35,8 +35,6 @@ class BankAccountTypedDict(TypedDict):
 
 
 class BankAccount(BaseModel):
-    connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
-
     country: str
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
@@ -50,6 +48,8 @@ class BankAccount(BaseModel):
     account_number: Annotated[Optional[str], pydantic.Field(alias="accountNumber")] = (
         None
     )
+
+    connector_id: Annotated[Optional[str], pydantic.Field(alias="connectorID")] = None
 
     iban: Optional[str] = None
 
@@ -71,6 +71,7 @@ class BankAccount(BaseModel):
         optional_fields = [
             "accountID",
             "accountNumber",
+            "connectorID",
             "iban",
             "metadata",
             "provider",

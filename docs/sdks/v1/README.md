@@ -78,7 +78,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.auth.v1.create_secret(request={
-        "client_id": "<value>",
+        "client_id": "<id>",
     })
 
     assert res.create_secret_response is not None
@@ -123,7 +123,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.auth.v1.delete_client(request={
-        "client_id": "<value>",
+        "client_id": "<id>",
     })
 
     assert res is not None
@@ -168,8 +168,8 @@ with SDK(
 ) as sdk:
 
     res = sdk.auth.v1.delete_secret(request={
-        "client_id": "<value>",
-        "secret_id": "<value>",
+        "client_id": "<id>",
+        "secret_id": "<id>",
     })
 
     assert res is not None
@@ -382,7 +382,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.auth.v1.read_client(request={
-        "client_id": "<value>",
+        "client_id": "<id>",
     })
 
     assert res.read_client_response is not None
@@ -427,7 +427,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.auth.v1.read_user(request={
-        "user_id": "<value>",
+        "user_id": "<id>",
     })
 
     assert res.read_user_response is not None
@@ -472,7 +472,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.auth.v1.update_client(request={
-        "client_id": "<value>",
+        "client_id": "<id>",
     })
 
     assert res.update_client_response is not None
