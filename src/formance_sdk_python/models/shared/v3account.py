@@ -12,7 +12,7 @@ from formance_sdk_python.types import (
 )
 import pydantic
 from pydantic import model_serializer
-from typing import Dict, Optional
+from typing import Dict
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
@@ -34,7 +34,7 @@ class V3AccountTypedDict(TypedDict):
     type: V3AccountTypeEnum
     default_asset: NotRequired[Nullable[str]]
     metadata: NotRequired[Nullable[Dict[str, str]]]
-    name: NotRequired[str]
+    name: NotRequired[Nullable[str]]
 
 
 class V3Account(BaseModel):
@@ -58,12 +58,12 @@ class V3Account(BaseModel):
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
 
-    name: Optional[str] = None
+    name: OptionalNullable[str] = UNSET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = ["defaultAsset", "metadata", "name"]
-        nullable_fields = ["defaultAsset", "metadata"]
+        nullable_fields = ["defaultAsset", "metadata", "name"]
         null_default_fields = []
 
         serialized = handler(self)

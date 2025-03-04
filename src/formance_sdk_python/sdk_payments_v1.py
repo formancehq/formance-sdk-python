@@ -39,6 +39,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.AddAccountToPoolRequest)
@@ -77,6 +79,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="addAccountToPool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -137,6 +140,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.AddAccountToPoolRequest)
@@ -175,6 +180,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="addAccountToPool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -235,6 +241,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ConnectorsTransferRequest)
@@ -269,6 +277,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="connectorsTransfer",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -332,6 +341,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ConnectorsTransferRequest)
@@ -366,6 +377,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="connectorsTransfer",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -426,6 +438,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.AccountRequest)
@@ -460,6 +474,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -520,6 +535,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.AccountRequest)
@@ -554,6 +571,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -614,6 +632,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.BankAccountRequest)
@@ -648,6 +668,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createBankAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -708,6 +729,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.BankAccountRequest)
@@ -742,6 +765,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createBankAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -802,6 +826,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.PaymentRequest)
@@ -836,6 +862,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createPayment",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -896,6 +923,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.PaymentRequest)
@@ -930,6 +959,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createPayment",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -990,6 +1020,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.PoolRequest)
@@ -1024,6 +1056,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createPool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1084,6 +1117,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.PoolRequest)
@@ -1118,6 +1153,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createPool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1180,6 +1216,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.TransferInitiationRequest)
@@ -1214,6 +1252,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createTransferInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1276,6 +1315,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.TransferInitiationRequest)
@@ -1310,6 +1351,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createTransferInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1372,6 +1414,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeletePoolRequest)
@@ -1403,6 +1447,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deletePool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1462,6 +1507,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeletePoolRequest)
@@ -1493,6 +1540,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deletePool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1553,6 +1601,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1586,6 +1636,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteTransferInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1646,6 +1697,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1679,6 +1732,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteTransferInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1737,6 +1791,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ForwardBankAccountRequest)
@@ -1775,6 +1831,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="forwardBankAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1836,6 +1893,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ForwardBankAccountRequest)
@@ -1874,6 +1933,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="forwardBankAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1935,6 +1995,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccountBalancesRequest)
@@ -1966,6 +2028,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getAccountBalances",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2027,6 +2090,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccountBalancesRequest)
@@ -2058,6 +2123,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getAccountBalances",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2118,6 +2184,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBankAccountRequest)
@@ -2149,6 +2217,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getBankAccount",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2209,6 +2278,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBankAccountRequest)
@@ -2240,6 +2311,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getBankAccount",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2306,6 +2378,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetConnectorTaskRequest)
@@ -2337,6 +2411,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getConnectorTask",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2403,6 +2478,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetConnectorTaskRequest)
@@ -2434,6 +2511,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getConnectorTask",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2497,6 +2575,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetConnectorTaskV1Request)
@@ -2528,6 +2608,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getConnectorTaskV1",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2591,6 +2672,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetConnectorTaskV1Request)
@@ -2622,6 +2705,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getConnectorTaskV1",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2682,6 +2766,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPaymentRequest)
@@ -2713,6 +2799,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getPayment",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2773,6 +2860,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPaymentRequest)
@@ -2804,6 +2893,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getPayment",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2862,6 +2952,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolRequest)
@@ -2893,6 +2985,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getPool",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2951,6 +3044,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolRequest)
@@ -2982,6 +3077,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getPool",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3043,6 +3139,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolBalancesRequest)
@@ -3074,6 +3172,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getPoolBalances",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3135,6 +3234,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolBalancesRequest)
@@ -3166,6 +3267,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getPoolBalances",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3227,6 +3329,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransferInitiationRequest)
@@ -3258,6 +3362,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getTransferInitiation",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3319,6 +3424,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransferInitiationRequest)
@@ -3350,6 +3457,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getTransferInitiation",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3413,6 +3521,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.InstallConnectorRequest)
@@ -3447,6 +3557,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="installConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -3510,6 +3621,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.InstallConnectorRequest)
@@ -3544,6 +3657,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="installConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -3602,6 +3716,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/payments/connectors",
@@ -3628,6 +3744,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listAllConnectors",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3686,6 +3803,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/payments/connectors",
@@ -3712,6 +3831,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listAllConnectors",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3775,6 +3895,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListBankAccountsRequest)
@@ -3806,6 +3928,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listBankAccounts",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3869,6 +3992,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListBankAccountsRequest)
@@ -3900,6 +4025,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listBankAccounts",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3958,6 +4084,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/payments/connectors/configs",
@@ -3984,6 +4112,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listConfigsAvailableConnectors",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4042,6 +4171,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/payments/connectors/configs",
@@ -4068,6 +4199,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listConfigsAvailableConnectors",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4134,6 +4266,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListConnectorTasksRequest)
@@ -4165,6 +4299,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listConnectorTasks",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4231,6 +4366,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListConnectorTasksRequest)
@@ -4262,6 +4399,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listConnectorTasks",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4325,6 +4463,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListConnectorTasksV1Request)
@@ -4356,6 +4496,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listConnectorTasksV1",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4419,6 +4560,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListConnectorTasksV1Request)
@@ -4450,6 +4593,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listConnectorTasksV1",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4510,6 +4654,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPaymentsRequest)
@@ -4541,6 +4687,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listPayments",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4601,6 +4748,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPaymentsRequest)
@@ -4632,6 +4781,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listPayments",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4692,6 +4842,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPoolsRequest)
@@ -4723,6 +4875,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listPools",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4783,6 +4936,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPoolsRequest)
@@ -4814,6 +4969,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listPools",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4875,6 +5031,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -4908,6 +5066,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listTransferInitiations",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4969,6 +5128,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -5002,6 +5163,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listTransferInitiations",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5063,6 +5225,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.PaymentsgetAccountRequest)
@@ -5094,6 +5258,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="paymentsgetAccount",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5155,6 +5320,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.PaymentsgetAccountRequest)
@@ -5186,6 +5353,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="paymentsgetAccount",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5242,6 +5410,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/payments/_info",
@@ -5268,6 +5438,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="paymentsgetServerInfo",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5324,6 +5495,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/payments/_info",
@@ -5350,6 +5523,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="paymentsgetServerInfo",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5411,6 +5585,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.PaymentslistAccountsRequest)
@@ -5445,6 +5621,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="paymentslistAccounts",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5506,6 +5683,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.PaymentslistAccountsRequest)
@@ -5540,6 +5719,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="paymentslistAccounts",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5606,6 +5786,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadConnectorConfigRequest)
@@ -5637,6 +5819,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="readConnectorConfig",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5703,6 +5886,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadConnectorConfigRequest)
@@ -5734,6 +5919,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="readConnectorConfig",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5797,6 +5983,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadConnectorConfigV1Request)
@@ -5828,6 +6016,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="readConnectorConfigV1",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5891,6 +6080,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadConnectorConfigV1Request)
@@ -5922,6 +6113,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="readConnectorConfigV1",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5985,6 +6177,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RemoveAccountFromPoolRequest)
@@ -6016,6 +6210,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="removeAccountFromPool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6076,6 +6271,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RemoveAccountFromPoolRequest)
@@ -6107,6 +6304,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="removeAccountFromPool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6171,6 +6369,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ResetConnectorRequest)
@@ -6202,6 +6402,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="resetConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6266,6 +6467,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ResetConnectorRequest)
@@ -6297,6 +6500,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="resetConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6359,6 +6563,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ResetConnectorV1Request)
@@ -6390,6 +6596,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="resetConnectorV1",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6452,6 +6659,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ResetConnectorV1Request)
@@ -6483,6 +6692,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="resetConnectorV1",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6543,6 +6753,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6576,6 +6788,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="retryTransferInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6636,6 +6849,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6669,6 +6884,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="retryTransferInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6729,6 +6945,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6769,6 +6987,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="reverseTransferInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6829,6 +7048,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6869,6 +7090,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="reverseTransferInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6929,6 +7151,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6969,6 +7193,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="udpateTransferInitiationStatus",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7029,6 +7254,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7069,6 +7296,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="udpateTransferInitiationStatus",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7132,6 +7360,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UninstallConnectorRequest)
@@ -7163,6 +7393,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="uninstallConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7226,6 +7457,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UninstallConnectorRequest)
@@ -7257,6 +7490,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="uninstallConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7317,6 +7551,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UninstallConnectorV1Request)
@@ -7348,6 +7584,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="uninstallConnectorV1",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7408,6 +7645,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UninstallConnectorV1Request)
@@ -7439,6 +7678,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="uninstallConnectorV1",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7497,6 +7737,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7537,6 +7779,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateBankAccountMetadata",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7595,6 +7838,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7635,6 +7880,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateBankAccountMetadata",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7695,6 +7941,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7731,6 +7979,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateConnectorConfigV1",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7791,6 +8040,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7827,6 +8078,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateConnectorConfigV1",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7884,6 +8136,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateMetadataRequest)
@@ -7918,6 +8172,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateMetadata",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7975,6 +8230,8 @@ class SDKPaymentsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateMetadataRequest)
@@ -8009,6 +8266,7 @@ class SDKPaymentsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateMetadata",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,

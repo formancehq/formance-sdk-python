@@ -4,16 +4,17 @@ generation:
   usageSnippets:
     optionalPropertyRendering: withExample
   fixes:
-    nameResolutionDec2023: false
+    nameResolutionFeb2025: false
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
+    securityFeb2025: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
   comments: {}
   telemetryEnabled: false
 python:
-  version: 6.0.0
+  version: 6.1.0
   additionalDependencies:
     dev: {}
     main: {}
@@ -45,5 +46,6 @@ python:
   outputModelSuffix: output
   packageName: formance-sdk-python
   projectUrls: {}
+  pytestTimeout: 0
   responseFormat: envelope
   templateVersion: v2

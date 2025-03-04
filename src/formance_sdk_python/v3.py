@@ -36,6 +36,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3AddAccountToPoolRequest)
@@ -67,6 +69,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3AddAccountToPool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -125,6 +128,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3AddAccountToPoolRequest)
@@ -156,6 +161,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3AddAccountToPool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -214,6 +220,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -247,6 +255,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ApprovePaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -308,6 +317,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -341,6 +352,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ApprovePaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -401,6 +413,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.V3CreateAccountRequest])
@@ -435,6 +449,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3CreateAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -495,6 +510,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.V3CreateAccountRequest])
@@ -529,6 +546,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3CreateAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -592,6 +610,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -632,6 +652,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3CreateBankAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -695,6 +716,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -735,6 +758,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3CreateBankAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -795,6 +819,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.V3CreatePaymentRequest])
@@ -829,6 +855,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3CreatePayment",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -889,6 +916,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.V3CreatePaymentRequest])
@@ -923,6 +952,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3CreatePayment",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -983,6 +1013,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.V3CreatePoolRequest])
@@ -1017,6 +1049,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3CreatePool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1077,6 +1110,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.V3CreatePoolRequest])
@@ -1111,6 +1146,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3CreatePool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1172,6 +1208,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1205,6 +1243,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3DeletePaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1263,6 +1302,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1296,6 +1337,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3DeletePaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1353,6 +1395,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3DeletePoolRequest)
@@ -1384,6 +1428,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3DeletePool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1441,6 +1486,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3DeletePoolRequest)
@@ -1472,6 +1519,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3DeletePool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -1530,6 +1578,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ForwardBankAccountRequest)
@@ -1568,6 +1618,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ForwardBankAccount",
                 oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -1629,6 +1680,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ForwardBankAccountRequest)
@@ -1667,6 +1720,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ForwardBankAccount",
                 oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -1727,6 +1781,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetAccountRequest)
@@ -1758,6 +1814,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetAccount",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -1818,6 +1875,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetAccountRequest)
@@ -1849,6 +1908,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetAccount",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -1910,6 +1970,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetAccountBalancesRequest)
@@ -1941,6 +2003,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetAccountBalances",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2002,6 +2065,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetAccountBalancesRequest)
@@ -2033,6 +2098,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetAccountBalances",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2094,6 +2160,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetBankAccountRequest)
@@ -2125,6 +2193,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetBankAccount",
                 oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -2186,6 +2255,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetBankAccountRequest)
@@ -2217,6 +2288,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetBankAccount",
                 oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -2278,6 +2350,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetConnectorConfigRequest)
@@ -2309,6 +2383,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetConnectorConfig",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2370,6 +2445,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetConnectorConfigRequest)
@@ -2401,6 +2478,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetConnectorConfig",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2462,6 +2540,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetConnectorScheduleRequest)
@@ -2493,6 +2573,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetConnectorSchedule",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2554,6 +2635,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetConnectorScheduleRequest)
@@ -2585,6 +2668,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetConnectorSchedule",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2599,170 +2683,6 @@ class V3(BaseSDK):
             return operations.V3GetConnectorScheduleResponse(
                 v3_connector_schedule_response=utils.unmarshal_json(
                     http_res.text, Optional[shared.V3ConnectorScheduleResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
-            )
-            raise errors.V3ErrorResponse(data=response_data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    def get_info(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.V3GetInfoResponse:
-        r"""Show server information
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        req = self._build_request(
-            method="GET",
-            path="/api/payments/v3/_info",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                operation_id="v3GetInfo",
-                oauth2_scopes=["auth:read", "payments:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.V3GetInfoResponse(
-                v3_config_info_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ConfigInfoResponse]
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
-            )
-            raise errors.V3ErrorResponse(data=response_data)
-
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
-
-    async def get_info_async(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.V3GetInfoResponse:
-        r"""Show server information
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        req = self._build_request_async(
-            method="GET",
-            path="/api/payments/v3/_info",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                operation_id="v3GetInfo",
-                oauth2_scopes=["auth:read", "payments:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.V3GetInfoResponse(
-                v3_config_info_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ConfigInfoResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2809,6 +2729,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetPaymentRequest)
@@ -2840,6 +2762,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetPayment",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2900,6 +2823,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetPaymentRequest)
@@ -2931,6 +2856,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetPayment",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -2992,6 +2918,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetPaymentInitiationRequest)
@@ -3023,6 +2951,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetPaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3084,6 +3013,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetPaymentInitiationRequest)
@@ -3115,6 +3046,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetPaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3175,6 +3107,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetPoolRequest)
@@ -3206,6 +3140,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetPool",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3266,6 +3201,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetPoolRequest)
@@ -3297,6 +3234,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetPool",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3358,6 +3296,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetPoolBalancesRequest)
@@ -3389,6 +3329,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetPoolBalances",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3450,6 +3391,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetPoolBalancesRequest)
@@ -3481,6 +3424,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetPoolBalances",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3541,6 +3485,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetTaskRequest)
@@ -3572,6 +3518,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetTask",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3632,6 +3579,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3GetTaskRequest)
@@ -3663,6 +3612,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3GetTask",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -3724,6 +3674,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3InitiatePaymentRequest)
@@ -3762,6 +3714,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3InitiatePayment",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -3823,6 +3776,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3InitiatePaymentRequest)
@@ -3861,6 +3816,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3InitiatePayment",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -3922,6 +3878,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3InstallConnectorRequest)
@@ -3960,6 +3918,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3InstallConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -4021,6 +3980,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3InstallConnectorRequest)
@@ -4059,6 +4020,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3InstallConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -4119,6 +4081,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ListAccountsRequest)
@@ -4153,6 +4117,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListAccounts",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4213,6 +4178,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ListAccountsRequest)
@@ -4247,6 +4214,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListAccounts",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4308,6 +4276,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ListBankAccountsRequest)
@@ -4342,6 +4312,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListBankAccounts",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4403,6 +4374,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ListBankAccountsRequest)
@@ -4437,6 +4410,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListBankAccounts",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4493,6 +4467,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/payments/v3/connectors/configs",
@@ -4519,6 +4495,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListConnectorConfigs",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4575,6 +4552,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/payments/v3/connectors/configs",
@@ -4601,6 +4580,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListConnectorConfigs",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4662,6 +4642,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -4695,6 +4677,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListConnectorScheduleInstances",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4757,6 +4740,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -4790,6 +4775,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListConnectorScheduleInstances",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4852,6 +4838,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -4888,6 +4876,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListConnectorSchedules",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -4949,6 +4938,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -4985,6 +4976,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListConnectorSchedules",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5046,6 +5038,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ListConnectorsRequest)
@@ -5080,6 +5074,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListConnectors",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5141,6 +5136,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ListConnectorsRequest)
@@ -5175,6 +5172,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListConnectors",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5236,6 +5234,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -5272,6 +5272,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListPaymentInitiationAdjustments",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5334,6 +5335,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -5370,6 +5373,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListPaymentInitiationAdjustments",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5432,6 +5436,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -5470,6 +5476,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListPaymentInitiationRelatedPayments",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5532,6 +5539,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -5570,6 +5579,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListPaymentInitiationRelatedPayments",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5632,6 +5642,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -5668,6 +5680,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListPaymentInitiations",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5729,6 +5742,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -5765,6 +5780,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListPaymentInitiations",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5825,6 +5841,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ListPaymentsRequest)
@@ -5859,6 +5877,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListPayments",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -5919,6 +5938,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ListPaymentsRequest)
@@ -5953,6 +5974,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListPayments",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -6013,6 +6035,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ListPoolsRequest)
@@ -6047,6 +6071,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListPools",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -6107,6 +6132,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ListPoolsRequest)
@@ -6141,6 +6168,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ListPools",
                 oauth2_scopes=["auth:read", "payments:read"],
                 security_source=self.sdk_configuration.security,
@@ -6202,6 +6230,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6235,6 +6265,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3RejectPaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6293,6 +6324,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6326,6 +6359,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3RejectPaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6384,6 +6418,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6417,6 +6453,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3RemoveAccountFromPool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6475,6 +6512,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6508,6 +6547,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3RemoveAccountFromPool",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6566,6 +6606,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ResetConnectorRequest)
@@ -6597,6 +6639,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ResetConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6658,6 +6701,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3ResetConnectorRequest)
@@ -6689,6 +6734,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ResetConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6750,6 +6796,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6783,6 +6831,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3RetryPaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6844,6 +6893,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6877,6 +6928,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3RetryPaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -6938,6 +6990,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6978,6 +7032,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ReversePaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7039,6 +7094,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7079,6 +7136,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3ReversePaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7140,6 +7198,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3UninstallConnectorRequest)
@@ -7171,6 +7231,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3UninstallConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7232,6 +7293,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V3UninstallConnectorRequest)
@@ -7263,6 +7326,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3UninstallConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7324,6 +7388,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7364,6 +7430,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3UpdateBankAccountMetadata",
                 oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -7422,6 +7489,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7462,6 +7531,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3UpdateBankAccountMetadata",
                 oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -7520,6 +7590,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7560,6 +7632,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3UpdatePaymentMetadata",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,
@@ -7618,6 +7691,8 @@ class V3(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7658,6 +7733,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v3UpdatePaymentMetadata",
                 oauth2_scopes=["auth:read", "payments:write"],
                 security_source=self.sdk_configuration.security,

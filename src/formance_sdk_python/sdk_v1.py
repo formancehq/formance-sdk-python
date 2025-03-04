@@ -37,6 +37,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateTransactionsRequest)
@@ -71,6 +73,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="CreateTransactions",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -132,6 +135,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateTransactionsRequest)
@@ -166,6 +171,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="CreateTransactions",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -227,6 +233,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -267,6 +275,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="addMetadataOnTransaction",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -325,6 +334,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -365,6 +376,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="addMetadataOnTransaction",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -423,6 +435,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.AddMetadataToAccountRequest)
@@ -457,6 +471,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="addMetadataToAccount",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -515,6 +530,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.AddMetadataToAccountRequest)
@@ -549,6 +566,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="addMetadataToAccount",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -606,6 +624,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CountAccountsRequest)
@@ -637,6 +657,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="countAccounts",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -695,6 +716,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CountAccountsRequest)
@@ -726,6 +749,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="countAccounts",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -785,6 +809,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CountTransactionsRequest)
@@ -816,6 +842,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="countTransactions",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -875,6 +902,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CountTransactionsRequest)
@@ -906,6 +935,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="countTransactions",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -965,6 +995,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateTransactionRequest)
@@ -999,6 +1031,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createTransaction",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -1060,6 +1093,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateTransactionRequest)
@@ -1094,6 +1129,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createTransaction",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -1154,6 +1190,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccountRequest)
@@ -1185,6 +1223,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getAccount",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -1245,6 +1284,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccountRequest)
@@ -1276,6 +1317,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getAccount",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -1336,6 +1378,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalancesRequest)
@@ -1367,6 +1411,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getBalances",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -1427,6 +1472,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalancesRequest)
@@ -1458,6 +1505,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getBalances",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -1519,6 +1567,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalancesAggregatedRequest)
@@ -1550,6 +1600,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getBalancesAggregated",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -1611,6 +1662,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalancesAggregatedRequest)
@@ -1642,6 +1695,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getBalancesAggregated",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -1698,6 +1752,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/ledger/_info",
@@ -1724,6 +1780,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getInfo",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -1780,6 +1837,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/ledger/_info",
@@ -1806,6 +1865,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getInfo",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -1866,6 +1926,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetLedgerInfoRequest)
@@ -1897,6 +1959,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getLedgerInfo",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -1957,6 +2020,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetLedgerInfoRequest)
@@ -1988,6 +2053,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getLedgerInfo",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2048,6 +2114,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetMappingRequest)
@@ -2079,6 +2147,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getMapping",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2139,6 +2208,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetMappingRequest)
@@ -2170,6 +2241,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getMapping",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2230,6 +2302,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransactionRequest)
@@ -2261,6 +2335,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getTransaction",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2321,6 +2396,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransactionRequest)
@@ -2352,6 +2429,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getTransaction",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2414,6 +2492,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListAccountsRequest)
@@ -2445,6 +2525,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listAccounts",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2516,6 +2597,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListAccountsRequest)
@@ -2547,6 +2630,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listAccounts",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2616,6 +2700,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListLogsRequest)
@@ -2647,6 +2733,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listLogs",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2707,6 +2794,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListLogsRequest)
@@ -2738,6 +2827,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listLogs",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2801,6 +2891,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListTransactionsRequest)
@@ -2832,6 +2924,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listTransactions",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2895,6 +2988,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListTransactionsRequest)
@@ -2926,6 +3021,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listTransactions",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2989,6 +3085,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadStatsRequest)
@@ -3020,6 +3118,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="readStats",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -3083,6 +3182,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadStatsRequest)
@@ -3114,6 +3215,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="readStats",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -3175,6 +3277,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RevertTransactionRequest)
@@ -3206,6 +3310,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="revertTransaction",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -3267,6 +3372,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RevertTransactionRequest)
@@ -3298,6 +3405,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="revertTransaction",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -3364,6 +3472,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RunScriptRequest)
@@ -3398,6 +3508,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="runScript",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -3463,6 +3574,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RunScriptRequest)
@@ -3497,6 +3610,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="runScript",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -3556,6 +3670,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateMappingRequest)
@@ -3590,6 +3706,7 @@ class SDKV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateMapping",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -3650,6 +3767,8 @@ class SDKV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateMappingRequest)
@@ -3684,6 +3803,7 @@ class SDKV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateMapping",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,

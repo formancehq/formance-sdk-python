@@ -975,7 +975,6 @@ from .v3getconnectorschedule import (
     V3GetConnectorScheduleResponse,
     V3GetConnectorScheduleResponseTypedDict,
 )
-from .v3getinfo import V3GetInfoResponse, V3GetInfoResponseTypedDict
 from .v3getpayment import (
     V3GetPaymentRequest,
     V3GetPaymentRequestTypedDict,
@@ -1818,8 +1817,6 @@ __all__ = [
     "V3GetConnectorScheduleRequestTypedDict",
     "V3GetConnectorScheduleResponse",
     "V3GetConnectorScheduleResponseTypedDict",
-    "V3GetInfoResponse",
-    "V3GetInfoResponseTypedDict",
     "V3GetPaymentInitiationRequest",
     "V3GetPaymentInitiationRequestTypedDict",
     "V3GetPaymentInitiationResponse",

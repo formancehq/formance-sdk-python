@@ -933,7 +933,6 @@ from .v3bankaccountscursorresponse import (
     V3BankAccountsCursorResponseTypedDict,
 )
 from .v3bankingcircleconfig import V3BankingcircleConfig, V3BankingcircleConfigTypedDict
-from .v3configinforesponse import V3ConfigInfoResponse, V3ConfigInfoResponseTypedDict
 from .v3connector import (
     V3Connector,
     V3ConnectorSchemasConfig,
@@ -1151,6 +1150,7 @@ from .volume import Volume, VolumeTypedDict
 from .wallet import Wallet, WalletBalances, WalletBalancesTypedDict, WalletTypedDict
 from .walletstransaction import WalletsTransaction, WalletsTransactionTypedDict
 from .walletsubject import WalletSubject, WalletSubjectTypedDict
+from .walletsummary import WalletSummary, WalletSummaryTypedDict
 from .walletsvolume import WalletsVolume, WalletsVolumeTypedDict
 from .walletwithbalances import (
     WalletWithBalances,
@@ -2034,8 +2034,6 @@ __all__ = [
     "V3BankAccountsCursorResponseTypedDict",
     "V3BankingcircleConfig",
     "V3BankingcircleConfigTypedDict",
-    "V3ConfigInfoResponse",
-    "V3ConfigInfoResponseTypedDict",
     "V3Connector",
     "V3ConnectorConfig",
     "V3ConnectorConfigTypedDict",
@@ -2207,6 +2205,8 @@ __all__ = [
     "WalletBalancesTypedDict",
     "WalletSubject",
     "WalletSubjectTypedDict",
+    "WalletSummary",
+    "WalletSummaryTypedDict",
     "WalletTypedDict",
     "WalletWithBalances",
     "WalletWithBalancesBalances",

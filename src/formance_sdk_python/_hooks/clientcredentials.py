@@ -9,8 +9,9 @@ from .types import (
     BeforeRequestHook,
     AfterErrorContext,
     AfterErrorHook,
+    HookContext,
 )
-from typing import Any, Callable, Dict, List, Tuple, Union, Optional
+from typing import Any, Dict, List, Tuple, Union, Optional
 from urllib.parse import urlparse, urljoin
 from formance_sdk_python.httpclient import HttpClient
 
@@ -46,12 +47,10 @@ class Session:
 
 
 class ClientCredentialsHook(SDKInitHook, BeforeRequestHook, AfterErrorHook):
-    base_url: str
     client: HttpClient
     sessions: Dict[str, Session] = {}
 
     def sdk_init(self, base_url: str, client: HttpClient) -> Tuple[str, HttpClient]:
-        self.base_url = base_url
         self.client = client
 
         return base_url, client
@@ -63,7 +62,7 @@ class ClientCredentialsHook(SDKInitHook, BeforeRequestHook, AfterErrorHook):
             # OAuth2 not in use
             return request
 
-        credentials = self.get_credentials(hook_ctx.security_source)
+        credentials = self.get_credentials(hook_ctx)
         if credentials is None:
             return request
 
@@ -79,6 +78,7 @@ class ClientCredentialsHook(SDKInitHook, BeforeRequestHook, AfterErrorHook):
             or self.has_token_expired(self.sessions[session_key].expires_at)
         ):
             sess = self.do_token_request(
+                hook_ctx,
                 credentials,
                 self.get_scopes(hook_ctx.oauth2_scopes, self.sessions.get(session_key)),
             )
@@ -103,7 +103,7 @@ class ClientCredentialsHook(SDKInitHook, BeforeRequestHook, AfterErrorHook):
         if error is not None:
             return (response, error)
 
-        credentials = self.get_credentials(hook_ctx.security_source)
+        credentials = self.get_credentials(hook_ctx)
         if credentials is None:
             return (response, error)
 
@@ -117,14 +117,17 @@ class ClientCredentialsHook(SDKInitHook, BeforeRequestHook, AfterErrorHook):
 
         return (response, error)
 
-    def get_credentials(
-        self, source: Optional[Union[Any, Callable[[], Any]]]
-    ) -> Optional[Credentials]:
+    def get_credentials(self, hook_ctx: HookContext) -> Optional[Credentials]:
+        source = hook_ctx.security_source
+
         if source is None:
             return None
 
         security = source() if callable(source) else source
 
+        return self.get_credentials_global(security)
+
+    def get_credentials_global(self, security: Any) -> Optional[Credentials]:
         if (
             security is None
             or security.client_id is None
@@ -139,7 +142,10 @@ class ClientCredentialsHook(SDKInitHook, BeforeRequestHook, AfterErrorHook):
         )
 
     def do_token_request(
-        self, credentials: Credentials, scopes: Optional[List[str]]
+        self,
+        hook_ctx: HookContext,
+        credentials: Credentials,
+        scopes: Optional[List[str]],
     ) -> Session:
         payload = {
             "grant_type": "client_credentials",
@@ -152,7 +158,7 @@ class ClientCredentialsHook(SDKInitHook, BeforeRequestHook, AfterErrorHook):
 
         token_url = credentials.token_url
         if not bool(urlparse(credentials.token_url).netloc):
-            token_url = urljoin(self.base_url, credentials.token_url)
+            token_url = urljoin(hook_ctx.base_url, credentials.token_url)
 
         response = self.client.send(
             self.client.build_request(method="POST", url=token_url, data=payload)

@@ -37,6 +37,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ActivateConfigRequest)
@@ -68,6 +70,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="activateConfig",
                 oauth2_scopes=["auth:read", "webhooks:write"],
                 security_source=self.sdk_configuration.security,
@@ -130,6 +133,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ActivateConfigRequest)
@@ -161,6 +166,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="activateConfig",
                 oauth2_scopes=["auth:read", "webhooks:write"],
                 security_source=self.sdk_configuration.security,
@@ -228,6 +234,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ChangeConfigSecretRequest)
@@ -266,6 +274,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="changeConfigSecret",
                 oauth2_scopes=["auth:read", "webhooks:write"],
                 security_source=self.sdk_configuration.security,
@@ -333,6 +342,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ChangeConfigSecretRequest)
@@ -371,6 +382,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="changeConfigSecret",
                 oauth2_scopes=["auth:read", "webhooks:write"],
                 security_source=self.sdk_configuration.security,
@@ -434,6 +446,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeactivateConfigRequest)
@@ -465,6 +479,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deactivateConfig",
                 oauth2_scopes=["auth:read", "webhooks:write"],
                 security_source=self.sdk_configuration.security,
@@ -528,6 +543,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeactivateConfigRequest)
@@ -559,6 +576,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deactivateConfig",
                 oauth2_scopes=["auth:read", "webhooks:write"],
                 security_source=self.sdk_configuration.security,
@@ -621,6 +639,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteConfigRequest)
@@ -652,6 +672,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteConfig",
                 oauth2_scopes=["auth:read", "webhooks:write"],
                 security_source=self.sdk_configuration.security,
@@ -711,6 +732,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteConfigRequest)
@@ -742,6 +765,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteConfig",
                 oauth2_scopes=["auth:read", "webhooks:write"],
                 security_source=self.sdk_configuration.security,
@@ -801,6 +825,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetManyConfigsRequest)
@@ -832,6 +858,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getManyConfigs",
                 oauth2_scopes=["auth:read", "webhooks:read"],
                 security_source=self.sdk_configuration.security,
@@ -894,6 +921,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetManyConfigsRequest)
@@ -925,6 +954,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getManyConfigs",
                 oauth2_scopes=["auth:read", "webhooks:read"],
                 security_source=self.sdk_configuration.security,
@@ -994,6 +1024,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.ConfigUser)
@@ -1028,6 +1060,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="insertConfig",
                 oauth2_scopes=["auth:read", "webhooks:write"],
                 security_source=self.sdk_configuration.security,
@@ -1097,6 +1130,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.ConfigUser)
@@ -1131,6 +1166,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="insertConfig",
                 oauth2_scopes=["auth:read", "webhooks:write"],
                 security_source=self.sdk_configuration.security,
@@ -1193,6 +1229,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.TestConfigRequest)
@@ -1224,6 +1262,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="testConfig",
                 oauth2_scopes=["auth:read", "webhooks:read"],
                 security_source=self.sdk_configuration.security,
@@ -1286,6 +1325,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.TestConfigRequest)
@@ -1317,6 +1358,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="testConfig",
                 oauth2_scopes=["auth:read", "webhooks:read"],
                 security_source=self.sdk_configuration.security,
@@ -1379,6 +1421,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateConfigRequest)
@@ -1413,6 +1457,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateConfig",
                 oauth2_scopes=["auth:read", "webhooks:write"],
                 security_source=self.sdk_configuration.security,
@@ -1472,6 +1517,8 @@ class SDKWebhooksV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateConfigRequest)
@@ -1506,6 +1553,7 @@ class SDKWebhooksV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateConfig",
                 oauth2_scopes=["auth:read", "webhooks:write"],
                 security_source=self.sdk_configuration.security,

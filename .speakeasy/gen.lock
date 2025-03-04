@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: 98f21a9b47a7a10e2efba8e8081d5312
-  docVersion: v3.0.0
-  speakeasyVersion: 1.487.1
-  generationVersion: 2.506.0
-  releaseVersion: 6.0.0
-  configChecksum: ef29963a3477ce12087d3725f0329915
+  docChecksum: c41faf2a0390b8c6621c8b1cf31eb698
+  docVersion: v3.0.1
+  speakeasyVersion: 1.509.0
+  generationVersion: 2.539.0
+  releaseVersion: 6.1.0
+  configChecksum: aa6c303de08b17c711713ab2b3bc58df
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -16,7 +16,7 @@ features:
     additionalDependencies: 1.0.0
     bigint: 1.0.0
     constsAndDefaults: 1.0.5
-    core: 5.11.0
+    core: 5.12.2
     defaultEnabledRetries: 0.2.0
     deprecations: 3.0.2
     downloadStreams: 1.0.1
@@ -24,16 +24,16 @@ features:
     envVarSecurityUsage: 0.3.2
     errors: 3.2.0
     getRequestBodies: 3.0.0
-    globalSecurity: 3.0.2
+    globalSecurity: 3.0.3
     globalSecurityCallbacks: 1.0.0
     globalServerURLs: 3.1.0
     ignores: 3.0.1
     nameOverrides: 3.0.1
-    nullables: 1.0.0
-    oauth2ClientCredentials: 1.1.0
+    nullables: 1.0.1
+    oauth2ClientCredentials: 1.1.1
     responseFormat: 1.0.1
     retries: 3.0.2
-    sdkHooks: 1.0.0
+    sdkHooks: 1.0.1
     unions: 3.0.4
 generatedFiles:
   - .gitattributes
@@ -390,7 +390,6 @@ generatedFiles:
   - docs/models/operations/v3getconnectorconfigresponse.md
   - docs/models/operations/v3getconnectorschedulerequest.md
   - docs/models/operations/v3getconnectorscheduleresponse.md
-  - docs/models/operations/v3getinforesponse.md
   - docs/models/operations/v3getpaymentinitiationrequest.md
   - docs/models/operations/v3getpaymentinitiationresponse.md
   - docs/models/operations/v3getpaymentrequest.md
@@ -884,7 +883,6 @@ generatedFiles:
   - docs/models/shared/v3bankaccountscursorresponse.md
   - docs/models/shared/v3bankaccountscursorresponsecursor.md
   - docs/models/shared/v3bankingcircleconfig.md
-  - docs/models/shared/v3configinforesponse.md
   - docs/models/shared/v3connector.md
   - docs/models/shared/v3connectorconfig.md
   - docs/models/shared/v3connectorconfigsresponse.md
@@ -975,6 +973,7 @@ generatedFiles:
   - docs/models/shared/walletbalances.md
   - docs/models/shared/walletstransaction.md
   - docs/models/shared/walletsubject.md
+  - docs/models/shared/walletsummary.md
   - docs/models/shared/walletsvolume.md
   - docs/models/shared/walletwithbalances.md
   - docs/models/shared/walletwithbalancesbalances.md
@@ -1220,7 +1219,6 @@ generatedFiles:
   - src/formance_sdk_python/models/operations/v3getbankaccount.py
   - src/formance_sdk_python/models/operations/v3getconnectorconfig.py
   - src/formance_sdk_python/models/operations/v3getconnectorschedule.py
-  - src/formance_sdk_python/models/operations/v3getinfo.py
   - src/formance_sdk_python/models/operations/v3getpayment.py
   - src/formance_sdk_python/models/operations/v3getpaymentinitiation.py
   - src/formance_sdk_python/models/operations/v3getpool.py
@@ -1592,7 +1590,6 @@ generatedFiles:
   - src/formance_sdk_python/models/shared/v3bankaccountrelatedaccount.py
   - src/formance_sdk_python/models/shared/v3bankaccountscursorresponse.py
   - src/formance_sdk_python/models/shared/v3bankingcircleconfig.py
-  - src/formance_sdk_python/models/shared/v3configinforesponse.py
   - src/formance_sdk_python/models/shared/v3connector.py
   - src/formance_sdk_python/models/shared/v3connectorconfig.py
   - src/formance_sdk_python/models/shared/v3connectorconfigsresponse.py
@@ -1663,6 +1660,7 @@ generatedFiles:
   - src/formance_sdk_python/models/shared/wallet.py
   - src/formance_sdk_python/models/shared/walletstransaction.py
   - src/formance_sdk_python/models/shared/walletsubject.py
+  - src/formance_sdk_python/models/shared/walletsummary.py
   - src/formance_sdk_python/models/shared/walletsvolume.py
   - src/formance_sdk_python/models/shared/walletwithbalances.py
   - src/formance_sdk_python/models/shared/webhooksconfig.py
@@ -1841,7 +1839,7 @@ examples:
         application/json: [{"action": "<value>"}]
       responses:
         "200":
-          application/json: {"data": [{"logID": 642842, "responseType": "<value>"}], "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+          application/json: {"data": [{"errorCode": "<value>", "errorDescription": "<value>", "logID": 314478, "responseType": "<value>"}], "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
         "400":
           application/json: {"data": [], "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
         default:
@@ -2838,7 +2836,7 @@ examples:
         path:
           connector: "ATLAR"
       requestBody:
-        application/json: {"apiKey": "XXX", "name": "My Wise Account", "pollingPeriod": "60s"}
+        application/json: {"apiKey": "XXX", "name": "My Stripe Account", "pageSize": 50, "pollingPeriod": "60s"}
       responses:
         "201":
           application/json: {"data": {"connectorID": "<id>"}}
@@ -2940,7 +2938,7 @@ examples:
           accountId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"accountName": "<value>", "connectorID": "<id>", "createdAt": "2024-11-12T03:25:46.461Z", "defaultAsset": "<value>", "defaultCurrency": "<value>", "id": "<id>", "raw": {}, "reference": "<value>", "type": "UNKNOWN"}}
+          application/json: {"data": {"accountName": "<value>", "connectorID": "<id>", "createdAt": "2024-11-12T03:25:46.461Z", "defaultAsset": "<value>", "defaultCurrency": "<value>", "id": "<id>", "metadata": {"key": "<value>", "key1": "<value>"}, "raw": {}, "reference": "<value>", "type": "UNKNOWN"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   paymentsgetServerInfo:
@@ -3023,7 +3021,7 @@ examples:
         path:
           transferId: "XXX"
       requestBody:
-        application/json: {"amount": 327549, "asset": "USD", "description": "till gosh how proselytise worriedly whoa", "reference": "XXX"}
+        application/json: {"amount": 327549, "asset": "USD", "description": "till gosh how proselytise worriedly whoa", "metadata": {"key": "<value>"}, "reference": "XXX"}
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
@@ -3695,7 +3693,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"availableFunds": {"key": 265270, "key1": 425645}, "balances": [{"assets": {}, "name": "<value>"}], "expirableFunds": {}, "expiredFunds": {"key": 937378, "key1": 696335, "key2": 846984}, "holdFunds": {"key": 930990, "key1": 132783, "key2": 515347}}
+          application/json: {"data": {"availableFunds": {"key": 265270, "key1": 425645}, "balances": [{"assets": {}, "name": "<value>"}], "expirableFunds": {}, "expiredFunds": {"key": 937378, "key1": 696335, "key2": 846984}, "holdFunds": {"key": 930990, "key1": 132783, "key2": 515347}}}
         default:
           application/json: {"errorCode": "INSUFFICIENT_FUND", "errorMessage": "<value>"}
   listBalances:

@@ -35,6 +35,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ConfirmHoldRequest)
@@ -73,6 +75,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="confirmHold",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -130,6 +133,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ConfirmHoldRequest)
@@ -168,6 +173,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="confirmHold",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -225,6 +231,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateBalanceRequest)
@@ -263,6 +271,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createBalance",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -323,6 +332,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateBalanceRequest)
@@ -361,6 +372,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createBalance",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -421,6 +433,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateWalletRequest)
@@ -459,6 +473,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createWallet",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -519,6 +534,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateWalletRequest)
@@ -557,6 +574,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createWallet",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -617,6 +635,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreditWalletRequest)
@@ -655,6 +675,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="creditWallet",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -712,6 +733,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreditWalletRequest)
@@ -750,6 +773,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="creditWallet",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -807,6 +831,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DebitWalletRequest)
@@ -845,6 +871,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="debitWallet",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -911,6 +938,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DebitWalletRequest)
@@ -949,6 +978,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="debitWallet",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -1015,6 +1045,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalanceRequest)
@@ -1046,6 +1078,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getBalance",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -1106,6 +1139,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalanceRequest)
@@ -1137,6 +1172,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getBalance",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -1195,6 +1231,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetHoldRequest)
@@ -1226,6 +1264,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getHold",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -1284,6 +1323,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetHoldRequest)
@@ -1315,6 +1356,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getHold",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -1373,6 +1415,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetHoldsRequest)
@@ -1404,6 +1448,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getHolds",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -1462,6 +1507,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetHoldsRequest)
@@ -1493,6 +1540,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getHolds",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -1553,6 +1601,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransactionsRequest)
@@ -1584,6 +1634,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getTransactions",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -1644,6 +1695,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransactionsRequest)
@@ -1675,6 +1728,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getTransactions",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -1735,6 +1789,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWalletRequest)
@@ -1766,6 +1822,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWallet",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -1832,6 +1889,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWalletRequest)
@@ -1863,6 +1922,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWallet",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -1930,6 +1990,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWalletSummaryRequest)
@@ -1961,6 +2023,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWalletSummary",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -2028,6 +2091,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWalletSummaryRequest)
@@ -2059,6 +2124,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWalletSummary",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -2125,6 +2191,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListBalancesRequest)
@@ -2156,6 +2224,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listBalances",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -2215,6 +2284,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListBalancesRequest)
@@ -2246,6 +2317,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listBalances",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -2305,6 +2377,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListWalletsRequest)
@@ -2336,6 +2410,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listWallets",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -2396,6 +2471,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListWalletsRequest)
@@ -2427,6 +2504,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listWallets",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -2487,6 +2565,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateWalletRequest)
@@ -2525,6 +2605,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateWallet",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -2582,6 +2663,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateWalletRequest)
@@ -2620,6 +2703,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateWallet",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -2675,6 +2759,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.VoidHoldRequest)
@@ -2706,6 +2792,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="voidHold",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -2761,6 +2848,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.VoidHoldRequest)
@@ -2792,6 +2881,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="voidHold",
                 oauth2_scopes=["auth:read", "wallets:write"],
                 security_source=self.sdk_configuration.security,
@@ -2845,6 +2935,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/wallets/_info",
@@ -2871,6 +2963,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="walletsgetServerInfo",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
@@ -2927,6 +3020,8 @@ class SDKWalletsV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/wallets/_info",
@@ -2953,6 +3048,7 @@ class SDKWalletsV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="walletsgetServerInfo",
                 oauth2_scopes=["auth:read", "wallets:read"],
                 security_source=self.sdk_configuration.security,
