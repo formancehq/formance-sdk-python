@@ -4,6 +4,7 @@
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -29,6 +30,7 @@ from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
 async def main():
+
     async with SDK(
         security=shared.Security(
             client_id="<YOUR_CLIENT_ID_HERE>",

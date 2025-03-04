@@ -35,6 +35,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.CreateClientRequest])
@@ -69,6 +71,7 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createClient",
                 oauth2_scopes=["auth:read", "auth:write"],
                 security_source=self.sdk_configuration.security,
@@ -128,6 +131,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.CreateClientRequest])
@@ -162,6 +167,7 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createClient",
                 oauth2_scopes=["auth:read", "auth:write"],
                 security_source=self.sdk_configuration.security,
@@ -221,6 +227,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateSecretRequest)
@@ -259,6 +267,7 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createSecret",
                 oauth2_scopes=["auth:read", "auth:write"],
                 security_source=self.sdk_configuration.security,
@@ -318,6 +327,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateSecretRequest)
@@ -356,6 +367,7 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createSecret",
                 oauth2_scopes=["auth:read", "auth:write"],
                 security_source=self.sdk_configuration.security,
@@ -415,6 +427,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteClientRequest)
@@ -446,6 +460,7 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteClient",
                 oauth2_scopes=["auth:read", "auth:write"],
                 security_source=self.sdk_configuration.security,
@@ -502,6 +517,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteClientRequest)
@@ -533,6 +550,7 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteClient",
                 oauth2_scopes=["auth:read", "auth:write"],
                 security_source=self.sdk_configuration.security,
@@ -589,6 +607,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteSecretRequest)
@@ -620,6 +640,7 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteSecret",
                 oauth2_scopes=["auth:read", "auth:write"],
                 security_source=self.sdk_configuration.security,
@@ -676,6 +697,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteSecretRequest)
@@ -707,6 +730,7 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteSecret",
                 oauth2_scopes=["auth:read", "auth:write"],
                 security_source=self.sdk_configuration.security,
@@ -759,6 +783,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/auth/.well-known/openid-configuration",
@@ -785,6 +811,7 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getOIDCWellKnowns",
                 oauth2_scopes=["auth:read", "auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -837,6 +864,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/auth/.well-known/openid-configuration",
@@ -863,6 +892,7 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getOIDCWellKnowns",
                 oauth2_scopes=["auth:read", "auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -915,6 +945,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/auth/_info",
@@ -941,6 +973,7 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getServerInfo",
                 oauth2_scopes=["auth:read", "auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -996,6 +1029,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/auth/_info",
@@ -1022,6 +1057,7 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getServerInfo",
                 oauth2_scopes=["auth:read", "auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -1077,6 +1113,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/auth/clients",
@@ -1103,6 +1141,7 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listClients",
                 oauth2_scopes=["auth:read", "auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -1158,6 +1197,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/auth/clients",
@@ -1184,6 +1225,7 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listClients",
                 oauth2_scopes=["auth:read", "auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -1241,6 +1283,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/auth/users",
@@ -1267,6 +1311,7 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listUsers",
                 oauth2_scopes=["auth:read", "auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -1324,6 +1369,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/auth/users",
@@ -1350,6 +1397,7 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listUsers",
                 oauth2_scopes=["auth:read", "auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -1409,6 +1457,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadClientRequest)
@@ -1440,6 +1490,7 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="readClient",
                 oauth2_scopes=["auth:read", "auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -1499,6 +1550,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadClientRequest)
@@ -1530,6 +1583,7 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="readClient",
                 oauth2_scopes=["auth:read", "auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -1589,6 +1643,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadUserRequest)
@@ -1620,6 +1676,7 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="readUser",
                 oauth2_scopes=["auth:read", "auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -1679,6 +1736,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadUserRequest)
@@ -1710,6 +1769,7 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="readUser",
                 oauth2_scopes=["auth:read", "auth:read"],
                 security_source=self.sdk_configuration.security,
@@ -1769,6 +1829,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateClientRequest)
@@ -1807,6 +1869,7 @@ class V1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateClient",
                 oauth2_scopes=["auth:read", "auth:write"],
                 security_source=self.sdk_configuration.security,
@@ -1866,6 +1929,8 @@ class V1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateClientRequest)
@@ -1904,6 +1969,7 @@ class V1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateClient",
                 oauth2_scopes=["auth:read", "auth:write"],
                 security_source=self.sdk_configuration.security,

@@ -24,6 +24,7 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -74,6 +75,7 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -123,6 +125,7 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -169,6 +172,7 @@ Delete a webhooks config by ID.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -214,6 +218,7 @@ Sorted by updated date descending
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -271,6 +276,7 @@ All eventTypes are converted to lower-case when inserted.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -322,6 +328,7 @@ Test a config by sending a webhook to its endpoint.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -367,6 +374,7 @@ Update a webhooks config by ID.
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(

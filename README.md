@@ -134,6 +134,7 @@ Generally, the SDK will work well with most IDEs out of the box. However, when u
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -159,6 +160,7 @@ from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
 async def main():
+
     async with SDK(
         security=shared.Security(
             client_id="<YOUR_CLIENT_ID_HERE>",
@@ -368,7 +370,6 @@ asyncio.run(main())
 * [get_bank_account](docs/sdks/v3/README.md#get_bank_account) - Get a Bank Account by ID
 * [get_connector_config](docs/sdks/v3/README.md#get_connector_config) - Get a connector configuration by ID
 * [get_connector_schedule](docs/sdks/v3/README.md#get_connector_schedule) - Get a connector schedule by ID
-* [get_info](docs/sdks/v3/README.md#get_info) - Show server information
 * [get_payment](docs/sdks/v3/README.md#get_payment) - Get a payment by ID
 * [get_payment_initiation](docs/sdks/v3/README.md#get_payment_initiation) - Get a payment initiation by ID
 * [get_pool](docs/sdks/v3/README.md#get_pool) - Get a pool by ID
@@ -472,6 +473,7 @@ from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 from formance_sdk_python.utils import BackoffStrategy, RetryConfig
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -494,6 +496,7 @@ If you'd like to override the default retry strategy for all operations that sup
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 from formance_sdk_python.utils import BackoffStrategy, RetryConfig
+
 
 with SDK(
     retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
@@ -540,6 +543,7 @@ When custom error responses are specified for an operation, the SDK may also rai
 from formance_sdk_python import SDK
 from formance_sdk_python.models import errors, shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -579,12 +583,17 @@ with SDK(
 
 You can override the default server globally by passing a server index to the `server_idx: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                                                | Variables                                                       | Default values                       |
-| --- | ----------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------ |
-| 0   | `http://localhost`                                    |                                                                 |                                      |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `environment: models.ServerEnvironment`<br/>`organization: str` | `"eu.sandbox"`<br/>`"orgID-stackID"` |
+| #   | Server                                                | Variables                        | Description                                |
+| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
+| 0   | `http://localhost`                                    |                                  | local server                               |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `environment`<br/>`organization` | A per-organization and per-environment API |
 
-If the selected server has variables, you may override their default values through the additional parameters made available in the SDK constructor.
+If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
+
+| Variable       | Parameter                               | Supported Values                                                           | Default           | Description                                                   |
+| -------------- | --------------------------------------- | -------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `environment: models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
+| `organization` | `organization: str`                     | str                                                                        | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
 
 #### Example
 
@@ -592,8 +601,11 @@ If the selected server has variables, you may override their default values thro
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     server_idx=1,
+    environment="us-east-1"
+    organization="<value>"
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",
@@ -615,6 +627,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     server_url="http://localhost",
@@ -731,6 +744,7 @@ You can set the security parameters through the `security` optional parameter wh
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -759,6 +773,7 @@ The `SDK` class implements the context manager protocol and registers a finalize
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 def main():
+
     with SDK(
         security=shared.Security(
             client_id="<YOUR_CLIENT_ID_HERE>",
@@ -770,6 +785,7 @@ def main():
 
 # Or when using async:
 async def amain():
+
     async with SDK(
         security=shared.Security(
             client_id="<YOUR_CLIENT_ID_HERE>",

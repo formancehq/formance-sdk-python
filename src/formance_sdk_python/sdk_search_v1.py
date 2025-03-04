@@ -39,6 +39,8 @@ class SDKSearchV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.Query)
@@ -73,6 +75,7 @@ class SDKSearchV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="search",
                 oauth2_scopes=["auth:read", "search:write"],
                 security_source=self.sdk_configuration.security,
@@ -133,6 +136,8 @@ class SDKSearchV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.Query)
@@ -167,6 +172,7 @@ class SDKSearchV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="search",
                 oauth2_scopes=["auth:read", "search:write"],
                 security_source=self.sdk_configuration.security,
@@ -223,6 +229,8 @@ class SDKSearchV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/search/_info",
@@ -249,6 +257,7 @@ class SDKSearchV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="searchgetServerInfo",
                 oauth2_scopes=["auth:read", "search:read"],
                 security_source=self.sdk_configuration.security,
@@ -307,6 +316,8 @@ class SDKSearchV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/search/_info",
@@ -333,6 +344,7 @@ class SDKSearchV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="searchgetServerInfo",
                 oauth2_scopes=["auth:read", "search:read"],
                 security_source=self.sdk_configuration.security,

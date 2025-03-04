@@ -59,6 +59,7 @@ Add an account to a pool
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -107,6 +108,7 @@ Execute a transfer between two accounts.
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -161,6 +163,7 @@ import dateutil.parser
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -210,6 +213,7 @@ Create a bank account in Payments and on the PSP.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -258,6 +262,7 @@ Create a payment
 import dateutil.parser
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -312,6 +317,7 @@ Create a Pool
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -363,6 +369,7 @@ Create a transfer initiation
 import dateutil.parser
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -418,6 +425,7 @@ Delete a pool by its id.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -464,6 +472,7 @@ Delete a transfer initiation by its id.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -509,6 +518,7 @@ Forward a bank account to a connector
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -558,6 +568,7 @@ Get account balances
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -610,6 +621,7 @@ Get a bank account created by user on Formance
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -658,6 +670,7 @@ Get a specific task associated to the connector.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -704,6 +717,7 @@ Get a specific task associated to the connector.
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -753,6 +767,7 @@ Get a payment
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -798,6 +813,7 @@ Get a Pool
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -846,6 +862,7 @@ import dateutil.parser
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -893,6 +910,7 @@ Get a transfer initiation
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -939,6 +957,7 @@ Install a connector by its name and config.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -949,8 +968,8 @@ with SDK(
     res = sdk.payments.v1.install_connector(request={
         "connector_config": {
             "api_key": "XXX",
-            "name": "My Wise Account",
-            "page_size": 10,
+            "name": "My Stripe Account",
+            "page_size": 50,
             "polling_period": "60s",
         },
         "connector": shared.Connector.ATLAR,
@@ -990,6 +1009,7 @@ List all installed connectors.
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -1033,6 +1053,7 @@ List all bank accounts created by user on Formance.
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -1084,6 +1105,7 @@ List the configs of each available connector.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -1128,6 +1150,7 @@ List all tasks associated with this connector.
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -1176,6 +1199,7 @@ List all tasks associated with this connector.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -1223,6 +1247,7 @@ List payments
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -1274,6 +1299,7 @@ List Pools
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -1323,6 +1349,7 @@ List Transfer Initiations
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -1374,6 +1401,7 @@ Get an account
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -1420,6 +1448,7 @@ Get server info
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -1462,6 +1491,7 @@ List accounts
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -1515,6 +1545,7 @@ Read connector config
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -1560,6 +1591,7 @@ Read connector config
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -1607,6 +1639,7 @@ Remove an account from a pool by its id.
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -1659,6 +1692,7 @@ It will remove the connector and ALL PAYMENTS generated with it.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -1707,6 +1741,7 @@ It will remove the connector and ALL PAYMENTS generated with it.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -1754,6 +1789,7 @@ Retry a failed transfer initiation
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -1799,6 +1835,7 @@ Reverse transfer initiation
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -1855,6 +1892,7 @@ Update a transfer initiation status
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -1906,6 +1944,7 @@ Uninstall a connector by its name.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -1951,6 +1990,7 @@ Uninstall a connector by its name.
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -1998,6 +2038,7 @@ Update metadata of a bank account
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -2049,6 +2090,7 @@ Update connector config
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -2102,6 +2144,7 @@ Update metadata
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(

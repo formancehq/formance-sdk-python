@@ -35,6 +35,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.PolicyRequest)
@@ -69,6 +71,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createPolicy",
                 oauth2_scopes=["auth:read", "reconciliation:write"],
                 security_source=self.sdk_configuration.security,
@@ -129,6 +132,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.PolicyRequest)
@@ -163,6 +168,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createPolicy",
                 oauth2_scopes=["auth:read", "reconciliation:write"],
                 security_source=self.sdk_configuration.security,
@@ -225,6 +231,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeletePolicyRequest)
@@ -256,6 +264,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deletePolicy",
                 oauth2_scopes=["auth:read", "reconciliation:write"],
                 security_source=self.sdk_configuration.security,
@@ -315,6 +324,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeletePolicyRequest)
@@ -346,6 +357,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deletePolicy",
                 oauth2_scopes=["auth:read", "reconciliation:write"],
                 security_source=self.sdk_configuration.security,
@@ -403,6 +415,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPolicyRequest)
@@ -434,6 +448,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getPolicy",
                 oauth2_scopes=["auth:read", "reconciliation:read"],
                 security_source=self.sdk_configuration.security,
@@ -494,6 +509,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPolicyRequest)
@@ -525,6 +542,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getPolicy",
                 oauth2_scopes=["auth:read", "reconciliation:read"],
                 security_source=self.sdk_configuration.security,
@@ -586,6 +604,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetReconciliationRequest)
@@ -617,6 +637,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getReconciliation",
                 oauth2_scopes=["auth:read", "reconciliation:read"],
                 security_source=self.sdk_configuration.security,
@@ -678,6 +699,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetReconciliationRequest)
@@ -709,6 +732,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getReconciliation",
                 oauth2_scopes=["auth:read", "reconciliation:read"],
                 security_source=self.sdk_configuration.security,
@@ -769,6 +793,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPoliciesRequest)
@@ -800,6 +826,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listPolicies",
                 oauth2_scopes=["auth:read", "reconciliation:read"],
                 security_source=self.sdk_configuration.security,
@@ -860,6 +887,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPoliciesRequest)
@@ -891,6 +920,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listPolicies",
                 oauth2_scopes=["auth:read", "reconciliation:read"],
                 security_source=self.sdk_configuration.security,
@@ -952,6 +982,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListReconciliationsRequest)
@@ -983,6 +1015,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listReconciliations",
                 oauth2_scopes=["auth:read", "reconciliation:read"],
                 security_source=self.sdk_configuration.security,
@@ -1044,6 +1077,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListReconciliationsRequest)
@@ -1075,6 +1110,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listReconciliations",
                 oauth2_scopes=["auth:read", "reconciliation:read"],
                 security_source=self.sdk_configuration.security,
@@ -1137,6 +1173,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReconcileRequest)
@@ -1175,6 +1213,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="reconcile",
                 oauth2_scopes=["auth:read", "reconciliation:write"],
                 security_source=self.sdk_configuration.security,
@@ -1237,6 +1276,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReconcileRequest)
@@ -1275,6 +1316,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="reconcile",
                 oauth2_scopes=["auth:read", "reconciliation:write"],
                 security_source=self.sdk_configuration.security,
@@ -1331,6 +1373,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/reconciliation/_info",
@@ -1357,6 +1401,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="reconciliationgetServerInfo",
                 oauth2_scopes=["auth:read", "reconciliation:read"],
                 security_source=self.sdk_configuration.security,
@@ -1413,6 +1458,8 @@ class SDKReconciliationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/reconciliation/_info",
@@ -1439,6 +1486,7 @@ class SDKReconciliationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="reconciliationgetServerInfo",
                 oauth2_scopes=["auth:read", "reconciliation:read"],
                 security_source=self.sdk_configuration.security,

@@ -37,6 +37,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CancelEventRequest)
@@ -68,6 +70,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="cancelEvent",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -125,6 +128,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CancelEventRequest)
@@ -156,6 +161,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="cancelEvent",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -213,6 +219,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.TriggerData])
@@ -247,6 +255,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createTrigger",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -307,6 +316,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.TriggerData])
@@ -341,6 +352,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createTrigger",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -401,6 +413,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.CreateWorkflowRequest])
@@ -435,6 +449,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -495,6 +510,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.CreateWorkflowRequest])
@@ -529,6 +546,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -589,6 +607,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteTriggerRequest)
@@ -620,6 +640,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteTrigger",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -677,6 +698,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteTriggerRequest)
@@ -708,6 +731,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteTrigger",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -765,6 +789,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteWorkflowRequest)
@@ -796,6 +822,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -853,6 +880,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteWorkflowRequest)
@@ -884,6 +913,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -941,6 +971,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetInstanceRequest)
@@ -972,6 +1004,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getInstance",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1032,6 +1065,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetInstanceRequest)
@@ -1063,6 +1098,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getInstance",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1124,6 +1160,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetInstanceHistoryRequest)
@@ -1155,6 +1193,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getInstanceHistory",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1216,6 +1255,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetInstanceHistoryRequest)
@@ -1247,6 +1288,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getInstanceHistory",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1308,6 +1350,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1341,6 +1385,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getInstanceStageHistory",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1403,6 +1448,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1436,6 +1483,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getInstanceStageHistory",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1497,6 +1545,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkflowRequest)
@@ -1528,6 +1578,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1588,6 +1639,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkflowRequest)
@@ -1619,6 +1672,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1679,6 +1733,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListInstancesRequest)
@@ -1710,6 +1766,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listInstances",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1770,6 +1827,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListInstancesRequest)
@@ -1801,6 +1860,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listInstances",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1861,6 +1921,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListTriggersRequest)
@@ -1892,6 +1954,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listTriggers",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1952,6 +2015,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListTriggersRequest)
@@ -1983,6 +2048,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listTriggers",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2044,6 +2110,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2077,6 +2145,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listTriggersOccurrences",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2138,6 +2207,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2171,6 +2242,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listTriggersOccurrences",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2227,6 +2299,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/orchestration/workflows",
@@ -2253,6 +2327,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listWorkflows",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2309,6 +2384,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/orchestration/workflows",
@@ -2335,6 +2412,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="listWorkflows",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2389,6 +2467,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/orchestration/_info",
@@ -2415,6 +2495,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="orchestrationgetServerInfo",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2469,6 +2550,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/orchestration/_info",
@@ -2495,6 +2578,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="orchestrationgetServerInfo",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2555,6 +2639,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadTriggerRequest)
@@ -2586,6 +2672,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="readTrigger",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2646,6 +2733,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadTriggerRequest)
@@ -2677,6 +2766,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="readTrigger",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2737,6 +2827,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RunWorkflowRequest)
@@ -2771,6 +2863,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="runWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -2831,6 +2924,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RunWorkflowRequest)
@@ -2865,6 +2960,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="runWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -2925,6 +3021,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.SendEventRequest)
@@ -2963,6 +3061,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="sendEvent",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -3020,6 +3119,8 @@ class SDKOrchestrationV1(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.SendEventRequest)
@@ -3058,6 +3159,7 @@ class SDKOrchestrationV1(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="sendEvent",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,

@@ -37,6 +37,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CancelEventRequest)
@@ -68,6 +70,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CancelEvent",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -125,6 +128,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CancelEventRequest)
@@ -156,6 +161,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CancelEvent",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -213,6 +219,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.V2TriggerData])
@@ -247,6 +255,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CreateTrigger",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -307,6 +316,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.V2TriggerData])
@@ -341,6 +352,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CreateTrigger",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -403,6 +415,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.V2CreateWorkflowRequest])
@@ -437,6 +451,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CreateWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -499,6 +514,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[shared.V2CreateWorkflowRequest])
@@ -533,6 +550,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CreateWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -594,6 +612,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2DeleteTriggerRequest)
@@ -625,6 +645,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2DeleteTrigger",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -683,6 +704,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2DeleteTriggerRequest)
@@ -714,6 +737,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2DeleteTrigger",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -772,6 +796,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2DeleteWorkflowRequest)
@@ -803,6 +829,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2DeleteWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -861,6 +888,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2DeleteWorkflowRequest)
@@ -892,6 +921,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2DeleteWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -949,6 +979,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetInstanceRequest)
@@ -980,6 +1012,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetInstance",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1040,6 +1073,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetInstanceRequest)
@@ -1071,6 +1106,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetInstance",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1132,6 +1168,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetInstanceHistoryRequest)
@@ -1163,6 +1201,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetInstanceHistory",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1224,6 +1263,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetInstanceHistoryRequest)
@@ -1255,6 +1296,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetInstanceHistory",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1316,6 +1358,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1349,6 +1393,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetInstanceStageHistory",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1411,6 +1456,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1444,6 +1491,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetInstanceStageHistory",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1499,6 +1547,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/orchestration/v2/_info",
@@ -1525,6 +1575,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetServerInfo",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1579,6 +1630,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/orchestration/v2/_info",
@@ -1605,6 +1658,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetServerInfo",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1665,6 +1719,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetWorkflowRequest)
@@ -1696,6 +1752,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1756,6 +1813,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetWorkflowRequest)
@@ -1787,6 +1846,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1848,6 +1908,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListInstancesRequest)
@@ -1879,6 +1941,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListInstances",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -1940,6 +2003,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListInstancesRequest)
@@ -1971,6 +2036,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListInstances",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2031,6 +2097,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListTriggersRequest)
@@ -2062,6 +2130,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListTriggers",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2122,6 +2191,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListTriggersRequest)
@@ -2153,6 +2224,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListTriggers",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2214,6 +2286,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2247,6 +2321,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListTriggersOccurrences",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2308,6 +2383,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2341,6 +2418,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListTriggersOccurrences",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2402,6 +2480,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListWorkflowsRequest)
@@ -2433,6 +2513,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListWorkflows",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2494,6 +2575,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListWorkflowsRequest)
@@ -2525,6 +2608,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListWorkflows",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2585,6 +2669,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ReadTriggerRequest)
@@ -2616,6 +2702,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ReadTrigger",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2676,6 +2763,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ReadTriggerRequest)
@@ -2707,6 +2796,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ReadTrigger",
                 oauth2_scopes=["auth:read", "orchestration:read"],
                 security_source=self.sdk_configuration.security,
@@ -2767,6 +2857,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2RunWorkflowRequest)
@@ -2801,6 +2893,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2RunWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -2861,6 +2954,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2RunWorkflowRequest)
@@ -2895,6 +2990,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2RunWorkflow",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -2955,6 +3051,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2SendEventRequest)
@@ -2993,6 +3091,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2SendEvent",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -3050,6 +3149,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2SendEventRequest)
@@ -3088,6 +3189,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2SendEvent",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -3145,6 +3247,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.TestTriggerRequest)
@@ -3179,6 +3283,7 @@ class SDKV2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="testTrigger",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,
@@ -3239,6 +3344,8 @@ class SDKV2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.TestTriggerRequest)
@@ -3273,6 +3380,7 @@ class SDKV2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="testTrigger",
                 oauth2_scopes=["auth:read", "orchestration:write"],
                 security_source=self.sdk_configuration.security,

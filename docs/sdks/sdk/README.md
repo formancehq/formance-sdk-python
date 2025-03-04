@@ -29,6 +29,7 @@ Show stack version information
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",

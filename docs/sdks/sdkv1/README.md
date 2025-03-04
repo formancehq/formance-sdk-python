@@ -36,6 +36,7 @@ Create a new batch of transactions to a ledger
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -109,6 +110,7 @@ Set the metadata of a transaction by its ID
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -155,6 +157,7 @@ Add metadata to an account
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -205,6 +208,7 @@ Count the accounts from a ledger
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -305,6 +309,7 @@ Count the transactions from a ledger
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -355,6 +360,7 @@ Create a new transaction to a ledger
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -439,6 +445,7 @@ Get account by its address
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -485,6 +492,7 @@ Get the balances from a ledger's account
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -535,6 +543,7 @@ Get the aggregated balances from selected accounts
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -582,6 +591,7 @@ Show server information
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -624,6 +634,7 @@ Get information about a ledger
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -671,6 +682,7 @@ Get the mapping of a ledger
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -716,6 +728,7 @@ Get transaction from a ledger by its ID
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -763,6 +776,7 @@ List accounts from a ledger, sorted by address in descending order.
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -868,6 +882,7 @@ List the logs from a ledger, sorted by ID in descending order.
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -916,6 +931,7 @@ List transactions from a ledger, sorted by txid in descending order.
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -971,6 +987,7 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -1016,6 +1033,7 @@ Revert a ledger transaction by its ID
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -1066,6 +1084,7 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -1126,6 +1145,7 @@ Update the mapping of a ledger
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(

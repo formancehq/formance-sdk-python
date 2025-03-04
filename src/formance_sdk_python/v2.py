@@ -36,6 +36,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -72,6 +74,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2AddMetadataOnTransaction",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -130,6 +133,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -166,6 +171,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2AddMetadataOnTransaction",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -224,6 +230,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2AddMetadataToAccountRequest)
@@ -258,6 +266,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2AddMetadataToAccount",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -316,6 +325,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2AddMetadataToAccountRequest)
@@ -350,6 +361,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2AddMetadataToAccount",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -408,6 +420,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CountAccountsRequest)
@@ -442,6 +456,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CountAccounts",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -501,6 +516,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CountAccountsRequest)
@@ -535,6 +552,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CountAccounts",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -594,6 +612,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CountTransactionsRequest)
@@ -628,6 +648,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CountTransactions",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -687,6 +708,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CountTransactionsRequest)
@@ -721,6 +744,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CountTransactions",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -779,6 +803,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CreateBulkRequest)
@@ -817,6 +843,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CreateBulk",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -886,6 +913,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CreateBulkRequest)
@@ -924,6 +953,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CreateBulk",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -993,6 +1023,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CreateLedgerRequest)
@@ -1031,6 +1063,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CreateLedger",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -1088,6 +1121,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CreateLedgerRequest)
@@ -1126,6 +1161,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CreateLedger",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -1184,6 +1220,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CreateTransactionRequest)
@@ -1222,6 +1260,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CreateTransaction",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -1283,6 +1322,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CreateTransactionRequest)
@@ -1321,6 +1362,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2CreateTransaction",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -1384,6 +1426,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1417,6 +1461,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2DeleteAccountMetadata",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -1477,6 +1522,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1510,6 +1557,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2DeleteAccountMetadata",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -1568,6 +1616,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2DeleteLedgerMetadataRequest)
@@ -1599,6 +1649,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2DeleteLedgerMetadata",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -1657,6 +1708,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2DeleteLedgerMetadataRequest)
@@ -1688,6 +1741,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2DeleteLedgerMetadata",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -1748,6 +1802,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1781,6 +1837,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2DeleteTransactionMetadata",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -1841,6 +1898,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1874,6 +1933,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2DeleteTransactionMetadata",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -1931,6 +1991,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ExportLogsRequest)
@@ -1962,6 +2024,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ExportLogs",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -2018,6 +2081,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ExportLogsRequest)
@@ -2049,6 +2114,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ExportLogs",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -2105,6 +2171,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetAccountRequest)
@@ -2136,6 +2204,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetAccount",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2196,6 +2265,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetAccountRequest)
@@ -2227,6 +2298,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetAccount",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2288,6 +2360,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2324,6 +2398,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetBalancesAggregated",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2385,6 +2460,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2421,6 +2498,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetBalancesAggregated",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2477,6 +2555,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/ledger/_/info",
@@ -2503,6 +2583,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetInfo",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2568,6 +2649,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/ledger/_/info",
@@ -2594,6 +2677,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetInfo",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2663,6 +2747,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetLedgerRequest)
@@ -2694,6 +2780,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetLedger",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2754,6 +2841,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetLedgerRequest)
@@ -2785,6 +2874,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetLedger",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2846,6 +2936,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetLedgerInfoRequest)
@@ -2877,6 +2969,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetLedgerInfo",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -2938,6 +3031,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetLedgerInfoRequest)
@@ -2969,6 +3064,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetLedgerInfo",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -3025,6 +3121,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/ledger/_/metrics",
@@ -3051,6 +3149,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getMetrics",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -3105,6 +3204,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/ledger/_/metrics",
@@ -3131,6 +3232,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getMetrics",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -3190,6 +3292,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetTransactionRequest)
@@ -3221,6 +3325,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetTransaction",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -3282,6 +3387,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetTransactionRequest)
@@ -3313,6 +3420,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetTransaction",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -3374,6 +3482,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -3410,6 +3520,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetVolumesWithBalances",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -3471,6 +3582,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -3507,6 +3620,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2GetVolumesWithBalances",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -3566,6 +3680,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ImportLogsRequest)
@@ -3600,6 +3716,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ImportLogs",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -3656,6 +3773,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ImportLogsRequest)
@@ -3690,6 +3809,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ImportLogs",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -3749,6 +3869,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListAccountsRequest)
@@ -3783,6 +3905,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListAccounts",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -3845,6 +3968,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListAccountsRequest)
@@ -3879,6 +4004,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListAccounts",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -3939,6 +4065,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListLedgersRequest)
@@ -3970,6 +4098,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListLedgers",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -4030,6 +4159,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListLedgersRequest)
@@ -4061,6 +4192,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListLedgers",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -4123,6 +4255,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListLogsRequest)
@@ -4157,6 +4291,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListLogs",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -4219,6 +4354,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListLogsRequest)
@@ -4253,6 +4390,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListLogs",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -4316,6 +4454,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListTransactionsRequest)
@@ -4350,6 +4490,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListTransactions",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -4413,6 +4554,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListTransactionsRequest)
@@ -4447,6 +4590,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ListTransactions",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -4510,6 +4654,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ReadStatsRequest)
@@ -4541,6 +4687,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ReadStats",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -4604,6 +4751,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ReadStatsRequest)
@@ -4635,6 +4784,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2ReadStats",
                 oauth2_scopes=["auth:read", "ledger:read"],
                 security_source=self.sdk_configuration.security,
@@ -4696,6 +4846,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2RevertTransactionRequest)
@@ -4727,6 +4879,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2RevertTransaction",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -4788,6 +4941,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2RevertTransactionRequest)
@@ -4819,6 +4974,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2RevertTransaction",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -4880,6 +5036,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2UpdateLedgerMetadataRequest)
@@ -4914,6 +5072,7 @@ class V2(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2UpdateLedgerMetadata",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,
@@ -4981,6 +5140,8 @@ class V2(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2UpdateLedgerMetadataRequest)
@@ -5015,6 +5176,7 @@ class V2(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="v2UpdateLedgerMetadata",
                 oauth2_scopes=["auth:read", "ledger:write"],
                 security_source=self.sdk_configuration.security,

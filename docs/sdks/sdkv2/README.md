@@ -34,6 +34,7 @@ Cancel a running workflow
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -80,6 +81,7 @@ Create trigger
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -124,6 +126,7 @@ Create a workflow
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -167,6 +170,7 @@ Read trigger
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -214,6 +218,7 @@ Delete a flow by id
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -259,6 +264,7 @@ Get a workflow instance by id
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -306,6 +312,7 @@ Get a workflow instance history by id
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -351,6 +358,7 @@ Get a workflow instance stage history
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -399,6 +407,7 @@ Get server info
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -441,6 +450,7 @@ Get a flow by id
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -487,6 +497,7 @@ List instances of a workflow
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -537,6 +548,7 @@ List triggers
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -583,6 +595,7 @@ List triggers occurrences
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -632,6 +645,7 @@ List registered workflows
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -679,6 +693,7 @@ Read trigger
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -724,6 +739,7 @@ Run workflow
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(
@@ -771,6 +787,7 @@ Send an event to a running workflow
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
 
+
 with SDK(
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
@@ -816,6 +833,7 @@ Test trigger
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
+
 
 with SDK(
     security=shared.Security(

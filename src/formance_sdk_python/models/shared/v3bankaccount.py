@@ -24,6 +24,7 @@ class V3BankAccountTypedDict(TypedDict):
     id: str
     name: str
     account_number: NotRequired[Nullable[str]]
+    country: NotRequired[Nullable[str]]
     iban: NotRequired[Nullable[str]]
     metadata: NotRequired[Nullable[Dict[str, str]]]
     related_accounts: NotRequired[List[V3BankAccountRelatedAccountTypedDict]]
@@ -40,6 +41,8 @@ class V3BankAccount(BaseModel):
     account_number: Annotated[
         OptionalNullable[str], pydantic.Field(alias="accountNumber")
     ] = UNSET
+
+    country: OptionalNullable[str] = UNSET
 
     iban: OptionalNullable[str] = UNSET
 
@@ -58,12 +61,19 @@ class V3BankAccount(BaseModel):
     def serialize_model(self, handler):
         optional_fields = [
             "accountNumber",
+            "country",
             "iban",
             "metadata",
             "relatedAccounts",
             "swiftBicCode",
         ]
-        nullable_fields = ["accountNumber", "iban", "metadata", "swiftBicCode"]
+        nullable_fields = [
+            "accountNumber",
+            "country",
+            "iban",
+            "metadata",
+            "swiftBicCode",
+        ]
         null_default_fields = []
 
         serialized = handler(self)
