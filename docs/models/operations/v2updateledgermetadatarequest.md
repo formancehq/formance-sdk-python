@@ -5,5 +5,5 @@
 
 | Field               | Type                | Required            | Description         | Example             |
 | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `request_body`      | Dict[str, *str*]    | :heavy_check_mark:  | N/A                 | {<br/>"admin": "true"<br/>} |
 | `ledger`            | *str*               | :heavy_check_mark:  | Name of the ledger. | ledger001           |
-| `request_body`      | Dict[str, *str*]    | :heavy_minus_sign:  | N/A                 | {<br/>"admin": "true"<br/>} |

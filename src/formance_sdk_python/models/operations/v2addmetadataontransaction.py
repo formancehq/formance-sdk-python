@@ -18,19 +18,25 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2AddMetadataOnTransactionRequestTypedDict(TypedDict):
+    request_body: Dict[str, str]
+    r"""metadata"""
     id: int
     r"""Transaction ID."""
     ledger: str
     r"""Name of the ledger."""
     idempotency_key: NotRequired[str]
     r"""Use an idempotency key"""
-    request_body: NotRequired[Dict[str, str]]
-    r"""metadata"""
     dry_run: NotRequired[bool]
     r"""Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker."""
 
 
 class V2AddMetadataOnTransactionRequest(BaseModel):
+    request_body: Annotated[
+        Dict[str, str],
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+    r"""metadata"""
+
     id: Annotated[
         Annotated[int, BeforeValidator(validate_int)],
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
@@ -48,12 +54,6 @@ class V2AddMetadataOnTransactionRequest(BaseModel):
         FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
     ] = None
     r"""Use an idempotency key"""
-
-    request_body: Annotated[
-        Optional[Dict[str, str]],
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ] = None
-    r"""metadata"""
 
     dry_run: Annotated[
         Optional[bool],

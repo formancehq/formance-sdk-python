@@ -43,6 +43,7 @@ and standard method from web, mobile and desktop applications.
   * [IDE Support](https://github.com/formancehq/formance-sdk-python/blob/master/#ide-support)
   * [SDK Example Usage](https://github.com/formancehq/formance-sdk-python/blob/master/#sdk-example-usage)
   * [Available Resources and Operations](https://github.com/formancehq/formance-sdk-python/blob/master/#available-resources-and-operations)
+  * [File uploads](https://github.com/formancehq/formance-sdk-python/blob/master/#file-uploads)
   * [Retries](https://github.com/formancehq/formance-sdk-python/blob/master/#retries)
   * [Error Handling](https://github.com/formancehq/formance-sdk-python/blob/master/#error-handling)
   * [Server Selection](https://github.com/formancehq/formance-sdk-python/blob/master/#server-selection)
@@ -462,6 +463,41 @@ asyncio.run(main())
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
+<!-- Start File uploads [file-upload] -->
+## File uploads
+
+Certain SDK methods accept file objects as part of a request body or multi-part request. It is possible and typically recommended to upload files as a stream rather than reading the entire contents into memory. This avoids excessive memory consumption and potentially crashing with out-of-memory errors when working with very large files. The following example demonstrates how to attach a file stream to a request.
+
+> [!TIP]
+>
+> For endpoints that handle file uploads bytes arrays can also be used. However, using streams is recommended for large files.
+>
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.import_logs(request={
+        "v2_import_logs_request": open("example.file", "rb"),
+        "ledger": "ledger001",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+<!-- End File uploads [file-upload] -->
+
 <!-- Start Retries [retries] -->
 ## Retries
 
@@ -554,11 +590,11 @@ with SDK(
     try:
 
         res = sdk.ledger.v2.add_metadata_on_transaction(request={
-            "id": 1234,
-            "ledger": "ledger001",
             "request_body": {
                 "admin": "true",
             },
+            "id": 1234,
+            "ledger": "ledger001",
             "dry_run": True,
         })
 

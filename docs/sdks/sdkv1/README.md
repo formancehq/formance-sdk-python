@@ -119,6 +119,9 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v1.add_metadata_on_transaction(request={
+        "request_body": {
+            "key": "<value>",
+        },
         "ledger": "ledger001",
         "txid": 1234,
     })
@@ -393,14 +396,14 @@ with SDK(
             ],
             "reference": "ref:001",
             "script": {
-                "plain": "vars {\n" +
-                "account $user\n" +
-                "}\n" +
-                "send [COIN 10] (\n" +
-                "	source = @world\n" +
-                "	destination = $user\n" +
-                ")\n" +
-                "",
+                "plain": ("vars {\n"
+                "account $user\n"
+                "}\n"
+                "send [COIN 10] (\n"
+                "	source = @world\n"
+                "	destination = $user\n"
+                ")\n"
+                ""),
                 "vars": {
                     "user": "users:042",
                 },
@@ -1095,14 +1098,14 @@ with SDK(
 
     res = sdk.ledger.v1.run_script(request={
         "script": {
-            "plain": "vars {\n" +
-            "account $user\n" +
-            "}\n" +
-            "send [COIN 10] (\n" +
-            "	source = @world\n" +
-            "	destination = $user\n" +
-            ")\n" +
-            "",
+            "plain": ("vars {\n"
+            "account $user\n"
+            "}\n"
+            "send [COIN 10] (\n"
+            "	source = @world\n"
+            "	destination = $user\n"
+            ")\n"
+            ""),
             "reference": "order_1234",
             "vars": {
                 "user": "users:042",

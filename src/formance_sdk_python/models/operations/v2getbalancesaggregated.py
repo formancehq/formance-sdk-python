@@ -19,24 +19,24 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2GetBalancesAggregatedRequestTypedDict(TypedDict):
+    request_body: Dict[str, Any]
     ledger: str
     r"""Name of the ledger."""
-    request_body: NotRequired[Dict[str, Any]]
     pit: NotRequired[datetime]
     use_insertion_date: NotRequired[bool]
     r"""Use insertion date instead of effective date"""
 
 
 class V2GetBalancesAggregatedRequest(BaseModel):
+    request_body: Annotated[
+        Dict[str, Any],
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
     ledger: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""Name of the ledger."""
-
-    request_body: Annotated[
-        Optional[Dict[str, Any]],
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ] = None
 
     pit: Annotated[
         Optional[datetime],

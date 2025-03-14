@@ -7,28 +7,27 @@ from formance_sdk_python.models.shared import (
 from formance_sdk_python.types import BaseModel
 from formance_sdk_python.utils import FieldMetadata, PathParamMetadata, RequestMetadata
 import httpx
-from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 
 class V2CreateLedgerRequestTypedDict(TypedDict):
+    v2_create_ledger_request: (
+        shared_v2createledgerrequest.V2CreateLedgerRequestTypedDict
+    )
     ledger: str
     r"""Name of the ledger."""
-    v2_create_ledger_request: NotRequired[
-        shared_v2createledgerrequest.V2CreateLedgerRequestTypedDict
-    ]
 
 
 class V2CreateLedgerRequest(BaseModel):
+    v2_create_ledger_request: Annotated[
+        shared_v2createledgerrequest.V2CreateLedgerRequest,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
     ledger: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""Name of the ledger."""
-
-    v2_create_ledger_request: Annotated[
-        Optional[shared_v2createledgerrequest.V2CreateLedgerRequest],
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ] = None
 
 
 class V2CreateLedgerResponseTypedDict(TypedDict):

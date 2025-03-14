@@ -4,23 +4,26 @@ from __future__ import annotations
 from formance_sdk_python.types import BaseModel
 from formance_sdk_python.utils import FieldMetadata, PathParamMetadata
 import httpx
-from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+import io
+from typing import IO, Union
+from typing_extensions import Annotated, TypedDict
 
 
 class V2ImportLogsRequestTypedDict(TypedDict):
+    v2_import_logs_request: Union[bytes, IO[bytes], io.BufferedReader]
     ledger: str
     r"""Name of the ledger."""
-    request_body: NotRequired[str]
 
 
 class V2ImportLogsRequest(BaseModel):
+    v2_import_logs_request: Annotated[
+        Union[bytes, IO[bytes], io.BufferedReader], FieldMetadata(request=True)
+    ]
+
     ledger: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""Name of the ledger."""
-
-    request_body: Annotated[Optional[str], FieldMetadata(request=True)] = None
 
 
 class V2ImportLogsResponseTypedDict(TypedDict):

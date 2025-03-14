@@ -10,21 +10,21 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2UpdateLedgerMetadataRequestTypedDict(TypedDict):
+    request_body: Dict[str, str]
     ledger: str
     r"""Name of the ledger."""
-    request_body: NotRequired[Dict[str, str]]
 
 
 class V2UpdateLedgerMetadataRequest(BaseModel):
+    request_body: Annotated[
+        Dict[str, str],
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
     ledger: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""Name of the ledger."""
-
-    request_body: Annotated[
-        Optional[Dict[str, str]],
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ] = None
 
 
 class V2UpdateLedgerMetadataResponseTypedDict(TypedDict):
