@@ -19,9 +19,9 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2GetVolumesWithBalancesRequestTypedDict(TypedDict):
+    request_body: Dict[str, Any]
     ledger: str
     r"""Name of the ledger."""
-    request_body: NotRequired[Dict[str, Any]]
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests. Maximum page size is set to 15.
     Set to the value of next for the next page of results.
@@ -42,15 +42,15 @@ class V2GetVolumesWithBalancesRequestTypedDict(TypedDict):
 
 
 class V2GetVolumesWithBalancesRequest(BaseModel):
+    request_body: Annotated[
+        Dict[str, Any],
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
     ledger: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""Name of the ledger."""
-
-    request_body: Annotated[
-        Optional[Dict[str, Any]],
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ] = None
 
     cursor: Annotated[
         Optional[str],

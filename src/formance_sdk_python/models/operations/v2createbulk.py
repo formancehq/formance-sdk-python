@@ -19,9 +19,9 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2CreateBulkRequestTypedDict(TypedDict):
+    request_body: List[shared_v2bulkelement.V2BulkElementTypedDict]
     ledger: str
     r"""Name of the ledger."""
-    request_body: NotRequired[List[shared_v2bulkelement.V2BulkElementTypedDict]]
     atomic: NotRequired[bool]
     r"""Make bulk atomic"""
     continue_on_failure: NotRequired[bool]
@@ -31,15 +31,15 @@ class V2CreateBulkRequestTypedDict(TypedDict):
 
 
 class V2CreateBulkRequest(BaseModel):
+    request_body: Annotated[
+        List[shared_v2bulkelement.V2BulkElement],
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
     ledger: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""Name of the ledger."""
-
-    request_body: Annotated[
-        Optional[List[shared_v2bulkelement.V2BulkElement]],
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ] = None
 
     atomic: Annotated[
         Optional[bool],

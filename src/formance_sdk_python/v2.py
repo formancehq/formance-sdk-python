@@ -5,7 +5,8 @@ from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import errors, operations, shared
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
-from typing import Any, Dict, List, Mapping, Optional, Union, cast
+import io
+from typing import Any, Dict, IO, List, Mapping, Optional, Union, cast
 
 
 class V2(BaseSDK):
@@ -51,7 +52,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -59,7 +60,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, str]]
+                request.request_body, False, False, "json", Dict[str, str]
             ),
             timeout_ms=timeout_ms,
         )
@@ -148,7 +149,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -156,7 +157,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, str]]
+                request.request_body, False, False, "json", Dict[str, str]
             ),
             timeout_ms=timeout_ms,
         )
@@ -433,7 +434,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -441,7 +442,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -529,7 +530,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -537,7 +538,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -625,7 +626,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -633,7 +634,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -721,7 +722,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -729,7 +730,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -816,7 +817,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -824,11 +825,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body,
-                False,
-                True,
-                "json",
-                Optional[List[shared.V2BulkElement]],
+                request.request_body, False, False, "json", List[shared.V2BulkElement]
             ),
             timeout_ms=timeout_ms,
         )
@@ -926,7 +923,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -934,11 +931,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body,
-                False,
-                True,
-                "json",
-                Optional[List[shared.V2BulkElement]],
+                request.request_body, False, False, "json", List[shared.V2BulkElement]
             ),
             timeout_ms=timeout_ms,
         )
@@ -1036,7 +1029,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -1046,9 +1039,9 @@ class V2(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.v2_create_ledger_request,
                 False,
-                True,
+                False,
                 "json",
-                Optional[shared.V2CreateLedgerRequest],
+                shared.V2CreateLedgerRequest,
             ),
             timeout_ms=timeout_ms,
         )
@@ -1134,7 +1127,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -1144,9 +1137,9 @@ class V2(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.v2_create_ledger_request,
                 False,
-                True,
+                False,
                 "json",
-                Optional[shared.V2CreateLedgerRequest],
+                shared.V2CreateLedgerRequest,
             ),
             timeout_ms=timeout_ms,
         )
@@ -2375,7 +2368,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -2383,7 +2376,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -2475,7 +2468,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -2483,7 +2476,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -3497,7 +3490,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -3505,7 +3498,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -3597,7 +3590,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -3605,7 +3598,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -3693,7 +3686,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -3701,7 +3694,11 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "string", Optional[str]
+                request.v2_import_logs_request,
+                False,
+                False,
+                "raw",
+                Union[bytes, IO[bytes], io.BufferedReader],
             ),
             timeout_ms=timeout_ms,
         )
@@ -3786,7 +3783,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -3794,7 +3791,11 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "string", Optional[str]
+                request.v2_import_logs_request,
+                False,
+                False,
+                "raw",
+                Union[bytes, IO[bytes], io.BufferedReader],
             ),
             timeout_ms=timeout_ms,
         )
@@ -3882,7 +3883,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -3890,7 +3891,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -3981,7 +3982,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -3989,7 +3990,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -4268,7 +4269,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -4276,7 +4277,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -4367,7 +4368,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -4375,7 +4376,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -4467,7 +4468,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -4475,7 +4476,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -4567,7 +4568,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -4575,7 +4576,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
+                request.request_body, False, False, "json", Dict[str, Any]
             ),
             timeout_ms=timeout_ms,
         )
@@ -5049,7 +5050,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -5057,7 +5058,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, str]]
+                request.request_body, False, False, "json", Dict[str, str]
             ),
             timeout_ms=timeout_ms,
         )
@@ -5153,7 +5154,7 @@ class V2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=False,
+            request_body_required=True,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
@@ -5161,7 +5162,7 @@ class V2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, str]]
+                request.request_body, False, False, "json", Dict[str, str]
             ),
             timeout_ms=timeout_ms,
         )

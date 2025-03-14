@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: c41faf2a0390b8c6621c8b1cf31eb698
-  docVersion: v3.0.1
-  speakeasyVersion: 1.509.0
-  generationVersion: 2.539.0
-  releaseVersion: 6.1.0
-  configChecksum: aa6c303de08b17c711713ab2b3bc58df
+  docChecksum: 9862b22f02b53b8eb8ade75875a5c24f
+  docVersion: v3.0.2
+  speakeasyVersion: 1.517.3
+  generationVersion: 2.548.6
+  releaseVersion: 6.2.0
+  configChecksum: d3f8cd79e9c07688882a880ef514264e
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
@@ -16,7 +16,7 @@ features:
     additionalDependencies: 1.0.0
     bigint: 1.0.0
     constsAndDefaults: 1.0.5
-    core: 5.12.2
+    core: 5.12.3
     defaultEnabledRetries: 0.2.0
     deprecations: 3.0.2
     downloadStreams: 1.0.1
@@ -35,6 +35,7 @@ features:
     retries: 3.0.2
     sdkHooks: 1.0.1
     unions: 3.0.4
+    uploadStreams: 1.0.0
 generatedFiles:
   - .gitattributes
   - .python-version
@@ -1012,7 +1013,7 @@ generatedFiles:
   - py.typed
   - pylintrc
   - pyproject.toml
-  - scripts/prepare-readme.py
+  - scripts/prepare_readme.py
   - scripts/publish.sh
   - src/formance_sdk_python/__init__.py
   - src/formance_sdk_python/_hooks/__init__.py
@@ -1024,6 +1025,7 @@ generatedFiles:
   - src/formance_sdk_python/basesdk.py
   - src/formance_sdk_python/httpclient.py
   - src/formance_sdk_python/ledger.py
+  - src/formance_sdk_python/models/__init__.py
   - src/formance_sdk_python/models/errors/__init__.py
   - src/formance_sdk_python/models/errors/error.py
   - src/formance_sdk_python/models/errors/errorresponse.py
@@ -1814,6 +1816,8 @@ examples:
         path:
           ledger: "ledger001"
         query: {}
+      requestBody:
+        application/json: {"key": "<value>"}
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
@@ -1823,6 +1827,8 @@ examples:
         path:
           ledger: "ledger001"
         query: {}
+      requestBody:
+        application/json: {"key": "<value>", "key1": "<value>"}
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
@@ -1922,6 +1928,8 @@ examples:
         path:
           ledger: "ledger001"
         query: {}
+      requestBody:
+        application/json: {"key": "<value>"}
       responses:
         "200":
           application/json: {"data": {"USD": 100, "EUR": 12}}
@@ -1984,6 +1992,8 @@ examples:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
           groupBy: 3
+      requestBody:
+        application/json: {"key": "<value>"}
       responses:
         "200":
           application/json: {"cursor": {"data": [{"account": "60079609", "asset": "<value>", "balance": 992275, "input": 894289, "output": 625394}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
@@ -1994,6 +2004,8 @@ examples:
       parameters:
         path:
           ledger: "ledger001"
+      requestBody:
+        application/octet-stream: "x-file: example.file"
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
@@ -2005,6 +2017,8 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      requestBody:
+        application/json: {}
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
@@ -2029,6 +2043,8 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      requestBody:
+        application/json: {"key": "<value>"}
       responses:
         "200":
           application/json: {"cursor": {"data": [{"data": {}, "date": "2024-06-27T07:17:46.078Z", "hash": "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e", "id": 1234, "type": "REVERTED_TRANSACTION"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
@@ -2042,6 +2058,8 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+      requestBody:
+        application/json: {}
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
@@ -2100,6 +2118,8 @@ examples:
         path:
           ledger: "ledger001"
           txid: 1234
+      requestBody:
+        application/json: {"key": "<value>"}
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}

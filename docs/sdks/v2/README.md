@@ -52,11 +52,11 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.add_metadata_on_transaction(request={
-        "id": 1234,
-        "ledger": "ledger001",
         "request_body": {
             "admin": "true",
         },
+        "id": 1234,
+        "ledger": "ledger001",
         "dry_run": True,
     })
 
@@ -156,6 +156,9 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.count_accounts(request={
+        "request_body": {
+            "key": "<value>",
+        },
         "ledger": "ledger001",
     })
 
@@ -203,6 +206,10 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.count_transactions(request={
+        "request_body": {
+            "key": "<value>",
+            "key1": "<value>",
+        },
         "ledger": "ledger001",
     })
 
@@ -250,12 +257,12 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.create_bulk(request={
-        "ledger": "ledger001",
         "request_body": [
             {
                 "action": "<value>",
             },
         ],
+        "ledger": "ledger001",
         "atomic": True,
         "continue_on_failure": True,
         "parallel": True,
@@ -305,12 +312,12 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.create_ledger(request={
-        "ledger": "ledger001",
         "v2_create_ledger_request": {
             "metadata": {
                 "admin": "true",
             },
         },
+        "ledger": "ledger001",
     })
 
     assert res is not None
@@ -377,14 +384,14 @@ with SDK(
             ],
             "reference": "ref:001",
             "script": {
-                "plain": "vars {\n" +
-                "account $user\n" +
-                "}\n" +
-                "send [COIN 10] (\n" +
-                "	source = @world\n" +
-                "	destination = $user\n" +
-                ")\n" +
-                "",
+                "plain": ("vars {\n"
+                "account $user\n"
+                "}\n"
+                "send [COIN 10] (\n"
+                "	source = @world\n"
+                "	destination = $user\n"
+                ")\n"
+                ""),
                 "vars": {
                     "user": "users:042",
                 },
@@ -679,6 +686,9 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.get_balances_aggregated(request={
+        "request_body": {
+            "key": "<value>",
+        },
         "ledger": "ledger001",
     })
 
@@ -956,6 +966,9 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.get_volumes_with_balances(request={
+        "request_body": {
+            "key": "<value>",
+        },
         "ledger": "ledger001",
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "group_by": 3,
@@ -1004,6 +1017,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.import_logs(request={
+        "v2_import_logs_request": open("example.file", "rb"),
         "ledger": "ledger001",
     })
 
@@ -1051,6 +1065,9 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.list_accounts(request={
+        "request_body": {
+
+        },
         "ledger": "ledger001",
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "page_size": 100,
@@ -1148,6 +1165,9 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.list_logs(request={
+        "request_body": {
+            "key": "<value>",
+        },
         "ledger": "ledger001",
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "page_size": 100,
@@ -1197,6 +1217,9 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.list_transactions(request={
+        "request_body": {
+
+        },
         "ledger": "ledger001",
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "page_size": 100,
@@ -1343,10 +1366,10 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.update_ledger_metadata(request={
-        "ledger": "ledger001",
         "request_body": {
             "admin": "true",
         },
+        "ledger": "ledger001",
     })
 
     assert res is not None
