@@ -12,8 +12,10 @@ from .v3modulrconfig import V3ModulrConfig, V3ModulrConfigTypedDict
 from .v3moneycorpconfig import V3MoneycorpConfig, V3MoneycorpConfigTypedDict
 from .v3stripeconfig import V3StripeConfig, V3StripeConfigTypedDict
 from .v3wiseconfig import V3WiseConfig, V3WiseConfigTypedDict
+from formance_sdk_python.utils import get_discriminator
+from pydantic import Discriminator, Tag
 from typing import Union
-from typing_extensions import TypeAliasType
+from typing_extensions import Annotated, TypeAliasType
 
 
 V3InstallConnectorRequestTypedDict = TypeAliasType(
@@ -34,19 +36,19 @@ V3InstallConnectorRequestTypedDict = TypeAliasType(
 )
 
 
-V3InstallConnectorRequest = TypeAliasType(
-    "V3InstallConnectorRequest",
+V3InstallConnectorRequest = Annotated[
     Union[
-        V3DummypayConfig,
-        V3StripeConfig,
-        V3GenericConfig,
-        V3WiseConfig,
-        V3AtlarConfig,
-        V3CurrencycloudConfig,
-        V3MangopayConfig,
-        V3ModulrConfig,
-        V3MoneycorpConfig,
-        V3AdyenConfig,
-        V3BankingcircleConfig,
+        Annotated[V3AdyenConfig, Tag("Adyen")],
+        Annotated[V3AtlarConfig, Tag("Atlar")],
+        Annotated[V3BankingcircleConfig, Tag("Bankingcircle")],
+        Annotated[V3CurrencycloudConfig, Tag("Currencycloud")],
+        Annotated[V3DummypayConfig, Tag("Dummypay")],
+        Annotated[V3GenericConfig, Tag("Generic")],
+        Annotated[V3MangopayConfig, Tag("Mangopay")],
+        Annotated[V3ModulrConfig, Tag("Modulr")],
+        Annotated[V3MoneycorpConfig, Tag("Moneycorp")],
+        Annotated[V3StripeConfig, Tag("Stripe")],
+        Annotated[V3WiseConfig, Tag("Wise")],
     ],
-)
+    Discriminator(lambda m: get_discriminator(m, "provider", "provider")),
+]

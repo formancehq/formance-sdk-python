@@ -13,6 +13,7 @@ class V3WiseConfigTypedDict(TypedDict):
     webhook_public_key: str
     page_size: NotRequired[int]
     polling_period: NotRequired[str]
+    provider: NotRequired[str]
 
 
 class V3WiseConfig(BaseModel):
@@ -27,3 +28,5 @@ class V3WiseConfig(BaseModel):
     polling_period: Annotated[Optional[str], pydantic.Field(alias="pollingPeriod")] = (
         "2m"
     )
+
+    provider: Optional[str] = "Wise"

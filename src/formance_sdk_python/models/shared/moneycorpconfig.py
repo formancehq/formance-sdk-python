@@ -16,6 +16,7 @@ class MoneycorpConfigTypedDict(TypedDict):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
 
     """
+    provider: NotRequired[str]
 
 
 class MoneycorpConfig(BaseModel):
@@ -33,3 +34,5 @@ class MoneycorpConfig(BaseModel):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
 
     """
+
+    provider: Optional[str] = "Moneycorp"

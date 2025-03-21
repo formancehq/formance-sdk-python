@@ -17,6 +17,7 @@ class V3BankingcircleConfigTypedDict(TypedDict):
     username: str
     page_size: NotRequired[int]
     polling_period: NotRequired[str]
+    provider: NotRequired[str]
 
 
 class V3BankingcircleConfig(BaseModel):
@@ -41,3 +42,5 @@ class V3BankingcircleConfig(BaseModel):
     polling_period: Annotated[Optional[str], pydantic.Field(alias="pollingPeriod")] = (
         "2m"
     )
+
+    provider: Optional[str] = "Bankingcircle"

@@ -967,10 +967,15 @@ with SDK(
 
     res = sdk.payments.v1.install_connector(request={
         "connector_config": {
-            "api_key": "XXX",
-            "name": "My Stripe Account",
-            "page_size": 50,
+            "authorization_endpoint": "XXX",
+            "endpoint": "XXX",
+            "name": "My Banking Circle Account",
+            "password": "XXX",
+            "user_certificate": "XXX",
+            "user_certificate_key": "XXX",
+            "username": "XXX",
             "polling_period": "60s",
+            "provider": "Bankingcircle",
         },
         "connector": shared.Connector.ATLAR,
     })
@@ -2102,9 +2107,11 @@ with SDK(
     res = sdk.payments.v1.update_connector_config_v1(request={
         "connector_config": {
             "api_key": "XXX",
-            "name": "My Stripe Account",
-            "page_size": 10,
+            "hmac_key": "XXX",
+            "name": "My Adyen Account",
+            "live_endpoint_prefix": "XXX",
             "polling_period": "120s",
+            "provider": "Adyen",
         },
         "connector": shared.Connector.ADYEN,
         "connector_id": "XXX",

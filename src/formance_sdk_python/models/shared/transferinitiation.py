@@ -42,6 +42,7 @@ class TransferInitiationTypedDict(TypedDict):
     error: str
     id: str
     initial_amount: int
+    provider: Nullable[str]
     reference: str
     scheduled_at: datetime
     source_account_id: str
@@ -74,6 +75,8 @@ class TransferInitiation(BaseModel):
         pydantic.Field(alias="initialAmount"),
     ]
 
+    provider: Nullable[str]
+
     reference: str
 
     scheduled_at: Annotated[datetime, pydantic.Field(alias="scheduledAt")]
@@ -99,7 +102,7 @@ class TransferInitiation(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = ["metadata", "relatedAdjustments", "relatedPayments"]
-        nullable_fields = ["metadata", "relatedPayments"]
+        nullable_fields = ["provider", "metadata", "relatedPayments"]
         null_default_fields = []
 
         serialized = handler(self)

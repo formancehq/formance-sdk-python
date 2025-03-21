@@ -15,6 +15,7 @@ class DummyPayConfigTypedDict(TypedDict):
     number_of_accounts_pre_generated: NotRequired[int]
     number_of_payments_pre_generated: NotRequired[int]
     prefix_file_to_ingest: NotRequired[str]
+    provider: NotRequired[str]
 
 
 class DummyPayConfig(BaseModel):
@@ -38,3 +39,5 @@ class DummyPayConfig(BaseModel):
     prefix_file_to_ingest: Annotated[
         Optional[str], pydantic.Field(alias="prefixFileToIngest")
     ] = None
+
+    provider: Optional[str] = "Dummypay"

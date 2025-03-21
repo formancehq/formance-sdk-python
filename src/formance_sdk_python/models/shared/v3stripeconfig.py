@@ -12,6 +12,7 @@ class V3StripeConfigTypedDict(TypedDict):
     name: str
     page_size: NotRequired[int]
     polling_period: NotRequired[str]
+    provider: NotRequired[str]
 
 
 class V3StripeConfig(BaseModel):
@@ -24,3 +25,5 @@ class V3StripeConfig(BaseModel):
     polling_period: Annotated[Optional[str], pydantic.Field(alias="pollingPeriod")] = (
         "2m"
     )
+
+    provider: Optional[str] = "Stripe"

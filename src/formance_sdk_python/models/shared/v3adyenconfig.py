@@ -14,6 +14,7 @@ class V3AdyenConfigTypedDict(TypedDict):
     live_endpoint_prefix: NotRequired[str]
     page_size: NotRequired[int]
     polling_period: NotRequired[str]
+    provider: NotRequired[str]
     webhook_password: NotRequired[str]
     webhook_username: NotRequired[str]
 
@@ -34,6 +35,8 @@ class V3AdyenConfig(BaseModel):
     polling_period: Annotated[Optional[str], pydantic.Field(alias="pollingPeriod")] = (
         "2m"
     )
+
+    provider: Optional[str] = "Adyen"
 
     webhook_password: Annotated[
         Optional[str], pydantic.Field(alias="webhookPassword")

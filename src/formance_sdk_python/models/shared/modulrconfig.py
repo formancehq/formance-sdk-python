@@ -16,6 +16,7 @@ class ModulrConfigTypedDict(TypedDict):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
 
     """
+    provider: NotRequired[str]
 
 
 class ModulrConfig(BaseModel):
@@ -33,3 +34,5 @@ class ModulrConfig(BaseModel):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
 
     """
+
+    provider: Optional[str] = "Modulr"

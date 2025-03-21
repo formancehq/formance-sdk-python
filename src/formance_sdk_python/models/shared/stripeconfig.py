@@ -18,6 +18,7 @@ class StripeConfigTypedDict(TypedDict):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
 
     """
+    provider: NotRequired[str]
 
 
 class StripeConfig(BaseModel):
@@ -36,3 +37,5 @@ class StripeConfig(BaseModel):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
 
     """
+
+    provider: Optional[str] = "Stripe"
