@@ -19,6 +19,7 @@ class BankingCircleConfigTypedDict(TypedDict):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
 
     """
+    provider: NotRequired[str]
 
 
 class BankingCircleConfig(BaseModel):
@@ -44,3 +45,5 @@ class BankingCircleConfig(BaseModel):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
 
     """
+
+    provider: Optional[str] = "Bankingcircle"

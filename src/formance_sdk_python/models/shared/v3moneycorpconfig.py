@@ -14,6 +14,7 @@ class V3MoneycorpConfigTypedDict(TypedDict):
     name: str
     page_size: NotRequired[int]
     polling_period: NotRequired[str]
+    provider: NotRequired[str]
 
 
 class V3MoneycorpConfig(BaseModel):
@@ -30,3 +31,5 @@ class V3MoneycorpConfig(BaseModel):
     polling_period: Annotated[Optional[str], pydantic.Field(alias="pollingPeriod")] = (
         "2m"
     )
+
+    provider: Optional[str] = "Moneycorp"

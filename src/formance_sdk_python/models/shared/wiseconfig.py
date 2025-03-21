@@ -14,6 +14,7 @@ class WiseConfigTypedDict(TypedDict):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Wise API.
 
     """
+    provider: NotRequired[str]
 
 
 class WiseConfig(BaseModel):
@@ -27,3 +28,5 @@ class WiseConfig(BaseModel):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Wise API.
 
     """
+
+    provider: Optional[str] = "Wise"

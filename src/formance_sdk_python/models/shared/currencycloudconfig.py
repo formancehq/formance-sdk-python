@@ -16,6 +16,7 @@ class CurrencyCloudConfigTypedDict(TypedDict):
     r"""The endpoint to use for the API. Defaults to https://devapi.currencycloud.com"""
     polling_period: NotRequired[str]
     r"""The frequency at which the connector will fetch transactions"""
+    provider: NotRequired[str]
 
 
 class CurrencyCloudConfig(BaseModel):
@@ -33,3 +34,5 @@ class CurrencyCloudConfig(BaseModel):
         "120s"
     )
     r"""The frequency at which the connector will fetch transactions"""
+
+    provider: Optional[str] = "Currencycloud"

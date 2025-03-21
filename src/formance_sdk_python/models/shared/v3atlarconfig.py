@@ -14,12 +14,13 @@ class V3AtlarConfigTypedDict(TypedDict):
     secret: str
     page_size: NotRequired[int]
     polling_period: NotRequired[str]
+    provider: NotRequired[str]
 
 
 class V3AtlarConfig(BaseModel):
     access_key: Annotated[str, pydantic.Field(alias="accessKey")]
 
-    base_url: Annotated[str, pydantic.Field(alias="baseURL")]
+    base_url: Annotated[str, pydantic.Field(alias="baseUrl")]
 
     name: str
 
@@ -30,3 +31,5 @@ class V3AtlarConfig(BaseModel):
     polling_period: Annotated[Optional[str], pydantic.Field(alias="pollingPeriod")] = (
         "2m"
     )
+
+    provider: Optional[str] = "Atlar"

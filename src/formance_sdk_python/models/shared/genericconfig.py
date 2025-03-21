@@ -15,6 +15,7 @@ class GenericConfigTypedDict(TypedDict):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from the API.
 
     """
+    provider: NotRequired[str]
 
 
 class GenericConfig(BaseModel):
@@ -30,3 +31,5 @@ class GenericConfig(BaseModel):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from the API.
 
     """
+
+    provider: Optional[str] = "Generic"

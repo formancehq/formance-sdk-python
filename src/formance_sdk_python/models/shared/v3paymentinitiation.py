@@ -26,6 +26,7 @@ class V3PaymentInitiationTypedDict(TypedDict):
     created_at: datetime
     description: str
     id: str
+    provider: str
     reference: str
     scheduled_at: datetime
     status: V3PaymentInitiationStatusEnum
@@ -48,6 +49,8 @@ class V3PaymentInitiation(BaseModel):
     description: str
 
     id: str
+
+    provider: str
 
     reference: str
 

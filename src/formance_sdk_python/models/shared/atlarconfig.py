@@ -31,6 +31,7 @@ class AtlarConfigTypedDict(TypedDict):
     r"""The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
 
     """
+    provider: NotRequired[str]
     transfer_initiation_status_polling_period: NotRequired[str]
     r"""The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
 
@@ -70,6 +71,8 @@ class AtlarConfig(BaseModel):
     r"""The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
 
     """
+
+    provider: Optional[str] = "Atlar"
 
     transfer_initiation_status_polling_period: Annotated[
         Optional[str], pydantic.Field(alias="transferInitiationStatusPollingPeriod")

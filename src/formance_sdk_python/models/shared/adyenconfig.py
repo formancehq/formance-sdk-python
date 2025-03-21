@@ -16,6 +16,7 @@ class AdyenConfigTypedDict(TypedDict):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Adyen API.
 
     """
+    provider: NotRequired[str]
 
 
 class AdyenConfig(BaseModel):
@@ -35,3 +36,5 @@ class AdyenConfig(BaseModel):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Adyen API.
 
     """
+
+    provider: Optional[str] = "Adyen"

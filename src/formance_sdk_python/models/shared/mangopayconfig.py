@@ -16,6 +16,7 @@ class MangoPayConfigTypedDict(TypedDict):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from MangoPay API.
 
     """
+    provider: NotRequired[str]
 
 
 class MangoPayConfig(BaseModel):
@@ -33,3 +34,5 @@ class MangoPayConfig(BaseModel):
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from MangoPay API.
 
     """
+
+    provider: Optional[str] = "Mangopay"

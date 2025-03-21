@@ -7,10 +7,6 @@ from typing_extensions import TypedDict
 
 
 class Status(str, Enum):
-    WAITING_FOR_VALIDATION = "WAITING_FOR_VALIDATION"
-    PROCESSING = "PROCESSING"
-    PROCESSED = "PROCESSED"
-    FAILED = "FAILED"
     REJECTED = "REJECTED"
     VALIDATED = "VALIDATED"
 
