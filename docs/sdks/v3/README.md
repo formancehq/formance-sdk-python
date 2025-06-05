@@ -1193,9 +1193,9 @@ with SDK(
 
     res = sdk.payments.v3.list_connector_schedule_instances(request={
         "connector_id": "<id>",
-        "schedule_id": "<id>",
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "page_size": 100,
+        "schedule_id": "<id>",
     })
 
     assert res.v3_connector_schedule_instances_cursor_response is not None
@@ -1339,9 +1339,9 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v3.list_payment_initiation_adjustments(request={
-        "payment_initiation_id": "<id>",
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "page_size": 100,
+        "payment_initiation_id": "<id>",
     })
 
     assert res.v3_payment_initiation_adjustments_cursor_response is not None
@@ -1388,9 +1388,9 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v3.list_payment_initiation_related_payments(request={
-        "payment_initiation_id": "<id>",
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "page_size": 100,
+        "payment_initiation_id": "<id>",
     })
 
     assert res.v3_payment_initiation_related_payments_cursor_response is not None

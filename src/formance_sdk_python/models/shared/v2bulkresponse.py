@@ -10,17 +10,16 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2BulkResponseTypedDict(TypedDict):
-    data: List[V2BulkElementResultTypedDict]
-    error_code: V2ErrorsEnum
-    error_message: str
-    details: NotRequired[str]
+    data: NotRequired[List[V2BulkElementResultTypedDict]]
+    error_code: NotRequired[V2ErrorsEnum]
+    error_message: NotRequired[str]
 
 
 class V2BulkResponse(BaseModel):
-    data: List[V2BulkElementResult]
+    data: Optional[List[V2BulkElementResult]] = None
 
-    error_code: Annotated[V2ErrorsEnum, pydantic.Field(alias="errorCode")]
+    error_code: Annotated[Optional[V2ErrorsEnum], pydantic.Field(alias="errorCode")] = (
+        None
+    )
 
-    error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
-
-    details: Optional[str] = None
+    error_message: Annotated[Optional[str], pydantic.Field(alias="errorMessage")] = None

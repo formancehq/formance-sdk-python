@@ -7,20 +7,20 @@ from typing import List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-class StorageTypedDict(TypedDict):
+class LedgerInfoStorageTypedDict(TypedDict):
     migrations: NotRequired[List[MigrationInfoTypedDict]]
 
 
-class Storage(BaseModel):
+class LedgerInfoStorage(BaseModel):
     migrations: Optional[List[MigrationInfo]] = None
 
 
 class LedgerInfoTypedDict(TypedDict):
     name: NotRequired[str]
-    storage: NotRequired[StorageTypedDict]
+    storage: NotRequired[LedgerInfoStorageTypedDict]
 
 
 class LedgerInfo(BaseModel):
     name: Optional[str] = None
 
-    storage: Optional[Storage] = None
+    storage: Optional[LedgerInfoStorage] = None

@@ -7,19 +7,22 @@ from .utils.logger import Logger, get_default_logger
 from .utils.retries import RetryConfig
 from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext, SDKHooks
-from formance_sdk_python.auth import Auth
-from formance_sdk_python.ledger import Ledger
 from formance_sdk_python.models import errors, operations, shared
-from formance_sdk_python.orchestration import Orchestration
-from formance_sdk_python.payments import Payments
-from formance_sdk_python.reconciliation import Reconciliation
-from formance_sdk_python.search import Search
 from formance_sdk_python.types import OptionalNullable, UNSET
-from formance_sdk_python.wallets import Wallets
-from formance_sdk_python.webhooks import Webhooks
 import httpx
-from typing import Callable, Dict, List, Mapping, Optional, Union, cast
+import importlib
+from typing import Callable, Dict, List, Mapping, Optional, TYPE_CHECKING, Union, cast
 import weakref
+
+if TYPE_CHECKING:
+    from formance_sdk_python.auth import Auth
+    from formance_sdk_python.ledger import Ledger
+    from formance_sdk_python.orchestration import Orchestration
+    from formance_sdk_python.payments import Payments
+    from formance_sdk_python.reconciliation import Reconciliation
+    from formance_sdk_python.search import Search
+    from formance_sdk_python.wallets import Wallets
+    from formance_sdk_python.webhooks import Webhooks
 
 
 class SDK(BaseSDK):
@@ -37,14 +40,24 @@ class SDK(BaseSDK):
 
     """
 
-    auth: Auth
-    ledger: Ledger
-    orchestration: Orchestration
-    payments: Payments
-    reconciliation: Reconciliation
-    search: Search
-    wallets: Wallets
-    webhooks: Webhooks
+    auth: "Auth"
+    ledger: "Ledger"
+    orchestration: "Orchestration"
+    payments: "Payments"
+    reconciliation: "Reconciliation"
+    search: "Search"
+    wallets: "Wallets"
+    webhooks: "Webhooks"
+    _sub_sdk_map = {
+        "auth": ("formance_sdk_python.auth", "Auth"),
+        "ledger": ("formance_sdk_python.ledger", "Ledger"),
+        "orchestration": ("formance_sdk_python.orchestration", "Orchestration"),
+        "payments": ("formance_sdk_python.payments", "Payments"),
+        "reconciliation": ("formance_sdk_python.reconciliation", "Reconciliation"),
+        "search": ("formance_sdk_python.search", "Search"),
+        "wallets": ("formance_sdk_python.wallets", "Wallets"),
+        "webhooks": ("formance_sdk_python.webhooks", "Webhooks"),
+    }
 
     def __init__(
         self,
@@ -126,15 +139,15 @@ class SDK(BaseSDK):
 
         hooks = SDKHooks()
 
+        # pylint: disable=protected-access
+        self.sdk_configuration.__dict__["_hooks"] = hooks
+
         current_server_url, *_ = self.sdk_configuration.get_server_details()
         server_url, self.sdk_configuration.client = hooks.sdk_init(
             current_server_url, client
         )
         if current_server_url != server_url:
             self.sdk_configuration.server_url = server_url
-
-        # pylint: disable=protected-access
-        self.sdk_configuration.__dict__["_hooks"] = hooks
 
         weakref.finalize(
             self,
@@ -146,17 +159,32 @@ class SDK(BaseSDK):
             self.sdk_configuration.async_client_supplied,
         )
 
-        self._init_sdks()
+    def __getattr__(self, name: str):
+        if name in self._sub_sdk_map:
+            module_path, class_name = self._sub_sdk_map[name]
+            try:
+                module = importlib.import_module(module_path)
+                klass = getattr(module, class_name)
+                instance = klass(self.sdk_configuration)
+                setattr(self, name, instance)
+                return instance
+            except ImportError as e:
+                raise AttributeError(
+                    f"Failed to import module {module_path} for attribute {name}: {e}"
+                ) from e
+            except AttributeError as e:
+                raise AttributeError(
+                    f"Failed to find class {class_name} in module {module_path} for attribute {name}: {e}"
+                ) from e
 
-    def _init_sdks(self):
-        self.auth = Auth(self.sdk_configuration)
-        self.ledger = Ledger(self.sdk_configuration)
-        self.orchestration = Orchestration(self.sdk_configuration)
-        self.payments = Payments(self.sdk_configuration)
-        self.reconciliation = Reconciliation(self.sdk_configuration)
-        self.search = Search(self.sdk_configuration)
-        self.wallets = Wallets(self.sdk_configuration)
-        self.webhooks = Webhooks(self.sdk_configuration)
+        raise AttributeError(
+            f"'{type(self).__name__}' object has no attribute '{name}'"
+        )
+
+    def __dir__(self):
+        default_attrs = list(super().__dir__())
+        lazy_attrs = list(self._sub_sdk_map.keys())
+        return sorted(list(set(default_attrs + lazy_attrs)))
 
     def __enter__(self):
         return self
@@ -230,6 +258,7 @@ class SDK(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getVersions",
                 oauth2_scopes=["auth:read"],
@@ -314,6 +343,7 @@ class SDK(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getVersions",
                 oauth2_scopes=["auth:read"],

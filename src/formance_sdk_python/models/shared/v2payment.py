@@ -24,7 +24,7 @@ class V2PaymentRaw(BaseModel):
     pass
 
 
-class Scheme(str, Enum):
+class V2PaymentScheme(str, Enum):
     VISA = "visa"
     MASTERCARD = "mastercard"
     AMEX = "amex"
@@ -63,7 +63,7 @@ class V2PaymentTypedDict(TypedDict):
     metadata: Nullable[V2PaymentMetadataTypedDict]
     raw: Nullable[V2PaymentRawTypedDict]
     reference: str
-    scheme: Scheme
+    scheme: V2PaymentScheme
     source_account_id: str
     status: V2PaymentStatus
     type: V2PaymentType
@@ -94,7 +94,7 @@ class V2Payment(BaseModel):
 
     reference: str
 
-    scheme: Scheme
+    scheme: V2PaymentScheme
 
     source_account_id: Annotated[str, pydantic.Field(alias="sourceAccountID")]
 
@@ -114,7 +114,7 @@ class V2Payment(BaseModel):
 
         m = {}
 
-        for n, f in self.model_fields.items():
+        for n, f in type(self).model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
             serialized.pop(k, None)

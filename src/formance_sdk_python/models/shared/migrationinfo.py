@@ -9,7 +9,7 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class State(str, Enum):
+class MigrationInfoState(str, Enum):
     TO_DO = "TO DO"
     DONE = "DONE"
 
@@ -17,7 +17,7 @@ class State(str, Enum):
 class MigrationInfoTypedDict(TypedDict):
     date_: NotRequired[datetime]
     name: NotRequired[str]
-    state: NotRequired[State]
+    state: NotRequired[MigrationInfoState]
     version: NotRequired[str]
 
 
@@ -26,6 +26,6 @@ class MigrationInfo(BaseModel):
 
     name: Optional[str] = None
 
-    state: Optional[State] = None
+    state: Optional[MigrationInfoState] = None
 
     version: Optional[str] = None

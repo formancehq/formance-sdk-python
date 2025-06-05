@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.shared import (
+    activitydebitwalletoutput as shared_activitydebitwalletoutput,
     debitwalletrequest as shared_debitwalletrequest,
-    debitwalletresponse as shared_debitwalletresponse,
 )
 from formance_sdk_python.types import BaseModel
 from formance_sdk_python.utils import (
@@ -52,8 +52,8 @@ class DebitWalletResponseTypedDict(TypedDict):
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    debit_wallet_response: NotRequired[
-        shared_debitwalletresponse.DebitWalletResponseTypedDict
+    activity_debit_wallet_output: NotRequired[
+        shared_activitydebitwalletoutput.ActivityDebitWalletOutputTypedDict
     ]
     r"""Wallet successfully debited as a pending hold"""
 
@@ -68,7 +68,7 @@ class DebitWalletResponse(BaseModel):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
 
-    debit_wallet_response: Optional[shared_debitwalletresponse.DebitWalletResponse] = (
-        None
-    )
+    activity_debit_wallet_output: Optional[
+        shared_activitydebitwalletoutput.ActivityDebitWalletOutput
+    ] = None
     r"""Wallet successfully debited as a pending hold"""

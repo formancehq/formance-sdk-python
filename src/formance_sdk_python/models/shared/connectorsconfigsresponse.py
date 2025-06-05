@@ -6,23 +6,23 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-class KeyTypedDict(TypedDict):
+class ConnectorsConfigsResponseKeyTypedDict(TypedDict):
     data_type: str
     required: bool
 
 
-class Key(BaseModel):
+class ConnectorsConfigsResponseKey(BaseModel):
     data_type: Annotated[str, pydantic.Field(alias="dataType")]
 
     required: bool
 
 
 class ConnectorsConfigsResponseConnectorTypedDict(TypedDict):
-    key: KeyTypedDict
+    key: ConnectorsConfigsResponseKeyTypedDict
 
 
 class ConnectorsConfigsResponseConnector(BaseModel):
-    key: Key
+    key: ConnectorsConfigsResponseKey
 
 
 class ConnectorsConfigsResponseDataTypedDict(TypedDict):

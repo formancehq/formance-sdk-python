@@ -102,14 +102,14 @@ class TransferInitiation(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = ["metadata", "relatedAdjustments", "relatedPayments"]
-        nullable_fields = ["provider", "metadata", "relatedPayments"]
+        nullable_fields = ["metadata", "provider", "relatedPayments"]
         null_default_fields = []
 
         serialized = handler(self)
 
         m = {}
 
-        for n, f in self.model_fields.items():
+        for n, f in type(self).model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
             serialized.pop(k, None)

@@ -8,7 +8,7 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class CursorTypedDict(TypedDict):
+class AccountsCursorCursorTypedDict(TypedDict):
     data: List[PaymentsAccountTypedDict]
     has_more: bool
     page_size: int
@@ -16,7 +16,7 @@ class CursorTypedDict(TypedDict):
     previous: NotRequired[str]
 
 
-class Cursor(BaseModel):
+class AccountsCursorCursor(BaseModel):
     data: List[PaymentsAccount]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -31,10 +31,10 @@ class Cursor(BaseModel):
 class AccountsCursorTypedDict(TypedDict):
     r"""OK"""
 
-    cursor: CursorTypedDict
+    cursor: AccountsCursorCursorTypedDict
 
 
 class AccountsCursor(BaseModel):
     r"""OK"""
 
-    cursor: Cursor
+    cursor: AccountsCursorCursor

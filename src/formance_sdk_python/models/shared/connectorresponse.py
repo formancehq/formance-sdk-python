@@ -6,21 +6,21 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-class DataTypedDict(TypedDict):
+class ConnectorResponseDataTypedDict(TypedDict):
     connector_id: str
 
 
-class Data(BaseModel):
+class ConnectorResponseData(BaseModel):
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
 
 
 class ConnectorResponseTypedDict(TypedDict):
     r"""OK"""
 
-    data: DataTypedDict
+    data: ConnectorResponseDataTypedDict
 
 
 class ConnectorResponse(BaseModel):
     r"""OK"""
 
-    data: Data
+    data: ConnectorResponseData

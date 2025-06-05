@@ -7,16 +7,16 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-class V3ConnectorSchemasConfigTypedDict(TypedDict):
+class V3ConnectorConfigTypedDict(TypedDict):
     pass
 
 
-class V3ConnectorSchemasConfig(BaseModel):
+class V3ConnectorConfig(BaseModel):
     pass
 
 
 class V3ConnectorTypedDict(TypedDict):
-    config: V3ConnectorSchemasConfigTypedDict
+    config: V3ConnectorConfigTypedDict
     created_at: datetime
     id: str
     name: str
@@ -26,7 +26,7 @@ class V3ConnectorTypedDict(TypedDict):
 
 
 class V3Connector(BaseModel):
-    config: V3ConnectorSchemasConfig
+    config: V3ConnectorConfig
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 

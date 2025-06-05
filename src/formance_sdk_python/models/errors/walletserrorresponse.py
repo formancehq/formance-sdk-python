@@ -8,7 +8,7 @@ import pydantic
 from typing_extensions import Annotated
 
 
-class SchemasWalletsErrorResponseErrorCode(str, Enum):
+class WalletsErrorResponseErrorCode(str, Enum):
     VALIDATION = "VALIDATION"
     INTERNAL_ERROR = "INTERNAL_ERROR"
     INSUFFICIENT_FUND = "INSUFFICIENT_FUND"
@@ -17,7 +17,7 @@ class SchemasWalletsErrorResponseErrorCode(str, Enum):
 
 class WalletsErrorResponseData(BaseModel):
     error_code: Annotated[
-        SchemasWalletsErrorResponseErrorCode, pydantic.Field(alias="errorCode")
+        WalletsErrorResponseErrorCode, pydantic.Field(alias="errorCode")
     ]
 
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]

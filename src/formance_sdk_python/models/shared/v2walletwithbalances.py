@@ -9,16 +9,16 @@ from typing import Dict
 from typing_extensions import Annotated, TypedDict
 
 
-class BalancesTypedDict(TypedDict):
+class V2WalletWithBalancesBalancesTypedDict(TypedDict):
     main: V2AssetHolderTypedDict
 
 
-class Balances(BaseModel):
+class V2WalletWithBalancesBalances(BaseModel):
     main: V2AssetHolder
 
 
 class V2WalletWithBalancesTypedDict(TypedDict):
-    balances: BalancesTypedDict
+    balances: V2WalletWithBalancesBalancesTypedDict
     created_at: datetime
     id: str
     r"""The unique ID of the wallet."""
@@ -29,7 +29,7 @@ class V2WalletWithBalancesTypedDict(TypedDict):
 
 
 class V2WalletWithBalances(BaseModel):
-    balances: Balances
+    balances: V2WalletWithBalancesBalances
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 

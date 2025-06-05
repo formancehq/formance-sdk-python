@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.shared import (
-    getwalletresponse as shared_getwalletresponse,
+    activitygetwalletoutput as shared_activitygetwalletoutput,
 )
 from formance_sdk_python.types import BaseModel
 from formance_sdk_python.utils import FieldMetadata, PathParamMetadata
@@ -28,8 +28,8 @@ class GetWalletResponseTypedDict(TypedDict):
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    get_wallet_response: NotRequired[
-        shared_getwalletresponse.GetWalletResponseTypedDict
+    activity_get_wallet_output: NotRequired[
+        shared_activitygetwalletoutput.ActivityGetWalletOutputTypedDict
     ]
     r"""Wallet"""
 
@@ -44,5 +44,7 @@ class GetWalletResponse(BaseModel):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
 
-    get_wallet_response: Optional[shared_getwalletresponse.GetWalletResponse] = None
+    activity_get_wallet_output: Optional[
+        shared_activitygetwalletoutput.ActivityGetWalletOutput
+    ] = None
     r"""Wallet"""
