@@ -4,7 +4,8 @@ generation:
   usageSnippets:
     optionalPropertyRendering: withExample
   fixes:
-    nameResolutionFeb2025: false
+    nameResolutionDec2023: true
+    nameResolutionFeb2025: true
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
     securityFeb2025: false
