@@ -69,6 +69,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3AddAccountToPool",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -161,6 +162,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3AddAccountToPool",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -255,6 +257,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ApprovePaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -352,6 +355,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ApprovePaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -449,6 +453,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreateAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -546,6 +551,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreateAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -652,6 +658,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreateBankAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -758,6 +765,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreateBankAccount",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -855,6 +863,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreatePayment",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -952,6 +961,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreatePayment",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -1049,6 +1059,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreatePool",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -1146,6 +1157,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreatePool",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -1243,6 +1255,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3DeletePaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -1337,6 +1350,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3DeletePaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -1428,6 +1442,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3DeletePool",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -1519,6 +1534,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3DeletePool",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -1618,6 +1634,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ForwardBankAccount",
                 oauth2_scopes=["auth:read"],
@@ -1720,6 +1737,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ForwardBankAccount",
                 oauth2_scopes=["auth:read"],
@@ -1814,6 +1832,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetAccount",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -1908,6 +1927,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetAccount",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -2003,6 +2023,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetAccountBalances",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -2098,6 +2119,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetAccountBalances",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -2193,6 +2215,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetBankAccount",
                 oauth2_scopes=["auth:read"],
@@ -2288,6 +2311,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetBankAccount",
                 oauth2_scopes=["auth:read"],
@@ -2383,6 +2407,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetConnectorConfig",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -2478,6 +2503,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetConnectorConfig",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -2573,6 +2599,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetConnectorSchedule",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -2668,6 +2695,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetConnectorSchedule",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -2762,6 +2790,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPayment",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -2856,6 +2885,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPayment",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -2951,6 +2981,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -3046,6 +3077,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -3140,6 +3172,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPool",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -3234,6 +3267,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPool",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -3329,6 +3363,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPoolBalances",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -3424,6 +3459,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPoolBalances",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -3518,6 +3554,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetTask",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -3612,6 +3649,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetTask",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -3714,6 +3752,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3InitiatePayment",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -3816,6 +3855,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3InitiatePayment",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -3918,6 +3958,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3InstallConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -4020,6 +4061,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3InstallConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -4117,6 +4159,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListAccounts",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -4214,6 +4257,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListAccounts",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -4312,6 +4356,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListBankAccounts",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -4410,6 +4455,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListBankAccounts",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -4495,6 +4541,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectorConfigs",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -4580,6 +4627,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectorConfigs",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -4677,6 +4725,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectorScheduleInstances",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -4775,6 +4824,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectorScheduleInstances",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -4876,6 +4926,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectorSchedules",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -4976,6 +5027,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectorSchedules",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -5074,6 +5126,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectors",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -5172,6 +5225,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectors",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -5272,6 +5326,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentInitiationAdjustments",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -5373,6 +5428,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentInitiationAdjustments",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -5476,6 +5532,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentInitiationRelatedPayments",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -5579,6 +5636,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentInitiationRelatedPayments",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -5680,6 +5738,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentInitiations",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -5780,6 +5839,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentInitiations",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -5877,6 +5937,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPayments",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -5974,6 +6035,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPayments",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -6071,6 +6133,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPools",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -6168,6 +6231,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPools",
                 oauth2_scopes=["auth:read", "payments:read"],
@@ -6265,6 +6329,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3RejectPaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -6359,6 +6424,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3RejectPaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -6453,6 +6519,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3RemoveAccountFromPool",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -6547,6 +6614,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3RemoveAccountFromPool",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -6639,6 +6707,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ResetConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -6734,6 +6803,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ResetConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -6831,6 +6901,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3RetryPaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -6928,6 +6999,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3RetryPaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -7032,6 +7104,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ReversePaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -7136,6 +7209,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ReversePaymentInitiation",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -7231,6 +7305,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3UninstallConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -7326,6 +7401,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3UninstallConnector",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -7430,6 +7506,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3UpdateBankAccountMetadata",
                 oauth2_scopes=["auth:read"],
@@ -7531,6 +7608,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3UpdateBankAccountMetadata",
                 oauth2_scopes=["auth:read"],
@@ -7632,6 +7710,7 @@ class V3(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3UpdatePaymentMetadata",
                 oauth2_scopes=["auth:read", "payments:write"],
@@ -7733,6 +7812,7 @@ class V3(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3UpdatePaymentMetadata",
                 oauth2_scopes=["auth:read", "payments:write"],

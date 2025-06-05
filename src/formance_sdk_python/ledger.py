@@ -2,13 +2,13 @@
 
 from .basesdk import BaseSDK
 from .sdkconfiguration import SDKConfiguration
-from formance_sdk_python.sdk_v1 import SDKV1
-from formance_sdk_python.v2 import V2
+from formance_sdk_python.ledger_v1 import LedgerV1
+from formance_sdk_python.ledger_v2 import LedgerV2
 
 
 class Ledger(BaseSDK):
-    v2: V2
-    v1: SDKV1
+    v2: LedgerV2
+    v1: LedgerV1
 
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
@@ -16,5 +16,5 @@ class Ledger(BaseSDK):
         self._init_sdks()
 
     def _init_sdks(self):
-        self.v2 = V2(self.sdk_configuration)
-        self.v1 = SDKV1(self.sdk_configuration)
+        self.v2 = LedgerV2(self.sdk_configuration)
+        self.v1 = LedgerV1(self.sdk_configuration)

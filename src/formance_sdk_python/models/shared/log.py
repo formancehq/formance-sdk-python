@@ -9,7 +9,7 @@ from typing import Any, Dict
 from typing_extensions import Annotated, TypedDict
 
 
-class Type(str, Enum):
+class LogType(str, Enum):
     NEW_TRANSACTION = "NEW_TRANSACTION"
     SET_METADATA = "SET_METADATA"
 
@@ -19,7 +19,7 @@ class LogTypedDict(TypedDict):
     date_: datetime
     hash: str
     id: int
-    type: Type
+    type: LogType
 
 
 class Log(BaseModel):
@@ -31,4 +31,4 @@ class Log(BaseModel):
 
     id: int
 
-    type: Type
+    type: LogType

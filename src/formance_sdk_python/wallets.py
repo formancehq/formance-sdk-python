@@ -2,11 +2,11 @@
 
 from .basesdk import BaseSDK
 from .sdkconfiguration import SDKConfiguration
-from formance_sdk_python.sdk_wallets_v1 import SDKWalletsV1
+from formance_sdk_python.wallets_v1 import WalletsV1
 
 
 class Wallets(BaseSDK):
-    v1: SDKWalletsV1
+    v1: WalletsV1
 
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
@@ -14,4 +14,4 @@ class Wallets(BaseSDK):
         self._init_sdks()
 
     def _init_sdks(self):
-        self.v1 = SDKWalletsV1(self.sdk_configuration)
+        self.v1 = WalletsV1(self.sdk_configuration)

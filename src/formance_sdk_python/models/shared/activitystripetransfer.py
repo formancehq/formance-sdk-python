@@ -9,14 +9,14 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class MetadataTypedDict(TypedDict):
+class ActivityStripeTransferMetadataTypedDict(TypedDict):
     r"""A set of key/value pairs that you can attach to a transfer object.
     It can be useful for storing additional information about the transfer in a structured format.
 
     """
 
 
-class Metadata(BaseModel):
+class ActivityStripeTransferMetadata(BaseModel):
     r"""A set of key/value pairs that you can attach to a transfer object.
     It can be useful for storing additional information about the transfer in a structured format.
 
@@ -28,7 +28,7 @@ class ActivityStripeTransferTypedDict(TypedDict):
     asset: NotRequired[str]
     connector_id: NotRequired[str]
     destination: NotRequired[str]
-    metadata: NotRequired[MetadataTypedDict]
+    metadata: NotRequired[ActivityStripeTransferMetadataTypedDict]
     r"""A set of key/value pairs that you can attach to a transfer object.
     It can be useful for storing additional information about the transfer in a structured format.
 
@@ -45,7 +45,7 @@ class ActivityStripeTransfer(BaseModel):
 
     destination: Optional[str] = None
 
-    metadata: Optional[Metadata] = None
+    metadata: Optional[ActivityStripeTransferMetadata] = None
     r"""A set of key/value pairs that you can attach to a transfer object.
     It can be useful for storing additional information about the transfer in a structured format.
 

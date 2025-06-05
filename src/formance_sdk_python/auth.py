@@ -2,11 +2,11 @@
 
 from .basesdk import BaseSDK
 from .sdkconfiguration import SDKConfiguration
-from formance_sdk_python.v1 import V1
+from formance_sdk_python.auth_v1 import AuthV1
 
 
 class Auth(BaseSDK):
-    v1: V1
+    v1: AuthV1
 
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
@@ -14,4 +14,4 @@ class Auth(BaseSDK):
         self._init_sdks()
 
     def _init_sdks(self):
-        self.v1 = V1(self.sdk_configuration)
+        self.v1 = AuthV1(self.sdk_configuration)

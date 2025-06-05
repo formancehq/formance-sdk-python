@@ -16,12 +16,12 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class DescriptorTypedDict(TypedDict):
+class TaskBankingCircleDescriptorTypedDict(TypedDict):
     key: NotRequired[str]
     name: NotRequired[str]
 
 
-class Descriptor(BaseModel):
+class TaskBankingCircleDescriptor(BaseModel):
     key: Optional[str] = None
 
     name: Optional[str] = None
@@ -38,7 +38,7 @@ class TaskBankingCircleState(BaseModel):
 class TaskBankingCircleTypedDict(TypedDict):
     connector_id: str
     created_at: datetime
-    descriptor: DescriptorTypedDict
+    descriptor: TaskBankingCircleDescriptorTypedDict
     id: str
     status: TaskStatus
     updated_at: datetime
@@ -51,7 +51,7 @@ class TaskBankingCircle(BaseModel):
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
-    descriptor: Descriptor
+    descriptor: TaskBankingCircleDescriptor
 
     id: str
 
@@ -73,7 +73,7 @@ class TaskBankingCircle(BaseModel):
 
         m = {}
 
-        for n, f in self.model_fields.items():
+        for n, f in type(self).model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
             serialized.pop(k, None)

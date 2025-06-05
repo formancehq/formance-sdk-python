@@ -8,14 +8,14 @@ import pydantic
 from typing_extensions import Annotated
 
 
-class ErrorCode(str, Enum):
+class ErrorErrorCode(str, Enum):
     VALIDATION = "VALIDATION"
     NOT_FOUND = "NOT_FOUND"
     INTERNAL = "INTERNAL"
 
 
 class ErrorData(BaseModel):
-    error_code: Annotated[ErrorCode, pydantic.Field(alias="errorCode")]
+    error_code: Annotated[ErrorErrorCode, pydantic.Field(alias="errorCode")]
 
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
 

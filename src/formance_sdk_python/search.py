@@ -2,11 +2,11 @@
 
 from .basesdk import BaseSDK
 from .sdkconfiguration import SDKConfiguration
-from formance_sdk_python.sdk_search_v1 import SDKSearchV1
+from formance_sdk_python.search_v1 import SearchV1
 
 
 class Search(BaseSDK):
-    v1: SDKSearchV1
+    v1: SearchV1
 
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
@@ -14,4 +14,4 @@ class Search(BaseSDK):
         self._init_sdks()
 
     def _init_sdks(self):
-        self.v1 = SDKSearchV1(self.sdk_configuration)
+        self.v1 = SearchV1(self.sdk_configuration)

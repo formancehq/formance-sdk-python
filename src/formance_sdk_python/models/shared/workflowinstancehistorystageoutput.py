@@ -21,10 +21,6 @@ from .activitygetwalletoutput import (
     ActivityGetWalletOutput,
     ActivityGetWalletOutputTypedDict,
 )
-from .activityreverttransactionoutput import (
-    ActivityRevertTransactionOutput,
-    ActivityRevertTransactionOutputTypedDict,
-)
 from .orchestrationlistwalletsresponse import (
     OrchestrationListWalletsResponse,
     OrchestrationListWalletsResponseTypedDict,
@@ -42,7 +38,7 @@ class WorkflowInstanceHistoryStageOutputTypedDict(TypedDict):
     get_payment: NotRequired[ActivityGetPaymentOutputTypedDict]
     get_wallet: NotRequired[ActivityGetWalletOutputTypedDict]
     list_wallets: NotRequired[OrchestrationListWalletsResponseTypedDict]
-    revert_transaction: NotRequired[ActivityRevertTransactionOutputTypedDict]
+    revert_transaction: NotRequired[ActivityCreateTransactionOutputTypedDict]
 
 
 class WorkflowInstanceHistoryStageOutput(BaseModel):
@@ -72,6 +68,6 @@ class WorkflowInstanceHistoryStageOutput(BaseModel):
     ] = None
 
     revert_transaction: Annotated[
-        Optional[ActivityRevertTransactionOutput],
+        Optional[ActivityCreateTransactionOutput],
         pydantic.Field(alias="RevertTransaction"),
     ] = None

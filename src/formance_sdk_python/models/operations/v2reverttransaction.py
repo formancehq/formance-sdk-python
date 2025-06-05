@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.shared import (
-    v2reverttransactionresponse as shared_v2reverttransactionresponse,
+    v2createtransactionresponse as shared_v2createtransactionresponse,
 )
 from formance_sdk_python.types import BaseModel
 from formance_sdk_python.utils import (
@@ -71,8 +71,8 @@ class V2RevertTransactionResponseTypedDict(TypedDict):
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    v2_revert_transaction_response: NotRequired[
-        shared_v2reverttransactionresponse.V2RevertTransactionResponseTypedDict
+    v2_create_transaction_response: NotRequired[
+        shared_v2createtransactionresponse.V2CreateTransactionResponseTypedDict
     ]
     r"""OK"""
 
@@ -87,7 +87,7 @@ class V2RevertTransactionResponse(BaseModel):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
 
-    v2_revert_transaction_response: Optional[
-        shared_v2reverttransactionresponse.V2RevertTransactionResponse
+    v2_create_transaction_response: Optional[
+        shared_v2createtransactionresponse.V2CreateTransactionResponse
     ] = None
     r"""OK"""

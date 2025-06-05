@@ -2,11 +2,11 @@
 
 from .basesdk import BaseSDK
 from .sdkconfiguration import SDKConfiguration
-from formance_sdk_python.sdk_webhooks_v1 import SDKWebhooksV1
+from formance_sdk_python.webhooks_v1 import WebhooksV1
 
 
 class Webhooks(BaseSDK):
-    v1: SDKWebhooksV1
+    v1: WebhooksV1
 
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
@@ -14,4 +14,4 @@ class Webhooks(BaseSDK):
         self._init_sdks()
 
     def _init_sdks(self):
-        self.v1 = SDKWebhooksV1(self.sdk_configuration)
+        self.v1 = WebhooksV1(self.sdk_configuration)

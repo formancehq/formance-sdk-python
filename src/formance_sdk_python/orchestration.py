@@ -2,13 +2,13 @@
 
 from .basesdk import BaseSDK
 from .sdkconfiguration import SDKConfiguration
-from formance_sdk_python.sdk_orchestration_v1 import SDKOrchestrationV1
-from formance_sdk_python.sdk_v2 import SDKV2
+from formance_sdk_python.orchestration_v1 import OrchestrationV1
+from formance_sdk_python.orchestration_v2 import OrchestrationV2
 
 
 class Orchestration(BaseSDK):
-    v1: SDKOrchestrationV1
-    v2: SDKV2
+    v1: OrchestrationV1
+    v2: OrchestrationV2
 
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
@@ -16,5 +16,5 @@ class Orchestration(BaseSDK):
         self._init_sdks()
 
     def _init_sdks(self):
-        self.v1 = SDKOrchestrationV1(self.sdk_configuration)
-        self.v2 = SDKV2(self.sdk_configuration)
+        self.v1 = OrchestrationV1(self.sdk_configuration)
+        self.v2 = OrchestrationV2(self.sdk_configuration)

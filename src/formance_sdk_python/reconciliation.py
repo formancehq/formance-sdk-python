@@ -2,11 +2,11 @@
 
 from .basesdk import BaseSDK
 from .sdkconfiguration import SDKConfiguration
-from formance_sdk_python.sdk_reconciliation_v1 import SDKReconciliationV1
+from formance_sdk_python.reconciliation_v1 import ReconciliationV1
 
 
 class Reconciliation(BaseSDK):
-    v1: SDKReconciliationV1
+    v1: ReconciliationV1
 
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
@@ -14,4 +14,4 @@ class Reconciliation(BaseSDK):
         self._init_sdks()
 
     def _init_sdks(self):
-        self.v1 = SDKReconciliationV1(self.sdk_configuration)
+        self.v1 = ReconciliationV1(self.sdk_configuration)

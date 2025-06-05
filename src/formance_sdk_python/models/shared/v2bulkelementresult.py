@@ -10,7 +10,7 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class V2BulkElementResultErrorSchemasTypedDict(TypedDict):
+class V2BulkElementResultErrorTypedDict(TypedDict):
     error_code: str
     error_description: str
     log_id: int
@@ -18,7 +18,7 @@ class V2BulkElementResultErrorSchemasTypedDict(TypedDict):
     error_details: NotRequired[str]
 
 
-class V2BulkElementResultErrorSchemas(BaseModel):
+class V2BulkElementResultError(BaseModel):
     error_code: Annotated[str, pydantic.Field(alias="errorCode")]
 
     error_description: Annotated[str, pydantic.Field(alias="errorDescription")]
@@ -30,24 +30,24 @@ class V2BulkElementResultErrorSchemas(BaseModel):
     error_details: Annotated[Optional[str], pydantic.Field(alias="errorDetails")] = None
 
 
-class V2BulkElementResultDeleteMetadataSchemasTypedDict(TypedDict):
+class V2BulkElementResultDeleteMetadataTypedDict(TypedDict):
     log_id: int
     response_type: str
 
 
-class V2BulkElementResultDeleteMetadataSchemas(BaseModel):
+class V2BulkElementResultDeleteMetadata(BaseModel):
     log_id: Annotated[int, pydantic.Field(alias="logID")]
 
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
 
 
-class V2BulkElementResultRevertTransactionSchemasTypedDict(TypedDict):
+class V2BulkElementResultRevertTransactionTypedDict(TypedDict):
     data: V2TransactionTypedDict
     log_id: int
     response_type: str
 
 
-class V2BulkElementResultRevertTransactionSchemas(BaseModel):
+class V2BulkElementResultRevertTransaction(BaseModel):
     data: V2Transaction
 
     log_id: Annotated[int, pydantic.Field(alias="logID")]
@@ -55,24 +55,24 @@ class V2BulkElementResultRevertTransactionSchemas(BaseModel):
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
 
 
-class SchemasTypedDict(TypedDict):
+class V2BulkElementResultAddMetadataTypedDict(TypedDict):
     log_id: int
     response_type: str
 
 
-class Schemas(BaseModel):
+class V2BulkElementResultAddMetadata(BaseModel):
     log_id: Annotated[int, pydantic.Field(alias="logID")]
 
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
 
 
-class V2BulkElementResultCreateTransactionSchemasTypedDict(TypedDict):
+class V2BulkElementResultCreateTransactionTypedDict(TypedDict):
     data: V2TransactionTypedDict
     log_id: int
     response_type: str
 
 
-class V2BulkElementResultCreateTransactionSchemas(BaseModel):
+class V2BulkElementResultCreateTransaction(BaseModel):
     data: V2Transaction
 
     log_id: Annotated[int, pydantic.Field(alias="logID")]
@@ -83,26 +83,22 @@ class V2BulkElementResultCreateTransactionSchemas(BaseModel):
 V2BulkElementResultTypedDict = TypeAliasType(
     "V2BulkElementResultTypedDict",
     Union[
-        SchemasTypedDict,
-        V2BulkElementResultDeleteMetadataSchemasTypedDict,
-        V2BulkElementResultCreateTransactionSchemasTypedDict,
-        V2BulkElementResultRevertTransactionSchemasTypedDict,
-        V2BulkElementResultErrorSchemasTypedDict,
+        V2BulkElementResultAddMetadataTypedDict,
+        V2BulkElementResultDeleteMetadataTypedDict,
+        V2BulkElementResultCreateTransactionTypedDict,
+        V2BulkElementResultRevertTransactionTypedDict,
+        V2BulkElementResultErrorTypedDict,
     ],
 )
 
 
 V2BulkElementResult = Annotated[
     Union[
-        Annotated[Schemas, Tag("ADD_METADATA")],
-        Annotated[
-            V2BulkElementResultCreateTransactionSchemas, Tag("CREATE_TRANSACTION")
-        ],
-        Annotated[V2BulkElementResultDeleteMetadataSchemas, Tag("DELETE_METADATA")],
-        Annotated[V2BulkElementResultErrorSchemas, Tag("ERROR")],
-        Annotated[
-            V2BulkElementResultRevertTransactionSchemas, Tag("REVERT_TRANSACTION")
-        ],
+        Annotated[V2BulkElementResultAddMetadata, Tag("ADD_METADATA")],
+        Annotated[V2BulkElementResultCreateTransaction, Tag("CREATE_TRANSACTION")],
+        Annotated[V2BulkElementResultDeleteMetadata, Tag("DELETE_METADATA")],
+        Annotated[V2BulkElementResultError, Tag("ERROR")],
+        Annotated[V2BulkElementResultRevertTransaction, Tag("REVERT_TRANSACTION")],
     ],
     Discriminator(lambda m: get_discriminator(m, "response_type", "responseType")),
 ]

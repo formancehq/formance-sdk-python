@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.shared import (
-    updateclientrequest as shared_updateclientrequest,
-    updateclientresponse as shared_updateclientresponse,
+    clientoptions as shared_clientoptions,
+    createclientresponse as shared_createclientresponse,
 )
 from formance_sdk_python.types import BaseModel
 from formance_sdk_python.utils import FieldMetadata, PathParamMetadata, RequestMetadata
@@ -16,9 +16,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 class UpdateClientRequestTypedDict(TypedDict):
     client_id: str
     r"""Client ID"""
-    update_client_request: NotRequired[
-        shared_updateclientrequest.UpdateClientRequestTypedDict
-    ]
+    client_options: NotRequired[shared_clientoptions.ClientOptionsTypedDict]
 
 
 class UpdateClientRequest(BaseModel):
@@ -29,8 +27,8 @@ class UpdateClientRequest(BaseModel):
     ]
     r"""Client ID"""
 
-    update_client_request: Annotated[
-        Optional[shared_updateclientrequest.UpdateClientRequest],
+    client_options: Annotated[
+        Optional[shared_clientoptions.ClientOptions],
         FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ] = None
 
@@ -42,8 +40,8 @@ class UpdateClientResponseTypedDict(TypedDict):
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    update_client_response: NotRequired[
-        shared_updateclientresponse.UpdateClientResponseTypedDict
+    create_client_response: NotRequired[
+        shared_createclientresponse.CreateClientResponseTypedDict
     ]
     r"""Updated client"""
 
@@ -58,7 +56,7 @@ class UpdateClientResponse(BaseModel):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
 
-    update_client_response: Optional[
-        shared_updateclientresponse.UpdateClientResponse
+    create_client_response: Optional[
+        shared_createclientresponse.CreateClientResponse
     ] = None
     r"""Updated client"""
