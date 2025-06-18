@@ -2,10 +2,17 @@
 
 from __future__ import annotations
 from formance_sdk_python.types import BaseModel
-from formance_sdk_python.utils import FieldMetadata, PathParamMetadata, validate_int
+from formance_sdk_python.utils import (
+    FieldMetadata,
+    HeaderMetadata,
+    PathParamMetadata,
+    validate_int,
+)
 import httpx
+import pydantic
 from pydantic.functional_validators import BeforeValidator
-from typing_extensions import Annotated, TypedDict
+from typing import Optional
+from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2DeleteTransactionMetadataRequestTypedDict(TypedDict):
@@ -15,6 +22,8 @@ class V2DeleteTransactionMetadataRequestTypedDict(TypedDict):
     r"""The key to remove."""
     ledger: str
     r"""Name of the ledger."""
+    idempotency_key: NotRequired[str]
+    r"""Use an idempotency key"""
 
 
 class V2DeleteTransactionMetadataRequest(BaseModel):
@@ -33,6 +42,13 @@ class V2DeleteTransactionMetadataRequest(BaseModel):
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""Name of the ledger."""
+
+    idempotency_key: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Idempotency-Key"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""Use an idempotency key"""
 
 
 class V2DeleteTransactionMetadataResponseTypedDict(TypedDict):

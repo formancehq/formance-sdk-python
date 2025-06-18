@@ -254,10 +254,10 @@ with SDK(
         "id": "<id>",
     })
 
-    assert res.activity_debit_wallet_output is not None
+    assert res.debit_wallet_response is not None
 
     # Handle response
-    print(res.activity_debit_wallet_output)
+    print(res.debit_wallet_response)
 
 ```
 

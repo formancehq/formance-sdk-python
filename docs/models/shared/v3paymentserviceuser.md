@@ -1,0 +1,14 @@
+# V3PaymentServiceUser
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `address`                                                                    | [Optional[shared.V3Address]](../../models/shared/v3address.md)               | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `bank_account_i_ds`                                                          | List[*str*]                                                                  | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `contact_details`                                                            | [Optional[shared.V3ContactDetails]](../../models/shared/v3contactdetails.md) | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `created_at`                                                                 | [date](https://docs.python.org/3/library/datetime.html#date-objects)         | :heavy_check_mark:                                                           | N/A                                                                          |
+| `id`                                                                         | *str*                                                                        | :heavy_check_mark:                                                           | N/A                                                                          |
+| `metadata`                                                                   | Dict[str, *str*]                                                             | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `name`                                                                       | *str*                                                                        | :heavy_check_mark:                                                           | N/A                                                                          |

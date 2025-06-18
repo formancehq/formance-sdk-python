@@ -24,7 +24,7 @@ class V3PaymentInitiationAdjustmentTypedDict(TypedDict):
     status: V3PaymentInitiationStatusEnum
     amount: NotRequired[int]
     asset: NotRequired[str]
-    error: NotRequired[str]
+    error: NotRequired[Nullable[str]]
     metadata: NotRequired[Nullable[Dict[str, str]]]
 
 
@@ -39,14 +39,14 @@ class V3PaymentInitiationAdjustment(BaseModel):
 
     asset: Optional[str] = None
 
-    error: Optional[str] = None
+    error: OptionalNullable[str] = UNSET
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = ["amount", "asset", "error", "metadata"]
-        nullable_fields = ["metadata"]
+        nullable_fields = ["error", "metadata"]
         null_default_fields = []
 
         serialized = handler(self)

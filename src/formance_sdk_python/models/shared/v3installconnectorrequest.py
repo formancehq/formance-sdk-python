@@ -4,12 +4,14 @@ from __future__ import annotations
 from .v3adyenconfig import V3AdyenConfig, V3AdyenConfigTypedDict
 from .v3atlarconfig import V3AtlarConfig, V3AtlarConfigTypedDict
 from .v3bankingcircleconfig import V3BankingcircleConfig, V3BankingcircleConfigTypedDict
+from .v3columnconfig import V3ColumnConfig, V3ColumnConfigTypedDict
 from .v3currencycloudconfig import V3CurrencycloudConfig, V3CurrencycloudConfigTypedDict
 from .v3dummypayconfig import V3DummypayConfig, V3DummypayConfigTypedDict
 from .v3genericconfig import V3GenericConfig, V3GenericConfigTypedDict
 from .v3mangopayconfig import V3MangopayConfig, V3MangopayConfigTypedDict
 from .v3modulrconfig import V3ModulrConfig, V3ModulrConfigTypedDict
 from .v3moneycorpconfig import V3MoneycorpConfig, V3MoneycorpConfigTypedDict
+from .v3qontoconfig import V3QontoConfig, V3QontoConfigTypedDict
 from .v3stripeconfig import V3StripeConfig, V3StripeConfigTypedDict
 from .v3wiseconfig import V3WiseConfig, V3WiseConfigTypedDict
 from formance_sdk_python.utils import get_discriminator
@@ -24,12 +26,14 @@ V3InstallConnectorRequestTypedDict = TypeAliasType(
         V3DummypayConfigTypedDict,
         V3StripeConfigTypedDict,
         V3GenericConfigTypedDict,
+        V3ColumnConfigTypedDict,
         V3WiseConfigTypedDict,
-        V3AtlarConfigTypedDict,
         V3CurrencycloudConfigTypedDict,
         V3MangopayConfigTypedDict,
         V3ModulrConfigTypedDict,
         V3MoneycorpConfigTypedDict,
+        V3AtlarConfigTypedDict,
+        V3QontoConfigTypedDict,
         V3AdyenConfigTypedDict,
         V3BankingcircleConfigTypedDict,
     ],
@@ -41,12 +45,14 @@ V3InstallConnectorRequest = Annotated[
         Annotated[V3AdyenConfig, Tag("Adyen")],
         Annotated[V3AtlarConfig, Tag("Atlar")],
         Annotated[V3BankingcircleConfig, Tag("Bankingcircle")],
+        Annotated[V3ColumnConfig, Tag("Column")],
         Annotated[V3CurrencycloudConfig, Tag("Currencycloud")],
         Annotated[V3DummypayConfig, Tag("Dummypay")],
         Annotated[V3GenericConfig, Tag("Generic")],
         Annotated[V3MangopayConfig, Tag("Mangopay")],
         Annotated[V3ModulrConfig, Tag("Modulr")],
         Annotated[V3MoneycorpConfig, Tag("Moneycorp")],
+        Annotated[V3QontoConfig, Tag("Qonto")],
         Annotated[V3StripeConfig, Tag("Stripe")],
         Annotated[V3WiseConfig, Tag("Wise")],
     ],

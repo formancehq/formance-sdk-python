@@ -21,6 +21,12 @@ value: shared.V3AtlarConfig = /* values here */
 value: shared.V3BankingcircleConfig = /* values here */
 ```
 
+### `shared.V3ColumnConfig`
+
+```python
+value: shared.V3ColumnConfig = /* values here */
+```
+
 ### `shared.V3CurrencycloudConfig`
 
 ```python
@@ -55,6 +61,12 @@ value: shared.V3ModulrConfig = /* values here */
 
 ```python
 value: shared.V3MoneycorpConfig = /* values here */
+```
+
+### `shared.V3QontoConfig`
+
+```python
+value: shared.V3QontoConfig = /* values here */
 ```
 
 ### `shared.V3StripeConfig`

@@ -893,8 +893,8 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.DebitWalletResponse(
-                activity_debit_wallet_output=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ActivityDebitWalletOutput]
+                debit_wallet_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.DebitWalletResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1001,8 +1001,8 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.DebitWalletResponse(
-                activity_debit_wallet_output=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ActivityDebitWalletOutput]
+                debit_wallet_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.DebitWalletResponse]
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",

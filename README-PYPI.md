@@ -324,7 +324,8 @@ asyncio.run(main())
 * [get_connector_task_v1](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#get_connector_task_v1) - Read a specific task of the connector
 * [get_payment](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#get_payment) - Get a payment
 * [get_pool](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#get_pool) - Get a Pool
-* [get_pool_balances](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#get_pool_balances) - Get pool balances
+* [get_pool_balances](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#get_pool_balances) - Get historical pool balances at a particular point in time
+* [get_pool_balances_latest](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#get_pool_balances_latest) - Get latest pool balances
 * [get_transfer_initiation](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#get_transfer_initiation) - Get a transfer initiation
 * [install_connector](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#install_connector) - Install a connector
 * [list_all_connectors](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#list_all_connectors) - List all installed connectors
@@ -345,16 +346,17 @@ asyncio.run(main())
 * [reset_connector_v1](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#reset_connector_v1) - Reset a connector
 * [retry_transfer_initiation](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#retry_transfer_initiation) - Retry a failed transfer initiation
 * [reverse_transfer_initiation](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#reverse_transfer_initiation) - Reverse a transfer initiation
-* [udpate_transfer_initiation_status](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#udpate_transfer_initiation_status) - Update the status of a transfer initiation
 * [~~uninstall_connector~~](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#uninstall_connector) - Uninstall a connector :warning: **Deprecated**
 * [uninstall_connector_v1](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#uninstall_connector_v1) - Uninstall a connector
 * [update_bank_account_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#update_bank_account_metadata) - Update metadata of a bank account
 * [update_connector_config_v1](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#update_connector_config_v1) - Update the config of a connector
 * [update_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#update_metadata) - Update metadata
+* [update_transfer_initiation_status](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/paymentsv1/README.md#update_transfer_initiation_status) - Update the status of a transfer initiation
 
 #### [payments.v3](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md)
 
 * [add_account_to_pool](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#add_account_to_pool) - Add an account to a pool
+* [add_bank_account_to_payment_service_user](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#add_bank_account_to_payment_service_user) - Add a bank account to a payment service user
 * [approve_payment_initiation](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#approve_payment_initiation) - Approve a payment initiation
 * [create_account](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#create_account) - Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
@@ -362,10 +364,12 @@ asyncio.run(main())
 
 * [create_payment](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#create_payment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
+* [create_payment_service_user](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#create_payment_service_user) - Create a formance payment service user object
 * [create_pool](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#create_pool) - Create a formance pool object
 * [delete_payment_initiation](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#delete_payment_initiation) - Delete a payment initiation by ID
 * [delete_pool](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#delete_pool) - Delete a pool by ID
 * [forward_bank_account](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#forward_bank_account) - Forward a Bank Account to a PSP for creation
+* [forward_payment_service_user_bank_account](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#forward_payment_service_user_bank_account) - Forward a payment service user's bank account to a connector
 * [get_account](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#get_account) - Get an account by ID
 * [get_account_balances](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#get_account_balances) - Get account balances
 * [get_bank_account](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#get_bank_account) - Get a Bank Account by ID
@@ -373,8 +377,10 @@ asyncio.run(main())
 * [get_connector_schedule](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#get_connector_schedule) - Get a connector schedule by ID
 * [get_payment](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#get_payment) - Get a payment by ID
 * [get_payment_initiation](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#get_payment_initiation) - Get a payment initiation by ID
+* [get_payment_service_user](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#get_payment_service_user) - Get a payment service user by ID
 * [get_pool](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#get_pool) - Get a pool by ID
-* [get_pool_balances](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#get_pool_balances) - Get pool balances
+* [get_pool_balances](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#get_pool_balances) - Get historical pool balances from a particular point in time
+* [get_pool_balances_latest](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#get_pool_balances_latest) - Get latest pool balances
 * [get_task](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#get_task) - Get a task and its result by ID
 * [initiate_payment](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#initiate_payment) - Initiate a payment
 * [install_connector](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#install_connector) - Install a connector
@@ -387,6 +393,7 @@ asyncio.run(main())
 * [list_payment_initiation_adjustments](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#list_payment_initiation_adjustments) - List all payment initiation adjustments
 * [list_payment_initiation_related_payments](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#list_payment_initiation_related_payments) - List all payments related to a payment initiation
 * [list_payment_initiations](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#list_payment_initiations) - List all payment initiations
+* [list_payment_service_users](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#list_payment_service_users) - List all payment service users
 * [list_payments](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#list_payments) - List all payments
 * [list_pools](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#list_pools) - List all pools
 * [reject_payment_initiation](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#reject_payment_initiation) - Reject a payment initiation
@@ -397,6 +404,7 @@ asyncio.run(main())
 * [uninstall_connector](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#uninstall_connector) - Uninstall a connector
 * [update_bank_account_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#update_bank_account_metadata) - Update a bank account's metadata
 * [update_payment_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#update_payment_metadata) - Update a payment's metadata
+* [v3_update_connector_config](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/v3/README.md#v3_update_connector_config) - Update the config of a connector
 
 ### [reconciliation](https://github.com/formancehq/formance-sdk-python/blob/master/docs/sdks/reconciliation/README.md)
 

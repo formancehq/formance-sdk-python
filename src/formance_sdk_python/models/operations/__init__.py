@@ -309,6 +309,12 @@ if TYPE_CHECKING:
         GetPoolBalancesResponse,
         GetPoolBalancesResponseTypedDict,
     )
+    from .getpoolbalanceslatest import (
+        GetPoolBalancesLatestRequest,
+        GetPoolBalancesLatestRequestTypedDict,
+        GetPoolBalancesLatestResponse,
+        GetPoolBalancesLatestResponseTypedDict,
+    )
     from .getreconciliation import (
         GetReconciliationRequest,
         GetReconciliationRequestTypedDict,
@@ -606,12 +612,6 @@ if TYPE_CHECKING:
         TestTriggerResponse,
         TestTriggerResponseTypedDict,
     )
-    from .udpatetransferinitiationstatus import (
-        UdpateTransferInitiationStatusRequest,
-        UdpateTransferInitiationStatusRequestTypedDict,
-        UdpateTransferInitiationStatusResponse,
-        UdpateTransferInitiationStatusResponseTypedDict,
-    )
     from .uninstallconnector import (
         UninstallConnectorRequest,
         UninstallConnectorRequestTypedDict,
@@ -659,6 +659,12 @@ if TYPE_CHECKING:
         UpdateMetadataRequestTypedDict,
         UpdateMetadataResponse,
         UpdateMetadataResponseTypedDict,
+    )
+    from .updatetransferinitiationstatus import (
+        UpdateTransferInitiationStatusRequest,
+        UpdateTransferInitiationStatusRequestTypedDict,
+        UpdateTransferInitiationStatusResponse,
+        UpdateTransferInitiationStatusResponseTypedDict,
     )
     from .updatewallet import (
         UpdateWalletRequest,
@@ -924,6 +930,12 @@ if TYPE_CHECKING:
         V3AddAccountToPoolResponse,
         V3AddAccountToPoolResponseTypedDict,
     )
+    from .v3addbankaccounttopaymentserviceuser import (
+        V3AddBankAccountToPaymentServiceUserRequest,
+        V3AddBankAccountToPaymentServiceUserRequestTypedDict,
+        V3AddBankAccountToPaymentServiceUserResponse,
+        V3AddBankAccountToPaymentServiceUserResponseTypedDict,
+    )
     from .v3approvepaymentinitiation import (
         V3ApprovePaymentInitiationRequest,
         V3ApprovePaymentInitiationRequestTypedDict,
@@ -941,6 +953,10 @@ if TYPE_CHECKING:
     from .v3createpayment import (
         V3CreatePaymentResponse,
         V3CreatePaymentResponseTypedDict,
+    )
+    from .v3createpaymentserviceuser import (
+        V3CreatePaymentServiceUserResponse,
+        V3CreatePaymentServiceUserResponseTypedDict,
     )
     from .v3createpool import V3CreatePoolResponse, V3CreatePoolResponseTypedDict
     from .v3deletepaymentinitiation import (
@@ -960,6 +976,12 @@ if TYPE_CHECKING:
         V3ForwardBankAccountRequestTypedDict,
         V3ForwardBankAccountResponse,
         V3ForwardBankAccountResponseTypedDict,
+    )
+    from .v3forwardpaymentserviceuserbankaccount import (
+        V3ForwardPaymentServiceUserBankAccountRequest,
+        V3ForwardPaymentServiceUserBankAccountRequestTypedDict,
+        V3ForwardPaymentServiceUserBankAccountResponse,
+        V3ForwardPaymentServiceUserBankAccountResponseTypedDict,
     )
     from .v3getaccount import (
         V3GetAccountRequest,
@@ -1003,6 +1025,12 @@ if TYPE_CHECKING:
         V3GetPaymentInitiationResponse,
         V3GetPaymentInitiationResponseTypedDict,
     )
+    from .v3getpaymentserviceuser import (
+        V3GetPaymentServiceUserRequest,
+        V3GetPaymentServiceUserRequestTypedDict,
+        V3GetPaymentServiceUserResponse,
+        V3GetPaymentServiceUserResponseTypedDict,
+    )
     from .v3getpool import (
         V3GetPoolRequest,
         V3GetPoolRequestTypedDict,
@@ -1014,6 +1042,12 @@ if TYPE_CHECKING:
         V3GetPoolBalancesRequestTypedDict,
         V3GetPoolBalancesResponse,
         V3GetPoolBalancesResponseTypedDict,
+    )
+    from .v3getpoolbalanceslatest import (
+        V3GetPoolBalancesLatestRequest,
+        V3GetPoolBalancesLatestRequestTypedDict,
+        V3GetPoolBalancesLatestResponse,
+        V3GetPoolBalancesLatestResponseTypedDict,
     )
     from .v3gettask import (
         V3GetTaskRequest,
@@ -1091,6 +1125,12 @@ if TYPE_CHECKING:
         V3ListPaymentsResponse,
         V3ListPaymentsResponseTypedDict,
     )
+    from .v3listpaymentserviceusers import (
+        V3ListPaymentServiceUsersRequest,
+        V3ListPaymentServiceUsersRequestTypedDict,
+        V3ListPaymentServiceUsersResponse,
+        V3ListPaymentServiceUsersResponseTypedDict,
+    )
     from .v3listpools import (
         V3ListPoolsRequest,
         V3ListPoolsRequestTypedDict,
@@ -1138,6 +1178,12 @@ if TYPE_CHECKING:
         V3UpdateBankAccountMetadataRequestTypedDict,
         V3UpdateBankAccountMetadataResponse,
         V3UpdateBankAccountMetadataResponseTypedDict,
+    )
+    from .v3updateconnectorconfig import (
+        V3UpdateConnectorConfigRequest,
+        V3UpdateConnectorConfigRequestTypedDict,
+        V3UpdateConnectorConfigResponse,
+        V3UpdateConnectorConfigResponseTypedDict,
     )
     from .v3updatepaymentmetadata import (
         V3UpdatePaymentMetadataRequest,
@@ -1361,6 +1407,10 @@ __all__ = [
     "GetPolicyRequestTypedDict",
     "GetPolicyResponse",
     "GetPolicyResponseTypedDict",
+    "GetPoolBalancesLatestRequest",
+    "GetPoolBalancesLatestRequestTypedDict",
+    "GetPoolBalancesLatestResponse",
+    "GetPoolBalancesLatestResponseTypedDict",
     "GetPoolBalancesRequest",
     "GetPoolBalancesRequestTypedDict",
     "GetPoolBalancesResponse",
@@ -1576,10 +1626,6 @@ __all__ = [
     "TestTriggerRequestTypedDict",
     "TestTriggerResponse",
     "TestTriggerResponseTypedDict",
-    "UdpateTransferInitiationStatusRequest",
-    "UdpateTransferInitiationStatusRequestTypedDict",
-    "UdpateTransferInitiationStatusResponse",
-    "UdpateTransferInitiationStatusResponseTypedDict",
     "UninstallConnectorRequest",
     "UninstallConnectorRequestTypedDict",
     "UninstallConnectorResponse",
@@ -1612,6 +1658,10 @@ __all__ = [
     "UpdateMetadataRequestTypedDict",
     "UpdateMetadataResponse",
     "UpdateMetadataResponseTypedDict",
+    "UpdateTransferInitiationStatusRequest",
+    "UpdateTransferInitiationStatusRequestTypedDict",
+    "UpdateTransferInitiationStatusResponse",
+    "UpdateTransferInitiationStatusResponseTypedDict",
     "UpdateWalletRequest",
     "UpdateWalletRequestBody",
     "UpdateWalletRequestBodyTypedDict",
@@ -1788,6 +1838,10 @@ __all__ = [
     "V3AddAccountToPoolRequestTypedDict",
     "V3AddAccountToPoolResponse",
     "V3AddAccountToPoolResponseTypedDict",
+    "V3AddBankAccountToPaymentServiceUserRequest",
+    "V3AddBankAccountToPaymentServiceUserRequestTypedDict",
+    "V3AddBankAccountToPaymentServiceUserResponse",
+    "V3AddBankAccountToPaymentServiceUserResponseTypedDict",
     "V3ApprovePaymentInitiationRequest",
     "V3ApprovePaymentInitiationRequestTypedDict",
     "V3ApprovePaymentInitiationResponse",
@@ -1798,6 +1852,8 @@ __all__ = [
     "V3CreateBankAccountResponseTypedDict",
     "V3CreatePaymentResponse",
     "V3CreatePaymentResponseTypedDict",
+    "V3CreatePaymentServiceUserResponse",
+    "V3CreatePaymentServiceUserResponseTypedDict",
     "V3CreatePoolResponse",
     "V3CreatePoolResponseTypedDict",
     "V3DeletePaymentInitiationRequest",
@@ -1812,6 +1868,10 @@ __all__ = [
     "V3ForwardBankAccountRequestTypedDict",
     "V3ForwardBankAccountResponse",
     "V3ForwardBankAccountResponseTypedDict",
+    "V3ForwardPaymentServiceUserBankAccountRequest",
+    "V3ForwardPaymentServiceUserBankAccountRequestTypedDict",
+    "V3ForwardPaymentServiceUserBankAccountResponse",
+    "V3ForwardPaymentServiceUserBankAccountResponseTypedDict",
     "V3GetAccountBalancesRequest",
     "V3GetAccountBalancesRequestTypedDict",
     "V3GetAccountBalancesResponse",
@@ -1840,6 +1900,14 @@ __all__ = [
     "V3GetPaymentRequestTypedDict",
     "V3GetPaymentResponse",
     "V3GetPaymentResponseTypedDict",
+    "V3GetPaymentServiceUserRequest",
+    "V3GetPaymentServiceUserRequestTypedDict",
+    "V3GetPaymentServiceUserResponse",
+    "V3GetPaymentServiceUserResponseTypedDict",
+    "V3GetPoolBalancesLatestRequest",
+    "V3GetPoolBalancesLatestRequestTypedDict",
+    "V3GetPoolBalancesLatestResponse",
+    "V3GetPoolBalancesLatestResponseTypedDict",
     "V3GetPoolBalancesRequest",
     "V3GetPoolBalancesRequestTypedDict",
     "V3GetPoolBalancesResponse",
@@ -1894,6 +1962,10 @@ __all__ = [
     "V3ListPaymentInitiationsRequestTypedDict",
     "V3ListPaymentInitiationsResponse",
     "V3ListPaymentInitiationsResponseTypedDict",
+    "V3ListPaymentServiceUsersRequest",
+    "V3ListPaymentServiceUsersRequestTypedDict",
+    "V3ListPaymentServiceUsersResponse",
+    "V3ListPaymentServiceUsersResponseTypedDict",
     "V3ListPaymentsRequest",
     "V3ListPaymentsRequestTypedDict",
     "V3ListPaymentsResponse",
@@ -1930,6 +2002,10 @@ __all__ = [
     "V3UpdateBankAccountMetadataRequestTypedDict",
     "V3UpdateBankAccountMetadataResponse",
     "V3UpdateBankAccountMetadataResponseTypedDict",
+    "V3UpdateConnectorConfigRequest",
+    "V3UpdateConnectorConfigRequestTypedDict",
+    "V3UpdateConnectorConfigResponse",
+    "V3UpdateConnectorConfigResponseTypedDict",
     "V3UpdatePaymentMetadataRequest",
     "V3UpdatePaymentMetadataRequestTypedDict",
     "V3UpdatePaymentMetadataResponse",
@@ -2157,6 +2233,10 @@ _dynamic_imports: dict[str, str] = {
     "GetPoolBalancesRequestTypedDict": ".getpoolbalances",
     "GetPoolBalancesResponse": ".getpoolbalances",
     "GetPoolBalancesResponseTypedDict": ".getpoolbalances",
+    "GetPoolBalancesLatestRequest": ".getpoolbalanceslatest",
+    "GetPoolBalancesLatestRequestTypedDict": ".getpoolbalanceslatest",
+    "GetPoolBalancesLatestResponse": ".getpoolbalanceslatest",
+    "GetPoolBalancesLatestResponseTypedDict": ".getpoolbalanceslatest",
     "GetReconciliationRequest": ".getreconciliation",
     "GetReconciliationRequestTypedDict": ".getreconciliation",
     "GetReconciliationResponse": ".getreconciliation",
@@ -2361,10 +2441,6 @@ _dynamic_imports: dict[str, str] = {
     "TestTriggerRequestTypedDict": ".testtrigger",
     "TestTriggerResponse": ".testtrigger",
     "TestTriggerResponseTypedDict": ".testtrigger",
-    "UdpateTransferInitiationStatusRequest": ".udpatetransferinitiationstatus",
-    "UdpateTransferInitiationStatusRequestTypedDict": ".udpatetransferinitiationstatus",
-    "UdpateTransferInitiationStatusResponse": ".udpatetransferinitiationstatus",
-    "UdpateTransferInitiationStatusResponseTypedDict": ".udpatetransferinitiationstatus",
     "UninstallConnectorRequest": ".uninstallconnector",
     "UninstallConnectorRequestTypedDict": ".uninstallconnector",
     "UninstallConnectorResponse": ".uninstallconnector",
@@ -2397,6 +2473,10 @@ _dynamic_imports: dict[str, str] = {
     "UpdateMetadataRequestTypedDict": ".updatemetadata",
     "UpdateMetadataResponse": ".updatemetadata",
     "UpdateMetadataResponseTypedDict": ".updatemetadata",
+    "UpdateTransferInitiationStatusRequest": ".updatetransferinitiationstatus",
+    "UpdateTransferInitiationStatusRequestTypedDict": ".updatetransferinitiationstatus",
+    "UpdateTransferInitiationStatusResponse": ".updatetransferinitiationstatus",
+    "UpdateTransferInitiationStatusResponseTypedDict": ".updatetransferinitiationstatus",
     "UpdateWalletRequest": ".updatewallet",
     "UpdateWalletRequestBody": ".updatewallet",
     "UpdateWalletRequestBodyTypedDict": ".updatewallet",
@@ -2574,6 +2654,10 @@ _dynamic_imports: dict[str, str] = {
     "V3AddAccountToPoolRequestTypedDict": ".v3addaccounttopool",
     "V3AddAccountToPoolResponse": ".v3addaccounttopool",
     "V3AddAccountToPoolResponseTypedDict": ".v3addaccounttopool",
+    "V3AddBankAccountToPaymentServiceUserRequest": ".v3addbankaccounttopaymentserviceuser",
+    "V3AddBankAccountToPaymentServiceUserRequestTypedDict": ".v3addbankaccounttopaymentserviceuser",
+    "V3AddBankAccountToPaymentServiceUserResponse": ".v3addbankaccounttopaymentserviceuser",
+    "V3AddBankAccountToPaymentServiceUserResponseTypedDict": ".v3addbankaccounttopaymentserviceuser",
     "V3ApprovePaymentInitiationRequest": ".v3approvepaymentinitiation",
     "V3ApprovePaymentInitiationRequestTypedDict": ".v3approvepaymentinitiation",
     "V3ApprovePaymentInitiationResponse": ".v3approvepaymentinitiation",
@@ -2584,6 +2668,8 @@ _dynamic_imports: dict[str, str] = {
     "V3CreateBankAccountResponseTypedDict": ".v3createbankaccount",
     "V3CreatePaymentResponse": ".v3createpayment",
     "V3CreatePaymentResponseTypedDict": ".v3createpayment",
+    "V3CreatePaymentServiceUserResponse": ".v3createpaymentserviceuser",
+    "V3CreatePaymentServiceUserResponseTypedDict": ".v3createpaymentserviceuser",
     "V3CreatePoolResponse": ".v3createpool",
     "V3CreatePoolResponseTypedDict": ".v3createpool",
     "V3DeletePaymentInitiationRequest": ".v3deletepaymentinitiation",
@@ -2598,6 +2684,10 @@ _dynamic_imports: dict[str, str] = {
     "V3ForwardBankAccountRequestTypedDict": ".v3forwardbankaccount",
     "V3ForwardBankAccountResponse": ".v3forwardbankaccount",
     "V3ForwardBankAccountResponseTypedDict": ".v3forwardbankaccount",
+    "V3ForwardPaymentServiceUserBankAccountRequest": ".v3forwardpaymentserviceuserbankaccount",
+    "V3ForwardPaymentServiceUserBankAccountRequestTypedDict": ".v3forwardpaymentserviceuserbankaccount",
+    "V3ForwardPaymentServiceUserBankAccountResponse": ".v3forwardpaymentserviceuserbankaccount",
+    "V3ForwardPaymentServiceUserBankAccountResponseTypedDict": ".v3forwardpaymentserviceuserbankaccount",
     "V3GetAccountRequest": ".v3getaccount",
     "V3GetAccountRequestTypedDict": ".v3getaccount",
     "V3GetAccountResponse": ".v3getaccount",
@@ -2626,6 +2716,10 @@ _dynamic_imports: dict[str, str] = {
     "V3GetPaymentInitiationRequestTypedDict": ".v3getpaymentinitiation",
     "V3GetPaymentInitiationResponse": ".v3getpaymentinitiation",
     "V3GetPaymentInitiationResponseTypedDict": ".v3getpaymentinitiation",
+    "V3GetPaymentServiceUserRequest": ".v3getpaymentserviceuser",
+    "V3GetPaymentServiceUserRequestTypedDict": ".v3getpaymentserviceuser",
+    "V3GetPaymentServiceUserResponse": ".v3getpaymentserviceuser",
+    "V3GetPaymentServiceUserResponseTypedDict": ".v3getpaymentserviceuser",
     "V3GetPoolRequest": ".v3getpool",
     "V3GetPoolRequestTypedDict": ".v3getpool",
     "V3GetPoolResponse": ".v3getpool",
@@ -2634,6 +2728,10 @@ _dynamic_imports: dict[str, str] = {
     "V3GetPoolBalancesRequestTypedDict": ".v3getpoolbalances",
     "V3GetPoolBalancesResponse": ".v3getpoolbalances",
     "V3GetPoolBalancesResponseTypedDict": ".v3getpoolbalances",
+    "V3GetPoolBalancesLatestRequest": ".v3getpoolbalanceslatest",
+    "V3GetPoolBalancesLatestRequestTypedDict": ".v3getpoolbalanceslatest",
+    "V3GetPoolBalancesLatestResponse": ".v3getpoolbalanceslatest",
+    "V3GetPoolBalancesLatestResponseTypedDict": ".v3getpoolbalanceslatest",
     "V3GetTaskRequest": ".v3gettask",
     "V3GetTaskRequestTypedDict": ".v3gettask",
     "V3GetTaskResponse": ".v3gettask",
@@ -2684,6 +2782,10 @@ _dynamic_imports: dict[str, str] = {
     "V3ListPaymentsRequestTypedDict": ".v3listpayments",
     "V3ListPaymentsResponse": ".v3listpayments",
     "V3ListPaymentsResponseTypedDict": ".v3listpayments",
+    "V3ListPaymentServiceUsersRequest": ".v3listpaymentserviceusers",
+    "V3ListPaymentServiceUsersRequestTypedDict": ".v3listpaymentserviceusers",
+    "V3ListPaymentServiceUsersResponse": ".v3listpaymentserviceusers",
+    "V3ListPaymentServiceUsersResponseTypedDict": ".v3listpaymentserviceusers",
     "V3ListPoolsRequest": ".v3listpools",
     "V3ListPoolsRequestTypedDict": ".v3listpools",
     "V3ListPoolsResponse": ".v3listpools",
@@ -2716,6 +2818,10 @@ _dynamic_imports: dict[str, str] = {
     "V3UpdateBankAccountMetadataRequestTypedDict": ".v3updatebankaccountmetadata",
     "V3UpdateBankAccountMetadataResponse": ".v3updatebankaccountmetadata",
     "V3UpdateBankAccountMetadataResponseTypedDict": ".v3updatebankaccountmetadata",
+    "V3UpdateConnectorConfigRequest": ".v3updateconnectorconfig",
+    "V3UpdateConnectorConfigRequestTypedDict": ".v3updateconnectorconfig",
+    "V3UpdateConnectorConfigResponse": ".v3updateconnectorconfig",
+    "V3UpdateConnectorConfigResponseTypedDict": ".v3updateconnectorconfig",
     "V3UpdatePaymentMetadataRequest": ".v3updatepaymentmetadata",
     "V3UpdatePaymentMetadataRequestTypedDict": ".v3updatepaymentmetadata",
     "V3UpdatePaymentMetadataResponse": ".v3updatepaymentmetadata",

@@ -6,6 +6,7 @@
 ### Available Operations
 
 * [add_account_to_pool](#add_account_to_pool) - Add an account to a pool
+* [add_bank_account_to_payment_service_user](#add_bank_account_to_payment_service_user) - Add a bank account to a payment service user
 * [approve_payment_initiation](#approve_payment_initiation) - Approve a payment initiation
 * [create_account](#create_account) - Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
@@ -13,10 +14,12 @@
 
 * [create_payment](#create_payment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
+* [create_payment_service_user](#create_payment_service_user) - Create a formance payment service user object
 * [create_pool](#create_pool) - Create a formance pool object
 * [delete_payment_initiation](#delete_payment_initiation) - Delete a payment initiation by ID
 * [delete_pool](#delete_pool) - Delete a pool by ID
 * [forward_bank_account](#forward_bank_account) - Forward a Bank Account to a PSP for creation
+* [forward_payment_service_user_bank_account](#forward_payment_service_user_bank_account) - Forward a payment service user's bank account to a connector
 * [get_account](#get_account) - Get an account by ID
 * [get_account_balances](#get_account_balances) - Get account balances
 * [get_bank_account](#get_bank_account) - Get a Bank Account by ID
@@ -24,8 +27,10 @@
 * [get_connector_schedule](#get_connector_schedule) - Get a connector schedule by ID
 * [get_payment](#get_payment) - Get a payment by ID
 * [get_payment_initiation](#get_payment_initiation) - Get a payment initiation by ID
+* [get_payment_service_user](#get_payment_service_user) - Get a payment service user by ID
 * [get_pool](#get_pool) - Get a pool by ID
-* [get_pool_balances](#get_pool_balances) - Get pool balances
+* [get_pool_balances](#get_pool_balances) - Get historical pool balances from a particular point in time
+* [get_pool_balances_latest](#get_pool_balances_latest) - Get latest pool balances
 * [get_task](#get_task) - Get a task and its result by ID
 * [initiate_payment](#initiate_payment) - Initiate a payment
 * [install_connector](#install_connector) - Install a connector
@@ -38,6 +43,7 @@
 * [list_payment_initiation_adjustments](#list_payment_initiation_adjustments) - List all payment initiation adjustments
 * [list_payment_initiation_related_payments](#list_payment_initiation_related_payments) - List all payments related to a payment initiation
 * [list_payment_initiations](#list_payment_initiations) - List all payment initiations
+* [list_payment_service_users](#list_payment_service_users) - List all payment service users
 * [list_payments](#list_payments) - List all payments
 * [list_pools](#list_pools) - List all pools
 * [reject_payment_initiation](#reject_payment_initiation) - Reject a payment initiation
@@ -48,6 +54,7 @@
 * [uninstall_connector](#uninstall_connector) - Uninstall a connector
 * [update_bank_account_metadata](#update_bank_account_metadata) - Update a bank account's metadata
 * [update_payment_metadata](#update_payment_metadata) - Update a payment's metadata
+* [v3_update_connector_config](#v3_update_connector_config) - Update the config of a connector
 
 ## add_account_to_pool
 
@@ -89,6 +96,54 @@ with SDK(
 ### Response
 
 **[operations.V3AddAccountToPoolResponse](../../models/operations/v3addaccounttopoolresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## add_bank_account_to_payment_service_user
+
+Add a bank account to a payment service user
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.add_bank_account_to_payment_service_user(request={
+        "bank_account_id": "<id>",
+        "payment_service_user_id": "<id>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                        | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                        | [operations.V3AddBankAccountToPaymentServiceUserRequest](../../models/operations/v3addbankaccounttopaymentserviceuserrequest.md) | :heavy_check_mark:                                                                                                               | The request object to use for the request.                                                                                       |
+| `retries`                                                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                 | :heavy_minus_sign:                                                                                                               | Configuration to override the default retry behavior of the client.                                                              |
+
+### Response
+
+**[operations.V3AddBankAccountToPaymentServiceUserResponse](../../models/operations/v3addbankaccounttopaymentserviceuserresponse.md)**
 
 ### Errors
 
@@ -282,6 +337,51 @@ with SDK(
 | errors.V3ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## create_payment_service_user
+
+Create a formance payment service user object
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.create_payment_service_user()
+
+    assert res.v3_create_payment_service_user_response is not None
+
+    # Handle response
+    print(res.v3_create_payment_service_user_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `request`                                                                                            | [shared.V3CreatePaymentServiceUserRequest](../../models/shared/v3createpaymentserviceuserrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `retries`                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                     | :heavy_minus_sign:                                                                                   | Configuration to override the default retry behavior of the client.                                  |
+
+### Response
+
+**[operations.V3CreatePaymentServiceUserResponse](../../models/operations/v3createpaymentserviceuserresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## create_pool
 
 Create a formance pool object
@@ -460,6 +560,54 @@ with SDK(
 ### Response
 
 **[operations.V3ForwardBankAccountResponse](../../models/operations/v3forwardbankaccountresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## forward_payment_service_user_bank_account
+
+Forward a payment service user's bank account to a connector
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.forward_payment_service_user_bank_account(request={
+        "bank_account_id": "<id>",
+        "payment_service_user_id": "<id>",
+    })
+
+    assert res.v3_forward_payment_service_user_bank_account_response is not None
+
+    # Handle response
+    print(res.v3_forward_payment_service_user_bank_account_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                            | Type                                                                                                                                 | Required                                                                                                                             | Description                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                            | [operations.V3ForwardPaymentServiceUserBankAccountRequest](../../models/operations/v3forwardpaymentserviceuserbankaccountrequest.md) | :heavy_check_mark:                                                                                                                   | The request object to use for the request.                                                                                           |
+| `retries`                                                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                     | :heavy_minus_sign:                                                                                                                   | Configuration to override the default retry behavior of the client.                                                                  |
+
+### Response
+
+**[operations.V3ForwardPaymentServiceUserBankAccountResponse](../../models/operations/v3forwardpaymentserviceuserbankaccountresponse.md)**
 
 ### Errors
 
@@ -800,6 +948,53 @@ with SDK(
 | errors.V3ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## get_payment_service_user
+
+Get a payment service user by ID
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.get_payment_service_user(request={
+        "payment_service_user_id": "<id>",
+    })
+
+    assert res.v3_get_payment_service_user_response is not None
+
+    # Handle response
+    print(res.v3_get_payment_service_user_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                              | [operations.V3GetPaymentServiceUserRequest](../../models/operations/v3getpaymentserviceuserrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
+
+### Response
+
+**[operations.V3GetPaymentServiceUserResponse](../../models/operations/v3getpaymentserviceuserresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## get_pool
 
 Get a pool by ID
@@ -849,7 +1044,7 @@ with SDK(
 
 ## get_pool_balances
 
-Get pool balances
+Get historical pool balances from a particular point in time
 
 ### Example Usage
 
@@ -886,6 +1081,53 @@ with SDK(
 ### Response
 
 **[operations.V3GetPoolBalancesResponse](../../models/operations/v3getpoolbalancesresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## get_pool_balances_latest
+
+Get latest pool balances
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.get_pool_balances_latest(request={
+        "pool_id": "<id>",
+    })
+
+    assert res.v3_pool_balances_response is not None
+
+    # Handle response
+    print(res.v3_pool_balances_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                              | [operations.V3GetPoolBalancesLatestRequest](../../models/operations/v3getpoolbalanceslatestrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
+
+### Response
+
+**[operations.V3GetPoolBalancesLatestResponse](../../models/operations/v3getpoolbalanceslatestresponse.md)**
 
 ### Errors
 
@@ -1466,6 +1708,54 @@ with SDK(
 | errors.V3ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## list_payment_service_users
+
+List all payment service users
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.list_payment_service_users(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+    })
+
+    assert res.v3_payment_service_users_cursor_response is not None
+
+    # Handle response
+    print(res.v3_payment_service_users_cursor_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                  | [operations.V3ListPaymentServiceUsersRequest](../../models/operations/v3listpaymentserviceusersrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `retries`                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                           | :heavy_minus_sign:                                                                                         | Configuration to override the default retry behavior of the client.                                        |
+
+### Response
+
+**[operations.V3ListPaymentServiceUsersResponse](../../models/operations/v3listpaymentserviceusersresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## list_payments
 
 List all payments
@@ -1938,3 +2228,50 @@ with SDK(
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V3ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## v3_update_connector_config
+
+Update connector config
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.v3_update_connector_config(request={
+        "connector_id": "<id>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                              | [operations.V3UpdateConnectorConfigRequest](../../models/operations/v3updateconnectorconfigrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
+
+### Response
+
+**[operations.V3UpdateConnectorConfigResponse](../../models/operations/v3updateconnectorconfigresponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |

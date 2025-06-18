@@ -9,6 +9,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class HoldTypedDict(TypedDict):
+    asset: str
     description: str
     id: str
     r"""The unique ID of the hold."""
@@ -20,6 +21,8 @@ class HoldTypedDict(TypedDict):
 
 
 class Hold(BaseModel):
+    asset: str
+
     description: str
 
     id: str

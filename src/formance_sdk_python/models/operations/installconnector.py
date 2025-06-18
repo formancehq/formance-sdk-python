@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.shared import (
-    connector_enum as shared_connector_enum,
+    connector as shared_connector,
     connectorconfig as shared_connectorconfig,
     connectorresponse as shared_connectorresponse,
 )
@@ -15,7 +15,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class InstallConnectorRequestTypedDict(TypedDict):
     connector_config: shared_connectorconfig.ConnectorConfigTypedDict
-    connector: shared_connector_enum.ConnectorEnum
+    connector: shared_connector.Connector
     r"""The name of the connector."""
 
 
@@ -26,7 +26,7 @@ class InstallConnectorRequest(BaseModel):
     ]
 
     connector: Annotated[
-        shared_connector_enum.ConnectorEnum,
+        shared_connector.Connector,
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ]
     r"""The name of the connector."""

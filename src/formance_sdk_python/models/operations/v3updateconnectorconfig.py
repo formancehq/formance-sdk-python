@@ -2,36 +2,39 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.shared import (
-    updatetransferinitiationstatusrequest as shared_updatetransferinitiationstatusrequest,
+    v3installconnectorrequest as shared_v3installconnectorrequest,
 )
 from formance_sdk_python.types import BaseModel
 from formance_sdk_python.utils import FieldMetadata, PathParamMetadata, RequestMetadata
 import httpx
 import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing import Optional
+from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class UdpateTransferInitiationStatusRequestTypedDict(TypedDict):
-    update_transfer_initiation_status_request: shared_updatetransferinitiationstatusrequest.UpdateTransferInitiationStatusRequestTypedDict
-    transfer_id: str
-    r"""The transfer ID."""
-
-
-class UdpateTransferInitiationStatusRequest(BaseModel):
-    update_transfer_initiation_status_request: Annotated[
-        shared_updatetransferinitiationstatusrequest.UpdateTransferInitiationStatusRequest,
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+class V3UpdateConnectorConfigRequestTypedDict(TypedDict):
+    connector_id: str
+    r"""The connector ID"""
+    v3_install_connector_request: NotRequired[
+        shared_v3installconnectorrequest.V3InstallConnectorRequestTypedDict
     ]
 
-    transfer_id: Annotated[
+
+class V3UpdateConnectorConfigRequest(BaseModel):
+    connector_id: Annotated[
         str,
-        pydantic.Field(alias="transferId"),
+        pydantic.Field(alias="connectorID"),
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ]
-    r"""The transfer ID."""
+    r"""The connector ID"""
+
+    v3_install_connector_request: Annotated[
+        Optional[shared_v3installconnectorrequest.V3InstallConnectorRequest],
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ] = None
 
 
-class UdpateTransferInitiationStatusResponseTypedDict(TypedDict):
+class V3UpdateConnectorConfigResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""
     status_code: int
@@ -40,7 +43,7 @@ class UdpateTransferInitiationStatusResponseTypedDict(TypedDict):
     r"""Raw HTTP response; suitable for custom response parsing"""
 
 
-class UdpateTransferInitiationStatusResponse(BaseModel):
+class V3UpdateConnectorConfigResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
 

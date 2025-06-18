@@ -21,7 +21,8 @@
 * [get_connector_task_v1](#get_connector_task_v1) - Read a specific task of the connector
 * [get_payment](#get_payment) - Get a payment
 * [get_pool](#get_pool) - Get a Pool
-* [get_pool_balances](#get_pool_balances) - Get pool balances
+* [get_pool_balances](#get_pool_balances) - Get historical pool balances at a particular point in time
+* [get_pool_balances_latest](#get_pool_balances_latest) - Get latest pool balances
 * [get_transfer_initiation](#get_transfer_initiation) - Get a transfer initiation
 * [install_connector](#install_connector) - Install a connector
 * [list_all_connectors](#list_all_connectors) - List all installed connectors
@@ -42,12 +43,12 @@
 * [reset_connector_v1](#reset_connector_v1) - Reset a connector
 * [retry_transfer_initiation](#retry_transfer_initiation) - Retry a failed transfer initiation
 * [reverse_transfer_initiation](#reverse_transfer_initiation) - Reverse a transfer initiation
-* [udpate_transfer_initiation_status](#udpate_transfer_initiation_status) - Update the status of a transfer initiation
 * [~~uninstall_connector~~](#uninstall_connector) - Uninstall a connector :warning: **Deprecated**
 * [uninstall_connector_v1](#uninstall_connector_v1) - Uninstall a connector
 * [update_bank_account_metadata](#update_bank_account_metadata) - Update metadata of a bank account
 * [update_connector_config_v1](#update_connector_config_v1) - Update the config of a connector
 * [update_metadata](#update_metadata) - Update metadata
+* [update_transfer_initiation_status](#update_transfer_initiation_status) - Update the status of a transfer initiation
 
 ## add_account_to_pool
 
@@ -124,7 +125,7 @@ with SDK(
             "destination": "acct_1Gqj58KZcSIg2N2q",
             "source": "acct_1Gqj58KZcSIg2N2q",
         },
-        "connector": shared.ConnectorEnum.GENERIC,
+        "connector": shared.Connector.GENERIC,
     })
 
     assert res.transfer_response is not None
@@ -222,7 +223,6 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.create_bank_account(request={
-        "connector_id": "<id>",
         "country": "GB",
         "name": "My account",
     })
@@ -679,7 +679,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.get_connector_task(request={
-        "connector": shared.ConnectorEnum.MONEYCORP,
+        "connector": shared.Connector.MONEYCORP,
         "task_id": "task1",
     })
 
@@ -727,7 +727,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.get_connector_task_v1(request={
-        "connector": shared.ConnectorEnum.MODULR,
+        "connector": shared.Connector.MODULR,
         "connector_id": "XXX",
         "task_id": "task1",
     })
@@ -853,7 +853,7 @@ with SDK(
 
 ## get_pool_balances
 
-Get pool balances
+Get historical pool balances at a particular point in time
 
 ### Example Usage
 
@@ -892,6 +892,53 @@ with SDK(
 ### Response
 
 **[operations.GetPoolBalancesResponse](../../models/operations/getpoolbalancesresponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+
+## get_pool_balances_latest
+
+Get latest pool balances
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v1.get_pool_balances_latest(request={
+        "pool_id": "XXX",
+    })
+
+    assert res.pool_balances_response is not None
+
+    # Handle response
+    print(res.pool_balances_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `request`                                                                                          | [operations.GetPoolBalancesLatestRequest](../../models/operations/getpoolbalanceslatestrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `retries`                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                   | :heavy_minus_sign:                                                                                 | Configuration to override the default retry behavior of the client.                                |
+
+### Response
+
+**[operations.GetPoolBalancesLatestResponse](../../models/operations/getpoolbalanceslatestresponse.md)**
 
 ### Errors
 
@@ -973,7 +1020,7 @@ with SDK(
             "polling_period": "60s",
             "provider": "Currencycloud",
         },
-        "connector": shared.ConnectorEnum.MANGOPAY,
+        "connector": shared.Connector.MANGOPAY,
     })
 
     assert res.connector_response is not None
@@ -1162,7 +1209,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.list_connector_tasks(request={
-        "connector": shared.ConnectorEnum.MODULR,
+        "connector": shared.Connector.MODULR,
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "page_size": 100,
     })
@@ -1211,7 +1258,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.list_connector_tasks_v1(request={
-        "connector": shared.ConnectorEnum.WISE,
+        "connector": shared.Connector.WISE,
         "connector_id": "XXX",
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "page_size": 100,
@@ -1465,10 +1512,10 @@ with SDK(
 
     res = sdk.payments.v1.paymentsget_server_info()
 
-    assert res.server_info is not None
+    assert res.payments_server_info is not None
 
     # Handle response
-    print(res.server_info)
+    print(res.payments_server_info)
 
 ```
 
@@ -1562,7 +1609,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.read_connector_config(request={
-        "connector": shared.ConnectorEnum.MODULR,
+        "connector": shared.Connector.MODULR,
     })
 
     assert res.connector_config_response is not None
@@ -1609,7 +1656,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.read_connector_config_v1(request={
-        "connector": shared.ConnectorEnum.MANGOPAY,
+        "connector": shared.Connector.MANGOPAY,
         "connector_id": "XXX",
     })
 
@@ -1709,7 +1756,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.reset_connector(request={
-        "connector": shared.ConnectorEnum.WISE,
+        "connector": shared.Connector.WISE,
     })
 
     assert res is not None
@@ -1758,7 +1805,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.reset_connector_v1(request={
-        "connector": shared.ConnectorEnum.WISE,
+        "connector": shared.Connector.WISE,
         "connector_id": "XXX",
     })
 
@@ -1890,56 +1937,6 @@ with SDK(
 | errors.PaymentsErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
-## udpate_transfer_initiation_status
-
-Update a transfer initiation status
-
-### Example Usage
-
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.payments.v1.udpate_transfer_initiation_status(request={
-        "update_transfer_initiation_status_request": {
-            "status": shared.Status.VALIDATED,
-        },
-        "transfer_id": "XXX",
-    })
-
-    assert res is not None
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                            | [operations.UdpateTransferInitiationStatusRequest](../../models/operations/udpatetransferinitiationstatusrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
-| `retries`                                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                     | :heavy_minus_sign:                                                                                                   | Configuration to override the default retry behavior of the client.                                                  |
-
-### Response
-
-**[operations.UdpateTransferInitiationStatusResponse](../../models/operations/udpatetransferinitiationstatusresponse.md)**
-
-### Errors
-
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
-
 ## ~~uninstall_connector~~
 
 Uninstall a connector by its name.
@@ -1961,7 +1958,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.uninstall_connector(request={
-        "connector": shared.ConnectorEnum.GENERIC,
+        "connector": shared.Connector.GENERIC,
     })
 
     assert res is not None
@@ -2008,7 +2005,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.uninstall_connector_v1(request={
-        "connector": shared.ConnectorEnum.BANKING_CIRCLE,
+        "connector": shared.Connector.BANKING_CIRCLE,
         "connector_id": "XXX",
     })
 
@@ -2117,7 +2114,7 @@ with SDK(
             "polling_period": "60s",
             "provider": "Modulr",
         },
-        "connector": shared.ConnectorEnum.MANGOPAY,
+        "connector": shared.Connector.MANGOPAY,
         "connector_id": "XXX",
     })
 
@@ -2188,6 +2185,56 @@ with SDK(
 ### Response
 
 **[operations.UpdateMetadataResponse](../../models/operations/updatemetadataresponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+
+## update_transfer_initiation_status
+
+Update a transfer initiation status
+
+### Example Usage
+
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v1.update_transfer_initiation_status(request={
+        "update_transfer_initiation_status_request": {
+            "status": shared.Status.VALIDATED,
+        },
+        "transfer_id": "XXX",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                            | [operations.UpdateTransferInitiationStatusRequest](../../models/operations/updatetransferinitiationstatusrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
+| `retries`                                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                     | :heavy_minus_sign:                                                                                                   | Configuration to override the default retry behavior of the client.                                                  |
+
+### Response
+
+**[operations.UpdateTransferInitiationStatusResponse](../../models/operations/updatetransferinitiationstatusresponse.md)**
 
 ### Errors
 
