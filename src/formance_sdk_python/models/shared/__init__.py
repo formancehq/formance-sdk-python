@@ -131,7 +131,7 @@ if TYPE_CHECKING:
     )
     from .configuser import ConfigUser, ConfigUserTypedDict
     from .confirmholdrequest import ConfirmHoldRequest, ConfirmHoldRequestTypedDict
-    from .connector_enum import ConnectorEnum
+    from .connector import Connector
     from .connectorconfig import ConnectorConfig, ConnectorConfigTypedDict
     from .connectorconfigresponse import (
         ConnectorConfigResponse,
@@ -145,12 +145,8 @@ if TYPE_CHECKING:
     )
     from .connectorsconfigsresponse import (
         ConnectorsConfigsResponse,
-        ConnectorsConfigsResponseConnector,
-        ConnectorsConfigsResponseConnectorTypedDict,
         ConnectorsConfigsResponseData,
         ConnectorsConfigsResponseDataTypedDict,
-        ConnectorsConfigsResponseKey,
-        ConnectorsConfigsResponseKeyTypedDict,
         ConnectorsConfigsResponseTypedDict,
     )
     from .connectorsresponse import (
@@ -193,6 +189,7 @@ if TYPE_CHECKING:
     from .creditwalletrequest import CreditWalletRequest, CreditWalletRequestTypedDict
     from .currencycloudconfig import CurrencyCloudConfig, CurrencyCloudConfigTypedDict
     from .debitwalletrequest import DebitWalletRequest, DebitWalletRequestTypedDict
+    from .debitwalletresponse import DebitWalletResponse, DebitWalletResponseTypedDict
     from .dummypayconfig import DummyPayConfig, DummyPayConfigTypedDict
     from .errorresponse import ErrorResponse, ErrorResponseTypedDict
     from .errorsenum import ErrorsEnum
@@ -297,6 +294,7 @@ if TYPE_CHECKING:
         OrchestrationCreditWalletRequest,
         OrchestrationCreditWalletRequestTypedDict,
     )
+    from .orchestrationhold import OrchestrationHold, OrchestrationHoldTypedDict
     from .orchestrationlistwalletsresponse import (
         OrchestrationListWalletsResponse,
         OrchestrationListWalletsResponseCursor,
@@ -370,6 +368,7 @@ if TYPE_CHECKING:
         PaymentsCursorTypedDict,
     )
     from .paymentserrorsenum import PaymentsErrorsEnum
+    from .paymentsserverinfo import PaymentsServerInfo, PaymentsServerInfoTypedDict
     from .paymentstatus import PaymentStatus
     from .paymenttype import PaymentType
     from .policiescursorresponse import (
@@ -971,6 +970,8 @@ if TYPE_CHECKING:
         V3AccountsCursorResponseTypedDict,
     )
     from .v3accounttypeenum import V3AccountTypeEnum
+    from .v3address import V3Address, V3AddressTypedDict
+    from .v3addressrequest import V3AddressRequest, V3AddressRequestTypedDict
     from .v3adyenconfig import V3AdyenConfig, V3AdyenConfigTypedDict
     from .v3approvepaymentinitiationresponse import (
         V3ApprovePaymentInitiationResponse,
@@ -1001,6 +1002,7 @@ if TYPE_CHECKING:
         V3BankingcircleConfig,
         V3BankingcircleConfigTypedDict,
     )
+    from .v3columnconfig import V3ColumnConfig, V3ColumnConfigTypedDict
     from .v3connector import (
         V3Connector,
         V3ConnectorConfig,
@@ -1009,12 +1011,8 @@ if TYPE_CHECKING:
     )
     from .v3connectorconfigsresponse import (
         V3ConnectorConfigsResponse,
-        V3ConnectorConfigsResponseConnector,
-        V3ConnectorConfigsResponseConnectorTypedDict,
         V3ConnectorConfigsResponseData,
         V3ConnectorConfigsResponseDataTypedDict,
-        V3ConnectorConfigsResponseKey,
-        V3ConnectorConfigsResponseKeyTypedDict,
         V3ConnectorConfigsResponseTypedDict,
     )
     from .v3connectorscheduleinstancescursorresponse import (
@@ -1038,6 +1036,11 @@ if TYPE_CHECKING:
         V3ConnectorsCursorResponseCursor,
         V3ConnectorsCursorResponseCursorTypedDict,
         V3ConnectorsCursorResponseTypedDict,
+    )
+    from .v3contactdetails import V3ContactDetails, V3ContactDetailsTypedDict
+    from .v3contactdetailsrequest import (
+        V3ContactDetailsRequest,
+        V3ContactDetailsRequestTypedDict,
     )
     from .v3createaccountrequest import (
         V3CreateAccountRequest,
@@ -1067,6 +1070,14 @@ if TYPE_CHECKING:
         V3CreatePaymentResponse,
         V3CreatePaymentResponseTypedDict,
     )
+    from .v3createpaymentserviceuserrequest import (
+        V3CreatePaymentServiceUserRequest,
+        V3CreatePaymentServiceUserRequestTypedDict,
+    )
+    from .v3createpaymentserviceuserresponse import (
+        V3CreatePaymentServiceUserResponse,
+        V3CreatePaymentServiceUserResponseTypedDict,
+    )
     from .v3createpoolrequest import V3CreatePoolRequest, V3CreatePoolRequestTypedDict
     from .v3createpoolresponse import (
         V3CreatePoolResponse,
@@ -1088,6 +1099,16 @@ if TYPE_CHECKING:
         V3ForwardBankAccountResponseDataTypedDict,
         V3ForwardBankAccountResponseTypedDict,
     )
+    from .v3forwardpaymentserviceuserbankaccountrequest import (
+        V3ForwardPaymentServiceUserBankAccountRequest,
+        V3ForwardPaymentServiceUserBankAccountRequestTypedDict,
+    )
+    from .v3forwardpaymentserviceuserbankaccountresponse import (
+        V3ForwardPaymentServiceUserBankAccountResponse,
+        V3ForwardPaymentServiceUserBankAccountResponseData,
+        V3ForwardPaymentServiceUserBankAccountResponseDataTypedDict,
+        V3ForwardPaymentServiceUserBankAccountResponseTypedDict,
+    )
     from .v3genericconfig import V3GenericConfig, V3GenericConfigTypedDict
     from .v3getaccountresponse import (
         V3GetAccountResponse,
@@ -1108,6 +1129,10 @@ if TYPE_CHECKING:
     from .v3getpaymentresponse import (
         V3GetPaymentResponse,
         V3GetPaymentResponseTypedDict,
+    )
+    from .v3getpaymentserviceuserresponse import (
+        V3GetPaymentServiceUserResponse,
+        V3GetPaymentServiceUserResponseTypedDict,
     )
     from .v3getpoolresponse import V3GetPoolResponse, V3GetPoolResponseTypedDict
     from .v3gettaskresponse import V3GetTaskResponse, V3GetTaskResponseTypedDict
@@ -1171,6 +1196,16 @@ if TYPE_CHECKING:
         V3PaymentsCursorResponseCursorTypedDict,
         V3PaymentsCursorResponseTypedDict,
     )
+    from .v3paymentserviceuser import (
+        V3PaymentServiceUser,
+        V3PaymentServiceUserTypedDict,
+    )
+    from .v3paymentserviceuserscursorresponse import (
+        V3PaymentServiceUsersCursorResponse,
+        V3PaymentServiceUsersCursorResponseCursor,
+        V3PaymentServiceUsersCursorResponseCursorTypedDict,
+        V3PaymentServiceUsersCursorResponseTypedDict,
+    )
     from .v3paymentstatusenum import V3PaymentStatusEnum
     from .v3paymenttypeenum import V3PaymentTypeEnum
     from .v3pool import V3Pool, V3PoolTypedDict
@@ -1185,6 +1220,7 @@ if TYPE_CHECKING:
         V3PoolsCursorResponseCursorTypedDict,
         V3PoolsCursorResponseTypedDict,
     )
+    from .v3qontoconfig import V3QontoConfig, V3QontoConfigTypedDict
     from .v3resetconnectorresponse import (
         V3ResetConnectorResponse,
         V3ResetConnectorResponseTypedDict,
@@ -1380,22 +1416,18 @@ __all__ = [
     "ConfigsResponseTypedDict",
     "ConfirmHoldRequest",
     "ConfirmHoldRequestTypedDict",
+    "Connector",
     "ConnectorConfig",
     "ConnectorConfigResponse",
     "ConnectorConfigResponseTypedDict",
     "ConnectorConfigTypedDict",
-    "ConnectorEnum",
     "ConnectorResponse",
     "ConnectorResponseData",
     "ConnectorResponseDataTypedDict",
     "ConnectorResponseTypedDict",
     "ConnectorsConfigsResponse",
-    "ConnectorsConfigsResponseConnector",
-    "ConnectorsConfigsResponseConnectorTypedDict",
     "ConnectorsConfigsResponseData",
     "ConnectorsConfigsResponseDataTypedDict",
-    "ConnectorsConfigsResponseKey",
-    "ConnectorsConfigsResponseKeyTypedDict",
     "ConnectorsConfigsResponseTypedDict",
     "ConnectorsResponse",
     "ConnectorsResponseData",
@@ -1427,6 +1459,8 @@ __all__ = [
     "CurrencyCloudConfigTypedDict",
     "DebitWalletRequest",
     "DebitWalletRequestTypedDict",
+    "DebitWalletResponse",
+    "DebitWalletResponseTypedDict",
     "DummyPayConfig",
     "DummyPayConfigTypedDict",
     "ErrorResponse",
@@ -1525,6 +1559,8 @@ __all__ = [
     "OrchestrationConnector",
     "OrchestrationCreditWalletRequest",
     "OrchestrationCreditWalletRequestTypedDict",
+    "OrchestrationHold",
+    "OrchestrationHoldTypedDict",
     "OrchestrationListWalletsResponse",
     "OrchestrationListWalletsResponseCursor",
     "OrchestrationListWalletsResponseCursorTypedDict",
@@ -1582,6 +1618,8 @@ __all__ = [
     "PaymentsCursorCursorTypedDict",
     "PaymentsCursorTypedDict",
     "PaymentsErrorsEnum",
+    "PaymentsServerInfo",
+    "PaymentsServerInfoTypedDict",
     "PoliciesCursorResponse",
     "PoliciesCursorResponseCursor",
     "PoliciesCursorResponseCursorTypedDict",
@@ -2062,6 +2100,10 @@ __all__ = [
     "V3AccountsCursorResponseCursor",
     "V3AccountsCursorResponseCursorTypedDict",
     "V3AccountsCursorResponseTypedDict",
+    "V3Address",
+    "V3AddressRequest",
+    "V3AddressRequestTypedDict",
+    "V3AddressTypedDict",
     "V3AdyenConfig",
     "V3AdyenConfigTypedDict",
     "V3ApprovePaymentInitiationResponse",
@@ -2086,16 +2128,14 @@ __all__ = [
     "V3BankAccountsCursorResponseTypedDict",
     "V3BankingcircleConfig",
     "V3BankingcircleConfigTypedDict",
+    "V3ColumnConfig",
+    "V3ColumnConfigTypedDict",
     "V3Connector",
     "V3ConnectorConfig",
     "V3ConnectorConfigTypedDict",
     "V3ConnectorConfigsResponse",
-    "V3ConnectorConfigsResponseConnector",
-    "V3ConnectorConfigsResponseConnectorTypedDict",
     "V3ConnectorConfigsResponseData",
     "V3ConnectorConfigsResponseDataTypedDict",
-    "V3ConnectorConfigsResponseKey",
-    "V3ConnectorConfigsResponseKeyTypedDict",
     "V3ConnectorConfigsResponseTypedDict",
     "V3ConnectorScheduleInstancesCursorResponse",
     "V3ConnectorScheduleInstancesCursorResponseCursor",
@@ -2112,6 +2152,10 @@ __all__ = [
     "V3ConnectorsCursorResponseCursor",
     "V3ConnectorsCursorResponseCursorTypedDict",
     "V3ConnectorsCursorResponseTypedDict",
+    "V3ContactDetails",
+    "V3ContactDetailsRequest",
+    "V3ContactDetailsRequestTypedDict",
+    "V3ContactDetailsTypedDict",
     "V3CreateAccountRequest",
     "V3CreateAccountRequestTypedDict",
     "V3CreateAccountResponse",
@@ -2126,6 +2170,10 @@ __all__ = [
     "V3CreatePaymentRequestTypedDict",
     "V3CreatePaymentResponse",
     "V3CreatePaymentResponseTypedDict",
+    "V3CreatePaymentServiceUserRequest",
+    "V3CreatePaymentServiceUserRequestTypedDict",
+    "V3CreatePaymentServiceUserResponse",
+    "V3CreatePaymentServiceUserResponseTypedDict",
     "V3CreatePoolRequest",
     "V3CreatePoolRequestTypedDict",
     "V3CreatePoolResponse",
@@ -2141,6 +2189,12 @@ __all__ = [
     "V3ForwardBankAccountResponseData",
     "V3ForwardBankAccountResponseDataTypedDict",
     "V3ForwardBankAccountResponseTypedDict",
+    "V3ForwardPaymentServiceUserBankAccountRequest",
+    "V3ForwardPaymentServiceUserBankAccountRequestTypedDict",
+    "V3ForwardPaymentServiceUserBankAccountResponse",
+    "V3ForwardPaymentServiceUserBankAccountResponseData",
+    "V3ForwardPaymentServiceUserBankAccountResponseDataTypedDict",
+    "V3ForwardPaymentServiceUserBankAccountResponseTypedDict",
     "V3GenericConfig",
     "V3GenericConfigTypedDict",
     "V3GetAccountResponse",
@@ -2153,6 +2207,8 @@ __all__ = [
     "V3GetPaymentInitiationResponseTypedDict",
     "V3GetPaymentResponse",
     "V3GetPaymentResponseTypedDict",
+    "V3GetPaymentServiceUserResponse",
+    "V3GetPaymentServiceUserResponseTypedDict",
     "V3GetPoolResponse",
     "V3GetPoolResponseTypedDict",
     "V3GetTaskResponse",
@@ -2198,6 +2254,12 @@ __all__ = [
     "V3PaymentInitiationsCursorResponseCursor",
     "V3PaymentInitiationsCursorResponseCursorTypedDict",
     "V3PaymentInitiationsCursorResponseTypedDict",
+    "V3PaymentServiceUser",
+    "V3PaymentServiceUserTypedDict",
+    "V3PaymentServiceUsersCursorResponse",
+    "V3PaymentServiceUsersCursorResponseCursor",
+    "V3PaymentServiceUsersCursorResponseCursorTypedDict",
+    "V3PaymentServiceUsersCursorResponseTypedDict",
     "V3PaymentStatusEnum",
     "V3PaymentTypeEnum",
     "V3PaymentTypedDict",
@@ -2215,6 +2277,8 @@ __all__ = [
     "V3PoolsCursorResponseCursor",
     "V3PoolsCursorResponseCursorTypedDict",
     "V3PoolsCursorResponseTypedDict",
+    "V3QontoConfig",
+    "V3QontoConfigTypedDict",
     "V3ResetConnectorResponse",
     "V3ResetConnectorResponseTypedDict",
     "V3RetryPaymentInitiationResponse",
@@ -2407,7 +2471,7 @@ _dynamic_imports: dict[str, str] = {
     "ConfigUserTypedDict": ".configuser",
     "ConfirmHoldRequest": ".confirmholdrequest",
     "ConfirmHoldRequestTypedDict": ".confirmholdrequest",
-    "ConnectorEnum": ".connector_enum",
+    "Connector": ".connector",
     "ConnectorConfig": ".connectorconfig",
     "ConnectorConfigTypedDict": ".connectorconfig",
     "ConnectorConfigResponse": ".connectorconfigresponse",
@@ -2417,12 +2481,8 @@ _dynamic_imports: dict[str, str] = {
     "ConnectorResponseDataTypedDict": ".connectorresponse",
     "ConnectorResponseTypedDict": ".connectorresponse",
     "ConnectorsConfigsResponse": ".connectorsconfigsresponse",
-    "ConnectorsConfigsResponseConnector": ".connectorsconfigsresponse",
-    "ConnectorsConfigsResponseConnectorTypedDict": ".connectorsconfigsresponse",
     "ConnectorsConfigsResponseData": ".connectorsconfigsresponse",
     "ConnectorsConfigsResponseDataTypedDict": ".connectorsconfigsresponse",
-    "ConnectorsConfigsResponseKey": ".connectorsconfigsresponse",
-    "ConnectorsConfigsResponseKeyTypedDict": ".connectorsconfigsresponse",
     "ConnectorsConfigsResponseTypedDict": ".connectorsconfigsresponse",
     "ConnectorsResponse": ".connectorsresponse",
     "ConnectorsResponseData": ".connectorsresponse",
@@ -2456,6 +2516,8 @@ _dynamic_imports: dict[str, str] = {
     "CurrencyCloudConfigTypedDict": ".currencycloudconfig",
     "DebitWalletRequest": ".debitwalletrequest",
     "DebitWalletRequestTypedDict": ".debitwalletrequest",
+    "DebitWalletResponse": ".debitwalletresponse",
+    "DebitWalletResponseTypedDict": ".debitwalletresponse",
     "DummyPayConfig": ".dummypayconfig",
     "DummyPayConfigTypedDict": ".dummypayconfig",
     "ErrorResponse": ".errorresponse",
@@ -2550,6 +2612,8 @@ _dynamic_imports: dict[str, str] = {
     "OrchestrationConnector": ".orchestrationconnector",
     "OrchestrationCreditWalletRequest": ".orchestrationcreditwalletrequest",
     "OrchestrationCreditWalletRequestTypedDict": ".orchestrationcreditwalletrequest",
+    "OrchestrationHold": ".orchestrationhold",
+    "OrchestrationHoldTypedDict": ".orchestrationhold",
     "OrchestrationListWalletsResponse": ".orchestrationlistwalletsresponse",
     "OrchestrationListWalletsResponseCursor": ".orchestrationlistwalletsresponse",
     "OrchestrationListWalletsResponseCursorTypedDict": ".orchestrationlistwalletsresponse",
@@ -2605,6 +2669,8 @@ _dynamic_imports: dict[str, str] = {
     "PaymentsCursorCursorTypedDict": ".paymentscursor",
     "PaymentsCursorTypedDict": ".paymentscursor",
     "PaymentsErrorsEnum": ".paymentserrorsenum",
+    "PaymentsServerInfo": ".paymentsserverinfo",
+    "PaymentsServerInfoTypedDict": ".paymentsserverinfo",
     "PaymentStatus": ".paymentstatus",
     "PaymentType": ".paymenttype",
     "PoliciesCursorResponse": ".policiescursorresponse",
@@ -3091,6 +3157,10 @@ _dynamic_imports: dict[str, str] = {
     "V3AccountsCursorResponseCursorTypedDict": ".v3accountscursorresponse",
     "V3AccountsCursorResponseTypedDict": ".v3accountscursorresponse",
     "V3AccountTypeEnum": ".v3accounttypeenum",
+    "V3Address": ".v3address",
+    "V3AddressTypedDict": ".v3address",
+    "V3AddressRequest": ".v3addressrequest",
+    "V3AddressRequestTypedDict": ".v3addressrequest",
     "V3AdyenConfig": ".v3adyenconfig",
     "V3AdyenConfigTypedDict": ".v3adyenconfig",
     "V3ApprovePaymentInitiationResponse": ".v3approvepaymentinitiationresponse",
@@ -3115,17 +3185,15 @@ _dynamic_imports: dict[str, str] = {
     "V3BankAccountsCursorResponseTypedDict": ".v3bankaccountscursorresponse",
     "V3BankingcircleConfig": ".v3bankingcircleconfig",
     "V3BankingcircleConfigTypedDict": ".v3bankingcircleconfig",
+    "V3ColumnConfig": ".v3columnconfig",
+    "V3ColumnConfigTypedDict": ".v3columnconfig",
     "V3Connector": ".v3connector",
     "V3ConnectorConfig": ".v3connector",
     "V3ConnectorConfigTypedDict": ".v3connector",
     "V3ConnectorTypedDict": ".v3connector",
     "V3ConnectorConfigsResponse": ".v3connectorconfigsresponse",
-    "V3ConnectorConfigsResponseConnector": ".v3connectorconfigsresponse",
-    "V3ConnectorConfigsResponseConnectorTypedDict": ".v3connectorconfigsresponse",
     "V3ConnectorConfigsResponseData": ".v3connectorconfigsresponse",
     "V3ConnectorConfigsResponseDataTypedDict": ".v3connectorconfigsresponse",
-    "V3ConnectorConfigsResponseKey": ".v3connectorconfigsresponse",
-    "V3ConnectorConfigsResponseKeyTypedDict": ".v3connectorconfigsresponse",
     "V3ConnectorConfigsResponseTypedDict": ".v3connectorconfigsresponse",
     "V3ConnectorScheduleInstancesCursorResponse": ".v3connectorscheduleinstancescursorresponse",
     "V3ConnectorScheduleInstancesCursorResponseCursor": ".v3connectorscheduleinstancescursorresponse",
@@ -3141,6 +3209,10 @@ _dynamic_imports: dict[str, str] = {
     "V3ConnectorsCursorResponseCursor": ".v3connectorscursorresponse",
     "V3ConnectorsCursorResponseCursorTypedDict": ".v3connectorscursorresponse",
     "V3ConnectorsCursorResponseTypedDict": ".v3connectorscursorresponse",
+    "V3ContactDetails": ".v3contactdetails",
+    "V3ContactDetailsTypedDict": ".v3contactdetails",
+    "V3ContactDetailsRequest": ".v3contactdetailsrequest",
+    "V3ContactDetailsRequestTypedDict": ".v3contactdetailsrequest",
     "V3CreateAccountRequest": ".v3createaccountrequest",
     "V3CreateAccountRequestTypedDict": ".v3createaccountrequest",
     "V3CreateAccountResponse": ".v3createaccountresponse",
@@ -3155,6 +3227,10 @@ _dynamic_imports: dict[str, str] = {
     "V3CreatePaymentRequestTypedDict": ".v3createpaymentrequest",
     "V3CreatePaymentResponse": ".v3createpaymentresponse",
     "V3CreatePaymentResponseTypedDict": ".v3createpaymentresponse",
+    "V3CreatePaymentServiceUserRequest": ".v3createpaymentserviceuserrequest",
+    "V3CreatePaymentServiceUserRequestTypedDict": ".v3createpaymentserviceuserrequest",
+    "V3CreatePaymentServiceUserResponse": ".v3createpaymentserviceuserresponse",
+    "V3CreatePaymentServiceUserResponseTypedDict": ".v3createpaymentserviceuserresponse",
     "V3CreatePoolRequest": ".v3createpoolrequest",
     "V3CreatePoolRequestTypedDict": ".v3createpoolrequest",
     "V3CreatePoolResponse": ".v3createpoolresponse",
@@ -3170,6 +3246,12 @@ _dynamic_imports: dict[str, str] = {
     "V3ForwardBankAccountResponseData": ".v3forwardbankaccountresponse",
     "V3ForwardBankAccountResponseDataTypedDict": ".v3forwardbankaccountresponse",
     "V3ForwardBankAccountResponseTypedDict": ".v3forwardbankaccountresponse",
+    "V3ForwardPaymentServiceUserBankAccountRequest": ".v3forwardpaymentserviceuserbankaccountrequest",
+    "V3ForwardPaymentServiceUserBankAccountRequestTypedDict": ".v3forwardpaymentserviceuserbankaccountrequest",
+    "V3ForwardPaymentServiceUserBankAccountResponse": ".v3forwardpaymentserviceuserbankaccountresponse",
+    "V3ForwardPaymentServiceUserBankAccountResponseData": ".v3forwardpaymentserviceuserbankaccountresponse",
+    "V3ForwardPaymentServiceUserBankAccountResponseDataTypedDict": ".v3forwardpaymentserviceuserbankaccountresponse",
+    "V3ForwardPaymentServiceUserBankAccountResponseTypedDict": ".v3forwardpaymentserviceuserbankaccountresponse",
     "V3GenericConfig": ".v3genericconfig",
     "V3GenericConfigTypedDict": ".v3genericconfig",
     "V3GetAccountResponse": ".v3getaccountresponse",
@@ -3182,6 +3264,8 @@ _dynamic_imports: dict[str, str] = {
     "V3GetPaymentInitiationResponseTypedDict": ".v3getpaymentinitiationresponse",
     "V3GetPaymentResponse": ".v3getpaymentresponse",
     "V3GetPaymentResponseTypedDict": ".v3getpaymentresponse",
+    "V3GetPaymentServiceUserResponse": ".v3getpaymentserviceuserresponse",
+    "V3GetPaymentServiceUserResponseTypedDict": ".v3getpaymentserviceuserresponse",
     "V3GetPoolResponse": ".v3getpoolresponse",
     "V3GetPoolResponseTypedDict": ".v3getpoolresponse",
     "V3GetTaskResponse": ".v3gettaskresponse",
@@ -3232,6 +3316,12 @@ _dynamic_imports: dict[str, str] = {
     "V3PaymentsCursorResponseCursor": ".v3paymentscursorresponse",
     "V3PaymentsCursorResponseCursorTypedDict": ".v3paymentscursorresponse",
     "V3PaymentsCursorResponseTypedDict": ".v3paymentscursorresponse",
+    "V3PaymentServiceUser": ".v3paymentserviceuser",
+    "V3PaymentServiceUserTypedDict": ".v3paymentserviceuser",
+    "V3PaymentServiceUsersCursorResponse": ".v3paymentserviceuserscursorresponse",
+    "V3PaymentServiceUsersCursorResponseCursor": ".v3paymentserviceuserscursorresponse",
+    "V3PaymentServiceUsersCursorResponseCursorTypedDict": ".v3paymentserviceuserscursorresponse",
+    "V3PaymentServiceUsersCursorResponseTypedDict": ".v3paymentserviceuserscursorresponse",
     "V3PaymentStatusEnum": ".v3paymentstatusenum",
     "V3PaymentTypeEnum": ".v3paymenttypeenum",
     "V3Pool": ".v3pool",
@@ -3244,6 +3334,8 @@ _dynamic_imports: dict[str, str] = {
     "V3PoolsCursorResponseCursor": ".v3poolscursorresponse",
     "V3PoolsCursorResponseCursorTypedDict": ".v3poolscursorresponse",
     "V3PoolsCursorResponseTypedDict": ".v3poolscursorresponse",
+    "V3QontoConfig": ".v3qontoconfig",
+    "V3QontoConfigTypedDict": ".v3qontoconfig",
     "V3ResetConnectorResponse": ".v3resetconnectorresponse",
     "V3ResetConnectorResponseTypedDict": ".v3resetconnectorresponse",
     "V3RetryPaymentInitiationResponse": ".v3retrypaymentinitiationresponse",

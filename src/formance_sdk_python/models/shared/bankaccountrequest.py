@@ -15,18 +15,16 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class BankAccountRequestTypedDict(TypedDict):
-    connector_id: str
     country: str
     name: str
     account_number: NotRequired[str]
+    connector_id: NotRequired[str]
     iban: NotRequired[str]
     metadata: NotRequired[Nullable[Dict[str, str]]]
     swift_bic_code: NotRequired[str]
 
 
 class BankAccountRequest(BaseModel):
-    connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
-
     country: str
 
     name: str
@@ -34,6 +32,8 @@ class BankAccountRequest(BaseModel):
     account_number: Annotated[Optional[str], pydantic.Field(alias="accountNumber")] = (
         None
     )
+
+    connector_id: Annotated[Optional[str], pydantic.Field(alias="connectorID")] = None
 
     iban: Optional[str] = None
 
@@ -45,7 +45,13 @@ class BankAccountRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = ["accountNumber", "iban", "metadata", "swiftBicCode"]
+        optional_fields = [
+            "accountNumber",
+            "connectorID",
+            "iban",
+            "metadata",
+            "swiftBicCode",
+        ]
         nullable_fields = ["metadata"]
         null_default_fields = []
 

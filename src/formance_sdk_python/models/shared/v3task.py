@@ -3,8 +3,15 @@
 from __future__ import annotations
 from .v3taskstatusenum import V3TaskStatusEnum
 from datetime import datetime
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import (
+    BaseModel,
+    Nullable,
+    OptionalNullable,
+    UNSET,
+    UNSET_SENTINEL,
+)
 import pydantic
+from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -16,7 +23,7 @@ class V3TaskTypedDict(TypedDict):
     updated_at: datetime
     connector_id: NotRequired[str]
     created_object_id: NotRequired[str]
-    error: NotRequired[str]
+    error: NotRequired[Nullable[str]]
 
 
 class V3Task(BaseModel):
@@ -34,4 +41,34 @@ class V3Task(BaseModel):
         Optional[str], pydantic.Field(alias="createdObjectID")
     ] = None
 
-    error: Optional[str] = None
+    error: OptionalNullable[str] = UNSET
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = ["connectorID", "createdObjectID", "error"]
+        nullable_fields = ["error"]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+            serialized.pop(k, None)
+
+            optional_nullable = k in optional_fields and k in nullable_fields
+            is_set = (
+                self.__pydantic_fields_set__.intersection({n})
+                or k in null_default_fields
+            )  # pylint: disable=no-member
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields or (optional_nullable and is_set)
+            ):
+                m[k] = val
+
+        return m

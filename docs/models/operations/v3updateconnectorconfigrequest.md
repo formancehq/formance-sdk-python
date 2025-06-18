@@ -1,0 +1,9 @@
+# V3UpdateConnectorConfigRequest
+
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `v3_install_connector_request`                                                                 | [Optional[shared.V3InstallConnectorRequest]](../../models/shared/v3installconnectorrequest.md) | :heavy_minus_sign:                                                                             | N/A                                                                                            |
+| `connector_id`                                                                                 | *str*                                                                                          | :heavy_check_mark:                                                                             | The connector ID                                                                               |

@@ -32,7 +32,7 @@ class V3PaymentInitiationTypedDict(TypedDict):
     status: V3PaymentInitiationStatusEnum
     type: V3PaymentInitiationTypeEnum
     destination_account_id: NotRequired[str]
-    error: NotRequired[str]
+    error: NotRequired[Nullable[str]]
     metadata: NotRequired[Nullable[Dict[str, str]]]
     source_account_id: NotRequired[str]
 
@@ -64,7 +64,7 @@ class V3PaymentInitiation(BaseModel):
         Optional[str], pydantic.Field(alias="destinationAccountID")
     ] = None
 
-    error: Optional[str] = None
+    error: OptionalNullable[str] = UNSET
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
 
@@ -80,7 +80,7 @@ class V3PaymentInitiation(BaseModel):
             "metadata",
             "sourceAccountID",
         ]
-        nullable_fields = ["metadata"]
+        nullable_fields = ["error", "metadata"]
         null_default_fields = []
 
         serialized = handler(self)

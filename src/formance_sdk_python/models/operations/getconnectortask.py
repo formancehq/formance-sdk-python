@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.shared import (
-    connector_enum as shared_connector_enum,
+    connector as shared_connector,
     taskresponse as shared_taskresponse,
 )
 from formance_sdk_python.types import BaseModel
@@ -14,7 +14,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class GetConnectorTaskRequestTypedDict(TypedDict):
-    connector: shared_connector_enum.ConnectorEnum
+    connector: shared_connector.Connector
     r"""The name of the connector."""
     task_id: str
     r"""The task ID."""
@@ -22,7 +22,7 @@ class GetConnectorTaskRequestTypedDict(TypedDict):
 
 class GetConnectorTaskRequest(BaseModel):
     connector: Annotated[
-        shared_connector_enum.ConnectorEnum,
+        shared_connector.Connector,
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ]
     r"""The name of the connector."""

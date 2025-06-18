@@ -3,43 +3,31 @@
 from __future__ import annotations
 from formance_sdk_python.types import BaseModel
 import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing import Dict, Optional
+from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class ConnectorsConfigsResponseKeyTypedDict(TypedDict):
+class ConnectorsConfigsResponseDataTypedDict(TypedDict):
     data_type: str
     required: bool
+    default_value: NotRequired[str]
 
 
-class ConnectorsConfigsResponseKey(BaseModel):
+class ConnectorsConfigsResponseData(BaseModel):
     data_type: Annotated[str, pydantic.Field(alias="dataType")]
 
     required: bool
 
-
-class ConnectorsConfigsResponseConnectorTypedDict(TypedDict):
-    key: ConnectorsConfigsResponseKeyTypedDict
-
-
-class ConnectorsConfigsResponseConnector(BaseModel):
-    key: ConnectorsConfigsResponseKey
-
-
-class ConnectorsConfigsResponseDataTypedDict(TypedDict):
-    connector: ConnectorsConfigsResponseConnectorTypedDict
-
-
-class ConnectorsConfigsResponseData(BaseModel):
-    connector: ConnectorsConfigsResponseConnector
+    default_value: Annotated[Optional[str], pydantic.Field(alias="defaultValue")] = None
 
 
 class ConnectorsConfigsResponseTypedDict(TypedDict):
     r"""OK"""
 
-    data: ConnectorsConfigsResponseDataTypedDict
+    data: Dict[str, Dict[str, ConnectorsConfigsResponseDataTypedDict]]
 
 
 class ConnectorsConfigsResponse(BaseModel):
     r"""OK"""
 
-    data: ConnectorsConfigsResponseData
+    data: Dict[str, Dict[str, ConnectorsConfigsResponseData]]

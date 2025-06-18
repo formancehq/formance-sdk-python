@@ -42,7 +42,7 @@ class TaskBankingCircleTypedDict(TypedDict):
     id: str
     status: TaskStatus
     updated_at: datetime
-    error: NotRequired[str]
+    error: NotRequired[Nullable[str]]
     state: NotRequired[Nullable[TaskBankingCircleStateTypedDict]]
 
 
@@ -59,14 +59,14 @@ class TaskBankingCircle(BaseModel):
 
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
 
-    error: Optional[str] = None
+    error: OptionalNullable[str] = UNSET
 
     state: OptionalNullable[TaskBankingCircleState] = UNSET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = ["error", "state"]
-        nullable_fields = ["state"]
+        nullable_fields = ["error", "state"]
         null_default_fields = []
 
         serialized = handler(self)

@@ -11,6 +11,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ExpandedDebitHoldTypedDict(TypedDict):
+    asset: str
     description: str
     id: str
     r"""The unique ID of the hold."""
@@ -26,6 +27,8 @@ class ExpandedDebitHoldTypedDict(TypedDict):
 
 
 class ExpandedDebitHold(BaseModel):
+    asset: str
+
     description: str
 
     id: str

@@ -19,8 +19,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 class TransferInitiationAdjusmentsTypedDict(TypedDict):
     adjustment_id: str
     created_at: datetime
-    error: str
     status: TransferInitiationStatus
+    error: NotRequired[Nullable[str]]
     metadata: NotRequired[Nullable[Dict[str, str]]]
 
 
@@ -29,16 +29,16 @@ class TransferInitiationAdjusments(BaseModel):
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
-    error: str
-
     status: TransferInitiationStatus
+
+    error: OptionalNullable[str] = UNSET
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = ["metadata"]
-        nullable_fields = ["metadata"]
+        optional_fields = ["error", "metadata"]
+        nullable_fields = ["error", "metadata"]
         null_default_fields = []
 
         serialized = handler(self)
