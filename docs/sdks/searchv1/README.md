@@ -16,6 +16,7 @@ Elasticsearch.v1 query engine
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="search" method="post" path="/api/search/" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -76,6 +77,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="searchgetServerInfo" method="get" path="/api/search/_info" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared

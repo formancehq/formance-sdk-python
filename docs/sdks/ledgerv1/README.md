@@ -32,6 +32,7 @@ Create a new batch of transactions to a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="CreateTransactions" method="post" path="/api/ledger/{ledger}/transactions/batch" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -94,6 +95,7 @@ Set the metadata of a transaction by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="addMetadataOnTransaction" method="post" path="/api/ledger/{ledger}/transactions/{txid}/metadata" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -145,6 +147,7 @@ Add metadata to an account
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="addMetadataToAccount" method="post" path="/api/ledger/{ledger}/accounts/{address}/metadata" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -198,6 +201,7 @@ Count the accounts from a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="countAccounts" method="head" path="/api/ledger/{ledger}/accounts" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -251,6 +255,7 @@ Count the transactions from a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="countTransactions" method="head" path="/api/ledger/{ledger}/transactions" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -303,6 +308,7 @@ Create a new transaction to a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="createTransaction" method="post" path="/api/ledger/{ledger}/transactions" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -375,6 +381,7 @@ Get account by its address
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getAccount" method="get" path="/api/ledger/{ledger}/accounts/{address}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -423,6 +430,7 @@ Get the balances from a ledger's account
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getBalances" method="get" path="/api/ledger/{ledger}/balances" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -473,6 +481,7 @@ Get the aggregated balances from selected accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getBalancesAggregated" method="get" path="/api/ledger/{ledger}/aggregate/balances" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -521,6 +530,7 @@ Show server information
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getInfo" method="get" path="/api/ledger/_info" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -565,6 +575,7 @@ Get information about a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getLedgerInfo" method="get" path="/api/ledger/{ledger}/_info" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -612,6 +623,7 @@ Get the mapping of a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getMapping" method="get" path="/api/ledger/{ledger}/mapping" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -659,6 +671,7 @@ Get transaction from a ledger by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getTransaction" method="get" path="/api/ledger/{ledger}/transactions/{txid}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -707,6 +720,7 @@ List accounts from a ledger, sorted by address in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listAccounts" method="get" path="/api/ledger/{ledger}/accounts" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -762,6 +776,7 @@ List the logs from a ledger, sorted by ID in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listLogs" method="get" path="/api/ledger/{ledger}/logs" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -812,6 +827,7 @@ List transactions from a ledger, sorted by txid in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listTransactions" method="get" path="/api/ledger/{ledger}/transactions" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -867,6 +883,7 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="readStats" method="get" path="/api/ledger/{ledger}/stats" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -914,6 +931,7 @@ Revert a ledger transaction by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="revertTransaction" method="post" path="/api/ledger/{ledger}/transactions/{txid}/revert" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -965,6 +983,7 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="runScript" method="post" path="/api/ledger/{ledger}/script" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1026,6 +1045,7 @@ Update the mapping of a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="updateMapping" method="put" path="/api/ledger/{ledger}/mapping" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared

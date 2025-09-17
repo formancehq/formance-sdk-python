@@ -23,6 +23,7 @@ Create client
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="createClient" method="post" path="/api/auth/clients" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -67,6 +68,7 @@ Add a secret to a client
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="createSecret" method="post" path="/api/auth/clients/{clientId}/secrets" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -113,6 +115,7 @@ Delete client
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="deleteClient" method="delete" path="/api/auth/clients/{clientId}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -159,6 +162,7 @@ Delete a secret from a client
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="deleteSecret" method="delete" path="/api/auth/clients/{clientId}/secrets/{secretId}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -206,6 +210,7 @@ Retrieve OpenID connect well-knowns.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getOIDCWellKnowns" method="get" path="/api/auth/.well-known/openid-configuration" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -249,6 +254,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getServerInfo" method="get" path="/api/auth/_info" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -292,6 +298,7 @@ List clients
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listClients" method="get" path="/api/auth/clients" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -335,6 +342,7 @@ List users
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listUsers" method="get" path="/api/auth/users" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -378,6 +386,7 @@ Read client
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="readClient" method="get" path="/api/auth/clients/{clientId}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -424,6 +433,7 @@ Read user
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="readUser" method="get" path="/api/auth/users/{userId}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -470,6 +480,7 @@ Update client
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="updateClient" method="put" path="/api/auth/clients/{clientId}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared

@@ -5,6 +5,7 @@ from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import errors, operations, shared
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
+from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Any, Mapping, Optional, Union, cast
 
 
@@ -94,19 +95,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def confirm_hold_async(
         self,
@@ -193,19 +187,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def create_balance(
         self,
@@ -287,27 +274,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateBalanceResponse(
-                create_balance_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateBalanceResponse]
+                create_balance_response=unmarshal_json_response(
+                    Optional[shared.CreateBalanceResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_balance_async(
         self,
@@ -389,27 +369,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateBalanceResponse(
-                create_balance_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateBalanceResponse]
+                create_balance_response=unmarshal_json_response(
+                    Optional[shared.CreateBalanceResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def create_wallet(
         self,
@@ -491,27 +464,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateWalletResponse(
-                create_wallet_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateWalletResponse]
+                create_wallet_response=unmarshal_json_response(
+                    Optional[shared.CreateWalletResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_wallet_async(
         self,
@@ -593,27 +559,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateWalletResponse(
-                create_wallet_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateWalletResponse]
+                create_wallet_response=unmarshal_json_response(
+                    Optional[shared.CreateWalletResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def credit_wallet(
         self,
@@ -700,19 +659,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def credit_wallet_async(
         self,
@@ -799,19 +751,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def debit_wallet(
         self,
@@ -893,8 +838,8 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.DebitWalletResponse(
-                debit_wallet_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.DebitWalletResponse]
+                debit_wallet_response=unmarshal_json_response(
+                    Optional[shared.DebitWalletResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -907,19 +852,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def debit_wallet_async(
         self,
@@ -1001,8 +939,8 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.DebitWalletResponse(
-                debit_wallet_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.DebitWalletResponse]
+                debit_wallet_response=unmarshal_json_response(
+                    Optional[shared.DebitWalletResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1015,19 +953,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_balance(
         self,
@@ -1102,27 +1033,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalanceResponse(
-                get_balance_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.GetBalanceResponse]
+                get_balance_response=unmarshal_json_response(
+                    Optional[shared.GetBalanceResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_balance_async(
         self,
@@ -1197,27 +1121,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalanceResponse(
-                get_balance_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.GetBalanceResponse]
+                get_balance_response=unmarshal_json_response(
+                    Optional[shared.GetBalanceResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_hold(
         self,
@@ -1290,27 +1207,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetHoldResponse(
-                get_hold_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.GetHoldResponse]
+                get_hold_response=unmarshal_json_response(
+                    Optional[shared.GetHoldResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_hold_async(
         self,
@@ -1383,27 +1293,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetHoldResponse(
-                get_hold_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.GetHoldResponse]
+                get_hold_response=unmarshal_json_response(
+                    Optional[shared.GetHoldResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_holds(
         self,
@@ -1476,27 +1379,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetHoldsResponse(
-                get_holds_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.GetHoldsResponse]
+                get_holds_response=unmarshal_json_response(
+                    Optional[shared.GetHoldsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_holds_async(
         self,
@@ -1569,27 +1465,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetHoldsResponse(
-                get_holds_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.GetHoldsResponse]
+                get_holds_response=unmarshal_json_response(
+                    Optional[shared.GetHoldsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_transactions(
         self,
@@ -1664,27 +1553,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransactionsResponse(
-                get_transactions_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.GetTransactionsResponse]
+                get_transactions_response=unmarshal_json_response(
+                    Optional[shared.GetTransactionsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_transactions_async(
         self,
@@ -1759,27 +1641,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransactionsResponse(
-                get_transactions_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.GetTransactionsResponse]
+                get_transactions_response=unmarshal_json_response(
+                    Optional[shared.GetTransactionsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_wallet(
         self,
@@ -1854,8 +1729,8 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletResponse(
-                activity_get_wallet_output=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ActivityGetWalletOutput]
+                activity_get_wallet_output=unmarshal_json_response(
+                    Optional[shared.ActivityGetWalletOutput], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1868,19 +1743,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_wallet_async(
         self,
@@ -1955,8 +1823,8 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletResponse(
-                activity_get_wallet_output=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ActivityGetWalletOutput]
+                activity_get_wallet_output=unmarshal_json_response(
+                    Optional[shared.ActivityGetWalletOutput], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1969,19 +1837,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_wallet_summary(
         self,
@@ -2057,8 +1918,8 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletSummaryResponse(
-                get_wallet_summary_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.GetWalletSummaryResponse]
+                get_wallet_summary_response=unmarshal_json_response(
+                    Optional[shared.GetWalletSummaryResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2071,19 +1932,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_wallet_summary_async(
         self,
@@ -2159,8 +2013,8 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletSummaryResponse(
-                get_wallet_summary_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.GetWalletSummaryResponse]
+                get_wallet_summary_response=unmarshal_json_response(
+                    Optional[shared.GetWalletSummaryResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2173,19 +2027,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_balances(
         self,
@@ -2259,8 +2106,8 @@ class WalletsV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListBalancesResponse(
-                list_balances_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ListBalancesResponse]
+                list_balances_response=unmarshal_json_response(
+                    Optional[shared.ListBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2268,18 +2115,9 @@ class WalletsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_balances_async(
         self,
@@ -2353,8 +2191,8 @@ class WalletsV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListBalancesResponse(
-                list_balances_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ListBalancesResponse]
+                list_balances_response=unmarshal_json_response(
+                    Optional[shared.ListBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2362,18 +2200,9 @@ class WalletsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_wallets(
         self,
@@ -2448,27 +2277,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListWalletsResponse(
-                list_wallets_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ListWalletsResponse]
+                list_wallets_response=unmarshal_json_response(
+                    Optional[shared.ListWalletsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_wallets_async(
         self,
@@ -2543,27 +2365,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListWalletsResponse(
-                list_wallets_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ListWalletsResponse]
+                list_wallets_response=unmarshal_json_response(
+                    Optional[shared.ListWalletsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def update_wallet(
         self,
@@ -2650,19 +2465,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def update_wallet_async(
         self,
@@ -2749,19 +2557,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def void_hold(
         self,
@@ -2839,19 +2640,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def void_hold_async(
         self,
@@ -2929,19 +2723,12 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def walletsget_server_info(
         self,
@@ -3007,27 +2794,20 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.WalletsgetServerInfoResponse(
-                server_info=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ServerInfo]
+                server_info=unmarshal_json_response(
+                    Optional[shared.ServerInfo], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def walletsget_server_info_async(
         self,
@@ -3093,24 +2873,17 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.WalletsgetServerInfoResponse(
-                server_info=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ServerInfo]
+                server_info=unmarshal_json_response(
+                    Optional[shared.ServerInfo], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.WalletsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.WalletsErrorResponseData, http_res
             )
-            raise errors.WalletsErrorResponse(data=response_data)
+            raise errors.WalletsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)

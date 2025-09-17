@@ -39,6 +39,7 @@ Set the metadata of a transaction by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2AddMetadataOnTransaction" method="post" path="/api/ledger/v2/{ledger}/transactions/{id}/metadata" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -91,6 +92,7 @@ Add metadata to an account
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2AddMetadataToAccount" method="post" path="/api/ledger/v2/{ledger}/accounts/{address}/metadata" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -143,6 +145,7 @@ Count the accounts from a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2CountAccounts" method="head" path="/api/ledger/v2/{ledger}/accounts" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -194,6 +197,7 @@ Count the transactions from a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2CountTransactions" method="head" path="/api/ledger/v2/{ledger}/transactions" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -244,6 +248,7 @@ Bulk request
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2CreateBulk" method="post" path="/api/ledger/v2/{ledger}/_bulk" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -299,6 +304,7 @@ Create a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2CreateLedger" method="post" path="/api/ledger/v2/{ledger}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -351,6 +357,7 @@ Create a new transaction to a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2CreateTransaction" method="post" path="/api/ledger/v2/{ledger}/transactions" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -427,6 +434,7 @@ Delete metadata by key
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2DeleteAccountMetadata" method="delete" path="/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -476,6 +484,7 @@ Delete ledger metadata by key
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2DeleteLedgerMetadata" method="delete" path="/api/ledger/v2/{ledger}/metadata/{key}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -524,6 +533,7 @@ Delete metadata by key
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2DeleteTransactionMetadata" method="delete" path="/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -573,6 +583,7 @@ Export logs
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2ExportLogs" method="post" path="/api/ledger/v2/{ledger}/logs/export" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -619,6 +630,7 @@ Get account by its address
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2GetAccount" method="get" path="/api/ledger/v2/{ledger}/accounts/{address}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -667,6 +679,7 @@ Get the aggregated balances from selected accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2GetBalancesAggregated" method="get" path="/api/ledger/v2/{ledger}/aggregate/balances" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -719,6 +732,7 @@ Show server information
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2GetInfo" method="get" path="/api/ledger/_/info" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -763,6 +777,7 @@ Get a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2GetLedger" method="get" path="/api/ledger/v2/{ledger}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -810,6 +825,7 @@ Get information about a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2GetLedgerInfo" method="get" path="/api/ledger/v2/{ledger}/_info" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -857,6 +873,7 @@ Read in memory metrics
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getMetrics" method="get" path="/api/ledger/_/metrics" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -901,6 +918,7 @@ Get transaction from a ledger by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2GetTransaction" method="get" path="/api/ledger/v2/{ledger}/transactions/{id}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -949,6 +967,7 @@ Get list of volumes with balances for (account/asset)
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2GetVolumesWithBalances" method="get" path="/api/ledger/v2/{ledger}/volumes" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1000,6 +1019,7 @@ with SDK(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2ImportLogs" method="post" path="/api/ledger/v2/{ledger}/logs/import" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1048,6 +1068,7 @@ List accounts from a ledger, sorted by address in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2ListAccounts" method="get" path="/api/ledger/v2/{ledger}/accounts" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1100,6 +1121,7 @@ List ledgers
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2ListLedgers" method="get" path="/api/ledger/v2" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1148,6 +1170,7 @@ List the logs from a ledger, sorted by ID in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2ListLogs" method="get" path="/api/ledger/v2/{ledger}/logs" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1200,6 +1223,7 @@ List transactions from a ledger, sorted by id in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2ListTransactions" method="get" path="/api/ledger/v2/{ledger}/transactions" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1253,6 +1277,7 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2ReadStats" method="get" path="/api/ledger/v2/{ledger}/stats" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1300,6 +1325,7 @@ Revert a ledger transaction by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2RevertTransaction" method="post" path="/api/ledger/v2/{ledger}/transactions/{id}/revert" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1349,6 +1375,7 @@ Update ledger metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2UpdateLedgerMetadata" method="put" path="/api/ledger/v2/{ledger}/metadata" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared

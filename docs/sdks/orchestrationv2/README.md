@@ -30,6 +30,7 @@ Cancel a running workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2CancelEvent" method="put" path="/api/orchestration/v2/instances/{instanceID}/abort" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -77,6 +78,7 @@ Create trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2CreateTrigger" method="post" path="/api/orchestration/v2/triggers" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -122,6 +124,7 @@ Create a workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2CreateWorkflow" method="post" path="/api/orchestration/v2/workflows" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -167,6 +170,7 @@ Read trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2DeleteTrigger" method="delete" path="/api/orchestration/v2/triggers/{triggerID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -214,6 +218,7 @@ Delete a flow by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2DeleteWorkflow" method="delete" path="/api/orchestration/v2/workflows/{flowId}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -261,6 +266,7 @@ Get a workflow instance by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2GetInstance" method="get" path="/api/orchestration/v2/instances/{instanceID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -308,6 +314,7 @@ Get a workflow instance history by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2GetInstanceHistory" method="get" path="/api/orchestration/v2/instances/{instanceID}/history" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -355,6 +362,7 @@ Get a workflow instance stage history
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2GetInstanceStageHistory" method="get" path="/api/orchestration/v2/instances/{instanceID}/stages/{number}/history" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -403,6 +411,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2GetServerInfo" method="get" path="/api/orchestration/v2/_info" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -447,6 +456,7 @@ Get a flow by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2GetWorkflow" method="get" path="/api/orchestration/v2/workflows/{flowId}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -494,6 +504,7 @@ List instances of a workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2ListInstances" method="get" path="/api/orchestration/v2/instances" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -544,6 +555,7 @@ List triggers
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2ListTriggers" method="get" path="/api/orchestration/v2/triggers" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -592,6 +604,7 @@ List triggers occurrences
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2ListTriggersOccurrences" method="get" path="/api/orchestration/v2/triggers/{triggerID}/occurrences" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -641,6 +654,7 @@ List registered workflows
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2ListWorkflows" method="get" path="/api/orchestration/v2/workflows" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -689,6 +703,7 @@ Read trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2ReadTrigger" method="get" path="/api/orchestration/v2/triggers/{triggerID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -736,6 +751,7 @@ Run workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2RunWorkflow" method="post" path="/api/orchestration/v2/workflows/{workflowID}/instances" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -783,6 +799,7 @@ Send an event to a running workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v2SendEvent" method="post" path="/api/orchestration/v2/instances/{instanceID}/events" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -830,6 +847,7 @@ Test trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="testTrigger" method="post" path="/api/orchestration/v2/triggers/{triggerID}/test" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared

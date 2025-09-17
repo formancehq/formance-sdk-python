@@ -5,6 +5,7 @@ from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import errors, operations, shared
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
+from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 import io
 from typing import Any, Dict, IO, List, Mapping, Optional, Union, cast
 
@@ -94,19 +95,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def add_metadata_on_transaction_async(
         self,
@@ -192,19 +186,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def add_metadata_to_account(
         self,
@@ -288,19 +275,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def add_metadata_to_account_async(
         self,
@@ -384,19 +364,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def count_accounts(
         self,
@@ -481,19 +454,12 @@ class LedgerV2(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def count_accounts_async(
         self,
@@ -578,19 +544,12 @@ class LedgerV2(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def count_transactions(
         self,
@@ -675,19 +634,12 @@ class LedgerV2(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def count_transactions_async(
         self,
@@ -772,19 +724,12 @@ class LedgerV2(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def create_bulk(
         self,
@@ -862,8 +807,8 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2CreateBulkResponse(
-                v2_bulk_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2BulkResponse]
+                v2_bulk_response=unmarshal_json_response(
+                    Optional[shared.V2BulkResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -871,27 +816,20 @@ class LedgerV2(BaseSDK):
             )
         if utils.match_response(http_res, "400", "application/json"):
             return operations.V2CreateBulkResponse(
-                v2_bulk_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2BulkResponse]
+                v2_bulk_response=unmarshal_json_response(
+                    Optional[shared.V2BulkResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_bulk_async(
         self,
@@ -969,8 +907,8 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2CreateBulkResponse(
-                v2_bulk_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2BulkResponse]
+                v2_bulk_response=unmarshal_json_response(
+                    Optional[shared.V2BulkResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -978,27 +916,20 @@ class LedgerV2(BaseSDK):
             )
         if utils.match_response(http_res, "400", "application/json"):
             return operations.V2CreateBulkResponse(
-                v2_bulk_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2BulkResponse]
+                v2_bulk_response=unmarshal_json_response(
+                    Optional[shared.V2BulkResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def create_ledger(
         self,
@@ -1085,19 +1016,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_ledger_async(
         self,
@@ -1184,19 +1108,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def create_transaction(
         self,
@@ -1279,27 +1196,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2CreateTransactionResponse(
-                v2_create_transaction_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2CreateTransactionResponse]
+                v2_create_transaction_response=unmarshal_json_response(
+                    Optional[shared.V2CreateTransactionResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_transaction_async(
         self,
@@ -1382,27 +1292,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2CreateTransactionResponse(
-                v2_create_transaction_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2CreateTransactionResponse]
+                v2_create_transaction_response=unmarshal_json_response(
+                    Optional[shared.V2CreateTransactionResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def delete_account_metadata(
         self,
@@ -1487,19 +1390,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def delete_account_metadata_async(
         self,
@@ -1584,19 +1480,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def delete_ledger_metadata(
         self,
@@ -1677,19 +1566,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def delete_ledger_metadata_async(
         self,
@@ -1770,19 +1652,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def delete_transaction_metadata(
         self,
@@ -1867,19 +1742,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def delete_transaction_metadata_async(
         self,
@@ -1964,19 +1832,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def export_logs(
         self,
@@ -2056,18 +1917,9 @@ class LedgerV2(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def export_logs_async(
         self,
@@ -2147,18 +1999,9 @@ class LedgerV2(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_account(
         self,
@@ -2233,27 +2076,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetAccountResponse(
-                v2_account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2AccountResponse]
+                v2_account_response=unmarshal_json_response(
+                    Optional[shared.V2AccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_account_async(
         self,
@@ -2328,27 +2164,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetAccountResponse(
-                v2_account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2AccountResponse]
+                v2_account_response=unmarshal_json_response(
+                    Optional[shared.V2AccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_balances_aggregated(
         self,
@@ -2429,27 +2258,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetBalancesAggregatedResponse(
-                v2_aggregate_balances_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2AggregateBalancesResponse]
+                v2_aggregate_balances_response=unmarshal_json_response(
+                    Optional[shared.V2AggregateBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_balances_aggregated_async(
         self,
@@ -2530,27 +2352,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetBalancesAggregatedResponse(
-                v2_aggregate_balances_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2AggregateBalancesResponse]
+                v2_aggregate_balances_response=unmarshal_json_response(
+                    Optional[shared.V2AggregateBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_info(
         self,
@@ -2616,8 +2431,8 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInfoResponse(
-                v2_config_info_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ConfigInfoResponse]
+                v2_config_info_response=unmarshal_json_response(
+                    Optional[shared.V2ConfigInfoResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2625,27 +2440,20 @@ class LedgerV2(BaseSDK):
             )
         if utils.match_response(http_res, "5XX", "application/json"):
             return operations.V2GetInfoResponse(
-                v2_error_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ErrorResponse]
+                v2_error_response=unmarshal_json_response(
+                    Optional[shared.V2ErrorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_info_async(
         self,
@@ -2711,8 +2519,8 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInfoResponse(
-                v2_config_info_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ConfigInfoResponse]
+                v2_config_info_response=unmarshal_json_response(
+                    Optional[shared.V2ConfigInfoResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2720,27 +2528,20 @@ class LedgerV2(BaseSDK):
             )
         if utils.match_response(http_res, "5XX", "application/json"):
             return operations.V2GetInfoResponse(
-                v2_error_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ErrorResponse]
+                v2_error_response=unmarshal_json_response(
+                    Optional[shared.V2ErrorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_ledger(
         self,
@@ -2815,27 +2616,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetLedgerResponse(
-                v2_get_ledger_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2GetLedgerResponse]
+                v2_get_ledger_response=unmarshal_json_response(
+                    Optional[shared.V2GetLedgerResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_ledger_async(
         self,
@@ -2910,27 +2704,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetLedgerResponse(
-                v2_get_ledger_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2GetLedgerResponse]
+                v2_get_ledger_response=unmarshal_json_response(
+                    Optional[shared.V2GetLedgerResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_ledger_info(
         self,
@@ -3006,27 +2793,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetLedgerInfoResponse(
-                v2_ledger_info_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2LedgerInfoResponse]
+                v2_ledger_info_response=unmarshal_json_response(
+                    Optional[shared.V2LedgerInfoResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_ledger_info_async(
         self,
@@ -3102,27 +2882,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetLedgerInfoResponse(
-                v2_ledger_info_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2LedgerInfoResponse]
+                v2_ledger_info_response=unmarshal_json_response(
+                    Optional[shared.V2LedgerInfoResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_metrics(
         self,
@@ -3188,25 +2961,18 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetMetricsResponse(
-                object=utils.unmarshal_json(http_res.text, Optional[Dict[str, Any]]),
+                object=unmarshal_json_response(Optional[Dict[str, Any]], http_res),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_metrics_async(
         self,
@@ -3272,25 +3038,18 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetMetricsResponse(
-                object=utils.unmarshal_json(http_res.text, Optional[Dict[str, Any]]),
+                object=unmarshal_json_response(Optional[Dict[str, Any]], http_res),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_transaction(
         self,
@@ -3366,27 +3125,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetTransactionResponse(
-                v2_get_transaction_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2GetTransactionResponse]
+                v2_get_transaction_response=unmarshal_json_response(
+                    Optional[shared.V2GetTransactionResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_transaction_async(
         self,
@@ -3462,27 +3214,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetTransactionResponse(
-                v2_get_transaction_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2GetTransactionResponse]
+                v2_get_transaction_response=unmarshal_json_response(
+                    Optional[shared.V2GetTransactionResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_volumes_with_balances(
         self,
@@ -3563,27 +3308,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetVolumesWithBalancesResponse(
-                v2_volumes_with_balance_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2VolumesWithBalanceCursorResponse]
+                v2_volumes_with_balance_cursor_response=unmarshal_json_response(
+                    Optional[shared.V2VolumesWithBalanceCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_volumes_with_balances_async(
         self,
@@ -3664,27 +3402,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetVolumesWithBalancesResponse(
-                v2_volumes_with_balance_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2VolumesWithBalanceCursorResponse]
+                v2_volumes_with_balance_cursor_response=unmarshal_json_response(
+                    Optional[shared.V2VolumesWithBalanceCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def import_logs(
         self,
@@ -3770,19 +3501,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def import_logs_async(
         self,
@@ -3868,19 +3592,12 @@ class LedgerV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_accounts(
         self,
@@ -3960,27 +3677,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListAccountsResponse(
-                v2_accounts_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2AccountsCursorResponse]
+                v2_accounts_cursor_response=unmarshal_json_response(
+                    Optional[shared.V2AccountsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_accounts_async(
         self,
@@ -4060,27 +3770,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListAccountsResponse(
-                v2_accounts_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2AccountsCursorResponse]
+                v2_accounts_cursor_response=unmarshal_json_response(
+                    Optional[shared.V2AccountsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_ledgers(
         self,
@@ -4155,27 +3858,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListLedgersResponse(
-                v2_ledger_list_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2LedgerListResponse]
+                v2_ledger_list_response=unmarshal_json_response(
+                    Optional[shared.V2LedgerListResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_ledgers_async(
         self,
@@ -4250,27 +3946,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListLedgersResponse(
-                v2_ledger_list_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2LedgerListResponse]
+                v2_ledger_list_response=unmarshal_json_response(
+                    Optional[shared.V2LedgerListResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_logs(
         self,
@@ -4350,27 +4039,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListLogsResponse(
-                v2_logs_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2LogsCursorResponse]
+                v2_logs_cursor_response=unmarshal_json_response(
+                    Optional[shared.V2LogsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_logs_async(
         self,
@@ -4450,27 +4132,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListLogsResponse(
-                v2_logs_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2LogsCursorResponse]
+                v2_logs_cursor_response=unmarshal_json_response(
+                    Optional[shared.V2LogsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_transactions(
         self,
@@ -4551,27 +4226,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListTransactionsResponse(
-                v2_transactions_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2TransactionsCursorResponse]
+                v2_transactions_cursor_response=unmarshal_json_response(
+                    Optional[shared.V2TransactionsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_transactions_async(
         self,
@@ -4652,27 +4320,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListTransactionsResponse(
-                v2_transactions_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2TransactionsCursorResponse]
+                v2_transactions_cursor_response=unmarshal_json_response(
+                    Optional[shared.V2TransactionsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def read_stats(
         self,
@@ -4750,27 +4411,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ReadStatsResponse(
-                v2_stats_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2StatsResponse]
+                v2_stats_response=unmarshal_json_response(
+                    Optional[shared.V2StatsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def read_stats_async(
         self,
@@ -4848,27 +4502,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ReadStatsResponse(
-                v2_stats_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2StatsResponse]
+                v2_stats_response=unmarshal_json_response(
+                    Optional[shared.V2StatsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def revert_transaction(
         self,
@@ -4944,27 +4591,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2RevertTransactionResponse(
-                v2_create_transaction_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2CreateTransactionResponse]
+                v2_create_transaction_response=unmarshal_json_response(
+                    Optional[shared.V2CreateTransactionResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def revert_transaction_async(
         self,
@@ -5040,27 +4680,20 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2RevertTransactionResponse(
-                v2_create_transaction_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2CreateTransactionResponse]
+                v2_create_transaction_response=unmarshal_json_response(
+                    Optional[shared.V2CreateTransactionResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def update_ledger_metadata(
         self,
@@ -5145,27 +4778,20 @@ class LedgerV2(BaseSDK):
             )
         if utils.match_response(http_res, "5XX", "application/json"):
             return operations.V2UpdateLedgerMetadataResponse(
-                v2_error_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ErrorResponse]
+                v2_error_response=unmarshal_json_response(
+                    Optional[shared.V2ErrorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def update_ledger_metadata_async(
         self,
@@ -5250,24 +4876,17 @@ class LedgerV2(BaseSDK):
             )
         if utils.match_response(http_res, "5XX", "application/json"):
             return operations.V2UpdateLedgerMetadataResponse(
-                v2_error_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ErrorResponse]
+                v2_error_response=unmarshal_json_response(
+                    Optional[shared.V2ErrorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V2ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
             )
-            raise errors.V2ErrorResponse(data=response_data)
+            raise errors.V2ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)

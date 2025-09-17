@@ -9,8 +9,10 @@ from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext, SDKHooks
 from formance_sdk_python.models import errors, operations, shared
 from formance_sdk_python.types import OptionalNullable, UNSET
+from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 import httpx
 import importlib
+import sys
 from typing import Callable, Dict, List, Mapping, Optional, TYPE_CHECKING, Union, cast
 import weakref
 
@@ -135,6 +137,7 @@ class SDK(BaseSDK):
                 timeout_ms=timeout_ms,
                 debug_logger=debug_logger,
             ),
+            parent_ref=self,
         )
 
         hooks = SDKHooks()
@@ -159,13 +162,24 @@ class SDK(BaseSDK):
             self.sdk_configuration.async_client_supplied,
         )
 
+    def dynamic_import(self, modname, retries=3):
+        for attempt in range(retries):
+            try:
+                return importlib.import_module(modname)
+            except KeyError:
+                # Clear any half-initialized module and retry
+                sys.modules.pop(modname, None)
+                if attempt == retries - 1:
+                    break
+        raise KeyError(f"Failed to import module '{modname}' after {retries} attempts")
+
     def __getattr__(self, name: str):
         if name in self._sub_sdk_map:
             module_path, class_name = self._sub_sdk_map[name]
             try:
-                module = importlib.import_module(module_path)
+                module = self.dynamic_import(module_path)
                 klass = getattr(module, class_name)
-                instance = klass(self.sdk_configuration)
+                instance = klass(self.sdk_configuration, parent_ref=self)
                 setattr(self, name, instance)
                 return instance
             except ImportError as e:
@@ -271,8 +285,8 @@ class SDK(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetVersionsResponse(
-                get_versions_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.GetVersionsResponse]
+                get_versions_response=unmarshal_json_response(
+                    Optional[shared.GetVersionsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -280,18 +294,9 @@ class SDK(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_versions_async(
         self,
@@ -356,8 +361,8 @@ class SDK(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetVersionsResponse(
-                get_versions_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.GetVersionsResponse]
+                get_versions_response=unmarshal_json_response(
+                    Optional[shared.GetVersionsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -365,15 +370,6 @@ class SDK(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)

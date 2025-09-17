@@ -28,6 +28,7 @@ Confirm a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="confirmHold" method="post" path="/api/wallets/holds/{hold_id}/confirm" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -79,6 +80,7 @@ Create a balance
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="createBalance" method="post" path="/api/wallets/wallets/{id}/balances" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -126,6 +128,7 @@ Create a new wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="createWallet" method="post" path="/api/wallets/wallets" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -171,6 +174,7 @@ Credit a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="creditWallet" method="post" path="/api/wallets/wallets/{id}/credit" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -228,6 +232,7 @@ Debit a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="debitWallet" method="post" path="/api/wallets/wallets/{id}/debit" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -285,6 +290,7 @@ Get detailed balance
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getBalance" method="get" path="/api/wallets/wallets/{id}/balances/{balanceName}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -333,6 +339,7 @@ Get a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getHold" method="get" path="/api/wallets/holds/{holdID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -380,6 +387,7 @@ Get all holds for a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getHolds" method="get" path="/api/wallets/holds" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -430,6 +438,7 @@ with SDK(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getTransactions" method="get" path="/api/wallets/transactions" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -479,6 +488,7 @@ Get a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getWallet" method="get" path="/api/wallets/wallets/{id}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -526,6 +536,7 @@ Get wallet summary
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getWalletSummary" method="get" path="/api/wallets/wallets/{id}/summary" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -573,6 +584,7 @@ List balances of a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listBalances" method="get" path="/api/wallets/wallets/{id}/balances" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -619,6 +631,7 @@ List all wallets
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listWallets" method="get" path="/api/wallets/wallets" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -672,6 +685,7 @@ Update a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="updateWallet" method="patch" path="/api/wallets/wallets/{id}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -719,6 +733,7 @@ Cancel a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="voidHold" method="post" path="/api/wallets/holds/{hold_id}/void" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -766,6 +781,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="walletsgetServerInfo" method="get" path="/api/wallets/_info" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared

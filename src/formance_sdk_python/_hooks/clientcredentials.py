@@ -20,11 +20,19 @@ class Credentials:
     client_id: str
     client_secret: str
     token_url: str
+    additional_properties: Dict[str, str]
 
-    def __init__(self, client_id: str, client_secret: str, token_url: str):
+    def __init__(
+        self,
+        client_id: str,
+        client_secret: str,
+        token_url: str,
+        additional_properties: Optional[Dict[str, str]] = None,
+    ):
         self.client_id = client_id
         self.client_secret = client_secret
         self.token_url = token_url
+        self.additional_properties = additional_properties or {}
 
 
 class Session:
@@ -135,10 +143,17 @@ class ClientCredentialsHook(SDKInitHook, BeforeRequestHook, AfterErrorHook):
         ):
             return None
 
+        # Extract additional properties from security object
+        additional_properties = {}
+        for key, value in dict(security).items():
+            if key not in ["client_id", "client_secret", "token_url"]:
+                additional_properties[key] = value
+
         return Credentials(
             client_id=security.client_id,
             client_secret=security.client_secret,
             token_url=security.token_url,
+            additional_properties=additional_properties,
         )
 
     def do_token_request(
@@ -156,6 +171,10 @@ class ClientCredentialsHook(SDKInitHook, BeforeRequestHook, AfterErrorHook):
         if scopes is not None and len(scopes) > 0:
             payload["scope"] = " ".join(scopes)
 
+        # Add additional properties to payload
+        for key, value in credentials.additional_properties.items():
+            payload[key] = value
+
         token_url = credentials.token_url
         if not bool(urlparse(credentials.token_url).netloc):
             token_url = urljoin(hook_ctx.base_url, credentials.token_url)
@@ -170,7 +189,7 @@ class ClientCredentialsHook(SDKInitHook, BeforeRequestHook, AfterErrorHook):
 
         response_data = response.json()
 
-        if response_data.get("token_type") != "Bearer":
+        if response_data.get("token_type", "").lower() != "bearer":
             raise Exception("Unexpected token type from token endpoint")
 
         expires_at = None

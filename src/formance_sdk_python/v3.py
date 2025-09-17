@@ -5,6 +5,7 @@ from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import errors, operations, shared
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
+from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Any, Dict, Mapping, Optional, Union, cast
 
 
@@ -88,19 +89,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def add_account_to_pool_async(
         self,
@@ -181,19 +175,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def add_bank_account_to_payment_service_user(
         self,
@@ -276,19 +263,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def add_bank_account_to_payment_service_user_async(
         self,
@@ -371,19 +351,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def approve_payment_initiation(
         self,
@@ -461,27 +434,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3ApprovePaymentInitiationResponse(
-                v3_approve_payment_initiation_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ApprovePaymentInitiationResponse]
+                v3_approve_payment_initiation_response=unmarshal_json_response(
+                    Optional[shared.V3ApprovePaymentInitiationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def approve_payment_initiation_async(
         self,
@@ -559,27 +525,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3ApprovePaymentInitiationResponse(
-                v3_approve_payment_initiation_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ApprovePaymentInitiationResponse]
+                v3_approve_payment_initiation_response=unmarshal_json_response(
+                    Optional[shared.V3ApprovePaymentInitiationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def create_account(
         self,
@@ -657,27 +616,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V3CreateAccountResponse(
-                v3_create_account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3CreateAccountResponse]
+                v3_create_account_response=unmarshal_json_response(
+                    Optional[shared.V3CreateAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_account_async(
         self,
@@ -755,27 +707,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V3CreateAccountResponse(
-                v3_create_account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3CreateAccountResponse]
+                v3_create_account_response=unmarshal_json_response(
+                    Optional[shared.V3CreateAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def create_bank_account(
         self,
@@ -862,27 +807,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V3CreateBankAccountResponse(
-                v3_create_bank_account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3CreateBankAccountResponse]
+                v3_create_bank_account_response=unmarshal_json_response(
+                    Optional[shared.V3CreateBankAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_bank_account_async(
         self,
@@ -969,27 +907,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V3CreateBankAccountResponse(
-                v3_create_bank_account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3CreateBankAccountResponse]
+                v3_create_bank_account_response=unmarshal_json_response(
+                    Optional[shared.V3CreateBankAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def create_payment(
         self,
@@ -1067,27 +998,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V3CreatePaymentResponse(
-                v3_create_payment_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3CreatePaymentResponse]
+                v3_create_payment_response=unmarshal_json_response(
+                    Optional[shared.V3CreatePaymentResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_payment_async(
         self,
@@ -1165,27 +1089,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V3CreatePaymentResponse(
-                v3_create_payment_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3CreatePaymentResponse]
+                v3_create_payment_response=unmarshal_json_response(
+                    Optional[shared.V3CreatePaymentResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def create_payment_service_user(
         self,
@@ -1272,27 +1189,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V3CreatePaymentServiceUserResponse(
-                v3_create_payment_service_user_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3CreatePaymentServiceUserResponse]
+                v3_create_payment_service_user_response=unmarshal_json_response(
+                    Optional[shared.V3CreatePaymentServiceUserResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_payment_service_user_async(
         self,
@@ -1379,27 +1289,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V3CreatePaymentServiceUserResponse(
-                v3_create_payment_service_user_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3CreatePaymentServiceUserResponse]
+                v3_create_payment_service_user_response=unmarshal_json_response(
+                    Optional[shared.V3CreatePaymentServiceUserResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def create_pool(
         self,
@@ -1477,27 +1380,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V3CreatePoolResponse(
-                v3_create_pool_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3CreatePoolResponse]
+                v3_create_pool_response=unmarshal_json_response(
+                    Optional[shared.V3CreatePoolResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_pool_async(
         self,
@@ -1575,27 +1471,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V3CreatePoolResponse(
-                v3_create_pool_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3CreatePoolResponse]
+                v3_create_pool_response=unmarshal_json_response(
+                    Optional[shared.V3CreatePoolResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def delete_payment_initiation(
         self,
@@ -1678,19 +1567,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def delete_payment_initiation_async(
         self,
@@ -1773,19 +1655,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def delete_pool(
         self,
@@ -1865,19 +1740,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def delete_pool_async(
         self,
@@ -1957,19 +1825,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def forward_bank_account(
         self,
@@ -2052,27 +1913,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3ForwardBankAccountResponse(
-                v3_forward_bank_account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ForwardBankAccountResponse]
+                v3_forward_bank_account_response=unmarshal_json_response(
+                    Optional[shared.V3ForwardBankAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def forward_bank_account_async(
         self,
@@ -2155,27 +2009,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3ForwardBankAccountResponse(
-                v3_forward_bank_account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ForwardBankAccountResponse]
+                v3_forward_bank_account_response=unmarshal_json_response(
+                    Optional[shared.V3ForwardBankAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def forward_payment_service_user_bank_account(
         self,
@@ -2262,28 +2109,21 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3ForwardPaymentServiceUserBankAccountResponse(
-                v3_forward_payment_service_user_bank_account_response=utils.unmarshal_json(
-                    http_res.text,
+                v3_forward_payment_service_user_bank_account_response=unmarshal_json_response(
                     Optional[shared.V3ForwardPaymentServiceUserBankAccountResponse],
+                    http_res,
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def forward_payment_service_user_bank_account_async(
         self,
@@ -2370,28 +2210,21 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3ForwardPaymentServiceUserBankAccountResponse(
-                v3_forward_payment_service_user_bank_account_response=utils.unmarshal_json(
-                    http_res.text,
+                v3_forward_payment_service_user_bank_account_response=unmarshal_json_response(
                     Optional[shared.V3ForwardPaymentServiceUserBankAccountResponse],
+                    http_res,
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_account(
         self,
@@ -2466,27 +2299,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetAccountResponse(
-                v3_get_account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetAccountResponse]
+                v3_get_account_response=unmarshal_json_response(
+                    Optional[shared.V3GetAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_account_async(
         self,
@@ -2561,27 +2387,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetAccountResponse(
-                v3_get_account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetAccountResponse]
+                v3_get_account_response=unmarshal_json_response(
+                    Optional[shared.V3GetAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_account_balances(
         self,
@@ -2657,27 +2476,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetAccountBalancesResponse(
-                v3_balances_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3BalancesCursorResponse]
+                v3_balances_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3BalancesCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_account_balances_async(
         self,
@@ -2753,27 +2565,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetAccountBalancesResponse(
-                v3_balances_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3BalancesCursorResponse]
+                v3_balances_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3BalancesCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_bank_account(
         self,
@@ -2849,27 +2654,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetBankAccountResponse(
-                v3_get_bank_account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetBankAccountResponse]
+                v3_get_bank_account_response=unmarshal_json_response(
+                    Optional[shared.V3GetBankAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_bank_account_async(
         self,
@@ -2945,27 +2743,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetBankAccountResponse(
-                v3_get_bank_account_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetBankAccountResponse]
+                v3_get_bank_account_response=unmarshal_json_response(
+                    Optional[shared.V3GetBankAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_connector_config(
         self,
@@ -3041,27 +2832,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetConnectorConfigResponse(
-                v3_get_connector_config_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetConnectorConfigResponse]
+                v3_get_connector_config_response=unmarshal_json_response(
+                    Optional[shared.V3GetConnectorConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_connector_config_async(
         self,
@@ -3137,27 +2921,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetConnectorConfigResponse(
-                v3_get_connector_config_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetConnectorConfigResponse]
+                v3_get_connector_config_response=unmarshal_json_response(
+                    Optional[shared.V3GetConnectorConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_connector_schedule(
         self,
@@ -3233,27 +3010,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetConnectorScheduleResponse(
-                v3_connector_schedule_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ConnectorScheduleResponse]
+                v3_connector_schedule_response=unmarshal_json_response(
+                    Optional[shared.V3ConnectorScheduleResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_connector_schedule_async(
         self,
@@ -3329,27 +3099,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetConnectorScheduleResponse(
-                v3_connector_schedule_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ConnectorScheduleResponse]
+                v3_connector_schedule_response=unmarshal_json_response(
+                    Optional[shared.V3ConnectorScheduleResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_payment(
         self,
@@ -3424,27 +3187,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetPaymentResponse(
-                v3_get_payment_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetPaymentResponse]
+                v3_get_payment_response=unmarshal_json_response(
+                    Optional[shared.V3GetPaymentResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_payment_async(
         self,
@@ -3519,27 +3275,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetPaymentResponse(
-                v3_get_payment_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetPaymentResponse]
+                v3_get_payment_response=unmarshal_json_response(
+                    Optional[shared.V3GetPaymentResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_payment_initiation(
         self,
@@ -3615,27 +3364,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetPaymentInitiationResponse(
-                v3_get_payment_initiation_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetPaymentInitiationResponse]
+                v3_get_payment_initiation_response=unmarshal_json_response(
+                    Optional[shared.V3GetPaymentInitiationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_payment_initiation_async(
         self,
@@ -3711,27 +3453,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetPaymentInitiationResponse(
-                v3_get_payment_initiation_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetPaymentInitiationResponse]
+                v3_get_payment_initiation_response=unmarshal_json_response(
+                    Optional[shared.V3GetPaymentInitiationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_payment_service_user(
         self,
@@ -3809,27 +3544,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetPaymentServiceUserResponse(
-                v3_get_payment_service_user_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetPaymentServiceUserResponse]
+                v3_get_payment_service_user_response=unmarshal_json_response(
+                    Optional[shared.V3GetPaymentServiceUserResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_payment_service_user_async(
         self,
@@ -3907,27 +3635,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetPaymentServiceUserResponse(
-                v3_get_payment_service_user_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetPaymentServiceUserResponse]
+                v3_get_payment_service_user_response=unmarshal_json_response(
+                    Optional[shared.V3GetPaymentServiceUserResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_pool(
         self,
@@ -4002,27 +3723,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetPoolResponse(
-                v3_get_pool_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetPoolResponse]
+                v3_get_pool_response=unmarshal_json_response(
+                    Optional[shared.V3GetPoolResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_pool_async(
         self,
@@ -4097,27 +3811,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetPoolResponse(
-                v3_get_pool_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetPoolResponse]
+                v3_get_pool_response=unmarshal_json_response(
+                    Optional[shared.V3GetPoolResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_pool_balances(
         self,
@@ -4193,27 +3900,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetPoolBalancesResponse(
-                v3_pool_balances_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3PoolBalancesResponse]
+                v3_pool_balances_response=unmarshal_json_response(
+                    Optional[shared.V3PoolBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_pool_balances_async(
         self,
@@ -4289,27 +3989,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetPoolBalancesResponse(
-                v3_pool_balances_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3PoolBalancesResponse]
+                v3_pool_balances_response=unmarshal_json_response(
+                    Optional[shared.V3PoolBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_pool_balances_latest(
         self,
@@ -4387,27 +4080,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetPoolBalancesLatestResponse(
-                v3_pool_balances_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3PoolBalancesResponse]
+                v3_pool_balances_response=unmarshal_json_response(
+                    Optional[shared.V3PoolBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_pool_balances_latest_async(
         self,
@@ -4485,27 +4171,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetPoolBalancesLatestResponse(
-                v3_pool_balances_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3PoolBalancesResponse]
+                v3_pool_balances_response=unmarshal_json_response(
+                    Optional[shared.V3PoolBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_task(
         self,
@@ -4580,27 +4259,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetTaskResponse(
-                v3_get_task_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetTaskResponse]
+                v3_get_task_response=unmarshal_json_response(
+                    Optional[shared.V3GetTaskResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_task_async(
         self,
@@ -4675,27 +4347,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3GetTaskResponse(
-                v3_get_task_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3GetTaskResponse]
+                v3_get_task_response=unmarshal_json_response(
+                    Optional[shared.V3GetTaskResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def initiate_payment(
         self,
@@ -4778,27 +4443,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3InitiatePaymentResponse(
-                v3_initiate_payment_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3InitiatePaymentResponse]
+                v3_initiate_payment_response=unmarshal_json_response(
+                    Optional[shared.V3InitiatePaymentResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def initiate_payment_async(
         self,
@@ -4881,27 +4539,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3InitiatePaymentResponse(
-                v3_initiate_payment_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3InitiatePaymentResponse]
+                v3_initiate_payment_response=unmarshal_json_response(
+                    Optional[shared.V3InitiatePaymentResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def install_connector(
         self,
@@ -4984,27 +4635,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3InstallConnectorResponse(
-                v3_install_connector_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3InstallConnectorResponse]
+                v3_install_connector_response=unmarshal_json_response(
+                    Optional[shared.V3InstallConnectorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def install_connector_async(
         self,
@@ -5087,27 +4731,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3InstallConnectorResponse(
-                v3_install_connector_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3InstallConnectorResponse]
+                v3_install_connector_response=unmarshal_json_response(
+                    Optional[shared.V3InstallConnectorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_accounts(
         self,
@@ -5185,27 +4822,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListAccountsResponse(
-                v3_accounts_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3AccountsCursorResponse]
+                v3_accounts_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3AccountsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_accounts_async(
         self,
@@ -5283,27 +4913,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListAccountsResponse(
-                v3_accounts_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3AccountsCursorResponse]
+                v3_accounts_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3AccountsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_bank_accounts(
         self,
@@ -5382,27 +5005,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListBankAccountsResponse(
-                v3_bank_accounts_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3BankAccountsCursorResponse]
+                v3_bank_accounts_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3BankAccountsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_bank_accounts_async(
         self,
@@ -5481,27 +5097,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListBankAccountsResponse(
-                v3_bank_accounts_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3BankAccountsCursorResponse]
+                v3_bank_accounts_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3BankAccountsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_connector_configs(
         self,
@@ -5567,27 +5176,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListConnectorConfigsResponse(
-                v3_connector_configs_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ConnectorConfigsResponse]
+                v3_connector_configs_response=unmarshal_json_response(
+                    Optional[shared.V3ConnectorConfigsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_connector_configs_async(
         self,
@@ -5653,27 +5255,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListConnectorConfigsResponse(
-                v3_connector_configs_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ConnectorConfigsResponse]
+                v3_connector_configs_response=unmarshal_json_response(
+                    Optional[shared.V3ConnectorConfigsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_connector_schedule_instances(
         self,
@@ -5751,28 +5346,21 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListConnectorScheduleInstancesResponse(
-                v3_connector_schedule_instances_cursor_response=utils.unmarshal_json(
-                    http_res.text,
+                v3_connector_schedule_instances_cursor_response=unmarshal_json_response(
                     Optional[shared.V3ConnectorScheduleInstancesCursorResponse],
+                    http_res,
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_connector_schedule_instances_async(
         self,
@@ -5850,28 +5438,21 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListConnectorScheduleInstancesResponse(
-                v3_connector_schedule_instances_cursor_response=utils.unmarshal_json(
-                    http_res.text,
+                v3_connector_schedule_instances_cursor_response=unmarshal_json_response(
                     Optional[shared.V3ConnectorScheduleInstancesCursorResponse],
+                    http_res,
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_connector_schedules(
         self,
@@ -5952,27 +5533,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListConnectorSchedulesResponse(
-                v3_connector_schedules_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ConnectorSchedulesCursorResponse]
+                v3_connector_schedules_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3ConnectorSchedulesCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_connector_schedules_async(
         self,
@@ -6053,27 +5627,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListConnectorSchedulesResponse(
-                v3_connector_schedules_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ConnectorSchedulesCursorResponse]
+                v3_connector_schedules_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3ConnectorSchedulesCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_connectors(
         self,
@@ -6152,27 +5719,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListConnectorsResponse(
-                v3_connectors_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ConnectorsCursorResponse]
+                v3_connectors_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3ConnectorsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_connectors_async(
         self,
@@ -6251,27 +5811,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListConnectorsResponse(
-                v3_connectors_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ConnectorsCursorResponse]
+                v3_connectors_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3ConnectorsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_payment_initiation_adjustments(
         self,
@@ -6352,28 +5905,21 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListPaymentInitiationAdjustmentsResponse(
-                v3_payment_initiation_adjustments_cursor_response=utils.unmarshal_json(
-                    http_res.text,
+                v3_payment_initiation_adjustments_cursor_response=unmarshal_json_response(
                     Optional[shared.V3PaymentInitiationAdjustmentsCursorResponse],
+                    http_res,
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_payment_initiation_adjustments_async(
         self,
@@ -6454,28 +6000,21 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListPaymentInitiationAdjustmentsResponse(
-                v3_payment_initiation_adjustments_cursor_response=utils.unmarshal_json(
-                    http_res.text,
+                v3_payment_initiation_adjustments_cursor_response=unmarshal_json_response(
                     Optional[shared.V3PaymentInitiationAdjustmentsCursorResponse],
+                    http_res,
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_payment_initiation_related_payments(
         self,
@@ -6558,28 +6097,21 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListPaymentInitiationRelatedPaymentsResponse(
-                v3_payment_initiation_related_payments_cursor_response=utils.unmarshal_json(
-                    http_res.text,
+                v3_payment_initiation_related_payments_cursor_response=unmarshal_json_response(
                     Optional[shared.V3PaymentInitiationRelatedPaymentsCursorResponse],
+                    http_res,
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_payment_initiation_related_payments_async(
         self,
@@ -6662,28 +6194,21 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListPaymentInitiationRelatedPaymentsResponse(
-                v3_payment_initiation_related_payments_cursor_response=utils.unmarshal_json(
-                    http_res.text,
+                v3_payment_initiation_related_payments_cursor_response=unmarshal_json_response(
                     Optional[shared.V3PaymentInitiationRelatedPaymentsCursorResponse],
+                    http_res,
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_payment_initiations(
         self,
@@ -6764,27 +6289,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListPaymentInitiationsResponse(
-                v3_payment_initiations_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3PaymentInitiationsCursorResponse]
+                v3_payment_initiations_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentInitiationsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_payment_initiations_async(
         self,
@@ -6865,27 +6383,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListPaymentInitiationsResponse(
-                v3_payment_initiations_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3PaymentInitiationsCursorResponse]
+                v3_payment_initiations_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentInitiationsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_payment_service_users(
         self,
@@ -6966,27 +6477,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListPaymentServiceUsersResponse(
-                v3_payment_service_users_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3PaymentServiceUsersCursorResponse]
+                v3_payment_service_users_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUsersCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_payment_service_users_async(
         self,
@@ -7067,27 +6571,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListPaymentServiceUsersResponse(
-                v3_payment_service_users_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3PaymentServiceUsersCursorResponse]
+                v3_payment_service_users_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUsersCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_payments(
         self,
@@ -7165,27 +6662,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListPaymentsResponse(
-                v3_payments_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3PaymentsCursorResponse]
+                v3_payments_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_payments_async(
         self,
@@ -7263,27 +6753,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListPaymentsResponse(
-                v3_payments_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3PaymentsCursorResponse]
+                v3_payments_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_pools(
         self,
@@ -7361,27 +6844,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListPoolsResponse(
-                v3_pools_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3PoolsCursorResponse]
+                v3_pools_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PoolsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_pools_async(
         self,
@@ -7459,27 +6935,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V3ListPoolsResponse(
-                v3_pools_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3PoolsCursorResponse]
+                v3_pools_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PoolsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def reject_payment_initiation(
         self,
@@ -7562,19 +7031,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def reject_payment_initiation_async(
         self,
@@ -7657,19 +7119,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def remove_account_from_pool(
         self,
@@ -7752,19 +7207,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def remove_account_from_pool_async(
         self,
@@ -7847,19 +7295,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def reset_connector(
         self,
@@ -7935,27 +7376,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3ResetConnectorResponse(
-                v3_reset_connector_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ResetConnectorResponse]
+                v3_reset_connector_response=unmarshal_json_response(
+                    Optional[shared.V3ResetConnectorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def reset_connector_async(
         self,
@@ -8031,27 +7465,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3ResetConnectorResponse(
-                v3_reset_connector_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ResetConnectorResponse]
+                v3_reset_connector_response=unmarshal_json_response(
+                    Optional[shared.V3ResetConnectorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def retry_payment_initiation(
         self,
@@ -8129,27 +7556,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3RetryPaymentInitiationResponse(
-                v3_retry_payment_initiation_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3RetryPaymentInitiationResponse]
+                v3_retry_payment_initiation_response=unmarshal_json_response(
+                    Optional[shared.V3RetryPaymentInitiationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def retry_payment_initiation_async(
         self,
@@ -8227,27 +7647,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3RetryPaymentInitiationResponse(
-                v3_retry_payment_initiation_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3RetryPaymentInitiationResponse]
+                v3_retry_payment_initiation_response=unmarshal_json_response(
+                    Optional[shared.V3RetryPaymentInitiationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def reverse_payment_initiation(
         self,
@@ -8332,27 +7745,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3ReversePaymentInitiationResponse(
-                v3_reverse_payment_initiation_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ReversePaymentInitiationResponse]
+                v3_reverse_payment_initiation_response=unmarshal_json_response(
+                    Optional[shared.V3ReversePaymentInitiationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def reverse_payment_initiation_async(
         self,
@@ -8437,27 +7843,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3ReversePaymentInitiationResponse(
-                v3_reverse_payment_initiation_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3ReversePaymentInitiationResponse]
+                v3_reverse_payment_initiation_response=unmarshal_json_response(
+                    Optional[shared.V3ReversePaymentInitiationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def uninstall_connector(
         self,
@@ -8533,27 +7932,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3UninstallConnectorResponse(
-                v3_uninstall_connector_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3UninstallConnectorResponse]
+                v3_uninstall_connector_response=unmarshal_json_response(
+                    Optional[shared.V3UninstallConnectorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def uninstall_connector_async(
         self,
@@ -8629,27 +8021,20 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
             return operations.V3UninstallConnectorResponse(
-                v3_uninstall_connector_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V3UninstallConnectorResponse]
+                v3_uninstall_connector_response=unmarshal_json_response(
+                    Optional[shared.V3UninstallConnectorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def update_bank_account_metadata(
         self,
@@ -8739,19 +8124,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def update_bank_account_metadata_async(
         self,
@@ -8841,19 +8219,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def update_payment_metadata(
         self,
@@ -8943,19 +8314,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def update_payment_metadata_async(
         self,
@@ -9045,19 +8409,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.V3ErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
             )
-            raise errors.V3ErrorResponse(data=response_data)
+            raise errors.V3ErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def v3_update_connector_config(
         self,
@@ -9149,19 +8506,12 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.PaymentsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(data=response_data)
+            raise errors.PaymentsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def v3_update_connector_config_async(
         self,
@@ -9253,16 +8603,9 @@ class V3(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.PaymentsErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(data=response_data)
+            raise errors.PaymentsErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)

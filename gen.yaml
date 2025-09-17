@@ -14,13 +14,21 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
+    hoistGlobalSecurity: true
+  tests:
+    generateTests: true
+    generateNewTests: false
+    skipResponseBodyAssertions: false
   comments: {}
   telemetryEnabled: false
 python:
-  version: 6.3.1
+  version: 6.4.0
   additionalDependencies:
     dev: {}
     main: {}
+  allowedRedefinedBuiltins:
+    - id
+    - object
   author:
     - Formance
   authors:
@@ -49,9 +57,11 @@ python:
   methodArguments: require-security-and-request
   moduleName: ""
   outputModelSuffix: output
+  packageManager: poetry
   packageName: formance-sdk-python
   projectUrls: {}
   pytestFilterWarnings: []
   pytestTimeout: 0
   responseFormat: envelope
+  sseFlatResponse: false
   templateVersion: v2

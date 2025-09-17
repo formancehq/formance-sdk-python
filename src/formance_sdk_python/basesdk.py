@@ -20,9 +20,19 @@ from urllib.parse import parse_qs, urlparse
 
 class BaseSDK:
     sdk_configuration: SDKConfiguration
+    parent_ref: Optional[object] = None
+    """
+    Reference to the root SDK instance, if any. This will prevent it from
+    being garbage collected while there are active streams.
+    """
 
-    def __init__(self, sdk_config: SDKConfiguration) -> None:
+    def __init__(
+        self,
+        sdk_config: SDKConfiguration,
+        parent_ref: Optional[object] = None,
+    ) -> None:
         self.sdk_configuration = sdk_config
+        self.parent_ref = parent_ref
 
     def _get_url(self, base_url, url_variables):
         sdk_url, sdk_variables = self.sdk_configuration.get_server_details()
@@ -249,7 +259,7 @@ class BaseSDK:
 
             if http_res is None:
                 logger.debug("Raising no response SDK error")
-                raise errors.SDKError("No response received")
+                raise errors.NoResponseError("No response received")
 
             logger.debug(
                 "Response:\nStatus Code: %s\nURL: %s\nHeaders: %s\nBody: %s",
@@ -270,7 +280,7 @@ class BaseSDK:
                     http_res = result
                 else:
                     logger.debug("Raising unexpected SDK error")
-                    raise errors.SDKError("Unexpected error occurred")
+                    raise errors.SDKError("Unexpected error occurred", http_res)
 
             return http_res
 
@@ -321,7 +331,7 @@ class BaseSDK:
 
             if http_res is None:
                 logger.debug("Raising no response SDK error")
-                raise errors.SDKError("No response received")
+                raise errors.NoResponseError("No response received")
 
             logger.debug(
                 "Response:\nStatus Code: %s\nURL: %s\nHeaders: %s\nBody: %s",
@@ -342,7 +352,7 @@ class BaseSDK:
                     http_res = result
                 else:
                     logger.debug("Raising unexpected SDK error")
-                    raise errors.SDKError("Unexpected error occurred")
+                    raise errors.SDKError("Unexpected error occurred", http_res)
 
             return http_res
 

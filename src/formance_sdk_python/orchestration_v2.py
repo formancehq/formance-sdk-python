@@ -5,6 +5,7 @@ from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import errors, operations, shared
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
+from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Any, Dict, Mapping, Optional, Union, cast
 
 
@@ -89,17 +90,10 @@ class OrchestrationV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def cancel_event_async(
         self,
@@ -181,17 +175,10 @@ class OrchestrationV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def create_trigger(
         self,
@@ -271,25 +258,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2CreateTriggerResponse(
-                v2_create_trigger_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2CreateTriggerResponse]
+                v2_create_trigger_response=unmarshal_json_response(
+                    Optional[shared.V2CreateTriggerResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_trigger_async(
         self,
@@ -369,25 +349,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2CreateTriggerResponse(
-                v2_create_trigger_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2CreateTriggerResponse]
+                v2_create_trigger_response=unmarshal_json_response(
+                    Optional[shared.V2CreateTriggerResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def create_workflow(
         self,
@@ -467,25 +440,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2CreateWorkflowResponse(
-                v2_create_workflow_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2CreateWorkflowResponse]
+                v2_create_workflow_response=unmarshal_json_response(
+                    Optional[shared.V2CreateWorkflowResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_workflow_async(
         self,
@@ -565,25 +531,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2CreateWorkflowResponse(
-                v2_create_workflow_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2CreateWorkflowResponse]
+                v2_create_workflow_response=unmarshal_json_response(
+                    Optional[shared.V2CreateWorkflowResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def delete_trigger(
         self,
@@ -666,17 +625,10 @@ class OrchestrationV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def delete_trigger_async(
         self,
@@ -759,17 +711,10 @@ class OrchestrationV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def delete_workflow(
         self,
@@ -852,17 +797,10 @@ class OrchestrationV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def delete_workflow_async(
         self,
@@ -945,17 +883,10 @@ class OrchestrationV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_instance(
         self,
@@ -1032,25 +963,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInstanceResponse(
-                v2_get_workflow_instance_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2GetWorkflowInstanceResponse]
+                v2_get_workflow_instance_response=unmarshal_json_response(
+                    Optional[shared.V2GetWorkflowInstanceResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_instance_async(
         self,
@@ -1127,25 +1051,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInstanceResponse(
-                v2_get_workflow_instance_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2GetWorkflowInstanceResponse]
+                v2_get_workflow_instance_response=unmarshal_json_response(
+                    Optional[shared.V2GetWorkflowInstanceResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_instance_history(
         self,
@@ -1223,25 +1140,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInstanceHistoryResponse(
-                v2_get_workflow_instance_history_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2GetWorkflowInstanceHistoryResponse]
+                v2_get_workflow_instance_history_response=unmarshal_json_response(
+                    Optional[shared.V2GetWorkflowInstanceHistoryResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_instance_history_async(
         self,
@@ -1319,25 +1229,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInstanceHistoryResponse(
-                v2_get_workflow_instance_history_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2GetWorkflowInstanceHistoryResponse]
+                v2_get_workflow_instance_history_response=unmarshal_json_response(
+                    Optional[shared.V2GetWorkflowInstanceHistoryResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_instance_stage_history(
         self,
@@ -1417,26 +1320,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInstanceStageHistoryResponse(
-                v2_get_workflow_instance_history_stage_response=utils.unmarshal_json(
-                    http_res.text,
-                    Optional[shared.V2GetWorkflowInstanceHistoryStageResponse],
+                v2_get_workflow_instance_history_stage_response=unmarshal_json_response(
+                    Optional[shared.V2GetWorkflowInstanceHistoryStageResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_instance_stage_history_async(
         self,
@@ -1516,26 +1411,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetInstanceStageHistoryResponse(
-                v2_get_workflow_instance_history_stage_response=utils.unmarshal_json(
-                    http_res.text,
-                    Optional[shared.V2GetWorkflowInstanceHistoryStageResponse],
+                v2_get_workflow_instance_history_stage_response=unmarshal_json_response(
+                    Optional[shared.V2GetWorkflowInstanceHistoryStageResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_server_info(
         self,
@@ -1601,25 +1488,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetServerInfoResponse(
-                v2_server_info=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ServerInfo]
+                v2_server_info=unmarshal_json_response(
+                    Optional[shared.V2ServerInfo], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_server_info_async(
         self,
@@ -1685,25 +1565,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetServerInfoResponse(
-                v2_server_info=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ServerInfo]
+                v2_server_info=unmarshal_json_response(
+                    Optional[shared.V2ServerInfo], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_workflow(
         self,
@@ -1780,25 +1653,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetWorkflowResponse(
-                v2_get_workflow_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2GetWorkflowResponse]
+                v2_get_workflow_response=unmarshal_json_response(
+                    Optional[shared.V2GetWorkflowResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_workflow_async(
         self,
@@ -1875,25 +1741,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2GetWorkflowResponse(
-                v2_get_workflow_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2GetWorkflowResponse]
+                v2_get_workflow_response=unmarshal_json_response(
+                    Optional[shared.V2GetWorkflowResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_instances(
         self,
@@ -1971,25 +1830,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListInstancesResponse(
-                v2_list_runs_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ListRunsResponse]
+                v2_list_runs_response=unmarshal_json_response(
+                    Optional[shared.V2ListRunsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_instances_async(
         self,
@@ -2067,25 +1919,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListInstancesResponse(
-                v2_list_runs_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ListRunsResponse]
+                v2_list_runs_response=unmarshal_json_response(
+                    Optional[shared.V2ListRunsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_triggers(
         self,
@@ -2162,25 +2007,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListTriggersResponse(
-                v2_list_triggers_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ListTriggersResponse]
+                v2_list_triggers_response=unmarshal_json_response(
+                    Optional[shared.V2ListTriggersResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_triggers_async(
         self,
@@ -2257,25 +2095,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListTriggersResponse(
-                v2_list_triggers_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ListTriggersResponse]
+                v2_list_triggers_response=unmarshal_json_response(
+                    Optional[shared.V2ListTriggersResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_triggers_occurrences(
         self,
@@ -2355,25 +2186,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListTriggersOccurrencesResponse(
-                v2_list_triggers_occurrences_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ListTriggersOccurrencesResponse]
+                v2_list_triggers_occurrences_response=unmarshal_json_response(
+                    Optional[shared.V2ListTriggersOccurrencesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_triggers_occurrences_async(
         self,
@@ -2453,25 +2277,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListTriggersOccurrencesResponse(
-                v2_list_triggers_occurrences_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ListTriggersOccurrencesResponse]
+                v2_list_triggers_occurrences_response=unmarshal_json_response(
+                    Optional[shared.V2ListTriggersOccurrencesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_workflows(
         self,
@@ -2549,25 +2366,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListWorkflowsResponse(
-                v2_list_workflows_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ListWorkflowsResponse]
+                v2_list_workflows_response=unmarshal_json_response(
+                    Optional[shared.V2ListWorkflowsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_workflows_async(
         self,
@@ -2645,25 +2455,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ListWorkflowsResponse(
-                v2_list_workflows_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ListWorkflowsResponse]
+                v2_list_workflows_response=unmarshal_json_response(
+                    Optional[shared.V2ListWorkflowsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def read_trigger(
         self,
@@ -2740,25 +2543,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ReadTriggerResponse(
-                v2_read_trigger_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ReadTriggerResponse]
+                v2_read_trigger_response=unmarshal_json_response(
+                    Optional[shared.V2ReadTriggerResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def read_trigger_async(
         self,
@@ -2835,25 +2631,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.V2ReadTriggerResponse(
-                v2_read_trigger_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2ReadTriggerResponse]
+                v2_read_trigger_response=unmarshal_json_response(
+                    Optional[shared.V2ReadTriggerResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def run_workflow(
         self,
@@ -2933,25 +2722,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2RunWorkflowResponse(
-                v2_run_workflow_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2RunWorkflowResponse]
+                v2_run_workflow_response=unmarshal_json_response(
+                    Optional[shared.V2RunWorkflowResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def run_workflow_async(
         self,
@@ -3031,25 +2813,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2RunWorkflowResponse(
-                v2_run_workflow_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2RunWorkflowResponse]
+                v2_run_workflow_response=unmarshal_json_response(
+                    Optional[shared.V2RunWorkflowResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def send_event(
         self,
@@ -3138,17 +2913,10 @@ class OrchestrationV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def send_event_async(
         self,
@@ -3237,17 +3005,10 @@ class OrchestrationV2(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def test_trigger(
         self,
@@ -3327,25 +3088,18 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.TestTriggerResponse(
-                v2_test_trigger_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2TestTriggerResponse]
+                v2_test_trigger_response=unmarshal_json_response(
+                    Optional[shared.V2TestTriggerResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def test_trigger_async(
         self,
@@ -3425,22 +3179,15 @@ class OrchestrationV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.TestTriggerResponse(
-                v2_test_trigger_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.V2TestTriggerResponse]
+                v2_test_trigger_response=unmarshal_json_response(
+                    Optional[shared.V2TestTriggerResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, errors.V2ErrorData)
-            raise errors.V2Error(data=response_data)
+            response_data = unmarshal_json_response(errors.V2ErrorData, http_res)
+            raise errors.V2Error(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
