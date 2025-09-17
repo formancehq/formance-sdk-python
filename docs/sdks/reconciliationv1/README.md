@@ -20,6 +20,7 @@ Create a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="createPolicy" method="post" path="/api/reconciliation/policies" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -72,6 +73,7 @@ Delete a policy by its id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="deletePolicy" method="delete" path="/api/reconciliation/policies/{policyID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -119,6 +121,7 @@ Get a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getPolicy" method="get" path="/api/reconciliation/policies/{policyID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -166,6 +169,7 @@ Get a reconciliation
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getReconciliation" method="get" path="/api/reconciliation/reconciliations/{reconciliationID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -213,6 +217,7 @@ List policies
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listPolicies" method="get" path="/api/reconciliation/policies" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -261,6 +266,7 @@ List reconciliations
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listReconciliations" method="get" path="/api/reconciliation/reconciliations" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -309,6 +315,7 @@ Reconcile using a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="reconcile" method="post" path="/api/reconciliation/policies/{policyID}/reconciliation" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -361,6 +368,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="reconciliationgetServerInfo" method="get" path="/api/reconciliation/_info" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared

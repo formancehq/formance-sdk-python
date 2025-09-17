@@ -20,6 +20,7 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="activateConfig" method="put" path="/api/webhooks/configs/{id}/activate" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -71,6 +72,7 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="changeConfigSecret" method="put" path="/api/webhooks/configs/{id}/secret/change" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -121,6 +123,7 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="deactivateConfig" method="put" path="/api/webhooks/configs/{id}/deactivate" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -168,6 +171,7 @@ Delete a webhooks config by ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="deleteConfig" method="delete" path="/api/webhooks/configs/{id}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -215,6 +219,7 @@ Sorted by updated date descending
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getManyConfigs" method="get" path="/api/webhooks/configs" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -272,6 +277,7 @@ All eventTypes are converted to lower-case when inserted.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="insertConfig" method="post" path="/api/webhooks/configs" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -325,6 +331,7 @@ Test a config by sending a webhook to its endpoint.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="testConfig" method="get" path="/api/webhooks/configs/{id}/test" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -372,6 +379,7 @@ Update a webhooks config by ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="updateConfig" method="put" path="/api/webhooks/configs/{id}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared

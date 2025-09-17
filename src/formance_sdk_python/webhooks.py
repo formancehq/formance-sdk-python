@@ -3,15 +3,18 @@
 from .basesdk import BaseSDK
 from .sdkconfiguration import SDKConfiguration
 from formance_sdk_python.webhooks_v1 import WebhooksV1
+from typing import Optional
 
 
 class Webhooks(BaseSDK):
     v1: WebhooksV1
 
-    def __init__(self, sdk_config: SDKConfiguration) -> None:
-        BaseSDK.__init__(self, sdk_config)
+    def __init__(
+        self, sdk_config: SDKConfiguration, parent_ref: Optional[object] = None
+    ) -> None:
+        BaseSDK.__init__(self, sdk_config, parent_ref=parent_ref)
         self.sdk_configuration = sdk_config
         self._init_sdks()
 
     def _init_sdks(self):
-        self.v1 = WebhooksV1(self.sdk_configuration)
+        self.v1 = WebhooksV1(self.sdk_configuration, parent_ref=self.parent_ref)

@@ -5,6 +5,7 @@ from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import errors, operations, shared
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
+from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Mapping, Optional, Union, cast
 
 
@@ -84,8 +85,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateClientResponse(
-                create_client_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateClientResponse]
+                create_client_response=unmarshal_json_response(
+                    Optional[shared.CreateClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -93,18 +94,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_client_async(
         self,
@@ -181,8 +173,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateClientResponse(
-                create_client_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateClientResponse]
+                create_client_response=unmarshal_json_response(
+                    Optional[shared.CreateClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -190,18 +182,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def create_secret(
         self,
@@ -282,8 +265,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateSecretResponse(
-                create_secret_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateSecretResponse]
+                create_secret_response=unmarshal_json_response(
+                    Optional[shared.CreateSecretResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -291,18 +274,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_secret_async(
         self,
@@ -383,8 +357,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateSecretResponse(
-                create_secret_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateSecretResponse]
+                create_secret_response=unmarshal_json_response(
+                    Optional[shared.CreateSecretResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -392,18 +366,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def delete_client(
         self,
@@ -483,18 +448,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def delete_client_async(
         self,
@@ -574,18 +530,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def delete_secret(
         self,
@@ -665,18 +612,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def delete_secret_async(
         self,
@@ -756,18 +694,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_oidc_well_knowns(
         self,
@@ -838,18 +767,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_oidc_well_knowns_async(
         self,
@@ -920,18 +840,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_server_info(
         self,
@@ -996,8 +907,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetServerInfoResponse(
-                server_info=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ServerInfo]
+                server_info=unmarshal_json_response(
+                    Optional[shared.ServerInfo], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1005,18 +916,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_server_info_async(
         self,
@@ -1081,8 +983,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetServerInfoResponse(
-                server_info=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ServerInfo]
+                server_info=unmarshal_json_response(
+                    Optional[shared.ServerInfo], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1090,18 +992,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_clients(
         self,
@@ -1166,8 +1059,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListClientsResponse(
-                list_clients_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ListClientsResponse]
+                list_clients_response=unmarshal_json_response(
+                    Optional[shared.ListClientsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1175,18 +1068,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_clients_async(
         self,
@@ -1251,8 +1135,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListClientsResponse(
-                list_clients_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ListClientsResponse]
+                list_clients_response=unmarshal_json_response(
+                    Optional[shared.ListClientsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1260,18 +1144,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_users(
         self,
@@ -1338,8 +1213,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListUsersResponse(
-                list_users_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ListUsersResponse]
+                list_users_response=unmarshal_json_response(
+                    Optional[shared.ListUsersResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1347,18 +1222,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_users_async(
         self,
@@ -1425,8 +1291,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListUsersResponse(
-                list_users_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ListUsersResponse]
+                list_users_response=unmarshal_json_response(
+                    Optional[shared.ListUsersResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1434,18 +1300,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def read_client(
         self,
@@ -1519,8 +1376,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadClientResponse(
-                read_client_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReadClientResponse]
+                read_client_response=unmarshal_json_response(
+                    Optional[shared.ReadClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1528,18 +1385,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def read_client_async(
         self,
@@ -1613,8 +1461,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadClientResponse(
-                read_client_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReadClientResponse]
+                read_client_response=unmarshal_json_response(
+                    Optional[shared.ReadClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1622,18 +1470,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def read_user(
         self,
@@ -1707,8 +1546,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadUserResponse(
-                read_user_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReadUserResponse]
+                read_user_response=unmarshal_json_response(
+                    Optional[shared.ReadUserResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1716,18 +1555,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def read_user_async(
         self,
@@ -1801,8 +1631,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadUserResponse(
-                read_user_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReadUserResponse]
+                read_user_response=unmarshal_json_response(
+                    Optional[shared.ReadUserResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1810,18 +1640,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def update_client(
         self,
@@ -1902,8 +1723,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.UpdateClientResponse(
-                create_client_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateClientResponse]
+                create_client_response=unmarshal_json_response(
+                    Optional[shared.CreateClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1911,18 +1732,9 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def update_client_async(
         self,
@@ -2003,8 +1815,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.UpdateClientResponse(
-                create_client_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.CreateClientResponse]
+                create_client_response=unmarshal_json_response(
+                    Optional[shared.CreateClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2012,15 +1824,6 @@ class AuthV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)

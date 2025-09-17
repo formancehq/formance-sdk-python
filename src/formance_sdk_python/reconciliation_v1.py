@@ -5,6 +5,7 @@ from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import errors, operations, shared
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
+from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Any, Mapping, Optional, Union, cast
 
 
@@ -85,27 +86,20 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreatePolicyResponse(
-                policy_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.PolicyResponse]
+                policy_response=unmarshal_json_response(
+                    Optional[shared.PolicyResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_policy_async(
         self,
@@ -183,27 +177,20 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreatePolicyResponse(
-                policy_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.PolicyResponse]
+                policy_response=unmarshal_json_response(
+                    Optional[shared.PolicyResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def delete_policy(
         self,
@@ -285,19 +272,12 @@ class ReconciliationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def delete_policy_async(
         self,
@@ -379,19 +359,12 @@ class ReconciliationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_policy(
         self,
@@ -466,27 +439,20 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPolicyResponse(
-                policy_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.PolicyResponse]
+                policy_response=unmarshal_json_response(
+                    Optional[shared.PolicyResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_policy_async(
         self,
@@ -561,27 +527,20 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPolicyResponse(
-                policy_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.PolicyResponse]
+                policy_response=unmarshal_json_response(
+                    Optional[shared.PolicyResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_reconciliation(
         self,
@@ -657,27 +616,20 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetReconciliationResponse(
-                reconciliation_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReconciliationResponse]
+                reconciliation_response=unmarshal_json_response(
+                    Optional[shared.ReconciliationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_reconciliation_async(
         self,
@@ -753,27 +705,20 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetReconciliationResponse(
-                reconciliation_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReconciliationResponse]
+                reconciliation_response=unmarshal_json_response(
+                    Optional[shared.ReconciliationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_policies(
         self,
@@ -848,27 +793,20 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListPoliciesResponse(
-                policies_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.PoliciesCursorResponse]
+                policies_cursor_response=unmarshal_json_response(
+                    Optional[shared.PoliciesCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_policies_async(
         self,
@@ -943,27 +881,20 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListPoliciesResponse(
-                policies_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.PoliciesCursorResponse]
+                policies_cursor_response=unmarshal_json_response(
+                    Optional[shared.PoliciesCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def list_reconciliations(
         self,
@@ -1039,27 +970,20 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListReconciliationsResponse(
-                reconciliations_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReconciliationsCursorResponse]
+                reconciliations_cursor_response=unmarshal_json_response(
+                    Optional[shared.ReconciliationsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def list_reconciliations_async(
         self,
@@ -1135,27 +1059,20 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListReconciliationsResponse(
-                reconciliations_cursor_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReconciliationsCursorResponse]
+                reconciliations_cursor_response=unmarshal_json_response(
+                    Optional[shared.ReconciliationsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def reconcile(
         self,
@@ -1239,27 +1156,20 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReconcileResponse(
-                reconciliation_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReconciliationResponse]
+                reconciliation_response=unmarshal_json_response(
+                    Optional[shared.ReconciliationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def reconcile_async(
         self,
@@ -1343,27 +1253,20 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReconcileResponse(
-                reconciliation_response=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ReconciliationResponse]
+                reconciliation_response=unmarshal_json_response(
+                    Optional[shared.ReconciliationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def reconciliationget_server_info(
         self,
@@ -1429,27 +1332,20 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReconciliationgetServerInfoResponse(
-                server_info=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ServerInfo]
+                server_info=unmarshal_json_response(
+                    Optional[shared.ServerInfo], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def reconciliationget_server_info_async(
         self,
@@ -1515,24 +1411,17 @@ class ReconciliationV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReconciliationgetServerInfoResponse(
-                server_info=utils.unmarshal_json(
-                    http_res.text, Optional[shared.ServerInfo]
+                server_info=unmarshal_json_response(
+                    Optional[shared.ServerInfo], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = utils.unmarshal_json(
-                http_res.text, errors.ReconciliationErrorResponseData
+            response_data = unmarshal_json_response(
+                errors.ReconciliationErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(data=response_data)
+            raise errors.ReconciliationErrorResponse(response_data, http_res)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)

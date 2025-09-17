@@ -25,6 +25,7 @@ Show stack version information
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getVersions" method="get" path="/versions" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared

@@ -62,6 +62,7 @@ Add an account to a pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3AddAccountToPool" method="post" path="/api/payments/v3/pools/{poolID}/accounts/{accountID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -110,6 +111,7 @@ Add a bank account to a payment service user
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3AddBankAccountToPaymentServiceUser" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -158,6 +160,7 @@ Approve a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ApprovePaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/approve" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -206,6 +209,7 @@ Create a formance account object. This object will not be forwarded to the conne
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3CreateAccount" method="post" path="/api/payments/v3/accounts" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -252,6 +256,7 @@ Create a formance bank account object. This object will not be forwarded to the 
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3CreateBankAccount" method="post" path="/api/payments/v3/bank-accounts" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -298,6 +303,7 @@ Create a formance payment object. This object will not be forwarded to the conne
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3CreatePayment" method="post" path="/api/payments/v3/payments" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -343,6 +349,7 @@ Create a formance payment service user object
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3CreatePaymentServiceUser" method="post" path="/api/payments/v3/payment-service-users" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -388,6 +395,7 @@ Create a formance pool object
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3CreatePool" method="post" path="/api/payments/v3/pools" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -433,6 +441,7 @@ Delete a payment initiation by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3DeletePaymentInitiation" method="delete" path="/api/payments/v3/payment-initiations/{paymentInitiationID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -480,6 +489,7 @@ Delete a pool by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3DeletePool" method="delete" path="/api/payments/v3/pools/{poolID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -527,6 +537,7 @@ Forward a Bank Account to a PSP for creation
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ForwardBankAccount" method="post" path="/api/payments/v3/bank-accounts/{bankAccountID}/forward" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -574,6 +585,7 @@ Forward a payment service user's bank account to a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ForwardPaymentServiceUserBankAccount" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}/forward" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -622,6 +634,7 @@ Get an account by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3GetAccount" method="get" path="/api/payments/v3/accounts/{accountID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -669,6 +682,7 @@ Get account balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3GetAccountBalances" method="get" path="/api/payments/v3/accounts/{accountID}/balances" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -718,6 +732,7 @@ Get a Bank Account by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3GetBankAccount" method="get" path="/api/payments/v3/bank-accounts/{bankAccountID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -765,6 +780,7 @@ Get a connector configuration by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3GetConnectorConfig" method="get" path="/api/payments/v3/connectors/{connectorID}/config" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -812,6 +828,7 @@ Get a connector schedule by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3GetConnectorSchedule" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -860,6 +877,7 @@ Get a payment by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3GetPayment" method="get" path="/api/payments/v3/payments/{paymentID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -907,6 +925,7 @@ Get a payment initiation by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3GetPaymentInitiation" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -954,6 +973,7 @@ Get a payment service user by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3GetPaymentServiceUser" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1001,6 +1021,7 @@ Get a pool by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3GetPool" method="get" path="/api/payments/v3/pools/{poolID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1048,6 +1069,7 @@ Get historical pool balances from a particular point in time
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3GetPoolBalances" method="get" path="/api/payments/v3/pools/{poolID}/balances" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1095,6 +1117,7 @@ Get latest pool balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3GetPoolBalancesLatest" method="get" path="/api/payments/v3/pools/{poolID}/balances/latest" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1142,6 +1165,7 @@ Get a task and its result by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3GetTask" method="get" path="/api/payments/v3/tasks/{taskID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1189,6 +1213,7 @@ Initiate a payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3InitiatePayment" method="post" path="/api/payments/v3/payment-initiations" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1234,6 +1259,7 @@ Install a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3InstallConnector" method="post" path="/api/payments/v3/connectors/install/{connector}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1281,6 +1307,7 @@ List all accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ListAccounts" method="get" path="/api/payments/v3/accounts" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1329,6 +1356,7 @@ List all bank accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ListBankAccounts" method="get" path="/api/payments/v3/bank-accounts" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1377,6 +1405,7 @@ List all connector configurations
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ListConnectorConfigs" method="get" path="/api/payments/v3/connectors/configs" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1421,6 +1450,7 @@ List all connector schedule instances
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ListConnectorScheduleInstances" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}/instances" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1471,6 +1501,7 @@ List all connector schedules
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ListConnectorSchedules" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1520,6 +1551,7 @@ List all connectors
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ListConnectors" method="get" path="/api/payments/v3/connectors" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1568,6 +1600,7 @@ List all payment initiation adjustments
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ListPaymentInitiationAdjustments" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1617,6 +1650,7 @@ List all payments related to a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ListPaymentInitiationRelatedPayments" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/payments" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1666,6 +1700,7 @@ List all payment initiations
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ListPaymentInitiations" method="get" path="/api/payments/v3/payment-initiations" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1714,6 +1749,7 @@ List all payment service users
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ListPaymentServiceUsers" method="get" path="/api/payments/v3/payment-service-users" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1762,6 +1798,7 @@ List all payments
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ListPayments" method="get" path="/api/payments/v3/payments" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1810,6 +1847,7 @@ List all pools
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ListPools" method="get" path="/api/payments/v3/pools" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1858,6 +1896,7 @@ Reject a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3RejectPaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/reject" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1905,6 +1944,7 @@ Remove an account from a pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3RemoveAccountFromPool" method="delete" path="/api/payments/v3/pools/{poolID}/accounts/{accountID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -1953,6 +1993,7 @@ Reset a connector. Be aware that this will delete all data and stop all existing
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ResetConnector" method="post" path="/api/payments/v3/connectors/{connectorID}/reset" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -2000,6 +2041,7 @@ Retry a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3RetryPaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/retry" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -2047,6 +2089,7 @@ Reverse a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3ReversePaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/reverse" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -2094,6 +2137,7 @@ Uninstall a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3UninstallConnector" method="delete" path="/api/payments/v3/connectors/{connectorID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -2141,6 +2185,7 @@ Update a bank account's metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3UpdateBankAccountMetadata" method="patch" path="/api/payments/v3/bank-accounts/{bankAccountID}/metadata" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -2188,6 +2233,7 @@ Update a payment's metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3UpdatePaymentMetadata" method="patch" path="/api/payments/v3/payments/{paymentID}/metadata" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -2235,6 +2281,7 @@ Update connector config
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="v3UpdateConnectorConfig" method="patch" path="/api/payments/v3/connectors/{connectorID}/config" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
