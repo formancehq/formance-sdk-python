@@ -10,27 +10,36 @@
 * [count_accounts](#count_accounts) - Count the accounts from a ledger
 * [count_transactions](#count_transactions) - Count the transactions from a ledger
 * [create_bulk](#create_bulk) - Bulk request
+* [create_exporter](#create_exporter) - Create exporter
 * [create_ledger](#create_ledger) - Create a ledger
+* [create_pipeline](#create_pipeline) - Create pipeline
 * [create_transaction](#create_transaction) - Create a new transaction to a ledger
 * [delete_account_metadata](#delete_account_metadata) - Delete metadata by key
+* [delete_exporter](#delete_exporter) - Delete exporter
 * [delete_ledger_metadata](#delete_ledger_metadata) - Delete ledger metadata by key
+* [delete_pipeline](#delete_pipeline) - Delete pipeline
 * [delete_transaction_metadata](#delete_transaction_metadata) - Delete metadata by key
 * [export_logs](#export_logs) - Export logs
 * [get_account](#get_account) - Get account by its address
 * [get_balances_aggregated](#get_balances_aggregated) - Get the aggregated balances from selected accounts
-* [get_info](#get_info) - Show server information
+* [get_exporter_state](#get_exporter_state) - Get exporter state
 * [get_ledger](#get_ledger) - Get a ledger
 * [get_ledger_info](#get_ledger_info) - Get information about a ledger
-* [get_metrics](#get_metrics) - Read in memory metrics
+* [get_pipeline_state](#get_pipeline_state) - Get pipeline state
 * [get_transaction](#get_transaction) - Get transaction from a ledger by its ID
 * [get_volumes_with_balances](#get_volumes_with_balances) - Get list of volumes with balances for (account/asset)
 * [import_logs](#import_logs)
 * [list_accounts](#list_accounts) - List accounts from a ledger
+* [list_exporters](#list_exporters) - List exporters
 * [list_ledgers](#list_ledgers) - List ledgers
 * [list_logs](#list_logs) - List the logs from a ledger
+* [list_pipelines](#list_pipelines) - List pipelines
 * [list_transactions](#list_transactions) - List transactions from a ledger
 * [read_stats](#read_stats) - Get statistics from a ledger
+* [reset_pipeline](#reset_pipeline) - Reset pipeline
 * [revert_transaction](#revert_transaction) - Revert a ledger transaction by its ID
+* [start_pipeline](#start_pipeline) - Start pipeline
+* [stop_pipeline](#stop_pipeline) - Stop pipeline
 * [update_ledger_metadata](#update_ledger_metadata) - Update ledger metadata
 
 ## add_metadata_on_transaction
@@ -298,6 +307,57 @@ with SDK(
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## create_exporter
+
+Create exporter
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2CreateExporter" method="post" path="/api/ledger/v2/_/exporters" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.create_exporter(request={
+        "config": {
+            "key": "<value>",
+        },
+        "driver": "<value>",
+    })
+
+    assert res.object is not None
+
+    # Handle response
+    print(res.object)
+
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [shared.V2ExporterConfiguration](../../models/shared/v2exporterconfiguration.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+
+### Response
+
+**[operations.V2CreateExporterResponse](../../models/operations/v2createexporterresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## create_ledger
 
 Create a ledger
@@ -351,6 +411,54 @@ with SDK(
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## create_pipeline
+
+Create pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2CreatePipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.create_pipeline(request={
+        "ledger": "ledger001",
+    })
+
+    assert res.object is not None
+
+    # Handle response
+    print(res.object)
+
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.V2CreatePipelineRequest](../../models/operations/v2createpipelinerequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+
+### Response
+
+**[operations.V2CreatePipelineResponse](../../models/operations/v2createpipelineresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## create_transaction
 
 Create a new transaction to a ledger
@@ -372,6 +480,17 @@ with SDK(
 
     res = sdk.ledger.v2.create_transaction(request={
         "v2_post_transaction": {
+            "account_metadata": {
+                "key": {
+                    "admin": "true",
+                },
+                "key1": {
+                    "admin": "true",
+                },
+                "key2": {
+                    "admin": "true",
+                },
+            },
             "metadata": {
                 "admin": "true",
             },
@@ -478,6 +597,54 @@ with SDK(
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## delete_exporter
+
+Delete exporter
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2DeleteExporter" method="delete" path="/api/ledger/v2/_/exporters/{exporterID}" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.delete_exporter(request={
+        "exporter_id": "<id>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.V2DeleteExporterRequest](../../models/operations/v2deleteexporterrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+
+### Response
+
+**[operations.V2DeleteExporterResponse](../../models/operations/v2deleteexporterresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## delete_ledger_metadata
 
 Delete ledger metadata by key
@@ -519,6 +686,55 @@ with SDK(
 ### Response
 
 **[operations.V2DeleteLedgerMetadataResponse](../../models/operations/v2deleteledgermetadataresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## delete_pipeline
+
+Delete pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2DeletePipeline" method="delete" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.delete_pipeline(request={
+        "ledger": "ledger001",
+        "pipeline_id": "<id>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.V2DeletePipelineRequest](../../models/operations/v2deletepipelinerequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+
+### Response
+
+**[operations.V2DeletePipelineResponse](../../models/operations/v2deletepipelineresponse.md)**
 
 ### Errors
 
@@ -726,13 +942,13 @@ with SDK(
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
-## get_info
+## get_exporter_state
 
-Show server information
+Get exporter state
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="v2GetInfo" method="get" path="/api/ledger/_/info" -->
+<!-- UsageSnippet language="python" operationID="v2GetExporterState" method="get" path="/api/ledger/v2/_/exporters/{exporterID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -745,24 +961,27 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.ledger.v2.get_info()
+    res = sdk.ledger.v2.get_exporter_state(request={
+        "exporter_id": "<id>",
+    })
 
-    assert res.v2_config_info_response is not None
+    assert res.object is not None
 
     # Handle response
-    print(res.v2_config_info_response)
+    print(res.object)
 
 ```
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.V2GetExporterStateRequest](../../models/operations/v2getexporterstaterequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
 ### Response
 
-**[operations.V2GetInfoResponse](../../models/operations/v2getinforesponse.md)**
+**[operations.V2GetExporterStateResponse](../../models/operations/v2getexporterstateresponse.md)**
 
 ### Errors
 
@@ -867,13 +1086,13 @@ with SDK(
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
-## get_metrics
+## get_pipeline_state
 
-Read in memory metrics
+Get pipeline state
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="getMetrics" method="get" path="/api/ledger/_/metrics" -->
+<!-- UsageSnippet language="python" operationID="v2GetPipelineState" method="get" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -886,7 +1105,10 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.ledger.v2.get_metrics()
+    res = sdk.ledger.v2.get_pipeline_state(request={
+        "ledger": "ledger001",
+        "pipeline_id": "<id>",
+    })
 
     assert res.object is not None
 
@@ -897,13 +1119,14 @@ with SDK(
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.V2GetPipelineStateRequest](../../models/operations/v2getpipelinestaterequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
 ### Response
 
-**[operations.GetMetricsResponse](../../models/operations/getmetricsresponse.md)**
+**[operations.V2GetPipelineStateResponse](../../models/operations/v2getpipelinestateresponse.md)**
 
 ### Errors
 
@@ -988,6 +1211,7 @@ with SDK(
         "group_by": 3,
         "ledger": "ledger001",
         "page_size": 100,
+        "sort": "id:desc",
     })
 
     assert res.v2_volumes_with_balance_cursor_response is not None
@@ -1088,6 +1312,7 @@ with SDK(
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "ledger": "ledger001",
         "page_size": 100,
+        "sort": "id:desc",
     })
 
     assert res.v2_accounts_cursor_response is not None
@@ -1107,6 +1332,51 @@ with SDK(
 ### Response
 
 **[operations.V2ListAccountsResponse](../../models/operations/v2listaccountsresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## list_exporters
+
+List exporters
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2ListExporters" method="get" path="/api/ledger/v2/_/exporters" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.list_exporters()
+
+    assert res.object is not None
+
+    # Handle response
+    print(res.object)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[operations.V2ListExportersResponse](../../models/operations/v2listexportersresponse.md)**
 
 ### Errors
 
@@ -1135,8 +1405,14 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.list_ledgers(request={
+        "request_body": {
+            "key": "<value>",
+            "key1": "<value>",
+            "key2": "<value>",
+        },
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "page_size": 100,
+        "sort": "id:desc",
     })
 
     assert res.v2_ledger_list_response is not None
@@ -1190,6 +1466,7 @@ with SDK(
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "ledger": "ledger001",
         "page_size": 100,
+        "sort": "id:desc",
     })
 
     assert res.v2_logs_cursor_response is not None
@@ -1209,6 +1486,54 @@ with SDK(
 ### Response
 
 **[operations.V2ListLogsResponse](../../models/operations/v2listlogsresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## list_pipelines
+
+List pipelines
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2ListPipelines" method="get" path="/api/ledger/v2/{ledger}/pipelines" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.list_pipelines(request={
+        "ledger": "ledger001",
+    })
+
+    assert res.object is not None
+
+    # Handle response
+    print(res.object)
+
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `request`                                                                              | [operations.V2ListPipelinesRequest](../../models/operations/v2listpipelinesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
+
+### Response
+
+**[operations.V2ListPipelinesResponse](../../models/operations/v2listpipelinesresponse.md)**
 
 ### Errors
 
@@ -1243,6 +1568,7 @@ with SDK(
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "ledger": "ledger001",
         "page_size": 100,
+        "sort": "id:desc",
     })
 
     assert res.v2_transactions_cursor_response is not None
@@ -1319,6 +1645,55 @@ with SDK(
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## reset_pipeline
+
+Reset pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2ResetPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/reset" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.reset_pipeline(request={
+        "ledger": "ledger001",
+        "pipeline_id": "<id>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `request`                                                                              | [operations.V2ResetPipelineRequest](../../models/operations/v2resetpipelinerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
+
+### Response
+
+**[operations.V2ResetPipelineResponse](../../models/operations/v2resetpipelineresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## revert_transaction
 
 Revert a ledger transaction by its ID
@@ -1369,6 +1744,104 @@ with SDK(
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## start_pipeline
+
+Start pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2StartPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/start" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.start_pipeline(request={
+        "ledger": "ledger001",
+        "pipeline_id": "<id>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `request`                                                                              | [operations.V2StartPipelineRequest](../../models/operations/v2startpipelinerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
+
+### Response
+
+**[operations.V2StartPipelineResponse](../../models/operations/v2startpipelineresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## stop_pipeline
+
+Stop pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2StopPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/stop" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.stop_pipeline(request={
+        "ledger": "ledger001",
+        "pipeline_id": "<id>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `request`                                                                            | [operations.V2StopPipelineRequest](../../models/operations/v2stoppipelinerequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
+
+### Response
+
+**[operations.V2StopPipelineResponse](../../models/operations/v2stoppipelineresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## update_ledger_metadata
 
 Update ledger metadata
@@ -1395,10 +1868,10 @@ with SDK(
         "ledger": "ledger001",
     })
 
-    assert res is not None
+    assert res.v2_error_response is not None
 
     # Handle response
-    print(res)
+    print(res.v2_error_response)
 
 ```
 

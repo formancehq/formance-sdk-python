@@ -38,6 +38,11 @@ class V2GetVolumesWithBalancesRequestTypedDict(TypedDict):
     r"""The maximum number of results to return per page.
 
     """
+    sort: NotRequired[str]
+    r"""Sort results using a field name and order (ascending or descending).
+    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
+
+    """
     start_time: NotRequired[datetime]
 
 
@@ -89,6 +94,15 @@ class V2GetVolumesWithBalancesRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
     r"""The maximum number of results to return per page.
+
+    """
+
+    sort: Annotated[
+        Optional[str],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Sort results using a field name and order (ascending or descending).
+    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
 
     """
 

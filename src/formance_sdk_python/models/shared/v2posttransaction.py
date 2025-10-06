@@ -3,9 +3,18 @@
 from __future__ import annotations
 from .v2posting import V2Posting, V2PostingTypedDict
 from datetime import datetime
+from enum import Enum
 from formance_sdk_python.types import BaseModel
+import pydantic
 from typing import Dict, List, Optional
-from typing_extensions import NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict
+
+
+class Runtime(str, Enum):
+    r"""The numscript runtime used to execute the script. Uses \"machine\" by default, unless the \"--experimental-numscript-interpreter\" feature flag is passed."""
+
+    EXPERIMENTAL_INTERPRETER = "experimental-interpreter"
+    MACHINE = "machine"
 
 
 class V2PostTransactionScriptTypedDict(TypedDict):
@@ -21,8 +30,12 @@ class V2PostTransactionScript(BaseModel):
 
 class V2PostTransactionTypedDict(TypedDict):
     metadata: Dict[str, str]
+    account_metadata: NotRequired[Dict[str, Dict[str, str]]]
+    force: NotRequired[bool]
     postings: NotRequired[List[V2PostingTypedDict]]
     reference: NotRequired[str]
+    runtime: NotRequired[Runtime]
+    r"""The numscript runtime used to execute the script. Uses \"machine\" by default, unless the \"--experimental-numscript-interpreter\" feature flag is passed."""
     script: NotRequired[V2PostTransactionScriptTypedDict]
     timestamp: NotRequired[datetime]
 
@@ -30,9 +43,18 @@ class V2PostTransactionTypedDict(TypedDict):
 class V2PostTransaction(BaseModel):
     metadata: Dict[str, str]
 
+    account_metadata: Annotated[
+        Optional[Dict[str, Dict[str, str]]], pydantic.Field(alias="accountMetadata")
+    ] = None
+
+    force: Optional[bool] = None
+
     postings: Optional[List[V2Posting]] = None
 
     reference: Optional[str] = None
+
+    runtime: Optional[Runtime] = None
+    r"""The numscript runtime used to execute the script. Uses \"machine\" by default, unless the \"--experimental-numscript-interpreter\" feature flag is passed."""
 
     script: Optional[V2PostTransactionScript] = None
 

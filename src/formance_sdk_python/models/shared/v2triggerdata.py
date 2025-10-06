@@ -13,6 +13,7 @@ class V2TriggerDataTypedDict(TypedDict):
     filter_: NotRequired[str]
     name: NotRequired[str]
     vars: NotRequired[Dict[str, Any]]
+    version: NotRequired[str]
 
 
 class V2TriggerData(BaseModel):
@@ -25,3 +26,5 @@ class V2TriggerData(BaseModel):
     name: Optional[str] = None
 
     vars: Optional[Dict[str, Any]] = None
+
+    version: Optional[str] = None

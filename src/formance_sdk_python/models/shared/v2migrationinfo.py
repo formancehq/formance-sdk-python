@@ -12,6 +12,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 class V2MigrationInfoState(str, Enum):
     TO_DO = "TO DO"
     DONE = "DONE"
+    PROGRESS = "PROGRESS"
 
 
 class V2MigrationInfoTypedDict(TypedDict):

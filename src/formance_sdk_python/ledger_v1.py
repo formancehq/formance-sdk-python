@@ -614,7 +614,7 @@ class LedgerV1(BaseSDK):
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "200", "*"):
+        if utils.match_response(http_res, "204", "*"):
             return operations.CountAccountsResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -698,7 +698,7 @@ class LedgerV1(BaseSDK):
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "200", "*"):
+        if utils.match_response(http_res, "204", "*"):
             return operations.CountAccountsResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",

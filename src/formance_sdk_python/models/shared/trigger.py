@@ -16,6 +16,7 @@ class TriggerTypedDict(TypedDict):
     filter_: NotRequired[str]
     name: NotRequired[str]
     vars: NotRequired[Dict[str, Any]]
+    version: NotRequired[str]
 
 
 class Trigger(BaseModel):
@@ -32,3 +33,5 @@ class Trigger(BaseModel):
     name: Optional[str] = None
 
     vars: Optional[Dict[str, Any]] = None
+
+    version: Optional[str] = None

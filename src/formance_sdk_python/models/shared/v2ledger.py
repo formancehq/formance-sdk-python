@@ -12,6 +12,8 @@ class V2LedgerTypedDict(TypedDict):
     added_at: datetime
     bucket: str
     name: str
+    features: NotRequired[Dict[str, str]]
+    id: NotRequired[int]
     metadata: NotRequired[Dict[str, str]]
 
 
@@ -21,5 +23,9 @@ class V2Ledger(BaseModel):
     bucket: str
 
     name: str
+
+    features: Optional[Dict[str, str]] = None
+
+    id: Optional[int] = None
 
     metadata: Optional[Dict[str, str]] = None

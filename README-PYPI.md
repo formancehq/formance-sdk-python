@@ -7,15 +7,6 @@
     </a>
 </div>
 
-
-## 🏗 **Welcome to your new SDK!** 🏗
-
-It has been generated successfully based on your OpenAPI spec. However, it is not yet ready for production use. Here are some next steps:
-- [ ] 🛠 Make your SDK feel handcrafted by [customizing it](https://www.speakeasyapi.dev/docs/customize-sdks)
-- [ ] ♻️ Refine your SDK quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
-- [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/productionize-sdks/publish-sdks)
-- [ ] ✨ When ready to productionize, delete this section from the README
-
 <!-- Start Summary [summary] -->
 ## Summary
 
@@ -36,7 +27,6 @@ and standard method from web, mobile and desktop applications.
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
 * [formance-sdk-python](https://github.com/formancehq/formance-sdk-python/blob/master/./#formance-sdk-python)
-  * [🏗 **Welcome to your new SDK!** 🏗](https://github.com/formancehq/formance-sdk-python/blob/master/./#welcome-to-your-new-sdk)
 * [Introduction](https://github.com/formancehq/formance-sdk-python/blob/master/./#introduction)
 * [Authentication](https://github.com/formancehq/formance-sdk-python/blob/master/./#authentication)
   * [SDK Installation](https://github.com/formancehq/formance-sdk-python/blob/master/./#sdk-installation)
@@ -162,6 +152,7 @@ with SDK(
 </br>
 
 The same SDK client can also be used to make asynchronous requests by importing asyncio.
+
 ```python
 # Asynchronous Example
 import asyncio
@@ -213,6 +204,8 @@ asyncio.run(main())
 
 ### [ledger](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledger/README.md)
 
+* [get_info](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledger/README.md#get_info) - Show server information
+* [get_metrics](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledger/README.md#get_metrics) - Read in memory metrics
 
 #### [ledger.v1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv1/README.md)
 
@@ -244,27 +237,36 @@ asyncio.run(main())
 * [count_accounts](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#count_accounts) - Count the accounts from a ledger
 * [count_transactions](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#count_transactions) - Count the transactions from a ledger
 * [create_bulk](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#create_bulk) - Bulk request
+* [create_exporter](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#create_exporter) - Create exporter
 * [create_ledger](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#create_ledger) - Create a ledger
+* [create_pipeline](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#create_pipeline) - Create pipeline
 * [create_transaction](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#create_transaction) - Create a new transaction to a ledger
 * [delete_account_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#delete_account_metadata) - Delete metadata by key
+* [delete_exporter](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#delete_exporter) - Delete exporter
 * [delete_ledger_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#delete_ledger_metadata) - Delete ledger metadata by key
+* [delete_pipeline](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#delete_pipeline) - Delete pipeline
 * [delete_transaction_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#delete_transaction_metadata) - Delete metadata by key
 * [export_logs](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#export_logs) - Export logs
 * [get_account](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_account) - Get account by its address
 * [get_balances_aggregated](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_balances_aggregated) - Get the aggregated balances from selected accounts
-* [get_info](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_info) - Show server information
+* [get_exporter_state](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_exporter_state) - Get exporter state
 * [get_ledger](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_ledger) - Get a ledger
 * [get_ledger_info](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_ledger_info) - Get information about a ledger
-* [get_metrics](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_metrics) - Read in memory metrics
+* [get_pipeline_state](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_pipeline_state) - Get pipeline state
 * [get_transaction](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_transaction) - Get transaction from a ledger by its ID
 * [get_volumes_with_balances](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_volumes_with_balances) - Get list of volumes with balances for (account/asset)
 * [import_logs](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#import_logs)
 * [list_accounts](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#list_accounts) - List accounts from a ledger
+* [list_exporters](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#list_exporters) - List exporters
 * [list_ledgers](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#list_ledgers) - List ledgers
 * [list_logs](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#list_logs) - List the logs from a ledger
+* [list_pipelines](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#list_pipelines) - List pipelines
 * [list_transactions](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#list_transactions) - List transactions from a ledger
 * [read_stats](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#read_stats) - Get statistics from a ledger
+* [reset_pipeline](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#reset_pipeline) - Reset pipeline
 * [revert_transaction](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#revert_transaction) - Revert a ledger transaction by its ID
+* [start_pipeline](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#start_pipeline) - Start pipeline
+* [stop_pipeline](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#stop_pipeline) - Stop pipeline
 * [update_ledger_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#update_ledger_metadata) - Update ledger metadata
 
 ### [orchestration](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestration/README.md)
@@ -597,19 +599,12 @@ with SDK(
     res = None
     try:
 
-        res = sdk.ledger.v2.add_metadata_on_transaction(request={
-            "request_body": {
-                "admin": "true",
-            },
-            "dry_run": True,
-            "id": 1234,
-            "ledger": "ledger001",
-        })
+        res = sdk.ledger.get_info()
 
-        assert res is not None
+        assert res.v2_config_info_response is not None
 
         # Handle response
-        print(res)
+        print(res.v2_config_info_response)
 
 
     except errors.SDKBaseError as e:
@@ -642,15 +637,15 @@ with SDK(
 
 
 **Inherit from [`SDKBaseError`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/sdkbaseerror.py)**:
-* [`V3ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v3errorresponse.py): Error. Applicable to 46 of 219 methods.*
-* [`PaymentsErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/paymentserrorresponse.py): Error. Applicable to 45 of 219 methods.*
-* [`V2ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v2errorresponse.py): Error. Applicable to 26 of 219 methods.*
-* [`ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/errorresponse.py): Applicable to 19 of 219 methods.*
-* [`V2Error`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v2error.py): General error. Applicable to 18 of 219 methods.*
-* [`Error`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/error.py): General error. Applicable to 17 of 219 methods.*
-* [`WalletsErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/walletserrorresponse.py): Applicable to 15 of 219 methods.*
-* [`ReconciliationErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/reconciliationerrorresponse.py): Error response. Applicable to 8 of 219 methods.*
-* [`WebhooksErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/webhookserrorresponse.py): Error. Applicable to 8 of 219 methods.*
+* [`V3ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v3errorresponse.py): Error. Applicable to 46 of 230 methods.*
+* [`PaymentsErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/paymentserrorresponse.py): Error. Applicable to 45 of 230 methods.*
+* [`V2ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v2errorresponse.py): Error. Applicable to 37 of 230 methods.*
+* [`ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/errorresponse.py): Applicable to 19 of 230 methods.*
+* [`V2Error`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v2error.py): General error. Applicable to 18 of 230 methods.*
+* [`Error`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/error.py): General error. Applicable to 17 of 230 methods.*
+* [`WalletsErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/walletserrorresponse.py): Applicable to 15 of 230 methods.*
+* [`ReconciliationErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/reconciliationerrorresponse.py): Error response. Applicable to 8 of 230 methods.*
+* [`WebhooksErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/webhookserrorresponse.py): Error. Applicable to 8 of 230 methods.*
 * [`ResponseValidationError`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>
@@ -672,10 +667,10 @@ You can override the default server globally by passing a server index to the `s
 
 If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
 
-| Variable       | Parameter                               | Supported Values                                                           | Default           | Description                                                   |
-| -------------- | --------------------------------------- | -------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `environment`  | `environment: models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
-| `organization` | `organization: str`                     | str                                                                        | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+| Variable       | Parameter                               | Supported Values                                      | Default           | Description                                                   |
+| -------------- | --------------------------------------- | ----------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `environment: models.ServerEnvironment` | - `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"sandbox"`       | The environment name. Defaults to the production environment. |
+| `organization` | `organization: str`                     | str                                                   | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
 
 #### Example
 
@@ -712,7 +707,7 @@ from formance_sdk_python.models import shared
 
 
 with SDK(
-    server_url="https://orgID-stackID.eu.sandbox.formance.cloud",
+    server_url="https://orgID-stackID.sandbox.formance.cloud",
     security=shared.Security(
         client_id="<YOUR_CLIENT_ID_HERE>",
         client_secret="<YOUR_CLIENT_SECRET_HERE>",

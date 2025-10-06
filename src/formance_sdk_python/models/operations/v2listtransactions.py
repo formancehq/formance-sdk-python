@@ -20,6 +20,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class Order(str, Enum):
+    r"""Deprecated: Use sort param"""
+
     EFFECTIVE = "effective"
 
 
@@ -36,12 +38,18 @@ class V2ListTransactionsRequestTypedDict(TypedDict):
     """
     expand: NotRequired[str]
     order: NotRequired[Order]
+    r"""Deprecated: Use sort param"""
     page_size: NotRequired[int]
     r"""The maximum number of results to return per page.
 
     """
     pit: NotRequired[datetime]
     reverse: NotRequired[bool]
+    sort: NotRequired[str]
+    r"""Sort results using a field name and order (ascending or descending).
+    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
+
+    """
 
 
 class V2ListTransactionsRequest(BaseModel):
@@ -73,8 +81,12 @@ class V2ListTransactionsRequest(BaseModel):
 
     order: Annotated[
         Optional[Order],
+        pydantic.Field(
+            deprecated="warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+        ),
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
+    r"""Deprecated: Use sort param"""
 
     page_size: Annotated[
         Optional[int],
@@ -94,6 +106,15 @@ class V2ListTransactionsRequest(BaseModel):
         Optional[bool],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
+
+    sort: Annotated[
+        Optional[str],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Sort results using a field name and order (ascending or descending).
+    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
+
+    """
 
 
 class V2ListTransactionsResponseTypedDict(TypedDict):
