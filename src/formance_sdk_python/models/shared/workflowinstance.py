@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .stagestatus import StageStatus, StageStatusTypedDict
+from .workflow import Workflow, WorkflowTypedDict
 from datetime import datetime
 from formance_sdk_python.types import BaseModel
 import pydantic
@@ -18,6 +19,7 @@ class WorkflowInstanceTypedDict(TypedDict):
     error: NotRequired[str]
     status: NotRequired[List[StageStatusTypedDict]]
     terminated_at: NotRequired[datetime]
+    workflow: NotRequired[WorkflowTypedDict]
 
 
 class WorkflowInstance(BaseModel):
@@ -38,3 +40,5 @@ class WorkflowInstance(BaseModel):
     terminated_at: Annotated[
         Optional[datetime], pydantic.Field(alias="terminatedAt")
     ] = None
+
+    workflow: Optional[Workflow] = None

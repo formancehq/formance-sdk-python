@@ -25,6 +25,7 @@ class V2TransactionTypedDict(TypedDict):
     pre_commit_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
     reference: NotRequired[str]
     reverted_at: NotRequired[datetime]
+    updated_at: NotRequired[datetime]
 
 
 class V2Transaction(BaseModel):
@@ -67,3 +68,5 @@ class V2Transaction(BaseModel):
     reverted_at: Annotated[Optional[datetime], pydantic.Field(alias="revertedAt")] = (
         None
     )
+
+    updated_at: Annotated[Optional[datetime], pydantic.Field(alias="updatedAt")] = None

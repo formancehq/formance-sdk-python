@@ -35,6 +35,11 @@ class V2ListAccountsRequestTypedDict(TypedDict):
 
     """
     pit: NotRequired[datetime]
+    sort: NotRequired[str]
+    r"""Sort results using a field name and order (ascending or descending).
+    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
+
+    """
 
 
 class V2ListAccountsRequest(BaseModel):
@@ -77,6 +82,15 @@ class V2ListAccountsRequest(BaseModel):
         Optional[datetime],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
+
+    sort: Annotated[
+        Optional[str],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Sort results using a field name and order (ascending or descending).
+    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
+
+    """
 
 
 class V2ListAccountsResponseTypedDict(TypedDict):

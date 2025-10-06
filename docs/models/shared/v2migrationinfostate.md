@@ -3,7 +3,8 @@
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `TO_DO` | TO DO   |
-| `DONE`  | DONE    |
+| Name       | Value      |
+| ---------- | ---------- |
+| `TO_DO`    | TO DO      |
+| `DONE`     | DONE       |
+| `PROGRESS` | PROGRESS   |

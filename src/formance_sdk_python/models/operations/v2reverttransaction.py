@@ -3,12 +3,14 @@
 from __future__ import annotations
 from formance_sdk_python.models.shared import (
     v2createtransactionresponse as shared_v2createtransactionresponse,
+    v2reverttransactionrequest as shared_v2reverttransactionrequest,
 )
 from formance_sdk_python.types import BaseModel
 from formance_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
     QueryParamMetadata,
+    RequestMetadata,
     validate_int,
 )
 import httpx
@@ -23,6 +25,9 @@ class V2RevertTransactionRequestTypedDict(TypedDict):
     r"""Transaction ID."""
     ledger: str
     r"""Name of the ledger."""
+    v2_revert_transaction_request: NotRequired[
+        shared_v2reverttransactionrequest.V2RevertTransactionRequestTypedDict
+    ]
     at_effective_date: NotRequired[bool]
     r"""Revert transaction at effective date of the original tx"""
     dry_run: NotRequired[bool]
@@ -42,6 +47,11 @@ class V2RevertTransactionRequest(BaseModel):
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""Name of the ledger."""
+
+    v2_revert_transaction_request: Annotated[
+        Optional[shared_v2reverttransactionrequest.V2RevertTransactionRequest],
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ] = None
 
     at_effective_date: Annotated[
         Optional[bool],

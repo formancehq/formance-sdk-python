@@ -5,14 +5,15 @@ from formance_sdk_python.models.shared import (
     v2ledgerlistresponse as shared_v2ledgerlistresponse,
 )
 from formance_sdk_python.types import BaseModel
-from formance_sdk_python.utils import FieldMetadata, QueryParamMetadata
+from formance_sdk_python.utils import FieldMetadata, QueryParamMetadata, RequestMetadata
 import httpx
 import pydantic
-from typing import Optional
+from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2ListLedgersRequestTypedDict(TypedDict):
+    request_body: Dict[str, Any]
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests. Maximum page size is set to 15.
     Set to the value of next for the next page of results.
@@ -24,9 +25,19 @@ class V2ListLedgersRequestTypedDict(TypedDict):
     r"""The maximum number of results to return per page.
 
     """
+    sort: NotRequired[str]
+    r"""Sort results using a field name and order (ascending or descending).
+    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
+
+    """
 
 
 class V2ListLedgersRequest(BaseModel):
+    request_body: Annotated[
+        Dict[str, Any],
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
     cursor: Annotated[
         Optional[str],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
@@ -44,6 +55,15 @@ class V2ListLedgersRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
     r"""The maximum number of results to return per page.
+
+    """
+
+    sort: Annotated[
+        Optional[str],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Sort results using a field name and order (ascending or descending).
+    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
 
     """
 

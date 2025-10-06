@@ -22,13 +22,14 @@ generation:
   comments: {}
   telemetryEnabled: false
 python:
-  version: 6.4.0
+  version: 6.5.0
   additionalDependencies:
     dev: {}
     main: {}
   allowedRedefinedBuiltins:
     - id
     - object
+  asyncMode: both
   author:
     - Formance
   authors:
@@ -53,6 +54,7 @@ python:
       shared: models/shared
       webhooks: models/webhooks
   inputModelSuffix: input
+  legacyPyright: true
   maxMethodParams: 0
   methodArguments: require-security-and-request
   moduleName: ""

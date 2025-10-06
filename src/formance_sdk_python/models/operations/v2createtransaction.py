@@ -68,6 +68,9 @@ class V2CreateTransactionRequest(BaseModel):
 
     force: Annotated[
         Optional[bool],
+        pydantic.Field(
+            deprecated="warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+        ),
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
     r"""Disable balance checks when passing postings"""
