@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .v3accounttypeenum import V3AccountTypeEnum
+from .v3connectorbase import V3ConnectorBase, V3ConnectorBaseTypedDict
 from datetime import datetime
 from formance_sdk_python.types import (
     BaseModel,
@@ -12,7 +13,7 @@ from formance_sdk_python.types import (
 )
 import pydantic
 from pydantic import model_serializer
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
@@ -32,6 +33,7 @@ class V3AccountTypedDict(TypedDict):
     raw: V3AccountRawTypedDict
     reference: str
     type: V3AccountTypeEnum
+    connector: NotRequired[V3ConnectorBaseTypedDict]
     default_asset: NotRequired[Nullable[str]]
     metadata: NotRequired[Nullable[Dict[str, str]]]
     name: NotRequired[Nullable[str]]
@@ -52,6 +54,8 @@ class V3Account(BaseModel):
 
     type: V3AccountTypeEnum
 
+    connector: Optional[V3ConnectorBase] = None
+
     default_asset: Annotated[
         OptionalNullable[str], pydantic.Field(alias="defaultAsset")
     ] = UNSET
@@ -62,30 +66,31 @@ class V3Account(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = ["defaultAsset", "metadata", "name"]
-        nullable_fields = ["defaultAsset", "metadata", "name"]
-        null_default_fields = []
-
+        optional_fields = set(["connector", "defaultAsset", "metadata", "name"])
+        nullable_fields = set(["defaultAsset", "metadata", "name"])
         serialized = handler(self)
-
         m = {}
 
         for n, f in type(self).model_fields.items():
             k = f.alias or n
-            val = serialized.get(k)
-            serialized.pop(k, None)
+            val = serialized.get(k, serialized.get(n))
+            is_nullable_and_explicitly_set = (
+                k in nullable_fields
+                and (self.__pydantic_fields_set__.intersection({n}))  # pylint: disable=no-member
+            )
 
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
-
-            if val is not None and val != UNSET_SENTINEL:
-                m[k] = val
-            elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
-            ):
-                m[k] = val
+            if val != UNSET_SENTINEL:
+                if (
+                    val is not None
+                    or k not in optional_fields
+                    or is_nullable_and_explicitly_set
+                ):
+                    m[k] = val
 
         return m
+
+
+try:
+    V3Account.model_rebuild()
+except NameError:
+    pass

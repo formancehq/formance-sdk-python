@@ -69,8 +69,8 @@ class SDK(BaseSDK):
         environment: Optional[ServerEnvironment] = None,
         organization: Optional[str] = None,
         server_idx: Optional[int] = None,
-        server_url: Optional[str] = None,
         url_params: Optional[Dict[str, str]] = None,
+        server_url: Optional[str] = None,
         client: Optional[HttpClient] = None,
         async_client: Optional[AsyncHttpClient] = None,
         retry_config: OptionalNullable[RetryConfig] = UNSET,
@@ -117,7 +117,7 @@ class SDK(BaseSDK):
         server_defaults: List[Dict[str, str]] = [
             {},
             {
-                "environment": environment or "sandbox",
+                "environment": environment or "eu.sandbox",
                 "organization": organization or "orgID-stackID",
             },
         ]
@@ -254,11 +254,11 @@ class SDK(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=True,
+            request_has_query_params=False,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
-            security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -275,8 +275,8 @@ class SDK(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getVersions",
-                oauth2_scopes=["auth:read"],
-                security_source=self.sdk_configuration.security,
+                oauth2_scopes=None,
+                security_source=None,
             ),
             request=req,
             error_status_codes=["default"],
@@ -330,11 +330,11 @@ class SDK(BaseSDK):
             request=None,
             request_body_required=False,
             request_has_path_params=False,
-            request_has_query_params=True,
+            request_has_query_params=False,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
-            security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -351,8 +351,8 @@ class SDK(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getVersions",
-                oauth2_scopes=["auth:read"],
-                security_source=self.sdk_configuration.security,
+                oauth2_scopes=None,
+                security_source=None,
             ),
             request=req,
             error_status_codes=["default"],

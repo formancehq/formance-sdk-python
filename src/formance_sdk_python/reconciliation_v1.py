@@ -59,6 +59,7 @@ class ReconciliationV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request, False, False, "json", shared.PolicyRequest
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -75,7 +76,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createPolicy",
-                oauth2_scopes=["auth:read", "reconciliation:write"],
+                oauth2_scopes=["reconciliation:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -150,6 +151,7 @@ class ReconciliationV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request, False, False, "json", shared.PolicyRequest
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -166,7 +168,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createPolicy",
-                oauth2_scopes=["auth:read", "reconciliation:write"],
+                oauth2_scopes=["reconciliation:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -240,6 +242,7 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -256,7 +259,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deletePolicy",
-                oauth2_scopes=["auth:read", "reconciliation:write"],
+                oauth2_scopes=["reconciliation:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -327,6 +330,7 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -343,7 +347,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deletePolicy",
-                oauth2_scopes=["auth:read", "reconciliation:write"],
+                oauth2_scopes=["reconciliation:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -412,6 +416,7 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -428,7 +433,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getPolicy",
-                oauth2_scopes=["auth:read", "reconciliation:read"],
+                oauth2_scopes=["reconciliation:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -500,6 +505,7 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -516,7 +522,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getPolicy",
-                oauth2_scopes=["auth:read", "reconciliation:read"],
+                oauth2_scopes=["reconciliation:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -589,6 +595,7 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -605,7 +612,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getReconciliation",
-                oauth2_scopes=["auth:read", "reconciliation:read"],
+                oauth2_scopes=["reconciliation:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -678,6 +685,7 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -694,7 +702,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getReconciliation",
-                oauth2_scopes=["auth:read", "reconciliation:read"],
+                oauth2_scopes=["reconciliation:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -766,6 +774,7 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -782,7 +791,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listPolicies",
-                oauth2_scopes=["auth:read", "reconciliation:read"],
+                oauth2_scopes=["reconciliation:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -854,6 +863,7 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -870,7 +880,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listPolicies",
-                oauth2_scopes=["auth:read", "reconciliation:read"],
+                oauth2_scopes=["reconciliation:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -943,6 +953,7 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -959,7 +970,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listReconciliations",
-                oauth2_scopes=["auth:read", "reconciliation:read"],
+                oauth2_scopes=["reconciliation:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1032,6 +1043,7 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1048,7 +1060,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listReconciliations",
-                oauth2_scopes=["auth:read", "reconciliation:read"],
+                oauth2_scopes=["reconciliation:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1129,6 +1141,7 @@ class ReconciliationV1(BaseSDK):
                 "json",
                 shared.ReconciliationRequest,
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1145,7 +1158,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="reconcile",
-                oauth2_scopes=["auth:read", "reconciliation:write"],
+                oauth2_scopes=["reconciliation:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1226,6 +1239,7 @@ class ReconciliationV1(BaseSDK):
                 "json",
                 shared.ReconciliationRequest,
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1242,7 +1256,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="reconcile",
-                oauth2_scopes=["auth:read", "reconciliation:write"],
+                oauth2_scopes=["reconciliation:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1305,6 +1319,7 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1321,7 +1336,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="reconciliationgetServerInfo",
-                oauth2_scopes=["auth:read", "reconciliation:read"],
+                oauth2_scopes=["reconciliation:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1384,6 +1399,7 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1400,7 +1416,7 @@ class ReconciliationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="reconciliationgetServerInfo",
-                oauth2_scopes=["auth:read", "reconciliation:read"],
+                oauth2_scopes=["reconciliation:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,

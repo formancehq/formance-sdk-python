@@ -1,5 +1,4 @@
-# WalletsV1
-(*wallets.v1*)
+# Wallets.V1
 
 ## Overview
 
@@ -505,10 +504,10 @@ with SDK(
         "id": "<id>",
     })
 
-    assert res.activity_get_wallet_output is not None
+    assert res.get_wallet_response is not None
 
     # Handle response
-    print(res.activity_get_wallet_output)
+    print(res.get_wallet_response)
 
 ```
 

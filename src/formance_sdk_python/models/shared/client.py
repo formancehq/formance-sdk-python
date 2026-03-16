@@ -11,7 +11,7 @@ from formance_sdk_python.types import (
 )
 import pydantic
 from pydantic import model_serializer
-from typing import Any, Dict, List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
@@ -19,7 +19,7 @@ class ClientTypedDict(TypedDict):
     id: str
     name: str
     description: NotRequired[str]
-    metadata: NotRequired[Nullable[Dict[str, Any]]]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
     post_logout_redirect_uris: NotRequired[List[str]]
     public: NotRequired[bool]
     redirect_uris: NotRequired[List[str]]
@@ -35,7 +35,7 @@ class Client(BaseModel):
 
     description: Optional[str] = None
 
-    metadata: OptionalNullable[Dict[str, Any]] = UNSET
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
 
     post_logout_redirect_uris: Annotated[
         Optional[List[str]], pydantic.Field(alias="postLogoutRedirectUris")
@@ -55,39 +55,42 @@ class Client(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = [
-            "description",
-            "metadata",
-            "postLogoutRedirectUris",
-            "public",
-            "redirectUris",
-            "scopes",
-            "secrets",
-            "trusted",
-        ]
-        nullable_fields = ["metadata"]
-        null_default_fields = []
-
+        optional_fields = set(
+            [
+                "description",
+                "metadata",
+                "postLogoutRedirectUris",
+                "public",
+                "redirectUris",
+                "scopes",
+                "secrets",
+                "trusted",
+            ]
+        )
+        nullable_fields = set(["metadata"])
         serialized = handler(self)
-
         m = {}
 
         for n, f in type(self).model_fields.items():
             k = f.alias or n
-            val = serialized.get(k)
-            serialized.pop(k, None)
+            val = serialized.get(k, serialized.get(n))
+            is_nullable_and_explicitly_set = (
+                k in nullable_fields
+                and (self.__pydantic_fields_set__.intersection({n}))  # pylint: disable=no-member
+            )
 
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
-
-            if val is not None and val != UNSET_SENTINEL:
-                m[k] = val
-            elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
-            ):
-                m[k] = val
+            if val != UNSET_SENTINEL:
+                if (
+                    val is not None
+                    or k not in optional_fields
+                    or is_nullable_and_explicitly_set
+                ):
+                    m[k] = val
 
         return m
+
+
+try:
+    Client.model_rebuild()
+except NameError:
+    pass

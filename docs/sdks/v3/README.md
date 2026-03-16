@@ -1,5 +1,4 @@
-# V3
-(*payments.v3*)
+# Payments.V3
 
 ## Overview
 
@@ -12,14 +11,19 @@
 
 * [create_bank_account](#create_bank_account) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
 
+* [create_link_for_payment_service_user](#create_link_for_payment_service_user) - Create an authentication link for a payment service user on a connector, for oauth flow
 * [create_payment](#create_payment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
 * [create_payment_service_user](#create_payment_service_user) - Create a formance payment service user object
 * [create_pool](#create_pool) - Create a formance pool object
 * [delete_payment_initiation](#delete_payment_initiation) - Delete a payment initiation by ID
+* [delete_payment_service_user](#delete_payment_service_user) - Delete a payment service user by ID
+* [delete_payment_service_user_connection_from_connector_id](#delete_payment_service_user_connection_from_connector_id) - Delete a connection for a payment service user on a connector
+* [delete_payment_service_user_connector](#delete_payment_service_user_connector) - Remove a payment service user from a connector, the PSU will still exist in Formance
 * [delete_pool](#delete_pool) - Delete a pool by ID
 * [forward_bank_account](#forward_bank_account) - Forward a Bank Account to a PSP for creation
 * [forward_payment_service_user_bank_account](#forward_payment_service_user_bank_account) - Forward a payment service user's bank account to a connector
+* [forward_payment_service_user_to_provider](#forward_payment_service_user_to_provider) - Register/forward a payment service user on/to a connector
 * [get_account](#get_account) - Get an account by ID
 * [get_account_balances](#get_account_balances) - Get account balances
 * [get_bank_account](#get_bank_account) - Get a Bank Account by ID
@@ -28,6 +32,7 @@
 * [get_payment](#get_payment) - Get a payment by ID
 * [get_payment_initiation](#get_payment_initiation) - Get a payment initiation by ID
 * [get_payment_service_user](#get_payment_service_user) - Get a payment service user by ID
+* [get_payment_service_user_link_attempt_from_connector_id](#get_payment_service_user_link_attempt_from_connector_id) - Get a link attempt for a payment service user on a connector
 * [get_pool](#get_pool) - Get a pool by ID
 * [get_pool_balances](#get_pool_balances) - Get historical pool balances from a particular point in time
 * [get_pool_balances_latest](#get_pool_balances_latest) - Get latest pool balances
@@ -43,6 +48,11 @@
 * [list_payment_initiation_adjustments](#list_payment_initiation_adjustments) - List all payment initiation adjustments
 * [list_payment_initiation_related_payments](#list_payment_initiation_related_payments) - List all payments related to a payment initiation
 * [list_payment_initiations](#list_payment_initiations) - List all payment initiations
+* [list_payment_service_user_connections](#list_payment_service_user_connections) - List all connections for a payment service user
+* [list_payment_service_user_connections_from_connector_id](#list_payment_service_user_connections_from_connector_id) - List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+* [list_payment_service_user_link_attempts_from_connector_id](#list_payment_service_user_link_attempts_from_connector_id) - List all link attempts for a payment service user on a connector.
+Allows to check if users used the link and completed the oauth flow.
+
 * [list_payment_service_users](#list_payment_service_users) - List all payment service users
 * [list_payments](#list_payments) - List all payments
 * [list_pools](#list_pools) - List all pools
@@ -53,7 +63,9 @@
 * [reverse_payment_initiation](#reverse_payment_initiation) - Reverse a payment initiation
 * [uninstall_connector](#uninstall_connector) - Uninstall a connector
 * [update_bank_account_metadata](#update_bank_account_metadata) - Update a bank account's metadata
+* [update_link_for_payment_service_user_on_connector](#update_link_for_payment_service_user_on_connector) - Update/Regenerate a link for a payment service user on a connector
 * [update_payment_metadata](#update_payment_metadata) - Update a payment's metadata
+* [update_pool_query](#update_pool_query) - Update the query of a pool
 * [v3_update_connector_config](#v3_update_connector_config) - Update the config of a connector
 
 ## add_account_to_pool
@@ -296,6 +308,55 @@ with SDK(
 | errors.V3ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## create_link_for_payment_service_user
+
+Create an authentication link for a payment service user on a connector, for oauth flow
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v3CreateLinkForPaymentServiceUser" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/create-link" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.create_link_for_payment_service_user(request={
+        "connector_id": "<id>",
+        "payment_service_user_id": "<id>",
+    })
+
+    assert res.v3_payment_service_user_create_link_response is not None
+
+    # Handle response
+    print(res.v3_payment_service_user_create_link_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                  | [operations.V3CreateLinkForPaymentServiceUserRequest](../../models/operations/v3createlinkforpaymentserviceuserrequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
+| `retries`                                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                           | :heavy_minus_sign:                                                                                                         | Configuration to override the default retry behavior of the client.                                                        |
+
+### Response
+
+**[operations.V3CreateLinkForPaymentServiceUserResponse](../../models/operations/v3createlinkforpaymentserviceuserresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## create_payment
 
 Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
@@ -483,6 +544,153 @@ with SDK(
 | errors.V3ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## delete_payment_service_user
+
+Delete a payment service user by ID
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v3DeletePaymentServiceUser" method="delete" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.delete_payment_service_user(request={
+        "payment_service_user_id": "<id>",
+    })
+
+    assert res.v3_payment_service_user_delete_response is not None
+
+    # Handle response
+    print(res.v3_payment_service_user_delete_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                    | [operations.V3DeletePaymentServiceUserRequest](../../models/operations/v3deletepaymentserviceuserrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `retries`                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                             | :heavy_minus_sign:                                                                                           | Configuration to override the default retry behavior of the client.                                          |
+
+### Response
+
+**[operations.V3DeletePaymentServiceUserResponse](../../models/operations/v3deletepaymentserviceuserresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## delete_payment_service_user_connection_from_connector_id
+
+Delete a connection for a payment service user on a connector
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v3DeletePaymentServiceUserConnectionFromConnectorID" method="delete" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.delete_payment_service_user_connection_from_connector_id(request={
+        "connection_id": "<id>",
+        "connector_id": "<id>",
+        "payment_service_user_id": "<id>",
+    })
+
+    assert res.v3_payment_service_user_delete_connection_response is not None
+
+    # Handle response
+    print(res.v3_payment_service_user_delete_connection_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                      | Type                                                                                                                                                           | Required                                                                                                                                                       | Description                                                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                                                      | [operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequest](../../models/operations/v3deletepaymentserviceuserconnectionfromconnectoridrequest.md) | :heavy_check_mark:                                                                                                                                             | The request object to use for the request.                                                                                                                     |
+| `retries`                                                                                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                               | :heavy_minus_sign:                                                                                                                                             | Configuration to override the default retry behavior of the client.                                                                                            |
+
+### Response
+
+**[operations.V3DeletePaymentServiceUserConnectionFromConnectorIDResponse](../../models/operations/v3deletepaymentserviceuserconnectionfromconnectoridresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## delete_payment_service_user_connector
+
+Remove a payment service user from a connector, the PSU will still exist in Formance
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v3DeletePaymentServiceUserConnector" method="delete" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.delete_payment_service_user_connector(request={
+        "connector_id": "<id>",
+        "payment_service_user_id": "<id>",
+    })
+
+    assert res.v3_payment_service_user_delete_connector_response is not None
+
+    # Handle response
+    print(res.v3_payment_service_user_delete_connector_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                      | [operations.V3DeletePaymentServiceUserConnectorRequest](../../models/operations/v3deletepaymentserviceuserconnectorrequest.md) | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
+| `retries`                                                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                               | :heavy_minus_sign:                                                                                                             | Configuration to override the default retry behavior of the client.                                                            |
+
+### Response
+
+**[operations.V3DeletePaymentServiceUserConnectorResponse](../../models/operations/v3deletepaymentserviceuserconnectorresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## delete_pool
 
 Delete a pool by ID
@@ -620,6 +828,55 @@ with SDK(
 ### Response
 
 **[operations.V3ForwardPaymentServiceUserBankAccountResponse](../../models/operations/v3forwardpaymentserviceuserbankaccountresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## forward_payment_service_user_to_provider
+
+Register/forward a payment service user on/to a connector
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v3ForwardPaymentServiceUserToProvider" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/forward" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.forward_payment_service_user_to_provider(request={
+        "connector_id": "<id>",
+        "payment_service_user_id": "<id>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                          | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                          | [operations.V3ForwardPaymentServiceUserToProviderRequest](../../models/operations/v3forwardpaymentserviceusertoproviderrequest.md) | :heavy_check_mark:                                                                                                                 | The request object to use for the request.                                                                                         |
+| `retries`                                                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                   | :heavy_minus_sign:                                                                                                                 | Configuration to override the default retry behavior of the client.                                                                |
+
+### Response
+
+**[operations.V3ForwardPaymentServiceUserToProviderResponse](../../models/operations/v3forwardpaymentserviceusertoproviderresponse.md)**
 
 ### Errors
 
@@ -1007,6 +1264,56 @@ with SDK(
 ### Response
 
 **[operations.V3GetPaymentServiceUserResponse](../../models/operations/v3getpaymentserviceuserresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## get_payment_service_user_link_attempt_from_connector_id
+
+Get a link attempt for a payment service user on a connector
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v3GetPaymentServiceUserLinkAttemptFromConnectorID" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts/{attemptID}" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.get_payment_service_user_link_attempt_from_connector_id(request={
+        "attempt_id": "<id>",
+        "connector_id": "<id>",
+        "payment_service_user_id": "<id>",
+    })
+
+    assert res.v3_payment_service_user_link_attempt is not None
+
+    # Handle response
+    print(res.v3_payment_service_user_link_attempt)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                  | Type                                                                                                                                                       | Required                                                                                                                                                   | Description                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                                                  | [operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest](../../models/operations/v3getpaymentserviceuserlinkattemptfromconnectoridrequest.md) | :heavy_check_mark:                                                                                                                                         | The request object to use for the request.                                                                                                                 |
+| `retries`                                                                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                           | :heavy_minus_sign:                                                                                                                                         | Configuration to override the default retry behavior of the client.                                                                                        |
+
+### Response
+
+**[operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse](../../models/operations/v3getpaymentserviceuserlinkattemptfromconnectoridresponse.md)**
 
 ### Errors
 
@@ -1743,6 +2050,160 @@ with SDK(
 | errors.V3ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## list_payment_service_user_connections
+
+List all connections for a payment service user
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v3ListPaymentServiceUserConnections" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connections" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.list_payment_service_user_connections(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+        "payment_service_user_id": "<id>",
+    })
+
+    assert res.v3_payment_service_user_connections_cursor_response is not None
+
+    # Handle response
+    print(res.v3_payment_service_user_connections_cursor_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                      | [operations.V3ListPaymentServiceUserConnectionsRequest](../../models/operations/v3listpaymentserviceuserconnectionsrequest.md) | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
+| `retries`                                                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                               | :heavy_minus_sign:                                                                                                             | Configuration to override the default retry behavior of the client.                                                            |
+
+### Response
+
+**[operations.V3ListPaymentServiceUserConnectionsResponse](../../models/operations/v3listpaymentserviceuserconnectionsresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## list_payment_service_user_connections_from_connector_id
+
+List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v3ListPaymentServiceUserConnectionsFromConnectorID" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.list_payment_service_user_connections_from_connector_id(request={
+        "connector_id": "<id>",
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+        "payment_service_user_id": "<id>",
+    })
+
+    assert res.v3_payment_service_user_connections_cursor_response is not None
+
+    # Handle response
+    print(res.v3_payment_service_user_connections_cursor_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                    | Type                                                                                                                                                         | Required                                                                                                                                                     | Description                                                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                    | [operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequest](../../models/operations/v3listpaymentserviceuserconnectionsfromconnectoridrequest.md) | :heavy_check_mark:                                                                                                                                           | The request object to use for the request.                                                                                                                   |
+| `retries`                                                                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                             | :heavy_minus_sign:                                                                                                                                           | Configuration to override the default retry behavior of the client.                                                                                          |
+
+### Response
+
+**[operations.V3ListPaymentServiceUserConnectionsFromConnectorIDResponse](../../models/operations/v3listpaymentserviceuserconnectionsfromconnectoridresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## list_payment_service_user_link_attempts_from_connector_id
+
+List all link attempts for a payment service user on a connector.
+Allows to check if users used the link and completed the oauth flow.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v3ListPaymentServiceUserLinkAttemptsFromConnectorID" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.list_payment_service_user_link_attempts_from_connector_id(request={
+        "connector_id": "<id>",
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+        "payment_service_user_id": "<id>",
+    })
+
+    assert res.v3_payment_service_user_link_attempts_cursor_response is not None
+
+    # Handle response
+    print(res.v3_payment_service_user_link_attempts_cursor_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                      | Type                                                                                                                                                           | Required                                                                                                                                                       | Description                                                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                                                      | [operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest](../../models/operations/v3listpaymentserviceuserlinkattemptsfromconnectoridrequest.md) | :heavy_check_mark:                                                                                                                                             | The request object to use for the request.                                                                                                                     |
+| `retries`                                                                                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                               | :heavy_minus_sign:                                                                                                                                             | Configuration to override the default retry behavior of the client.                                                                                            |
+
+### Response
+
+**[operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse](../../models/operations/v3listpaymentserviceuserlinkattemptsfromconnectoridresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## list_payment_service_users
 
 List all payment service users
@@ -2227,6 +2688,56 @@ with SDK(
 | errors.V3ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## update_link_for_payment_service_user_on_connector
+
+Update/Regenerate a link for a payment service user on a connector
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v3UpdateLinkForPaymentServiceUserOnConnector" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}/update-link" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.update_link_for_payment_service_user_on_connector(request={
+        "connection_id": "<id>",
+        "connector_id": "<id>",
+        "payment_service_user_id": "<id>",
+    })
+
+    assert res.v3_payment_service_user_update_link_response is not None
+
+    # Handle response
+    print(res.v3_payment_service_user_update_link_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                        | Type                                                                                                                                             | Required                                                                                                                                         | Description                                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                        | [operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequest](../../models/operations/v3updatelinkforpaymentserviceuseronconnectorrequest.md) | :heavy_check_mark:                                                                                                                               | The request object to use for the request.                                                                                                       |
+| `retries`                                                                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                 | :heavy_minus_sign:                                                                                                                               | Configuration to override the default retry behavior of the client.                                                                              |
+
+### Response
+
+**[operations.V3UpdateLinkForPaymentServiceUserOnConnectorResponse](../../models/operations/v3updatelinkforpaymentserviceuseronconnectorresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## update_payment_metadata
 
 Update a payment's metadata
@@ -2267,6 +2778,54 @@ with SDK(
 ### Response
 
 **[operations.V3UpdatePaymentMetadataResponse](../../models/operations/v3updatepaymentmetadataresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## update_pool_query
+
+Update the query of a pool
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v3UpdatePoolQuery" method="patch" path="/api/payments/v3/pools/{poolID}/query" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.update_pool_query(request={
+        "pool_id": "<id>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `request`                                                                                  | [operations.V3UpdatePoolQueryRequest](../../models/operations/v3updatepoolqueryrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
+
+### Response
+
+**[operations.V3UpdatePoolQueryResponse](../../models/operations/v3updatepoolqueryresponse.md)**
 
 ### Errors
 

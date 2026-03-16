@@ -5,7 +5,7 @@ from formance_sdk_python.models.shared import (
     v2createtransactionresponse as shared_v2createtransactionresponse,
     v2posttransaction as shared_v2posttransaction,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
     HeaderMetadata,
@@ -15,7 +15,8 @@ from formance_sdk_python.utils import (
 )
 import httpx
 import pydantic
-from typing import Optional
+from pydantic import model_serializer
+from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
@@ -34,6 +35,8 @@ class V2CreateTransactionRequestTypedDict(TypedDict):
     r"""Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker."""
     force: NotRequired[bool]
     r"""Disable balance checks when passing postings"""
+    schema_version: NotRequired[str]
+    r"""Schema version to use for validation"""
 
 
 class V2CreateTransactionRequest(BaseModel):
@@ -68,17 +71,38 @@ class V2CreateTransactionRequest(BaseModel):
 
     force: Annotated[
         Optional[bool],
-        pydantic.Field(
-            deprecated="warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
-        ),
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
     r"""Disable balance checks when passing postings"""
+
+    schema_version: Annotated[
+        Optional[str],
+        pydantic.Field(alias="schemaVersion"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Schema version to use for validation"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["Idempotency-Key", "dryRun", "force", "schemaVersion"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class V2CreateTransactionResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""
+    headers: Dict[str, List[str]]
     status_code: int
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
@@ -93,6 +117,8 @@ class V2CreateTransactionResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
 
+    headers: Dict[str, List[str]]
+
     status_code: int
     r"""HTTP response status code for this operation"""
 
@@ -103,3 +129,19 @@ class V2CreateTransactionResponse(BaseModel):
         shared_v2createtransactionresponse.V2CreateTransactionResponse
     ] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["V2CreateTransactionResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

@@ -4,21 +4,25 @@ from __future__ import annotations
 from formance_sdk_python.models.shared import (
     v2ledgerlistresponse as shared_v2ledgerlistresponse,
 )
-from formance_sdk_python.types import BaseModel
-from formance_sdk_python.utils import FieldMetadata, QueryParamMetadata, RequestMetadata
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
+from formance_sdk_python.utils import FieldMetadata, QueryParamMetadata
 import httpx
 import pydantic
-from typing import Any, Dict, Optional
+from pydantic import model_serializer
+from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2ListLedgersRequestTypedDict(TypedDict):
-    request_body: Dict[str, Any]
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests. Maximum page size is set to 15.
     Set to the value of next for the next page of results.
     Set to the value of previous for the previous page of results.
     No other parameters can be set when this parameter is set.
+
+    """
+    include_deleted: NotRequired[bool]
+    r"""If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.
 
     """
     page_size: NotRequired[int]
@@ -33,11 +37,6 @@ class V2ListLedgersRequestTypedDict(TypedDict):
 
 
 class V2ListLedgersRequest(BaseModel):
-    request_body: Annotated[
-        Dict[str, Any],
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ]
-
     cursor: Annotated[
         Optional[str],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
@@ -46,6 +45,15 @@ class V2ListLedgersRequest(BaseModel):
     Set to the value of next for the next page of results.
     Set to the value of previous for the previous page of results.
     No other parameters can be set when this parameter is set.
+
+    """
+
+    include_deleted: Annotated[
+        Optional[bool],
+        pydantic.Field(alias="includeDeleted"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = False
+    r"""If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.
 
     """
 
@@ -66,6 +74,22 @@ class V2ListLedgersRequest(BaseModel):
     Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
 
     """
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["cursor", "includeDeleted", "pageSize", "sort"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class V2ListLedgersResponseTypedDict(TypedDict):
@@ -95,3 +119,19 @@ class V2ListLedgersResponse(BaseModel):
         shared_v2ledgerlistresponse.V2LedgerListResponse
     ] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["V2LedgerListResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

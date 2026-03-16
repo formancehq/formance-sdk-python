@@ -1,5 +1,13 @@
 # WalletsErrorResponseErrorCode
 
+## Example Usage
+
+```python
+from formance_sdk_python.models.errors import WalletsErrorResponseErrorCode
+
+value = WalletsErrorResponseErrorCode.VALIDATION
+```
+
 
 ## Values
 

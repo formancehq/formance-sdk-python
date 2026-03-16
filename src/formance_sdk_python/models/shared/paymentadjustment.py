@@ -36,3 +36,9 @@ class PaymentAdjustment(BaseModel):
     reference: str
 
     status: PaymentStatus
+
+
+try:
+    PaymentAdjustment.model_rebuild()
+except NameError:
+    pass

@@ -5,7 +5,7 @@ from formance_sdk_python.models.shared import (
     connector as shared_connector,
     taskscursor as shared_taskscursor,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
@@ -13,6 +13,7 @@ from formance_sdk_python.utils import (
 )
 import httpx
 import pydantic
+from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -69,6 +70,22 @@ class ListConnectorTasksV1Request(BaseModel):
 
     """
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["cursor", "pageSize"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class ListConnectorTasksV1ResponseTypedDict(TypedDict):
     content_type: str
@@ -93,3 +110,19 @@ class ListConnectorTasksV1Response(BaseModel):
 
     tasks_cursor: Optional[shared_taskscursor.TasksCursor] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["TasksCursor"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

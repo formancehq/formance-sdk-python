@@ -1,0 +1,12 @@
+# TransferInitiationAdjustments
+
+
+## Fields
+
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `adjustment_id`                                                                    | *str*                                                                              | :heavy_check_mark:                                                                 | N/A                                                                                |
+| `created_at`                                                                       | [date](https://docs.python.org/3/library/datetime.html#date-objects)               | :heavy_check_mark:                                                                 | N/A                                                                                |
+| `error`                                                                            | *OptionalNullable[str]*                                                            | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `metadata`                                                                         | Dict[str, *str*]                                                                   | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `status`                                                                           | [shared.TransferInitiationStatus](../../models/shared/transferinitiationstatus.md) | :heavy_check_mark:                                                                 | N/A                                                                                |

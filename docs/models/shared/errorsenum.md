@@ -1,5 +1,13 @@
 # ErrorsEnum
 
+## Example Usage
+
+```python
+from formance_sdk_python.models.shared import ErrorsEnum
+
+value = ErrorsEnum.INTERNAL
+```
+
 
 ## Values
 

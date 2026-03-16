@@ -26,3 +26,9 @@ class V3ApprovePaymentInitiationResponseTypedDict(TypedDict):
 
 class V3ApprovePaymentInitiationResponse(BaseModel):
     data: V3ApprovePaymentInitiationResponseData
+
+
+try:
+    V3ApprovePaymentInitiationResponseData.model_rebuild()
+except NameError:
+    pass

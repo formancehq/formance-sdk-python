@@ -4,8 +4,9 @@ from __future__ import annotations
 from formance_sdk_python.models.shared import (
     v3connectorconfigsresponse as shared_v3connectorconfigsresponse,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 import httpx
+from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
@@ -37,3 +38,19 @@ class V3ListConnectorConfigsResponse(BaseModel):
         shared_v3connectorconfigsresponse.V3ConnectorConfigsResponse
     ] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["V3ConnectorConfigsResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

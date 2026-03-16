@@ -94,7 +94,7 @@ It's also possible to write a standalone Python script without needing to set up
 ```python
 #!/usr/bin/env -S uv run --script
 # /// script
-# requires-python = ">=3.9"
+# requires-python = ">=3.10"
 # dependencies = [
 #     "formance-sdk-python",
 # ]
@@ -131,15 +131,9 @@ Generally, the SDK will work well with most IDEs out of the box. However, when u
 ```python
 # Synchronous Example
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
 
 
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
+with SDK() as sdk:
 
     res = sdk.get_versions()
 
@@ -157,16 +151,10 @@ The same SDK client can also be used to make asynchronous requests by importing 
 # Asynchronous Example
 import asyncio
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
 
 async def main():
 
-    async with SDK(
-        security=shared.Security(
-            client_id="<YOUR_CLIENT_ID_HERE>",
-            client_secret="<YOUR_CLIENT_SECRET_HERE>",
-        ),
-    ) as sdk:
+    async with SDK() as sdk:
 
         res = await sdk.get_versions_async()
 
@@ -185,10 +173,11 @@ asyncio.run(main())
 <details open>
 <summary>Available methods</summary>
 
-### [auth](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/auth/README.md)
+### [SDK](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/sdk/README.md)
 
+* [get_versions](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/sdk/README.md#get_versions) - Show stack version information
 
-#### [auth.v1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/authv1/README.md)
+### [Auth.V1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/authv1/README.md)
 
 * [create_client](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/authv1/README.md#create_client) - Create client
 * [create_secret](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/authv1/README.md#create_secret) - Add a secret to a client
@@ -202,12 +191,12 @@ asyncio.run(main())
 * [read_user](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/authv1/README.md#read_user) - Read user
 * [update_client](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/authv1/README.md#update_client) - Update client
 
-### [ledger](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledger/README.md)
+### [Ledger](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledger/README.md)
 
 * [get_info](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledger/README.md#get_info) - Show server information
 * [get_metrics](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledger/README.md#get_metrics) - Read in memory metrics
 
-#### [ledger.v1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv1/README.md)
+#### [Ledger.V1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv1/README.md)
 
 * [create_transactions](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv1/README.md#create_transactions) - Create a new batch of transactions to a ledger
 * [add_metadata_on_transaction](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv1/README.md#add_metadata_on_transaction) - Set the metadata of a transaction by its ID
@@ -230,7 +219,7 @@ asyncio.run(main())
 * [~~run_script~~](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv1/README.md#run_script) - Execute a Numscript :warning: **Deprecated**
 * [update_mapping](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv1/README.md#update_mapping) - Update the mapping of a ledger
 
-#### [ledger.v2](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md)
+#### [Ledger.V2](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md)
 
 * [add_metadata_on_transaction](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#add_metadata_on_transaction) - Set the metadata of a transaction by its ID
 * [add_metadata_to_account](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#add_metadata_to_account) - Add metadata to an account
@@ -242,6 +231,7 @@ asyncio.run(main())
 * [create_pipeline](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#create_pipeline) - Create pipeline
 * [create_transaction](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#create_transaction) - Create a new transaction to a ledger
 * [delete_account_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#delete_account_metadata) - Delete metadata by key
+* [delete_bucket](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#delete_bucket) - Delete bucket
 * [delete_exporter](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#delete_exporter) - Delete exporter
 * [delete_ledger_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#delete_ledger_metadata) - Delete ledger metadata by key
 * [delete_pipeline](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#delete_pipeline) - Delete pipeline
@@ -253,26 +243,29 @@ asyncio.run(main())
 * [get_ledger](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_ledger) - Get a ledger
 * [get_ledger_info](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_ledger_info) - Get information about a ledger
 * [get_pipeline_state](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_pipeline_state) - Get pipeline state
+* [get_schema](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_schema) - Get a schema for a ledger by version
 * [get_transaction](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_transaction) - Get transaction from a ledger by its ID
 * [get_volumes_with_balances](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_volumes_with_balances) - Get list of volumes with balances for (account/asset)
 * [import_logs](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#import_logs)
+* [insert_schema](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#insert_schema) - Insert a schema for a ledger
 * [list_accounts](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#list_accounts) - List accounts from a ledger
 * [list_exporters](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#list_exporters) - List exporters
 * [list_ledgers](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#list_ledgers) - List ledgers
 * [list_logs](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#list_logs) - List the logs from a ledger
 * [list_pipelines](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#list_pipelines) - List pipelines
+* [list_schemas](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#list_schemas) - List all schemas for a ledger
 * [list_transactions](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#list_transactions) - List transactions from a ledger
 * [read_stats](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#read_stats) - Get statistics from a ledger
 * [reset_pipeline](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#reset_pipeline) - Reset pipeline
+* [restore_bucket](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#restore_bucket) - Restore bucket
 * [revert_transaction](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#revert_transaction) - Revert a ledger transaction by its ID
+* [run_query](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#run_query) - Run a query template
 * [start_pipeline](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#start_pipeline) - Start pipeline
 * [stop_pipeline](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#stop_pipeline) - Stop pipeline
+* [update_exporter](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#update_exporter) - Update exporter
 * [update_ledger_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#update_ledger_metadata) - Update ledger metadata
 
-### [orchestration](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestration/README.md)
-
-
-#### [orchestration.v1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestrationv1/README.md)
+### [Orchestration.V1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestrationv1/README.md)
 
 * [cancel_event](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestrationv1/README.md#cancel_event) - Cancel a running workflow
 * [create_trigger](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestrationv1/README.md#create_trigger) - Create trigger
@@ -292,7 +285,7 @@ asyncio.run(main())
 * [run_workflow](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestrationv1/README.md#run_workflow) - Run workflow
 * [send_event](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestrationv1/README.md#send_event) - Send an event to a running workflow
 
-#### [orchestration.v2](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestrationv2/README.md)
+### [Orchestration.V2](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestrationv2/README.md)
 
 * [cancel_event](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestrationv2/README.md#cancel_event) - Cancel a running workflow
 * [create_trigger](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestrationv2/README.md#create_trigger) - Create trigger
@@ -313,10 +306,7 @@ asyncio.run(main())
 * [send_event](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestrationv2/README.md#send_event) - Send an event to a running workflow
 * [test_trigger](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/orchestrationv2/README.md#test_trigger) - Test trigger
 
-### [payments](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/payments/README.md)
-
-
-#### [payments.v1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/paymentsv1/README.md)
+### [Payments.V1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/paymentsv1/README.md)
 
 * [add_account_to_pool](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/paymentsv1/README.md#add_account_to_pool) - Add an account to a pool
 * [connectors_transfer](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/paymentsv1/README.md#connectors_transfer) - Transfer funds between Connector accounts
@@ -361,9 +351,10 @@ asyncio.run(main())
 * [update_bank_account_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/paymentsv1/README.md#update_bank_account_metadata) - Update metadata of a bank account
 * [update_connector_config_v1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/paymentsv1/README.md#update_connector_config_v1) - Update the config of a connector
 * [update_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/paymentsv1/README.md#update_metadata) - Update metadata
+* [update_pool_query](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/paymentsv1/README.md#update_pool_query) - Update the query of a pool
 * [update_transfer_initiation_status](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/paymentsv1/README.md#update_transfer_initiation_status) - Update the status of a transfer initiation
 
-#### [payments.v3](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md)
+### [Payments.V3](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md)
 
 * [add_account_to_pool](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#add_account_to_pool) - Add an account to a pool
 * [add_bank_account_to_payment_service_user](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#add_bank_account_to_payment_service_user) - Add a bank account to a payment service user
@@ -372,14 +363,19 @@ asyncio.run(main())
 
 * [create_bank_account](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#create_bank_account) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
 
+* [create_link_for_payment_service_user](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#create_link_for_payment_service_user) - Create an authentication link for a payment service user on a connector, for oauth flow
 * [create_payment](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#create_payment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
 * [create_payment_service_user](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#create_payment_service_user) - Create a formance payment service user object
 * [create_pool](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#create_pool) - Create a formance pool object
 * [delete_payment_initiation](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#delete_payment_initiation) - Delete a payment initiation by ID
+* [delete_payment_service_user](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#delete_payment_service_user) - Delete a payment service user by ID
+* [delete_payment_service_user_connection_from_connector_id](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#delete_payment_service_user_connection_from_connector_id) - Delete a connection for a payment service user on a connector
+* [delete_payment_service_user_connector](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#delete_payment_service_user_connector) - Remove a payment service user from a connector, the PSU will still exist in Formance
 * [delete_pool](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#delete_pool) - Delete a pool by ID
 * [forward_bank_account](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#forward_bank_account) - Forward a Bank Account to a PSP for creation
 * [forward_payment_service_user_bank_account](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#forward_payment_service_user_bank_account) - Forward a payment service user's bank account to a connector
+* [forward_payment_service_user_to_provider](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#forward_payment_service_user_to_provider) - Register/forward a payment service user on/to a connector
 * [get_account](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_account) - Get an account by ID
 * [get_account_balances](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_account_balances) - Get account balances
 * [get_bank_account](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_bank_account) - Get a Bank Account by ID
@@ -388,6 +384,7 @@ asyncio.run(main())
 * [get_payment](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_payment) - Get a payment by ID
 * [get_payment_initiation](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_payment_initiation) - Get a payment initiation by ID
 * [get_payment_service_user](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_payment_service_user) - Get a payment service user by ID
+* [get_payment_service_user_link_attempt_from_connector_id](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_payment_service_user_link_attempt_from_connector_id) - Get a link attempt for a payment service user on a connector
 * [get_pool](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_pool) - Get a pool by ID
 * [get_pool_balances](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_pool_balances) - Get historical pool balances from a particular point in time
 * [get_pool_balances_latest](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_pool_balances_latest) - Get latest pool balances
@@ -403,6 +400,11 @@ asyncio.run(main())
 * [list_payment_initiation_adjustments](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_payment_initiation_adjustments) - List all payment initiation adjustments
 * [list_payment_initiation_related_payments](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_payment_initiation_related_payments) - List all payments related to a payment initiation
 * [list_payment_initiations](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_payment_initiations) - List all payment initiations
+* [list_payment_service_user_connections](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_payment_service_user_connections) - List all connections for a payment service user
+* [list_payment_service_user_connections_from_connector_id](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_payment_service_user_connections_from_connector_id) - List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+* [list_payment_service_user_link_attempts_from_connector_id](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_payment_service_user_link_attempts_from_connector_id) - List all link attempts for a payment service user on a connector.
+Allows to check if users used the link and completed the oauth flow.
+
 * [list_payment_service_users](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_payment_service_users) - List all payment service users
 * [list_payments](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_payments) - List all payments
 * [list_pools](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_pools) - List all pools
@@ -413,13 +415,12 @@ asyncio.run(main())
 * [reverse_payment_initiation](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#reverse_payment_initiation) - Reverse a payment initiation
 * [uninstall_connector](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#uninstall_connector) - Uninstall a connector
 * [update_bank_account_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#update_bank_account_metadata) - Update a bank account's metadata
+* [update_link_for_payment_service_user_on_connector](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#update_link_for_payment_service_user_on_connector) - Update/Regenerate a link for a payment service user on a connector
 * [update_payment_metadata](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#update_payment_metadata) - Update a payment's metadata
+* [update_pool_query](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#update_pool_query) - Update the query of a pool
 * [v3_update_connector_config](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#v3_update_connector_config) - Update the config of a connector
 
-### [reconciliation](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliation/README.md)
-
-
-#### [reconciliation.v1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md)
+### [Reconciliation.V1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md)
 
 * [create_policy](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#create_policy) - Create a policy
 * [delete_policy](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#delete_policy) - Delete a policy
@@ -430,22 +431,12 @@ asyncio.run(main())
 * [reconcile](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#reconcile) - Reconcile using a policy
 * [reconciliationget_server_info](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#reconciliationget_server_info) - Get server info
 
-### [SDK](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/sdk/README.md)
-
-* [get_versions](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/sdk/README.md#get_versions) - Show stack version information
-
-### [~~search~~](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/search/README.md)
-
-
-#### [~~search.v1~~](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/searchv1/README.md)
+### [~~Search.V1~~](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/searchv1/README.md)
 
 * [~~search~~](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/searchv1/README.md#search) - search.v1 :warning: **Deprecated**
 * [~~searchget_server_info~~](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/searchv1/README.md#searchget_server_info) - Get server info :warning: **Deprecated**
 
-### [wallets](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/wallets/README.md)
-
-
-#### [wallets.v1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/walletsv1/README.md)
+### [Wallets.V1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/walletsv1/README.md)
 
 * [confirm_hold](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/walletsv1/README.md#confirm_hold) - Confirm a hold
 * [create_balance](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/walletsv1/README.md#create_balance) - Create a balance
@@ -464,10 +455,7 @@ asyncio.run(main())
 * [void_hold](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/walletsv1/README.md#void_hold) - Cancel a hold
 * [walletsget_server_info](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/walletsv1/README.md#walletsget_server_info) - Get server info
 
-### [webhooks](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooks/README.md)
-
-
-#### [webhooks.v1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md)
+### [Webhooks.V1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md)
 
 * [activate_config](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#activate_config) - Activate one config
 * [change_config_secret](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#change_config_secret) - Change the signing secret of a config
@@ -524,16 +512,10 @@ Some of the endpoints in this SDK support retries. If you use the SDK without an
 To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call:
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
 from formance_sdk_python.utils import BackoffStrategy, RetryConfig
 
 
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
+with SDK() as sdk:
 
     res = sdk.get_versions(,
         RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
@@ -548,16 +530,11 @@ with SDK(
 If you'd like to override the default retry strategy for all operations that support retries, you can use the `retry_config` optional parameter when initializing the SDK:
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
 from formance_sdk_python.utils import BackoffStrategy, RetryConfig
 
 
 with SDK(
     retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
 ) as sdk:
 
     res = sdk.get_versions()
@@ -637,15 +614,15 @@ with SDK(
 
 
 **Inherit from [`SDKBaseError`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/sdkbaseerror.py)**:
-* [`V3ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v3errorresponse.py): Error. Applicable to 46 of 230 methods.*
-* [`PaymentsErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/paymentserrorresponse.py): Error. Applicable to 45 of 230 methods.*
-* [`V2ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v2errorresponse.py): Error. Applicable to 37 of 230 methods.*
-* [`ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/errorresponse.py): Applicable to 19 of 230 methods.*
-* [`V2Error`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v2error.py): General error. Applicable to 18 of 230 methods.*
-* [`Error`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/error.py): General error. Applicable to 17 of 230 methods.*
-* [`WalletsErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/walletserrorresponse.py): Applicable to 15 of 230 methods.*
-* [`ReconciliationErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/reconciliationerrorresponse.py): Error response. Applicable to 8 of 230 methods.*
-* [`WebhooksErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/webhookserrorresponse.py): Error. Applicable to 8 of 230 methods.*
+* [`V3ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v3errorresponse.py): Error. Applicable to 57 of 249 methods.*
+* [`PaymentsErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/paymentserrorresponse.py): Error. Applicable to 46 of 249 methods.*
+* [`V2ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v2errorresponse.py): Applicable to 44 of 249 methods.*
+* [`ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/errorresponse.py): Applicable to 19 of 249 methods.*
+* [`V2Error`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v2error.py): General error. Applicable to 18 of 249 methods.*
+* [`Error`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/error.py): General error. Applicable to 17 of 249 methods.*
+* [`WalletsErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/walletserrorresponse.py): Applicable to 15 of 249 methods.*
+* [`ReconciliationErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/reconciliationerrorresponse.py): Error response. Applicable to 8 of 249 methods.*
+* [`WebhooksErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/webhookserrorresponse.py): Error. Applicable to 8 of 249 methods.*
 * [`ResponseValidationError`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>
@@ -667,26 +644,21 @@ You can override the default server globally by passing a server index to the `s
 
 If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
 
-| Variable       | Parameter                               | Supported Values                                      | Default           | Description                                                   |
-| -------------- | --------------------------------------- | ----------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `environment`  | `environment: models.ServerEnvironment` | - `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"sandbox"`       | The environment name. Defaults to the production environment. |
-| `organization` | `organization: str`                     | str                                                   | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+| Variable       | Parameter                               | Supported Values                                         | Default           | Description                                                   |
+| -------------- | --------------------------------------- | -------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `environment: models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
+| `organization` | `organization: str`                     | str                                                      | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
 
 #### Example
 
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
 
 
 with SDK(
     server_idx=1,
-    environment="us-east-1"
-    organization="<value>"
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
+    environment="us-east-1",
+    organization="orgID-stackID",
 ) as sdk:
 
     res = sdk.get_versions()
@@ -703,15 +675,10 @@ with SDK(
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
 
 
 with SDK(
-    server_url="https://orgID-stackID.sandbox.formance.cloud",
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
+    server_url="https://orgID-stackID.eu.sandbox.formance.cloud",
 ) as sdk:
 
     res = sdk.get_versions()
@@ -812,9 +779,9 @@ s = SDK(async_client=CustomClient(httpx.AsyncClient()))
 
 This SDK supports the following security scheme globally:
 
-| Name                            | Type   | Scheme                         |
-| ------------------------------- | ------ | ------------------------------ |
-| `client_id`<br/>`client_secret` | oauth2 | OAuth2 Client Credentials Flow |
+| Name                                            | Type   | Scheme                         |
+| ----------------------------------------------- | ------ | ------------------------------ |
+| `client_id`<br/>`client_secret`<br/>`token_url` | oauth2 | OAuth2 Client Credentials Flow |
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```python
@@ -848,27 +815,16 @@ The `SDK` class implements the context manager protocol and registers a finalize
 
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
 def main():
 
-    with SDK(
-        security=shared.Security(
-            client_id="<YOUR_CLIENT_ID_HERE>",
-            client_secret="<YOUR_CLIENT_SECRET_HERE>",
-        ),
-    ) as sdk:
+    with SDK() as sdk:
         # Rest of application here...
 
 
 # Or when using async:
 async def amain():
 
-    async with SDK(
-        security=shared.Security(
-            client_id="<YOUR_CLIENT_ID_HERE>",
-            client_secret="<YOUR_CLIENT_SECRET_HERE>",
-        ),
-    ) as sdk:
+    async with SDK() as sdk:
         # Rest of application here...
 ```
 <!-- End Resource Management [resource-management] -->

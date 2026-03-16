@@ -10,7 +10,7 @@ from formance_sdk_python.types import (
 )
 import pydantic
 from pydantic import model_serializer
-from typing import Any, Dict
+from typing import Dict
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
@@ -19,7 +19,7 @@ class SecretTypedDict(TypedDict):
     id: str
     last_digits: str
     name: str
-    metadata: NotRequired[Nullable[Dict[str, Any]]]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
 
 
 class Secret(BaseModel):
@@ -31,34 +31,35 @@ class Secret(BaseModel):
 
     name: str
 
-    metadata: OptionalNullable[Dict[str, Any]] = UNSET
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = ["metadata"]
-        nullable_fields = ["metadata"]
-        null_default_fields = []
-
+        optional_fields = set(["metadata"])
+        nullable_fields = set(["metadata"])
         serialized = handler(self)
-
         m = {}
 
         for n, f in type(self).model_fields.items():
             k = f.alias or n
-            val = serialized.get(k)
-            serialized.pop(k, None)
+            val = serialized.get(k, serialized.get(n))
+            is_nullable_and_explicitly_set = (
+                k in nullable_fields
+                and (self.__pydantic_fields_set__.intersection({n}))  # pylint: disable=no-member
+            )
 
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
-
-            if val is not None and val != UNSET_SENTINEL:
-                m[k] = val
-            elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
-            ):
-                m[k] = val
+            if val != UNSET_SENTINEL:
+                if (
+                    val is not None
+                    or k not in optional_fields
+                    or is_nullable_and_explicitly_set
+                ):
+                    m[k] = val
 
         return m
+
+
+try:
+    Secret.model_rebuild()
+except NameError:
+    pass

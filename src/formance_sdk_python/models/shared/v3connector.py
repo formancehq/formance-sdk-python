@@ -41,3 +41,9 @@ class V3Connector(BaseModel):
     scheduled_for_deletion: Annotated[
         bool, pydantic.Field(alias="scheduledForDeletion")
     ]
+
+
+try:
+    V3Connector.model_rebuild()
+except NameError:
+    pass

@@ -2,8 +2,15 @@
 
 from __future__ import annotations
 from datetime import datetime
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import (
+    BaseModel,
+    Nullable,
+    OptionalNullable,
+    UNSET,
+    UNSET_SENTINEL,
+)
 import pydantic
+from pydantic import model_serializer
 from typing import Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -12,6 +19,7 @@ class V2LedgerTypedDict(TypedDict):
     added_at: datetime
     bucket: str
     name: str
+    deleted_at: NotRequired[Nullable[datetime]]
     features: NotRequired[Dict[str, str]]
     id: NotRequired[int]
     metadata: NotRequired[Dict[str, str]]
@@ -24,8 +32,43 @@ class V2Ledger(BaseModel):
 
     name: str
 
+    deleted_at: Annotated[
+        OptionalNullable[datetime], pydantic.Field(alias="deletedAt")
+    ] = UNSET
+
     features: Optional[Dict[str, str]] = None
 
     id: Optional[int] = None
 
     metadata: Optional[Dict[str, str]] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["deletedAt", "features", "id", "metadata"])
+        nullable_fields = set(["deletedAt"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+            is_nullable_and_explicitly_set = (
+                k in nullable_fields
+                and (self.__pydantic_fields_set__.intersection({n}))  # pylint: disable=no-member
+            )
+
+            if val != UNSET_SENTINEL:
+                if (
+                    val is not None
+                    or k not in optional_fields
+                    or is_nullable_and_explicitly_set
+                ):
+                    m[k] = val
+
+        return m
+
+
+try:
+    V2Ledger.model_rebuild()
+except NameError:
+    pass

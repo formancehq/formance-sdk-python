@@ -2,15 +2,9 @@
 ```python
 # Synchronous Example
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
 
 
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
+with SDK() as sdk:
 
     res = sdk.get_versions()
 
@@ -28,16 +22,10 @@ The same SDK client can also be used to make asynchronous requests by importing 
 # Asynchronous Example
 import asyncio
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
 
 async def main():
 
-    async with SDK(
-        security=shared.Security(
-            client_id="<YOUR_CLIENT_ID_HERE>",
-            client_secret="<YOUR_CLIENT_SECRET_HERE>",
-        ),
-    ) as sdk:
+    async with SDK() as sdk:
 
         res = await sdk.get_versions_async()
 

@@ -63,6 +63,7 @@ class LedgerV2(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.request_body, False, False, "json", Dict[str, str]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -79,7 +80,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2AddMetadataOnTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -93,6 +94,7 @@ class LedgerV2(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
@@ -154,6 +156,7 @@ class LedgerV2(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.request_body, False, False, "json", Dict[str, str]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -170,7 +173,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2AddMetadataOnTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -184,6 +187,7 @@ class LedgerV2(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
@@ -243,6 +247,7 @@ class LedgerV2(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.request_body, False, False, "json", Dict[str, str]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -259,7 +264,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2AddMetadataToAccount",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -273,6 +278,7 @@ class LedgerV2(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
@@ -332,6 +338,7 @@ class LedgerV2(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.request_body, False, False, "json", Dict[str, str]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -348,7 +355,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2AddMetadataToAccount",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -362,6 +369,7 @@ class LedgerV2(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
@@ -411,16 +419,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -437,7 +443,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2CountAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -501,16 +507,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -527,7 +531,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2CountAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -591,16 +595,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -617,7 +619,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2CountTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -681,16 +683,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -707,7 +707,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2CountTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -780,6 +780,7 @@ class LedgerV2(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.request_body, False, False, "json", List[shared.V2BulkElement]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -796,7 +797,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2CreateBulk",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -880,6 +881,7 @@ class LedgerV2(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.request_body, False, False, "json", List[shared.V2BulkElement]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -896,7 +898,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2CreateBulk",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -935,7 +937,7 @@ class LedgerV2(BaseSDK):
         self,
         *,
         request: Union[
-            shared.V2ExporterConfiguration, shared.V2ExporterConfigurationTypedDict
+            shared.V2CreateExporterRequest, shared.V2CreateExporterRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -961,8 +963,8 @@ class LedgerV2(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.V2ExporterConfiguration)
-        request = cast(shared.V2ExporterConfiguration, request)
+            request = utils.unmarshal(request, shared.V2CreateExporterRequest)
+        request = cast(shared.V2CreateExporterRequest, request)
 
         req = self._build_request(
             method="POST",
@@ -978,8 +980,9 @@ class LedgerV2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.V2ExporterConfiguration
+                request, False, False, "json", shared.V2CreateExporterRequest
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1026,7 +1029,7 @@ class LedgerV2(BaseSDK):
         self,
         *,
         request: Union[
-            shared.V2ExporterConfiguration, shared.V2ExporterConfigurationTypedDict
+            shared.V2CreateExporterRequest, shared.V2CreateExporterRequestTypedDict
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1052,8 +1055,8 @@ class LedgerV2(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.V2ExporterConfiguration)
-        request = cast(shared.V2ExporterConfiguration, request)
+            request = utils.unmarshal(request, shared.V2CreateExporterRequest)
+        request = cast(shared.V2CreateExporterRequest, request)
 
         req = self._build_request_async(
             method="POST",
@@ -1069,8 +1072,9 @@ class LedgerV2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.V2ExporterConfiguration
+                request, False, False, "json", shared.V2CreateExporterRequest
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1166,6 +1170,7 @@ class LedgerV2(BaseSDK):
                 "json",
                 shared.V2CreateLedgerRequest,
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1182,7 +1187,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2CreateLedger",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1258,6 +1263,7 @@ class LedgerV2(BaseSDK):
                 "json",
                 shared.V2CreateLedgerRequest,
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1274,7 +1280,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2CreateLedger",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1345,12 +1351,13 @@ class LedgerV2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v2_create_pipeline_request,
+                request.v2_create_pipeline_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V2CreatePipelineRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1441,12 +1448,13 @@ class LedgerV2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v2_create_pipeline_request,
+                request.v2_create_pipeline_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V2CreatePipelineRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1543,6 +1551,7 @@ class LedgerV2(BaseSDK):
                 "json",
                 shared.V2PostTransaction,
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1559,7 +1568,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2CreateTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1576,6 +1585,7 @@ class LedgerV2(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
@@ -1639,6 +1649,7 @@ class LedgerV2(BaseSDK):
                 "json",
                 shared.V2PostTransaction,
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1655,7 +1666,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2CreateTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1672,6 +1683,7 @@ class LedgerV2(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
@@ -1732,6 +1744,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1748,7 +1761,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2DeleteAccountMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1757,11 +1770,12 @@ class LedgerV2(BaseSDK):
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "2XX", "*"):
+        if utils.match_response(http_res, "204", "*"):
             return operations.V2DeleteAccountMetadataResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
@@ -1822,6 +1836,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1838,7 +1853,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2DeleteAccountMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1847,8 +1862,203 @@ class LedgerV2(BaseSDK):
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "2XX", "*"):
+        if utils.match_response(http_res, "204", "*"):
             return operations.V2DeleteAccountMetadataResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def delete_bucket(
+        self,
+        *,
+        request: Union[
+            operations.V2DeleteBucketRequest, operations.V2DeleteBucketRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2DeleteBucketResponse:
+        r"""Delete bucket
+
+        Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the bucket will have their deleted_at field set to the current timestamp.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2DeleteBucketRequest)
+        request = cast(operations.V2DeleteBucketRequest, request)
+
+        req = self._build_request(
+            method="DELETE",
+            path="/api/ledger/v2/_/buckets/{bucket}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2DeleteBucket",
+                oauth2_scopes=["ledger:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.V2DeleteBucketResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "404", "application/json"):
+            return operations.V2DeleteBucketResponse(
+                v2_error_response=unmarshal_json_response(
+                    Optional[shared.V2ErrorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def delete_bucket_async(
+        self,
+        *,
+        request: Union[
+            operations.V2DeleteBucketRequest, operations.V2DeleteBucketRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2DeleteBucketResponse:
+        r"""Delete bucket
+
+        Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the bucket will have their deleted_at field set to the current timestamp.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2DeleteBucketRequest)
+        request = cast(operations.V2DeleteBucketRequest, request)
+
+        req = self._build_request_async(
+            method="DELETE",
+            path="/api/ledger/v2/_/buckets/{bucket}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2DeleteBucket",
+                oauth2_scopes=["ledger:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.V2DeleteBucketResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "404", "application/json"):
+            return operations.V2DeleteBucketResponse(
+                v2_error_response=unmarshal_json_response(
+                    Optional[shared.V2ErrorResponse], http_res
+                ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
@@ -1908,6 +2118,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1994,6 +2205,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2080,6 +2292,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2096,7 +2309,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2DeleteLedgerMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2166,6 +2379,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2182,7 +2396,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2DeleteLedgerMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2252,6 +2466,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2338,6 +2553,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2428,6 +2644,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2444,7 +2661,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2DeleteTransactionMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2453,11 +2670,12 @@ class LedgerV2(BaseSDK):
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "2XX", "*"):
+        if utils.match_response(http_res, "204", "*"):
             return operations.V2DeleteTransactionMetadataResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
@@ -2518,6 +2736,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2534,7 +2753,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2DeleteTransactionMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2543,11 +2762,12 @@ class LedgerV2(BaseSDK):
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "2XX", "*"):
+        if utils.match_response(http_res, "204", "*"):
             return operations.V2DeleteTransactionMetadataResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
@@ -2603,6 +2823,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="*/*",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2619,7 +2840,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ExportLogs",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2685,6 +2906,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="*/*",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2701,7 +2923,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ExportLogs",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2767,6 +2989,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2783,7 +3006,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2GetAccount",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2855,6 +3078,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2871,7 +3095,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2GetAccount",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2939,16 +3163,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2965,7 +3187,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2GetBalancesAggregated",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3033,16 +3255,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3059,7 +3279,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2GetBalancesAggregated",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3132,6 +3352,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3221,6 +3442,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3309,6 +3531,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3325,7 +3548,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2GetLedger",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3397,6 +3620,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3413,7 +3637,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2GetLedger",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3486,6 +3710,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3502,7 +3727,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2GetLedgerInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3575,6 +3800,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3591,7 +3817,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2GetLedgerInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3664,6 +3890,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3753,6 +3980,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3782,6 +4010,184 @@ class LedgerV2(BaseSDK):
             return operations.V2GetPipelineStateResponse(
                 object=unmarshal_json_response(
                     Optional[operations.V2GetPipelineStateResponseBody], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def get_schema(
+        self,
+        *,
+        request: Union[
+            operations.V2GetSchemaRequest, operations.V2GetSchemaRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2GetSchemaResponse:
+        r"""Get a schema for a ledger by version
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2GetSchemaRequest)
+        request = cast(operations.V2GetSchemaRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/ledger/v2/{ledger}/schemas/{version}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2GetSchema",
+                oauth2_scopes=["ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V2GetSchemaResponse(
+                v2_schema_response=unmarshal_json_response(
+                    Optional[shared.V2SchemaResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def get_schema_async(
+        self,
+        *,
+        request: Union[
+            operations.V2GetSchemaRequest, operations.V2GetSchemaRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2GetSchemaResponse:
+        r"""Get a schema for a ledger by version
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2GetSchemaRequest)
+        request = cast(operations.V2GetSchemaRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/ledger/v2/{ledger}/schemas/{version}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2GetSchema",
+                oauth2_scopes=["ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V2GetSchemaResponse(
+                v2_schema_response=unmarshal_json_response(
+                    Optional[shared.V2SchemaResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3842,6 +4248,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3858,7 +4265,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2GetTransaction",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3931,6 +4338,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3947,7 +4355,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2GetTransaction",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4015,16 +4423,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4041,7 +4447,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2GetVolumesWithBalances",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4109,16 +4515,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4135,7 +4539,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2GetVolumesWithBalances",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4213,6 +4617,7 @@ class LedgerV2(BaseSDK):
                 "raw",
                 Union[bytes, IO[bytes], io.BufferedReader],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4229,7 +4634,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ImportLogs",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4304,6 +4709,7 @@ class LedgerV2(BaseSDK):
                 "raw",
                 Union[bytes, IO[bytes], io.BufferedReader],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4320,7 +4726,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ImportLogs",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4334,6 +4740,186 @@ class LedgerV2(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def insert_schema(
+        self,
+        *,
+        request: Union[
+            operations.V2InsertSchemaRequest, operations.V2InsertSchemaRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2InsertSchemaResponse:
+        r"""Insert a schema for a ledger
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2InsertSchemaRequest)
+        request = cast(operations.V2InsertSchemaRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/ledger/v2/{ledger}/schemas/{version}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.v2_schema_data, False, False, "json", shared.V2SchemaData
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2InsertSchema",
+                oauth2_scopes=["ledger:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.V2InsertSchemaResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def insert_schema_async(
+        self,
+        *,
+        request: Union[
+            operations.V2InsertSchemaRequest, operations.V2InsertSchemaRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2InsertSchemaResponse:
+        r"""Insert a schema for a ledger
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2InsertSchemaRequest)
+        request = cast(operations.V2InsertSchemaRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/ledger/v2/{ledger}/schemas/{version}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.v2_schema_data, False, False, "json", shared.V2SchemaData
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2InsertSchema",
+                oauth2_scopes=["ledger:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.V2InsertSchemaResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
@@ -4384,16 +4970,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4410,7 +4994,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ListAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4477,16 +5061,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4503,7 +5085,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ListAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4566,6 +5148,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4645,6 +5228,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4726,16 +5310,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=False,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4752,7 +5334,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ListLedgers",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4817,16 +5399,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=False,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4843,7 +5423,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ListLedgers",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4910,16 +5490,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4936,7 +5514,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ListLogs",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5003,16 +5581,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5029,7 +5605,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ListLogs",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5102,6 +5678,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5191,6 +5768,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5220,6 +5798,184 @@ class LedgerV2(BaseSDK):
             return operations.V2ListPipelinesResponse(
                 object=unmarshal_json_response(
                     Optional[operations.V2ListPipelinesResponseBody], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def list_schemas(
+        self,
+        *,
+        request: Union[
+            operations.V2ListSchemasRequest, operations.V2ListSchemasRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2ListSchemasResponse:
+        r"""List all schemas for a ledger
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2ListSchemasRequest)
+        request = cast(operations.V2ListSchemasRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/ledger/v2/{ledger}/schemas",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2ListSchemas",
+                oauth2_scopes=["ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V2ListSchemasResponse(
+                v2_schemas_cursor_response=unmarshal_json_response(
+                    Optional[shared.V2SchemasCursorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def list_schemas_async(
+        self,
+        *,
+        request: Union[
+            operations.V2ListSchemasRequest, operations.V2ListSchemasRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2ListSchemasResponse:
+        r"""List all schemas for a ledger
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2ListSchemasRequest)
+        request = cast(operations.V2ListSchemasRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/ledger/v2/{ledger}/schemas",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2ListSchemas",
+                oauth2_scopes=["ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V2ListSchemasResponse(
+                v2_schemas_cursor_response=unmarshal_json_response(
+                    Optional[shared.V2SchemasCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -5275,16 +6031,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5301,7 +6055,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ListTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5369,16 +6123,14 @@ class LedgerV2(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5395,7 +6147,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ListTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5470,6 +6222,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5486,7 +6239,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ReadStats",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5561,6 +6314,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5577,7 +6331,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2ReadStats",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5650,6 +6404,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5736,6 +6491,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5763,6 +6519,202 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "*"):
             return operations.V2ResetPipelineResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def restore_bucket(
+        self,
+        *,
+        request: Union[
+            operations.V2RestoreBucketRequest,
+            operations.V2RestoreBucketRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2RestoreBucketResponse:
+        r"""Restore bucket
+
+        Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the bucket will have their deleted_at field set to NULL.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2RestoreBucketRequest)
+        request = cast(operations.V2RestoreBucketRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/ledger/v2/_/buckets/{bucket}/restore",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2RestoreBucket",
+                oauth2_scopes=["ledger:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.V2RestoreBucketResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "404", "application/json"):
+            return operations.V2RestoreBucketResponse(
+                v2_error_response=unmarshal_json_response(
+                    Optional[shared.V2ErrorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def restore_bucket_async(
+        self,
+        *,
+        request: Union[
+            operations.V2RestoreBucketRequest,
+            operations.V2RestoreBucketRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2RestoreBucketResponse:
+        r"""Restore bucket
+
+        Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the bucket will have their deleted_at field set to NULL.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2RestoreBucketRequest)
+        request = cast(operations.V2RestoreBucketRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/ledger/v2/_/buckets/{bucket}/restore",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2RestoreBucket",
+                oauth2_scopes=["ledger:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.V2RestoreBucketResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "404", "application/json"):
+            return operations.V2RestoreBucketResponse(
+                v2_error_response=unmarshal_json_response(
+                    Optional[shared.V2ErrorResponse], http_res
+                ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
@@ -5823,12 +6775,13 @@ class LedgerV2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v2_revert_transaction_request,
+                request.v2_revert_transaction_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V2RevertTransactionRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5845,7 +6798,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2RevertTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5856,12 +6809,13 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2RevertTransactionResponse(
-                v2_create_transaction_response=unmarshal_json_response(
-                    Optional[shared.V2CreateTransactionResponse], http_res
+                v2_revert_transaction_response=unmarshal_json_response(
+                    Optional[shared.V2RevertTransactionResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
@@ -5919,12 +6873,13 @@ class LedgerV2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v2_revert_transaction_request,
+                request.v2_revert_transaction_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V2RevertTransactionRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5941,7 +6896,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2RevertTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5952,8 +6907,205 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
             return operations.V2RevertTransactionResponse(
-                v2_create_transaction_response=unmarshal_json_response(
-                    Optional[shared.V2CreateTransactionResponse], http_res
+                v2_revert_transaction_response=unmarshal_json_response(
+                    Optional[shared.V2RevertTransactionResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def run_query(
+        self,
+        *,
+        request: Union[
+            operations.V2RunQueryRequest, operations.V2RunQueryRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2RunQueryResponse:
+        r"""Run a query template
+
+        Run a query template on a ledger
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2RunQueryRequest)
+        request = cast(operations.V2RunQueryRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/ledger/v2/{ledger}/queries/{id}/run",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body,
+                False,
+                False,
+                "json",
+                operations.V2RunQueryRequestBody,
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2RunQuery",
+                oauth2_scopes=["ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V2RunQueryResponse(
+                one_of=unmarshal_json_response(
+                    Optional[operations.V2RunQueryResponseBody], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def run_query_async(
+        self,
+        *,
+        request: Union[
+            operations.V2RunQueryRequest, operations.V2RunQueryRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2RunQueryResponse:
+        r"""Run a query template
+
+        Run a query template on a ledger
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2RunQueryRequest)
+        request = cast(operations.V2RunQueryRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/ledger/v2/{ledger}/queries/{id}/run",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body,
+                False,
+                False,
+                "json",
+                operations.V2RunQueryRequestBody,
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2RunQuery",
+                oauth2_scopes=["ledger:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V2RunQueryResponse(
+                one_of=unmarshal_json_response(
+                    Optional[operations.V2RunQueryResponseBody], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -6014,6 +7166,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6100,6 +7253,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6185,6 +7339,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6270,6 +7425,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6297,6 +7453,194 @@ class LedgerV2(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "202", "*"):
             return operations.V2StopPipelineResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def update_exporter(
+        self,
+        *,
+        request: Union[
+            operations.V2UpdateExporterRequest,
+            operations.V2UpdateExporterRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2UpdateExporterResponse:
+        r"""Update exporter
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2UpdateExporterRequest)
+        request = cast(operations.V2UpdateExporterRequest, request)
+
+        req = self._build_request(
+            method="PUT",
+            path="/api/ledger/v2/_/exporters/{exporterID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.v2_create_exporter_request,
+                False,
+                False,
+                "json",
+                shared.V2CreateExporterRequest,
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2UpdateExporter",
+                oauth2_scopes=["ledger:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.V2UpdateExporterResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V2ErrorResponseData, http_res
+            )
+            raise errors.V2ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def update_exporter_async(
+        self,
+        *,
+        request: Union[
+            operations.V2UpdateExporterRequest,
+            operations.V2UpdateExporterRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V2UpdateExporterResponse:
+        r"""Update exporter
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V2UpdateExporterRequest)
+        request = cast(operations.V2UpdateExporterRequest, request)
+
+        req = self._build_request_async(
+            method="PUT",
+            path="/api/ledger/v2/_/exporters/{exporterID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.v2_create_exporter_request,
+                False,
+                False,
+                "json",
+                shared.V2CreateExporterRequest,
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v2UpdateExporter",
+                oauth2_scopes=["ledger:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.V2UpdateExporterResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
@@ -6359,6 +7703,7 @@ class LedgerV2(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.request_body, False, False, "json", Dict[str, str]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6375,7 +7720,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2UpdateLedgerMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -6457,6 +7802,7 @@ class LedgerV2(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.request_body, False, False, "json", Dict[str, str]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6473,7 +7819,7 @@ class LedgerV2(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v2UpdateLedgerMetadata",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,

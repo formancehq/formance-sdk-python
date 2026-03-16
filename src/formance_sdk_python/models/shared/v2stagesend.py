@@ -8,7 +8,8 @@ from .v2stagesenddestination import (
 )
 from .v2stagesendsource import V2StageSendSource, V2StageSendSourceTypedDict
 from datetime import datetime
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
+from pydantic import model_serializer
 from typing import Dict, Optional
 from typing_extensions import NotRequired, TypedDict
 
@@ -31,3 +32,21 @@ class V2StageSend(BaseModel):
     source: Optional[V2StageSendSource] = None
 
     timestamp: Optional[datetime] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(
+            ["amount", "destination", "metadata", "source", "timestamp"]
+        )
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

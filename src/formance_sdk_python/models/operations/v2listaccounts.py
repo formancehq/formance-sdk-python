@@ -5,21 +5,20 @@ from datetime import datetime
 from formance_sdk_python.models.shared import (
     v2accountscursorresponse as shared_v2accountscursorresponse,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
     QueryParamMetadata,
-    RequestMetadata,
 )
 import httpx
 import pydantic
-from typing import Any, Dict, Optional
+from pydantic import model_serializer
+from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2ListAccountsRequestTypedDict(TypedDict):
-    request_body: Dict[str, Any]
     ledger: str
     r"""Name of the ledger."""
     cursor: NotRequired[str]
@@ -43,11 +42,6 @@ class V2ListAccountsRequestTypedDict(TypedDict):
 
 
 class V2ListAccountsRequest(BaseModel):
-    request_body: Annotated[
-        Dict[str, Any],
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ]
-
     ledger: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
@@ -92,6 +86,22 @@ class V2ListAccountsRequest(BaseModel):
 
     """
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["cursor", "expand", "pageSize", "pit", "sort"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class V2ListAccountsResponseTypedDict(TypedDict):
     content_type: str
@@ -120,3 +130,19 @@ class V2ListAccountsResponse(BaseModel):
         shared_v2accountscursorresponse.V2AccountsCursorResponse
     ] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["V2AccountsCursorResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

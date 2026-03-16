@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from formance_sdk_python.models.errors import SDKBaseError
 
 
-@dataclass(frozen=True)
+@dataclass(unsafe_hash=True)
 class ResponseValidationError(SDKBaseError):
     """Error raised when there is a type mismatch between the response data and the expected Pydantic model."""
 

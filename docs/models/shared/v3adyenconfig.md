@@ -3,14 +3,14 @@
 
 ## Fields
 
-| Field                  | Type                   | Required               | Description            |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `api_key`              | *str*                  | :heavy_check_mark:     | N/A                    |
-| `company_id`           | *str*                  | :heavy_check_mark:     | N/A                    |
-| `live_endpoint_prefix` | *Optional[str]*        | :heavy_minus_sign:     | N/A                    |
-| `name`                 | *str*                  | :heavy_check_mark:     | N/A                    |
-| `page_size`            | *Optional[int]*        | :heavy_minus_sign:     | N/A                    |
-| `polling_period`       | *Optional[str]*        | :heavy_minus_sign:     | N/A                    |
-| `provider`             | *Optional[str]*        | :heavy_minus_sign:     | N/A                    |
-| `webhook_password`     | *Optional[str]*        | :heavy_minus_sign:     | N/A                    |
-| `webhook_username`     | *Optional[str]*        | :heavy_minus_sign:     | N/A                    |
+| Field                                                                   | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `api_key`                                                               | *str*                                                                   | :heavy_check_mark:                                                      | N/A                                                                     |
+| `company_id`                                                            | *str*                                                                   | :heavy_check_mark:                                                      | N/A                                                                     |
+| `live_endpoint_prefix`                                                  | *Optional[str]*                                                         | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `name`                                                                  | *str*                                                                   | :heavy_check_mark:                                                      | N/A                                                                     |
+| ~~`page_size`~~                                                         | *Optional[int]*                                                         | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
+| `polling_period`                                                        | *Optional[str]*                                                         | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *Optional[str]*                                                         | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `webhook_password`                                                      | *Optional[str]*                                                         | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `webhook_username`                                                      | *Optional[str]*                                                         | :heavy_minus_sign:                                                      | N/A                                                                     |

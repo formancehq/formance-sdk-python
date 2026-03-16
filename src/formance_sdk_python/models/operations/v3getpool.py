@@ -4,10 +4,11 @@ from __future__ import annotations
 from formance_sdk_python.models.shared import (
     v3getpoolresponse as shared_v3getpoolresponse,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import FieldMetadata, PathParamMetadata
 import httpx
 import pydantic
+from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -51,3 +52,19 @@ class V3GetPoolResponse(BaseModel):
 
     v3_get_pool_response: Optional[shared_v3getpoolresponse.V3GetPoolResponse] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["V3GetPoolResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

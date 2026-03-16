@@ -58,6 +58,7 @@ class WebhooksV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -74,7 +75,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="activateConfig",
-                oauth2_scopes=["auth:read", "webhooks:write"],
+                oauth2_scopes=["webhooks:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -148,6 +149,7 @@ class WebhooksV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -164,7 +166,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="activateConfig",
-                oauth2_scopes=["auth:read", "webhooks:write"],
+                oauth2_scopes=["webhooks:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -244,12 +246,13 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.config_change_secret,
+                request.config_change_secret if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.ConfigChangeSecret],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -266,7 +269,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="changeConfigSecret",
-                oauth2_scopes=["auth:read", "webhooks:write"],
+                oauth2_scopes=["webhooks:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -346,12 +349,13 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.config_change_secret,
+                request.config_change_secret if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.ConfigChangeSecret],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -368,7 +372,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="changeConfigSecret",
-                oauth2_scopes=["auth:read", "webhooks:write"],
+                oauth2_scopes=["webhooks:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -443,6 +447,7 @@ class WebhooksV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -459,7 +464,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deactivateConfig",
-                oauth2_scopes=["auth:read", "webhooks:write"],
+                oauth2_scopes=["webhooks:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -534,6 +539,7 @@ class WebhooksV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -550,7 +556,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deactivateConfig",
-                oauth2_scopes=["auth:read", "webhooks:write"],
+                oauth2_scopes=["webhooks:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -624,6 +630,7 @@ class WebhooksV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -640,7 +647,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deleteConfig",
-                oauth2_scopes=["auth:read", "webhooks:write"],
+                oauth2_scopes=["webhooks:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -711,6 +718,7 @@ class WebhooksV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -727,7 +735,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deleteConfig",
-                oauth2_scopes=["auth:read", "webhooks:write"],
+                oauth2_scopes=["webhooks:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -798,6 +806,7 @@ class WebhooksV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -814,7 +823,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getManyConfigs",
-                oauth2_scopes=["auth:read", "webhooks:read"],
+                oauth2_scopes=["webhooks:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -888,6 +897,7 @@ class WebhooksV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -904,7 +914,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getManyConfigs",
-                oauth2_scopes=["auth:read", "webhooks:read"],
+                oauth2_scopes=["webhooks:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -988,6 +998,7 @@ class WebhooksV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request, False, False, "json", shared.ConfigUser
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1004,7 +1015,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="insertConfig",
-                oauth2_scopes=["auth:read", "webhooks:write"],
+                oauth2_scopes=["webhooks:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1088,6 +1099,7 @@ class WebhooksV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request, False, False, "json", shared.ConfigUser
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1104,7 +1116,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="insertConfig",
-                oauth2_scopes=["auth:read", "webhooks:write"],
+                oauth2_scopes=["webhooks:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1178,6 +1190,7 @@ class WebhooksV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1194,7 +1207,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="testConfig",
-                oauth2_scopes=["auth:read", "webhooks:read"],
+                oauth2_scopes=["webhooks:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1268,6 +1281,7 @@ class WebhooksV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1284,7 +1298,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="testConfig",
-                oauth2_scopes=["auth:read", "webhooks:read"],
+                oauth2_scopes=["webhooks:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1361,6 +1375,7 @@ class WebhooksV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.config_user, False, False, "json", shared.ConfigUser
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1377,7 +1392,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="updateConfig",
-                oauth2_scopes=["auth:read", "webhooks:write"],
+                oauth2_scopes=["webhooks:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1451,6 +1466,7 @@ class WebhooksV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.config_user, False, False, "json", shared.ConfigUser
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1467,7 +1483,7 @@ class WebhooksV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="updateConfig",
-                oauth2_scopes=["auth:read", "webhooks:write"],
+                oauth2_scopes=["webhooks:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,

@@ -1,5 +1,13 @@
 # ErrorErrorCode
 
+## Example Usage
+
+```python
+from formance_sdk_python.models.errors import ErrorErrorCode
+
+value = ErrorErrorCode.VALIDATION
+```
+
 
 ## Values
 

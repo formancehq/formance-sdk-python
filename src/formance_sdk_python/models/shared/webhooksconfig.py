@@ -32,3 +32,9 @@ class WebhooksConfig(BaseModel):
     secret: str
 
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
+
+
+try:
+    WebhooksConfig.model_rebuild()
+except NameError:
+    pass

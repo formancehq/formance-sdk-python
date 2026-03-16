@@ -58,6 +58,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -74,7 +75,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="cancelEvent",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -143,6 +144,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -159,7 +161,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="cancelEvent",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -231,6 +233,7 @@ class OrchestrationV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request, False, True, "json", Optional[shared.TriggerData]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -247,7 +250,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createTrigger",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -322,6 +325,7 @@ class OrchestrationV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request, False, True, "json", Optional[shared.TriggerData]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -338,7 +342,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createTrigger",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -366,7 +370,7 @@ class OrchestrationV1(BaseSDK):
         self,
         *,
         request: Optional[
-            Union[shared.WorkflowConfig, shared.WorkflowConfigTypedDict]
+            Union[shared.CreateWorkflowRequest, shared.CreateWorkflowRequestTypedDict]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -394,8 +398,8 @@ class OrchestrationV1(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[shared.WorkflowConfig])
-        request = cast(Optional[shared.WorkflowConfig], request)
+            request = utils.unmarshal(request, Optional[shared.CreateWorkflowRequest])
+        request = cast(Optional[shared.CreateWorkflowRequest], request)
 
         req = self._build_request(
             method="POST",
@@ -411,8 +415,9 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[shared.WorkflowConfig]
+                request, False, True, "json", Optional[shared.CreateWorkflowRequest]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -429,7 +434,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createWorkflow",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -457,7 +462,7 @@ class OrchestrationV1(BaseSDK):
         self,
         *,
         request: Optional[
-            Union[shared.WorkflowConfig, shared.WorkflowConfigTypedDict]
+            Union[shared.CreateWorkflowRequest, shared.CreateWorkflowRequestTypedDict]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -485,8 +490,8 @@ class OrchestrationV1(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[shared.WorkflowConfig])
-        request = cast(Optional[shared.WorkflowConfig], request)
+            request = utils.unmarshal(request, Optional[shared.CreateWorkflowRequest])
+        request = cast(Optional[shared.CreateWorkflowRequest], request)
 
         req = self._build_request_async(
             method="POST",
@@ -502,8 +507,9 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[shared.WorkflowConfig]
+                request, False, True, "json", Optional[shared.CreateWorkflowRequest]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -520,7 +526,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createWorkflow",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -592,6 +598,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -608,7 +615,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deleteTrigger",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -677,6 +684,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -693,7 +701,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deleteTrigger",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -762,6 +770,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -778,7 +787,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deleteWorkflow",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -847,6 +856,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -863,7 +873,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deleteWorkflow",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -932,6 +942,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -948,7 +959,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getInstance",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1020,6 +1031,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1036,7 +1048,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getInstance",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1109,6 +1121,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1125,7 +1138,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getInstanceHistory",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1198,6 +1211,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1214,7 +1228,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getInstanceHistory",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1289,6 +1303,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1305,7 +1320,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getInstanceStageHistory",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1380,6 +1395,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1396,7 +1412,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getInstanceStageHistory",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1468,6 +1484,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1484,7 +1501,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getWorkflow",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1556,6 +1573,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1572,7 +1590,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getWorkflow",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1644,6 +1662,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1660,7 +1679,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listInstances",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1732,6 +1751,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1748,7 +1768,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listInstances",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1820,6 +1840,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1836,7 +1857,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listTriggers",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1908,6 +1929,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1924,7 +1946,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listTriggers",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1999,6 +2021,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2015,7 +2038,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listTriggersOccurrences",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2090,6 +2113,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2106,7 +2130,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listTriggersOccurrences",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2169,6 +2193,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2185,7 +2210,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listWorkflows",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2248,6 +2273,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2264,7 +2290,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listWorkflows",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2325,6 +2351,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2341,7 +2368,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="orchestrationgetServerInfo",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2402,6 +2429,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2418,7 +2446,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="orchestrationgetServerInfo",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2490,6 +2518,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2506,7 +2535,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="readTrigger",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2578,6 +2607,7 @@ class OrchestrationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2594,7 +2624,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="readTrigger",
-                oauth2_scopes=["auth:read", "orchestration:read"],
+                oauth2_scopes=["orchestration:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2667,8 +2697,13 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, str]]
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, str]],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2685,7 +2720,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="runWorkflow",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2758,8 +2793,13 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, str]]
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, str]],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2776,7 +2816,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="runWorkflow",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2849,12 +2889,13 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body,
+                request.request_body if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[operations.SendEventRequestBody],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2871,7 +2912,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="sendEvent",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2941,12 +2982,13 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body,
+                request.request_body if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[operations.SendEventRequestBody],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2963,7 +3005,7 @@ class OrchestrationV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="sendEvent",
-                oauth2_scopes=["auth:read", "orchestration:write"],
+                oauth2_scopes=["orchestration:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,

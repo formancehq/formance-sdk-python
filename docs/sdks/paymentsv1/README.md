@@ -1,5 +1,4 @@
-# PaymentsV1
-(*payments.v1*)
+# Payments.V1
 
 ## Overview
 
@@ -48,6 +47,7 @@
 * [update_bank_account_metadata](#update_bank_account_metadata) - Update metadata of a bank account
 * [update_connector_config_v1](#update_connector_config_v1) - Update the config of a connector
 * [update_metadata](#update_metadata) - Update metadata
+* [update_pool_query](#update_pool_query) - Update the query of a pool
 * [update_transfer_initiation_status](#update_transfer_initiation_status) - Update the status of a transfer initiation
 
 ## add_account_to_pool
@@ -332,10 +332,6 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.create_pool(request={
-        "account_i_ds": [
-            "<value 1>",
-            "<value 2>",
-        ],
         "name": "<value>",
     })
 
@@ -940,10 +936,10 @@ with SDK(
         "pool_id": "XXX",
     })
 
-    assert res.pool_balances_response is not None
+    assert res.pool_balances_latest_response is not None
 
     # Handle response
-    print(res.pool_balances_response)
+    print(res.pool_balances_latest_response)
 
 ```
 
@@ -2228,6 +2224,59 @@ with SDK(
 ### Response
 
 **[operations.UpdateMetadataResponse](../../models/operations/updatemetadataresponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+
+## update_pool_query
+
+Update the query of a pool
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="updatePoolQuery" method="patch" path="/api/payments/pools/{poolId}/query" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v1.update_pool_query(request={
+        "update_pool_query_request": {
+            "query": {
+                "key": "<value>",
+            },
+        },
+        "pool_id": "XXX",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `request`                                                                              | [operations.UpdatePoolQueryRequest](../../models/operations/updatepoolqueryrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
+
+### Response
+
+**[operations.UpdatePoolQueryResponse](../../models/operations/updatepoolqueryresponse.md)**
 
 ### Errors
 

@@ -57,12 +57,13 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.confirm_hold_request,
+                request.confirm_hold_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.ConfirmHoldRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -79,7 +80,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="confirmHold",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -149,12 +150,13 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.confirm_hold_request,
+                request.confirm_hold_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.ConfirmHoldRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -171,7 +173,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="confirmHold",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -241,12 +243,13 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_balance_request,
+                request.create_balance_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.CreateBalanceRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -263,7 +266,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createBalance",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -336,12 +339,13 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_balance_request,
+                request.create_balance_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.CreateBalanceRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -358,7 +362,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createBalance",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -431,12 +435,13 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_wallet_request,
+                request.create_wallet_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.CreateWalletRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -453,7 +458,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createWallet",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -526,12 +531,13 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_wallet_request,
+                request.create_wallet_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.CreateWalletRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -548,7 +554,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createWallet",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -621,12 +627,13 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.credit_wallet_request,
+                request.credit_wallet_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.CreditWalletRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -643,7 +650,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="creditWallet",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -713,12 +720,13 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.credit_wallet_request,
+                request.credit_wallet_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.CreditWalletRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -735,7 +743,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="creditWallet",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -805,12 +813,13 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.debit_wallet_request,
+                request.debit_wallet_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.DebitWalletRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -827,7 +836,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="debitWallet",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -906,12 +915,13 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.debit_wallet_request,
+                request.debit_wallet_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.DebitWalletRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -928,7 +938,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="debitWallet",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1006,6 +1016,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1022,7 +1033,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getBalance",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1094,6 +1105,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1110,7 +1122,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getBalance",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1180,6 +1192,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1196,7 +1209,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getHold",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1266,6 +1279,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1282,7 +1296,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getHold",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1352,6 +1366,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1368,7 +1383,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getHolds",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1438,6 +1453,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1454,7 +1470,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getHolds",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1526,6 +1542,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1542,7 +1559,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getTransactions",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1614,6 +1631,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1630,7 +1648,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getTransactions",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1702,6 +1720,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1718,7 +1737,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getWallet",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1729,8 +1748,8 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletResponse(
-                activity_get_wallet_output=unmarshal_json_response(
-                    Optional[shared.ActivityGetWalletOutput], http_res
+                get_wallet_response=unmarshal_json_response(
+                    Optional[shared.GetWalletResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1796,6 +1815,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1812,7 +1832,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getWallet",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1823,8 +1843,8 @@ class WalletsV1(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletResponse(
-                activity_get_wallet_output=unmarshal_json_response(
-                    Optional[shared.ActivityGetWalletOutput], http_res
+                get_wallet_response=unmarshal_json_response(
+                    Optional[shared.GetWalletResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1891,6 +1911,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1907,7 +1928,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getWalletSummary",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1986,6 +2007,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2002,7 +2024,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getWalletSummary",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2080,6 +2102,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2096,7 +2119,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listBalances",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2165,6 +2188,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2181,7 +2205,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listBalances",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2250,6 +2274,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2266,7 +2291,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listWallets",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2338,6 +2363,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2354,7 +2380,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listWallets",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2427,12 +2453,13 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body,
+                request.request_body if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[operations.UpdateWalletRequestBody],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2449,7 +2476,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="updateWallet",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2519,12 +2546,13 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body,
+                request.request_body if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[operations.UpdateWalletRequestBody],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2541,7 +2569,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="updateWallet",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2608,6 +2636,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2624,7 +2653,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="voidHold",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2691,6 +2720,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2707,7 +2737,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="voidHold",
-                oauth2_scopes=["auth:read", "wallets:write"],
+                oauth2_scopes=["wallets:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2767,6 +2797,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2783,7 +2814,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="walletsgetServerInfo",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2846,6 +2877,7 @@ class WalletsV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2862,7 +2894,7 @@ class WalletsV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="walletsgetServerInfo",
-                oauth2_scopes=["auth:read", "wallets:read"],
+                oauth2_scopes=["wallets:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,

@@ -12,3 +12,9 @@ class ForwardBankAccountRequestTypedDict(TypedDict):
 
 class ForwardBankAccountRequest(BaseModel):
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+
+
+try:
+    ForwardBankAccountRequest.model_rebuild()
+except NameError:
+    pass

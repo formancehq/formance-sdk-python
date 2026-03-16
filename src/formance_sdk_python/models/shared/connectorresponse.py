@@ -24,3 +24,9 @@ class ConnectorResponse(BaseModel):
     r"""OK"""
 
     data: ConnectorResponseData
+
+
+try:
+    ConnectorResponseData.model_rebuild()
+except NameError:
+    pass

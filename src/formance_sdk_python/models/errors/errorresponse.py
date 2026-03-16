@@ -15,13 +15,11 @@ class ErrorResponseData(BaseModel):
     error_code: Annotated[
         shared_errorsenum.ErrorsEnum, pydantic.Field(alias="errorCode")
     ]
-
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
-
     details: Optional[str] = None
 
 
-@dataclass(frozen=True)
+@dataclass(unsafe_hash=True)
 class ErrorResponse(SDKBaseError):
     data: ErrorResponseData = field(hash=False)
 

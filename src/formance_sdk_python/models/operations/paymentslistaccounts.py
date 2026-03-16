@@ -2,16 +2,16 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.shared import accountscursor as shared_accountscursor
-from formance_sdk_python.types import BaseModel
-from formance_sdk_python.utils import FieldMetadata, QueryParamMetadata, RequestMetadata
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
+from formance_sdk_python.utils import FieldMetadata, QueryParamMetadata
 import httpx
 import pydantic
-from typing import Any, Dict, List, Optional
+from pydantic import model_serializer
+from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class PaymentslistAccountsRequestTypedDict(TypedDict):
-    request_body: NotRequired[Dict[str, Any]]
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests. Maximum page size is set to 15.
     Set to the value of next for the next page of results.
@@ -32,11 +32,6 @@ class PaymentslistAccountsRequestTypedDict(TypedDict):
 
 
 class PaymentslistAccountsRequest(BaseModel):
-    request_body: Annotated[
-        Optional[Dict[str, Any]],
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ] = None
-
     cursor: Annotated[
         Optional[str],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
@@ -71,6 +66,22 @@ class PaymentslistAccountsRequest(BaseModel):
     ] = None
     r"""Fields used to sort payments (default is date:desc)."""
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["cursor", "pageSize", "query", "sort"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class PaymentslistAccountsResponseTypedDict(TypedDict):
     content_type: str
@@ -95,3 +106,19 @@ class PaymentslistAccountsResponse(BaseModel):
 
     accounts_cursor: Optional[shared_accountscursor.AccountsCursor] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["AccountsCursor"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

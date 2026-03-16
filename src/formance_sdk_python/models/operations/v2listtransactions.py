@@ -6,27 +6,26 @@ from enum import Enum
 from formance_sdk_python.models.shared import (
     v2transactionscursorresponse as shared_v2transactionscursorresponse,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
     QueryParamMetadata,
-    RequestMetadata,
 )
 import httpx
 import pydantic
-from typing import Any, Dict, Optional
+from pydantic import model_serializer
+from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class Order(str, Enum):
+class V2ListTransactionsOrder(str, Enum):
     r"""Deprecated: Use sort param"""
 
     EFFECTIVE = "effective"
 
 
 class V2ListTransactionsRequestTypedDict(TypedDict):
-    request_body: Dict[str, Any]
     ledger: str
     r"""Name of the ledger."""
     cursor: NotRequired[str]
@@ -37,7 +36,7 @@ class V2ListTransactionsRequestTypedDict(TypedDict):
 
     """
     expand: NotRequired[str]
-    order: NotRequired[Order]
+    order: NotRequired[V2ListTransactionsOrder]
     r"""Deprecated: Use sort param"""
     page_size: NotRequired[int]
     r"""The maximum number of results to return per page.
@@ -53,11 +52,6 @@ class V2ListTransactionsRequestTypedDict(TypedDict):
 
 
 class V2ListTransactionsRequest(BaseModel):
-    request_body: Annotated[
-        Dict[str, Any],
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ]
-
     ledger: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
@@ -80,7 +74,7 @@ class V2ListTransactionsRequest(BaseModel):
     ] = None
 
     order: Annotated[
-        Optional[Order],
+        Optional[V2ListTransactionsOrder],
         pydantic.Field(
             deprecated="warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
         ),
@@ -116,6 +110,24 @@ class V2ListTransactionsRequest(BaseModel):
 
     """
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(
+            ["cursor", "expand", "order", "pageSize", "pit", "reverse", "sort"]
+        )
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class V2ListTransactionsResponseTypedDict(TypedDict):
     content_type: str
@@ -144,3 +156,19 @@ class V2ListTransactionsResponse(BaseModel):
         shared_v2transactionscursorresponse.V2TransactionsCursorResponse
     ] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["V2TransactionsCursorResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

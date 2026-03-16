@@ -3,8 +3,9 @@
 from __future__ import annotations
 from .webhooksconfig import WebhooksConfig, WebhooksConfigTypedDict
 from datetime import datetime
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 import pydantic
+from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -44,3 +45,25 @@ class Attempt(BaseModel):
     next_retry_after: Annotated[
         Optional[datetime], pydantic.Field(alias="nextRetryAfter")
     ] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["nextRetryAfter"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+try:
+    Attempt.model_rebuild()
+except NameError:
+    pass

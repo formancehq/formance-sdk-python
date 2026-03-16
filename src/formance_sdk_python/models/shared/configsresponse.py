@@ -25,3 +25,9 @@ class ConfigsResponseTypedDict(TypedDict):
 
 class ConfigsResponse(BaseModel):
     cursor: ConfigsResponseCursor
+
+
+try:
+    ConfigsResponseCursor.model_rebuild()
+except NameError:
+    pass

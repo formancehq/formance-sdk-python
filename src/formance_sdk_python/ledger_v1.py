@@ -61,6 +61,7 @@ class LedgerV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.transactions, False, False, "json", shared.Transactions
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -77,7 +78,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="CreateTransactions",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -151,6 +152,7 @@ class LedgerV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.transactions, False, False, "json", shared.Transactions
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -167,7 +169,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="CreateTransactions",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -243,6 +245,7 @@ class LedgerV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.request_body, True, False, "json", Nullable[Dict[str, Any]]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -259,7 +262,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="addMetadataOnTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -273,6 +276,7 @@ class LedgerV1(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
@@ -332,6 +336,7 @@ class LedgerV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.request_body, True, False, "json", Nullable[Dict[str, Any]]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -348,7 +353,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="addMetadataOnTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -362,6 +367,7 @@ class LedgerV1(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
@@ -419,6 +425,7 @@ class LedgerV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.request_body, True, False, "json", Nullable[Dict[str, Any]]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -435,7 +442,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="addMetadataToAccount",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -449,6 +456,7 @@ class LedgerV1(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
@@ -506,6 +514,7 @@ class LedgerV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.request_body, True, False, "json", Nullable[Dict[str, Any]]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -522,7 +531,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="addMetadataToAccount",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -536,6 +545,7 @@ class LedgerV1(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
@@ -589,6 +599,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -605,7 +616,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="countAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -673,6 +684,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -689,7 +701,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="countAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -758,6 +770,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -774,7 +787,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="countTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -843,6 +856,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -859,7 +873,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="countTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -931,6 +945,7 @@ class LedgerV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.post_transaction, False, False, "json", shared.PostTransaction
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -947,7 +962,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -964,6 +979,7 @@ class LedgerV1(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
@@ -1021,6 +1037,7 @@ class LedgerV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.post_transaction, False, False, "json", shared.PostTransaction
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1037,7 +1054,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1054,6 +1071,7 @@ class LedgerV1(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
@@ -1107,6 +1125,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1123,7 +1142,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getAccount",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1193,6 +1212,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1209,7 +1229,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getAccount",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1279,6 +1299,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1295,7 +1316,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getBalances",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1365,6 +1386,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1381,7 +1403,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getBalances",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1452,6 +1474,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1468,7 +1491,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getBalancesAggregated",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1539,6 +1562,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1555,7 +1579,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getBalancesAggregated",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1616,6 +1640,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1632,7 +1657,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1693,6 +1718,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1709,7 +1735,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1779,6 +1805,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1795,7 +1822,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getLedgerInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1865,6 +1892,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1881,7 +1909,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getLedgerInfo",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1951,6 +1979,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1967,7 +1996,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getMapping",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2037,6 +2066,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2053,7 +2083,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getMapping",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2123,6 +2153,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2139,7 +2170,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getTransaction",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2209,6 +2240,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2225,7 +2257,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getTransaction",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2297,6 +2329,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2313,7 +2346,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2394,6 +2427,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2410,7 +2444,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listAccounts",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2489,6 +2523,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2505,7 +2540,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listLogs",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2575,6 +2610,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2591,7 +2627,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listLogs",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2664,6 +2700,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2680,7 +2717,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2753,6 +2790,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2769,7 +2807,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listTransactions",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2842,6 +2880,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2858,7 +2897,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="readStats",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2931,6 +2970,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2947,7 +2987,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="readStats",
-                oauth2_scopes=["auth:read", "ledger:read"],
+                oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3018,6 +3058,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3034,7 +3075,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="revertTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3051,6 +3092,7 @@ class LedgerV1(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
@@ -3105,6 +3147,7 @@ class LedgerV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3121,7 +3164,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="revertTransaction",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3138,6 +3181,7 @@ class LedgerV1(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
@@ -3200,6 +3244,7 @@ class LedgerV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.script, False, False, "json", shared.Script
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3216,7 +3261,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="runScript",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3294,6 +3339,7 @@ class LedgerV1(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request.script, False, False, "json", shared.Script
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3310,7 +3356,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="runScript",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3380,8 +3426,9 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.mapping, True, False, "json", Nullable[shared.Mapping]
+                request.mapping, True, False, "json", Nullable[shared.MappingT]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3398,7 +3445,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="updateMapping",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3469,8 +3516,9 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.mapping, True, False, "json", Nullable[shared.Mapping]
+                request.mapping, True, False, "json", Nullable[shared.MappingT]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3487,7 +3535,7 @@ class LedgerV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="updateMapping",
-                oauth2_scopes=["auth:read", "ledger:write"],
+                oauth2_scopes=["ledger:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,

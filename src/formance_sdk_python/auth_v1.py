@@ -14,7 +14,7 @@ class AuthV1(BaseSDK):
         self,
         *,
         request: Optional[
-            Union[shared.ClientOptions, shared.ClientOptionsTypedDict]
+            Union[shared.CreateClientRequest, shared.CreateClientRequestTypedDict]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -40,8 +40,8 @@ class AuthV1(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[shared.ClientOptions])
-        request = cast(Optional[shared.ClientOptions], request)
+            request = utils.unmarshal(request, Optional[shared.CreateClientRequest])
+        request = cast(Optional[shared.CreateClientRequest], request)
 
         req = self._build_request(
             method="POST",
@@ -57,8 +57,9 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[shared.ClientOptions]
+                request, False, True, "json", Optional[shared.CreateClientRequest]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -75,7 +76,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createClient",
-                oauth2_scopes=["auth:read", "auth:write"],
+                oauth2_scopes=["auth:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -102,7 +103,7 @@ class AuthV1(BaseSDK):
         self,
         *,
         request: Optional[
-            Union[shared.ClientOptions, shared.ClientOptionsTypedDict]
+            Union[shared.CreateClientRequest, shared.CreateClientRequestTypedDict]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -128,8 +129,8 @@ class AuthV1(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[shared.ClientOptions])
-        request = cast(Optional[shared.ClientOptions], request)
+            request = utils.unmarshal(request, Optional[shared.CreateClientRequest])
+        request = cast(Optional[shared.CreateClientRequest], request)
 
         req = self._build_request_async(
             method="POST",
@@ -145,8 +146,9 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[shared.ClientOptions]
+                request, False, True, "json", Optional[shared.CreateClientRequest]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -163,7 +165,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createClient",
-                oauth2_scopes=["auth:read", "auth:write"],
+                oauth2_scopes=["auth:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -233,12 +235,13 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_secret_request,
+                request.create_secret_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.CreateSecretRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -255,7 +258,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createSecret",
-                oauth2_scopes=["auth:read", "auth:write"],
+                oauth2_scopes=["auth:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -325,12 +328,13 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_secret_request,
+                request.create_secret_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.CreateSecretRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -347,7 +351,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="createSecret",
-                oauth2_scopes=["auth:read", "auth:write"],
+                oauth2_scopes=["auth:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -416,6 +420,7 @@ class AuthV1(BaseSDK):
             accept_header_value="*/*",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -432,7 +437,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deleteClient",
-                oauth2_scopes=["auth:read", "auth:write"],
+                oauth2_scopes=["auth:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -498,6 +503,7 @@ class AuthV1(BaseSDK):
             accept_header_value="*/*",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -514,7 +520,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deleteClient",
-                oauth2_scopes=["auth:read", "auth:write"],
+                oauth2_scopes=["auth:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -580,6 +586,7 @@ class AuthV1(BaseSDK):
             accept_header_value="*/*",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -596,7 +603,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deleteSecret",
-                oauth2_scopes=["auth:read", "auth:write"],
+                oauth2_scopes=["auth:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -662,6 +669,7 @@ class AuthV1(BaseSDK):
             accept_header_value="*/*",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -678,7 +686,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="deleteSecret",
-                oauth2_scopes=["auth:read", "auth:write"],
+                oauth2_scopes=["auth:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -735,6 +743,7 @@ class AuthV1(BaseSDK):
             accept_header_value="*/*",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -751,7 +760,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getOIDCWellKnowns",
-                oauth2_scopes=["auth:read", "auth:read"],
+                oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -808,6 +817,7 @@ class AuthV1(BaseSDK):
             accept_header_value="*/*",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -824,7 +834,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getOIDCWellKnowns",
-                oauth2_scopes=["auth:read", "auth:read"],
+                oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -881,6 +891,7 @@ class AuthV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -897,7 +908,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getServerInfo",
-                oauth2_scopes=["auth:read", "auth:read"],
+                oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -957,6 +968,7 @@ class AuthV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -973,7 +985,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="getServerInfo",
-                oauth2_scopes=["auth:read", "auth:read"],
+                oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1033,6 +1045,7 @@ class AuthV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1049,7 +1062,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listClients",
-                oauth2_scopes=["auth:read", "auth:read"],
+                oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1109,6 +1122,7 @@ class AuthV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1125,7 +1139,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listClients",
-                oauth2_scopes=["auth:read", "auth:read"],
+                oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1187,6 +1201,7 @@ class AuthV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1203,7 +1218,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listUsers",
-                oauth2_scopes=["auth:read", "auth:read"],
+                oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1265,6 +1280,7 @@ class AuthV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1281,7 +1297,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="listUsers",
-                oauth2_scopes=["auth:read", "auth:read"],
+                oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1350,6 +1366,7 @@ class AuthV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1366,7 +1383,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="readClient",
-                oauth2_scopes=["auth:read", "auth:read"],
+                oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1435,6 +1452,7 @@ class AuthV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1451,7 +1469,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="readClient",
-                oauth2_scopes=["auth:read", "auth:read"],
+                oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1520,6 +1538,7 @@ class AuthV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1536,7 +1555,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="readUser",
-                oauth2_scopes=["auth:read", "auth:read"],
+                oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1605,6 +1624,7 @@ class AuthV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1621,7 +1641,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="readUser",
-                oauth2_scopes=["auth:read", "auth:read"],
+                oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1691,12 +1711,13 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.client_options,
+                request.create_client_request if request is not None else None,
                 False,
                 True,
                 "json",
-                Optional[shared.ClientOptions],
+                Optional[shared.CreateClientRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1713,7 +1734,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="updateClient",
-                oauth2_scopes=["auth:read", "auth:write"],
+                oauth2_scopes=["auth:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1723,8 +1744,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.UpdateClientResponse(
-                create_client_response=unmarshal_json_response(
-                    Optional[shared.CreateClientResponse], http_res
+                update_client_response=unmarshal_json_response(
+                    Optional[shared.UpdateClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1783,12 +1804,13 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.client_options,
+                request.create_client_request if request is not None else None,
                 False,
                 True,
                 "json",
-                Optional[shared.ClientOptions],
+                Optional[shared.CreateClientRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1805,7 +1827,7 @@ class AuthV1(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="updateClient",
-                oauth2_scopes=["auth:read", "auth:write"],
+                oauth2_scopes=["auth:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1815,8 +1837,8 @@ class AuthV1(BaseSDK):
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.UpdateClientResponse(
-                create_client_response=unmarshal_json_response(
-                    Optional[shared.CreateClientResponse], http_res
+                update_client_response=unmarshal_json_response(
+                    Optional[shared.UpdateClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",

@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.shared import (
-    clientoptions as shared_clientoptions,
-    createclientresponse as shared_createclientresponse,
+    createclientrequest as shared_createclientrequest,
+    updateclientresponse as shared_updateclientresponse,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import FieldMetadata, PathParamMetadata, RequestMetadata
 import httpx
 import pydantic
+from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -16,7 +17,9 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 class UpdateClientRequestTypedDict(TypedDict):
     client_id: str
     r"""Client ID"""
-    client_options: NotRequired[shared_clientoptions.ClientOptionsTypedDict]
+    create_client_request: NotRequired[
+        shared_createclientrequest.CreateClientRequestTypedDict
+    ]
 
 
 class UpdateClientRequest(BaseModel):
@@ -27,10 +30,26 @@ class UpdateClientRequest(BaseModel):
     ]
     r"""Client ID"""
 
-    client_options: Annotated[
-        Optional[shared_clientoptions.ClientOptions],
+    create_client_request: Annotated[
+        Optional[shared_createclientrequest.CreateClientRequest],
         FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["CreateClientRequest"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class UpdateClientResponseTypedDict(TypedDict):
@@ -40,8 +59,8 @@ class UpdateClientResponseTypedDict(TypedDict):
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    create_client_response: NotRequired[
-        shared_createclientresponse.CreateClientResponseTypedDict
+    update_client_response: NotRequired[
+        shared_updateclientresponse.UpdateClientResponseTypedDict
     ]
     r"""Updated client"""
 
@@ -56,7 +75,23 @@ class UpdateClientResponse(BaseModel):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
 
-    create_client_response: Optional[
-        shared_createclientresponse.CreateClientResponse
+    update_client_response: Optional[
+        shared_updateclientresponse.UpdateClientResponse
     ] = None
     r"""Updated client"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["UpdateClientResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

@@ -17,13 +17,11 @@ class WebhooksErrorResponseData(BaseModel):
     error_code: Annotated[
         shared_webhookserrorsenum.WebhooksErrorsEnum, pydantic.Field(alias="errorCode")
     ]
-
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
-
     details: Optional[str] = None
 
 
-@dataclass(frozen=True)
+@dataclass(unsafe_hash=True)
 class WebhooksErrorResponse(SDKBaseError):
     data: WebhooksErrorResponseData = field(hash=False)
 

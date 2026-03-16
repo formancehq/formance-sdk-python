@@ -5,9 +5,10 @@ from .paymentscheme import PaymentScheme
 from .paymentstatus import PaymentStatus
 from .paymenttype import PaymentType
 from datetime import datetime
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import validate_int
 import pydantic
+from pydantic import model_serializer
 from pydantic.functional_validators import BeforeValidator
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
@@ -50,3 +51,25 @@ class PaymentRequest(BaseModel):
     source_account_id: Annotated[
         Optional[str], pydantic.Field(alias="sourceAccountID")
     ] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["destinationAccountID", "sourceAccountID"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+try:
+    PaymentRequest.model_rebuild()
+except NameError:
+    pass

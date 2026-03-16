@@ -32,3 +32,9 @@ class Log(BaseModel):
     id: int
 
     type: LogType
+
+
+try:
+    Log.model_rebuild()
+except NameError:
+    pass

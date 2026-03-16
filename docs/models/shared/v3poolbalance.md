@@ -7,3 +7,4 @@
 | ------------------ | ------------------ | ------------------ | ------------------ |
 | `amount`           | *int*              | :heavy_check_mark: | N/A                |
 | `asset`            | *str*              | :heavy_check_mark: | N/A                |
+| `related_accounts` | List[*str*]        | :heavy_minus_sign: | N/A                |

@@ -1,5 +1,13 @@
 # V2PaymentScheme
 
+## Example Usage
+
+```python
+from formance_sdk_python.models.shared import V2PaymentScheme
+
+value = V2PaymentScheme.VISA
+```
+
 
 ## Values
 

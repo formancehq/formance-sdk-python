@@ -36,3 +36,9 @@ class OrchestrationPaymentAdjustment(BaseModel):
     raw: OrchestrationPaymentAdjustmentRaw
 
     status: OrchestrationPaymentStatus
+
+
+try:
+    OrchestrationPaymentAdjustment.model_rebuild()
+except NameError:
+    pass

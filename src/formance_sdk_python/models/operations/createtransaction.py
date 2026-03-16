@@ -5,7 +5,7 @@ from formance_sdk_python.models.shared import (
     posttransaction as shared_posttransaction,
     transactionsresponse as shared_transactionsresponse,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
@@ -13,7 +13,8 @@ from formance_sdk_python.utils import (
     RequestMetadata,
 )
 import httpx
-from typing import Optional
+from pydantic import model_serializer
+from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
@@ -52,10 +53,27 @@ class CreateTransactionRequest(BaseModel):
     ] = None
     r"""Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker."""
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["preview"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class CreateTransactionResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""
+    headers: Dict[str, List[str]]
     status_code: int
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
@@ -70,6 +88,8 @@ class CreateTransactionResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
 
+    headers: Dict[str, List[str]]
+
     status_code: int
     r"""HTTP response status code for this operation"""
 
@@ -80,3 +100,19 @@ class CreateTransactionResponse(BaseModel):
         shared_transactionsresponse.TransactionsResponse
     ] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["TransactionsResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

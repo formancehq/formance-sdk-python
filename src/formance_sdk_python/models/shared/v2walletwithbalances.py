@@ -42,3 +42,9 @@ class V2WalletWithBalances(BaseModel):
     r"""Metadata associated with the wallet."""
 
     name: str
+
+
+try:
+    V2WalletWithBalances.model_rebuild()
+except NameError:
+    pass

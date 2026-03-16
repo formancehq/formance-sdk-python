@@ -5,8 +5,9 @@ from formance_sdk_python.models.shared import (
     v2configinforesponse as shared_v2configinforesponse,
     v2errorresponse as shared_v2errorresponse,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 import httpx
+from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
@@ -43,3 +44,19 @@ class V2GetInfoResponse(BaseModel):
 
     v2_error_response: Optional[shared_v2errorresponse.V2ErrorResponse] = None
     r"""Error"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["V2ConfigInfoResponse", "V2ErrorResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

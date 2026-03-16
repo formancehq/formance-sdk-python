@@ -12,3 +12,9 @@ class V3ForwardBankAccountRequestTypedDict(TypedDict):
 
 class V3ForwardBankAccountRequest(BaseModel):
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+
+
+try:
+    V3ForwardBankAccountRequest.model_rebuild()
+except NameError:
+    pass

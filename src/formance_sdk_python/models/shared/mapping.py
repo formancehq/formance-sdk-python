@@ -7,9 +7,9 @@ from typing import List
 from typing_extensions import TypedDict
 
 
-class MappingTypedDict(TypedDict):
+class MappingTTypedDict(TypedDict):
     contracts: List[ContractTypedDict]
 
 
-class Mapping(BaseModel):
+class MappingT(BaseModel):
     contracts: List[Contract]
