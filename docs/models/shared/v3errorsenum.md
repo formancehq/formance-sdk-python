@@ -1,5 +1,13 @@
 # V3ErrorsEnum
 
+## Example Usage
+
+```python
+from formance_sdk_python.models.shared import V3ErrorsEnum
+
+value = V3ErrorsEnum.INTERNAL
+```
+
 
 ## Values
 

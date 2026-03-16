@@ -23,3 +23,9 @@ class V2Exporter(BaseModel):
     driver: str
 
     id: str
+
+
+try:
+    V2Exporter.model_rebuild()
+except NameError:
+    pass

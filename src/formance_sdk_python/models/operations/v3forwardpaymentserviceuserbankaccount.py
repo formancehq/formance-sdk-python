@@ -5,10 +5,11 @@ from formance_sdk_python.models.shared import (
     v3forwardpaymentserviceuserbankaccountrequest as shared_v3forwardpaymentserviceuserbankaccountrequest,
     v3forwardpaymentserviceuserbankaccountresponse as shared_v3forwardpaymentserviceuserbankaccountresponse,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import FieldMetadata, PathParamMetadata, RequestMetadata
 import httpx
 import pydantic
+from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -45,6 +46,22 @@ class V3ForwardPaymentServiceUserBankAccountRequest(BaseModel):
         FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ] = None
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["V3ForwardPaymentServiceUserBankAccountRequest"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class V3ForwardPaymentServiceUserBankAccountResponseTypedDict(TypedDict):
     content_type: str
@@ -73,3 +90,19 @@ class V3ForwardPaymentServiceUserBankAccountResponse(BaseModel):
         shared_v3forwardpaymentserviceuserbankaccountresponse.V3ForwardPaymentServiceUserBankAccountResponse
     ] = None
     r"""Accepted"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["V3ForwardPaymentServiceUserBankAccountResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

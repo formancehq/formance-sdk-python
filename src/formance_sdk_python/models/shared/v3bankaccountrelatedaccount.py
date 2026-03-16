@@ -16,3 +16,9 @@ class V3BankAccountRelatedAccount(BaseModel):
     account_id: Annotated[str, pydantic.Field(alias="accountID")]
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+
+
+try:
+    V3BankAccountRelatedAccount.model_rebuild()
+except NameError:
+    pass

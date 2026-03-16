@@ -19,11 +19,10 @@ class V2ErrorErrorCode(str, Enum):
 
 class V2ErrorData(BaseModel):
     error_code: Annotated[V2ErrorErrorCode, pydantic.Field(alias="errorCode")]
-
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
 
 
-@dataclass(frozen=True)
+@dataclass(unsafe_hash=True)
 class V2Error(SDKBaseError):
     r"""General error"""
 

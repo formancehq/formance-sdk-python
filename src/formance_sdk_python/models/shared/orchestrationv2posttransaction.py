@@ -3,7 +3,8 @@
 from __future__ import annotations
 from .v2posting import V2Posting, V2PostingTypedDict
 from datetime import datetime
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
+from pydantic import model_serializer
 from typing import Any, Dict, List, Optional
 from typing_extensions import NotRequired, TypedDict
 
@@ -17,6 +18,22 @@ class OrchestrationV2PostTransactionScript(BaseModel):
     plain: str
 
     vars: Optional[Dict[str, Any]] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["vars"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class OrchestrationV2PostTransactionTypedDict(TypedDict):
@@ -37,3 +54,19 @@ class OrchestrationV2PostTransaction(BaseModel):
     script: Optional[OrchestrationV2PostTransactionScript] = None
 
     timestamp: Optional[datetime] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["postings", "reference", "script", "timestamp"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

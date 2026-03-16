@@ -19,3 +19,9 @@ class V3Schedule(BaseModel):
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
     id: str
+
+
+try:
+    V3Schedule.model_rebuild()
+except NameError:
+    pass

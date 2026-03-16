@@ -25,3 +25,9 @@ class BankAccountRelatedAccounts(BaseModel):
     id: str
 
     provider: str
+
+
+try:
+    BankAccountRelatedAccounts.model_rebuild()
+except NameError:
+    pass

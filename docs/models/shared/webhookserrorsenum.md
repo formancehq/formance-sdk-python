@@ -1,5 +1,13 @@
 # WebhooksErrorsEnum
 
+## Example Usage
+
+```python
+from formance_sdk_python.models.shared import WebhooksErrorsEnum
+
+value = WebhooksErrorsEnum.INTERNAL
+```
+
 
 ## Values
 

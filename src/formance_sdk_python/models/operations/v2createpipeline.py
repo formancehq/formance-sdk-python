@@ -5,9 +5,10 @@ from formance_sdk_python.models.shared import (
     v2createpipelinerequest as shared_v2createpipelinerequest,
     v2pipeline as shared_v2pipeline,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import FieldMetadata, PathParamMetadata, RequestMetadata
 import httpx
+from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -30,6 +31,22 @@ class V2CreatePipelineRequest(BaseModel):
         Optional[shared_v2createpipelinerequest.V2CreatePipelineRequest],
         FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["V2CreatePipelineRequest"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class V2CreatePipelineResponseBodyTypedDict(TypedDict):
@@ -67,3 +84,19 @@ class V2CreatePipelineResponse(BaseModel):
 
     object: Optional[V2CreatePipelineResponseBody] = None
     r"""Created ipeline"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["object"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

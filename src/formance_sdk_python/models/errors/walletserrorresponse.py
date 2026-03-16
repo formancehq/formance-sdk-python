@@ -22,11 +22,10 @@ class WalletsErrorResponseData(BaseModel):
     error_code: Annotated[
         WalletsErrorResponseErrorCode, pydantic.Field(alias="errorCode")
     ]
-
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
 
 
-@dataclass(frozen=True)
+@dataclass(unsafe_hash=True)
 class WalletsErrorResponse(SDKBaseError):
     data: WalletsErrorResponseData = field(hash=False)
 

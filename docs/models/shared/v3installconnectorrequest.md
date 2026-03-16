@@ -21,6 +21,12 @@ value: shared.V3AtlarConfig = /* values here */
 value: shared.V3BankingcircleConfig = /* values here */
 ```
 
+### `shared.V3CoinbaseprimeConfig`
+
+```python
+value: shared.V3CoinbaseprimeConfig = /* values here */
+```
+
 ### `shared.V3ColumnConfig`
 
 ```python
@@ -39,10 +45,22 @@ value: shared.V3CurrencycloudConfig = /* values here */
 value: shared.V3DummypayConfig = /* values here */
 ```
 
+### `shared.V3FireblocksConfig`
+
+```python
+value: shared.V3FireblocksConfig = /* values here */
+```
+
 ### `shared.V3GenericConfig`
 
 ```python
 value: shared.V3GenericConfig = /* values here */
+```
+
+### `shared.V3IncreaseConfig`
+
+```python
+value: shared.V3IncreaseConfig = /* values here */
 ```
 
 ### `shared.V3MangopayConfig`
@@ -63,6 +81,18 @@ value: shared.V3ModulrConfig = /* values here */
 value: shared.V3MoneycorpConfig = /* values here */
 ```
 
+### `shared.V3PlaidConfig`
+
+```python
+value: shared.V3PlaidConfig = /* values here */
+```
+
+### `shared.V3PowensConfig`
+
+```python
+value: shared.V3PowensConfig = /* values here */
+```
+
 ### `shared.V3QontoConfig`
 
 ```python
@@ -73,6 +103,12 @@ value: shared.V3QontoConfig = /* values here */
 
 ```python
 value: shared.V3StripeConfig = /* values here */
+```
+
+### `shared.V3TinkConfig`
+
+```python
+value: shared.V3TinkConfig = /* values here */
 ```
 
 ### `shared.V3WiseConfig`

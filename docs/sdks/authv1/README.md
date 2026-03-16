@@ -1,5 +1,4 @@
-# AuthV1
-(*auth.v1*)
+# Auth.V1
 
 ## Overview
 
@@ -47,10 +46,10 @@ with SDK(
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [shared.ClientOptions](../../models/shared/clientoptions.md)        | :heavy_check_mark:                                                  | The request object to use for the request.                          |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `request`                                                                | [shared.CreateClientRequest](../../models/shared/createclientrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `retries`                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)         | :heavy_minus_sign:                                                       | Configuration to override the default retry behavior of the client.      |
 
 ### Response
 
@@ -497,10 +496,10 @@ with SDK(
         "client_id": "<id>",
     })
 
-    assert res.create_client_response is not None
+    assert res.update_client_response is not None
 
     # Handle response
-    print(res.create_client_response)
+    print(res.update_client_response)
 
 ```
 

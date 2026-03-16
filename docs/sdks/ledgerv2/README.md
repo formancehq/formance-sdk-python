@@ -1,5 +1,4 @@
-# LedgerV2
-(*ledger.v2*)
+# Ledger.V2
 
 ## Overview
 
@@ -15,6 +14,7 @@
 * [create_pipeline](#create_pipeline) - Create pipeline
 * [create_transaction](#create_transaction) - Create a new transaction to a ledger
 * [delete_account_metadata](#delete_account_metadata) - Delete metadata by key
+* [delete_bucket](#delete_bucket) - Delete bucket
 * [delete_exporter](#delete_exporter) - Delete exporter
 * [delete_ledger_metadata](#delete_ledger_metadata) - Delete ledger metadata by key
 * [delete_pipeline](#delete_pipeline) - Delete pipeline
@@ -26,20 +26,26 @@
 * [get_ledger](#get_ledger) - Get a ledger
 * [get_ledger_info](#get_ledger_info) - Get information about a ledger
 * [get_pipeline_state](#get_pipeline_state) - Get pipeline state
+* [get_schema](#get_schema) - Get a schema for a ledger by version
 * [get_transaction](#get_transaction) - Get transaction from a ledger by its ID
 * [get_volumes_with_balances](#get_volumes_with_balances) - Get list of volumes with balances for (account/asset)
 * [import_logs](#import_logs)
+* [insert_schema](#insert_schema) - Insert a schema for a ledger
 * [list_accounts](#list_accounts) - List accounts from a ledger
 * [list_exporters](#list_exporters) - List exporters
 * [list_ledgers](#list_ledgers) - List ledgers
 * [list_logs](#list_logs) - List the logs from a ledger
 * [list_pipelines](#list_pipelines) - List pipelines
+* [list_schemas](#list_schemas) - List all schemas for a ledger
 * [list_transactions](#list_transactions) - List transactions from a ledger
 * [read_stats](#read_stats) - Get statistics from a ledger
 * [reset_pipeline](#reset_pipeline) - Reset pipeline
+* [restore_bucket](#restore_bucket) - Restore bucket
 * [revert_transaction](#revert_transaction) - Revert a ledger transaction by its ID
+* [run_query](#run_query) - Run a query template
 * [start_pipeline](#start_pipeline) - Start pipeline
 * [stop_pipeline](#stop_pipeline) - Stop pipeline
+* [update_exporter](#update_exporter) - Update exporter
 * [update_ledger_metadata](#update_ledger_metadata) - Update ledger metadata
 
 ## add_metadata_on_transaction
@@ -68,6 +74,7 @@ with SDK(
         "dry_run": True,
         "id": 1234,
         "ledger": "ledger001",
+        "schema_version": "v1.0.0",
     })
 
     assert res is not None
@@ -121,6 +128,7 @@ with SDK(
         "address": "users:001",
         "dry_run": True,
         "ledger": "ledger001",
+        "schema_version": "v1.0.0",
     })
 
     assert res is not None
@@ -168,10 +176,6 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.count_accounts(request={
-        "request_body": {
-            "key": "<value>",
-            "key1": "<value>",
-        },
         "ledger": "ledger001",
     })
 
@@ -220,9 +224,6 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.count_transactions(request={
-        "request_body": {
-            "key": "<value>",
-        },
         "ledger": "ledger001",
     })
 
@@ -280,6 +281,7 @@ with SDK(
         "continue_on_failure": True,
         "ledger": "ledger001",
         "parallel": True,
+        "schema_version": "v1.0.0",
     })
 
     assert res.v2_bulk_response is not None
@@ -344,7 +346,7 @@ with SDK(
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [shared.V2ExporterConfiguration](../../models/shared/v2exporterconfiguration.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `request`                                                                        | [shared.V2CreateExporterRequest](../../models/shared/v2createexporterrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
 
 ### Response
@@ -504,14 +506,8 @@ with SDK(
             ],
             "reference": "ref:001",
             "script": {
-                "plain": ("vars {\n"
-                "account $user\n"
-                "}\n"
-                "send [COIN 10] (\n"
-                "	source = @world\n"
-                "	destination = $user\n"
-                ")\n"
-                ""),
+                "plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
+                "template": "CUSTOMER_DEPOSIT",
                 "vars": {
                     "user": "users:042",
                 },
@@ -520,6 +516,7 @@ with SDK(
         "dry_run": True,
         "force": True,
         "ledger": "ledger001",
+        "schema_version": "v1.0.0",
     })
 
     assert res.v2_create_transaction_response is not None
@@ -589,6 +586,54 @@ with SDK(
 ### Response
 
 **[operations.V2DeleteAccountMetadataResponse](../../models/operations/v2deleteaccountmetadataresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## delete_bucket
+
+Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the bucket will have their deleted_at field set to the current timestamp.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2DeleteBucket" method="delete" path="/api/ledger/v2/_/buckets/{bucket}" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.delete_bucket(request={
+        "bucket": "<value>",
+    })
+
+    assert res.v2_error_response is not None
+
+    # Handle response
+    print(res.v2_error_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `request`                                                                            | [operations.V2DeleteBucketRequest](../../models/operations/v2deletebucketrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
+
+### Response
+
+**[operations.V2DeleteBucketResponse](../../models/operations/v2deletebucketresponse.md)**
 
 ### Errors
 
@@ -909,11 +954,6 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.get_balances_aggregated(request={
-        "request_body": {
-            "key": "<value>",
-            "key1": "<value>",
-            "key2": "<value>",
-        },
         "ledger": "ledger001",
     })
 
@@ -1135,6 +1175,55 @@ with SDK(
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## get_schema
+
+Get a schema for a ledger by version
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2GetSchema" method="get" path="/api/ledger/v2/{ledger}/schemas/{version}" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.get_schema(request={
+        "ledger": "ledger001",
+        "version": "v1.0.0",
+    })
+
+    assert res.v2_schema_response is not None
+
+    # Handle response
+    print(res.v2_schema_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `request`                                                                      | [operations.V2GetSchemaRequest](../../models/operations/v2getschemarequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+
+### Response
+
+**[operations.V2GetSchemaResponse](../../models/operations/v2getschemaresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## get_transaction
 
 Get transaction from a ledger by its ID
@@ -1204,9 +1293,6 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.get_volumes_with_balances(request={
-        "request_body": {
-            "key": "<value>",
-        },
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "group_by": 3,
         "ledger": "ledger001",
@@ -1286,6 +1372,75 @@ with SDK(
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## insert_schema
+
+Insert a schema for a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2InsertSchema" method="post" path="/api/ledger/v2/{ledger}/schemas/{version}" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.insert_schema(request={
+        "v2_schema_data": {
+            "chart": {
+                "users": shared.V2ChartSegment(
+                    **{
+                        "$userID": shared.V2ChartSegment(
+                            dot_pattern="^[0-9]{16}$",
+                        ),
+                    },
+                ),
+            },
+            "queries": {
+                "key": {
+                    "params": {
+                        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+                        "page_size": 100,
+                        "sort": "id:desc",
+                    },
+                },
+            },
+        },
+        "ledger": "ledger001",
+        "version": "v1.0.0",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `request`                                                                            | [operations.V2InsertSchemaRequest](../../models/operations/v2insertschemarequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
+
+### Response
+
+**[operations.V2InsertSchemaResponse](../../models/operations/v2insertschemaresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## list_accounts
 
 List accounts from a ledger, sorted by address in descending order.
@@ -1306,9 +1461,6 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.list_accounts(request={
-        "request_body": {
-
-        },
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "ledger": "ledger001",
         "page_size": 100,
@@ -1405,11 +1557,6 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.list_ledgers(request={
-        "request_body": {
-            "key": "<value>",
-            "key1": "<value>",
-            "key2": "<value>",
-        },
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "page_size": 100,
         "sort": "id:desc",
@@ -1460,9 +1607,6 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.list_logs(request={
-        "request_body": {
-
-        },
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "ledger": "ledger001",
         "page_size": 100,
@@ -1542,6 +1686,54 @@ with SDK(
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## list_schemas
+
+List all schemas for a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2ListSchemas" method="get" path="/api/ledger/v2/{ledger}/schemas" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.list_schemas(request={
+        "ledger": "ledger001",
+    })
+
+    assert res.v2_schemas_cursor_response is not None
+
+    # Handle response
+    print(res.v2_schemas_cursor_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `request`                                                                          | [operations.V2ListSchemasRequest](../../models/operations/v2listschemasrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
+
+### Response
+
+**[operations.V2ListSchemasResponse](../../models/operations/v2listschemasresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## list_transactions
 
 List transactions from a ledger, sorted by id in descending order.
@@ -1562,9 +1754,6 @@ with SDK(
 ) as sdk:
 
     res = sdk.ledger.v2.list_transactions(request={
-        "request_body": {
-
-        },
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "ledger": "ledger001",
         "page_size": 100,
@@ -1694,6 +1883,54 @@ with SDK(
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## restore_bucket
+
+Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the bucket will have their deleted_at field set to NULL.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2RestoreBucket" method="post" path="/api/ledger/v2/_/buckets/{bucket}/restore" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.restore_bucket(request={
+        "bucket": "<value>",
+    })
+
+    assert res.v2_error_response is not None
+
+    # Handle response
+    print(res.v2_error_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `request`                                                                              | [operations.V2RestoreBucketRequest](../../models/operations/v2restorebucketrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
+
+### Response
+
+**[operations.V2RestoreBucketResponse](../../models/operations/v2restorebucketresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## revert_transaction
 
 Revert a ledger transaction by its ID
@@ -1717,12 +1954,13 @@ with SDK(
         "dry_run": True,
         "id": 1234,
         "ledger": "ledger001",
+        "schema_version": "v1.0.0",
     })
 
-    assert res.v2_create_transaction_response is not None
+    assert res.v2_revert_transaction_response is not None
 
     # Handle response
-    print(res.v2_create_transaction_response)
+    print(res.v2_revert_transaction_response)
 
 ```
 
@@ -1736,6 +1974,66 @@ with SDK(
 ### Response
 
 **[operations.V2RevertTransactionResponse](../../models/operations/v2reverttransactionresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## run_query
+
+Run a query template on a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2RunQuery" method="post" path="/api/ledger/v2/{ledger}/queries/{id}/run" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.run_query(request={
+        "request_body": {
+            "params": {
+                "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+                "page_size": 100,
+                "sort": "id:desc",
+            },
+        },
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "id": "CUSTOMER_DEPOSIT",
+        "ledger": "ledger001",
+        "page_size": 100,
+        "schema_version": "v1.0.0",
+        "sort": "id:desc",
+    })
+
+    assert res.one_of is not None
+
+    # Handle response
+    print(res.one_of)
+
+```
+
+### Parameters
+
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `request`                                                                    | [operations.V2RunQueryRequest](../../models/operations/v2runqueryrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
+
+### Response
+
+**[operations.V2RunQueryResponse](../../models/operations/v2runqueryresponse.md)**
 
 ### Errors
 
@@ -1834,6 +2132,62 @@ with SDK(
 ### Response
 
 **[operations.V2StopPipelineResponse](../../models/operations/v2stoppipelineresponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## update_exporter
+
+Update exporter
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2UpdateExporter" method="put" path="/api/ledger/v2/_/exporters/{exporterID}" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.update_exporter(request={
+        "v2_create_exporter_request": {
+            "config": {
+                "key": "<value>",
+                "key1": "<value>",
+                "key2": "<value>",
+            },
+            "driver": "<value>",
+        },
+        "exporter_id": "<id>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.V2UpdateExporterRequest](../../models/operations/v2updateexporterrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+
+### Response
+
+**[operations.V2UpdateExporterResponse](../../models/operations/v2updateexporterresponse.md)**
 
 ### Errors
 

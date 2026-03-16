@@ -1,5 +1,13 @@
 # PaymentScheme
 
+## Example Usage
+
+```python
+from formance_sdk_python.models.shared import PaymentScheme
+
+value = PaymentScheme.UNKNOWN
+```
+
 
 ## Values
 

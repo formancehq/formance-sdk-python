@@ -1,0 +1,12 @@
+# V2LogDataSetMetadata
+
+Payload for SET_METADATA log entries. Contains the target entity and the metadata that was set.
+
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    | Example                                                                                        |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `metadata`                                                                                     | Dict[str, *str*]                                                                               | :heavy_check_mark:                                                                             | N/A                                                                                            | {<br/>"admin": "true"<br/>}                                                                    |
+| `target_id`                                                                                    | [shared.V2LogDataSetMetadataTargetID](../../models/shared/v2logdatasetmetadatatargetid.md)     | :heavy_check_mark:                                                                             | N/A                                                                                            |                                                                                                |
+| `target_type`                                                                                  | [shared.V2LogDataSetMetadataTargetType](../../models/shared/v2logdatasetmetadatatargettype.md) | :heavy_check_mark:                                                                             | Type of the target entity                                                                      |                                                                                                |

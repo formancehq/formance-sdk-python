@@ -26,3 +26,9 @@ class V3ForwardPaymentServiceUserBankAccountResponseTypedDict(TypedDict):
 
 class V3ForwardPaymentServiceUserBankAccountResponse(BaseModel):
     data: V3ForwardPaymentServiceUserBankAccountResponseData
+
+
+try:
+    V3ForwardPaymentServiceUserBankAccountResponseData.model_rebuild()
+except NameError:
+    pass

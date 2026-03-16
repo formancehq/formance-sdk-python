@@ -35,3 +35,9 @@ class AccountBalance(BaseModel):
     ]
 
     last_updated_at: Annotated[datetime, pydantic.Field(alias="lastUpdatedAt")]
+
+
+try:
+    AccountBalance.model_rebuild()
+except NameError:
+    pass

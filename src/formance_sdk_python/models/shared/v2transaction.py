@@ -4,9 +4,10 @@ from __future__ import annotations
 from .v2posting import V2Posting, V2PostingTypedDict
 from .v2volume import V2Volume, V2VolumeTypedDict
 from datetime import datetime
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import validate_int
 import pydantic
+from pydantic import model_serializer
 from pydantic.functional_validators import BeforeValidator
 from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
@@ -25,6 +26,7 @@ class V2TransactionTypedDict(TypedDict):
     pre_commit_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
     reference: NotRequired[str]
     reverted_at: NotRequired[datetime]
+    template: NotRequired[str]
     updated_at: NotRequired[datetime]
 
 
@@ -69,4 +71,40 @@ class V2Transaction(BaseModel):
         None
     )
 
+    template: Optional[str] = None
+
     updated_at: Annotated[Optional[datetime], pydantic.Field(alias="updatedAt")] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(
+            [
+                "insertedAt",
+                "postCommitEffectiveVolumes",
+                "postCommitVolumes",
+                "preCommitEffectiveVolumes",
+                "preCommitVolumes",
+                "reference",
+                "revertedAt",
+                "template",
+                "updatedAt",
+            ]
+        )
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+try:
+    V2Transaction.model_rebuild()
+except NameError:
+    pass

@@ -28,7 +28,7 @@ SERVERS = [
 class ServerEnvironment(str, Enum):
     r"""The environment name. Defaults to the production environment."""
 
-    SANDBOX = "sandbox"
+    EU_SANDBOX = "eu.sandbox"
     EU_WEST_1 = "eu-west-1"
     US_EAST_1 = "us-east-1"
 

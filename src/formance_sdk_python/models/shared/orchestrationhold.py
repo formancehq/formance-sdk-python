@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 from .subject import Subject, SubjectTypedDict
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 import pydantic
+from pydantic import model_serializer
 from typing import Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -32,3 +33,25 @@ class OrchestrationHold(BaseModel):
     r"""The ID of the wallet the hold is associated with."""
 
     destination: Optional[Subject] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["destination"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+try:
+    OrchestrationHold.model_rebuild()
+except NameError:
+    pass

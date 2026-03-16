@@ -1,0 +1,14 @@
+# V3PlaidConfig
+
+
+## Fields
+
+| Field                                                                   | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `client_id`                                                             | *str*                                                                   | :heavy_check_mark:                                                      | N/A                                                                     |
+| `client_secret`                                                         | *str*                                                                   | :heavy_check_mark:                                                      | N/A                                                                     |
+| `is_sandbox`                                                            | *Optional[bool]*                                                        | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `name`                                                                  | *str*                                                                   | :heavy_check_mark:                                                      | N/A                                                                     |
+| ~~`page_size`~~                                                         | *Optional[int]*                                                         | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
+| `polling_period`                                                        | *Optional[str]*                                                         | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *Optional[str]*                                                         | :heavy_minus_sign:                                                      | N/A                                                                     |

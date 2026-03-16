@@ -1,5 +1,13 @@
 # V2ErrorsEnum
 
+## Example Usage
+
+```python
+from formance_sdk_python.models.shared import V2ErrorsEnum
+
+value = V2ErrorsEnum.INTERNAL
+```
+
 
 ## Values
 
@@ -22,4 +30,6 @@
 | `INTERPRETER_PARSE`     | INTERPRETER_PARSE       |
 | `INTERPRETER_RUNTIME`   | INTERPRETER_RUNTIME     |
 | `LEDGER_ALREADY_EXISTS` | LEDGER_ALREADY_EXISTS   |
+| `SCHEMA_ALREADY_EXISTS` | SCHEMA_ALREADY_EXISTS   |
+| `SCHEMA_NOT_SPECIFIED`  | SCHEMA_NOT_SPECIFIED    |
 | `OUTDATED_SCHEMA`       | OUTDATED_SCHEMA         |

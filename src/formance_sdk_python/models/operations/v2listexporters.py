@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.shared import v2exporter as shared_v2exporter
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 import httpx
 import pydantic
+from pydantic import model_serializer
 from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -28,6 +29,22 @@ class V2ListExportersCursor2(BaseModel):
 
     previous: Optional[str] = None
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["next", "previous"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class V2ListExportersCursor1TypedDict(TypedDict):
     cursor: V2ListExportersCursor2TypedDict
@@ -38,6 +55,22 @@ class V2ListExportersCursor1(BaseModel):
     cursor: V2ListExportersCursor2
 
     data: Optional[List[shared_v2exporter.V2Exporter]] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["data"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class V2ListExportersResponseBodyTypedDict(TypedDict):
@@ -50,6 +83,22 @@ class V2ListExportersResponseBody(BaseModel):
     r"""Exporters list"""
 
     cursor: Optional[V2ListExportersCursor1] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["cursor"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class V2ListExportersResponseTypedDict(TypedDict):
@@ -75,3 +124,25 @@ class V2ListExportersResponse(BaseModel):
 
     object: Optional[V2ListExportersResponseBody] = None
     r"""Exporters list"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["object"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+try:
+    V2ListExportersCursor2.model_rebuild()
+except NameError:
+    pass

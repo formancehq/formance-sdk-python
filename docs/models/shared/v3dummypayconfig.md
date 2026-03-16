@@ -3,10 +3,12 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `directory`        | *str*              | :heavy_check_mark: | N/A                |
-| `name`             | *str*              | :heavy_check_mark: | N/A                |
-| `page_size`        | *Optional[int]*    | :heavy_minus_sign: | N/A                |
-| `polling_period`   | *Optional[str]*    | :heavy_minus_sign: | N/A                |
-| `provider`         | *Optional[str]*    | :heavy_minus_sign: | N/A                |
+| Field                                                                   | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `directory`                                                             | *str*                                                                   | :heavy_check_mark:                                                      | N/A                                                                     |
+| `link_flow_error`                                                       | *Optional[bool]*                                                        | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `name`                                                                  | *str*                                                                   | :heavy_check_mark:                                                      | N/A                                                                     |
+| ~~`page_size`~~                                                         | *Optional[int]*                                                         | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
+| `polling_period`                                                        | *Optional[str]*                                                         | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *Optional[str]*                                                         | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `update_link_flow_error`                                                | *Optional[bool]*                                                        | :heavy_minus_sign:                                                      | N/A                                                                     |

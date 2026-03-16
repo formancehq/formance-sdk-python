@@ -5,7 +5,7 @@ from formance_sdk_python.types import BaseModel, Nullable, UNSET_SENTINEL
 from formance_sdk_python.utils import FieldMetadata, PathParamMetadata, RequestMetadata
 import httpx
 from pydantic import model_serializer
-from typing import Any, Dict
+from typing import Any, Dict, List
 from typing_extensions import Annotated, TypedDict
 
 
@@ -47,30 +47,14 @@ class AddMetadataToAccountRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = []
-        nullable_fields = ["RequestBody"]
-        null_default_fields = []
-
         serialized = handler(self)
-
         m = {}
 
         for n, f in type(self).model_fields.items():
             k = f.alias or n
-            val = serialized.get(k)
-            serialized.pop(k, None)
+            val = serialized.get(k, serialized.get(n))
 
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
-
-            if val is not None and val != UNSET_SENTINEL:
-                m[k] = val
-            elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
-            ):
+            if val != UNSET_SENTINEL:
                 m[k] = val
 
         return m
@@ -79,6 +63,7 @@ class AddMetadataToAccountRequest(BaseModel):
 class AddMetadataToAccountResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""
+    headers: Dict[str, List[str]]
     status_code: int
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
@@ -88,6 +73,8 @@ class AddMetadataToAccountResponseTypedDict(TypedDict):
 class AddMetadataToAccountResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
+    headers: Dict[str, List[str]]
 
     status_code: int
     r"""HTTP response status code for this operation"""

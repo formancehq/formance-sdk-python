@@ -17,11 +17,10 @@ class PaymentsErrorResponseData(BaseModel):
     error_code: Annotated[
         shared_paymentserrorsenum.PaymentsErrorsEnum, pydantic.Field(alias="errorCode")
     ]
-
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
 
 
-@dataclass(frozen=True)
+@dataclass(unsafe_hash=True)
 class PaymentsErrorResponse(SDKBaseError):
     r"""Error"""
 

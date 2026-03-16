@@ -28,15 +28,9 @@ Show stack version information
 <!-- UsageSnippet language="python" operationID="getVersions" method="get" path="/versions" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
 
 
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
+with SDK() as sdk:
 
     res = sdk.get_versions()
 

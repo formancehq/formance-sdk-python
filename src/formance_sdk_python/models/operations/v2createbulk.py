@@ -5,7 +5,7 @@ from formance_sdk_python.models.shared import (
     v2bulkelement as shared_v2bulkelement,
     v2bulkresponse as shared_v2bulkresponse,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
@@ -14,6 +14,7 @@ from formance_sdk_python.utils import (
 )
 import httpx
 import pydantic
+from pydantic import model_serializer
 from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -28,6 +29,8 @@ class V2CreateBulkRequestTypedDict(TypedDict):
     r"""Continue on failure"""
     parallel: NotRequired[bool]
     r"""Process bulk elements in parallel"""
+    schema_version: NotRequired[str]
+    r"""Default schema version to use for validation (can be overridden per element)"""
 
 
 class V2CreateBulkRequest(BaseModel):
@@ -60,6 +63,31 @@ class V2CreateBulkRequest(BaseModel):
     ] = None
     r"""Process bulk elements in parallel"""
 
+    schema_version: Annotated[
+        Optional[str],
+        pydantic.Field(alias="schemaVersion"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Default schema version to use for validation (can be overridden per element)"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(
+            ["atomic", "continueOnFailure", "parallel", "schemaVersion"]
+        )
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class V2CreateBulkResponseTypedDict(TypedDict):
     content_type: str
@@ -84,3 +112,19 @@ class V2CreateBulkResponse(BaseModel):
 
     v2_bulk_response: Optional[shared_v2bulkresponse.V2BulkResponse] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["V2BulkResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

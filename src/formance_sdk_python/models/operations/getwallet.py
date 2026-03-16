@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.shared import (
-    activitygetwalletoutput as shared_activitygetwalletoutput,
+    getwalletresponse as shared_getwalletresponse,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import FieldMetadata, PathParamMetadata
 import httpx
+from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -28,8 +29,8 @@ class GetWalletResponseTypedDict(TypedDict):
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    activity_get_wallet_output: NotRequired[
-        shared_activitygetwalletoutput.ActivityGetWalletOutputTypedDict
+    get_wallet_response: NotRequired[
+        shared_getwalletresponse.GetWalletResponseTypedDict
     ]
     r"""Wallet"""
 
@@ -44,7 +45,21 @@ class GetWalletResponse(BaseModel):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
 
-    activity_get_wallet_output: Optional[
-        shared_activitygetwalletoutput.ActivityGetWalletOutput
-    ] = None
+    get_wallet_response: Optional[shared_getwalletresponse.GetWalletResponse] = None
     r"""Wallet"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["GetWalletResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

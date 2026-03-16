@@ -36,3 +36,9 @@ class V2PaymentAdjustment(BaseModel):
     raw: V2PaymentAdjustmentRaw
 
     status: V2PaymentStatus
+
+
+try:
+    V2PaymentAdjustment.model_rebuild()
+except NameError:
+    pass

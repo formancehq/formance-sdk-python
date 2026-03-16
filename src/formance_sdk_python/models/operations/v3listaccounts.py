@@ -4,16 +4,16 @@ from __future__ import annotations
 from formance_sdk_python.models.shared import (
     v3accountscursorresponse as shared_v3accountscursorresponse,
 )
-from formance_sdk_python.types import BaseModel
-from formance_sdk_python.utils import FieldMetadata, QueryParamMetadata, RequestMetadata
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
+from formance_sdk_python.utils import FieldMetadata, QueryParamMetadata
 import httpx
 import pydantic
-from typing import Any, Dict, Optional
+from pydantic import model_serializer
+from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3ListAccountsRequestTypedDict(TypedDict):
-    request_body: NotRequired[Dict[str, Any]]
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
 
@@ -23,11 +23,6 @@ class V3ListAccountsRequestTypedDict(TypedDict):
 
 
 class V3ListAccountsRequest(BaseModel):
-    request_body: Annotated[
-        Optional[Dict[str, Any]],
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ] = None
-
     cursor: Annotated[
         Optional[str],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
@@ -42,6 +37,22 @@ class V3ListAccountsRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
     r"""The number of items to return"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["cursor", "pageSize"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class V3ListAccountsResponseTypedDict(TypedDict):
@@ -71,3 +82,19 @@ class V3ListAccountsResponse(BaseModel):
         shared_v3accountscursorresponse.V3AccountsCursorResponse
     ] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["V3AccountsCursorResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

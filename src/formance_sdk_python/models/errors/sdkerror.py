@@ -9,7 +9,7 @@ from formance_sdk_python.models.errors import SDKBaseError
 MAX_MESSAGE_LEN = 10_000
 
 
-@dataclass(frozen=True)
+@dataclass(unsafe_hash=True)
 class SDKError(SDKBaseError):
     """The fallback error class if no more specific error class is matched."""
 

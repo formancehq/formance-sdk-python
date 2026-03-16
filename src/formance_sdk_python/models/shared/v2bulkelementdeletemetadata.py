@@ -3,8 +3,9 @@
 from __future__ import annotations
 from .v2targetid import V2TargetID, V2TargetIDTypedDict
 from .v2targettype import V2TargetType
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 import pydantic
+from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -35,3 +36,25 @@ class V2BulkElementDeleteMetadata(BaseModel):
     data: Optional[V2BulkElementDeleteMetadataData] = None
 
     ik: Optional[str] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["data", "ik"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+try:
+    V2BulkElementDeleteMetadataData.model_rebuild()
+except NameError:
+    pass

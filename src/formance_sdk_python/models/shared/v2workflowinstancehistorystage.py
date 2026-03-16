@@ -10,8 +10,9 @@ from .v2workflowinstancehistorystageoutput import (
     V2WorkflowInstanceHistoryStageOutputTypedDict,
 )
 from datetime import datetime
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 import pydantic
+from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -53,3 +54,27 @@ class V2WorkflowInstanceHistoryStage(BaseModel):
     terminated_at: Annotated[
         Optional[datetime], pydantic.Field(alias="terminatedAt")
     ] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(
+            ["error", "lastFailure", "nextExecution", "output", "terminatedAt"]
+        )
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+try:
+    V2WorkflowInstanceHistoryStage.model_rebuild()
+except NameError:
+    pass

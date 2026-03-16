@@ -4,10 +4,11 @@ from __future__ import annotations
 from formance_sdk_python.models.shared import (
     listwalletsresponse as shared_listwalletsresponse,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import FieldMetadata, QueryParamMetadata
 import httpx
 import pydantic
+from pydantic import model_serializer
 from typing import Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -65,6 +66,22 @@ class ListWalletsRequest(BaseModel):
     ] = 15
     r"""The maximum number of results to return per page"""
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["cursor", "expand", "metadata", "name", "pageSize"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class ListWalletsResponseTypedDict(TypedDict):
     content_type: str
@@ -93,3 +110,19 @@ class ListWalletsResponse(BaseModel):
         None
     )
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["ListWalletsResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

@@ -1,5 +1,13 @@
 # OrchestrationPaymentType
 
+## Example Usage
+
+```python
+from formance_sdk_python.models.shared import OrchestrationPaymentType
+
+value = OrchestrationPaymentType.PAY_IN
+```
+
 
 ## Values
 

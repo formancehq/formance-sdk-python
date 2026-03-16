@@ -1,5 +1,13 @@
 # V3PaymentStatusEnum
 
+## Example Usage
+
+```python
+from formance_sdk_python.models.shared import V3PaymentStatusEnum
+
+value = V3PaymentStatusEnum.UNKNOWN
+```
+
 
 ## Values
 

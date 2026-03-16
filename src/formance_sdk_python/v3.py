@@ -6,7 +6,7 @@ from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import errors, operations, shared
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
 from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Dict, Mapping, Optional, Union, cast
+from typing import Any, Mapping, Optional, Union, cast
 
 
 class V3(BaseSDK):
@@ -57,6 +57,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -73,7 +74,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3AddAccountToPool",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -143,6 +144,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -159,7 +161,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3AddAccountToPool",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -231,6 +233,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -247,7 +250,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3AddBankAccountToPaymentServiceUser",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -319,6 +322,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -335,7 +339,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3AddBankAccountToPaymentServiceUser",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -407,6 +411,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -423,7 +428,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ApprovePaymentInitiation",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -498,6 +503,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -514,7 +520,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ApprovePaymentInitiation",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -589,6 +595,7 @@ class V3(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request, False, True, "json", Optional[shared.V3CreateAccountRequest]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -605,7 +612,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreateAccount",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -680,6 +687,7 @@ class V3(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request, False, True, "json", Optional[shared.V3CreateAccountRequest]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -696,7 +704,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreateAccount",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -780,6 +788,7 @@ class V3(BaseSDK):
                 "json",
                 Optional[shared.V3CreateBankAccountRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -796,7 +805,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreateBankAccount",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -880,6 +889,7 @@ class V3(BaseSDK):
                 "json",
                 Optional[shared.V3CreateBankAccountRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -896,7 +906,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreateBankAccount",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -909,6 +919,208 @@ class V3(BaseSDK):
             return operations.V3CreateBankAccountResponse(
                 v3_create_bank_account_response=unmarshal_json_response(
                     Optional[shared.V3CreateBankAccountResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def create_link_for_payment_service_user(
+        self,
+        *,
+        request: Union[
+            operations.V3CreateLinkForPaymentServiceUserRequest,
+            operations.V3CreateLinkForPaymentServiceUserRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3CreateLinkForPaymentServiceUserResponse:
+        r"""Create an authentication link for a payment service user on a connector, for oauth flow
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3CreateLinkForPaymentServiceUserRequest
+            )
+        request = cast(operations.V3CreateLinkForPaymentServiceUserRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/create-link",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.v3_payment_service_user_create_link_request
+                if request is not None
+                else None,
+                False,
+                True,
+                "json",
+                Optional[shared.V3PaymentServiceUserCreateLinkRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3CreateLinkForPaymentServiceUser",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.V3CreateLinkForPaymentServiceUserResponse(
+                v3_payment_service_user_create_link_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserCreateLinkResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def create_link_for_payment_service_user_async(
+        self,
+        *,
+        request: Union[
+            operations.V3CreateLinkForPaymentServiceUserRequest,
+            operations.V3CreateLinkForPaymentServiceUserRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3CreateLinkForPaymentServiceUserResponse:
+        r"""Create an authentication link for a payment service user on a connector, for oauth flow
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3CreateLinkForPaymentServiceUserRequest
+            )
+        request = cast(operations.V3CreateLinkForPaymentServiceUserRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/create-link",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.v3_payment_service_user_create_link_request
+                if request is not None
+                else None,
+                False,
+                True,
+                "json",
+                Optional[shared.V3PaymentServiceUserCreateLinkRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3CreateLinkForPaymentServiceUser",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.V3CreateLinkForPaymentServiceUserResponse(
+                v3_payment_service_user_create_link_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserCreateLinkResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -971,6 +1183,7 @@ class V3(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request, False, True, "json", Optional[shared.V3CreatePaymentRequest]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -987,7 +1200,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreatePayment",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1062,6 +1275,7 @@ class V3(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request, False, True, "json", Optional[shared.V3CreatePaymentRequest]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1078,7 +1292,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreatePayment",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1162,6 +1376,7 @@ class V3(BaseSDK):
                 "json",
                 Optional[shared.V3CreatePaymentServiceUserRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1178,7 +1393,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreatePaymentServiceUser",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1262,6 +1477,7 @@ class V3(BaseSDK):
                 "json",
                 Optional[shared.V3CreatePaymentServiceUserRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1278,7 +1494,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreatePaymentServiceUser",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1353,6 +1569,7 @@ class V3(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request, False, True, "json", Optional[shared.V3CreatePoolRequest]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1369,7 +1586,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreatePool",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1444,6 +1661,7 @@ class V3(BaseSDK):
             get_serialized_body=lambda: utils.serialize_request_body(
                 request, False, True, "json", Optional[shared.V3CreatePoolRequest]
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1460,7 +1678,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3CreatePool",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1535,6 +1753,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1551,7 +1770,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3DeletePaymentInitiation",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1623,6 +1842,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1639,7 +1859,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3DeletePaymentInitiation",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1650,6 +1870,570 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V3DeletePaymentInitiationResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def delete_payment_service_user(
+        self,
+        *,
+        request: Union[
+            operations.V3DeletePaymentServiceUserRequest,
+            operations.V3DeletePaymentServiceUserRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3DeletePaymentServiceUserResponse:
+        r"""Delete a payment service user by ID
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3DeletePaymentServiceUserRequest
+            )
+        request = cast(operations.V3DeletePaymentServiceUserRequest, request)
+
+        req = self._build_request(
+            method="DELETE",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3DeletePaymentServiceUser",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "202", "application/json"):
+            return operations.V3DeletePaymentServiceUserResponse(
+                v3_payment_service_user_delete_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserDeleteResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def delete_payment_service_user_async(
+        self,
+        *,
+        request: Union[
+            operations.V3DeletePaymentServiceUserRequest,
+            operations.V3DeletePaymentServiceUserRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3DeletePaymentServiceUserResponse:
+        r"""Delete a payment service user by ID
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3DeletePaymentServiceUserRequest
+            )
+        request = cast(operations.V3DeletePaymentServiceUserRequest, request)
+
+        req = self._build_request_async(
+            method="DELETE",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3DeletePaymentServiceUser",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "202", "application/json"):
+            return operations.V3DeletePaymentServiceUserResponse(
+                v3_payment_service_user_delete_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserDeleteResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def delete_payment_service_user_connection_from_connector_id(
+        self,
+        *,
+        request: Union[
+            operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequest,
+            operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3DeletePaymentServiceUserConnectionFromConnectorIDResponse:
+        r"""Delete a connection for a payment service user on a connector
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request,
+                operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequest,
+            )
+        request = cast(
+            operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequest,
+            request,
+        )
+
+        req = self._build_request(
+            method="DELETE",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3DeletePaymentServiceUserConnectionFromConnectorID",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "202", "application/json"):
+            return operations.V3DeletePaymentServiceUserConnectionFromConnectorIDResponse(
+                v3_payment_service_user_delete_connection_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserDeleteConnectionResponse],
+                    http_res,
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def delete_payment_service_user_connection_from_connector_id_async(
+        self,
+        *,
+        request: Union[
+            operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequest,
+            operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3DeletePaymentServiceUserConnectionFromConnectorIDResponse:
+        r"""Delete a connection for a payment service user on a connector
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request,
+                operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequest,
+            )
+        request = cast(
+            operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequest,
+            request,
+        )
+
+        req = self._build_request_async(
+            method="DELETE",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3DeletePaymentServiceUserConnectionFromConnectorID",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "202", "application/json"):
+            return operations.V3DeletePaymentServiceUserConnectionFromConnectorIDResponse(
+                v3_payment_service_user_delete_connection_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserDeleteConnectionResponse],
+                    http_res,
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def delete_payment_service_user_connector(
+        self,
+        *,
+        request: Union[
+            operations.V3DeletePaymentServiceUserConnectorRequest,
+            operations.V3DeletePaymentServiceUserConnectorRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3DeletePaymentServiceUserConnectorResponse:
+        r"""Remove a payment service user from a connector, the PSU will still exist in Formance
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3DeletePaymentServiceUserConnectorRequest
+            )
+        request = cast(operations.V3DeletePaymentServiceUserConnectorRequest, request)
+
+        req = self._build_request(
+            method="DELETE",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3DeletePaymentServiceUserConnector",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "202", "application/json"):
+            return operations.V3DeletePaymentServiceUserConnectorResponse(
+                v3_payment_service_user_delete_connector_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserDeleteConnectorResponse],
+                    http_res,
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def delete_payment_service_user_connector_async(
+        self,
+        *,
+        request: Union[
+            operations.V3DeletePaymentServiceUserConnectorRequest,
+            operations.V3DeletePaymentServiceUserConnectorRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3DeletePaymentServiceUserConnectorResponse:
+        r"""Remove a payment service user from a connector, the PSU will still exist in Formance
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3DeletePaymentServiceUserConnectorRequest
+            )
+        request = cast(operations.V3DeletePaymentServiceUserConnectorRequest, request)
+
+        req = self._build_request_async(
+            method="DELETE",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3DeletePaymentServiceUserConnector",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "202", "application/json"):
+            return operations.V3DeletePaymentServiceUserConnectorResponse(
+                v3_payment_service_user_delete_connector_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserDeleteConnectorResponse],
+                    http_res,
+                ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
@@ -1708,6 +2492,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1724,7 +2509,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3DeletePool",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1793,6 +2578,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1809,7 +2595,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3DeletePool",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -1880,12 +2666,15 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_forward_bank_account_request,
+                request.v3_forward_bank_account_request
+                if request is not None
+                else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3ForwardBankAccountRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -1976,12 +2765,15 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_forward_bank_account_request,
+                request.v3_forward_bank_account_request
+                if request is not None
+                else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3ForwardBankAccountRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2076,12 +2868,15 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_forward_payment_service_user_bank_account_request,
+                request.v3_forward_payment_service_user_bank_account_request
+                if request is not None
+                else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3ForwardPaymentServiceUserBankAccountRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2098,7 +2893,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ForwardPaymentServiceUserBankAccount",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2177,12 +2972,15 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_forward_payment_service_user_bank_account_request,
+                request.v3_forward_payment_service_user_bank_account_request
+                if request is not None
+                else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3ForwardPaymentServiceUserBankAccountRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2199,7 +2997,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ForwardPaymentServiceUserBankAccount",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2214,6 +3012,184 @@ class V3(BaseSDK):
                     Optional[shared.V3ForwardPaymentServiceUserBankAccountResponse],
                     http_res,
                 ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def forward_payment_service_user_to_provider(
+        self,
+        *,
+        request: Union[
+            operations.V3ForwardPaymentServiceUserToProviderRequest,
+            operations.V3ForwardPaymentServiceUserToProviderRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3ForwardPaymentServiceUserToProviderResponse:
+        r"""Register/forward a payment service user on/to a connector
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3ForwardPaymentServiceUserToProviderRequest
+            )
+        request = cast(operations.V3ForwardPaymentServiceUserToProviderRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/forward",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3ForwardPaymentServiceUserToProvider",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.V3ForwardPaymentServiceUserToProviderResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def forward_payment_service_user_to_provider_async(
+        self,
+        *,
+        request: Union[
+            operations.V3ForwardPaymentServiceUserToProviderRequest,
+            operations.V3ForwardPaymentServiceUserToProviderRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3ForwardPaymentServiceUserToProviderResponse:
+        r"""Register/forward a payment service user on/to a connector
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3ForwardPaymentServiceUserToProviderRequest
+            )
+        request = cast(operations.V3ForwardPaymentServiceUserToProviderRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/forward",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3ForwardPaymentServiceUserToProvider",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.V3ForwardPaymentServiceUserToProviderResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
@@ -2272,6 +3248,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2288,7 +3265,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetAccount",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2360,6 +3337,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2376,7 +3354,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetAccount",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2449,6 +3427,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2465,7 +3444,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetAccountBalances",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2538,6 +3517,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2554,7 +3534,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetAccountBalances",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2627,6 +3607,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2716,6 +3697,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2805,6 +3787,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2821,7 +3804,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetConnectorConfig",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2894,6 +3877,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2910,7 +3894,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetConnectorConfig",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -2983,6 +3967,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -2999,7 +3984,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetConnectorSchedule",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3072,6 +4057,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3088,7 +4074,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetConnectorSchedule",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3160,6 +4146,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3176,7 +4163,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPayment",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3248,6 +4235,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3264,7 +4252,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPayment",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3337,6 +4325,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3353,7 +4342,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPaymentInitiation",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3426,6 +4415,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3442,7 +4432,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPaymentInitiation",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3517,6 +4507,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3533,7 +4524,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPaymentServiceUser",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3608,6 +4599,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3624,7 +4616,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPaymentServiceUser",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3637,6 +4629,196 @@ class V3(BaseSDK):
             return operations.V3GetPaymentServiceUserResponse(
                 v3_get_payment_service_user_response=unmarshal_json_response(
                     Optional[shared.V3GetPaymentServiceUserResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def get_payment_service_user_link_attempt_from_connector_id(
+        self,
+        *,
+        request: Union[
+            operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest,
+            operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse:
+        r"""Get a link attempt for a payment service user on a connector
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request,
+                operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest,
+            )
+        request = cast(
+            operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest, request
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts/{attemptID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3GetPaymentServiceUserLinkAttemptFromConnectorID",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse(
+                v3_payment_service_user_link_attempt=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserLinkAttempt], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def get_payment_service_user_link_attempt_from_connector_id_async(
+        self,
+        *,
+        request: Union[
+            operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest,
+            operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse:
+        r"""Get a link attempt for a payment service user on a connector
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request,
+                operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest,
+            )
+        request = cast(
+            operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest, request
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts/{attemptID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3GetPaymentServiceUserLinkAttemptFromConnectorID",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse(
+                v3_payment_service_user_link_attempt=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserLinkAttempt], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3696,6 +4878,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3712,7 +4895,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPool",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3784,6 +4967,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3800,7 +4984,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPool",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3873,6 +5057,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3889,7 +5074,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPoolBalances",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -3962,6 +5147,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -3978,7 +5164,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPoolBalances",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4053,6 +5239,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4069,7 +5256,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPoolBalancesLatest",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4144,6 +5331,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4160,7 +5348,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetPoolBalancesLatest",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4232,6 +5420,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4248,7 +5437,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetTask",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4320,6 +5509,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4336,7 +5526,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3GetTask",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4410,12 +5600,13 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_initiate_payment_request,
+                request.v3_initiate_payment_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3InitiatePaymentRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4432,7 +5623,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3InitiatePayment",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4506,12 +5697,13 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_initiate_payment_request,
+                request.v3_initiate_payment_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3InitiatePaymentRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4528,7 +5720,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3InitiatePayment",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4602,12 +5794,13 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_install_connector_request,
+                request.v3_install_connector_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3InstallConnectorRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4624,7 +5817,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3InstallConnector",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4698,12 +5891,13 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_install_connector_request,
+                request.v3_install_connector_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3InstallConnectorRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4720,7 +5914,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3InstallConnector",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4792,9 +5986,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4811,7 +6003,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListAccounts",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4883,9 +6075,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4902,7 +6092,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListAccounts",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -4975,9 +6165,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -4994,7 +6182,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListBankAccounts",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5067,9 +6255,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5086,7 +6272,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListBankAccounts",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5149,6 +6335,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5165,7 +6352,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectorConfigs",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5228,6 +6415,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5244,7 +6432,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectorConfigs",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5319,6 +6507,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5335,7 +6524,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectorScheduleInstances",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5411,6 +6600,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5427,7 +6617,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectorScheduleInstances",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5503,9 +6693,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5522,7 +6710,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectorSchedules",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5597,9 +6785,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5616,7 +6802,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectorSchedules",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5689,9 +6875,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5708,7 +6892,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectors",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5781,9 +6965,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5800,7 +6982,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListConnectors",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5875,9 +7057,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5894,7 +7074,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentInitiationAdjustments",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -5970,9 +7150,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -5989,7 +7167,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentInitiationAdjustments",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -6067,9 +7245,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6086,7 +7262,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentInitiationRelatedPayments",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -6164,9 +7340,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6183,7 +7357,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentInitiationRelatedPayments",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -6259,9 +7433,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6278,7 +7450,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentInitiations",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -6353,9 +7525,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6372,7 +7542,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentInitiations",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -6385,6 +7555,582 @@ class V3(BaseSDK):
             return operations.V3ListPaymentInitiationsResponse(
                 v3_payment_initiations_cursor_response=unmarshal_json_response(
                     Optional[shared.V3PaymentInitiationsCursorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def list_payment_service_user_connections(
+        self,
+        *,
+        request: Union[
+            operations.V3ListPaymentServiceUserConnectionsRequest,
+            operations.V3ListPaymentServiceUserConnectionsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3ListPaymentServiceUserConnectionsResponse:
+        r"""List all connections for a payment service user
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3ListPaymentServiceUserConnectionsRequest
+            )
+        request = cast(operations.V3ListPaymentServiceUserConnectionsRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connections",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3ListPaymentServiceUserConnections",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V3ListPaymentServiceUserConnectionsResponse(
+                v3_payment_service_user_connections_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserConnectionsCursorResponse],
+                    http_res,
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def list_payment_service_user_connections_async(
+        self,
+        *,
+        request: Union[
+            operations.V3ListPaymentServiceUserConnectionsRequest,
+            operations.V3ListPaymentServiceUserConnectionsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3ListPaymentServiceUserConnectionsResponse:
+        r"""List all connections for a payment service user
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3ListPaymentServiceUserConnectionsRequest
+            )
+        request = cast(operations.V3ListPaymentServiceUserConnectionsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connections",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3ListPaymentServiceUserConnections",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V3ListPaymentServiceUserConnectionsResponse(
+                v3_payment_service_user_connections_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserConnectionsCursorResponse],
+                    http_res,
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def list_payment_service_user_connections_from_connector_id(
+        self,
+        *,
+        request: Union[
+            operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequest,
+            operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3ListPaymentServiceUserConnectionsFromConnectorIDResponse:
+        r"""List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request,
+                operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequest,
+            )
+        request = cast(
+            operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequest,
+            request,
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3ListPaymentServiceUserConnectionsFromConnectorID",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V3ListPaymentServiceUserConnectionsFromConnectorIDResponse(
+                v3_payment_service_user_connections_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserConnectionsCursorResponse],
+                    http_res,
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def list_payment_service_user_connections_from_connector_id_async(
+        self,
+        *,
+        request: Union[
+            operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequest,
+            operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3ListPaymentServiceUserConnectionsFromConnectorIDResponse:
+        r"""List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request,
+                operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequest,
+            )
+        request = cast(
+            operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequest,
+            request,
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3ListPaymentServiceUserConnectionsFromConnectorID",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V3ListPaymentServiceUserConnectionsFromConnectorIDResponse(
+                v3_payment_service_user_connections_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserConnectionsCursorResponse],
+                    http_res,
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def list_payment_service_user_link_attempts_from_connector_id(
+        self,
+        *,
+        request: Union[
+            operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest,
+            operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse:
+        r"""List all link attempts for a payment service user on a connector.
+        Allows to check if users used the link and completed the oauth flow.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request,
+                operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest,
+            )
+        request = cast(
+            operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest,
+            request,
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3ListPaymentServiceUserLinkAttemptsFromConnectorID",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse(
+                v3_payment_service_user_link_attempts_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserLinkAttemptsCursorResponse],
+                    http_res,
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def list_payment_service_user_link_attempts_from_connector_id_async(
+        self,
+        *,
+        request: Union[
+            operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest,
+            operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse:
+        r"""List all link attempts for a payment service user on a connector.
+        Allows to check if users used the link and completed the oauth flow.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request,
+                operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest,
+            )
+        request = cast(
+            operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest,
+            request,
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3ListPaymentServiceUserLinkAttemptsFromConnectorID",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse(
+                v3_payment_service_user_link_attempts_cursor_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserLinkAttemptsCursorResponse],
+                    http_res,
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -6447,9 +8193,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6466,7 +8210,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentServiceUsers",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -6541,9 +8285,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6560,7 +8302,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPaymentServiceUsers",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -6632,9 +8374,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6651,7 +8391,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPayments",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -6723,9 +8463,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6742,7 +8480,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPayments",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -6814,9 +8552,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6833,7 +8569,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPools",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -6905,9 +8641,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, True, "json", Optional[Dict[str, Any]]
-            ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -6924,7 +8658,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ListPools",
-                oauth2_scopes=["auth:read", "payments:read"],
+                oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -6999,6 +8733,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -7015,7 +8750,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3RejectPaymentInitiation",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -7087,6 +8822,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -7103,7 +8839,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3RejectPaymentInitiation",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -7175,6 +8911,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -7191,7 +8928,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3RemoveAccountFromPool",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -7263,6 +9000,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -7279,7 +9017,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3RemoveAccountFromPool",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -7349,6 +9087,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -7365,7 +9104,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ResetConnector",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -7438,6 +9177,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -7454,7 +9194,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ResetConnector",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -7529,6 +9269,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -7545,7 +9286,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3RetryPaymentInitiation",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -7620,6 +9361,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -7636,7 +9378,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3RetryPaymentInitiation",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -7712,12 +9454,15 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_reverse_payment_initiation_request,
+                request.v3_reverse_payment_initiation_request
+                if request is not None
+                else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3ReversePaymentInitiationRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -7734,7 +9479,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ReversePaymentInitiation",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -7810,12 +9555,15 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_reverse_payment_initiation_request,
+                request.v3_reverse_payment_initiation_request
+                if request is not None
+                else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3ReversePaymentInitiationRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -7832,7 +9580,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3ReversePaymentInitiation",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -7905,6 +9653,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -7921,7 +9670,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3UninstallConnector",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -7994,6 +9743,7 @@ class V3(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -8010,7 +9760,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3UninstallConnector",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -8086,12 +9836,15 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_update_bank_account_metadata_request,
+                request.v3_update_bank_account_metadata_request
+                if request is not None
+                else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3UpdateBankAccountMetadataRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -8181,12 +9934,15 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_update_bank_account_metadata_request,
+                request.v3_update_bank_account_metadata_request
+                if request is not None
+                else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3UpdateBankAccountMetadataRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -8214,6 +9970,212 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V3UpdateBankAccountMetadataResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def update_link_for_payment_service_user_on_connector(
+        self,
+        *,
+        request: Union[
+            operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequest,
+            operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3UpdateLinkForPaymentServiceUserOnConnectorResponse:
+        r"""Update/Regenerate a link for a payment service user on a connector
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequest
+            )
+        request = cast(
+            operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequest, request
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}/update-link",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.v3_payment_service_user_update_link_request
+                if request is not None
+                else None,
+                False,
+                True,
+                "json",
+                Optional[shared.V3PaymentServiceUserUpdateLinkRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3UpdateLinkForPaymentServiceUserOnConnector",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.V3UpdateLinkForPaymentServiceUserOnConnectorResponse(
+                v3_payment_service_user_update_link_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserUpdateLinkResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def update_link_for_payment_service_user_on_connector_async(
+        self,
+        *,
+        request: Union[
+            operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequest,
+            operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3UpdateLinkForPaymentServiceUserOnConnectorResponse:
+        r"""Update/Regenerate a link for a payment service user on a connector
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequest
+            )
+        request = cast(
+            operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequest, request
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}/update-link",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.v3_payment_service_user_update_link_request
+                if request is not None
+                else None,
+                False,
+                True,
+                "json",
+                Optional[shared.V3PaymentServiceUserUpdateLinkRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3UpdateLinkForPaymentServiceUserOnConnector",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.V3UpdateLinkForPaymentServiceUserOnConnectorResponse(
+                v3_payment_service_user_update_link_response=unmarshal_json_response(
+                    Optional[shared.V3PaymentServiceUserUpdateLinkResponse], http_res
+                ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
@@ -8276,12 +10238,15 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_update_payment_metadata_request,
+                request.v3_update_payment_metadata_request
+                if request is not None
+                else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3UpdatePaymentMetadataRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -8298,7 +10263,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3UpdatePaymentMetadata",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -8371,12 +10336,15 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_update_payment_metadata_request,
+                request.v3_update_payment_metadata_request
+                if request is not None
+                else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3UpdatePaymentMetadataRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -8393,7 +10361,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3UpdatePaymentMetadata",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -8404,6 +10372,194 @@ class V3(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return operations.V3UpdatePaymentMetadataResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def update_pool_query(
+        self,
+        *,
+        request: Union[
+            operations.V3UpdatePoolQueryRequest,
+            operations.V3UpdatePoolQueryRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3UpdatePoolQueryResponse:
+        r"""Update the query of a pool
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V3UpdatePoolQueryRequest)
+        request = cast(operations.V3UpdatePoolQueryRequest, request)
+
+        req = self._build_request(
+            method="PATCH",
+            path="/api/payments/v3/pools/{poolID}/query",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.v3_update_pool_query_request if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[shared.V3UpdatePoolQueryRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3UpdatePoolQuery",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.V3UpdatePoolQueryResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.V3ErrorResponseData, http_res
+            )
+            raise errors.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def update_pool_query_async(
+        self,
+        *,
+        request: Union[
+            operations.V3UpdatePoolQueryRequest,
+            operations.V3UpdatePoolQueryRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3UpdatePoolQueryResponse:
+        r"""Update the query of a pool
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.V3UpdatePoolQueryRequest)
+        request = cast(operations.V3UpdatePoolQueryRequest, request)
+
+        req = self._build_request_async(
+            method="PATCH",
+            path="/api/payments/v3/pools/{poolID}/query",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.v3_update_pool_query_request if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[shared.V3UpdatePoolQueryRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3UpdatePoolQuery",
+                oauth2_scopes=["payments:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["default"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.V3UpdatePoolQueryResponse(
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
@@ -8468,12 +10624,13 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_install_connector_request,
+                request.v3_install_connector_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3InstallConnectorRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -8490,7 +10647,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3UpdateConnectorConfig",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -8565,12 +10722,13 @@ class V3(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v3_install_connector_request,
+                request.v3_install_connector_request if request is not None else None,
                 False,
                 True,
                 "json",
                 Optional[shared.V3InstallConnectorRequest],
             ),
+            allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
 
@@ -8587,7 +10745,7 @@ class V3(BaseSDK):
                 config=self.sdk_configuration,
                 base_url=base_url or "",
                 operation_id="v3UpdateConnectorConfig",
-                oauth2_scopes=["auth:read", "payments:write"],
+                oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,

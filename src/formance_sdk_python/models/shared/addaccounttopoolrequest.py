@@ -12,3 +12,9 @@ class AddAccountToPoolRequestTypedDict(TypedDict):
 
 class AddAccountToPoolRequest(BaseModel):
     account_id: Annotated[str, pydantic.Field(alias="accountID")]
+
+
+try:
+    AddAccountToPoolRequest.model_rebuild()
+except NameError:
+    pass

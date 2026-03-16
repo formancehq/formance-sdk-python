@@ -12,13 +12,11 @@ from typing_extensions import Annotated
 
 class ReconciliationErrorResponseData(BaseModel):
     error_code: Annotated[str, pydantic.Field(alias="errorCode")]
-
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
-
     details: Optional[str] = None
 
 
-@dataclass(frozen=True)
+@dataclass(unsafe_hash=True)
 class ReconciliationErrorResponse(SDKBaseError):
     r"""Error response"""
 

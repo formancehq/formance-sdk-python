@@ -40,3 +40,9 @@ class WalletSummary(BaseModel):
         Dict[str, Annotated[int, BeforeValidator(validate_int)]],
         pydantic.Field(alias="holdFunds"),
     ]
+
+
+try:
+    WalletSummary.model_rebuild()
+except NameError:
+    pass

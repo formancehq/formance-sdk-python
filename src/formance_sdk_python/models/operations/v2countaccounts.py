@@ -2,31 +2,25 @@
 
 from __future__ import annotations
 from datetime import datetime
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
     QueryParamMetadata,
-    RequestMetadata,
 )
 import httpx
-from typing import Any, Dict, List, Optional
+from pydantic import model_serializer
+from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2CountAccountsRequestTypedDict(TypedDict):
-    request_body: Dict[str, Any]
     ledger: str
     r"""Name of the ledger."""
     pit: NotRequired[datetime]
 
 
 class V2CountAccountsRequest(BaseModel):
-    request_body: Annotated[
-        Dict[str, Any],
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ]
-
     ledger: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
@@ -36,6 +30,22 @@ class V2CountAccountsRequest(BaseModel):
         Optional[datetime],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["pit"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class V2CountAccountsResponseTypedDict(TypedDict):

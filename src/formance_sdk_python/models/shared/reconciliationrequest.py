@@ -20,3 +20,9 @@ class ReconciliationRequest(BaseModel):
     reconciled_at_payments: Annotated[
         datetime, pydantic.Field(alias="reconciledAtPayments")
     ]
+
+
+try:
+    ReconciliationRequest.model_rebuild()
+except NameError:
+    pass

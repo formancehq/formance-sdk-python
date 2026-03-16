@@ -12,3 +12,9 @@ class V2CreatePipelineRequestTypedDict(TypedDict):
 
 class V2CreatePipelineRequest(BaseModel):
     exporter_id: Annotated[str, pydantic.Field(alias="exporterID")]
+
+
+try:
+    V2CreatePipelineRequest.model_rebuild()
+except NameError:
+    pass

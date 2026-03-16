@@ -22,3 +22,9 @@ class PolicyRequest(BaseModel):
     name: str
 
     payments_pool_id: Annotated[str, pydantic.Field(alias="paymentsPoolID")]
+
+
+try:
+    PolicyRequest.model_rebuild()
+except NameError:
+    pass

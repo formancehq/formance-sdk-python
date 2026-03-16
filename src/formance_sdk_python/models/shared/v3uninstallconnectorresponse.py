@@ -26,3 +26,9 @@ class V3UninstallConnectorResponseTypedDict(TypedDict):
 
 class V3UninstallConnectorResponse(BaseModel):
     data: V3UninstallConnectorResponseData
+
+
+try:
+    V3UninstallConnectorResponseData.model_rebuild()
+except NameError:
+    pass

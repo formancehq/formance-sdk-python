@@ -1,5 +1,13 @@
 # Connector
 
+## Example Usage
+
+```python
+from formance_sdk_python.models.shared import Connector
+
+value = Connector.STRIPE
+```
+
 
 ## Values
 

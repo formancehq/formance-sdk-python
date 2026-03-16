@@ -27,3 +27,9 @@ class V3Balance(BaseModel):
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
     last_updated_at: Annotated[datetime, pydantic.Field(alias="lastUpdatedAt")]
+
+
+try:
+    V3Balance.model_rebuild()
+except NameError:
+    pass

@@ -1,5 +1,13 @@
 # MigrationInfoState
 
+## Example Usage
+
+```python
+from formance_sdk_python.models.shared import MigrationInfoState
+
+value = MigrationInfoState.TO_DO
+```
+
 
 ## Values
 

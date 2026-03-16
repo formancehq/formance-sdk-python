@@ -26,3 +26,9 @@ class V3RetryPaymentInitiationResponseTypedDict(TypedDict):
 
 class V3RetryPaymentInitiationResponse(BaseModel):
     data: V3RetryPaymentInitiationResponseData
+
+
+try:
+    V3RetryPaymentInitiationResponseData.model_rebuild()
+except NameError:
+    pass

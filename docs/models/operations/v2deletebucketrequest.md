@@ -1,0 +1,8 @@
+# V2DeleteBucketRequest
+
+
+## Fields
+
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `bucket`           | *str*              | :heavy_check_mark: | The bucket name    |

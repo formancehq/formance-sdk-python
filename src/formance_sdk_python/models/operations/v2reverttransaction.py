@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.shared import (
-    v2createtransactionresponse as shared_v2createtransactionresponse,
     v2reverttransactionrequest as shared_v2reverttransactionrequest,
+    v2reverttransactionresponse as shared_v2reverttransactionresponse,
 )
-from formance_sdk_python.types import BaseModel
+from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
+    HeaderMetadata,
     PathParamMetadata,
     QueryParamMetadata,
     RequestMetadata,
@@ -15,8 +16,9 @@ from formance_sdk_python.utils import (
 )
 import httpx
 import pydantic
+from pydantic import model_serializer
 from pydantic.functional_validators import BeforeValidator
-from typing import Optional
+from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
@@ -25,6 +27,8 @@ class V2RevertTransactionRequestTypedDict(TypedDict):
     r"""Transaction ID."""
     ledger: str
     r"""Name of the ledger."""
+    idempotency_key: NotRequired[str]
+    r"""Use an idempotency key"""
     v2_revert_transaction_request: NotRequired[
         shared_v2reverttransactionrequest.V2RevertTransactionRequestTypedDict
     ]
@@ -34,6 +38,8 @@ class V2RevertTransactionRequestTypedDict(TypedDict):
     r"""Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker."""
     force: NotRequired[bool]
     r"""Force revert"""
+    schema_version: NotRequired[str]
+    r"""Schema version to use for validation"""
 
 
 class V2RevertTransactionRequest(BaseModel):
@@ -47,6 +53,13 @@ class V2RevertTransactionRequest(BaseModel):
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""Name of the ledger."""
+
+    idempotency_key: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Idempotency-Key"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""Use an idempotency key"""
 
     v2_revert_transaction_request: Annotated[
         Optional[shared_v2reverttransactionrequest.V2RevertTransactionRequest],
@@ -73,16 +86,49 @@ class V2RevertTransactionRequest(BaseModel):
     ] = None
     r"""Force revert"""
 
+    schema_version: Annotated[
+        Optional[str],
+        pydantic.Field(alias="schemaVersion"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Schema version to use for validation"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(
+            [
+                "Idempotency-Key",
+                "V2RevertTransactionRequest",
+                "atEffectiveDate",
+                "dryRun",
+                "force",
+                "schemaVersion",
+            ]
+        )
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class V2RevertTransactionResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""
+    headers: Dict[str, List[str]]
     status_code: int
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    v2_create_transaction_response: NotRequired[
-        shared_v2createtransactionresponse.V2CreateTransactionResponseTypedDict
+    v2_revert_transaction_response: NotRequired[
+        shared_v2reverttransactionresponse.V2RevertTransactionResponseTypedDict
     ]
     r"""OK"""
 
@@ -91,13 +137,31 @@ class V2RevertTransactionResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
 
+    headers: Dict[str, List[str]]
+
     status_code: int
     r"""HTTP response status code for this operation"""
 
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
 
-    v2_create_transaction_response: Optional[
-        shared_v2createtransactionresponse.V2CreateTransactionResponse
+    v2_revert_transaction_response: Optional[
+        shared_v2reverttransactionresponse.V2RevertTransactionResponse
     ] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["V2RevertTransactionResponse"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

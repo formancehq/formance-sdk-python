@@ -30,3 +30,9 @@ class OrchestrationWallet(BaseModel):
     r"""Metadata associated with the wallet."""
 
     name: str
+
+
+try:
+    OrchestrationWallet.model_rebuild()
+except NameError:
+    pass
