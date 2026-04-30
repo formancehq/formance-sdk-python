@@ -7,20 +7,32 @@ from formance_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
     QueryParamMetadata,
+    RequestMetadata,
 )
 import httpx
 from pydantic import model_serializer
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+V2_COUNT_TRANSACTIONS_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2CountTransactionsRequestTypedDict(TypedDict):
+    request_body: Dict[str, Any]
     ledger: str
     r"""Name of the ledger."""
     pit: NotRequired[datetime]
 
 
 class V2CountTransactionsRequest(BaseModel):
+    request_body: Annotated[
+        Dict[str, Any],
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
     ledger: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]

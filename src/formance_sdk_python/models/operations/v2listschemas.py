@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 from enum import Enum
-from formance_sdk_python.models.shared import (
-    v2schemascursorresponse as shared_v2schemascursorresponse,
+from formance_sdk_python.models.ledger import (
+    v2schemascursorresponse as ledger_v2schemascursorresponse,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
@@ -16,6 +16,11 @@ import pydantic
 from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
+
+
+V2_LIST_SCHEMAS_SERVERS = [
+    "http://localhost:8080/",
+]
 
 
 class V2ListSchemasOrder(str, Enum):
@@ -100,7 +105,7 @@ class V2ListSchemasResponseTypedDict(TypedDict):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
     v2_schemas_cursor_response: NotRequired[
-        shared_v2schemascursorresponse.V2SchemasCursorResponseTypedDict
+        ledger_v2schemascursorresponse.V2SchemasCursorResponseTypedDict
     ]
     r"""Schemas retrieved successfully"""
 
@@ -116,7 +121,7 @@ class V2ListSchemasResponse(BaseModel):
     r"""Raw HTTP response; suitable for custom response parsing"""
 
     v2_schemas_cursor_response: Optional[
-        shared_v2schemascursorresponse.V2SchemasCursorResponse
+        ledger_v2schemascursorresponse.V2SchemasCursorResponse
     ] = None
     r"""Schemas retrieved successfully"""
 

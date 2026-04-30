@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+V3_FORWARD_PAYMENT_SERVICE_USER_TO_PROVIDER_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V3ForwardPaymentServiceUserToProviderRequestTypedDict(TypedDict):
     connector_id: str
     r"""The connector ID"""

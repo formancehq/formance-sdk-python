@@ -105,6 +105,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.V3AddAccountToPoolRequest](../../models/operations/v3addaccounttopoolrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
+| `server_url`                                                                                 | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -112,10 +113,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## add_bank_account_to_payment_service_user
 
@@ -154,6 +155,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                        | [operations.V3AddBankAccountToPaymentServiceUserRequest](../../models/operations/v3addbankaccounttopaymentserviceuserrequest.md) | :heavy_check_mark:                                                                                                               | The request object to use for the request.                                                                                       |
 | `retries`                                                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                 | :heavy_minus_sign:                                                                                                               | Configuration to override the default retry behavior of the client.                                                              |
+| `server_url`                                                                                                                     | *Optional[str]*                                                                                                                  | :heavy_minus_sign:                                                                                                               | An optional server URL to use.                                                                                                   |
 
 ### Response
 
@@ -161,10 +163,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## approve_payment_initiation
 
@@ -202,6 +204,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                    | [operations.V3ApprovePaymentInitiationRequest](../../models/operations/v3approvepaymentinitiationrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 | `retries`                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                             | :heavy_minus_sign:                                                                                           | Configuration to override the default retry behavior of the client.                                          |
+| `server_url`                                                                                                 | *Optional[str]*                                                                                              | :heavy_minus_sign:                                                                                           | An optional server URL to use.                                                                               |
 
 ### Response
 
@@ -209,10 +212,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## create_account
 
@@ -245,10 +248,11 @@ with SDK(
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [shared.V3CreateAccountRequest](../../models/shared/v3createaccountrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `request`                                                                          | [payments.V3CreateAccountRequest](../../models/payments/v3createaccountrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
+| `server_url`                                                                       | *Optional[str]*                                                                    | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -256,10 +260,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## create_bank_account
 
@@ -292,10 +296,11 @@ with SDK(
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `request`                                                                              | [shared.V3CreateBankAccountRequest](../../models/shared/v3createbankaccountrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `request`                                                                                  | [payments.V3CreateBankAccountRequest](../../models/payments/v3createbankaccountrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
+| `server_url`                                                                               | *Optional[str]*                                                                            | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -303,10 +308,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## create_link_for_payment_service_user
 
@@ -345,6 +350,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                  | [operations.V3CreateLinkForPaymentServiceUserRequest](../../models/operations/v3createlinkforpaymentserviceuserrequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
 | `retries`                                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                           | :heavy_minus_sign:                                                                                                         | Configuration to override the default retry behavior of the client.                                                        |
+| `server_url`                                                                                                               | *Optional[str]*                                                                                                            | :heavy_minus_sign:                                                                                                         | An optional server URL to use.                                                                                             |
 
 ### Response
 
@@ -352,10 +358,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## create_payment
 
@@ -388,10 +394,11 @@ with SDK(
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [shared.V3CreatePaymentRequest](../../models/shared/v3createpaymentrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `request`                                                                          | [payments.V3CreatePaymentRequest](../../models/payments/v3createpaymentrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
+| `server_url`                                                                       | *Optional[str]*                                                                    | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -399,10 +406,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## create_payment_service_user
 
@@ -434,10 +441,11 @@ with SDK(
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `request`                                                                                            | [shared.V3CreatePaymentServiceUserRequest](../../models/shared/v3createpaymentserviceuserrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
-| `retries`                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                     | :heavy_minus_sign:                                                                                   | Configuration to override the default retry behavior of the client.                                  |
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                | [payments.V3CreatePaymentServiceUserRequest](../../models/payments/v3createpaymentserviceuserrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `retries`                                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                         | :heavy_minus_sign:                                                                                       | Configuration to override the default retry behavior of the client.                                      |
+| `server_url`                                                                                             | *Optional[str]*                                                                                          | :heavy_minus_sign:                                                                                       | An optional server URL to use.                                                                           |
 
 ### Response
 
@@ -445,10 +453,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## create_pool
 
@@ -480,10 +488,11 @@ with SDK(
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `request`                                                                | [shared.V3CreatePoolRequest](../../models/shared/v3createpoolrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
-| `retries`                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)         | :heavy_minus_sign:                                                       | Configuration to override the default retry behavior of the client.      |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `request`                                                                    | [payments.V3CreatePoolRequest](../../models/payments/v3createpoolrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
+| `server_url`                                                                 | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -491,10 +500,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## delete_payment_initiation
 
@@ -532,6 +541,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                  | [operations.V3DeletePaymentInitiationRequest](../../models/operations/v3deletepaymentinitiationrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `retries`                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                           | :heavy_minus_sign:                                                                                         | Configuration to override the default retry behavior of the client.                                        |
+| `server_url`                                                                                               | *Optional[str]*                                                                                            | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -539,10 +549,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## delete_payment_service_user
 
@@ -580,6 +590,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                    | [operations.V3DeletePaymentServiceUserRequest](../../models/operations/v3deletepaymentserviceuserrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 | `retries`                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                             | :heavy_minus_sign:                                                                                           | Configuration to override the default retry behavior of the client.                                          |
+| `server_url`                                                                                                 | *Optional[str]*                                                                                              | :heavy_minus_sign:                                                                                           | An optional server URL to use.                                                                               |
 
 ### Response
 
@@ -587,10 +598,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## delete_payment_service_user_connection_from_connector_id
 
@@ -630,6 +641,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                                                      | [operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequest](../../models/operations/v3deletepaymentserviceuserconnectionfromconnectoridrequest.md) | :heavy_check_mark:                                                                                                                                             | The request object to use for the request.                                                                                                                     |
 | `retries`                                                                                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                               | :heavy_minus_sign:                                                                                                                                             | Configuration to override the default retry behavior of the client.                                                                                            |
+| `server_url`                                                                                                                                                   | *Optional[str]*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                             | An optional server URL to use.                                                                                                                                 |
 
 ### Response
 
@@ -637,10 +649,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## delete_payment_service_user_connector
 
@@ -679,6 +691,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                      | [operations.V3DeletePaymentServiceUserConnectorRequest](../../models/operations/v3deletepaymentserviceuserconnectorrequest.md) | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
 | `retries`                                                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                               | :heavy_minus_sign:                                                                                                             | Configuration to override the default retry behavior of the client.                                                            |
+| `server_url`                                                                                                                   | *Optional[str]*                                                                                                                | :heavy_minus_sign:                                                                                                             | An optional server URL to use.                                                                                                 |
 
 ### Response
 
@@ -686,10 +699,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## delete_pool
 
@@ -727,6 +740,7 @@ with SDK(
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.V3DeletePoolRequest](../../models/operations/v3deletepoolrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+| `server_url`                                                                     | *Optional[str]*                                                                  | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -734,10 +748,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## forward_bank_account
 
@@ -748,15 +762,9 @@ Forward a Bank Account to a PSP for creation
 <!-- UsageSnippet language="python" operationID="v3ForwardBankAccount" method="post" path="/api/payments/v3/bank-accounts/{bankAccountID}/forward" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
 
 
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
+with SDK() as sdk:
 
     res = sdk.payments.v3.forward_bank_account(request={
         "bank_account_id": "<id>",
@@ -775,6 +783,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.V3ForwardBankAccountRequest](../../models/operations/v3forwardbankaccountrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
+| `server_url`                                                                                     | *Optional[str]*                                                                                  | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -782,10 +791,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## forward_payment_service_user_bank_account
 
@@ -824,6 +833,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                            | [operations.V3ForwardPaymentServiceUserBankAccountRequest](../../models/operations/v3forwardpaymentserviceuserbankaccountrequest.md) | :heavy_check_mark:                                                                                                                   | The request object to use for the request.                                                                                           |
 | `retries`                                                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                     | :heavy_minus_sign:                                                                                                                   | Configuration to override the default retry behavior of the client.                                                                  |
+| `server_url`                                                                                                                         | *Optional[str]*                                                                                                                      | :heavy_minus_sign:                                                                                                                   | An optional server URL to use.                                                                                                       |
 
 ### Response
 
@@ -831,10 +841,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## forward_payment_service_user_to_provider
 
@@ -873,6 +883,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                          | [operations.V3ForwardPaymentServiceUserToProviderRequest](../../models/operations/v3forwardpaymentserviceusertoproviderrequest.md) | :heavy_check_mark:                                                                                                                 | The request object to use for the request.                                                                                         |
 | `retries`                                                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                   | :heavy_minus_sign:                                                                                                                 | Configuration to override the default retry behavior of the client.                                                                |
+| `server_url`                                                                                                                       | *Optional[str]*                                                                                                                    | :heavy_minus_sign:                                                                                                                 | An optional server URL to use.                                                                                                     |
 
 ### Response
 
@@ -880,10 +891,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## get_account
 
@@ -921,6 +932,7 @@ with SDK(
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.V3GetAccountRequest](../../models/operations/v3getaccountrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+| `server_url`                                                                     | *Optional[str]*                                                                  | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -928,10 +940,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## get_account_balances
 
@@ -971,6 +983,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.V3GetAccountBalancesRequest](../../models/operations/v3getaccountbalancesrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
+| `server_url`                                                                                     | *Optional[str]*                                                                                  | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -978,10 +991,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## get_bank_account
 
@@ -992,15 +1005,9 @@ Get a Bank Account by ID
 <!-- UsageSnippet language="python" operationID="v3GetBankAccount" method="get" path="/api/payments/v3/bank-accounts/{bankAccountID}" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
 
 
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
+with SDK() as sdk:
 
     res = sdk.payments.v3.get_bank_account(request={
         "bank_account_id": "<id>",
@@ -1019,6 +1026,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.V3GetBankAccountRequest](../../models/operations/v3getbankaccountrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+| `server_url`                                                                             | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -1026,10 +1034,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## get_connector_config
 
@@ -1067,6 +1075,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.V3GetConnectorConfigRequest](../../models/operations/v3getconnectorconfigrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
+| `server_url`                                                                                     | *Optional[str]*                                                                                  | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -1074,10 +1083,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## get_connector_schedule
 
@@ -1116,6 +1125,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `request`                                                                                            | [operations.V3GetConnectorScheduleRequest](../../models/operations/v3getconnectorschedulerequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `retries`                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                     | :heavy_minus_sign:                                                                                   | Configuration to override the default retry behavior of the client.                                  |
+| `server_url`                                                                                         | *Optional[str]*                                                                                      | :heavy_minus_sign:                                                                                   | An optional server URL to use.                                                                       |
 
 ### Response
 
@@ -1123,10 +1133,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## get_payment
 
@@ -1164,6 +1174,7 @@ with SDK(
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.V3GetPaymentRequest](../../models/operations/v3getpaymentrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+| `server_url`                                                                     | *Optional[str]*                                                                  | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -1171,10 +1182,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## get_payment_initiation
 
@@ -1212,6 +1223,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `request`                                                                                            | [operations.V3GetPaymentInitiationRequest](../../models/operations/v3getpaymentinitiationrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `retries`                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                     | :heavy_minus_sign:                                                                                   | Configuration to override the default retry behavior of the client.                                  |
+| `server_url`                                                                                         | *Optional[str]*                                                                                      | :heavy_minus_sign:                                                                                   | An optional server URL to use.                                                                       |
 
 ### Response
 
@@ -1219,10 +1231,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## get_payment_service_user
 
@@ -1260,6 +1272,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.V3GetPaymentServiceUserRequest](../../models/operations/v3getpaymentserviceuserrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
+| `server_url`                                                                                           | *Optional[str]*                                                                                        | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -1267,10 +1280,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## get_payment_service_user_link_attempt_from_connector_id
 
@@ -1310,6 +1323,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                                                  | [operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest](../../models/operations/v3getpaymentserviceuserlinkattemptfromconnectoridrequest.md) | :heavy_check_mark:                                                                                                                                         | The request object to use for the request.                                                                                                                 |
 | `retries`                                                                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                           | :heavy_minus_sign:                                                                                                                                         | Configuration to override the default retry behavior of the client.                                                                                        |
+| `server_url`                                                                                                                                               | *Optional[str]*                                                                                                                                            | :heavy_minus_sign:                                                                                                                                         | An optional server URL to use.                                                                                                                             |
 
 ### Response
 
@@ -1317,10 +1331,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## get_pool
 
@@ -1358,6 +1372,7 @@ with SDK(
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.V3GetPoolRequest](../../models/operations/v3getpoolrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
+| `server_url`                                                               | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -1365,10 +1380,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## get_pool_balances
 
@@ -1406,6 +1421,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `request`                                                                                  | [operations.V3GetPoolBalancesRequest](../../models/operations/v3getpoolbalancesrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
+| `server_url`                                                                               | *Optional[str]*                                                                            | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -1413,10 +1429,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## get_pool_balances_latest
 
@@ -1454,6 +1470,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.V3GetPoolBalancesLatestRequest](../../models/operations/v3getpoolbalanceslatestrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
+| `server_url`                                                                                           | *Optional[str]*                                                                                        | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -1461,10 +1478,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## get_task
 
@@ -1502,6 +1519,7 @@ with SDK(
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.V3GetTaskRequest](../../models/operations/v3gettaskrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
+| `server_url`                                                               | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -1509,10 +1527,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## initiate_payment
 
@@ -1548,6 +1566,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `request`                                                                                  | [operations.V3InitiatePaymentRequest](../../models/operations/v3initiatepaymentrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
+| `server_url`                                                                               | *Optional[str]*                                                                            | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -1555,10 +1574,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## install_connector
 
@@ -1596,6 +1615,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.V3InstallConnectorRequest](../../models/operations/v3installconnectorrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
+| `server_url`                                                                                 | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -1603,10 +1623,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_accounts
 
@@ -1645,6 +1665,7 @@ with SDK(
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.V3ListAccountsRequest](../../models/operations/v3listaccountsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
+| `server_url`                                                                         | *Optional[str]*                                                                      | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -1652,10 +1673,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_bank_accounts
 
@@ -1694,6 +1715,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.V3ListBankAccountsRequest](../../models/operations/v3listbankaccountsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
+| `server_url`                                                                                 | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -1701,10 +1723,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_connector_configs
 
@@ -1739,6 +1761,7 @@ with SDK(
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -1746,10 +1769,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_connector_schedule_instances
 
@@ -1790,6 +1813,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                | [operations.V3ListConnectorScheduleInstancesRequest](../../models/operations/v3listconnectorscheduleinstancesrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
 | `retries`                                                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                         | :heavy_minus_sign:                                                                                                       | Configuration to override the default retry behavior of the client.                                                      |
+| `server_url`                                                                                                             | *Optional[str]*                                                                                                          | :heavy_minus_sign:                                                                                                       | An optional server URL to use.                                                                                           |
 
 ### Response
 
@@ -1797,10 +1821,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_connector_schedules
 
@@ -1840,6 +1864,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                | [operations.V3ListConnectorSchedulesRequest](../../models/operations/v3listconnectorschedulesrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `retries`                                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                         | :heavy_minus_sign:                                                                                       | Configuration to override the default retry behavior of the client.                                      |
+| `server_url`                                                                                             | *Optional[str]*                                                                                          | :heavy_minus_sign:                                                                                       | An optional server URL to use.                                                                           |
 
 ### Response
 
@@ -1847,10 +1872,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_connectors
 
@@ -1889,6 +1914,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.V3ListConnectorsRequest](../../models/operations/v3listconnectorsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+| `server_url`                                                                             | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -1896,10 +1922,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_payment_initiation_adjustments
 
@@ -1939,6 +1965,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                    | [operations.V3ListPaymentInitiationAdjustmentsRequest](../../models/operations/v3listpaymentinitiationadjustmentsrequest.md) | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
 | `retries`                                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                             | :heavy_minus_sign:                                                                                                           | Configuration to override the default retry behavior of the client.                                                          |
+| `server_url`                                                                                                                 | *Optional[str]*                                                                                                              | :heavy_minus_sign:                                                                                                           | An optional server URL to use.                                                                                               |
 
 ### Response
 
@@ -1946,10 +1973,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_payment_initiation_related_payments
 
@@ -1989,6 +2016,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                            | [operations.V3ListPaymentInitiationRelatedPaymentsRequest](../../models/operations/v3listpaymentinitiationrelatedpaymentsrequest.md) | :heavy_check_mark:                                                                                                                   | The request object to use for the request.                                                                                           |
 | `retries`                                                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                     | :heavy_minus_sign:                                                                                                                   | Configuration to override the default retry behavior of the client.                                                                  |
+| `server_url`                                                                                                                         | *Optional[str]*                                                                                                                      | :heavy_minus_sign:                                                                                                                   | An optional server URL to use.                                                                                                       |
 
 ### Response
 
@@ -1996,10 +2024,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_payment_initiations
 
@@ -2038,6 +2066,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                | [operations.V3ListPaymentInitiationsRequest](../../models/operations/v3listpaymentinitiationsrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `retries`                                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                         | :heavy_minus_sign:                                                                                       | Configuration to override the default retry behavior of the client.                                      |
+| `server_url`                                                                                             | *Optional[str]*                                                                                          | :heavy_minus_sign:                                                                                       | An optional server URL to use.                                                                           |
 
 ### Response
 
@@ -2045,10 +2074,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_payment_service_user_connections
 
@@ -2088,6 +2117,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                      | [operations.V3ListPaymentServiceUserConnectionsRequest](../../models/operations/v3listpaymentserviceuserconnectionsrequest.md) | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
 | `retries`                                                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                               | :heavy_minus_sign:                                                                                                             | Configuration to override the default retry behavior of the client.                                                            |
+| `server_url`                                                                                                                   | *Optional[str]*                                                                                                                | :heavy_minus_sign:                                                                                                             | An optional server URL to use.                                                                                                 |
 
 ### Response
 
@@ -2095,10 +2125,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_payment_service_user_connections_from_connector_id
 
@@ -2139,6 +2169,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                                                    | [operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequest](../../models/operations/v3listpaymentserviceuserconnectionsfromconnectoridrequest.md) | :heavy_check_mark:                                                                                                                                           | The request object to use for the request.                                                                                                                   |
 | `retries`                                                                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                             | :heavy_minus_sign:                                                                                                                                           | Configuration to override the default retry behavior of the client.                                                                                          |
+| `server_url`                                                                                                                                                 | *Optional[str]*                                                                                                                                              | :heavy_minus_sign:                                                                                                                                           | An optional server URL to use.                                                                                                                               |
 
 ### Response
 
@@ -2146,10 +2177,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_payment_service_user_link_attempts_from_connector_id
 
@@ -2192,6 +2223,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                                                      | [operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest](../../models/operations/v3listpaymentserviceuserlinkattemptsfromconnectoridrequest.md) | :heavy_check_mark:                                                                                                                                             | The request object to use for the request.                                                                                                                     |
 | `retries`                                                                                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                               | :heavy_minus_sign:                                                                                                                                             | Configuration to override the default retry behavior of the client.                                                                                            |
+| `server_url`                                                                                                                                                   | *Optional[str]*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                             | An optional server URL to use.                                                                                                                                 |
 
 ### Response
 
@@ -2199,10 +2231,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_payment_service_users
 
@@ -2241,6 +2273,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                  | [operations.V3ListPaymentServiceUsersRequest](../../models/operations/v3listpaymentserviceusersrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `retries`                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                           | :heavy_minus_sign:                                                                                         | Configuration to override the default retry behavior of the client.                                        |
+| `server_url`                                                                                               | *Optional[str]*                                                                                            | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -2248,10 +2281,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_payments
 
@@ -2290,6 +2323,7 @@ with SDK(
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.V3ListPaymentsRequest](../../models/operations/v3listpaymentsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
+| `server_url`                                                                         | *Optional[str]*                                                                      | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -2297,10 +2331,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## list_pools
 
@@ -2339,6 +2373,7 @@ with SDK(
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.V3ListPoolsRequest](../../models/operations/v3listpoolsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+| `server_url`                                                                   | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -2346,10 +2381,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## reject_payment_initiation
 
@@ -2387,6 +2422,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                  | [operations.V3RejectPaymentInitiationRequest](../../models/operations/v3rejectpaymentinitiationrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `retries`                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                           | :heavy_minus_sign:                                                                                         | Configuration to override the default retry behavior of the client.                                        |
+| `server_url`                                                                                               | *Optional[str]*                                                                                            | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -2394,10 +2430,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## remove_account_from_pool
 
@@ -2436,6 +2472,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.V3RemoveAccountFromPoolRequest](../../models/operations/v3removeaccountfrompoolrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
+| `server_url`                                                                                           | *Optional[str]*                                                                                        | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -2443,10 +2480,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## reset_connector
 
@@ -2484,6 +2521,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.V3ResetConnectorRequest](../../models/operations/v3resetconnectorrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+| `server_url`                                                                             | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -2491,10 +2529,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## retry_payment_initiation
 
@@ -2532,6 +2570,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                | [operations.V3RetryPaymentInitiationRequest](../../models/operations/v3retrypaymentinitiationrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `retries`                                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                         | :heavy_minus_sign:                                                                                       | Configuration to override the default retry behavior of the client.                                      |
+| `server_url`                                                                                             | *Optional[str]*                                                                                          | :heavy_minus_sign:                                                                                       | An optional server URL to use.                                                                           |
 
 ### Response
 
@@ -2539,10 +2578,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## reverse_payment_initiation
 
@@ -2580,6 +2619,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                    | [operations.V3ReversePaymentInitiationRequest](../../models/operations/v3reversepaymentinitiationrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 | `retries`                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                             | :heavy_minus_sign:                                                                                           | Configuration to override the default retry behavior of the client.                                          |
+| `server_url`                                                                                                 | *Optional[str]*                                                                                              | :heavy_minus_sign:                                                                                           | An optional server URL to use.                                                                               |
 
 ### Response
 
@@ -2587,10 +2627,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## uninstall_connector
 
@@ -2628,6 +2668,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.V3UninstallConnectorRequest](../../models/operations/v3uninstallconnectorrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
+| `server_url`                                                                                     | *Optional[str]*                                                                                  | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -2635,10 +2676,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## update_bank_account_metadata
 
@@ -2649,15 +2690,9 @@ Update a bank account's metadata
 <!-- UsageSnippet language="python" operationID="v3UpdateBankAccountMetadata" method="patch" path="/api/payments/v3/bank-accounts/{bankAccountID}/metadata" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
 
 
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
+with SDK() as sdk:
 
     res = sdk.payments.v3.update_bank_account_metadata(request={
         "bank_account_id": "<id>",
@@ -2676,6 +2711,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                      | [operations.V3UpdateBankAccountMetadataRequest](../../models/operations/v3updatebankaccountmetadatarequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 | `retries`                                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                               | :heavy_minus_sign:                                                                                             | Configuration to override the default retry behavior of the client.                                            |
+| `server_url`                                                                                                   | *Optional[str]*                                                                                                | :heavy_minus_sign:                                                                                             | An optional server URL to use.                                                                                 |
 
 ### Response
 
@@ -2683,10 +2719,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## update_link_for_payment_service_user_on_connector
 
@@ -2726,6 +2762,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                                        | [operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequest](../../models/operations/v3updatelinkforpaymentserviceuseronconnectorrequest.md) | :heavy_check_mark:                                                                                                                               | The request object to use for the request.                                                                                                       |
 | `retries`                                                                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                 | :heavy_minus_sign:                                                                                                                               | Configuration to override the default retry behavior of the client.                                                                              |
+| `server_url`                                                                                                                                     | *Optional[str]*                                                                                                                                  | :heavy_minus_sign:                                                                                                                               | An optional server URL to use.                                                                                                                   |
 
 ### Response
 
@@ -2733,10 +2770,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## update_payment_metadata
 
@@ -2774,6 +2811,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.V3UpdatePaymentMetadataRequest](../../models/operations/v3updatepaymentmetadatarequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
+| `server_url`                                                                                           | *Optional[str]*                                                                                        | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -2781,10 +2819,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## update_pool_query
 
@@ -2822,6 +2860,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `request`                                                                                  | [operations.V3UpdatePoolQueryRequest](../../models/operations/v3updatepoolqueryrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
+| `server_url`                                                                               | *Optional[str]*                                                                            | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -2829,10 +2868,10 @@ with SDK(
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## v3_update_connector_config
 
@@ -2870,6 +2909,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.V3UpdateConnectorConfigRequest](../../models/operations/v3updateconnectorconfigrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
+| `server_url`                                                                                           | *Optional[str]*                                                                                        | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -2877,7 +2917,7 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |

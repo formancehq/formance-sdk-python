@@ -8,6 +8,11 @@ from typing import Any, Dict, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
+GET_METRICS_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class GetMetricsResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""

@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+DELETE_SECRET_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class DeleteSecretRequestTypedDict(TypedDict):
     client_id: str
     r"""Client ID"""

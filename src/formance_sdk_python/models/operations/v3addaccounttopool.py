@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+V3_ADD_ACCOUNT_TO_POOL_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V3AddAccountToPoolRequestTypedDict(TypedDict):
     account_id: str
     r"""The account ID"""

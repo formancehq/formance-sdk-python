@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+V2_DELETE_EXPORTER_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2DeleteExporterRequestTypedDict(TypedDict):
     exporter_id: str
     r"""The exporter id"""

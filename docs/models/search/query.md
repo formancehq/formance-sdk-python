@@ -1,0 +1,16 @@
+# Query
+
+
+## Fields
+
+| Field                                              | Type                                               | Required                                           | Description                                        | Example                                            |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `after`                                            | List[*str*]                                        | :heavy_minus_sign:                                 | N/A                                                |                                                    |
+| `cursor`                                           | *Optional[str]*                                    | :heavy_minus_sign:                                 | N/A                                                | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=       |
+| `ledgers`                                          | List[*str*]                                        | :heavy_minus_sign:                                 | N/A                                                |                                                    |
+| `page_size`                                        | *Optional[int]*                                    | :heavy_minus_sign:                                 | N/A                                                |                                                    |
+| `policy`                                           | *Optional[str]*                                    | :heavy_minus_sign:                                 | N/A                                                | OR                                                 |
+| `raw`                                              | [Optional[search.Raw]](../../models/search/raw.md) | :heavy_minus_sign:                                 | N/A                                                | {<br/>"query": {<br/>"match_all": {}<br/>}<br/>}   |
+| `sort`                                             | *Optional[str]*                                    | :heavy_minus_sign:                                 | N/A                                                | id:asc                                             |
+| `target`                                           | *Optional[str]*                                    | :heavy_minus_sign:                                 | N/A                                                |                                                    |
+| `terms`                                            | List[*str*]                                        | :heavy_minus_sign:                                 | N/A                                                |                                                    |

@@ -6,79 +6,16 @@ from typing import Any, TYPE_CHECKING
 from formance_sdk_python.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
-    from .error import Error, ErrorData, ErrorErrorCode
-    from .errorresponse import ErrorResponse, ErrorResponseData
     from .no_response_error import NoResponseError
-    from .paymentserrorresponse import PaymentsErrorResponse, PaymentsErrorResponseData
-    from .reconciliationerrorresponse import (
-        ReconciliationErrorResponse,
-        ReconciliationErrorResponseData,
-    )
     from .responsevalidationerror import ResponseValidationError
     from .sdkerror import SDKError
-    from .v2error import V2Error, V2ErrorData, V2ErrorErrorCode
-    from .v2errorresponse import V2ErrorResponse, V2ErrorResponseData
-    from .v3errorresponse import V3ErrorResponse, V3ErrorResponseData
-    from .walletserrorresponse import (
-        WalletsErrorResponse,
-        WalletsErrorResponseData,
-        WalletsErrorResponseErrorCode,
-    )
-    from .webhookserrorresponse import WebhooksErrorResponse, WebhooksErrorResponseData
 
-__all__ = [
-    "Error",
-    "ErrorData",
-    "ErrorErrorCode",
-    "ErrorResponse",
-    "ErrorResponseData",
-    "NoResponseError",
-    "PaymentsErrorResponse",
-    "PaymentsErrorResponseData",
-    "ReconciliationErrorResponse",
-    "ReconciliationErrorResponseData",
-    "ResponseValidationError",
-    "SDKBaseError",
-    "SDKError",
-    "V2Error",
-    "V2ErrorData",
-    "V2ErrorErrorCode",
-    "V2ErrorResponse",
-    "V2ErrorResponseData",
-    "V3ErrorResponse",
-    "V3ErrorResponseData",
-    "WalletsErrorResponse",
-    "WalletsErrorResponseData",
-    "WalletsErrorResponseErrorCode",
-    "WebhooksErrorResponse",
-    "WebhooksErrorResponseData",
-]
+__all__ = ["NoResponseError", "ResponseValidationError", "SDKBaseError", "SDKError"]
 
 _dynamic_imports: dict[str, str] = {
-    "Error": ".error",
-    "ErrorData": ".error",
-    "ErrorErrorCode": ".error",
-    "ErrorResponse": ".errorresponse",
-    "ErrorResponseData": ".errorresponse",
     "NoResponseError": ".no_response_error",
-    "PaymentsErrorResponse": ".paymentserrorresponse",
-    "PaymentsErrorResponseData": ".paymentserrorresponse",
-    "ReconciliationErrorResponse": ".reconciliationerrorresponse",
-    "ReconciliationErrorResponseData": ".reconciliationerrorresponse",
     "ResponseValidationError": ".responsevalidationerror",
     "SDKError": ".sdkerror",
-    "V2Error": ".v2error",
-    "V2ErrorData": ".v2error",
-    "V2ErrorErrorCode": ".v2error",
-    "V2ErrorResponse": ".v2errorresponse",
-    "V2ErrorResponseData": ".v2errorresponse",
-    "V3ErrorResponse": ".v3errorresponse",
-    "V3ErrorResponseData": ".v3errorresponse",
-    "WalletsErrorResponse": ".walletserrorresponse",
-    "WalletsErrorResponseData": ".walletserrorresponse",
-    "WalletsErrorResponseErrorCode": ".walletserrorresponse",
-    "WebhooksErrorResponse": ".webhookserrorresponse",
-    "WebhooksErrorResponseData": ".webhookserrorresponse",
 }
 
 

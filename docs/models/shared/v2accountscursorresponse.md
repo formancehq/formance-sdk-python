@@ -1,9 +1,0 @@
-# V2AccountsCursorResponse
-
-
-## Fields
-
-| Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `cursor`                                                                                                     | [shared.V2AccountsCursorResponseCursor](../../models/shared/v2accountscursorresponsecursor.md)               | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
-| `resource`                                                                                                   | [Optional[shared.V2AccountsCursorResponseResource]](../../models/shared/v2accountscursorresponseresource.md) | :heavy_minus_sign:                                                                                           | N/A                                                                                                          |

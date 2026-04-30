@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+DELETE_WORKFLOW_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class DeleteWorkflowRequestTypedDict(TypedDict):
     flow_id: str
     r"""The flow id"""

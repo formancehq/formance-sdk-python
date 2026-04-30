@@ -3,7 +3,7 @@
 from .basesdk import BaseSDK
 from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
-from formance_sdk_python.models import errors, operations, shared
+from formance_sdk_python.models import errors, operations, wallets
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
 from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Any, Mapping, Optional, Union, cast
@@ -23,6 +23,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.ConfirmHoldResponse:
         r"""Confirm a hold
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -37,7 +39,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CONFIRM_HOLD_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ConfirmHoldRequest)
@@ -61,9 +63,10 @@ class WalletsV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[shared.ConfirmHoldRequest],
+                Optional[wallets.ConfirmHoldRequest],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -84,7 +87,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -96,10 +99,8 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -116,6 +117,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.ConfirmHoldResponse:
         r"""Confirm a hold
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -130,7 +133,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CONFIRM_HOLD_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ConfirmHoldRequest)
@@ -154,9 +157,10 @@ class WalletsV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[shared.ConfirmHoldRequest],
+                Optional[wallets.ConfirmHoldRequest],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -177,7 +181,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -189,10 +193,8 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -209,6 +211,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.CreateBalanceResponse:
         r"""Create a balance
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -223,7 +227,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_BALANCE_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateBalanceRequest)
@@ -243,13 +247,14 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_balance_request if request is not None else None,
+                request.balance if request is not None else None,
                 False,
                 True,
                 "json",
-                Optional[shared.CreateBalanceRequest],
+                Optional[wallets.Balance],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -270,7 +275,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -278,17 +283,15 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateBalanceResponse(
                 create_balance_response=unmarshal_json_response(
-                    Optional[shared.CreateBalanceResponse], http_res
+                    Optional[wallets.CreateBalanceResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -305,6 +308,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.CreateBalanceResponse:
         r"""Create a balance
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -319,7 +324,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_BALANCE_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateBalanceRequest)
@@ -339,13 +344,14 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_balance_request if request is not None else None,
+                request.balance if request is not None else None,
                 False,
                 True,
                 "json",
-                Optional[shared.CreateBalanceRequest],
+                Optional[wallets.Balance],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -366,7 +372,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -374,17 +380,15 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateBalanceResponse(
                 create_balance_response=unmarshal_json_response(
-                    Optional[shared.CreateBalanceResponse], http_res
+                    Optional[wallets.CreateBalanceResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -401,6 +405,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.CreateWalletResponse:
         r"""Create a new wallet
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -415,7 +421,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_WALLET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateWalletRequest)
@@ -439,9 +445,10 @@ class WalletsV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[shared.CreateWalletRequest],
+                Optional[wallets.CreateWalletRequest],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -462,7 +469,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -470,17 +477,15 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateWalletResponse(
                 create_wallet_response=unmarshal_json_response(
-                    Optional[shared.CreateWalletResponse], http_res
+                    Optional[wallets.CreateWalletResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -497,6 +502,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.CreateWalletResponse:
         r"""Create a new wallet
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -511,7 +518,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_WALLET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateWalletRequest)
@@ -535,9 +542,10 @@ class WalletsV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[shared.CreateWalletRequest],
+                Optional[wallets.CreateWalletRequest],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -558,7 +566,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -566,17 +574,15 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateWalletResponse(
                 create_wallet_response=unmarshal_json_response(
-                    Optional[shared.CreateWalletResponse], http_res
+                    Optional[wallets.CreateWalletResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -593,6 +599,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.CreditWalletResponse:
         r"""Credit a wallet
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -607,7 +615,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREDIT_WALLET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreditWalletRequest)
@@ -631,9 +639,10 @@ class WalletsV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[shared.CreditWalletRequest],
+                Optional[wallets.CreditWalletRequest],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -654,7 +663,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -666,10 +675,8 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -686,6 +693,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.CreditWalletResponse:
         r"""Credit a wallet
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -700,7 +709,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREDIT_WALLET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreditWalletRequest)
@@ -724,9 +733,10 @@ class WalletsV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[shared.CreditWalletRequest],
+                Optional[wallets.CreditWalletRequest],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -747,7 +757,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -759,10 +769,8 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -779,6 +787,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.DebitWalletResponse:
         r"""Debit a wallet
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -793,7 +803,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DEBIT_WALLET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DebitWalletRequest)
@@ -817,9 +827,10 @@ class WalletsV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[shared.DebitWalletRequest],
+                Optional[wallets.DebitWalletRequest],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -840,7 +851,9 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["201", "204"], c
+            ),
             retry_config=retry_config,
         )
 
@@ -848,7 +861,7 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.DebitWalletResponse(
                 debit_wallet_response=unmarshal_json_response(
-                    Optional[shared.DebitWalletResponse], http_res
+                    Optional[wallets.DebitWalletResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -861,10 +874,8 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -881,6 +892,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.DebitWalletResponse:
         r"""Debit a wallet
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -895,7 +908,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DEBIT_WALLET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DebitWalletRequest)
@@ -919,9 +932,10 @@ class WalletsV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[shared.DebitWalletRequest],
+                Optional[wallets.DebitWalletRequest],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -942,7 +956,9 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["201", "204"], c
+            ),
             retry_config=retry_config,
         )
 
@@ -950,7 +966,7 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.DebitWalletResponse(
                 debit_wallet_response=unmarshal_json_response(
-                    Optional[shared.DebitWalletResponse], http_res
+                    Optional[wallets.DebitWalletResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -963,10 +979,8 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -983,6 +997,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.GetBalanceResponse:
         r"""Get detailed balance
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -997,7 +1013,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_BALANCE_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalanceRequest)
@@ -1017,6 +1033,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1037,7 +1054,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1045,17 +1062,15 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalanceResponse(
                 get_balance_response=unmarshal_json_response(
-                    Optional[shared.GetBalanceResponse], http_res
+                    Optional[wallets.GetBalanceResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1072,6 +1087,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.GetBalanceResponse:
         r"""Get detailed balance
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1086,7 +1103,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_BALANCE_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalanceRequest)
@@ -1106,6 +1123,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1126,7 +1144,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1134,17 +1152,15 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalanceResponse(
                 get_balance_response=unmarshal_json_response(
-                    Optional[shared.GetBalanceResponse], http_res
+                    Optional[wallets.GetBalanceResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1159,6 +1175,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.GetHoldResponse:
         r"""Get a hold
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1173,7 +1191,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_HOLD_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetHoldRequest)
@@ -1193,6 +1211,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1213,7 +1232,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1221,17 +1240,15 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetHoldResponse(
                 get_hold_response=unmarshal_json_response(
-                    Optional[shared.GetHoldResponse], http_res
+                    Optional[wallets.GetHoldResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1246,6 +1263,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.GetHoldResponse:
         r"""Get a hold
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1260,7 +1279,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_HOLD_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetHoldRequest)
@@ -1280,6 +1299,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1300,7 +1320,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1308,17 +1328,15 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetHoldResponse(
                 get_hold_response=unmarshal_json_response(
-                    Optional[shared.GetHoldResponse], http_res
+                    Optional[wallets.GetHoldResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1332,6 +1350,8 @@ class WalletsV1(BaseSDK):
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetHoldsResponse:
         r"""Get all holds for a wallet
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1347,7 +1367,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_HOLDS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetHoldsRequest)
@@ -1367,6 +1387,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1387,7 +1408,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1395,17 +1416,15 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetHoldsResponse(
                 get_holds_response=unmarshal_json_response(
-                    Optional[shared.GetHoldsResponse], http_res
+                    Optional[wallets.GetHoldsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1419,6 +1438,8 @@ class WalletsV1(BaseSDK):
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetHoldsResponse:
         r"""Get all holds for a wallet
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1434,7 +1455,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_HOLDS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetHoldsRequest)
@@ -1454,6 +1475,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1474,7 +1496,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1482,17 +1504,177 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetHoldsResponse(
                 get_holds_response=unmarshal_json_response(
-                    Optional[shared.GetHoldsResponse], http_res
+                    Optional[wallets.GetHoldsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def get_server_info_wallets(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetServerInfoWalletsResponse:
+        r"""Get server info
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = operations.GET_SERVER_INFO_WALLETS_SERVERS[0]
+        req = self._build_request(
+            method="GET",
+            path="/api/wallets/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getServerInfo_wallets",
+                oauth2_scopes=["wallets:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetServerInfoWalletsResponse(
+                server_info=unmarshal_json_response(
+                    Optional[wallets.ServerInfo], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
             )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def get_server_info_wallets_async(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetServerInfoWalletsResponse:
+        r"""Get server info
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = operations.GET_SERVER_INFO_WALLETS_SERVERS[0]
+        req = self._build_request_async(
+            method="GET",
+            path="/api/wallets/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getServerInfo_wallets",
+                oauth2_scopes=["wallets:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetServerInfoWalletsResponse(
+                server_info=unmarshal_json_response(
+                    Optional[wallets.ServerInfo], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1508,7 +1690,8 @@ class WalletsV1(BaseSDK):
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetTransactionsResponse:
-        r"""
+        r"""If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1523,7 +1706,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_TRANSACTIONS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransactionsRequest)
@@ -1543,6 +1726,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1563,7 +1747,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1571,17 +1755,15 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransactionsResponse(
                 get_transactions_response=unmarshal_json_response(
-                    Optional[shared.GetTransactionsResponse], http_res
+                    Optional[wallets.GetTransactionsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1597,7 +1779,8 @@ class WalletsV1(BaseSDK):
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetTransactionsResponse:
-        r"""
+        r"""If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1612,7 +1795,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_TRANSACTIONS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransactionsRequest)
@@ -1632,6 +1815,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1652,7 +1836,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1660,17 +1844,15 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransactionsResponse(
                 get_transactions_response=unmarshal_json_response(
-                    Optional[shared.GetTransactionsResponse], http_res
+                    Optional[wallets.GetTransactionsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1687,6 +1869,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.GetWalletResponse:
         r"""Get a wallet
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1701,7 +1885,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_WALLET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWalletRequest)
@@ -1721,6 +1905,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1741,7 +1926,9 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["200", "404"], c
+            ),
             retry_config=retry_config,
         )
 
@@ -1749,7 +1936,7 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletResponse(
                 get_wallet_response=unmarshal_json_response(
-                    Optional[shared.GetWalletResponse], http_res
+                    Optional[wallets.GetWalletResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1762,10 +1949,8 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1782,6 +1967,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.GetWalletResponse:
         r"""Get a wallet
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1796,7 +1983,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_WALLET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWalletRequest)
@@ -1816,6 +2003,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1836,7 +2024,9 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["200", "404"], c
+            ),
             retry_config=retry_config,
         )
 
@@ -1844,7 +2034,7 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletResponse(
                 get_wallet_response=unmarshal_json_response(
-                    Optional[shared.GetWalletResponse], http_res
+                    Optional[wallets.GetWalletResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1857,10 +2047,8 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1878,6 +2066,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.GetWalletSummaryResponse:
         r"""Get wallet summary
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1892,7 +2082,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_WALLET_SUMMARY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWalletSummaryRequest)
@@ -1912,6 +2102,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1932,7 +2123,9 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["200", "404"], c
+            ),
             retry_config=retry_config,
         )
 
@@ -1940,7 +2133,7 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletSummaryResponse(
                 get_wallet_summary_response=unmarshal_json_response(
-                    Optional[shared.GetWalletSummaryResponse], http_res
+                    Optional[wallets.GetWalletSummaryResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1953,10 +2146,8 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1974,6 +2165,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.GetWalletSummaryResponse:
         r"""Get wallet summary
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1988,7 +2181,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_WALLET_SUMMARY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWalletSummaryRequest)
@@ -2008,6 +2201,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2028,7 +2222,9 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["200", "404"], c
+            ),
             retry_config=retry_config,
         )
 
@@ -2036,7 +2232,7 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWalletSummaryResponse(
                 get_wallet_summary_response=unmarshal_json_response(
-                    Optional[shared.GetWalletSummaryResponse], http_res
+                    Optional[wallets.GetWalletSummaryResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2049,10 +2245,8 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2069,6 +2263,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.ListBalancesResponse:
         r"""List balances of a wallet
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2083,7 +2279,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_BALANCES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListBalancesRequest)
@@ -2103,6 +2299,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2123,14 +2320,14 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListBalancesResponse(
                 list_balances_response=unmarshal_json_response(
-                    Optional[shared.ListBalancesResponse], http_res
+                    Optional[wallets.ListBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2155,6 +2352,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.ListBalancesResponse:
         r"""List balances of a wallet
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2169,7 +2368,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_BALANCES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListBalancesRequest)
@@ -2189,6 +2388,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2209,14 +2409,14 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListBalancesResponse(
                 list_balances_response=unmarshal_json_response(
-                    Optional[shared.ListBalancesResponse], http_res
+                    Optional[wallets.ListBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2241,6 +2441,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.ListWalletsResponse:
         r"""List all wallets
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2255,7 +2457,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_WALLETS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListWalletsRequest)
@@ -2275,6 +2477,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2295,7 +2498,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2303,17 +2506,15 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListWalletsResponse(
                 list_wallets_response=unmarshal_json_response(
-                    Optional[shared.ListWalletsResponse], http_res
+                    Optional[wallets.ListWalletsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2330,6 +2531,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.ListWalletsResponse:
         r"""List all wallets
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2344,7 +2547,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_WALLETS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListWalletsRequest)
@@ -2364,6 +2567,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2384,7 +2588,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2392,17 +2596,15 @@ class WalletsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListWalletsResponse(
                 list_wallets_response=unmarshal_json_response(
-                    Optional[shared.ListWalletsResponse], http_res
+                    Optional[wallets.ListWalletsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2419,6 +2621,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.UpdateWalletResponse:
         r"""Update a wallet
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2433,7 +2637,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_WALLET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateWalletRequest)
@@ -2460,6 +2664,7 @@ class WalletsV1(BaseSDK):
                 Optional[operations.UpdateWalletRequestBody],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2480,7 +2685,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -2492,10 +2697,8 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2512,6 +2715,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.UpdateWalletResponse:
         r"""Update a wallet
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2526,7 +2731,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_WALLET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateWalletRequest)
@@ -2553,6 +2758,7 @@ class WalletsV1(BaseSDK):
                 Optional[operations.UpdateWalletRequestBody],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2573,7 +2779,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -2585,10 +2791,8 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2603,6 +2807,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.VoidHoldResponse:
         r"""Cancel a hold
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2617,7 +2823,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.VOID_HOLD_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.VoidHoldRequest)
@@ -2637,6 +2843,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2657,7 +2864,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -2669,10 +2876,8 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2687,6 +2892,8 @@ class WalletsV1(BaseSDK):
     ) -> operations.VoidHoldResponse:
         r"""Cancel a hold
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2701,7 +2908,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.VOID_HOLD_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.VoidHoldRequest)
@@ -2721,6 +2928,7 @@ class WalletsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2741,7 +2949,7 @@ class WalletsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -2753,169 +2961,7 @@ class WalletsV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
-
-        raise errors.SDKError("Unexpected response received", http_res)
-
-    def walletsget_server_info(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.WalletsgetServerInfoResponse:
-        r"""Get server info
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-        req = self._build_request(
-            method="GET",
-            path="/api/wallets/_info",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="walletsgetServerInfo",
-                oauth2_scopes=["wallets:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.WalletsgetServerInfoResponse(
-                server_info=unmarshal_json_response(
-                    Optional[shared.ServerInfo], http_res
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
-
-        raise errors.SDKError("Unexpected response received", http_res)
-
-    async def walletsget_server_info_async(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.WalletsgetServerInfoResponse:
-        r"""Get server info
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-        req = self._build_request_async(
-            method="GET",
-            path="/api/wallets/_info",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="walletsgetServerInfo",
-                oauth2_scopes=["wallets:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.WalletsgetServerInfoResponse(
-                server_info=unmarshal_json_response(
-                    Optional[shared.ServerInfo], http_res
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.WalletsErrorResponseData, http_res
-            )
-            raise errors.WalletsErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(wallets.ErrorResponseData, http_res)
+            raise wallets.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)

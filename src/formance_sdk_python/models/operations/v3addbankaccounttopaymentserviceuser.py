@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+V3_ADD_BANK_ACCOUNT_TO_PAYMENT_SERVICE_USER_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V3AddBankAccountToPaymentServiceUserRequestTypedDict(TypedDict):
     bank_account_id: str
     r"""The bank account ID"""

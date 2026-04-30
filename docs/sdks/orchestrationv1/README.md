@@ -12,12 +12,12 @@
 * [get_instance](#get_instance) - Get a workflow instance by id
 * [get_instance_history](#get_instance_history) - Get a workflow instance history by id
 * [get_instance_stage_history](#get_instance_stage_history) - Get a workflow instance stage history
+* [get_server_info_orchestration](#get_server_info_orchestration) - Get server info
 * [get_workflow](#get_workflow) - Get a flow by id
 * [list_instances](#list_instances) - List instances of a workflow
 * [list_triggers](#list_triggers) - List triggers
 * [list_triggers_occurrences](#list_triggers_occurrences) - List triggers occurrences
 * [list_workflows](#list_workflows) - List registered workflows
-* [orchestrationget_server_info](#orchestrationget_server_info) - Get server info
 * [read_trigger](#read_trigger) - Read trigger
 * [run_workflow](#run_workflow) - Run workflow
 * [send_event](#send_event) - Send an event to a running workflow
@@ -58,6 +58,7 @@ with SDK(
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.CancelEventRequest](../../models/operations/canceleventrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+| `server_url`                                                                   | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -65,10 +66,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## create_trigger
 
@@ -100,10 +101,11 @@ with SDK(
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [shared.TriggerData](../../models/shared/triggerdata.md)            | :heavy_check_mark:                                                  | The request object to use for the request.                          |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `request`                                                                | [orchestration.TriggerData2](../../models/orchestration/triggerdata2.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `retries`                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)         | :heavy_minus_sign:                                                       | Configuration to override the default retry behavior of the client.      |
+| `server_url`                                                             | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | An optional server URL to use.                                           |
 
 ### Response
 
@@ -111,10 +113,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## create_workflow
 
@@ -148,8 +150,9 @@ with SDK(
 
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `request`                                                                    | [shared.CreateWorkflowRequest](../../models/shared/createworkflowrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `request`                                                                    | [orchestration.WorkflowConfig](../../models/orchestration/workflowconfig.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 | `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
+| `server_url`                                                                 | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -157,10 +160,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## delete_trigger
 
@@ -198,6 +201,7 @@ with SDK(
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.DeleteTriggerRequest](../../models/operations/deletetriggerrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
+| `server_url`                                                                       | *Optional[str]*                                                                    | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -205,10 +209,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## delete_workflow
 
@@ -246,6 +250,7 @@ with SDK(
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.DeleteWorkflowRequest](../../models/operations/deleteworkflowrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
+| `server_url`                                                                         | *Optional[str]*                                                                      | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -253,10 +258,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## get_instance
 
@@ -294,6 +299,7 @@ with SDK(
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.GetInstanceRequest](../../models/operations/getinstancerequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+| `server_url`                                                                   | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -301,10 +307,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## get_instance_history
 
@@ -342,6 +348,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.GetInstanceHistoryRequest](../../models/operations/getinstancehistoryrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
+| `server_url`                                                                                 | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -349,10 +356,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## get_instance_stage_history
 
@@ -391,6 +398,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.GetInstanceStageHistoryRequest](../../models/operations/getinstancestagehistoryrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
+| `server_url`                                                                                           | *Optional[str]*                                                                                        | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -398,10 +406,56 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+
+## get_server_info_orchestration
+
+Get server info
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="getServerInfo_orchestration" method="get" path="/api/orchestration/_info" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.orchestration.v1.get_server_info_orchestration()
+
+    assert res.server_info is not None
+
+    # Handle response
+    print(res.server_info)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
+
+### Response
+
+**[operations.GetServerInfoOrchestrationResponse](../../models/operations/getserverinfoorchestrationresponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## get_workflow
 
@@ -439,6 +493,7 @@ with SDK(
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.GetWorkflowRequest](../../models/operations/getworkflowrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+| `server_url`                                                                   | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -446,10 +501,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## list_instances
 
@@ -488,6 +543,7 @@ with SDK(
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.ListInstancesRequest](../../models/operations/listinstancesrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
+| `server_url`                                                                       | *Optional[str]*                                                                    | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -495,10 +551,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## list_triggers
 
@@ -534,6 +590,7 @@ with SDK(
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.ListTriggersRequest](../../models/operations/listtriggersrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+| `server_url`                                                                     | *Optional[str]*                                                                  | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -541,10 +598,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## list_triggers_occurrences
 
@@ -582,6 +639,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.ListTriggersOccurrencesRequest](../../models/operations/listtriggersoccurrencesrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
+| `server_url`                                                                                           | *Optional[str]*                                                                                        | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -589,10 +647,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## list_workflows
 
@@ -627,6 +685,7 @@ with SDK(
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -634,55 +693,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
-
-## orchestrationget_server_info
-
-Get server info
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="orchestrationgetServerInfo" method="get" path="/api/orchestration/_info" -->
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.orchestration.v1.orchestrationget_server_info()
-
-    assert res.server_info is not None
-
-    # Handle response
-    print(res.server_info)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[operations.OrchestrationgetServerInfoResponse](../../models/operations/orchestrationgetserverinforesponse.md)**
-
-### Errors
-
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## read_trigger
 
@@ -720,6 +734,7 @@ with SDK(
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.ReadTriggerRequest](../../models/operations/readtriggerrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+| `server_url`                                                                   | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -727,10 +742,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## run_workflow
 
@@ -768,6 +783,7 @@ with SDK(
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.RunWorkflowRequest](../../models/operations/runworkflowrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+| `server_url`                                                                   | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -775,10 +791,10 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## send_event
 
@@ -816,6 +832,7 @@ with SDK(
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.SendEventRequest](../../models/operations/sendeventrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
+| `server_url`                                                               | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -823,7 +840,7 @@ with SDK(
 
 ### Errors
 
-| Error Type       | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | default          | application/json |
-| errors.SDKError  | 4XX, 5XX         | \*/\*            |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| orchestration.Error | default             | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |

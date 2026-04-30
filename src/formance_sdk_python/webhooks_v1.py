@@ -3,7 +3,8 @@
 from .basesdk import BaseSDK
 from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
-from formance_sdk_python.models import errors, operations, shared
+from formance_sdk_python.models import errors, operations, webhooks
+from formance_sdk_python.models.webhooks import configuser as webhooks_configuser
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
 from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Any, Mapping, Optional, Union, cast
@@ -25,6 +26,8 @@ class WebhooksV1(BaseSDK):
 
         Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -39,7 +42,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.ACTIVATE_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ActivateConfigRequest)
@@ -59,6 +62,7 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -79,7 +83,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -87,7 +91,7 @@ class WebhooksV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ActivateConfigResponse(
                 config_response=unmarshal_json_response(
-                    Optional[shared.ConfigResponse], http_res
+                    Optional[webhooks.ConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -95,9 +99,9 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -116,6 +120,8 @@ class WebhooksV1(BaseSDK):
 
         Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -130,7 +136,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.ACTIVATE_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ActivateConfigRequest)
@@ -150,6 +156,7 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -170,7 +177,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -178,7 +185,7 @@ class WebhooksV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ActivateConfigResponse(
                 config_response=unmarshal_json_response(
-                    Optional[shared.ConfigResponse], http_res
+                    Optional[webhooks.ConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -186,9 +193,9 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -212,6 +219,8 @@ class WebhooksV1(BaseSDK):
         The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
 
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -226,7 +235,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CHANGE_CONFIG_SECRET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ChangeConfigSecretRequest)
@@ -250,9 +259,10 @@ class WebhooksV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[shared.ConfigChangeSecret],
+                Optional[webhooks.ConfigChangeSecret],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -273,7 +283,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -281,7 +291,7 @@ class WebhooksV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ChangeConfigSecretResponse(
                 config_response=unmarshal_json_response(
-                    Optional[shared.ConfigResponse], http_res
+                    Optional[webhooks.ConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -289,9 +299,9 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -315,6 +325,8 @@ class WebhooksV1(BaseSDK):
         The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
 
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -329,7 +341,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CHANGE_CONFIG_SECRET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ChangeConfigSecretRequest)
@@ -353,9 +365,10 @@ class WebhooksV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[shared.ConfigChangeSecret],
+                Optional[webhooks.ConfigChangeSecret],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -376,7 +389,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -384,7 +397,7 @@ class WebhooksV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ChangeConfigSecretResponse(
                 config_response=unmarshal_json_response(
-                    Optional[shared.ConfigResponse], http_res
+                    Optional[webhooks.ConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -392,9 +405,9 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -414,6 +427,8 @@ class WebhooksV1(BaseSDK):
 
         Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -428,7 +443,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DEACTIVATE_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeactivateConfigRequest)
@@ -448,6 +463,7 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -468,7 +484,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -476,7 +492,7 @@ class WebhooksV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.DeactivateConfigResponse(
                 config_response=unmarshal_json_response(
-                    Optional[shared.ConfigResponse], http_res
+                    Optional[webhooks.ConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -484,9 +500,9 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -506,6 +522,8 @@ class WebhooksV1(BaseSDK):
 
         Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -520,7 +538,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DEACTIVATE_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeactivateConfigRequest)
@@ -540,6 +558,7 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -560,7 +579,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -568,7 +587,7 @@ class WebhooksV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.DeactivateConfigResponse(
                 config_response=unmarshal_json_response(
-                    Optional[shared.ConfigResponse], http_res
+                    Optional[webhooks.ConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -576,9 +595,9 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -597,6 +616,8 @@ class WebhooksV1(BaseSDK):
 
         Delete a webhooks config by ID.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -611,7 +632,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteConfigRequest)
@@ -631,6 +652,7 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -651,7 +673,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -664,9 +686,9 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -685,6 +707,8 @@ class WebhooksV1(BaseSDK):
 
         Delete a webhooks config by ID.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -699,7 +723,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteConfigRequest)
@@ -719,6 +743,7 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -739,7 +764,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -752,9 +777,9 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -773,6 +798,8 @@ class WebhooksV1(BaseSDK):
 
         Sorted by updated date descending
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -787,7 +814,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_MANY_CONFIGS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetManyConfigsRequest)
@@ -807,6 +834,7 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -827,7 +855,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -835,7 +863,7 @@ class WebhooksV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetManyConfigsResponse(
                 configs_response=unmarshal_json_response(
-                    Optional[shared.ConfigsResponse], http_res
+                    Optional[webhooks.ConfigsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -843,9 +871,9 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -864,6 +892,8 @@ class WebhooksV1(BaseSDK):
 
         Sorted by updated date descending
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -878,7 +908,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_MANY_CONFIGS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetManyConfigsRequest)
@@ -898,6 +928,7 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -918,7 +949,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -926,7 +957,7 @@ class WebhooksV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetManyConfigsResponse(
                 configs_response=unmarshal_json_response(
-                    Optional[shared.ConfigsResponse], http_res
+                    Optional[webhooks.ConfigsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -934,16 +965,18 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
     def insert_config(
         self,
         *,
-        request: Union[shared.ConfigUser, shared.ConfigUserTypedDict],
+        request: Union[
+            webhooks_configuser.ConfigUser, webhooks_configuser.ConfigUserTypedDict
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -962,6 +995,8 @@ class WebhooksV1(BaseSDK):
         All eventTypes are converted to lower-case when inserted.
 
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -976,11 +1011,11 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.INSERT_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.ConfigUser)
-        request = cast(shared.ConfigUser, request)
+            request = utils.unmarshal(request, webhooks.ConfigUser)
+        request = cast(webhooks.ConfigUser, request)
 
         req = self._build_request(
             method="POST",
@@ -996,9 +1031,10 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.ConfigUser
+                request, False, False, "json", webhooks.ConfigUser
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1019,7 +1055,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1027,7 +1063,7 @@ class WebhooksV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.InsertConfigResponse(
                 config_response=unmarshal_json_response(
-                    Optional[shared.ConfigResponse], http_res
+                    Optional[webhooks.ConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1035,16 +1071,18 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
     async def insert_config_async(
         self,
         *,
-        request: Union[shared.ConfigUser, shared.ConfigUserTypedDict],
+        request: Union[
+            webhooks_configuser.ConfigUser, webhooks_configuser.ConfigUserTypedDict
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1063,6 +1101,8 @@ class WebhooksV1(BaseSDK):
         All eventTypes are converted to lower-case when inserted.
 
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1077,11 +1117,11 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.INSERT_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.ConfigUser)
-        request = cast(shared.ConfigUser, request)
+            request = utils.unmarshal(request, webhooks.ConfigUser)
+        request = cast(webhooks.ConfigUser, request)
 
         req = self._build_request_async(
             method="POST",
@@ -1097,9 +1137,10 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.ConfigUser
+                request, False, False, "json", webhooks.ConfigUser
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1120,7 +1161,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1128,7 +1169,7 @@ class WebhooksV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.InsertConfigResponse(
                 config_response=unmarshal_json_response(
-                    Optional[shared.ConfigResponse], http_res
+                    Optional[webhooks.ConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1136,9 +1177,9 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1157,6 +1198,8 @@ class WebhooksV1(BaseSDK):
 
         Test a config by sending a webhook to its endpoint.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1171,7 +1214,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.TEST_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.TestConfigRequest)
@@ -1191,6 +1234,7 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1211,7 +1255,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1219,7 +1263,7 @@ class WebhooksV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.TestConfigResponse(
                 attempt_response=unmarshal_json_response(
-                    Optional[shared.AttemptResponse], http_res
+                    Optional[webhooks.AttemptResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1227,9 +1271,9 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1248,6 +1292,8 @@ class WebhooksV1(BaseSDK):
 
         Test a config by sending a webhook to its endpoint.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1262,7 +1308,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.TEST_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.TestConfigRequest)
@@ -1282,6 +1328,7 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1302,7 +1349,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1310,7 +1357,7 @@ class WebhooksV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.TestConfigResponse(
                 attempt_response=unmarshal_json_response(
-                    Optional[shared.AttemptResponse], http_res
+                    Optional[webhooks.AttemptResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1318,9 +1365,9 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1339,6 +1386,8 @@ class WebhooksV1(BaseSDK):
 
         Update a webhooks config by ID.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1353,7 +1402,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateConfigRequest)
@@ -1373,9 +1422,10 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.config_user, False, False, "json", shared.ConfigUser
+                request.config_user, False, False, "json", webhooks.ConfigUser
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1396,7 +1446,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1409,9 +1459,9 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1430,6 +1480,8 @@ class WebhooksV1(BaseSDK):
 
         Update a webhooks config by ID.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1444,7 +1496,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateConfigRequest)
@@ -1464,9 +1516,10 @@ class WebhooksV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.config_user, False, False, "json", shared.ConfigUser
+                request.config_user, False, False, "json", webhooks.ConfigUser
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1487,7 +1540,7 @@ class WebhooksV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1500,8 +1553,8 @@ class WebhooksV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.WebhooksErrorResponseData, http_res
+                webhooks.ErrorResponseData, http_res
             )
-            raise errors.WebhooksErrorResponse(response_data, http_res)
+            raise webhooks.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)

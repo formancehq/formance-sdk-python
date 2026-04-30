@@ -9,6 +9,11 @@ from typing import Any, Dict, List
 from typing_extensions import Annotated, TypedDict
 
 
+ADD_METADATA_TO_ACCOUNT_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class AddMetadataToAccountRequestTypedDict(TypedDict):
     request_body: Nullable[Dict[str, Any]]
     r"""metadata"""
