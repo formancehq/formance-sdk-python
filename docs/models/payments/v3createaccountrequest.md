@@ -1,0 +1,14 @@
+# V3CreateAccountRequest
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `v3_account_type_enum`                                                   | [payments.V3AccountTypeEnum](../../models/payments/v3accounttypeenum.md) | :heavy_check_mark:                                                       | N/A                                                                      |
+| `v3_metadata`                                                            | Dict[str, *str*]                                                         | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `account_name`                                                           | *str*                                                                    | :heavy_check_mark:                                                       | N/A                                                                      |
+| `connector_id`                                                           | *str*                                                                    | :heavy_check_mark:                                                       | N/A                                                                      |
+| `created_at`                                                             | [date](https://docs.python.org/3/library/datetime.html#date-objects)     | :heavy_check_mark:                                                       | N/A                                                                      |
+| `default_asset`                                                          | *OptionalNullable[str]*                                                  | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `reference`                                                              | *str*                                                                    | :heavy_check_mark:                                                       | N/A                                                                      |

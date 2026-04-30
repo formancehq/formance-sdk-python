@@ -1,0 +1,9 @@
+# V2LogsCursorResponse
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `cursor`                                                                                             | [ledger.V2LogsCursorResponseCursor](../../models/ledger/v2logscursorresponsecursor.md)               | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
+| `resource`                                                                                           | [Optional[ledger.V2LogsCursorResponseResource]](../../models/ledger/v2logscursorresponseresource.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |

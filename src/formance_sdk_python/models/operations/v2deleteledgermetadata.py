@@ -7,6 +7,11 @@ import httpx
 from typing_extensions import Annotated, TypedDict
 
 
+V2_DELETE_LEDGER_METADATA_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2DeleteLedgerMetadataRequestTypedDict(TypedDict):
     key: str
     r"""Key to remove."""

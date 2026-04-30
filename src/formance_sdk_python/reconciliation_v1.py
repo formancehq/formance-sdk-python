@@ -3,17 +3,23 @@
 from .basesdk import BaseSDK
 from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
-from formance_sdk_python.models import errors, operations, shared
+from formance_sdk_python.models import errors, operations, reconciliation
+from formance_sdk_python.models.reconciliation import (
+    policyrequest as reconciliation_policyrequest,
+)
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
 from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Mapping, Optional, Union, cast
+from typing import Any, Dict, Mapping, Optional, Union, cast
 
 
 class ReconciliationV1(BaseSDK):
     def create_policy(
         self,
         *,
-        request: Union[shared.PolicyRequest, shared.PolicyRequestTypedDict],
+        request: Union[
+            reconciliation_policyrequest.PolicyRequest,
+            reconciliation_policyrequest.PolicyRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -22,6 +28,8 @@ class ReconciliationV1(BaseSDK):
         r"""Create a policy
 
         Create a policy
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -37,11 +45,11 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_POLICY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.PolicyRequest)
-        request = cast(shared.PolicyRequest, request)
+            request = utils.unmarshal(request, reconciliation.PolicyRequest)
+        request = cast(reconciliation.PolicyRequest, request)
 
         req = self._build_request(
             method="POST",
@@ -57,9 +65,10 @@ class ReconciliationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.PolicyRequest
+                request, False, False, "json", reconciliation.PolicyRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -80,7 +89,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -88,7 +97,7 @@ class ReconciliationV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreatePolicyResponse(
                 policy_response=unmarshal_json_response(
-                    Optional[shared.PolicyResponse], http_res
+                    Optional[reconciliation.PolicyResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -96,16 +105,19 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_policy_async(
         self,
         *,
-        request: Union[shared.PolicyRequest, shared.PolicyRequestTypedDict],
+        request: Union[
+            reconciliation_policyrequest.PolicyRequest,
+            reconciliation_policyrequest.PolicyRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -114,6 +126,8 @@ class ReconciliationV1(BaseSDK):
         r"""Create a policy
 
         Create a policy
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -129,11 +143,11 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_POLICY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.PolicyRequest)
-        request = cast(shared.PolicyRequest, request)
+            request = utils.unmarshal(request, reconciliation.PolicyRequest)
+        request = cast(reconciliation.PolicyRequest, request)
 
         req = self._build_request_async(
             method="POST",
@@ -149,9 +163,10 @@ class ReconciliationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.PolicyRequest
+                request, False, False, "json", reconciliation.PolicyRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -172,7 +187,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -180,7 +195,7 @@ class ReconciliationV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreatePolicyResponse(
                 policy_response=unmarshal_json_response(
-                    Optional[shared.PolicyResponse], http_res
+                    Optional[reconciliation.PolicyResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -188,9 +203,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -209,6 +224,8 @@ class ReconciliationV1(BaseSDK):
 
         Delete a policy by its id.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -223,7 +240,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_POLICY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeletePolicyRequest)
@@ -243,6 +260,7 @@ class ReconciliationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -263,7 +281,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -276,9 +294,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -297,6 +315,8 @@ class ReconciliationV1(BaseSDK):
 
         Delete a policy by its id.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -311,7 +331,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_POLICY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeletePolicyRequest)
@@ -331,6 +351,7 @@ class ReconciliationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -351,7 +372,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -364,9 +385,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -383,6 +404,8 @@ class ReconciliationV1(BaseSDK):
     ) -> operations.GetPolicyResponse:
         r"""Get a policy
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -397,7 +420,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_POLICY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPolicyRequest)
@@ -417,6 +440,7 @@ class ReconciliationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -437,7 +461,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -445,7 +469,7 @@ class ReconciliationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPolicyResponse(
                 policy_response=unmarshal_json_response(
-                    Optional[shared.PolicyResponse], http_res
+                    Optional[reconciliation.PolicyResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -453,9 +477,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -472,6 +496,8 @@ class ReconciliationV1(BaseSDK):
     ) -> operations.GetPolicyResponse:
         r"""Get a policy
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -486,7 +512,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_POLICY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPolicyRequest)
@@ -506,6 +532,7 @@ class ReconciliationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -526,7 +553,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -534,7 +561,7 @@ class ReconciliationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPolicyResponse(
                 policy_response=unmarshal_json_response(
-                    Optional[shared.PolicyResponse], http_res
+                    Optional[reconciliation.PolicyResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -542,9 +569,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -562,6 +589,8 @@ class ReconciliationV1(BaseSDK):
     ) -> operations.GetReconciliationResponse:
         r"""Get a reconciliation
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -576,7 +605,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_RECONCILIATION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetReconciliationRequest)
@@ -596,6 +625,7 @@ class ReconciliationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -616,7 +646,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -624,7 +654,7 @@ class ReconciliationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetReconciliationResponse(
                 reconciliation_response=unmarshal_json_response(
-                    Optional[shared.ReconciliationResponse], http_res
+                    Optional[reconciliation.ReconciliationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -632,9 +662,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -652,6 +682,8 @@ class ReconciliationV1(BaseSDK):
     ) -> operations.GetReconciliationResponse:
         r"""Get a reconciliation
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -666,7 +698,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_RECONCILIATION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetReconciliationRequest)
@@ -686,6 +718,7 @@ class ReconciliationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -706,7 +739,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -714,7 +747,7 @@ class ReconciliationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetReconciliationResponse(
                 reconciliation_response=unmarshal_json_response(
-                    Optional[shared.ReconciliationResponse], http_res
+                    Optional[reconciliation.ReconciliationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -722,9 +755,175 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def get_server_info_reconciliation(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetServerInfoReconciliationResponse:
+        r"""Get server info
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = operations.GET_SERVER_INFO_RECONCILIATION_SERVERS[0]
+        req = self._build_request(
+            method="GET",
+            path="/api/reconciliation/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getServerInfo_reconciliation",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetServerInfoReconciliationResponse(
+                server_info=unmarshal_json_response(
+                    Optional[reconciliation.ServerInfo], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def get_server_info_reconciliation_async(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetServerInfoReconciliationResponse:
+        r"""Get server info
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = operations.GET_SERVER_INFO_RECONCILIATION_SERVERS[0]
+        req = self._build_request_async(
+            method="GET",
+            path="/api/reconciliation/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getServerInfo_reconciliation",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetServerInfoReconciliationResponse(
+                server_info=unmarshal_json_response(
+                    Optional[reconciliation.ServerInfo], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -741,6 +940,8 @@ class ReconciliationV1(BaseSDK):
     ) -> operations.ListPoliciesResponse:
         r"""List policies
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -755,7 +956,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_POLICIES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPoliciesRequest)
@@ -774,7 +975,15 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, Any]],
+            ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -795,7 +1004,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -803,7 +1012,7 @@ class ReconciliationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListPoliciesResponse(
                 policies_cursor_response=unmarshal_json_response(
-                    Optional[shared.PoliciesCursorResponse], http_res
+                    Optional[reconciliation.PoliciesCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -811,9 +1020,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -830,6 +1039,8 @@ class ReconciliationV1(BaseSDK):
     ) -> operations.ListPoliciesResponse:
         r"""List policies
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -844,7 +1055,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_POLICIES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPoliciesRequest)
@@ -863,7 +1074,15 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, Any]],
+            ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -884,7 +1103,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -892,7 +1111,7 @@ class ReconciliationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListPoliciesResponse(
                 policies_cursor_response=unmarshal_json_response(
-                    Optional[shared.PoliciesCursorResponse], http_res
+                    Optional[reconciliation.PoliciesCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -900,9 +1119,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -920,6 +1139,8 @@ class ReconciliationV1(BaseSDK):
     ) -> operations.ListReconciliationsResponse:
         r"""List reconciliations
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -934,7 +1155,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_RECONCILIATIONS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListReconciliationsRequest)
@@ -953,7 +1174,15 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, Any]],
+            ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -974,7 +1203,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -982,7 +1211,7 @@ class ReconciliationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListReconciliationsResponse(
                 reconciliations_cursor_response=unmarshal_json_response(
-                    Optional[shared.ReconciliationsCursorResponse], http_res
+                    Optional[reconciliation.ReconciliationsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -990,9 +1219,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1010,6 +1239,8 @@ class ReconciliationV1(BaseSDK):
     ) -> operations.ListReconciliationsResponse:
         r"""List reconciliations
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1024,7 +1255,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_RECONCILIATIONS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListReconciliationsRequest)
@@ -1043,7 +1274,15 @@ class ReconciliationV1(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, Any]],
+            ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1064,7 +1303,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1072,7 +1311,7 @@ class ReconciliationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListReconciliationsResponse(
                 reconciliations_cursor_response=unmarshal_json_response(
-                    Optional[shared.ReconciliationsCursorResponse], http_res
+                    Optional[reconciliation.ReconciliationsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1080,9 +1319,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1101,6 +1340,8 @@ class ReconciliationV1(BaseSDK):
 
         Reconcile using a policy
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1115,7 +1356,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.RECONCILE_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReconcileRequest)
@@ -1139,9 +1380,10 @@ class ReconciliationV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.ReconciliationRequest,
+                reconciliation.ReconciliationRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1162,7 +1404,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1170,7 +1412,7 @@ class ReconciliationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReconcileResponse(
                 reconciliation_response=unmarshal_json_response(
-                    Optional[shared.ReconciliationResponse], http_res
+                    Optional[reconciliation.ReconciliationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1178,9 +1420,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1199,6 +1441,8 @@ class ReconciliationV1(BaseSDK):
 
         Reconcile using a policy
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1213,7 +1457,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.RECONCILE_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReconcileRequest)
@@ -1237,9 +1481,10 @@ class ReconciliationV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.ReconciliationRequest,
+                reconciliation.ReconciliationRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1260,7 +1505,7 @@ class ReconciliationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1268,7 +1513,7 @@ class ReconciliationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReconcileResponse(
                 reconciliation_response=unmarshal_json_response(
-                    Optional[shared.ReconciliationResponse], http_res
+                    Optional[reconciliation.ReconciliationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1276,168 +1521,8 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
+                reconciliation.ErrorResponseData, http_res
             )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
-
-        raise errors.SDKError("Unexpected response received", http_res)
-
-    def reconciliationget_server_info(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ReconciliationgetServerInfoResponse:
-        r"""Get server info
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-        req = self._build_request(
-            method="GET",
-            path="/api/reconciliation/_info",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="reconciliationgetServerInfo",
-                oauth2_scopes=["reconciliation:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ReconciliationgetServerInfoResponse(
-                server_info=unmarshal_json_response(
-                    Optional[shared.ServerInfo], http_res
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
-            )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
-
-        raise errors.SDKError("Unexpected response received", http_res)
-
-    async def reconciliationget_server_info_async(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ReconciliationgetServerInfoResponse:
-        r"""Get server info
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-        req = self._build_request_async(
-            method="GET",
-            path="/api/reconciliation/_info",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="reconciliationgetServerInfo",
-                oauth2_scopes=["reconciliation:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ReconciliationgetServerInfoResponse(
-                server_info=unmarshal_json_response(
-                    Optional[shared.ServerInfo], http_res
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.ReconciliationErrorResponseData, http_res
-            )
-            raise errors.ReconciliationErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)

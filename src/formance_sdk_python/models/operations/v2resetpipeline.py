@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+V2_RESET_PIPELINE_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2ResetPipelineRequestTypedDict(TypedDict):
     ledger: str
     r"""Name of the ledger."""

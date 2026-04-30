@@ -7,6 +7,11 @@ import httpx
 from typing_extensions import Annotated, TypedDict
 
 
+DELETE_CONFIG_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class DeleteConfigRequestTypedDict(TypedDict):
     id: str
     r"""Config ID"""

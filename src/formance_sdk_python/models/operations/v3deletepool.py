@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+V3_DELETE_POOL_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V3DeletePoolRequestTypedDict(TypedDict):
     pool_id: str
     r"""The pool ID"""

@@ -3,7 +3,8 @@
 from .basesdk import BaseSDK
 from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
-from formance_sdk_python.models import errors, operations, shared
+from formance_sdk_python.models import auth, errors, operations
+from formance_sdk_python.models.auth import clientoptions_2 as auth_clientoptions_2
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
 from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Mapping, Optional, Union, cast
@@ -14,7 +15,10 @@ class AuthV1(BaseSDK):
         self,
         *,
         request: Optional[
-            Union[shared.CreateClientRequest, shared.CreateClientRequestTypedDict]
+            Union[
+                auth_clientoptions_2.ClientOptions2,
+                auth_clientoptions_2.ClientOptions2TypedDict,
+            ]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -22,6 +26,8 @@ class AuthV1(BaseSDK):
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.CreateClientResponse:
         r"""Create client
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -37,11 +43,11 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_CLIENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[shared.CreateClientRequest])
-        request = cast(Optional[shared.CreateClientRequest], request)
+            request = utils.unmarshal(request, Optional[auth.ClientOptions2])
+        request = cast(Optional[auth.ClientOptions2], request)
 
         req = self._build_request(
             method="POST",
@@ -57,9 +63,10 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[shared.CreateClientRequest]
+                request, False, True, "json", Optional[auth.ClientOptions2]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -80,14 +87,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateClientResponse(
                 create_client_response=unmarshal_json_response(
-                    Optional[shared.CreateClientResponse], http_res
+                    Optional[auth.CreateClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -103,7 +110,10 @@ class AuthV1(BaseSDK):
         self,
         *,
         request: Optional[
-            Union[shared.CreateClientRequest, shared.CreateClientRequestTypedDict]
+            Union[
+                auth_clientoptions_2.ClientOptions2,
+                auth_clientoptions_2.ClientOptions2TypedDict,
+            ]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -111,6 +121,8 @@ class AuthV1(BaseSDK):
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.CreateClientResponse:
         r"""Create client
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -126,11 +138,11 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_CLIENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[shared.CreateClientRequest])
-        request = cast(Optional[shared.CreateClientRequest], request)
+            request = utils.unmarshal(request, Optional[auth.ClientOptions2])
+        request = cast(Optional[auth.ClientOptions2], request)
 
         req = self._build_request_async(
             method="POST",
@@ -146,9 +158,10 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[shared.CreateClientRequest]
+                request, False, True, "json", Optional[auth.ClientOptions2]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -169,14 +182,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateClientResponse(
                 create_client_response=unmarshal_json_response(
-                    Optional[shared.CreateClientResponse], http_res
+                    Optional[auth.CreateClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -201,6 +214,8 @@ class AuthV1(BaseSDK):
     ) -> operations.CreateSecretResponse:
         r"""Add a secret to a client
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -215,7 +230,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_SECRET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateSecretRequest)
@@ -235,13 +250,14 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_secret_request if request is not None else None,
+                request.secret_options if request is not None else None,
                 False,
                 True,
                 "json",
-                Optional[shared.CreateSecretRequest],
+                Optional[auth.SecretOptions1],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -262,14 +278,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateSecretResponse(
                 create_secret_response=unmarshal_json_response(
-                    Optional[shared.CreateSecretResponse], http_res
+                    Optional[auth.CreateSecretResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -294,6 +310,8 @@ class AuthV1(BaseSDK):
     ) -> operations.CreateSecretResponse:
         r"""Add a secret to a client
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -308,7 +326,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_SECRET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateSecretRequest)
@@ -328,13 +346,14 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_secret_request if request is not None else None,
+                request.secret_options if request is not None else None,
                 False,
                 True,
                 "json",
-                Optional[shared.CreateSecretRequest],
+                Optional[auth.SecretOptions1],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -355,14 +374,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateSecretResponse(
                 create_secret_response=unmarshal_json_response(
-                    Optional[shared.CreateSecretResponse], http_res
+                    Optional[auth.CreateSecretResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -387,6 +406,8 @@ class AuthV1(BaseSDK):
     ) -> operations.DeleteClientResponse:
         r"""Delete client
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -401,7 +422,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_CLIENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteClientRequest)
@@ -421,6 +442,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -441,7 +463,7 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -470,6 +492,8 @@ class AuthV1(BaseSDK):
     ) -> operations.DeleteClientResponse:
         r"""Delete client
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -484,7 +508,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_CLIENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteClientRequest)
@@ -504,6 +528,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -524,7 +549,7 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -553,6 +578,8 @@ class AuthV1(BaseSDK):
     ) -> operations.DeleteSecretResponse:
         r"""Delete a secret from a client
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -567,7 +594,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_SECRET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteSecretRequest)
@@ -587,6 +614,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -607,7 +635,7 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -636,6 +664,8 @@ class AuthV1(BaseSDK):
     ) -> operations.DeleteSecretResponse:
         r"""Delete a secret from a client
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -650,7 +680,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_SECRET_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteSecretRequest)
@@ -670,6 +700,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -690,7 +721,7 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -716,6 +747,8 @@ class AuthV1(BaseSDK):
     ) -> operations.GetOIDCWellKnownsResponse:
         r"""Retrieve OpenID connect well-knowns.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -729,7 +762,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_OIDC_WELL_KNOWNS_SERVERS[0]
         req = self._build_request(
             method="GET",
             path="/api/auth/.well-known/openid-configuration",
@@ -744,6 +777,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -764,7 +798,7 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -790,6 +824,8 @@ class AuthV1(BaseSDK):
     ) -> operations.GetOIDCWellKnownsResponse:
         r"""Retrieve OpenID connect well-knowns.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -803,7 +839,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_OIDC_WELL_KNOWNS_SERVERS[0]
         req = self._build_request_async(
             method="GET",
             path="/api/auth/.well-known/openid-configuration",
@@ -818,6 +854,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -838,7 +875,7 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -854,15 +891,17 @@ class AuthV1(BaseSDK):
 
         raise errors.SDKError("Unexpected response received", http_res)
 
-    def get_server_info(
+    def get_server_info_auth(
         self,
         *,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetServerInfoResponse:
+    ) -> operations.GetServerInfoAuthResponse:
         r"""Get server info
+
+        If set, this operation will use `client_id` from the global security.
 
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -877,7 +916,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_SERVER_INFO_AUTH_SERVERS[0]
         req = self._build_request(
             method="GET",
             path="/api/auth/_info",
@@ -892,6 +931,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -907,19 +947,19 @@ class AuthV1(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="getServerInfo",
+                operation_id="getServerInfo_auth",
                 oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetServerInfoResponse(
+            return operations.GetServerInfoAuthResponse(
                 server_info=unmarshal_json_response(
-                    Optional[shared.ServerInfo], http_res
+                    Optional[auth.ServerInfo], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -931,15 +971,17 @@ class AuthV1(BaseSDK):
 
         raise errors.SDKError("Unexpected response received", http_res)
 
-    async def get_server_info_async(
+    async def get_server_info_auth_async(
         self,
         *,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetServerInfoResponse:
+    ) -> operations.GetServerInfoAuthResponse:
         r"""Get server info
+
+        If set, this operation will use `client_id` from the global security.
 
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -954,7 +996,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_SERVER_INFO_AUTH_SERVERS[0]
         req = self._build_request_async(
             method="GET",
             path="/api/auth/_info",
@@ -969,6 +1011,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -984,19 +1027,19 @@ class AuthV1(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="getServerInfo",
+                operation_id="getServerInfo_auth",
                 oauth2_scopes=["auth:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetServerInfoResponse(
+            return operations.GetServerInfoAuthResponse(
                 server_info=unmarshal_json_response(
-                    Optional[shared.ServerInfo], http_res
+                    Optional[auth.ServerInfo], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1018,6 +1061,8 @@ class AuthV1(BaseSDK):
     ) -> operations.ListClientsResponse:
         r"""List clients
 
+        If set, this operation will use `client_id` from the global security.
+
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1031,7 +1076,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_CLIENTS_SERVERS[0]
         req = self._build_request(
             method="GET",
             path="/api/auth/clients",
@@ -1046,6 +1091,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1066,14 +1112,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListClientsResponse(
                 list_clients_response=unmarshal_json_response(
-                    Optional[shared.ListClientsResponse], http_res
+                    Optional[auth.ListClientsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1095,6 +1141,8 @@ class AuthV1(BaseSDK):
     ) -> operations.ListClientsResponse:
         r"""List clients
 
+        If set, this operation will use `client_id` from the global security.
+
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1108,7 +1156,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_CLIENTS_SERVERS[0]
         req = self._build_request_async(
             method="GET",
             path="/api/auth/clients",
@@ -1123,6 +1171,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1143,14 +1192,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListClientsResponse(
                 list_clients_response=unmarshal_json_response(
-                    Optional[shared.ListClientsResponse], http_res
+                    Optional[auth.ListClientsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1174,6 +1223,8 @@ class AuthV1(BaseSDK):
 
         List users
 
+        If set, this operation will use `client_id` from the global security.
+
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1187,7 +1238,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_USERS_SERVERS[0]
         req = self._build_request(
             method="GET",
             path="/api/auth/users",
@@ -1202,6 +1253,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1222,14 +1274,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListUsersResponse(
                 list_users_response=unmarshal_json_response(
-                    Optional[shared.ListUsersResponse], http_res
+                    Optional[auth.ListUsersResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1253,6 +1305,8 @@ class AuthV1(BaseSDK):
 
         List users
 
+        If set, this operation will use `client_id` from the global security.
+
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1266,7 +1320,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_USERS_SERVERS[0]
         req = self._build_request_async(
             method="GET",
             path="/api/auth/users",
@@ -1281,6 +1335,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1301,14 +1356,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListUsersResponse(
                 list_users_response=unmarshal_json_response(
-                    Optional[shared.ListUsersResponse], http_res
+                    Optional[auth.ListUsersResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1333,6 +1388,8 @@ class AuthV1(BaseSDK):
     ) -> operations.ReadClientResponse:
         r"""Read client
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1347,7 +1404,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.READ_CLIENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadClientRequest)
@@ -1367,6 +1424,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1387,14 +1445,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadClientResponse(
                 read_client_response=unmarshal_json_response(
-                    Optional[shared.ReadClientResponse], http_res
+                    Optional[auth.ReadClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1419,6 +1477,8 @@ class AuthV1(BaseSDK):
     ) -> operations.ReadClientResponse:
         r"""Read client
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1433,7 +1493,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.READ_CLIENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadClientRequest)
@@ -1453,6 +1513,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1473,14 +1534,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadClientResponse(
                 read_client_response=unmarshal_json_response(
-                    Optional[shared.ReadClientResponse], http_res
+                    Optional[auth.ReadClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1505,6 +1566,8 @@ class AuthV1(BaseSDK):
 
         Read user
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1519,7 +1582,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.READ_USER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadUserRequest)
@@ -1539,6 +1602,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1559,14 +1623,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadUserResponse(
                 read_user_response=unmarshal_json_response(
-                    Optional[shared.ReadUserResponse], http_res
+                    Optional[auth.ReadUserResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1591,6 +1655,8 @@ class AuthV1(BaseSDK):
 
         Read user
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1605,7 +1671,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.READ_USER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadUserRequest)
@@ -1625,6 +1691,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1645,14 +1712,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadUserResponse(
                 read_user_response=unmarshal_json_response(
-                    Optional[shared.ReadUserResponse], http_res
+                    Optional[auth.ReadUserResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1677,6 +1744,8 @@ class AuthV1(BaseSDK):
     ) -> operations.UpdateClientResponse:
         r"""Update client
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1691,7 +1760,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_CLIENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateClientRequest)
@@ -1711,13 +1780,14 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_client_request if request is not None else None,
+                request.client_options if request is not None else None,
                 False,
                 True,
                 "json",
-                Optional[shared.CreateClientRequest],
+                Optional[auth.ClientOptions2],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1738,14 +1808,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.UpdateClientResponse(
-                update_client_response=unmarshal_json_response(
-                    Optional[shared.UpdateClientResponse], http_res
+                create_client_response=unmarshal_json_response(
+                    Optional[auth.CreateClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1770,6 +1840,8 @@ class AuthV1(BaseSDK):
     ) -> operations.UpdateClientResponse:
         r"""Update client
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1784,7 +1856,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_CLIENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateClientRequest)
@@ -1804,13 +1876,14 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.create_client_request if request is not None else None,
+                request.client_options if request is not None else None,
                 False,
                 True,
                 "json",
-                Optional[shared.CreateClientRequest],
+                Optional[auth.ClientOptions2],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1831,14 +1904,14 @@ class AuthV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.UpdateClientResponse(
-                update_client_response=unmarshal_json_response(
-                    Optional[shared.UpdateClientResponse], http_res
+                create_client_response=unmarshal_json_response(
+                    Optional[auth.CreateClientResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",

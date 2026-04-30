@@ -5,12 +5,38 @@ from typing import Any, TYPE_CHECKING
 from formance_sdk_python.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
-    from . import errors, operations, shared
+    from . import (
+        auth,
+        errors,
+        gateway,
+        ledger,
+        operations,
+        orchestration,
+        payments,
+        reconciliation,
+        search,
+        shared,
+        wallets,
+        webhooks,
+    )
 
 # package
 
 
-_sub_packages = ["errors", "operations", "shared"]
+_sub_packages = [
+    "auth",
+    "errors",
+    "gateway",
+    "ledger",
+    "operations",
+    "orchestration",
+    "payments",
+    "reconciliation",
+    "search",
+    "shared",
+    "wallets",
+    "webhooks",
+]
 
 
 def __getattr__(attr_name: str) -> Any:

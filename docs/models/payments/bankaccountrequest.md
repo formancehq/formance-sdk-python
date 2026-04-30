@@ -1,0 +1,14 @@
+# BankAccountRequest
+
+
+## Fields
+
+| Field                   | Type                    | Required                | Description             | Example                 |
+| ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+| `bank_account_metadata` | Dict[str, *str*]        | :heavy_minus_sign:      | N/A                     |                         |
+| `account_number`        | *Optional[str]*         | :heavy_minus_sign:      | N/A                     |                         |
+| `connector_id`          | *Optional[str]*         | :heavy_minus_sign:      | N/A                     |                         |
+| `country`               | *str*                   | :heavy_check_mark:      | N/A                     | GB                      |
+| `iban`                  | *Optional[str]*         | :heavy_minus_sign:      | N/A                     |                         |
+| `name`                  | *str*                   | :heavy_check_mark:      | N/A                     | My account              |
+| `swift_bic_code`        | *Optional[str]*         | :heavy_minus_sign:      | N/A                     |                         |

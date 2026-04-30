@@ -3,20 +3,26 @@
 from __future__ import annotations
 from datetime import datetime
 from enum import Enum
-from formance_sdk_python.models.shared import (
-    v2transactionscursorresponse as shared_v2transactionscursorresponse,
+from formance_sdk_python.models.ledger import (
+    v2transactionscursorresponse as ledger_v2transactionscursorresponse,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
     QueryParamMetadata,
+    RequestMetadata,
 )
 import httpx
 import pydantic
 from pydantic import model_serializer
-from typing import Optional
+from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
+
+
+V2_LIST_TRANSACTIONS_SERVERS = [
+    "http://localhost:8080/",
+]
 
 
 class V2ListTransactionsOrder(str, Enum):
@@ -26,6 +32,7 @@ class V2ListTransactionsOrder(str, Enum):
 
 
 class V2ListTransactionsRequestTypedDict(TypedDict):
+    request_body: Dict[str, Any]
     ledger: str
     r"""Name of the ledger."""
     cursor: NotRequired[str]
@@ -52,6 +59,11 @@ class V2ListTransactionsRequestTypedDict(TypedDict):
 
 
 class V2ListTransactionsRequest(BaseModel):
+    request_body: Annotated[
+        Dict[str, Any],
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
     ledger: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
@@ -137,7 +149,7 @@ class V2ListTransactionsResponseTypedDict(TypedDict):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
     v2_transactions_cursor_response: NotRequired[
-        shared_v2transactionscursorresponse.V2TransactionsCursorResponseTypedDict
+        ledger_v2transactionscursorresponse.V2TransactionsCursorResponseTypedDict
     ]
     r"""OK"""
 
@@ -153,7 +165,7 @@ class V2ListTransactionsResponse(BaseModel):
     r"""Raw HTTP response; suitable for custom response parsing"""
 
     v2_transactions_cursor_response: Optional[
-        shared_v2transactionscursorresponse.V2TransactionsCursorResponse
+        ledger_v2transactionscursorresponse.V2TransactionsCursorResponse
     ] = None
     r"""OK"""
 

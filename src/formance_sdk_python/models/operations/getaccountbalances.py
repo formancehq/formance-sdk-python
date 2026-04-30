@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 from datetime import datetime
-from formance_sdk_python.models.shared import balancescursor as shared_balancescursor
+from formance_sdk_python.models.payments import (
+    balancescursor as payments_balancescursor,
+)
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
@@ -14,6 +16,11 @@ import pydantic
 from pydantic import model_serializer
 from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
+
+
+GET_ACCOUNT_BALANCES_SERVERS = [
+    "http://localhost:8080/",
+]
 
 
 class GetAccountBalancesRequestTypedDict(TypedDict):
@@ -145,7 +152,7 @@ class GetAccountBalancesResponseTypedDict(TypedDict):
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    balances_cursor: NotRequired[shared_balancescursor.BalancesCursorTypedDict]
+    balances_cursor: NotRequired[payments_balancescursor.BalancesCursorTypedDict]
     r"""OK"""
 
 
@@ -159,7 +166,7 @@ class GetAccountBalancesResponse(BaseModel):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
 
-    balances_cursor: Optional[shared_balancescursor.BalancesCursor] = None
+    balances_cursor: Optional[payments_balancescursor.BalancesCursor] = None
     r"""OK"""
 
     @model_serializer(mode="wrap")

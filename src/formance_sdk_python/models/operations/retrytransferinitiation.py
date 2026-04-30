@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+RETRY_TRANSFER_INITIATION_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class RetryTransferInitiationRequestTypedDict(TypedDict):
     transfer_id: str
     r"""The transfer ID."""

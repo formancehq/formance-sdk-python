@@ -1,0 +1,12 @@
+# V2QueryTemplate
+
+
+## Fields
+
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `v2_query_params`                                                                 | [Optional[ledger.V2QueryParams]](../../models/ledger/v2queryparams.md)            | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `v2_query_resource`                                                               | [Optional[ledger.V2QueryResource]](../../models/ledger/v2queryresource.md)        | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `body`                                                                            | Dict[str, *Any*]                                                                  | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `description`                                                                     | *Optional[str]*                                                                   | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `vars`                                                                            | Dict[str, [ledger.V2QueryTemplateVar](../../models/ledger/v2querytemplatevar.md)] | :heavy_minus_sign:                                                                | N/A                                                                               |

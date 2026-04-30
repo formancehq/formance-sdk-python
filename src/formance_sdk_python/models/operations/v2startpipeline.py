@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+V2_START_PIPELINE_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2StartPipelineRequestTypedDict(TypedDict):
     ledger: str
     r"""Name of the ledger."""

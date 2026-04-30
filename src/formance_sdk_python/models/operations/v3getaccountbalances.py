@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 from datetime import datetime
-from formance_sdk_python.models.shared import (
-    v3balancescursorresponse as shared_v3balancescursorresponse,
+from formance_sdk_python.models.payments import (
+    v3balancescursorresponse as payments_v3balancescursorresponse,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
@@ -16,6 +16,11 @@ import pydantic
 from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
+
+
+V3_GET_ACCOUNT_BALANCES_SERVERS = [
+    "http://localhost:8080/",
+]
 
 
 class V3GetAccountBalancesRequestTypedDict(TypedDict):
@@ -105,7 +110,7 @@ class V3GetAccountBalancesResponseTypedDict(TypedDict):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
     v3_balances_cursor_response: NotRequired[
-        shared_v3balancescursorresponse.V3BalancesCursorResponseTypedDict
+        payments_v3balancescursorresponse.V3BalancesCursorResponseTypedDict
     ]
     r"""OK"""
 
@@ -121,7 +126,7 @@ class V3GetAccountBalancesResponse(BaseModel):
     r"""Raw HTTP response; suitable for custom response parsing"""
 
     v3_balances_cursor_response: Optional[
-        shared_v3balancescursorresponse.V3BalancesCursorResponse
+        payments_v3balancescursorresponse.V3BalancesCursorResponse
     ] = None
     r"""OK"""
 
