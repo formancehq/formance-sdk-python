@@ -2,23 +2,30 @@
 
 from __future__ import annotations
 from datetime import datetime
-from formance_sdk_python.models.shared import (
-    v2accountscursorresponse as shared_v2accountscursorresponse,
+from formance_sdk_python.models.ledger import (
+    v2accountscursorresponse as ledger_v2accountscursorresponse,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
     QueryParamMetadata,
+    RequestMetadata,
 )
 import httpx
 import pydantic
 from pydantic import model_serializer
-from typing import Optional
+from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+V2_LIST_ACCOUNTS_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2ListAccountsRequestTypedDict(TypedDict):
+    request_body: Dict[str, Any]
     ledger: str
     r"""Name of the ledger."""
     cursor: NotRequired[str]
@@ -42,6 +49,11 @@ class V2ListAccountsRequestTypedDict(TypedDict):
 
 
 class V2ListAccountsRequest(BaseModel):
+    request_body: Annotated[
+        Dict[str, Any],
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
     ledger: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
@@ -111,7 +123,7 @@ class V2ListAccountsResponseTypedDict(TypedDict):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
     v2_accounts_cursor_response: NotRequired[
-        shared_v2accountscursorresponse.V2AccountsCursorResponseTypedDict
+        ledger_v2accountscursorresponse.V2AccountsCursorResponseTypedDict
     ]
     r"""OK"""
 
@@ -127,7 +139,7 @@ class V2ListAccountsResponse(BaseModel):
     r"""Raw HTTP response; suitable for custom response parsing"""
 
     v2_accounts_cursor_response: Optional[
-        shared_v2accountscursorresponse.V2AccountsCursorResponse
+        ledger_v2accountscursorresponse.V2AccountsCursorResponse
     ] = None
     r"""OK"""
 

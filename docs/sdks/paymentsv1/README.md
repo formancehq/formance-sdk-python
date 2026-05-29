@@ -15,6 +15,7 @@
 * [delete_transfer_initiation](#delete_transfer_initiation) - Delete a transfer initiation
 * [forward_bank_account](#forward_bank_account) - Forward a bank account to a connector
 * [get_account_balances](#get_account_balances) - Get account balances
+* [get_account_payments](#get_account_payments) - Get an account
 * [get_bank_account](#get_bank_account) - Get a bank account created by user on Formance
 * [~~get_connector_task~~](#get_connector_task) - Read a specific task of the connector :warning: **Deprecated**
 * [get_connector_task_v1](#get_connector_task_v1) - Read a specific task of the connector
@@ -22,8 +23,10 @@
 * [get_pool](#get_pool) - Get a Pool
 * [get_pool_balances](#get_pool_balances) - Get historical pool balances at a particular point in time
 * [get_pool_balances_latest](#get_pool_balances_latest) - Get latest pool balances
+* [get_server_info_payments](#get_server_info_payments) - Get server info
 * [get_transfer_initiation](#get_transfer_initiation) - Get a transfer initiation
 * [install_connector](#install_connector) - Install a connector
+* [list_accounts_payments](#list_accounts_payments) - List accounts
 * [list_all_connectors](#list_all_connectors) - List all installed connectors
 * [list_bank_accounts](#list_bank_accounts) - List bank accounts created by user on Formance
 * [list_configs_available_connectors](#list_configs_available_connectors) - List the configs of each available connector
@@ -32,9 +35,6 @@
 * [list_payments](#list_payments) - List payments
 * [list_pools](#list_pools) - List Pools
 * [list_transfer_initiations](#list_transfer_initiations) - List Transfer Initiations
-* [paymentsget_account](#paymentsget_account) - Get an account
-* [paymentsget_server_info](#paymentsget_server_info) - Get server info
-* [paymentslist_accounts](#paymentslist_accounts) - List accounts
 * [~~read_connector_config~~](#read_connector_config) - Read the config of a connector :warning: **Deprecated**
 * [read_connector_config_v1](#read_connector_config_v1) - Read the config of a connector
 * [remove_account_from_pool](#remove_account_from_pool) - Remove an account from a pool
@@ -89,6 +89,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.AddAccountToPoolRequest](../../models/operations/addaccounttopoolrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+| `server_url`                                                                             | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -96,10 +97,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## connectors_transfer
 
@@ -110,7 +111,7 @@ Execute a transfer between two accounts.
 <!-- UsageSnippet language="python" operationID="connectorsTransfer" method="post" path="/api/payments/connectors/{connector}/transfers" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -127,7 +128,7 @@ with SDK(
             "destination": "acct_1Gqj58KZcSIg2N2q",
             "source": "acct_1Gqj58KZcSIg2N2q",
         },
-        "connector": shared.Connector.GENERIC,
+        "connector": payments.Connector.GENERIC,
     })
 
     assert res.transfer_response is not None
@@ -143,6 +144,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.ConnectorsTransferRequest](../../models/operations/connectorstransferrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
+| `server_url`                                                                                 | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -150,10 +152,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## create_account
 
@@ -164,7 +166,7 @@ Create an account
 <!-- UsageSnippet language="python" operationID="createAccount" method="post" path="/api/payments/accounts" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 from formance_sdk_python.utils import parse_datetime
 
 
@@ -176,16 +178,16 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.create_account(request={
+        "account_type": payments.AccountType.UNKNOWN,
         "connector_id": "<id>",
         "created_at": parse_datetime("2025-07-27T08:57:17.388Z"),
         "reference": "<value>",
-        "type": shared.AccountType.UNKNOWN,
     })
 
-    assert res.payments_account_response is not None
+    assert res.account_response is not None
 
     # Handle response
-    print(res.payments_account_response)
+    print(res.account_response)
 
 ```
 
@@ -193,8 +195,9 @@ with SDK(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [shared.AccountRequest](../../models/shared/accountrequest.md)      | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `request`                                                           | [payments.AccountRequest](../../models/payments/accountrequest.md)  | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -202,10 +205,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## create_bank_account
 
@@ -240,10 +243,11 @@ with SDK(
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `request`                                                              | [shared.BankAccountRequest](../../models/shared/bankaccountrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
-| `retries`                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)       | :heavy_minus_sign:                                                     | Configuration to override the default retry behavior of the client.    |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `request`                                                                  | [payments.BankAccountRequest](../../models/payments/bankaccountrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
+| `server_url`                                                               | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -251,10 +255,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## create_payment
 
@@ -265,7 +269,7 @@ Create a payment
 <!-- UsageSnippet language="python" operationID="createPayment" method="post" path="/api/payments/payments" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 from formance_sdk_python.utils import parse_datetime
 
 
@@ -277,14 +281,14 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.create_payment(request={
+        "payment_scheme": payments.PaymentScheme.RTP,
+        "payment_status": payments.PaymentStatus.REFUNDED_FAILURE,
+        "payment_type": payments.PaymentType.PAYOUT,
         "amount": 100,
         "asset": "USD",
         "connector_id": "<id>",
         "created_at": parse_datetime("2025-08-26T06:29:11.777Z"),
         "reference": "<value>",
-        "scheme": shared.PaymentScheme.RTP,
-        "status": shared.PaymentStatus.REFUNDED_FAILURE,
-        "type": shared.PaymentType.PAYOUT,
     })
 
     assert res.payment_response is not None
@@ -298,8 +302,9 @@ with SDK(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [shared.PaymentRequest](../../models/shared/paymentrequest.md)      | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `request`                                                           | [payments.PaymentRequest](../../models/payments/paymentrequest.md)  | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -307,10 +312,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## create_pool
 
@@ -346,8 +351,9 @@ with SDK(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [shared.PoolRequest](../../models/shared/poolrequest.md)            | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `request`                                                           | [payments.PoolRequest](../../models/payments/poolrequest.md)        | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -355,10 +361,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## create_transfer_initiation
 
@@ -369,7 +375,7 @@ Create a transfer initiation
 <!-- UsageSnippet language="python" operationID="createTransferInitiation" method="post" path="/api/payments/transfer-initiations" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 from formance_sdk_python.utils import parse_datetime
 
 
@@ -388,7 +394,7 @@ with SDK(
         "reference": "XXX",
         "scheduled_at": parse_datetime("2025-07-09T05:18:01.065Z"),
         "source_account_id": "<id>",
-        "type": shared.TransferInitiationRequestType.TRANSFER,
+        "type": payments.TransferInitiationRequestType.TRANSFER,
         "validated": False,
     })
 
@@ -401,10 +407,11 @@ with SDK(
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `request`                                                                            | [shared.TransferInitiationRequest](../../models/shared/transferinitiationrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [payments.TransferInitiationRequest](../../models/payments/transferinitiationrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+| `server_url`                                                                             | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -412,10 +419,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## delete_pool
 
@@ -453,6 +460,7 @@ with SDK(
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.DeletePoolRequest](../../models/operations/deletepoolrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 | `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
+| `server_url`                                                                 | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -460,10 +468,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## delete_transfer_initiation
 
@@ -501,6 +509,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                | [operations.DeleteTransferInitiationRequest](../../models/operations/deletetransferinitiationrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `retries`                                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                         | :heavy_minus_sign:                                                                                       | Configuration to override the default retry behavior of the client.                                      |
+| `server_url`                                                                                             | *Optional[str]*                                                                                          | :heavy_minus_sign:                                                                                       | An optional server URL to use.                                                                           |
 
 ### Response
 
@@ -508,10 +517,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## forward_bank_account
 
@@ -552,6 +561,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.ForwardBankAccountRequest](../../models/operations/forwardbankaccountrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
+| `server_url`                                                                                 | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -559,10 +569,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## get_account_balances
 
@@ -606,6 +616,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.GetAccountBalancesRequest](../../models/operations/getaccountbalancesrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
+| `server_url`                                                                                 | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -613,10 +624,59 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
+
+## get_account_payments
+
+Get an account
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="getAccount_payments" method="get" path="/api/payments/accounts/{accountId}" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v1.get_account_payments(request={
+        "account_id": "XXX",
+    })
+
+    assert res.account_response is not None
+
+    # Handle response
+    print(res.account_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.GetAccountPaymentsRequest](../../models/operations/getaccountpaymentsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
+| `server_url`                                                                                 | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
+
+### Response
+
+**[operations.GetAccountPaymentsResponse](../../models/operations/getaccountpaymentsresponse.md)**
+
+### Errors
+
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## get_bank_account
 
@@ -654,6 +714,7 @@ with SDK(
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.GetBankAccountRequest](../../models/operations/getbankaccountrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
+| `server_url`                                                                         | *Optional[str]*                                                                      | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -661,10 +722,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## ~~get_connector_task~~
 
@@ -677,7 +738,7 @@ Get a specific task associated to the connector.
 <!-- UsageSnippet language="python" operationID="getConnectorTask" method="get" path="/api/payments/connectors/{connector}/tasks/{taskId}" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -688,7 +749,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.get_connector_task(request={
-        "connector": shared.Connector.MONEYCORP,
+        "connector": payments.Connector.MONEYCORP,
         "task_id": "task1",
     })
 
@@ -705,6 +766,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.GetConnectorTaskRequest](../../models/operations/getconnectortaskrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+| `server_url`                                                                             | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -712,10 +774,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## get_connector_task_v1
 
@@ -726,7 +788,7 @@ Get a specific task associated to the connector.
 <!-- UsageSnippet language="python" operationID="getConnectorTaskV1" method="get" path="/api/payments/connectors/{connector}/{connectorId}/tasks/{taskId}" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -737,7 +799,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.get_connector_task_v1(request={
-        "connector": shared.Connector.MODULR,
+        "connector": payments.Connector.MODULR,
         "connector_id": "XXX",
         "task_id": "task1",
     })
@@ -755,6 +817,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.GetConnectorTaskV1Request](../../models/operations/getconnectortaskv1request.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
+| `server_url`                                                                                 | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -762,10 +825,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## get_payment
 
@@ -803,6 +866,7 @@ with SDK(
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.GetPaymentRequest](../../models/operations/getpaymentrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 | `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
+| `server_url`                                                                 | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -810,10 +874,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## get_pool
 
@@ -851,6 +915,7 @@ with SDK(
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `request`                                                              | [operations.GetPoolRequest](../../models/operations/getpoolrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
 | `retries`                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)       | :heavy_minus_sign:                                                     | Configuration to override the default retry behavior of the client.    |
+| `server_url`                                                           | *Optional[str]*                                                        | :heavy_minus_sign:                                                     | An optional server URL to use.                                         |
 
 ### Response
 
@@ -858,10 +923,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## get_pool_balances
 
@@ -901,6 +966,7 @@ with SDK(
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `request`                                                                              | [operations.GetPoolBalancesRequest](../../models/operations/getpoolbalancesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
+| `server_url`                                                                           | *Optional[str]*                                                                        | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -908,10 +974,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## get_pool_balances_latest
 
@@ -949,6 +1015,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `request`                                                                                          | [operations.GetPoolBalancesLatestRequest](../../models/operations/getpoolbalanceslatestrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `retries`                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                   | :heavy_minus_sign:                                                                                 | Configuration to override the default retry behavior of the client.                                |
+| `server_url`                                                                                       | *Optional[str]*                                                                                    | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -956,10 +1023,56 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
+
+## get_server_info_payments
+
+Get server info
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="getServerInfo_payments" method="get" path="/api/payments/_info" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v1.get_server_info_payments()
+
+    assert res.server_info is not None
+
+    # Handle response
+    print(res.server_info)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
+
+### Response
+
+**[operations.GetServerInfoPaymentsResponse](../../models/operations/getserverinfopaymentsresponse.md)**
+
+### Errors
+
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## get_transfer_initiation
 
@@ -997,6 +1110,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `request`                                                                                          | [operations.GetTransferInitiationRequest](../../models/operations/gettransferinitiationrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `retries`                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                   | :heavy_minus_sign:                                                                                 | Configuration to override the default retry behavior of the client.                                |
+| `server_url`                                                                                       | *Optional[str]*                                                                                    | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -1004,10 +1118,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## install_connector
 
@@ -1018,7 +1132,7 @@ Install a connector by its name and config.
 <!-- UsageSnippet language="python" operationID="installConnector" method="post" path="/api/payments/connectors/{connector}" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -1036,7 +1150,7 @@ with SDK(
             "polling_period": "60s",
             "provider": "Currencycloud",
         },
-        "connector": shared.Connector.MANGOPAY,
+        "connector": payments.Connector.MANGOPAY,
     })
 
     assert res.connector_response is not None
@@ -1052,6 +1166,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.InstallConnectorRequest](../../models/operations/installconnectorrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+| `server_url`                                                                             | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -1059,10 +1174,64 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
+
+## list_accounts_payments
+
+List accounts
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="listAccounts_payments" method="get" path="/api/payments/accounts" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v1.list_accounts_payments(request={
+        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        "page_size": 100,
+        "sort": [
+            "date:asc",
+            "status:desc",
+        ],
+    })
+
+    assert res.accounts_cursor is not None
+
+    # Handle response
+    print(res.accounts_cursor)
+
+```
+
+### Parameters
+
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `request`                                                                                        | [operations.ListAccountsPaymentsRequest](../../models/operations/listaccountspaymentsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
+| `server_url`                                                                                     | *Optional[str]*                                                                                  | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
+
+### Response
+
+**[operations.ListAccountsPaymentsResponse](../../models/operations/listaccountspaymentsresponse.md)**
+
+### Errors
+
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## list_all_connectors
 
@@ -1097,6 +1266,7 @@ with SDK(
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -1104,10 +1274,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## list_bank_accounts
 
@@ -1150,6 +1320,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.ListBankAccountsRequest](../../models/operations/listbankaccountsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+| `server_url`                                                                             | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -1157,10 +1328,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## list_configs_available_connectors
 
@@ -1195,6 +1366,7 @@ with SDK(
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -1202,10 +1374,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## ~~list_connector_tasks~~
 
@@ -1218,7 +1390,7 @@ List all tasks associated with this connector.
 <!-- UsageSnippet language="python" operationID="listConnectorTasks" method="get" path="/api/payments/connectors/{connector}/tasks" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -1229,7 +1401,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.list_connector_tasks(request={
-        "connector": shared.Connector.MODULR,
+        "connector": payments.Connector.MODULR,
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "page_size": 100,
     })
@@ -1247,6 +1419,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.ListConnectorTasksRequest](../../models/operations/listconnectortasksrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
+| `server_url`                                                                                 | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -1254,10 +1427,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## list_connector_tasks_v1
 
@@ -1268,7 +1441,7 @@ List all tasks associated with this connector.
 <!-- UsageSnippet language="python" operationID="listConnectorTasksV1" method="get" path="/api/payments/connectors/{connector}/{connectorId}/tasks" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -1279,7 +1452,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.list_connector_tasks_v1(request={
-        "connector": shared.Connector.WISE,
+        "connector": payments.Connector.WISE,
         "connector_id": "XXX",
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "page_size": 100,
@@ -1298,6 +1471,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.ListConnectorTasksV1Request](../../models/operations/listconnectortasksv1request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
+| `server_url`                                                                                     | *Optional[str]*                                                                                  | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -1305,10 +1479,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## list_payments
 
@@ -1351,6 +1525,7 @@ with SDK(
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.ListPaymentsRequest](../../models/operations/listpaymentsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+| `server_url`                                                                     | *Optional[str]*                                                                  | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -1358,10 +1533,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## list_pools
 
@@ -1404,6 +1579,7 @@ with SDK(
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.ListPoolsRequest](../../models/operations/listpoolsrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
+| `server_url`                                                               | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -1411,10 +1587,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## list_transfer_initiations
 
@@ -1457,6 +1633,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.ListTransferInitiationsRequest](../../models/operations/listtransferinitiationsrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
+| `server_url`                                                                                           | *Optional[str]*                                                                                        | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -1464,156 +1641,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
-
-## paymentsget_account
-
-Get an account
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="paymentsgetAccount" method="get" path="/api/payments/accounts/{accountId}" -->
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.payments.v1.paymentsget_account(request={
-        "account_id": "XXX",
-    })
-
-    assert res.payments_account_response is not None
-
-    # Handle response
-    print(res.payments_account_response)
-
-```
-
-### Parameters
-
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [operations.PaymentsgetAccountRequest](../../models/operations/paymentsgetaccountrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
-
-### Response
-
-**[operations.PaymentsgetAccountResponse](../../models/operations/paymentsgetaccountresponse.md)**
-
-### Errors
-
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
-
-## paymentsget_server_info
-
-Get server info
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="paymentsgetServerInfo" method="get" path="/api/payments/_info" -->
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.payments.v1.paymentsget_server_info()
-
-    assert res.payments_server_info is not None
-
-    # Handle response
-    print(res.payments_server_info)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[operations.PaymentsgetServerInfoResponse](../../models/operations/paymentsgetserverinforesponse.md)**
-
-### Errors
-
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
-
-## paymentslist_accounts
-
-List accounts
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="paymentslistAccounts" method="get" path="/api/payments/accounts" -->
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.payments.v1.paymentslist_accounts(request={
-        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-        "page_size": 100,
-        "sort": [
-            "date:asc",
-            "status:desc",
-        ],
-    })
-
-    assert res.accounts_cursor is not None
-
-    # Handle response
-    print(res.accounts_cursor)
-
-```
-
-### Parameters
-
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `request`                                                                                        | [operations.PaymentslistAccountsRequest](../../models/operations/paymentslistaccountsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
-
-### Response
-
-**[operations.PaymentslistAccountsResponse](../../models/operations/paymentslistaccountsresponse.md)**
-
-### Errors
-
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## ~~read_connector_config~~
 
@@ -1626,7 +1657,7 @@ Read connector config
 <!-- UsageSnippet language="python" operationID="readConnectorConfig" method="get" path="/api/payments/connectors/{connector}/config" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -1637,7 +1668,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.read_connector_config(request={
-        "connector": shared.Connector.MODULR,
+        "connector": payments.Connector.MODULR,
     })
 
     assert res.connector_config_response is not None
@@ -1653,6 +1684,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `request`                                                                                      | [operations.ReadConnectorConfigRequest](../../models/operations/readconnectorconfigrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 | `retries`                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                               | :heavy_minus_sign:                                                                             | Configuration to override the default retry behavior of the client.                            |
+| `server_url`                                                                                   | *Optional[str]*                                                                                | :heavy_minus_sign:                                                                             | An optional server URL to use.                                                                 |
 
 ### Response
 
@@ -1660,10 +1692,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## read_connector_config_v1
 
@@ -1674,7 +1706,7 @@ Read connector config
 <!-- UsageSnippet language="python" operationID="readConnectorConfigV1" method="get" path="/api/payments/connectors/{connector}/{connectorId}/config" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -1685,7 +1717,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.read_connector_config_v1(request={
-        "connector": shared.Connector.MANGOPAY,
+        "connector": payments.Connector.MANGOPAY,
         "connector_id": "XXX",
     })
 
@@ -1702,6 +1734,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `request`                                                                                          | [operations.ReadConnectorConfigV1Request](../../models/operations/readconnectorconfigv1request.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `retries`                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                   | :heavy_minus_sign:                                                                                 | Configuration to override the default retry behavior of the client.                                |
+| `server_url`                                                                                       | *Optional[str]*                                                                                    | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -1709,10 +1742,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## remove_account_from_pool
 
@@ -1751,6 +1784,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `request`                                                                                          | [operations.RemoveAccountFromPoolRequest](../../models/operations/removeaccountfrompoolrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `retries`                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                   | :heavy_minus_sign:                                                                                 | Configuration to override the default retry behavior of the client.                                |
+| `server_url`                                                                                       | *Optional[str]*                                                                                    | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -1758,10 +1792,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## ~~reset_connector~~
 
@@ -1776,7 +1810,7 @@ It will remove the connector and ALL PAYMENTS generated with it.
 <!-- UsageSnippet language="python" operationID="resetConnector" method="post" path="/api/payments/connectors/{connector}/reset" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -1787,7 +1821,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.reset_connector(request={
-        "connector": shared.Connector.WISE,
+        "connector": payments.Connector.WISE,
     })
 
     assert res is not None
@@ -1803,6 +1837,7 @@ with SDK(
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.ResetConnectorRequest](../../models/operations/resetconnectorrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
+| `server_url`                                                                         | *Optional[str]*                                                                      | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -1810,10 +1845,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## reset_connector_v1
 
@@ -1826,7 +1861,7 @@ It will remove the connector and ALL PAYMENTS generated with it.
 <!-- UsageSnippet language="python" operationID="resetConnectorV1" method="post" path="/api/payments/connectors/{connector}/{connectorId}/reset" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -1837,7 +1872,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.reset_connector_v1(request={
-        "connector": shared.Connector.WISE,
+        "connector": payments.Connector.WISE,
         "connector_id": "XXX",
     })
 
@@ -1854,6 +1889,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.ResetConnectorV1Request](../../models/operations/resetconnectorv1request.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+| `server_url`                                                                             | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -1861,10 +1897,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## retry_transfer_initiation
 
@@ -1902,6 +1938,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.RetryTransferInitiationRequest](../../models/operations/retrytransferinitiationrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
+| `server_url`                                                                                           | *Optional[str]*                                                                                        | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -1909,10 +1946,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## reverse_transfer_initiation
 
@@ -1959,6 +1996,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                  | [operations.ReverseTransferInitiationRequest](../../models/operations/reversetransferinitiationrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `retries`                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                           | :heavy_minus_sign:                                                                                         | Configuration to override the default retry behavior of the client.                                        |
+| `server_url`                                                                                               | *Optional[str]*                                                                                            | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -1966,10 +2004,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## ~~uninstall_connector~~
 
@@ -1982,7 +2020,7 @@ Uninstall a connector by its name.
 <!-- UsageSnippet language="python" operationID="uninstallConnector" method="delete" path="/api/payments/connectors/{connector}" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -1993,7 +2031,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.uninstall_connector(request={
-        "connector": shared.Connector.GENERIC,
+        "connector": payments.Connector.GENERIC,
     })
 
     assert res is not None
@@ -2009,6 +2047,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.UninstallConnectorRequest](../../models/operations/uninstallconnectorrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
+| `server_url`                                                                                 | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -2016,10 +2055,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## uninstall_connector_v1
 
@@ -2030,7 +2069,7 @@ Uninstall a connector by its name.
 <!-- UsageSnippet language="python" operationID="uninstallConnectorV1" method="delete" path="/api/payments/connectors/{connector}/{connectorId}" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -2041,7 +2080,7 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.uninstall_connector_v1(request={
-        "connector": shared.Connector.BANKING_CIRCLE,
+        "connector": payments.Connector.BANKING_CIRCLE,
         "connector_id": "XXX",
     })
 
@@ -2058,6 +2097,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.UninstallConnectorV1Request](../../models/operations/uninstallconnectorv1request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
+| `server_url`                                                                                     | *Optional[str]*                                                                                  | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -2065,10 +2105,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## update_bank_account_metadata
 
@@ -2091,7 +2131,7 @@ with SDK(
 
     res = sdk.payments.v1.update_bank_account_metadata(request={
         "update_bank_account_metadata_request": {
-            "metadata": {
+            "bank_account_metadata": {
                 "key": "<value>",
                 "key1": "<value>",
                 "key2": "<value>",
@@ -2113,6 +2153,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                  | [operations.UpdateBankAccountMetadataRequest](../../models/operations/updatebankaccountmetadatarequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `retries`                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                           | :heavy_minus_sign:                                                                                         | Configuration to override the default retry behavior of the client.                                        |
+| `server_url`                                                                                               | *Optional[str]*                                                                                            | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -2120,10 +2161,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## update_connector_config_v1
 
@@ -2134,7 +2175,7 @@ Update connector config
 <!-- UsageSnippet language="python" operationID="updateConnectorConfigV1" method="post" path="/api/payments/connectors/{connector}/{connectorId}/config" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -2152,7 +2193,7 @@ with SDK(
             "polling_period": "60s",
             "provider": "Modulr",
         },
-        "connector": shared.Connector.MANGOPAY,
+        "connector": payments.Connector.MANGOPAY,
         "connector_id": "XXX",
     })
 
@@ -2169,6 +2210,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                              | [operations.UpdateConnectorConfigV1Request](../../models/operations/updateconnectorconfigv1request.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
+| `server_url`                                                                                           | *Optional[str]*                                                                                        | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -2176,10 +2218,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## update_metadata
 
@@ -2220,6 +2262,7 @@ with SDK(
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.UpdateMetadataRequest](../../models/operations/updatemetadatarequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
+| `server_url`                                                                         | *Optional[str]*                                                                      | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -2227,10 +2270,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## update_pool_query
 
@@ -2273,6 +2316,7 @@ with SDK(
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `request`                                                                              | [operations.UpdatePoolQueryRequest](../../models/operations/updatepoolqueryrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
+| `server_url`                                                                           | *Optional[str]*                                                                        | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -2280,10 +2324,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## update_transfer_initiation_status
 
@@ -2294,7 +2338,7 @@ Update a transfer initiation status
 <!-- UsageSnippet language="python" operationID="updateTransferInitiationStatus" method="post" path="/api/payments/transfer-initiations/{transferId}/status" -->
 ```python
 from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
+from formance_sdk_python.models import payments, shared
 
 
 with SDK(
@@ -2306,7 +2350,7 @@ with SDK(
 
     res = sdk.payments.v1.update_transfer_initiation_status(request={
         "update_transfer_initiation_status_request": {
-            "status": shared.Status.VALIDATED,
+            "status": payments.Status.VALIDATED,
         },
         "transfer_id": "XXX",
     })
@@ -2324,6 +2368,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                            | [operations.UpdateTransferInitiationStatusRequest](../../models/operations/updatetransferinitiationstatusrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
 | `retries`                                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                     | :heavy_minus_sign:                                                                                                   | Configuration to override the default retry behavior of the client.                                                  |
+| `server_url`                                                                                                         | *Optional[str]*                                                                                                      | :heavy_minus_sign:                                                                                                   | An optional server URL to use.                                                                                       |
 
 ### Response
 
@@ -2331,7 +2376,7 @@ with SDK(
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| payments.PaymentsErrorResponse | default                        | application/json               |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |

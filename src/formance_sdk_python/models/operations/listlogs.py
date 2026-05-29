@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 from datetime import datetime
-from formance_sdk_python.models.shared import (
-    logscursorresponse as shared_logscursorresponse,
+from formance_sdk_python.models.ledger import (
+    logscursorresponse as ledger_logscursorresponse,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
@@ -16,6 +16,11 @@ import pydantic
 from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
+
+
+LIST_LOGS_SERVERS = [
+    "http://localhost:8080/",
+]
 
 
 class ListLogsRequestTypedDict(TypedDict):
@@ -123,7 +128,7 @@ class ListLogsResponseTypedDict(TypedDict):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
     logs_cursor_response: NotRequired[
-        shared_logscursorresponse.LogsCursorResponseTypedDict
+        ledger_logscursorresponse.LogsCursorResponseTypedDict
     ]
     r"""OK"""
 
@@ -138,7 +143,7 @@ class ListLogsResponse(BaseModel):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
 
-    logs_cursor_response: Optional[shared_logscursorresponse.LogsCursorResponse] = None
+    logs_cursor_response: Optional[ledger_logscursorresponse.LogsCursorResponse] = None
     r"""OK"""
 
     @model_serializer(mode="wrap")

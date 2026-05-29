@@ -10,14 +10,14 @@
 * [count_accounts](#count_accounts) - Count the accounts from a ledger
 * [count_transactions](#count_transactions) - Count the transactions from a ledger
 * [create_transaction](#create_transaction) - Create a new transaction to a ledger
-* [get_account](#get_account) - Get account by its address
+* [get_account_ledger](#get_account_ledger) - Get account by its address
 * [get_balances](#get_balances) - Get the balances from a ledger's account
 * [get_balances_aggregated](#get_balances_aggregated) - Get the aggregated balances from selected accounts
 * [get_info](#get_info) - Show server information
 * [get_ledger_info](#get_ledger_info) - Get information about a ledger
 * [get_mapping](#get_mapping) - Get the mapping of a ledger
 * [get_transaction](#get_transaction) - Get transaction from a ledger by its ID
-* [list_accounts](#list_accounts) - List accounts from a ledger
+* [list_accounts_ledger](#list_accounts_ledger) - List accounts from a ledger
 * [list_logs](#list_logs) - List the logs from a ledger
 * [list_transactions](#list_transactions) - List transactions from a ledger
 * [read_stats](#read_stats) - Get statistics from a ledger
@@ -76,6 +76,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `request`                                                                                    | [operations.CreateTransactionsRequest](../../models/operations/createtransactionsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
+| `server_url`                                                                                 | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -83,10 +84,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## add_metadata_on_transaction
 
@@ -128,6 +129,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                | [operations.AddMetadataOnTransactionRequest](../../models/operations/addmetadataontransactionrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `retries`                                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                         | :heavy_minus_sign:                                                                                       | Configuration to override the default retry behavior of the client.                                      |
+| `server_url`                                                                                             | *Optional[str]*                                                                                          | :heavy_minus_sign:                                                                                       | An optional server URL to use.                                                                           |
 
 ### Response
 
@@ -135,10 +137,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## add_metadata_to_account
 
@@ -182,6 +184,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `request`                                                                                        | [operations.AddMetadataToAccountRequest](../../models/operations/addmetadatatoaccountrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `retries`                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                 | :heavy_minus_sign:                                                                               | Configuration to override the default retry behavior of the client.                              |
+| `server_url`                                                                                     | *Optional[str]*                                                                                  | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -189,10 +192,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## count_accounts
 
@@ -236,6 +239,7 @@ with SDK(
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.CountAccountsRequest](../../models/operations/countaccountsrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
+| `server_url`                                                                       | *Optional[str]*                                                                    | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -243,10 +247,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## count_transactions
 
@@ -289,6 +293,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `request`                                                                                  | [operations.CountTransactionsRequest](../../models/operations/counttransactionsrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
+| `server_url`                                                                               | *Optional[str]*                                                                            | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -296,10 +301,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## create_transaction
 
@@ -355,6 +360,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `request`                                                                                  | [operations.CreateTransactionRequest](../../models/operations/createtransactionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
+| `server_url`                                                                               | *Optional[str]*                                                                            | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -362,18 +368,18 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## get_account
+## get_account_ledger
 
 Get account by its address
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="getAccount" method="get" path="/api/ledger/{ledger}/accounts/{address}" -->
+<!-- UsageSnippet language="python" operationID="getAccount_ledger" method="get" path="/api/ledger/{ledger}/accounts/{address}" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -386,7 +392,7 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.ledger.v1.get_account(request={
+    res = sdk.ledger.v1.get_account_ledger(request={
         "address": "users:001",
         "ledger": "ledger001",
     })
@@ -400,21 +406,22 @@ with SDK(
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `request`                                                                    | [operations.GetAccountRequest](../../models/operations/getaccountrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.GetAccountLedgerRequest](../../models/operations/getaccountledgerrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+| `server_url`                                                                             | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
-**[operations.GetAccountResponse](../../models/operations/getaccountresponse.md)**
+**[operations.GetAccountLedgerResponse](../../models/operations/getaccountledgerresponse.md)**
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get_balances
 
@@ -455,6 +462,7 @@ with SDK(
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.GetBalancesRequest](../../models/operations/getbalancesrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+| `server_url`                                                                   | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -462,10 +470,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get_balances_aggregated
 
@@ -504,6 +512,7 @@ with SDK(
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `request`                                                                                          | [operations.GetBalancesAggregatedRequest](../../models/operations/getbalancesaggregatedrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `retries`                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                   | :heavy_minus_sign:                                                                                 | Configuration to override the default retry behavior of the client.                                |
+| `server_url`                                                                                       | *Optional[str]*                                                                                    | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -511,10 +520,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get_info
 
@@ -549,6 +558,7 @@ with SDK(
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -556,10 +566,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get_ledger_info
 
@@ -597,6 +607,7 @@ with SDK(
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.GetLedgerInfoRequest](../../models/operations/getledgerinforequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
+| `server_url`                                                                       | *Optional[str]*                                                                    | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -604,10 +615,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get_mapping
 
@@ -645,6 +656,7 @@ with SDK(
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.GetMappingRequest](../../models/operations/getmappingrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 | `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
+| `server_url`                                                                 | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -652,10 +664,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get_transaction
 
@@ -694,6 +706,7 @@ with SDK(
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `request`                                                                            | [operations.GetTransactionRequest](../../models/operations/gettransactionrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
+| `server_url`                                                                         | *Optional[str]*                                                                      | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -701,18 +714,18 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## list_accounts
+## list_accounts_ledger
 
 List accounts from a ledger, sorted by address in descending order.
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="listAccounts" method="get" path="/api/ledger/{ledger}/accounts" -->
+<!-- UsageSnippet language="python" operationID="listAccounts_ledger" method="get" path="/api/ledger/{ledger}/accounts" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared
@@ -725,14 +738,63 @@ with SDK(
     ),
 ) as sdk:
 
-    res = sdk.ledger.v1.list_accounts(request={
+    res = sdk.ledger.v1.list_accounts_ledger(request={
         "address": "users:.+",
         "after": "users:003",
         "balance": 2400,
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         "ledger": "ledger001",
         "metadata": {
-            "key": "<value>",
+            "0": "m",
+            "1": "e",
+            "2": "t",
+            "3": "a",
+            "4": "d",
+            "5": "a",
+            "6": "t",
+            "7": "a",
+            "8": "[",
+            "9": "k",
+            "10": "e",
+            "11": "y",
+            "12": "]",
+            "13": "=",
+            "14": "v",
+            "15": "a",
+            "16": "l",
+            "17": "u",
+            "18": "e",
+            "19": "1",
+            "20": "&",
+            "21": "m",
+            "22": "e",
+            "23": "t",
+            "24": "a",
+            "25": "d",
+            "26": "a",
+            "27": "t",
+            "28": "a",
+            "29": "[",
+            "30": "a",
+            "31": ".",
+            "32": "n",
+            "33": "e",
+            "34": "s",
+            "35": "t",
+            "36": "e",
+            "37": "d",
+            "38": ".",
+            "39": "k",
+            "40": "e",
+            "41": "y",
+            "42": "]",
+            "43": "=",
+            "44": "v",
+            "45": "a",
+            "46": "l",
+            "47": "u",
+            "48": "e",
+            "49": "2",
         },
         "page_size": 100,
     })
@@ -746,21 +808,22 @@ with SDK(
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [operations.ListAccountsRequest](../../models/operations/listaccountsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.ListAccountsLedgerRequest](../../models/operations/listaccountsledgerrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
+| `server_url`                                                                                 | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
-**[operations.ListAccountsResponse](../../models/operations/listaccountsresponse.md)**
+**[operations.ListAccountsLedgerResponse](../../models/operations/listaccountsledgerresponse.md)**
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## list_logs
 
@@ -801,6 +864,7 @@ with SDK(
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `request`                                                                | [operations.ListLogsRequest](../../models/operations/listlogsrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 | `retries`                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)         | :heavy_minus_sign:                                                       | Configuration to override the default retry behavior of the client.      |
+| `server_url`                                                             | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | An optional server URL to use.                                           |
 
 ### Response
 
@@ -808,10 +872,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## list_transactions
 
@@ -856,6 +920,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.ListTransactionsRequest](../../models/operations/listtransactionsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+| `server_url`                                                                             | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -863,10 +928,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## read_stats
 
@@ -905,6 +970,7 @@ with SDK(
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.ReadStatsRequest](../../models/operations/readstatsrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
+| `server_url`                                                               | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -912,10 +978,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## revert_transaction
 
@@ -954,6 +1020,7 @@ with SDK(
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `request`                                                                                  | [operations.RevertTransactionRequest](../../models/operations/reverttransactionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
+| `server_url`                                                                               | *Optional[str]*                                                                            | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -961,10 +1028,10 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## ~~run_script~~
 
@@ -1013,6 +1080,7 @@ with SDK(
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.RunScriptRequest](../../models/operations/runscriptrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
+| `server_url`                                                               | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -1061,6 +1129,7 @@ with SDK(
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.UpdateMappingRequest](../../models/operations/updatemappingrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
+| `server_url`                                                                       | *Optional[str]*                                                                    | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -1068,7 +1137,7 @@ with SDK(
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| ledger.ErrorsErrorResponse | default                    | application/json           |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

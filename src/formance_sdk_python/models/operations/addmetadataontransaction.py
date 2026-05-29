@@ -15,6 +15,11 @@ from typing import Any, Dict, List
 from typing_extensions import Annotated, TypedDict
 
 
+ADD_METADATA_ON_TRANSACTION_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class AddMetadataOnTransactionRequestTypedDict(TypedDict):
     request_body: Nullable[Dict[str, Any]]
     r"""metadata"""

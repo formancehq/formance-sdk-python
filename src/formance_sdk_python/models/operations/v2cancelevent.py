@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+V2_CANCEL_EVENT_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2CancelEventRequestTypedDict(TypedDict):
     instance_id: str
     r"""The instance id"""

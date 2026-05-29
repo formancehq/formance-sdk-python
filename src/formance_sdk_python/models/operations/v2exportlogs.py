@@ -7,6 +7,11 @@ import httpx
 from typing_extensions import Annotated, TypedDict
 
 
+V2_EXPORT_LOGS_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2ExportLogsRequestTypedDict(TypedDict):
     ledger: str
     r"""Name of the ledger."""

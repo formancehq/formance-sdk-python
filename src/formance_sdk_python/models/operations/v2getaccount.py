@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 from datetime import datetime
-from formance_sdk_python.models.shared import (
-    v2accountresponse as shared_v2accountresponse,
+from formance_sdk_python.models.ledger import (
+    v2accountresponse as ledger_v2accountresponse,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
@@ -15,6 +15,11 @@ import httpx
 from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
+
+
+V2_GET_ACCOUNT_SERVERS = [
+    "http://localhost:8080/",
+]
 
 
 class V2GetAccountRequestTypedDict(TypedDict):
@@ -82,7 +87,7 @@ class V2GetAccountResponseTypedDict(TypedDict):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
     v2_account_response: NotRequired[
-        shared_v2accountresponse.V2AccountResponseTypedDict
+        ledger_v2accountresponse.V2AccountResponseTypedDict
     ]
     r"""OK"""
 
@@ -97,7 +102,7 @@ class V2GetAccountResponse(BaseModel):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
 
-    v2_account_response: Optional[shared_v2accountresponse.V2AccountResponse] = None
+    v2_account_response: Optional[ledger_v2accountresponse.V2AccountResponse] = None
     r"""OK"""
 
     @model_serializer(mode="wrap")

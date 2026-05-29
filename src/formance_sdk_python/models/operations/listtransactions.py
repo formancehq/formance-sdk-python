@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 from datetime import datetime
-from formance_sdk_python.models.shared import (
-    transactionscursorresponse as shared_transactionscursorresponse,
+from formance_sdk_python.models.ledger import (
+    transactionscursorresponse as ledger_transactionscursorresponse,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
@@ -16,6 +16,11 @@ import pydantic
 from pydantic import model_serializer
 from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
+
+
+LIST_TRANSACTIONS_SERVERS = [
+    "http://localhost:8080/",
+]
 
 
 class ListTransactionsRequestTypedDict(TypedDict):
@@ -176,7 +181,7 @@ class ListTransactionsResponseTypedDict(TypedDict):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
     transactions_cursor_response: NotRequired[
-        shared_transactionscursorresponse.TransactionsCursorResponseTypedDict
+        ledger_transactionscursorresponse.TransactionsCursorResponseTypedDict
     ]
     r"""OK"""
 
@@ -192,7 +197,7 @@ class ListTransactionsResponse(BaseModel):
     r"""Raw HTTP response; suitable for custom response parsing"""
 
     transactions_cursor_response: Optional[
-        shared_transactionscursorresponse.TransactionsCursorResponse
+        ledger_transactionscursorresponse.TransactionsCursorResponse
     ] = None
     r"""OK"""
 

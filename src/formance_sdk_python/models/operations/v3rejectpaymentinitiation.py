@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+V3_REJECT_PAYMENT_INITIATION_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V3RejectPaymentInitiationRequestTypedDict(TypedDict):
     payment_initiation_id: str
     r"""The payment initiation ID"""

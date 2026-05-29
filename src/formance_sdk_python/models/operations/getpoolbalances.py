@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 from datetime import datetime
-from formance_sdk_python.models.shared import (
-    poolbalancesresponse as shared_poolbalancesresponse,
+from formance_sdk_python.models.payments import (
+    poolbalancesresponse as payments_poolbalancesresponse,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
@@ -16,6 +16,11 @@ import pydantic
 from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
+
+
+GET_POOL_BALANCES_SERVERS = [
+    "http://localhost:8080/",
+]
 
 
 class GetPoolBalancesRequestTypedDict(TypedDict):
@@ -51,7 +56,7 @@ class GetPoolBalancesResponseTypedDict(TypedDict):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
     pool_balances_response: NotRequired[
-        shared_poolbalancesresponse.PoolBalancesResponseTypedDict
+        payments_poolbalancesresponse.PoolBalancesResponseTypedDict
     ]
     r"""OK"""
 
@@ -67,7 +72,7 @@ class GetPoolBalancesResponse(BaseModel):
     r"""Raw HTTP response; suitable for custom response parsing"""
 
     pool_balances_response: Optional[
-        shared_poolbalancesresponse.PoolBalancesResponse
+        payments_poolbalancesresponse.PoolBalancesResponse
     ] = None
     r"""OK"""
 

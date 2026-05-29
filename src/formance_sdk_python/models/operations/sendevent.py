@@ -10,6 +10,11 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+SEND_EVENT_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class SendEventRequestBodyTypedDict(TypedDict):
     name: str
 

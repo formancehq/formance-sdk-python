@@ -1,0 +1,12 @@
+# V2LogDataDeleteMetadata
+
+Payload for DELETE_METADATA log entries. Contains the target entity and the metadata key that was deleted.
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `key`                                                                                                | *str*                                                                                                | :heavy_check_mark:                                                                                   | The metadata key that was deleted                                                                    |
+| `target_id`                                                                                          | [ledger.V2LogDataDeleteMetadataTargetID](../../models/ledger/v2logdatadeletemetadatatargetid.md)     | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
+| `target_type`                                                                                        | [ledger.V2LogDataDeleteMetadataTargetType](../../models/ledger/v2logdatadeletemetadatatargettype.md) | :heavy_check_mark:                                                                                   | Type of the target entity                                                                            |

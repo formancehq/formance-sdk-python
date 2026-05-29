@@ -13,6 +13,11 @@ from typing import Any, Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+COUNT_ACCOUNTS_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class CountAccountsRequestTypedDict(TypedDict):
     ledger: str
     r"""Name of the ledger."""

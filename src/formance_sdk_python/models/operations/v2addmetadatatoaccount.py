@@ -16,6 +16,11 @@ from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+V2_ADD_METADATA_TO_ACCOUNT_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2AddMetadataToAccountRequestTypedDict(TypedDict):
     request_body: Dict[str, str]
     r"""metadata"""

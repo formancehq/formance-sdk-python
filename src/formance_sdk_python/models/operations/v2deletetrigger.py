@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+V2_DELETE_TRIGGER_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2DeleteTriggerRequestTypedDict(TypedDict):
     trigger_id: str
     r"""The trigger id"""

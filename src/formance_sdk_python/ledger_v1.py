@@ -3,7 +3,7 @@
 from .basesdk import BaseSDK
 from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
-from formance_sdk_python.models import errors, operations, shared
+from formance_sdk_python.models import errors, ledger, operations
 from formance_sdk_python.types import BaseModel, Nullable, OptionalNullable, UNSET
 from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Any, Dict, Mapping, Optional, Union, cast
@@ -25,6 +25,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.CreateTransactionsResponse:
         r"""Create a new batch of transactions to a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -39,7 +41,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_TRANSACTIONS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateTransactionsRequest)
@@ -59,9 +61,10 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.transactions, False, False, "json", shared.Transactions
+                request.transactions, False, False, "json", ledger.Transactions
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -82,7 +85,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -90,15 +93,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateTransactionsResponse(
                 transactions_response=unmarshal_json_response(
-                    Optional[shared.TransactionsResponse], http_res
+                    Optional[ledger.TransactionsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -116,6 +121,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.CreateTransactionsResponse:
         r"""Create a new batch of transactions to a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -130,7 +137,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_TRANSACTIONS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateTransactionsRequest)
@@ -150,9 +157,10 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.transactions, False, False, "json", shared.Transactions
+                request.transactions, False, False, "json", ledger.Transactions
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -173,7 +181,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -181,15 +189,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateTransactionsResponse(
                 transactions_response=unmarshal_json_response(
-                    Optional[shared.TransactionsResponse], http_res
+                    Optional[ledger.TransactionsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -207,6 +217,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.AddMetadataOnTransactionResponse:
         r"""Set the metadata of a transaction by its ID
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -221,7 +233,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.ADD_METADATA_ON_TRANSACTION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -246,6 +258,7 @@ class LedgerV1(BaseSDK):
                 request.request_body, True, False, "json", Nullable[Dict[str, Any]]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -266,7 +279,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -279,8 +292,10 @@ class LedgerV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -298,6 +313,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.AddMetadataOnTransactionResponse:
         r"""Set the metadata of a transaction by its ID
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -312,7 +329,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.ADD_METADATA_ON_TRANSACTION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -337,6 +354,7 @@ class LedgerV1(BaseSDK):
                 request.request_body, True, False, "json", Nullable[Dict[str, Any]]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -357,7 +375,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -370,8 +388,10 @@ class LedgerV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -389,6 +409,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.AddMetadataToAccountResponse:
         r"""Add metadata to an account
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -403,7 +425,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.ADD_METADATA_TO_ACCOUNT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.AddMetadataToAccountRequest)
@@ -426,6 +448,7 @@ class LedgerV1(BaseSDK):
                 request.request_body, True, False, "json", Nullable[Dict[str, Any]]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -446,7 +469,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -459,8 +482,10 @@ class LedgerV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -478,6 +503,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.AddMetadataToAccountResponse:
         r"""Add metadata to an account
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -492,7 +519,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.ADD_METADATA_TO_ACCOUNT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.AddMetadataToAccountRequest)
@@ -515,6 +542,7 @@ class LedgerV1(BaseSDK):
                 request.request_body, True, False, "json", Nullable[Dict[str, Any]]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -535,7 +563,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -548,8 +576,10 @@ class LedgerV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -566,6 +596,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.CountAccountsResponse:
         r"""Count the accounts from a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -580,7 +612,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.COUNT_ACCOUNTS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CountAccountsRequest)
@@ -600,6 +632,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -620,7 +653,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -633,8 +666,10 @@ class LedgerV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -651,6 +686,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.CountAccountsResponse:
         r"""Count the accounts from a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -665,7 +702,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.COUNT_ACCOUNTS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CountAccountsRequest)
@@ -685,6 +722,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -705,7 +743,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -718,8 +756,10 @@ class LedgerV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -737,6 +777,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.CountTransactionsResponse:
         r"""Count the transactions from a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -751,7 +793,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.COUNT_TRANSACTIONS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CountTransactionsRequest)
@@ -771,6 +813,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -791,7 +834,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -804,8 +847,10 @@ class LedgerV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -823,6 +868,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.CountTransactionsResponse:
         r"""Count the transactions from a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -837,7 +884,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.COUNT_TRANSACTIONS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CountTransactionsRequest)
@@ -857,6 +904,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -877,7 +925,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -890,8 +938,10 @@ class LedgerV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -909,6 +959,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.CreateTransactionResponse:
         r"""Create a new transaction to a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -923,7 +975,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_TRANSACTION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateTransactionRequest)
@@ -943,9 +995,10 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.post_transaction, False, False, "json", shared.PostTransaction
+                request.post_transaction, False, False, "json", ledger.PostTransaction
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -966,7 +1019,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -974,7 +1027,7 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateTransactionResponse(
                 transactions_response=unmarshal_json_response(
-                    Optional[shared.TransactionsResponse], http_res
+                    Optional[ledger.TransactionsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -982,8 +1035,10 @@ class LedgerV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1001,6 +1056,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.CreateTransactionResponse:
         r"""Create a new transaction to a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1015,7 +1072,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_TRANSACTION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateTransactionRequest)
@@ -1035,9 +1092,10 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.post_transaction, False, False, "json", shared.PostTransaction
+                request.post_transaction, False, False, "json", ledger.PostTransaction
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1058,7 +1116,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1066,7 +1124,7 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateTransactionResponse(
                 transactions_response=unmarshal_json_response(
-                    Optional[shared.TransactionsResponse], http_res
+                    Optional[ledger.TransactionsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1074,23 +1132,28 @@ class LedgerV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
-    def get_account(
+    def get_account_ledger(
         self,
         *,
         request: Union[
-            operations.GetAccountRequest, operations.GetAccountRequestTypedDict
+            operations.GetAccountLedgerRequest,
+            operations.GetAccountLedgerRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetAccountResponse:
+    ) -> operations.GetAccountLedgerResponse:
         r"""Get account by its address
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1106,11 +1169,11 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_ACCOUNT_LEDGER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetAccountRequest)
-        request = cast(operations.GetAccountRequest, request)
+            request = utils.unmarshal(request, operations.GetAccountLedgerRequest)
+        request = cast(operations.GetAccountLedgerRequest, request)
 
         req = self._build_request(
             method="GET",
@@ -1126,6 +1189,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1141,43 +1205,48 @@ class LedgerV1(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="getAccount",
+                operation_id="getAccount_ledger",
                 oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetAccountResponse(
+            return operations.GetAccountLedgerResponse(
                 account_response=unmarshal_json_response(
-                    Optional[shared.AccountResponse], http_res
+                    Optional[ledger.AccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
-    async def get_account_async(
+    async def get_account_ledger_async(
         self,
         *,
         request: Union[
-            operations.GetAccountRequest, operations.GetAccountRequestTypedDict
+            operations.GetAccountLedgerRequest,
+            operations.GetAccountLedgerRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.GetAccountResponse:
+    ) -> operations.GetAccountLedgerResponse:
         r"""Get account by its address
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1193,11 +1262,11 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_ACCOUNT_LEDGER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetAccountRequest)
-        request = cast(operations.GetAccountRequest, request)
+            request = utils.unmarshal(request, operations.GetAccountLedgerRequest)
+        request = cast(operations.GetAccountLedgerRequest, request)
 
         req = self._build_request_async(
             method="GET",
@@ -1213,6 +1282,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1228,28 +1298,30 @@ class LedgerV1(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="getAccount",
+                operation_id="getAccount_ledger",
                 oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetAccountResponse(
+            return operations.GetAccountLedgerResponse(
                 account_response=unmarshal_json_response(
-                    Optional[shared.AccountResponse], http_res
+                    Optional[ledger.AccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1266,6 +1338,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.GetBalancesResponse:
         r"""Get the balances from a ledger's account
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1280,7 +1354,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_BALANCES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalancesRequest)
@@ -1300,6 +1374,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1320,7 +1395,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1328,15 +1403,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalancesResponse(
                 balances_cursor_response=unmarshal_json_response(
-                    Optional[shared.BalancesCursorResponse], http_res
+                    Optional[ledger.BalancesCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1353,6 +1430,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.GetBalancesResponse:
         r"""Get the balances from a ledger's account
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1367,7 +1446,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_BALANCES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalancesRequest)
@@ -1387,6 +1466,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1407,7 +1487,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1415,15 +1495,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalancesResponse(
                 balances_cursor_response=unmarshal_json_response(
-                    Optional[shared.BalancesCursorResponse], http_res
+                    Optional[ledger.BalancesCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1441,6 +1523,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.GetBalancesAggregatedResponse:
         r"""Get the aggregated balances from selected accounts
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1455,7 +1539,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_BALANCES_AGGREGATED_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalancesAggregatedRequest)
@@ -1475,6 +1559,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1495,7 +1580,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1503,15 +1588,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalancesAggregatedResponse(
                 aggregate_balances_response=unmarshal_json_response(
-                    Optional[shared.AggregateBalancesResponse], http_res
+                    Optional[ledger.AggregateBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1529,6 +1616,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.GetBalancesAggregatedResponse:
         r"""Get the aggregated balances from selected accounts
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1543,7 +1632,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_BALANCES_AGGREGATED_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalancesAggregatedRequest)
@@ -1563,6 +1652,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1583,7 +1673,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1591,15 +1681,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBalancesAggregatedResponse(
                 aggregate_balances_response=unmarshal_json_response(
-                    Optional[shared.AggregateBalancesResponse], http_res
+                    Optional[ledger.AggregateBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1612,6 +1704,8 @@ class LedgerV1(BaseSDK):
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetInfoResponse:
         r"""Show server information
+
+        If set, this operation will use `client_id` from the global security.
 
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1626,7 +1720,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_INFO_SERVERS[0]
         req = self._build_request(
             method="GET",
             path="/api/ledger/_info",
@@ -1641,6 +1735,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1661,7 +1756,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1669,15 +1764,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInfoResponse(
                 config_info_response=unmarshal_json_response(
-                    Optional[shared.ConfigInfoResponse], http_res
+                    Optional[ledger.ConfigInfoResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1690,6 +1787,8 @@ class LedgerV1(BaseSDK):
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetInfoResponse:
         r"""Show server information
+
+        If set, this operation will use `client_id` from the global security.
 
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1704,7 +1803,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_INFO_SERVERS[0]
         req = self._build_request_async(
             method="GET",
             path="/api/ledger/_info",
@@ -1719,6 +1818,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1739,7 +1839,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1747,15 +1847,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInfoResponse(
                 config_info_response=unmarshal_json_response(
-                    Optional[shared.ConfigInfoResponse], http_res
+                    Optional[ledger.ConfigInfoResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1772,6 +1874,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.GetLedgerInfoResponse:
         r"""Get information about a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1786,7 +1890,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_LEDGER_INFO_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetLedgerInfoRequest)
@@ -1806,6 +1910,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1826,7 +1931,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1834,15 +1939,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetLedgerInfoResponse(
                 ledger_info_response=unmarshal_json_response(
-                    Optional[shared.LedgerInfoResponse], http_res
+                    Optional[ledger.LedgerInfoResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1859,6 +1966,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.GetLedgerInfoResponse:
         r"""Get information about a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1873,7 +1982,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_LEDGER_INFO_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetLedgerInfoRequest)
@@ -1893,6 +2002,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1913,7 +2023,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1921,15 +2031,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetLedgerInfoResponse(
                 ledger_info_response=unmarshal_json_response(
-                    Optional[shared.LedgerInfoResponse], http_res
+                    Optional[ledger.LedgerInfoResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1946,6 +2058,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.GetMappingResponse:
         r"""Get the mapping of a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1960,7 +2074,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_MAPPING_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetMappingRequest)
@@ -1980,6 +2094,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2000,7 +2115,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2008,15 +2123,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetMappingResponse(
                 mapping_response=unmarshal_json_response(
-                    Optional[shared.MappingResponse], http_res
+                    Optional[ledger.MappingResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2033,6 +2150,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.GetMappingResponse:
         r"""Get the mapping of a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2047,7 +2166,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_MAPPING_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetMappingRequest)
@@ -2067,6 +2186,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2087,7 +2207,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2095,15 +2215,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetMappingResponse(
                 mapping_response=unmarshal_json_response(
-                    Optional[shared.MappingResponse], http_res
+                    Optional[ledger.MappingResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2120,6 +2242,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.GetTransactionResponse:
         r"""Get transaction from a ledger by its ID
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2134,7 +2258,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_TRANSACTION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransactionRequest)
@@ -2154,6 +2278,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2174,7 +2299,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2182,15 +2307,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransactionResponse(
                 transaction_response=unmarshal_json_response(
-                    Optional[shared.TransactionResponse], http_res
+                    Optional[ledger.TransactionResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2207,6 +2334,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.GetTransactionResponse:
         r"""Get transaction from a ledger by its ID
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2221,7 +2350,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_TRANSACTION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransactionRequest)
@@ -2241,6 +2370,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2261,7 +2391,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2269,32 +2399,37 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransactionResponse(
                 transaction_response=unmarshal_json_response(
-                    Optional[shared.TransactionResponse], http_res
+                    Optional[ledger.TransactionResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
-    def list_accounts(
+    def list_accounts_ledger(
         self,
         *,
         request: Union[
-            operations.ListAccountsRequest, operations.ListAccountsRequestTypedDict
+            operations.ListAccountsLedgerRequest,
+            operations.ListAccountsLedgerRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ListAccountsResponse:
+    ) -> operations.ListAccountsLedgerResponse:
         r"""List accounts from a ledger
 
         List accounts from a ledger, sorted by address in descending order.
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -2310,11 +2445,11 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_ACCOUNTS_LEDGER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ListAccountsRequest)
-        request = cast(operations.ListAccountsRequest, request)
+            request = utils.unmarshal(request, operations.ListAccountsLedgerRequest)
+        request = cast(operations.ListAccountsLedgerRequest, request)
 
         req = self._build_request(
             method="GET",
@@ -2330,6 +2465,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2345,54 +2481,61 @@ class LedgerV1(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="listAccounts",
+                operation_id="listAccounts_ledger",
                 oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["200", "404"], c
+            ),
             retry_config=retry_config,
         )
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.ListAccountsResponse(
+            return operations.ListAccountsLedgerResponse(
                 accounts_cursor_response=unmarshal_json_response(
-                    Optional[shared.AccountsCursorResponse], http_res
+                    Optional[ledger.AccountsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "404", "application/json"):
-            return operations.ListAccountsResponse(
+            return operations.ListAccountsLedgerResponse(
                 error_response=unmarshal_json_response(
-                    Optional[shared.ErrorResponse], http_res
+                    Optional[ledger.ErrorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
-    async def list_accounts_async(
+    async def list_accounts_ledger_async(
         self,
         *,
         request: Union[
-            operations.ListAccountsRequest, operations.ListAccountsRequestTypedDict
+            operations.ListAccountsLedgerRequest,
+            operations.ListAccountsLedgerRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.ListAccountsResponse:
+    ) -> operations.ListAccountsLedgerResponse:
         r"""List accounts from a ledger
 
         List accounts from a ledger, sorted by address in descending order.
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -2408,11 +2551,11 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_ACCOUNTS_LEDGER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.ListAccountsRequest)
-        request = cast(operations.ListAccountsRequest, request)
+            request = utils.unmarshal(request, operations.ListAccountsLedgerRequest)
+        request = cast(operations.ListAccountsLedgerRequest, request)
 
         req = self._build_request_async(
             method="GET",
@@ -2428,6 +2571,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2443,37 +2587,41 @@ class LedgerV1(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="listAccounts",
+                operation_id="listAccounts_ledger",
                 oauth2_scopes=["ledger:read"],
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["200", "404"], c
+            ),
             retry_config=retry_config,
         )
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.ListAccountsResponse(
+            return operations.ListAccountsLedgerResponse(
                 accounts_cursor_response=unmarshal_json_response(
-                    Optional[shared.AccountsCursorResponse], http_res
+                    Optional[ledger.AccountsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "404", "application/json"):
-            return operations.ListAccountsResponse(
+            return operations.ListAccountsLedgerResponse(
                 error_response=unmarshal_json_response(
-                    Optional[shared.ErrorResponse], http_res
+                    Optional[ledger.ErrorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2490,6 +2638,8 @@ class LedgerV1(BaseSDK):
 
         List the logs from a ledger, sorted by ID in descending order.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2504,7 +2654,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_LOGS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListLogsRequest)
@@ -2524,6 +2674,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2544,7 +2695,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2552,15 +2703,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListLogsResponse(
                 logs_cursor_response=unmarshal_json_response(
-                    Optional[shared.LogsCursorResponse], http_res
+                    Optional[ledger.LogsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2577,6 +2730,8 @@ class LedgerV1(BaseSDK):
 
         List the logs from a ledger, sorted by ID in descending order.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2591,7 +2746,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_LOGS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListLogsRequest)
@@ -2611,6 +2766,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2631,7 +2787,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2639,15 +2795,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListLogsResponse(
                 logs_cursor_response=unmarshal_json_response(
-                    Optional[shared.LogsCursorResponse], http_res
+                    Optional[ledger.LogsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2667,6 +2825,8 @@ class LedgerV1(BaseSDK):
 
         List transactions from a ledger, sorted by txid in descending order.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2681,7 +2841,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_TRANSACTIONS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListTransactionsRequest)
@@ -2701,6 +2861,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2721,7 +2882,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2729,15 +2890,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTransactionsResponse(
                 transactions_cursor_response=unmarshal_json_response(
-                    Optional[shared.TransactionsCursorResponse], http_res
+                    Optional[ledger.TransactionsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2757,6 +2920,8 @@ class LedgerV1(BaseSDK):
 
         List transactions from a ledger, sorted by txid in descending order.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2771,7 +2936,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_TRANSACTIONS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListTransactionsRequest)
@@ -2791,6 +2956,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2811,7 +2977,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2819,15 +2985,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTransactionsResponse(
                 transactions_cursor_response=unmarshal_json_response(
-                    Optional[shared.TransactionsCursorResponse], http_res
+                    Optional[ledger.TransactionsCursorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2847,6 +3015,8 @@ class LedgerV1(BaseSDK):
         Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2861,7 +3031,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.READ_STATS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadStatsRequest)
@@ -2881,6 +3051,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2901,7 +3072,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2909,15 +3080,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadStatsResponse(
                 stats_response=unmarshal_json_response(
-                    Optional[shared.StatsResponse], http_res
+                    Optional[ledger.StatsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2937,6 +3110,8 @@ class LedgerV1(BaseSDK):
         Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2951,7 +3126,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.READ_STATS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadStatsRequest)
@@ -2971,6 +3146,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2991,7 +3167,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2999,15 +3175,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadStatsResponse(
                 stats_response=unmarshal_json_response(
-                    Optional[shared.StatsResponse], http_res
+                    Optional[ledger.StatsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3025,6 +3203,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.RevertTransactionResponse:
         r"""Revert a ledger transaction by its ID
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3039,7 +3219,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.REVERT_TRANSACTION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RevertTransactionRequest)
@@ -3059,6 +3239,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3079,7 +3260,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -3087,7 +3268,7 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.RevertTransactionResponse(
                 transaction_response=unmarshal_json_response(
-                    Optional[shared.TransactionResponse], http_res
+                    Optional[ledger.TransactionResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3095,8 +3276,10 @@ class LedgerV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3114,6 +3297,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.RevertTransactionResponse:
         r"""Revert a ledger transaction by its ID
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3128,7 +3313,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.REVERT_TRANSACTION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RevertTransactionRequest)
@@ -3148,6 +3333,7 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3168,7 +3354,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -3176,7 +3362,7 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.RevertTransactionResponse(
                 transaction_response=unmarshal_json_response(
-                    Optional[shared.TransactionResponse], http_res
+                    Optional[ledger.TransactionResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3184,8 +3370,10 @@ class LedgerV1(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3208,6 +3396,8 @@ class LedgerV1(BaseSDK):
         This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
 
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3222,7 +3412,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.RUN_SCRIPT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RunScriptRequest)
@@ -3242,9 +3432,10 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.script, False, False, "json", shared.Script
+                request.script, False, False, "json", ledger.Script
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3265,14 +3456,14 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.RunScriptResponse(
                 script_response=unmarshal_json_response(
-                    Optional[shared.ScriptResponse], http_res
+                    Optional[ledger.ScriptResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3303,6 +3494,8 @@ class LedgerV1(BaseSDK):
         This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
 
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3317,7 +3510,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.RUN_SCRIPT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RunScriptRequest)
@@ -3337,9 +3530,10 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.script, False, False, "json", shared.Script
+                request.script, False, False, "json", ledger.Script
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3360,14 +3554,14 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         if utils.match_response(http_res, "200", "application/json"):
             return operations.RunScriptResponse(
                 script_response=unmarshal_json_response(
-                    Optional[shared.ScriptResponse], http_res
+                    Optional[ledger.ScriptResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3392,6 +3586,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.UpdateMappingResponse:
         r"""Update the mapping of a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3406,7 +3602,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_MAPPING_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateMappingRequest)
@@ -3426,9 +3622,10 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.mapping, True, False, "json", Nullable[shared.MappingT]
+                request.mapping, True, False, "json", Nullable[ledger.MappingT]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3449,7 +3646,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -3457,15 +3654,17 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.UpdateMappingResponse(
                 mapping_response=unmarshal_json_response(
-                    Optional[shared.MappingResponse], http_res
+                    Optional[ledger.MappingResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3482,6 +3681,8 @@ class LedgerV1(BaseSDK):
     ) -> operations.UpdateMappingResponse:
         r"""Update the mapping of a ledger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3496,7 +3697,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_MAPPING_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateMappingRequest)
@@ -3516,9 +3717,10 @@ class LedgerV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.mapping, True, False, "json", Nullable[shared.MappingT]
+                request.mapping, True, False, "json", Nullable[ledger.MappingT]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3539,7 +3741,7 @@ class LedgerV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -3547,14 +3749,16 @@ class LedgerV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.UpdateMappingResponse(
                 mapping_response=unmarshal_json_response(
-                    Optional[shared.MappingResponse], http_res
+                    Optional[ledger.MappingResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorResponseData, http_res)
-            raise errors.ErrorResponse(response_data, http_res)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsErrorResponseData, http_res
+            )
+            raise ledger.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)

@@ -3,7 +3,11 @@
 from .basesdk import BaseSDK
 from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
-from formance_sdk_python.models import errors, operations, shared
+from formance_sdk_python.models import errors, operations, orchestration
+from formance_sdk_python.models.orchestration import (
+    triggerdata_2 as orchestration_triggerdata_2,
+    workflowconfig as orchestration_workflowconfig,
+)
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
 from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Any, Dict, Mapping, Optional, Union, cast
@@ -25,6 +29,8 @@ class OrchestrationV1(BaseSDK):
 
         Cancel a running workflow
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -39,7 +45,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CANCEL_EVENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CancelEventRequest)
@@ -59,6 +65,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -79,7 +86,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -91,8 +98,8 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -111,6 +118,8 @@ class OrchestrationV1(BaseSDK):
 
         Cancel a running workflow
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -125,7 +134,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CANCEL_EVENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CancelEventRequest)
@@ -145,6 +154,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -165,7 +175,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -177,8 +187,8 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -186,7 +196,10 @@ class OrchestrationV1(BaseSDK):
         self,
         *,
         request: Optional[
-            Union[shared.TriggerData, shared.TriggerDataTypedDict]
+            Union[
+                orchestration_triggerdata_2.TriggerData2,
+                orchestration_triggerdata_2.TriggerData2TypedDict,
+            ]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -196,6 +209,8 @@ class OrchestrationV1(BaseSDK):
         r"""Create trigger
 
         Create trigger
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -211,11 +226,11 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_TRIGGER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[shared.TriggerData])
-        request = cast(Optional[shared.TriggerData], request)
+            request = utils.unmarshal(request, Optional[orchestration.TriggerData2])
+        request = cast(Optional[orchestration.TriggerData2], request)
 
         req = self._build_request(
             method="POST",
@@ -231,9 +246,10 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[shared.TriggerData]
+                request, False, True, "json", Optional[orchestration.TriggerData2]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -254,7 +270,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -262,15 +278,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateTriggerResponse(
                 create_trigger_response=unmarshal_json_response(
-                    Optional[shared.CreateTriggerResponse], http_res
+                    Optional[orchestration.CreateTriggerResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -278,7 +294,10 @@ class OrchestrationV1(BaseSDK):
         self,
         *,
         request: Optional[
-            Union[shared.TriggerData, shared.TriggerDataTypedDict]
+            Union[
+                orchestration_triggerdata_2.TriggerData2,
+                orchestration_triggerdata_2.TriggerData2TypedDict,
+            ]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -288,6 +307,8 @@ class OrchestrationV1(BaseSDK):
         r"""Create trigger
 
         Create trigger
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -303,11 +324,11 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_TRIGGER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[shared.TriggerData])
-        request = cast(Optional[shared.TriggerData], request)
+            request = utils.unmarshal(request, Optional[orchestration.TriggerData2])
+        request = cast(Optional[orchestration.TriggerData2], request)
 
         req = self._build_request_async(
             method="POST",
@@ -323,9 +344,10 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[shared.TriggerData]
+                request, False, True, "json", Optional[orchestration.TriggerData2]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -346,7 +368,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -354,15 +376,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateTriggerResponse(
                 create_trigger_response=unmarshal_json_response(
-                    Optional[shared.CreateTriggerResponse], http_res
+                    Optional[orchestration.CreateTriggerResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -370,7 +392,10 @@ class OrchestrationV1(BaseSDK):
         self,
         *,
         request: Optional[
-            Union[shared.CreateWorkflowRequest, shared.CreateWorkflowRequestTypedDict]
+            Union[
+                orchestration_workflowconfig.WorkflowConfig,
+                orchestration_workflowconfig.WorkflowConfigTypedDict,
+            ]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -380,6 +405,8 @@ class OrchestrationV1(BaseSDK):
         r"""Create workflow
 
         Create a workflow
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -395,11 +422,11 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_WORKFLOW_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[shared.CreateWorkflowRequest])
-        request = cast(Optional[shared.CreateWorkflowRequest], request)
+            request = utils.unmarshal(request, Optional[orchestration.WorkflowConfig])
+        request = cast(Optional[orchestration.WorkflowConfig], request)
 
         req = self._build_request(
             method="POST",
@@ -415,9 +442,10 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[shared.CreateWorkflowRequest]
+                request, False, True, "json", Optional[orchestration.WorkflowConfig]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -438,7 +466,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -446,15 +474,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateWorkflowResponse(
                 create_workflow_response=unmarshal_json_response(
-                    Optional[shared.CreateWorkflowResponse], http_res
+                    Optional[orchestration.CreateWorkflowResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -462,7 +490,10 @@ class OrchestrationV1(BaseSDK):
         self,
         *,
         request: Optional[
-            Union[shared.CreateWorkflowRequest, shared.CreateWorkflowRequestTypedDict]
+            Union[
+                orchestration_workflowconfig.WorkflowConfig,
+                orchestration_workflowconfig.WorkflowConfigTypedDict,
+            ]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -472,6 +503,8 @@ class OrchestrationV1(BaseSDK):
         r"""Create workflow
 
         Create a workflow
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -487,11 +520,11 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_WORKFLOW_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[shared.CreateWorkflowRequest])
-        request = cast(Optional[shared.CreateWorkflowRequest], request)
+            request = utils.unmarshal(request, Optional[orchestration.WorkflowConfig])
+        request = cast(Optional[orchestration.WorkflowConfig], request)
 
         req = self._build_request_async(
             method="POST",
@@ -507,9 +540,10 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[shared.CreateWorkflowRequest]
+                request, False, True, "json", Optional[orchestration.WorkflowConfig]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -530,7 +564,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -538,15 +572,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.CreateWorkflowResponse(
                 create_workflow_response=unmarshal_json_response(
-                    Optional[shared.CreateWorkflowResponse], http_res
+                    Optional[orchestration.CreateWorkflowResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -565,6 +599,8 @@ class OrchestrationV1(BaseSDK):
 
         Read trigger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -579,7 +615,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_TRIGGER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteTriggerRequest)
@@ -599,6 +635,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -619,7 +656,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -631,8 +668,8 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -651,6 +688,8 @@ class OrchestrationV1(BaseSDK):
 
         Read trigger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -665,7 +704,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_TRIGGER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteTriggerRequest)
@@ -685,6 +724,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -705,7 +745,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -717,8 +757,8 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -737,6 +777,8 @@ class OrchestrationV1(BaseSDK):
 
         Delete a flow by id
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -751,7 +793,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_WORKFLOW_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteWorkflowRequest)
@@ -771,6 +813,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -791,7 +834,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -803,8 +846,8 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -823,6 +866,8 @@ class OrchestrationV1(BaseSDK):
 
         Delete a flow by id
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -837,7 +882,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_WORKFLOW_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteWorkflowRequest)
@@ -857,6 +902,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -877,7 +923,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -889,8 +935,8 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -909,6 +955,8 @@ class OrchestrationV1(BaseSDK):
 
         Get a workflow instance by id
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -923,7 +971,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_INSTANCE_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetInstanceRequest)
@@ -943,6 +991,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -963,7 +1012,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -971,15 +1020,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInstanceResponse(
                 get_workflow_instance_response=unmarshal_json_response(
-                    Optional[shared.GetWorkflowInstanceResponse], http_res
+                    Optional[orchestration.GetWorkflowInstanceResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -998,6 +1047,8 @@ class OrchestrationV1(BaseSDK):
 
         Get a workflow instance by id
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1012,7 +1063,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_INSTANCE_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetInstanceRequest)
@@ -1032,6 +1083,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1052,7 +1104,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1060,15 +1112,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInstanceResponse(
                 get_workflow_instance_response=unmarshal_json_response(
-                    Optional[shared.GetWorkflowInstanceResponse], http_res
+                    Optional[orchestration.GetWorkflowInstanceResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1088,6 +1140,8 @@ class OrchestrationV1(BaseSDK):
 
         Get a workflow instance history by id
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1102,7 +1156,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_INSTANCE_HISTORY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetInstanceHistoryRequest)
@@ -1122,6 +1176,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1142,7 +1197,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1150,15 +1205,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInstanceHistoryResponse(
                 get_workflow_instance_history_response=unmarshal_json_response(
-                    Optional[shared.GetWorkflowInstanceHistoryResponse], http_res
+                    Optional[orchestration.GetWorkflowInstanceHistoryResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1178,6 +1233,8 @@ class OrchestrationV1(BaseSDK):
 
         Get a workflow instance history by id
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1192,7 +1249,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_INSTANCE_HISTORY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetInstanceHistoryRequest)
@@ -1212,6 +1269,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1232,7 +1290,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1240,15 +1298,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInstanceHistoryResponse(
                 get_workflow_instance_history_response=unmarshal_json_response(
-                    Optional[shared.GetWorkflowInstanceHistoryResponse], http_res
+                    Optional[orchestration.GetWorkflowInstanceHistoryResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1268,6 +1326,8 @@ class OrchestrationV1(BaseSDK):
 
         Get a workflow instance stage history
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1282,7 +1342,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_INSTANCE_STAGE_HISTORY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1304,6 +1364,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1324,7 +1385,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1332,15 +1393,16 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInstanceStageHistoryResponse(
                 get_workflow_instance_history_stage_response=unmarshal_json_response(
-                    Optional[shared.GetWorkflowInstanceHistoryStageResponse], http_res
+                    Optional[orchestration.GetWorkflowInstanceHistoryStageResponse],
+                    http_res,
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1360,6 +1422,8 @@ class OrchestrationV1(BaseSDK):
 
         Get a workflow instance stage history
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1374,7 +1438,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_INSTANCE_STAGE_HISTORY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1396,6 +1460,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1416,7 +1481,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1424,15 +1489,178 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetInstanceStageHistoryResponse(
                 get_workflow_instance_history_stage_response=unmarshal_json_response(
-                    Optional[shared.GetWorkflowInstanceHistoryStageResponse], http_res
+                    Optional[orchestration.GetWorkflowInstanceHistoryStageResponse],
+                    http_res,
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def get_server_info_orchestration(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetServerInfoOrchestrationResponse:
+        r"""Get server info
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = operations.GET_SERVER_INFO_ORCHESTRATION_SERVERS[0]
+        req = self._build_request(
+            method="GET",
+            path="/api/orchestration/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getServerInfo_orchestration",
+                oauth2_scopes=["orchestration:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetServerInfoOrchestrationResponse(
+                server_info=unmarshal_json_response(
+                    Optional[orchestration.ServerInfo], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def get_server_info_orchestration_async(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetServerInfoOrchestrationResponse:
+        r"""Get server info
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = operations.GET_SERVER_INFO_ORCHESTRATION_SERVERS[0]
+        req = self._build_request_async(
+            method="GET",
+            path="/api/orchestration/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getServerInfo_orchestration",
+                oauth2_scopes=["orchestration:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetServerInfoOrchestrationResponse(
+                server_info=unmarshal_json_response(
+                    Optional[orchestration.ServerInfo], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1451,6 +1679,8 @@ class OrchestrationV1(BaseSDK):
 
         Get a flow by id
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1465,7 +1695,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_WORKFLOW_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkflowRequest)
@@ -1485,6 +1715,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1505,7 +1736,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1513,15 +1744,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWorkflowResponse(
                 get_workflow_response=unmarshal_json_response(
-                    Optional[shared.GetWorkflowResponse], http_res
+                    Optional[orchestration.GetWorkflowResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1540,6 +1771,8 @@ class OrchestrationV1(BaseSDK):
 
         Get a flow by id
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1554,7 +1787,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_WORKFLOW_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkflowRequest)
@@ -1574,6 +1807,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1594,7 +1828,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1602,15 +1836,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWorkflowResponse(
                 get_workflow_response=unmarshal_json_response(
-                    Optional[shared.GetWorkflowResponse], http_res
+                    Optional[orchestration.GetWorkflowResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1629,6 +1863,8 @@ class OrchestrationV1(BaseSDK):
 
         List instances of a workflow
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1643,7 +1879,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_INSTANCES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListInstancesRequest)
@@ -1663,6 +1899,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1683,7 +1920,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1691,15 +1928,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListInstancesResponse(
                 list_runs_response=unmarshal_json_response(
-                    Optional[shared.ListRunsResponse], http_res
+                    Optional[orchestration.ListRunsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1718,6 +1955,8 @@ class OrchestrationV1(BaseSDK):
 
         List instances of a workflow
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1732,7 +1971,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_INSTANCES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListInstancesRequest)
@@ -1752,6 +1991,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1772,7 +2012,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1780,15 +2020,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListInstancesResponse(
                 list_runs_response=unmarshal_json_response(
-                    Optional[shared.ListRunsResponse], http_res
+                    Optional[orchestration.ListRunsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1807,6 +2047,8 @@ class OrchestrationV1(BaseSDK):
 
         List triggers
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1821,7 +2063,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_TRIGGERS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListTriggersRequest)
@@ -1841,6 +2083,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1861,7 +2104,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1869,15 +2112,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTriggersResponse(
                 list_triggers_response=unmarshal_json_response(
-                    Optional[shared.ListTriggersResponse], http_res
+                    Optional[orchestration.ListTriggersResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1896,6 +2139,8 @@ class OrchestrationV1(BaseSDK):
 
         List triggers
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1910,7 +2155,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_TRIGGERS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListTriggersRequest)
@@ -1930,6 +2175,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1950,7 +2196,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1958,15 +2204,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTriggersResponse(
                 list_triggers_response=unmarshal_json_response(
-                    Optional[shared.ListTriggersResponse], http_res
+                    Optional[orchestration.ListTriggersResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1986,6 +2232,8 @@ class OrchestrationV1(BaseSDK):
 
         List triggers occurrences
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2000,7 +2248,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_TRIGGERS_OCCURRENCES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2022,6 +2270,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2042,7 +2291,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2050,15 +2299,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTriggersOccurrencesResponse(
                 list_triggers_occurrences_response=unmarshal_json_response(
-                    Optional[shared.ListTriggersOccurrencesResponse], http_res
+                    Optional[orchestration.ListTriggersOccurrencesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2078,6 +2327,8 @@ class OrchestrationV1(BaseSDK):
 
         List triggers occurrences
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2092,7 +2343,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_TRIGGERS_OCCURRENCES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2114,6 +2365,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2134,7 +2386,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2142,15 +2394,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTriggersOccurrencesResponse(
                 list_triggers_occurrences_response=unmarshal_json_response(
-                    Optional[shared.ListTriggersOccurrencesResponse], http_res
+                    Optional[orchestration.ListTriggersOccurrencesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2166,6 +2418,8 @@ class OrchestrationV1(BaseSDK):
 
         List registered workflows
 
+        If set, this operation will use `client_id` from the global security.
+
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -2179,7 +2433,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_WORKFLOWS_SERVERS[0]
         req = self._build_request(
             method="GET",
             path="/api/orchestration/workflows",
@@ -2194,6 +2448,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2214,7 +2469,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2222,15 +2477,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListWorkflowsResponse(
                 list_workflows_response=unmarshal_json_response(
-                    Optional[shared.ListWorkflowsResponse], http_res
+                    Optional[orchestration.ListWorkflowsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2246,6 +2501,8 @@ class OrchestrationV1(BaseSDK):
 
         List registered workflows
 
+        If set, this operation will use `client_id` from the global security.
+
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -2259,7 +2516,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_WORKFLOWS_SERVERS[0]
         req = self._build_request_async(
             method="GET",
             path="/api/orchestration/workflows",
@@ -2274,6 +2531,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2294,7 +2552,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2302,171 +2560,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListWorkflowsResponse(
                 list_workflows_response=unmarshal_json_response(
-                    Optional[shared.ListWorkflowsResponse], http_res
+                    Optional[orchestration.ListWorkflowsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
-
-        raise errors.SDKError("Unexpected response received", http_res)
-
-    def orchestrationget_server_info(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.OrchestrationgetServerInfoResponse:
-        r"""Get server info
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-        req = self._build_request(
-            method="GET",
-            path="/api/orchestration/_info",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="orchestrationgetServerInfo",
-                oauth2_scopes=["orchestration:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.OrchestrationgetServerInfoResponse(
-                server_info=unmarshal_json_response(
-                    Optional[shared.ServerInfo], http_res
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
-
-        raise errors.SDKError("Unexpected response received", http_res)
-
-    async def orchestrationget_server_info_async(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.OrchestrationgetServerInfoResponse:
-        r"""Get server info
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-        req = self._build_request_async(
-            method="GET",
-            path="/api/orchestration/_info",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="orchestrationgetServerInfo",
-                oauth2_scopes=["orchestration:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.OrchestrationgetServerInfoResponse(
-                server_info=unmarshal_json_response(
-                    Optional[shared.ServerInfo], http_res
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2485,6 +2587,8 @@ class OrchestrationV1(BaseSDK):
 
         Read trigger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2499,7 +2603,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.READ_TRIGGER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadTriggerRequest)
@@ -2519,6 +2623,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2539,7 +2644,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2547,15 +2652,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadTriggerResponse(
                 read_trigger_response=unmarshal_json_response(
-                    Optional[shared.ReadTriggerResponse], http_res
+                    Optional[orchestration.ReadTriggerResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2574,6 +2679,8 @@ class OrchestrationV1(BaseSDK):
 
         Read trigger
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2588,7 +2695,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.READ_TRIGGER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadTriggerRequest)
@@ -2608,6 +2715,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2628,7 +2736,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2636,15 +2744,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadTriggerResponse(
                 read_trigger_response=unmarshal_json_response(
-                    Optional[shared.ReadTriggerResponse], http_res
+                    Optional[orchestration.ReadTriggerResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2663,6 +2771,8 @@ class OrchestrationV1(BaseSDK):
 
         Run workflow
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2677,7 +2787,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.RUN_WORKFLOW_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RunWorkflowRequest)
@@ -2704,6 +2814,7 @@ class OrchestrationV1(BaseSDK):
                 Optional[Dict[str, str]],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2724,7 +2835,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -2732,15 +2843,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.RunWorkflowResponse(
                 run_workflow_response=unmarshal_json_response(
-                    Optional[shared.RunWorkflowResponse], http_res
+                    Optional[orchestration.RunWorkflowResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2759,6 +2870,8 @@ class OrchestrationV1(BaseSDK):
 
         Run workflow
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2773,7 +2886,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.RUN_WORKFLOW_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RunWorkflowRequest)
@@ -2800,6 +2913,7 @@ class OrchestrationV1(BaseSDK):
                 Optional[Dict[str, str]],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2820,7 +2934,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -2828,15 +2942,15 @@ class OrchestrationV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.RunWorkflowResponse(
                 run_workflow_response=unmarshal_json_response(
-                    Optional[shared.RunWorkflowResponse], http_res
+                    Optional[orchestration.RunWorkflowResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2855,6 +2969,8 @@ class OrchestrationV1(BaseSDK):
 
         Send an event to a running workflow
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2869,7 +2985,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.SEND_EVENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.SendEventRequest)
@@ -2896,6 +3012,7 @@ class OrchestrationV1(BaseSDK):
                 Optional[operations.SendEventRequestBody],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2916,7 +3033,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -2928,8 +3045,8 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2948,6 +3065,8 @@ class OrchestrationV1(BaseSDK):
 
         Send an event to a running workflow
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2962,7 +3081,7 @@ class OrchestrationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.SEND_EVENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.SendEventRequest)
@@ -2989,6 +3108,7 @@ class OrchestrationV1(BaseSDK):
                 Optional[operations.SendEventRequestBody],
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3009,7 +3129,7 @@ class OrchestrationV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -3021,7 +3141,7 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
+            raise orchestration.Error(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)

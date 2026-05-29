@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+DELETE_TRANSFER_INITIATION_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class DeleteTransferInitiationRequestTypedDict(TypedDict):
     transfer_id: str
     r"""The transfer ID."""

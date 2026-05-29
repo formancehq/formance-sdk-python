@@ -5,27 +5,27 @@ OK
 
 ## Supported Types
 
-### `shared.V2TransactionsCursorResponse`
+### `ledger.V2TransactionsCursorResponse`
 
 ```python
-value: shared.V2TransactionsCursorResponse = /* values here */
+value: ledger.V2TransactionsCursorResponse = /* values here */
 ```
 
-### `shared.V2AccountsCursorResponse`
+### `ledger.V2AccountsCursorResponse`
 
 ```python
-value: shared.V2AccountsCursorResponse = /* values here */
+value: ledger.V2AccountsCursorResponse = /* values here */
 ```
 
-### `shared.V2LogsCursorResponse`
+### `ledger.V2LogsCursorResponse`
 
 ```python
-value: shared.V2LogsCursorResponse = /* values here */
+value: ledger.V2LogsCursorResponse = /* values here */
 ```
 
-### `shared.V2VolumesWithBalanceCursorResponse`
+### `ledger.V2VolumesWithBalanceCursorResponse`
 
 ```python
-value: shared.V2VolumesWithBalanceCursorResponse = /* values here */
+value: ledger.V2VolumesWithBalanceCursorResponse = /* values here */
 ```
 

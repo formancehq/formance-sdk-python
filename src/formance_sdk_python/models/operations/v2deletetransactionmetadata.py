@@ -16,6 +16,11 @@ from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+V2_DELETE_TRANSACTION_METADATA_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2DeleteTransactionMetadataRequestTypedDict(TypedDict):
     id: int
     r"""Transaction ID."""

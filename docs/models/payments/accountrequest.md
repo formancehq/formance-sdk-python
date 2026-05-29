@@ -1,0 +1,14 @@
+# AccountRequest
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `account_metadata`                                                   | Dict[str, *str*]                                                     | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `account_type`                                                       | [payments.AccountType](../../models/payments/accounttype.md)         | :heavy_check_mark:                                                   | N/A                                                                  |
+| `account_name`                                                       | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `connector_id`                                                       | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `created_at`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |
+| `default_asset`                                                      | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `reference`                                                          | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |

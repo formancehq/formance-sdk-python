@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 from datetime import datetime
-from formance_sdk_python.models.shared import (
-    v2gettransactionresponse as shared_v2gettransactionresponse,
+from formance_sdk_python.models.ledger import (
+    v2gettransactionresponse as ledger_v2gettransactionresponse,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
@@ -17,6 +17,11 @@ from pydantic import model_serializer
 from pydantic.functional_validators import BeforeValidator
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
+
+
+V2_GET_TRANSACTION_SERVERS = [
+    "http://localhost:8080/",
+]
 
 
 class V2GetTransactionRequestTypedDict(TypedDict):
@@ -75,7 +80,7 @@ class V2GetTransactionResponseTypedDict(TypedDict):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
     v2_get_transaction_response: NotRequired[
-        shared_v2gettransactionresponse.V2GetTransactionResponseTypedDict
+        ledger_v2gettransactionresponse.V2GetTransactionResponseTypedDict
     ]
     r"""OK"""
 
@@ -91,7 +96,7 @@ class V2GetTransactionResponse(BaseModel):
     r"""Raw HTTP response; suitable for custom response parsing"""
 
     v2_get_transaction_response: Optional[
-        shared_v2gettransactionresponse.V2GetTransactionResponse
+        ledger_v2gettransactionresponse.V2GetTransactionResponse
     ] = None
     r"""OK"""
 
