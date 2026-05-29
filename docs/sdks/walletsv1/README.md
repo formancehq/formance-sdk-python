@@ -12,6 +12,7 @@
 * [get_balance](#get_balance) - Get detailed balance
 * [get_hold](#get_hold) - Get a hold
 * [get_holds](#get_holds) - Get all holds for a wallet
+* [get_server_info_wallets](#get_server_info_wallets) - Get server info
 * [get_transactions](#get_transactions)
 * [get_wallet](#get_wallet) - Get a wallet
 * [get_wallet_summary](#get_wallet_summary) - Get wallet summary
@@ -19,7 +20,6 @@
 * [list_wallets](#list_wallets) - List all wallets
 * [update_wallet](#update_wallet) - Update a wallet
 * [void_hold](#void_hold) - Cancel a hold
-* [walletsget_server_info](#walletsget_server_info) - Get server info
 
 ## confirm_hold
 
@@ -61,6 +61,7 @@ with SDK(
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.ConfirmHoldRequest](../../models/operations/confirmholdrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+| `server_url`                                                                   | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -68,10 +69,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
 
 ## create_balance
 
@@ -109,6 +110,7 @@ with SDK(
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `request`                                                                          | [operations.CreateBalanceRequest](../../models/operations/createbalancerequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
+| `server_url`                                                                       | *Optional[str]*                                                                    | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -116,10 +118,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
 
 ## create_wallet
 
@@ -155,6 +157,7 @@ with SDK(
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.CreateWalletRequest](../../models/operations/createwalletrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+| `server_url`                                                                     | *Optional[str]*                                                                  | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -162,10 +165,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
 
 ## credit_wallet
 
@@ -188,7 +191,7 @@ with SDK(
 
     res = sdk.wallets.v1.credit_wallet(request={
         "credit_wallet_request": {
-            "amount": {
+            "monetary": {
                 "amount": 100,
                 "asset": "USD/2",
             },
@@ -213,6 +216,7 @@ with SDK(
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.CreditWalletRequest](../../models/operations/creditwalletrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+| `server_url`                                                                     | *Optional[str]*                                                                  | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -220,10 +224,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
 
 ## debit_wallet
 
@@ -246,7 +250,7 @@ with SDK(
 
     res = sdk.wallets.v1.debit_wallet(request={
         "debit_wallet_request": {
-            "amount": {
+            "monetary": {
                 "amount": 100,
                 "asset": "USD/2",
             },
@@ -271,6 +275,7 @@ with SDK(
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.DebitWalletRequest](../../models/operations/debitwalletrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+| `server_url`                                                                   | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -278,10 +283,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
 
 ## get_balance
 
@@ -320,6 +325,7 @@ with SDK(
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `request`                                                                    | [operations.GetBalanceRequest](../../models/operations/getbalancerequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 | `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
+| `server_url`                                                                 | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -327,10 +333,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
 
 ## get_hold
 
@@ -368,6 +374,7 @@ with SDK(
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `request`                                                              | [operations.GetHoldRequest](../../models/operations/getholdrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
 | `retries`                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)       | :heavy_minus_sign:                                                     | Configuration to override the default retry behavior of the client.    |
+| `server_url`                                                           | *Optional[str]*                                                        | :heavy_minus_sign:                                                     | An optional server URL to use.                                         |
 
 ### Response
 
@@ -375,10 +382,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
 
 ## get_holds
 
@@ -421,6 +428,7 @@ with SDK(
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `request`                                                                | [operations.GetHoldsRequest](../../models/operations/getholdsrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 | `retries`                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)         | :heavy_minus_sign:                                                       | Configuration to override the default retry behavior of the client.      |
+| `server_url`                                                             | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | An optional server URL to use.                                           |
 
 ### Response
 
@@ -428,10 +436,56 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
+
+## get_server_info_wallets
+
+Get server info
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="getServerInfo_wallets" method="get" path="/api/wallets/_info" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.wallets.v1.get_server_info_wallets()
+
+    assert res.server_info is not None
+
+    # Handle response
+    print(res.server_info)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
+
+### Response
+
+**[operations.GetServerInfoWalletsResponse](../../models/operations/getserverinfowalletsresponse.md)**
+
+### Errors
+
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
 
 ## get_transactions
 
@@ -469,6 +523,7 @@ with SDK(
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `request`                                                                              | [operations.GetTransactionsRequest](../../models/operations/gettransactionsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
+| `server_url`                                                                           | *Optional[str]*                                                                        | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -476,10 +531,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
 
 ## get_wallet
 
@@ -517,6 +572,7 @@ with SDK(
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `request`                                                                  | [operations.GetWalletRequest](../../models/operations/getwalletrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
+| `server_url`                                                               | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -524,10 +580,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
 
 ## get_wallet_summary
 
@@ -565,6 +621,7 @@ with SDK(
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `request`                                                                                | [operations.GetWalletSummaryRequest](../../models/operations/getwalletsummaryrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+| `server_url`                                                                             | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -572,10 +629,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
 
 ## list_balances
 
@@ -613,6 +670,7 @@ with SDK(
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.ListBalancesRequest](../../models/operations/listbalancesrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+| `server_url`                                                                     | *Optional[str]*                                                                  | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -666,6 +724,7 @@ with SDK(
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `request`                                                                      | [operations.ListWalletsRequest](../../models/operations/listwalletsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+| `server_url`                                                                   | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -673,10 +732,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
 
 ## update_wallet
 
@@ -714,6 +773,7 @@ with SDK(
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `request`                                                                        | [operations.UpdateWalletRequest](../../models/operations/updatewalletrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
+| `server_url`                                                                     | *Optional[str]*                                                                  | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -721,10 +781,10 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |
 
 ## void_hold
 
@@ -762,6 +822,7 @@ with SDK(
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `request`                                                                | [operations.VoidHoldRequest](../../models/operations/voidholdrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 | `retries`                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)         | :heavy_minus_sign:                                                       | Configuration to override the default retry behavior of the client.      |
+| `server_url`                                                             | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | An optional server URL to use.                                           |
 
 ### Response
 
@@ -769,52 +830,7 @@ with SDK(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
-
-## walletsget_server_info
-
-Get server info
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="walletsgetServerInfo" method="get" path="/api/wallets/_info" -->
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.wallets.v1.walletsget_server_info()
-
-    assert res.server_info is not None
-
-    # Handle response
-    print(res.server_info)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[operations.WalletsgetServerInfoResponse](../../models/operations/walletsgetserverinforesponse.md)**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | default                     | application/json            |
-| errors.SDKError             | 4XX, 5XX                    | \*/\*                       |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| wallets.ErrorResponse | default               | application/json      |
+| errors.SDKError       | 4XX, 5XX              | \*/\*                 |

@@ -2,23 +2,30 @@
 
 from __future__ import annotations
 from datetime import datetime
-from formance_sdk_python.models.shared import (
-    v2aggregatebalancesresponse as shared_v2aggregatebalancesresponse,
+from formance_sdk_python.models.ledger import (
+    v2aggregatebalancesresponse as ledger_v2aggregatebalancesresponse,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
     QueryParamMetadata,
+    RequestMetadata,
 )
 import httpx
 import pydantic
 from pydantic import model_serializer
-from typing import Optional
+from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+V2_GET_BALANCES_AGGREGATED_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2GetBalancesAggregatedRequestTypedDict(TypedDict):
+    request_body: Dict[str, Any]
     ledger: str
     r"""Name of the ledger."""
     pit: NotRequired[datetime]
@@ -27,6 +34,11 @@ class V2GetBalancesAggregatedRequestTypedDict(TypedDict):
 
 
 class V2GetBalancesAggregatedRequest(BaseModel):
+    request_body: Annotated[
+        Dict[str, Any],
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
     ledger: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
@@ -69,7 +81,7 @@ class V2GetBalancesAggregatedResponseTypedDict(TypedDict):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
     v2_aggregate_balances_response: NotRequired[
-        shared_v2aggregatebalancesresponse.V2AggregateBalancesResponseTypedDict
+        ledger_v2aggregatebalancesresponse.V2AggregateBalancesResponseTypedDict
     ]
     r"""OK"""
 
@@ -85,7 +97,7 @@ class V2GetBalancesAggregatedResponse(BaseModel):
     r"""Raw HTTP response; suitable for custom response parsing"""
 
     v2_aggregate_balances_response: Optional[
-        shared_v2aggregatebalancesresponse.V2AggregateBalancesResponse
+        ledger_v2aggregatebalancesresponse.V2AggregateBalancesResponse
     ] = None
     r"""OK"""
 

@@ -1,8 +1,0 @@
-# WalletWithBalancesBalances
-
-
-## Fields
-
-| Field                                                    | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `main`                                                   | [shared.AssetHolder](../../models/shared/assetholder.md) | :heavy_check_mark:                                       | N/A                                                      |

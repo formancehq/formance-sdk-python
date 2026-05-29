@@ -3,12 +3,12 @@
 from __future__ import annotations
 from datetime import datetime
 from enum import Enum
-from formance_sdk_python.models.shared import (
-    v2accountscursorresponse as shared_v2accountscursorresponse,
-    v2logscursorresponse as shared_v2logscursorresponse,
-    v2queryparams as shared_v2queryparams,
-    v2transactionscursorresponse as shared_v2transactionscursorresponse,
-    v2volumeswithbalancecursorresponse as shared_v2volumeswithbalancecursorresponse,
+from formance_sdk_python.models.ledger import (
+    v2accountscursorresponse as ledger_v2accountscursorresponse,
+    v2logscursorresponse as ledger_v2logscursorresponse,
+    v2queryparams as ledger_v2queryparams,
+    v2transactionscursorresponse as ledger_v2transactionscursorresponse,
+    v2volumeswithbalancecursorresponse as ledger_v2volumeswithbalancecursorresponse,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
@@ -24,22 +24,29 @@ from typing import Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
+V2_RUN_QUERY_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2RunQueryRequestBodyTypedDict(TypedDict):
+    v2_query_params: NotRequired[ledger_v2queryparams.V2QueryParamsTypedDict]
     cursor: NotRequired[str]
-    params: NotRequired[shared_v2queryparams.V2QueryParamsTypedDict]
     vars: NotRequired[Dict[str, str]]
 
 
 class V2RunQueryRequestBody(BaseModel):
-    cursor: Optional[str] = None
+    v2_query_params: Annotated[
+        Optional[ledger_v2queryparams.V2QueryParams], pydantic.Field(alias="params")
+    ] = None
 
-    params: Optional[shared_v2queryparams.V2QueryParams] = None
+    cursor: Optional[str] = None
 
     vars: Optional[Dict[str, str]] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["cursor", "params", "vars"])
+        optional_fields = set(["V2QueryParams", "cursor", "vars"])
         serialized = handler(self)
         m = {}
 
@@ -189,10 +196,10 @@ class V2RunQueryRequest(BaseModel):
 V2RunQueryResponseBodyTypedDict = TypeAliasType(
     "V2RunQueryResponseBodyTypedDict",
     Union[
-        shared_v2transactionscursorresponse.V2TransactionsCursorResponseTypedDict,
-        shared_v2accountscursorresponse.V2AccountsCursorResponseTypedDict,
-        shared_v2logscursorresponse.V2LogsCursorResponseTypedDict,
-        shared_v2volumeswithbalancecursorresponse.V2VolumesWithBalanceCursorResponseTypedDict,
+        ledger_v2transactionscursorresponse.V2TransactionsCursorResponseTypedDict,
+        ledger_v2accountscursorresponse.V2AccountsCursorResponseTypedDict,
+        ledger_v2logscursorresponse.V2LogsCursorResponseTypedDict,
+        ledger_v2volumeswithbalancecursorresponse.V2VolumesWithBalanceCursorResponseTypedDict,
     ],
 )
 r"""OK"""
@@ -201,10 +208,10 @@ r"""OK"""
 V2RunQueryResponseBody = TypeAliasType(
     "V2RunQueryResponseBody",
     Union[
-        shared_v2transactionscursorresponse.V2TransactionsCursorResponse,
-        shared_v2accountscursorresponse.V2AccountsCursorResponse,
-        shared_v2logscursorresponse.V2LogsCursorResponse,
-        shared_v2volumeswithbalancecursorresponse.V2VolumesWithBalanceCursorResponse,
+        ledger_v2transactionscursorresponse.V2TransactionsCursorResponse,
+        ledger_v2accountscursorresponse.V2AccountsCursorResponse,
+        ledger_v2logscursorresponse.V2LogsCursorResponse,
+        ledger_v2volumeswithbalancecursorresponse.V2VolumesWithBalanceCursorResponse,
     ],
 )
 r"""OK"""
@@ -249,3 +256,9 @@ class V2RunQueryResponse(BaseModel):
                     m[k] = val
 
         return m
+
+
+try:
+    V2RunQueryRequestBody.model_rebuild()
+except NameError:
+    pass

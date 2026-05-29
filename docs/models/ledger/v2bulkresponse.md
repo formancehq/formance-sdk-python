@@ -1,0 +1,10 @@
+# V2BulkResponse
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `v2_errors_enum`                                                               | [Optional[ledger.V2ErrorsEnum]](../../models/ledger/v2errorsenum.md)           | :heavy_minus_sign:                                                             | N/A                                                                            | VALIDATION                                                                     |
+| `data`                                                                         | List[[ledger.V2BulkElementResult](../../models/ledger/v2bulkelementresult.md)] | :heavy_minus_sign:                                                             | N/A                                                                            |                                                                                |
+| `error_message`                                                                | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | N/A                                                                            | [VALIDATION] invalid 'cursor' query param                                      |

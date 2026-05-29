@@ -10,6 +10,11 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+VOID_HOLD_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class VoidHoldRequestTypedDict(TypedDict):
     hold_id: str
     idempotency_key: NotRequired[str]

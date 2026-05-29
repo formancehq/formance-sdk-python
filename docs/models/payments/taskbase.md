@@ -1,0 +1,15 @@
+# TaskBase
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `task_status`                                                        | [payments.TaskStatus](../../models/payments/taskstatus.md)           | :heavy_check_mark:                                                   | N/A                                                                  |
+| `connector_id`                                                       | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `created_at`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |
+| `descriptor`                                                         | [payments.Descriptor](../../models/payments/descriptor.md)           | :heavy_check_mark:                                                   | N/A                                                                  |
+| `error`                                                              | *OptionalNullable[str]*                                              | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `id`                                                                 | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `state`                                                              | [OptionalNullable[payments.State]](../../models/payments/state.md)   | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `updated_at`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |

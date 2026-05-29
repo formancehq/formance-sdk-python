@@ -10,6 +10,11 @@ from typing import Dict
 from typing_extensions import Annotated, TypedDict
 
 
+UPDATE_METADATA_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class UpdateMetadataRequestTypedDict(TypedDict):
     request_body: Nullable[Dict[str, str]]
     payment_id: str

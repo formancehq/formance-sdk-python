@@ -3,7 +3,14 @@
 from .basesdk import BaseSDK
 from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
-from formance_sdk_python.models import errors, operations, shared
+from formance_sdk_python.models import errors, operations, payments
+from formance_sdk_python.models.payments import (
+    accountrequest as payments_accountrequest,
+    bankaccountrequest as payments_bankaccountrequest,
+    paymentrequest as payments_paymentrequest,
+    poolrequest as payments_poolrequest,
+    transferinitiationrequest as payments_transferinitiationrequest,
+)
 from formance_sdk_python.types import BaseModel, Nullable, OptionalNullable, UNSET
 from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Any, Dict, Mapping, Optional, Union, cast
@@ -27,6 +34,8 @@ class PaymentsV1(BaseSDK):
 
         Add an account to a pool
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -41,7 +50,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.ADD_ACCOUNT_TO_POOL_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.AddAccountToPoolRequest)
@@ -65,9 +74,10 @@ class PaymentsV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.AddAccountToPoolRequest,
+                payments.AddAccountToPoolRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -88,7 +98,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -101,9 +111,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -123,6 +133,8 @@ class PaymentsV1(BaseSDK):
 
         Add an account to a pool
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -137,7 +149,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.ADD_ACCOUNT_TO_POOL_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.AddAccountToPoolRequest)
@@ -161,9 +173,10 @@ class PaymentsV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.AddAccountToPoolRequest,
+                payments.AddAccountToPoolRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -184,7 +197,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -197,9 +210,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -219,6 +232,8 @@ class PaymentsV1(BaseSDK):
 
         Execute a transfer between two accounts.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -233,7 +248,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CONNECTORS_TRANSFER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ConnectorsTransferRequest)
@@ -253,9 +268,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.transfer_request, False, False, "json", shared.TransferRequest
+                request.transfer_request, False, False, "json", payments.TransferRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -276,7 +292,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -284,7 +300,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ConnectorsTransferResponse(
                 transfer_response=unmarshal_json_response(
-                    Optional[shared.TransferResponse], http_res
+                    Optional[payments.TransferResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -292,9 +308,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -314,6 +330,8 @@ class PaymentsV1(BaseSDK):
 
         Execute a transfer between two accounts.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -328,7 +346,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CONNECTORS_TRANSFER_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ConnectorsTransferRequest)
@@ -348,9 +366,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.transfer_request, False, False, "json", shared.TransferRequest
+                request.transfer_request, False, False, "json", payments.TransferRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -371,7 +390,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -379,7 +398,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ConnectorsTransferResponse(
                 transfer_response=unmarshal_json_response(
-                    Optional[shared.TransferResponse], http_res
+                    Optional[payments.TransferResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -387,16 +406,19 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
     def create_account(
         self,
         *,
-        request: Union[shared.AccountRequest, shared.AccountRequestTypedDict],
+        request: Union[
+            payments_accountrequest.AccountRequest,
+            payments_accountrequest.AccountRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -405,6 +427,8 @@ class PaymentsV1(BaseSDK):
         r"""Create an account
 
         Create an account
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -420,11 +444,11 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_ACCOUNT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.AccountRequest)
-        request = cast(shared.AccountRequest, request)
+            request = utils.unmarshal(request, payments.AccountRequest)
+        request = cast(payments.AccountRequest, request)
 
         req = self._build_request(
             method="POST",
@@ -440,9 +464,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.AccountRequest
+                request, False, False, "json", payments.AccountRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -463,15 +488,15 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateAccountResponse(
-                payments_account_response=unmarshal_json_response(
-                    Optional[shared.PaymentsAccountResponse], http_res
+                account_response=unmarshal_json_response(
+                    Optional[payments.AccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -479,16 +504,19 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_account_async(
         self,
         *,
-        request: Union[shared.AccountRequest, shared.AccountRequestTypedDict],
+        request: Union[
+            payments_accountrequest.AccountRequest,
+            payments_accountrequest.AccountRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -497,6 +525,8 @@ class PaymentsV1(BaseSDK):
         r"""Create an account
 
         Create an account
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -512,11 +542,11 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_ACCOUNT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.AccountRequest)
-        request = cast(shared.AccountRequest, request)
+            request = utils.unmarshal(request, payments.AccountRequest)
+        request = cast(payments.AccountRequest, request)
 
         req = self._build_request_async(
             method="POST",
@@ -532,9 +562,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.AccountRequest
+                request, False, False, "json", payments.AccountRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -555,15 +586,15 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateAccountResponse(
-                payments_account_response=unmarshal_json_response(
-                    Optional[shared.PaymentsAccountResponse], http_res
+                account_response=unmarshal_json_response(
+                    Optional[payments.AccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -571,16 +602,19 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
     def create_bank_account(
         self,
         *,
-        request: Union[shared.BankAccountRequest, shared.BankAccountRequestTypedDict],
+        request: Union[
+            payments_bankaccountrequest.BankAccountRequest,
+            payments_bankaccountrequest.BankAccountRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -589,6 +623,8 @@ class PaymentsV1(BaseSDK):
         r"""Create a BankAccount in Payments and on the PSP
 
         Create a bank account in Payments and on the PSP.
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -604,11 +640,11 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_BANK_ACCOUNT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.BankAccountRequest)
-        request = cast(shared.BankAccountRequest, request)
+            request = utils.unmarshal(request, payments.BankAccountRequest)
+        request = cast(payments.BankAccountRequest, request)
 
         req = self._build_request(
             method="POST",
@@ -624,9 +660,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.BankAccountRequest
+                request, False, False, "json", payments.BankAccountRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -647,7 +684,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -655,7 +692,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateBankAccountResponse(
                 bank_account_response=unmarshal_json_response(
-                    Optional[shared.BankAccountResponse], http_res
+                    Optional[payments.BankAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -663,16 +700,19 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_bank_account_async(
         self,
         *,
-        request: Union[shared.BankAccountRequest, shared.BankAccountRequestTypedDict],
+        request: Union[
+            payments_bankaccountrequest.BankAccountRequest,
+            payments_bankaccountrequest.BankAccountRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -681,6 +721,8 @@ class PaymentsV1(BaseSDK):
         r"""Create a BankAccount in Payments and on the PSP
 
         Create a bank account in Payments and on the PSP.
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -696,11 +738,11 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_BANK_ACCOUNT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.BankAccountRequest)
-        request = cast(shared.BankAccountRequest, request)
+            request = utils.unmarshal(request, payments.BankAccountRequest)
+        request = cast(payments.BankAccountRequest, request)
 
         req = self._build_request_async(
             method="POST",
@@ -716,9 +758,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.BankAccountRequest
+                request, False, False, "json", payments.BankAccountRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -739,7 +782,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -747,7 +790,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateBankAccountResponse(
                 bank_account_response=unmarshal_json_response(
-                    Optional[shared.BankAccountResponse], http_res
+                    Optional[payments.BankAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -755,16 +798,19 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
     def create_payment(
         self,
         *,
-        request: Union[shared.PaymentRequest, shared.PaymentRequestTypedDict],
+        request: Union[
+            payments_paymentrequest.PaymentRequest,
+            payments_paymentrequest.PaymentRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -773,6 +819,8 @@ class PaymentsV1(BaseSDK):
         r"""Create a payment
 
         Create a payment
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -788,11 +836,11 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_PAYMENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.PaymentRequest)
-        request = cast(shared.PaymentRequest, request)
+            request = utils.unmarshal(request, payments.PaymentRequest)
+        request = cast(payments.PaymentRequest, request)
 
         req = self._build_request(
             method="POST",
@@ -808,9 +856,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.PaymentRequest
+                request, False, False, "json", payments.PaymentRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -831,7 +880,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -839,7 +888,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreatePaymentResponse(
                 payment_response=unmarshal_json_response(
-                    Optional[shared.PaymentResponse], http_res
+                    Optional[payments.PaymentResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -847,16 +896,19 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_payment_async(
         self,
         *,
-        request: Union[shared.PaymentRequest, shared.PaymentRequestTypedDict],
+        request: Union[
+            payments_paymentrequest.PaymentRequest,
+            payments_paymentrequest.PaymentRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -865,6 +917,8 @@ class PaymentsV1(BaseSDK):
         r"""Create a payment
 
         Create a payment
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -880,11 +934,11 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_PAYMENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.PaymentRequest)
-        request = cast(shared.PaymentRequest, request)
+            request = utils.unmarshal(request, payments.PaymentRequest)
+        request = cast(payments.PaymentRequest, request)
 
         req = self._build_request_async(
             method="POST",
@@ -900,9 +954,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.PaymentRequest
+                request, False, False, "json", payments.PaymentRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -923,7 +978,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -931,7 +986,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreatePaymentResponse(
                 payment_response=unmarshal_json_response(
-                    Optional[shared.PaymentResponse], http_res
+                    Optional[payments.PaymentResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -939,16 +994,18 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
     def create_pool(
         self,
         *,
-        request: Union[shared.PoolRequest, shared.PoolRequestTypedDict],
+        request: Union[
+            payments_poolrequest.PoolRequest, payments_poolrequest.PoolRequestTypedDict
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -957,6 +1014,8 @@ class PaymentsV1(BaseSDK):
         r"""Create a Pool
 
         Create a Pool
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -972,11 +1031,11 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_POOL_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.PoolRequest)
-        request = cast(shared.PoolRequest, request)
+            request = utils.unmarshal(request, payments.PoolRequest)
+        request = cast(payments.PoolRequest, request)
 
         req = self._build_request(
             method="POST",
@@ -992,9 +1051,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.PoolRequest
+                request, False, False, "json", payments.PoolRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1015,7 +1075,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1023,7 +1083,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreatePoolResponse(
                 pool_response=unmarshal_json_response(
-                    Optional[shared.PoolResponse], http_res
+                    Optional[payments.PoolResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1031,16 +1091,18 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
     async def create_pool_async(
         self,
         *,
-        request: Union[shared.PoolRequest, shared.PoolRequestTypedDict],
+        request: Union[
+            payments_poolrequest.PoolRequest, payments_poolrequest.PoolRequestTypedDict
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1049,6 +1111,8 @@ class PaymentsV1(BaseSDK):
         r"""Create a Pool
 
         Create a Pool
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1064,11 +1128,11 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_POOL_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.PoolRequest)
-        request = cast(shared.PoolRequest, request)
+            request = utils.unmarshal(request, payments.PoolRequest)
+        request = cast(payments.PoolRequest, request)
 
         req = self._build_request_async(
             method="POST",
@@ -1084,9 +1148,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.PoolRequest
+                request, False, False, "json", payments.PoolRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1107,7 +1172,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1115,7 +1180,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreatePoolResponse(
                 pool_response=unmarshal_json_response(
-                    Optional[shared.PoolResponse], http_res
+                    Optional[payments.PoolResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1123,9 +1188,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1133,7 +1198,8 @@ class PaymentsV1(BaseSDK):
         self,
         *,
         request: Union[
-            shared.TransferInitiationRequest, shared.TransferInitiationRequestTypedDict
+            payments_transferinitiationrequest.TransferInitiationRequest,
+            payments_transferinitiationrequest.TransferInitiationRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1143,6 +1209,8 @@ class PaymentsV1(BaseSDK):
         r"""Create a TransferInitiation
 
         Create a transfer initiation
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1158,11 +1226,11 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_TRANSFER_INITIATION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.TransferInitiationRequest)
-        request = cast(shared.TransferInitiationRequest, request)
+            request = utils.unmarshal(request, payments.TransferInitiationRequest)
+        request = cast(payments.TransferInitiationRequest, request)
 
         req = self._build_request(
             method="POST",
@@ -1178,9 +1246,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.TransferInitiationRequest
+                request, False, False, "json", payments.TransferInitiationRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1201,7 +1270,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1209,7 +1278,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateTransferInitiationResponse(
                 transfer_initiation_response=unmarshal_json_response(
-                    Optional[shared.TransferInitiationResponse], http_res
+                    Optional[payments.TransferInitiationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1217,9 +1286,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1227,7 +1296,8 @@ class PaymentsV1(BaseSDK):
         self,
         *,
         request: Union[
-            shared.TransferInitiationRequest, shared.TransferInitiationRequestTypedDict
+            payments_transferinitiationrequest.TransferInitiationRequest,
+            payments_transferinitiationrequest.TransferInitiationRequestTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1237,6 +1307,8 @@ class PaymentsV1(BaseSDK):
         r"""Create a TransferInitiation
 
         Create a transfer initiation
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -1252,11 +1324,11 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.CREATE_TRANSFER_INITIATION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.TransferInitiationRequest)
-        request = cast(shared.TransferInitiationRequest, request)
+            request = utils.unmarshal(request, payments.TransferInitiationRequest)
+        request = cast(payments.TransferInitiationRequest, request)
 
         req = self._build_request_async(
             method="POST",
@@ -1272,9 +1344,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", shared.TransferInitiationRequest
+                request, False, False, "json", payments.TransferInitiationRequest
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1295,7 +1368,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1303,7 +1376,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.CreateTransferInitiationResponse(
                 transfer_initiation_response=unmarshal_json_response(
-                    Optional[shared.TransferInitiationResponse], http_res
+                    Optional[payments.TransferInitiationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1311,9 +1384,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1332,6 +1405,8 @@ class PaymentsV1(BaseSDK):
 
         Delete a pool by its id.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1346,7 +1421,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_POOL_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeletePoolRequest)
@@ -1366,6 +1441,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1386,7 +1462,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -1399,9 +1475,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1420,6 +1496,8 @@ class PaymentsV1(BaseSDK):
 
         Delete a pool by its id.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1434,7 +1512,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_POOL_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeletePoolRequest)
@@ -1454,6 +1532,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1474,7 +1553,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -1487,9 +1566,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1509,6 +1588,8 @@ class PaymentsV1(BaseSDK):
 
         Delete a transfer initiation by its id.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1523,7 +1604,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_TRANSFER_INITIATION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1545,6 +1626,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1565,7 +1647,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -1578,9 +1660,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1600,6 +1682,8 @@ class PaymentsV1(BaseSDK):
 
         Delete a transfer initiation by its id.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1614,7 +1698,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.DELETE_TRANSFER_INITIATION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1636,6 +1720,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1656,7 +1741,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -1669,9 +1754,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1689,6 +1774,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.ForwardBankAccountResponse:
         r"""Forward a bank account to a connector
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1703,7 +1790,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.FORWARD_BANK_ACCOUNT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ForwardBankAccountRequest)
@@ -1727,9 +1814,10 @@ class PaymentsV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.ForwardBankAccountRequest,
+                payments.ForwardBankAccountRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1750,7 +1838,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1758,7 +1846,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ForwardBankAccountResponse(
                 bank_account_response=unmarshal_json_response(
-                    Optional[shared.BankAccountResponse], http_res
+                    Optional[payments.BankAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1766,9 +1854,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1786,6 +1874,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.ForwardBankAccountResponse:
         r"""Forward a bank account to a connector
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1800,7 +1890,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.FORWARD_BANK_ACCOUNT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ForwardBankAccountRequest)
@@ -1824,9 +1914,10 @@ class PaymentsV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.ForwardBankAccountRequest,
+                payments.ForwardBankAccountRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1847,7 +1938,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1855,7 +1946,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ForwardBankAccountResponse(
                 bank_account_response=unmarshal_json_response(
-                    Optional[shared.BankAccountResponse], http_res
+                    Optional[payments.BankAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1863,9 +1954,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1883,6 +1974,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.GetAccountBalancesResponse:
         r"""Get account balances
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1897,7 +1990,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_ACCOUNT_BALANCES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccountBalancesRequest)
@@ -1917,6 +2010,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -1937,7 +2031,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -1945,7 +2039,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetAccountBalancesResponse(
                 balances_cursor=unmarshal_json_response(
-                    Optional[shared.BalancesCursor], http_res
+                    Optional[payments.BalancesCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -1953,9 +2047,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1973,6 +2067,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.GetAccountBalancesResponse:
         r"""Get account balances
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1987,7 +2083,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_ACCOUNT_BALANCES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccountBalancesRequest)
@@ -2007,6 +2103,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2027,7 +2124,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2035,7 +2132,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetAccountBalancesResponse(
                 balances_cursor=unmarshal_json_response(
-                    Optional[shared.BalancesCursor], http_res
+                    Optional[payments.BalancesCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2043,9 +2140,195 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def get_account_payments(
+        self,
+        *,
+        request: Union[
+            operations.GetAccountPaymentsRequest,
+            operations.GetAccountPaymentsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetAccountPaymentsResponse:
+        r"""Get an account
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = operations.GET_ACCOUNT_PAYMENTS_SERVERS[0]
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetAccountPaymentsRequest)
+        request = cast(operations.GetAccountPaymentsRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/payments/accounts/{accountId}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getAccount_payments",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetAccountPaymentsResponse(
+                account_response=unmarshal_json_response(
+                    Optional[payments.AccountResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                payments.PaymentsErrorResponseData, http_res
+            )
+            raise payments.PaymentsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def get_account_payments_async(
+        self,
+        *,
+        request: Union[
+            operations.GetAccountPaymentsRequest,
+            operations.GetAccountPaymentsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetAccountPaymentsResponse:
+        r"""Get an account
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = operations.GET_ACCOUNT_PAYMENTS_SERVERS[0]
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetAccountPaymentsRequest)
+        request = cast(operations.GetAccountPaymentsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/payments/accounts/{accountId}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getAccount_payments",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetAccountPaymentsResponse(
+                account_response=unmarshal_json_response(
+                    Optional[payments.AccountResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                payments.PaymentsErrorResponseData, http_res
+            )
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2062,6 +2345,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.GetBankAccountResponse:
         r"""Get a bank account created by user on Formance
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2076,7 +2361,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_BANK_ACCOUNT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBankAccountRequest)
@@ -2096,6 +2381,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2116,7 +2402,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2124,7 +2410,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBankAccountResponse(
                 bank_account_response=unmarshal_json_response(
-                    Optional[shared.BankAccountResponse], http_res
+                    Optional[payments.BankAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2132,9 +2418,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2151,6 +2437,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.GetBankAccountResponse:
         r"""Get a bank account created by user on Formance
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2165,7 +2453,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_BANK_ACCOUNT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBankAccountRequest)
@@ -2185,6 +2473,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2205,7 +2494,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2213,7 +2502,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetBankAccountResponse(
                 bank_account_response=unmarshal_json_response(
-                    Optional[shared.BankAccountResponse], http_res
+                    Optional[payments.BankAccountResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2221,9 +2510,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2246,6 +2535,8 @@ class PaymentsV1(BaseSDK):
 
         Get a specific task associated to the connector.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2260,7 +2551,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_CONNECTOR_TASK_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetConnectorTaskRequest)
@@ -2280,6 +2571,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2300,7 +2592,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2308,7 +2600,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetConnectorTaskResponse(
                 task_response=unmarshal_json_response(
-                    Optional[shared.TaskResponse], http_res
+                    Optional[payments.TaskResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2316,9 +2608,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2341,6 +2633,8 @@ class PaymentsV1(BaseSDK):
 
         Get a specific task associated to the connector.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2355,7 +2649,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_CONNECTOR_TASK_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetConnectorTaskRequest)
@@ -2375,6 +2669,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2395,7 +2690,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2403,7 +2698,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetConnectorTaskResponse(
                 task_response=unmarshal_json_response(
-                    Optional[shared.TaskResponse], http_res
+                    Optional[payments.TaskResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2411,9 +2706,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2433,6 +2728,8 @@ class PaymentsV1(BaseSDK):
 
         Get a specific task associated to the connector.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2447,7 +2744,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_CONNECTOR_TASK_V1_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetConnectorTaskV1Request)
@@ -2467,6 +2764,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2487,7 +2785,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2495,7 +2793,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetConnectorTaskV1Response(
                 task_response=unmarshal_json_response(
-                    Optional[shared.TaskResponse], http_res
+                    Optional[payments.TaskResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2503,9 +2801,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2525,6 +2823,8 @@ class PaymentsV1(BaseSDK):
 
         Get a specific task associated to the connector.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2539,7 +2839,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_CONNECTOR_TASK_V1_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetConnectorTaskV1Request)
@@ -2559,6 +2859,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2579,7 +2880,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2587,7 +2888,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetConnectorTaskV1Response(
                 task_response=unmarshal_json_response(
-                    Optional[shared.TaskResponse], http_res
+                    Optional[payments.TaskResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2595,9 +2896,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2614,6 +2915,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.GetPaymentResponse:
         r"""Get a payment
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2628,7 +2931,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_PAYMENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPaymentRequest)
@@ -2648,6 +2951,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2668,7 +2972,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2676,7 +2980,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPaymentResponse(
                 payment_response=unmarshal_json_response(
-                    Optional[shared.PaymentResponse], http_res
+                    Optional[payments.PaymentResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2684,9 +2988,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2703,6 +3007,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.GetPaymentResponse:
         r"""Get a payment
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2717,7 +3023,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_PAYMENT_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPaymentRequest)
@@ -2737,6 +3043,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2757,7 +3064,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2765,7 +3072,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPaymentResponse(
                 payment_response=unmarshal_json_response(
-                    Optional[shared.PaymentResponse], http_res
+                    Optional[payments.PaymentResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2773,9 +3080,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2789,6 +3096,8 @@ class PaymentsV1(BaseSDK):
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetPoolResponse:
         r"""Get a Pool
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -2804,7 +3113,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_POOL_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolRequest)
@@ -2824,6 +3133,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2844,7 +3154,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2852,7 +3162,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPoolResponse(
                 pool_response=unmarshal_json_response(
-                    Optional[shared.PoolResponse], http_res
+                    Optional[payments.PoolResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2860,9 +3170,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2876,6 +3186,8 @@ class PaymentsV1(BaseSDK):
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetPoolResponse:
         r"""Get a Pool
+
+        If set, this operation will use `client_id` from the global security.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -2891,7 +3203,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_POOL_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolRequest)
@@ -2911,6 +3223,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -2931,7 +3244,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -2939,7 +3252,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPoolResponse(
                 pool_response=unmarshal_json_response(
-                    Optional[shared.PoolResponse], http_res
+                    Optional[payments.PoolResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -2947,9 +3260,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2967,6 +3280,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.GetPoolBalancesResponse:
         r"""Get historical pool balances at a particular point in time
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2981,7 +3296,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_POOL_BALANCES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolBalancesRequest)
@@ -3001,6 +3316,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3021,7 +3337,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -3029,7 +3345,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPoolBalancesResponse(
                 pool_balances_response=unmarshal_json_response(
-                    Optional[shared.PoolBalancesResponse], http_res
+                    Optional[payments.PoolBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3037,9 +3353,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3057,6 +3373,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.GetPoolBalancesResponse:
         r"""Get historical pool balances at a particular point in time
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3071,7 +3389,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_POOL_BALANCES_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolBalancesRequest)
@@ -3091,6 +3409,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3111,7 +3430,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -3119,7 +3438,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPoolBalancesResponse(
                 pool_balances_response=unmarshal_json_response(
-                    Optional[shared.PoolBalancesResponse], http_res
+                    Optional[payments.PoolBalancesResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3127,9 +3446,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3147,6 +3466,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.GetPoolBalancesLatestResponse:
         r"""Get latest pool balances
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3161,7 +3482,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_POOL_BALANCES_LATEST_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolBalancesLatestRequest)
@@ -3181,6 +3502,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3201,7 +3523,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -3209,7 +3531,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPoolBalancesLatestResponse(
                 pool_balances_latest_response=unmarshal_json_response(
-                    Optional[shared.PoolBalancesLatestResponse], http_res
+                    Optional[payments.PoolBalancesLatestResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3217,9 +3539,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3237,6 +3559,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.GetPoolBalancesLatestResponse:
         r"""Get latest pool balances
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3251,7 +3575,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_POOL_BALANCES_LATEST_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolBalancesLatestRequest)
@@ -3271,6 +3595,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3291,7 +3616,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -3299,7 +3624,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetPoolBalancesLatestResponse(
                 pool_balances_latest_response=unmarshal_json_response(
-                    Optional[shared.PoolBalancesLatestResponse], http_res
+                    Optional[payments.PoolBalancesLatestResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3307,9 +3632,175 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def get_server_info_payments(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetServerInfoPaymentsResponse:
+        r"""Get server info
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = operations.GET_SERVER_INFO_PAYMENTS_SERVERS[0]
+        req = self._build_request(
+            method="GET",
+            path="/api/payments/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getServerInfo_payments",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetServerInfoPaymentsResponse(
+                server_info=unmarshal_json_response(
+                    Optional[payments.ServerInfo], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                payments.PaymentsErrorResponseData, http_res
+            )
+            raise payments.PaymentsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def get_server_info_payments_async(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetServerInfoPaymentsResponse:
+        r"""Get server info
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = operations.GET_SERVER_INFO_PAYMENTS_SERVERS[0]
+        req = self._build_request_async(
+            method="GET",
+            path="/api/payments/_info",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getServerInfo_payments",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetServerInfoPaymentsResponse(
+                server_info=unmarshal_json_response(
+                    Optional[payments.ServerInfo], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                payments.PaymentsErrorResponseData, http_res
+            )
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3327,6 +3818,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.GetTransferInitiationResponse:
         r"""Get a transfer initiation
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3341,7 +3834,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_TRANSFER_INITIATION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransferInitiationRequest)
@@ -3361,6 +3854,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3381,7 +3875,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -3389,7 +3883,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransferInitiationResponse(
                 transfer_initiation_response=unmarshal_json_response(
-                    Optional[shared.TransferInitiationResponse], http_res
+                    Optional[payments.TransferInitiationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3397,9 +3891,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3417,6 +3911,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.GetTransferInitiationResponse:
         r"""Get a transfer initiation
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3431,7 +3927,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.GET_TRANSFER_INITIATION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransferInitiationRequest)
@@ -3451,6 +3947,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3471,7 +3968,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -3479,7 +3976,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetTransferInitiationResponse(
                 transfer_initiation_response=unmarshal_json_response(
-                    Optional[shared.TransferInitiationResponse], http_res
+                    Optional[payments.TransferInitiationResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3487,9 +3984,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3509,6 +4006,8 @@ class PaymentsV1(BaseSDK):
 
         Install a connector by its name and config.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3523,7 +4022,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.INSTALL_CONNECTOR_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.InstallConnectorRequest)
@@ -3543,9 +4042,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.connector_config, False, False, "json", shared.ConnectorConfig
+                request.connector_config, False, False, "json", payments.ConnectorConfig
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3566,7 +4066,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -3574,7 +4074,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.InstallConnectorResponse(
                 connector_response=unmarshal_json_response(
-                    Optional[shared.ConnectorResponse], http_res
+                    Optional[payments.ConnectorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3582,9 +4082,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3604,6 +4104,8 @@ class PaymentsV1(BaseSDK):
 
         Install a connector by its name and config.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3618,7 +4120,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.INSTALL_CONNECTOR_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.InstallConnectorRequest)
@@ -3638,9 +4140,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.connector_config, False, False, "json", shared.ConnectorConfig
+                request.connector_config, False, False, "json", payments.ConnectorConfig
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3661,7 +4164,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
             retry_config=retry_config,
         )
 
@@ -3669,7 +4172,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return operations.InstallConnectorResponse(
                 connector_response=unmarshal_json_response(
-                    Optional[shared.ConnectorResponse], http_res
+                    Optional[payments.ConnectorResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3677,9 +4180,209 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def list_accounts_payments(
+        self,
+        *,
+        request: Union[
+            operations.ListAccountsPaymentsRequest,
+            operations.ListAccountsPaymentsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListAccountsPaymentsResponse:
+        r"""List accounts
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = operations.LIST_ACCOUNTS_PAYMENTS_SERVERS[0]
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListAccountsPaymentsRequest)
+        request = cast(operations.ListAccountsPaymentsRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/payments/accounts",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, Any]],
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listAccounts_payments",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListAccountsPaymentsResponse(
+                accounts_cursor=unmarshal_json_response(
+                    Optional[payments.AccountsCursor], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                payments.PaymentsErrorResponseData, http_res
+            )
+            raise payments.PaymentsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def list_accounts_payments_async(
+        self,
+        *,
+        request: Union[
+            operations.ListAccountsPaymentsRequest,
+            operations.ListAccountsPaymentsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListAccountsPaymentsResponse:
+        r"""List accounts
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = operations.LIST_ACCOUNTS_PAYMENTS_SERVERS[0]
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListAccountsPaymentsRequest)
+        request = cast(operations.ListAccountsPaymentsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/payments/accounts",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, Any]],
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listAccounts_payments",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListAccountsPaymentsResponse(
+                accounts_cursor=unmarshal_json_response(
+                    Optional[payments.AccountsCursor], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                payments.PaymentsErrorResponseData, http_res
+            )
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3695,6 +4398,8 @@ class PaymentsV1(BaseSDK):
 
         List all installed connectors.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -3708,7 +4413,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_ALL_CONNECTORS_SERVERS[0]
         req = self._build_request(
             method="GET",
             path="/api/payments/connectors",
@@ -3723,6 +4428,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3743,7 +4449,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -3751,7 +4457,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListAllConnectorsResponse(
                 connectors_response=unmarshal_json_response(
-                    Optional[shared.ConnectorsResponse], http_res
+                    Optional[payments.ConnectorsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3759,9 +4465,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3777,6 +4483,8 @@ class PaymentsV1(BaseSDK):
 
         List all installed connectors.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -3790,7 +4498,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_ALL_CONNECTORS_SERVERS[0]
         req = self._build_request_async(
             method="GET",
             path="/api/payments/connectors",
@@ -3805,6 +4513,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3825,7 +4534,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -3833,7 +4542,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListAllConnectorsResponse(
                 connectors_response=unmarshal_json_response(
-                    Optional[shared.ConnectorsResponse], http_res
+                    Optional[payments.ConnectorsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3841,9 +4550,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3863,6 +4572,8 @@ class PaymentsV1(BaseSDK):
 
         List all bank accounts created by user on Formance.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3877,7 +4588,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_BANK_ACCOUNTS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListBankAccountsRequest)
@@ -3897,6 +4608,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -3917,7 +4629,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -3925,7 +4637,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListBankAccountsResponse(
                 bank_accounts_cursor=unmarshal_json_response(
-                    Optional[shared.BankAccountsCursor], http_res
+                    Optional[payments.BankAccountsCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3933,9 +4645,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3955,6 +4667,8 @@ class PaymentsV1(BaseSDK):
 
         List all bank accounts created by user on Formance.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3969,7 +4683,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_BANK_ACCOUNTS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListBankAccountsRequest)
@@ -3989,6 +4703,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -4009,7 +4724,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -4017,7 +4732,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListBankAccountsResponse(
                 bank_accounts_cursor=unmarshal_json_response(
-                    Optional[shared.BankAccountsCursor], http_res
+                    Optional[payments.BankAccountsCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -4025,9 +4740,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -4043,6 +4758,8 @@ class PaymentsV1(BaseSDK):
 
         List the configs of each available connector.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -4056,7 +4773,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_CONFIGS_AVAILABLE_CONNECTORS_SERVERS[0]
         req = self._build_request(
             method="GET",
             path="/api/payments/connectors/configs",
@@ -4071,6 +4788,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -4091,7 +4809,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -4099,7 +4817,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListConfigsAvailableConnectorsResponse(
                 connectors_configs_response=unmarshal_json_response(
-                    Optional[shared.ConnectorsConfigsResponse], http_res
+                    Optional[payments.ConnectorsConfigsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -4107,9 +4825,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -4125,6 +4843,8 @@ class PaymentsV1(BaseSDK):
 
         List the configs of each available connector.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -4138,7 +4858,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_CONFIGS_AVAILABLE_CONNECTORS_SERVERS[0]
         req = self._build_request_async(
             method="GET",
             path="/api/payments/connectors/configs",
@@ -4153,6 +4873,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -4173,7 +4894,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -4181,7 +4902,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListConfigsAvailableConnectorsResponse(
                 connectors_configs_response=unmarshal_json_response(
-                    Optional[shared.ConnectorsConfigsResponse], http_res
+                    Optional[payments.ConnectorsConfigsResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -4189,9 +4910,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -4214,6 +4935,8 @@ class PaymentsV1(BaseSDK):
 
         List all tasks associated with this connector.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -4228,7 +4951,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_CONNECTOR_TASKS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListConnectorTasksRequest)
@@ -4248,6 +4971,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -4268,7 +4992,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -4276,7 +5000,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListConnectorTasksResponse(
                 tasks_cursor=unmarshal_json_response(
-                    Optional[shared.TasksCursor], http_res
+                    Optional[payments.TasksCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -4284,9 +5008,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -4309,6 +5033,8 @@ class PaymentsV1(BaseSDK):
 
         List all tasks associated with this connector.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -4323,7 +5049,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_CONNECTOR_TASKS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListConnectorTasksRequest)
@@ -4343,6 +5069,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -4363,7 +5090,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -4371,7 +5098,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListConnectorTasksResponse(
                 tasks_cursor=unmarshal_json_response(
-                    Optional[shared.TasksCursor], http_res
+                    Optional[payments.TasksCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -4379,9 +5106,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -4401,6 +5128,8 @@ class PaymentsV1(BaseSDK):
 
         List all tasks associated with this connector.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -4415,7 +5144,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_CONNECTOR_TASKS_V1_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListConnectorTasksV1Request)
@@ -4435,6 +5164,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -4455,7 +5185,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -4463,7 +5193,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListConnectorTasksV1Response(
                 tasks_cursor=unmarshal_json_response(
-                    Optional[shared.TasksCursor], http_res
+                    Optional[payments.TasksCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -4471,9 +5201,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -4493,6 +5223,8 @@ class PaymentsV1(BaseSDK):
 
         List all tasks associated with this connector.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -4507,7 +5239,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_CONNECTOR_TASKS_V1_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListConnectorTasksV1Request)
@@ -4527,6 +5259,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -4547,7 +5280,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -4555,7 +5288,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListConnectorTasksV1Response(
                 tasks_cursor=unmarshal_json_response(
-                    Optional[shared.TasksCursor], http_res
+                    Optional[payments.TasksCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -4563,9 +5296,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -4582,6 +5315,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.ListPaymentsResponse:
         r"""List payments
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -4596,7 +5331,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_PAYMENTS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPaymentsRequest)
@@ -4616,6 +5351,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -4636,7 +5372,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -4644,7 +5380,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListPaymentsResponse(
                 payments_cursor=unmarshal_json_response(
-                    Optional[shared.PaymentsCursor], http_res
+                    Optional[payments.PaymentsCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -4652,9 +5388,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -4671,6 +5407,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.ListPaymentsResponse:
         r"""List payments
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -4685,7 +5423,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_PAYMENTS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPaymentsRequest)
@@ -4705,6 +5443,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -4725,7 +5464,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -4733,7 +5472,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListPaymentsResponse(
                 payments_cursor=unmarshal_json_response(
-                    Optional[shared.PaymentsCursor], http_res
+                    Optional[payments.PaymentsCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -4741,9 +5480,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -4760,6 +5499,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.ListPoolsResponse:
         r"""List Pools
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -4774,7 +5515,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_POOLS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPoolsRequest)
@@ -4794,6 +5535,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -4814,7 +5556,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -4822,7 +5564,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListPoolsResponse(
                 pools_cursor=unmarshal_json_response(
-                    Optional[shared.PoolsCursor], http_res
+                    Optional[payments.PoolsCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -4830,9 +5572,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -4849,6 +5591,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.ListPoolsResponse:
         r"""List Pools
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -4863,7 +5607,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_POOLS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPoolsRequest)
@@ -4883,6 +5627,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -4903,7 +5648,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -4911,7 +5656,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListPoolsResponse(
                 pools_cursor=unmarshal_json_response(
-                    Optional[shared.PoolsCursor], http_res
+                    Optional[payments.PoolsCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -4919,9 +5664,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -4939,6 +5684,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.ListTransferInitiationsResponse:
         r"""List Transfer Initiations
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -4953,7 +5700,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_TRANSFER_INITIATIONS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -4975,6 +5722,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -4995,7 +5743,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -5003,7 +5751,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTransferInitiationsResponse(
                 transfer_initiations_cursor=unmarshal_json_response(
-                    Optional[shared.TransferInitiationsCursor], http_res
+                    Optional[payments.TransferInitiationsCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -5011,9 +5759,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -5031,6 +5779,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.ListTransferInitiationsResponse:
         r"""List Transfer Initiations
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -5045,7 +5795,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.LIST_TRANSFER_INITIATIONS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -5067,6 +5817,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -5087,7 +5838,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -5095,7 +5846,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ListTransferInitiationsResponse(
                 transfer_initiations_cursor=unmarshal_json_response(
-                    Optional[shared.TransferInitiationsCursor], http_res
+                    Optional[payments.TransferInitiationsCursor], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -5103,529 +5854,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
-
-        raise errors.SDKError("Unexpected response received", http_res)
-
-    def paymentsget_account(
-        self,
-        *,
-        request: Union[
-            operations.PaymentsgetAccountRequest,
-            operations.PaymentsgetAccountRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.PaymentsgetAccountResponse:
-        r"""Get an account
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.PaymentsgetAccountRequest)
-        request = cast(operations.PaymentsgetAccountRequest, request)
-
-        req = self._build_request(
-            method="GET",
-            path="/api/payments/accounts/{accountId}",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="paymentsgetAccount",
-                oauth2_scopes=["payments:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.PaymentsgetAccountResponse(
-                payments_account_response=unmarshal_json_response(
-                    Optional[shared.PaymentsAccountResponse], http_res
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
-            )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
-
-        raise errors.SDKError("Unexpected response received", http_res)
-
-    async def paymentsget_account_async(
-        self,
-        *,
-        request: Union[
-            operations.PaymentsgetAccountRequest,
-            operations.PaymentsgetAccountRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.PaymentsgetAccountResponse:
-        r"""Get an account
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.PaymentsgetAccountRequest)
-        request = cast(operations.PaymentsgetAccountRequest, request)
-
-        req = self._build_request_async(
-            method="GET",
-            path="/api/payments/accounts/{accountId}",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="paymentsgetAccount",
-                oauth2_scopes=["payments:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.PaymentsgetAccountResponse(
-                payments_account_response=unmarshal_json_response(
-                    Optional[shared.PaymentsAccountResponse], http_res
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
-            )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
-
-        raise errors.SDKError("Unexpected response received", http_res)
-
-    def paymentsget_server_info(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.PaymentsgetServerInfoResponse:
-        r"""Get server info
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-        req = self._build_request(
-            method="GET",
-            path="/api/payments/_info",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="paymentsgetServerInfo",
-                oauth2_scopes=["payments:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.PaymentsgetServerInfoResponse(
-                payments_server_info=unmarshal_json_response(
-                    Optional[shared.PaymentsServerInfo], http_res
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
-            )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
-
-        raise errors.SDKError("Unexpected response received", http_res)
-
-    async def paymentsget_server_info_async(
-        self,
-        *,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.PaymentsgetServerInfoResponse:
-        r"""Get server info
-
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-        req = self._build_request_async(
-            method="GET",
-            path="/api/payments/_info",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=None,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="paymentsgetServerInfo",
-                oauth2_scopes=["payments:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.PaymentsgetServerInfoResponse(
-                payments_server_info=unmarshal_json_response(
-                    Optional[shared.PaymentsServerInfo], http_res
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
-            )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
-
-        raise errors.SDKError("Unexpected response received", http_res)
-
-    def paymentslist_accounts(
-        self,
-        *,
-        request: Union[
-            operations.PaymentslistAccountsRequest,
-            operations.PaymentslistAccountsRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.PaymentslistAccountsResponse:
-        r"""List accounts
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.PaymentslistAccountsRequest)
-        request = cast(operations.PaymentslistAccountsRequest, request)
-
-        req = self._build_request(
-            method="GET",
-            path="/api/payments/accounts",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="paymentslistAccounts",
-                oauth2_scopes=["payments:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.PaymentslistAccountsResponse(
-                accounts_cursor=unmarshal_json_response(
-                    Optional[shared.AccountsCursor], http_res
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
-            )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
-
-        raise errors.SDKError("Unexpected response received", http_res)
-
-    async def paymentslist_accounts_async(
-        self,
-        *,
-        request: Union[
-            operations.PaymentslistAccountsRequest,
-            operations.PaymentslistAccountsRequestTypedDict,
-        ],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> operations.PaymentslistAccountsResponse:
-        r"""List accounts
-
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.PaymentslistAccountsRequest)
-        request = cast(operations.PaymentslistAccountsRequest, request)
-
-        req = self._build_request_async(
-            method="GET",
-            path="/api/payments/accounts",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="paymentslistAccounts",
-                oauth2_scopes=["payments:read"],
-                security_source=self.sdk_configuration.security,
-            ),
-            request=req,
-            error_status_codes=["default"],
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.PaymentslistAccountsResponse(
-                accounts_cursor=unmarshal_json_response(
-                    Optional[shared.AccountsCursor], http_res
-                ),
-                status_code=http_res.status_code,
-                content_type=http_res.headers.get("Content-Type") or "",
-                raw_response=http_res,
-            )
-        if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
-            )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -5648,6 +5879,8 @@ class PaymentsV1(BaseSDK):
 
         Read connector config
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -5662,7 +5895,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.READ_CONNECTOR_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadConnectorConfigRequest)
@@ -5682,6 +5915,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -5702,7 +5936,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -5710,7 +5944,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadConnectorConfigResponse(
                 connector_config_response=unmarshal_json_response(
-                    Optional[shared.ConnectorConfigResponse], http_res
+                    Optional[payments.ConnectorConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -5718,9 +5952,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -5743,6 +5977,8 @@ class PaymentsV1(BaseSDK):
 
         Read connector config
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -5757,7 +5993,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.READ_CONNECTOR_CONFIG_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadConnectorConfigRequest)
@@ -5777,6 +6013,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -5797,7 +6034,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -5805,7 +6042,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadConnectorConfigResponse(
                 connector_config_response=unmarshal_json_response(
-                    Optional[shared.ConnectorConfigResponse], http_res
+                    Optional[payments.ConnectorConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -5813,9 +6050,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -5835,6 +6072,8 @@ class PaymentsV1(BaseSDK):
 
         Read connector config
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -5849,7 +6088,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.READ_CONNECTOR_CONFIG_V1_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadConnectorConfigV1Request)
@@ -5869,6 +6108,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -5889,7 +6129,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -5897,7 +6137,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadConnectorConfigV1Response(
                 connector_config_response=unmarshal_json_response(
-                    Optional[shared.ConnectorConfigResponse], http_res
+                    Optional[payments.ConnectorConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -5905,9 +6145,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -5927,6 +6167,8 @@ class PaymentsV1(BaseSDK):
 
         Read connector config
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -5941,7 +6183,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.READ_CONNECTOR_CONFIG_V1_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadConnectorConfigV1Request)
@@ -5961,6 +6203,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -5981,7 +6224,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
             retry_config=retry_config,
         )
 
@@ -5989,7 +6232,7 @@ class PaymentsV1(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return operations.ReadConnectorConfigV1Response(
                 connector_config_response=unmarshal_json_response(
-                    Optional[shared.ConnectorConfigResponse], http_res
+                    Optional[payments.ConnectorConfigResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -5997,9 +6240,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -6019,6 +6262,8 @@ class PaymentsV1(BaseSDK):
 
         Remove an account from a pool by its id.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -6033,7 +6278,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.REMOVE_ACCOUNT_FROM_POOL_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RemoveAccountFromPoolRequest)
@@ -6053,6 +6298,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -6073,7 +6319,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -6086,9 +6332,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -6108,6 +6354,8 @@ class PaymentsV1(BaseSDK):
 
         Remove an account from a pool by its id.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -6122,7 +6370,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.REMOVE_ACCOUNT_FROM_POOL_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RemoveAccountFromPoolRequest)
@@ -6142,6 +6390,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -6162,7 +6411,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -6175,9 +6424,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -6201,6 +6450,8 @@ class PaymentsV1(BaseSDK):
         It will remove the connector and ALL PAYMENTS generated with it.
 
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -6215,7 +6466,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.RESET_CONNECTOR_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ResetConnectorRequest)
@@ -6235,6 +6486,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -6255,7 +6507,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -6268,9 +6520,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -6294,6 +6546,8 @@ class PaymentsV1(BaseSDK):
         It will remove the connector and ALL PAYMENTS generated with it.
 
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -6308,7 +6562,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.RESET_CONNECTOR_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ResetConnectorRequest)
@@ -6328,6 +6582,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -6348,7 +6603,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -6361,9 +6616,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -6385,6 +6640,8 @@ class PaymentsV1(BaseSDK):
         It will remove the connector and ALL PAYMENTS generated with it.
 
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -6399,7 +6656,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.RESET_CONNECTOR_V1_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ResetConnectorV1Request)
@@ -6419,6 +6676,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -6439,7 +6697,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -6452,9 +6710,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -6476,6 +6734,8 @@ class PaymentsV1(BaseSDK):
         It will remove the connector and ALL PAYMENTS generated with it.
 
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -6490,7 +6750,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.RESET_CONNECTOR_V1_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ResetConnectorV1Request)
@@ -6510,6 +6770,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -6530,7 +6791,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -6543,9 +6804,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -6565,6 +6826,8 @@ class PaymentsV1(BaseSDK):
 
         Retry a failed transfer initiation
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -6579,7 +6842,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.RETRY_TRANSFER_INITIATION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6601,6 +6864,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -6621,7 +6885,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -6634,9 +6898,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -6656,6 +6920,8 @@ class PaymentsV1(BaseSDK):
 
         Retry a failed transfer initiation
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -6670,7 +6936,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.RETRY_TRANSFER_INITIATION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6692,6 +6958,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -6712,7 +6979,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -6725,9 +6992,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -6747,6 +7014,8 @@ class PaymentsV1(BaseSDK):
 
         Reverse transfer initiation
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -6761,7 +7030,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.REVERSE_TRANSFER_INITIATION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6787,9 +7056,10 @@ class PaymentsV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.ReverseTransferInitiationRequest,
+                payments.ReverseTransferInitiationRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -6810,7 +7080,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -6823,9 +7093,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -6845,6 +7115,8 @@ class PaymentsV1(BaseSDK):
 
         Reverse transfer initiation
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -6859,7 +7131,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.REVERSE_TRANSFER_INITIATION_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6885,9 +7157,10 @@ class PaymentsV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.ReverseTransferInitiationRequest,
+                payments.ReverseTransferInitiationRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -6908,7 +7181,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -6921,9 +7194,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -6946,6 +7219,8 @@ class PaymentsV1(BaseSDK):
 
         Uninstall a connector by its name.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -6960,7 +7235,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UNINSTALL_CONNECTOR_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UninstallConnectorRequest)
@@ -6980,6 +7255,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -7000,7 +7276,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -7013,9 +7289,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -7038,6 +7314,8 @@ class PaymentsV1(BaseSDK):
 
         Uninstall a connector by its name.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -7052,7 +7330,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UNINSTALL_CONNECTOR_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UninstallConnectorRequest)
@@ -7072,6 +7350,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -7092,7 +7371,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -7105,9 +7384,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -7127,6 +7406,8 @@ class PaymentsV1(BaseSDK):
 
         Uninstall a connector by its name.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -7141,7 +7422,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UNINSTALL_CONNECTOR_V1_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UninstallConnectorV1Request)
@@ -7161,6 +7442,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -7181,7 +7463,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -7194,9 +7476,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -7216,6 +7498,8 @@ class PaymentsV1(BaseSDK):
 
         Uninstall a connector by its name.
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -7230,7 +7514,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UNINSTALL_CONNECTOR_V1_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UninstallConnectorV1Request)
@@ -7250,6 +7534,7 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -7270,7 +7555,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -7283,9 +7568,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -7303,6 +7588,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.UpdateBankAccountMetadataResponse:
         r"""Update metadata of a bank account
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -7317,7 +7604,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_BANK_ACCOUNT_METADATA_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7343,9 +7630,10 @@ class PaymentsV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.UpdateBankAccountMetadataRequest,
+                payments.UpdateBankAccountMetadataRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -7366,7 +7654,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -7379,9 +7667,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -7399,6 +7687,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.UpdateBankAccountMetadataResponse:
         r"""Update metadata of a bank account
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -7413,7 +7703,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_BANK_ACCOUNT_METADATA_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7439,9 +7729,10 @@ class PaymentsV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.UpdateBankAccountMetadataRequest,
+                payments.UpdateBankAccountMetadataRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -7462,7 +7753,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -7475,9 +7766,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -7497,6 +7788,8 @@ class PaymentsV1(BaseSDK):
 
         Update connector config
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -7511,7 +7804,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_CONNECTOR_CONFIG_V1_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7533,9 +7826,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.connector_config, False, False, "json", shared.ConnectorConfig
+                request.connector_config, False, False, "json", payments.ConnectorConfig
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -7556,7 +7850,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -7569,9 +7863,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -7591,6 +7885,8 @@ class PaymentsV1(BaseSDK):
 
         Update connector config
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -7605,7 +7901,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_CONNECTOR_CONFIG_V1_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7627,9 +7923,10 @@ class PaymentsV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.connector_config, False, False, "json", shared.ConnectorConfig
+                request.connector_config, False, False, "json", payments.ConnectorConfig
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -7650,7 +7947,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -7663,9 +7960,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -7682,6 +7979,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.UpdateMetadataResponse:
         r"""Update metadata
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -7696,7 +7995,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_METADATA_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateMetadataRequest)
@@ -7719,6 +8018,7 @@ class PaymentsV1(BaseSDK):
                 request.request_body, True, False, "json", Nullable[Dict[str, str]]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -7739,7 +8039,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -7752,9 +8052,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -7771,6 +8071,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.UpdateMetadataResponse:
         r"""Update metadata
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -7785,7 +8087,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_METADATA_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateMetadataRequest)
@@ -7808,6 +8110,7 @@ class PaymentsV1(BaseSDK):
                 request.request_body, True, False, "json", Nullable[Dict[str, str]]
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -7828,7 +8131,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -7841,9 +8144,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -7861,6 +8164,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.UpdatePoolQueryResponse:
         r"""Update the query of a pool
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -7875,7 +8180,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_POOL_QUERY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdatePoolQueryRequest)
@@ -7899,9 +8204,10 @@ class PaymentsV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.UpdatePoolQueryRequest,
+                payments.UpdatePoolQueryRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -7922,7 +8228,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -7935,9 +8241,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -7955,6 +8261,8 @@ class PaymentsV1(BaseSDK):
     ) -> operations.UpdatePoolQueryResponse:
         r"""Update the query of a pool
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -7969,7 +8277,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_POOL_QUERY_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdatePoolQueryRequest)
@@ -7993,9 +8301,10 @@ class PaymentsV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.UpdatePoolQueryRequest,
+                payments.UpdatePoolQueryRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -8016,7 +8325,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -8029,9 +8338,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -8051,6 +8360,8 @@ class PaymentsV1(BaseSDK):
 
         Update a transfer initiation status
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -8065,7 +8376,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_TRANSFER_INITIATION_STATUS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -8091,9 +8402,10 @@ class PaymentsV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.UpdateTransferInitiationStatusRequest,
+                payments.UpdateTransferInitiationStatusRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -8114,7 +8426,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -8127,9 +8439,9 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -8149,6 +8461,8 @@ class PaymentsV1(BaseSDK):
 
         Update a transfer initiation status
 
+        If set, this operation will use `client_id` from the global security.
+
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -8163,7 +8477,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = operations.UPDATE_TRANSFER_INITIATION_STATUS_SERVERS[0]
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -8189,9 +8503,10 @@ class PaymentsV1(BaseSDK):
                 False,
                 False,
                 "json",
-                shared.UpdateTransferInitiationStatusRequest,
+                payments.UpdateTransferInitiationStatusRequest,
             ),
             allow_empty_value=None,
+            allowed_fields=["client_id"],
             timeout_ms=timeout_ms,
         )
 
@@ -8212,7 +8527,7 @@ class PaymentsV1(BaseSDK):
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
-            error_status_codes=["default"],
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
             retry_config=retry_config,
         )
 
@@ -8225,8 +8540,8 @@ class PaymentsV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentsErrorResponseData, http_res
+                payments.PaymentsErrorResponseData, http_res
             )
-            raise errors.PaymentsErrorResponse(response_data, http_res)
+            raise payments.PaymentsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)

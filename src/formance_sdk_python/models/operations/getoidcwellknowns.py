@@ -6,6 +6,11 @@ import httpx
 from typing_extensions import TypedDict
 
 
+GET_OIDC_WELL_KNOWNS_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class GetOIDCWellKnownsResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""

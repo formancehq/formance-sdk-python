@@ -9,6 +9,11 @@ from typing import IO, Union
 from typing_extensions import Annotated, TypedDict
 
 
+V2_IMPORT_LOGS_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class V2ImportLogsRequestTypedDict(TypedDict):
     v2_import_logs_request: Union[bytes, IO[bytes], io.BufferedReader]
     ledger: str

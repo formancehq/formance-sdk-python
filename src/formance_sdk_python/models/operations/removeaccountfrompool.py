@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+REMOVE_ACCOUNT_FROM_POOL_SERVERS = [
+    "http://localhost:8080/",
+]
+
+
 class RemoveAccountFromPoolRequestTypedDict(TypedDict):
     account_id: str
     r"""The account ID."""
