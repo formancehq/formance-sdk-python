@@ -12,11 +12,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-LIST_TRIGGERS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ListTriggersRequestTypedDict(TypedDict):
     name: NotRequired[str]
     r"""search by name"""

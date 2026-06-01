@@ -18,11 +18,6 @@ from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-CREATE_TRANSACTION_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class CreateTransactionRequestTypedDict(TypedDict):
     post_transaction: ledger_posttransaction.PostTransactionTypedDict
     r"""The request body must contain at least one of the following objects:

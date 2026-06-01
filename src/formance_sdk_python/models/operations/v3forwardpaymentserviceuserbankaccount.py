@@ -14,11 +14,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_FORWARD_PAYMENT_SERVICE_USER_BANK_ACCOUNT_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3ForwardPaymentServiceUserBankAccountRequestTypedDict(TypedDict):
     bank_account_id: str
     r"""The bank account ID"""

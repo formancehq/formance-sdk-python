@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_TRANSACTIONS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetTransactionsRequestTypedDict(TypedDict):
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests.

@@ -18,11 +18,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-CREDIT_WALLET_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class CreditWalletRequestTypedDict(TypedDict):
     id: str
     credit_wallet_request: NotRequired[

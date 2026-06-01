@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_GET_PIPELINE_STATE_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2GetPipelineStateRequestTypedDict(TypedDict):
     ledger: str
     r"""Name of the ledger."""

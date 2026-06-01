@@ -11,11 +11,6 @@ from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-V3_CREATE_PAYMENT_SERVICE_USER_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3CreatePaymentServiceUserResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""

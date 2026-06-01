@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-READ_TRIGGER_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ReadTriggerRequestTypedDict(TypedDict):
     trigger_id: str
     r"""The trigger id"""

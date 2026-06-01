@@ -19,11 +19,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-CREATE_BALANCE_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class CreateBalanceRequestTypedDict(TypedDict):
     id: str
     balance: NotRequired[wallets_balance.BalanceTypedDict]

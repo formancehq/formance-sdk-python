@@ -11,11 +11,6 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-UPDATE_TRANSFER_INITIATION_STATUS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class UpdateTransferInitiationStatusRequestTypedDict(TypedDict):
     update_transfer_initiation_status_request: payments_updatetransferinitiationstatusrequest.UpdateTransferInitiationStatusRequestTypedDict
     transfer_id: str

@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-READ_CONNECTOR_CONFIG_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ReadConnectorConfigRequestTypedDict(TypedDict):
     connector: payments_connector.Connector
     r"""The name of the connector."""

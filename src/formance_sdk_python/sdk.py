@@ -2,7 +2,7 @@
 
 from .basesdk import BaseSDK
 from .httpclient import AsyncHttpClient, ClientOwner, HttpClient, close_clients
-from .sdkconfiguration import SDKConfiguration
+from .sdkconfiguration import SDKConfiguration, ServerEnvironment
 from .utils.logger import Logger, get_default_logger
 from .utils.retries import RetryConfig
 from formance_sdk_python import utils
@@ -13,7 +13,7 @@ from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_res
 import httpx
 import importlib
 import sys
-from typing import Callable, Mapping, Optional, TYPE_CHECKING, Union, cast
+from typing import Callable, Dict, List, Mapping, Optional, TYPE_CHECKING, Union, cast
 import weakref
 
 if TYPE_CHECKING:
@@ -65,6 +65,10 @@ class SDK(BaseSDK):
         security: Optional[
             Union[shared.Security, Callable[[], shared.Security]]
         ] = None,
+        environment: Optional[ServerEnvironment] = None,
+        organization: Optional[str] = None,
+        server_idx: Optional[int] = None,
+        url_params: Optional[Dict[str, str]] = None,
         server_url: Optional[str] = None,
         client: Optional[HttpClient] = None,
         async_client: Optional[AsyncHttpClient] = None,
@@ -75,6 +79,8 @@ class SDK(BaseSDK):
         r"""Instantiates the SDK configuring it with the provided parameters.
 
         :param security: The security details required for authentication
+        :param environment: Allows setting the environment variable for url substitution
+        :param organization: Allows setting the organization variable for url substitution
         :param server_idx: The index of the server to use for all methods
         :param server_url: The server URL to use for all methods
         :param url_params: Parameters to optionally template the server URL with
@@ -104,6 +110,17 @@ class SDK(BaseSDK):
             type(async_client), AsyncHttpClient
         ), "The provided async_client must implement the AsyncHttpClient protocol."
 
+        if server_url is not None:
+            if url_params is not None:
+                server_url = utils.template_url(server_url, url_params)
+        server_defaults: List[Dict[str, str]] = [
+            {},
+            {
+                "environment": environment or "eu.sandbox",
+                "organization": organization or "orgID-stackID",
+            },
+        ]
+
         BaseSDK.__init__(
             self,
             SDKConfiguration(
@@ -113,6 +130,8 @@ class SDK(BaseSDK):
                 async_client_supplied=async_client_supplied,
                 security=security,
                 server_url=server_url,
+                server_idx=server_idx,
+                server_defaults=server_defaults,
                 retry_config=retry_config,
                 timeout_ms=timeout_ms,
                 debug_logger=debug_logger,
@@ -225,7 +244,7 @@ class SDK(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_VERSIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/versions",
@@ -301,7 +320,7 @@ class SDK(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_VERSIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/versions",

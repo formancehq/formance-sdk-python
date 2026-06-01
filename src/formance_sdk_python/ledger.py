@@ -52,7 +52,7 @@ class Ledger(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_GET_INFO_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/ledger/_/info",
@@ -146,7 +146,7 @@ class Ledger(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_GET_INFO_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/ledger/_/info",
@@ -240,7 +240,7 @@ class Ledger(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_METRICS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/ledger/_/metrics",
@@ -321,7 +321,7 @@ class Ledger(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_METRICS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/ledger/_/metrics",

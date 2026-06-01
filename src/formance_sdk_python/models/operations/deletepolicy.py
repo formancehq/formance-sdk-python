@@ -8,11 +8,6 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-DELETE_POLICY_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class DeletePolicyRequestTypedDict(TypedDict):
     policy_id: str
     r"""The policy ID."""

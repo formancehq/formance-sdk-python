@@ -11,11 +11,6 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-V2_UPDATE_EXPORTER_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2UpdateExporterRequestTypedDict(TypedDict):
     v2_exporter_configuration: (
         ledger_v2exporterconfiguration_2.V2ExporterConfiguration2TypedDict

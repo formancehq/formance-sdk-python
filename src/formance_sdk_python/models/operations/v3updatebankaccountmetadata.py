@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_UPDATE_BANK_ACCOUNT_METADATA_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3UpdateBankAccountMetadataRequestTypedDict(TypedDict):
     bank_account_id: str
     r"""The bank account ID"""

@@ -11,11 +11,6 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-REVERSE_TRANSFER_INITIATION_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ReverseTransferInitiationRequestTypedDict(TypedDict):
     reverse_transfer_initiation_request: payments_reversetransferinitiationrequest.ReverseTransferInitiationRequestTypedDict
     transfer_id: str

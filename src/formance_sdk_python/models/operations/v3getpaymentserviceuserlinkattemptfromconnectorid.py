@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_GET_PAYMENT_SERVICE_USER_LINK_ATTEMPT_FROM_CONNECTOR_ID_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequestTypedDict(TypedDict):
     attempt_id: str
     r"""The attempt ID"""

@@ -12,11 +12,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_LEDGER_INFO_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetLedgerInfoRequestTypedDict(TypedDict):
     ledger: str
     r"""Name of the ledger."""

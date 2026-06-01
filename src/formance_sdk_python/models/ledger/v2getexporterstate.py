@@ -10,11 +10,6 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-V2_GET_EXPORTER_STATE_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2GetExporterStateResponseTypedDict(TypedDict):
     r"""Exporter information"""
 

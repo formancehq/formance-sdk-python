@@ -45,7 +45,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_CANCEL_EVENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CancelEventRequest)
@@ -134,7 +134,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_CANCEL_EVENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2CancelEventRequest)
@@ -226,7 +226,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_CREATE_TRIGGER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[orchestration.V2TriggerData2])
@@ -324,7 +324,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_CREATE_TRIGGER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[orchestration.V2TriggerData2])
@@ -422,7 +422,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_CREATE_WORKFLOW_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[orchestration.V2WorkflowConfig])
@@ -520,7 +520,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_CREATE_WORKFLOW_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[orchestration.V2WorkflowConfig])
@@ -616,7 +616,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_DELETE_TRIGGER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2DeleteTriggerRequest)
@@ -706,7 +706,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_DELETE_TRIGGER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2DeleteTriggerRequest)
@@ -796,7 +796,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_DELETE_WORKFLOW_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2DeleteWorkflowRequest)
@@ -886,7 +886,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_DELETE_WORKFLOW_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2DeleteWorkflowRequest)
@@ -975,7 +975,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_GET_INSTANCE_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetInstanceRequest)
@@ -1067,7 +1067,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_GET_INSTANCE_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetInstanceRequest)
@@ -1160,7 +1160,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_GET_INSTANCE_HISTORY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetInstanceHistoryRequest)
@@ -1254,7 +1254,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_GET_INSTANCE_HISTORY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetInstanceHistoryRequest)
@@ -1348,7 +1348,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_GET_INSTANCE_STAGE_HISTORY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1444,7 +1444,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_GET_INSTANCE_STAGE_HISTORY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1533,7 +1533,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_GET_SERVER_INFO_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/orchestration/v2/_info",
@@ -1614,7 +1614,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_GET_SERVER_INFO_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/orchestration/v2/_info",
@@ -1701,7 +1701,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_GET_WORKFLOW_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetWorkflowRequest)
@@ -1793,7 +1793,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_GET_WORKFLOW_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2GetWorkflowRequest)
@@ -1886,7 +1886,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_LIST_INSTANCES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListInstancesRequest)
@@ -1979,7 +1979,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_LIST_INSTANCES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListInstancesRequest)
@@ -2071,7 +2071,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_LIST_TRIGGERS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListTriggersRequest)
@@ -2163,7 +2163,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_LIST_TRIGGERS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListTriggersRequest)
@@ -2256,7 +2256,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_LIST_TRIGGERS_OCCURRENCES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2351,7 +2351,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_LIST_TRIGGERS_OCCURRENCES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2446,7 +2446,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_LIST_WORKFLOWS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListWorkflowsRequest)
@@ -2539,7 +2539,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_LIST_WORKFLOWS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ListWorkflowsRequest)
@@ -2631,7 +2631,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_READ_TRIGGER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ReadTriggerRequest)
@@ -2723,7 +2723,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_READ_TRIGGER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2ReadTriggerRequest)
@@ -2815,7 +2815,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_RUN_WORKFLOW_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2RunWorkflowRequest)
@@ -2914,7 +2914,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_RUN_WORKFLOW_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2RunWorkflowRequest)
@@ -3013,7 +3013,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_SEND_EVENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2SendEventRequest)
@@ -3109,7 +3109,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.V2_SEND_EVENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.V2SendEventRequest)
@@ -3205,7 +3205,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.TEST_TRIGGER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.TestTriggerRequest)
@@ -3304,7 +3304,7 @@ class OrchestrationV2(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.TEST_TRIGGER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.TestTriggerRequest)

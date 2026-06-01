@@ -14,11 +14,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_REVERSE_PAYMENT_INITIATION_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3ReversePaymentInitiationRequestTypedDict(TypedDict):
     payment_initiation_id: str
     r"""The payment initiation ID"""

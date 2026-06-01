@@ -36,6 +36,7 @@ and standard method from web, mobile and desktop applications.
   * [File uploads](https://github.com/formancehq/formance-sdk-python/blob/master/./#file-uploads)
   * [Retries](https://github.com/formancehq/formance-sdk-python/blob/master/./#retries)
   * [Error Handling](https://github.com/formancehq/formance-sdk-python/blob/master/./#error-handling)
+  * [Server Selection](https://github.com/formancehq/formance-sdk-python/blob/master/./#server-selection)
   * [Custom HTTP Client](https://github.com/formancehq/formance-sdk-python/blob/master/./#custom-http-client)
   * [Authentication](https://github.com/formancehq/formance-sdk-python/blob/master/./#authentication-1)
   * [Resource Management](https://github.com/formancehq/formance-sdk-python/blob/master/./#resource-management)
@@ -631,6 +632,67 @@ with SDK(
 \* Check [the method documentation](https://github.com/formancehq/formance-sdk-python/blob/master/./#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
+<!-- Start Server Selection [server] -->
+## Server Selection
+
+### Select Server by Index
+
+You can override the default server globally by passing a server index to the `server_idx: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+
+| #   | Server                                                | Variables                        | Description                                |
+| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
+| 0   | `http://localhost`                                    |                                  | local server                               |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `environment`<br/>`organization` | A per-organization and per-environment API |
+
+If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
+
+| Variable       | Parameter                               | Supported Values                                         | Default           | Description                                                   |
+| -------------- | --------------------------------------- | -------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `environment: models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
+| `organization` | `organization: str`                     | str                                                      | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+
+#### Example
+
+```python
+from formance_sdk_python import SDK
+
+
+with SDK(
+    server_idx=1,
+    environment="us-east-1",
+    organization="orgID-stackID",
+) as sdk:
+
+    res = sdk.get_versions()
+
+    assert res.get_versions_response is not None
+
+    # Handle response
+    print(res.get_versions_response)
+
+```
+
+### Override Server URL Per-Client
+
+The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
+```python
+from formance_sdk_python import SDK
+
+
+with SDK(
+    server_url="https://orgID-stackID.eu.sandbox.formance.cloud",
+) as sdk:
+
+    res = sdk.get_versions()
+
+    assert res.get_versions_response is not None
+
+    # Handle response
+    print(res.get_versions_response)
+
+```
+<!-- End Server Selection [server] -->
+
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
 
@@ -780,7 +842,7 @@ from formance_sdk_python import SDK
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
-s = SDK(server_url="https://example.com", debug_logger=logging.getLogger("formance_sdk_python"))
+s = SDK(debug_logger=logging.getLogger("formance_sdk_python"))
 ```
 <!-- End Debugging [debug] -->
 

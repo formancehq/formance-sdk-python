@@ -18,11 +18,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-LIST_CONNECTOR_TASKS_V1_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ListConnectorTasksV1RequestTypedDict(TypedDict):
     connector: payments_connector.Connector
     r"""The name of the connector."""

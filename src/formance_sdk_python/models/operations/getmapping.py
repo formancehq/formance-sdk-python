@@ -10,11 +10,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_MAPPING_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetMappingRequestTypedDict(TypedDict):
     ledger: str
     r"""Name of the ledger."""

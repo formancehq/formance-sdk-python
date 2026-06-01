@@ -19,11 +19,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-DEBIT_WALLET_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class DebitWalletRequestTypedDict(TypedDict):
     id: str
     debit_wallet_request: NotRequired[

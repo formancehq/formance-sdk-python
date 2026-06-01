@@ -24,11 +24,6 @@ from typing import Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-V2_RUN_QUERY_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2RunQueryRequestBodyTypedDict(TypedDict):
     v2_query_params: NotRequired[ledger_v2queryparams.V2QueryParamsTypedDict]
     cursor: NotRequired[str]

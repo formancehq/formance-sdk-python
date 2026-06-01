@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_TRANSFER_INITIATION_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetTransferInitiationRequestTypedDict(TypedDict):
     transfer_id: str
     r"""The transfer ID."""

@@ -8,11 +8,6 @@ import httpx
 from typing_extensions import Annotated, TypedDict
 
 
-RESET_CONNECTOR_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ResetConnectorRequestTypedDict(TypedDict):
     connector: payments_connector.Connector
     r"""The name of the connector."""

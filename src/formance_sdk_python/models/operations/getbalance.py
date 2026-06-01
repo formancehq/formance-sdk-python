@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_BALANCE_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetBalanceRequestTypedDict(TypedDict):
     balance_name: str
     id: str

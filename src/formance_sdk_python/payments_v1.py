@@ -50,7 +50,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.ADD_ACCOUNT_TO_POOL_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.AddAccountToPoolRequest)
@@ -149,7 +149,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.ADD_ACCOUNT_TO_POOL_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.AddAccountToPoolRequest)
@@ -248,7 +248,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CONNECTORS_TRANSFER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ConnectorsTransferRequest)
@@ -346,7 +346,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CONNECTORS_TRANSFER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ConnectorsTransferRequest)
@@ -444,7 +444,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_ACCOUNT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, payments.AccountRequest)
@@ -542,7 +542,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_ACCOUNT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, payments.AccountRequest)
@@ -640,7 +640,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_BANK_ACCOUNT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, payments.BankAccountRequest)
@@ -738,7 +738,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_BANK_ACCOUNT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, payments.BankAccountRequest)
@@ -836,7 +836,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_PAYMENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, payments.PaymentRequest)
@@ -934,7 +934,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_PAYMENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, payments.PaymentRequest)
@@ -1031,7 +1031,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_POOL_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, payments.PoolRequest)
@@ -1128,7 +1128,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_POOL_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, payments.PoolRequest)
@@ -1226,7 +1226,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_TRANSFER_INITIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, payments.TransferInitiationRequest)
@@ -1324,7 +1324,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_TRANSFER_INITIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, payments.TransferInitiationRequest)
@@ -1421,7 +1421,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DELETE_POOL_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeletePoolRequest)
@@ -1512,7 +1512,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DELETE_POOL_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeletePoolRequest)
@@ -1604,7 +1604,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DELETE_TRANSFER_INITIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1698,7 +1698,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DELETE_TRANSFER_INITIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1790,7 +1790,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.FORWARD_BANK_ACCOUNT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ForwardBankAccountRequest)
@@ -1890,7 +1890,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.FORWARD_BANK_ACCOUNT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ForwardBankAccountRequest)
@@ -1990,7 +1990,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_ACCOUNT_BALANCES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccountBalancesRequest)
@@ -2083,7 +2083,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_ACCOUNT_BALANCES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccountBalancesRequest)
@@ -2176,7 +2176,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_ACCOUNT_PAYMENTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccountPaymentsRequest)
@@ -2269,7 +2269,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_ACCOUNT_PAYMENTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccountPaymentsRequest)
@@ -2361,7 +2361,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_BANK_ACCOUNT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBankAccountRequest)
@@ -2453,7 +2453,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_BANK_ACCOUNT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBankAccountRequest)
@@ -2551,7 +2551,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_CONNECTOR_TASK_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetConnectorTaskRequest)
@@ -2649,7 +2649,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_CONNECTOR_TASK_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetConnectorTaskRequest)
@@ -2744,7 +2744,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_CONNECTOR_TASK_V1_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetConnectorTaskV1Request)
@@ -2839,7 +2839,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_CONNECTOR_TASK_V1_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetConnectorTaskV1Request)
@@ -2931,7 +2931,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_PAYMENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPaymentRequest)
@@ -3023,7 +3023,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_PAYMENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPaymentRequest)
@@ -3113,7 +3113,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_POOL_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolRequest)
@@ -3203,7 +3203,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_POOL_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolRequest)
@@ -3296,7 +3296,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_POOL_BALANCES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolBalancesRequest)
@@ -3389,7 +3389,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_POOL_BALANCES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolBalancesRequest)
@@ -3482,7 +3482,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_POOL_BALANCES_LATEST_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolBalancesLatestRequest)
@@ -3575,7 +3575,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_POOL_BALANCES_LATEST_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPoolBalancesLatestRequest)
@@ -3663,7 +3663,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_SERVER_INFO_PAYMENTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/payments/_info",
@@ -3746,7 +3746,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_SERVER_INFO_PAYMENTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/payments/_info",
@@ -3834,7 +3834,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_TRANSFER_INITIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransferInitiationRequest)
@@ -3927,7 +3927,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_TRANSFER_INITIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransferInitiationRequest)
@@ -4022,7 +4022,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.INSTALL_CONNECTOR_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.InstallConnectorRequest)
@@ -4120,7 +4120,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.INSTALL_CONNECTOR_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.InstallConnectorRequest)
@@ -4216,7 +4216,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_ACCOUNTS_PAYMENTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListAccountsPaymentsRequest)
@@ -4316,7 +4316,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_ACCOUNTS_PAYMENTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListAccountsPaymentsRequest)
@@ -4413,7 +4413,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_ALL_CONNECTORS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/payments/connectors",
@@ -4498,7 +4498,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_ALL_CONNECTORS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/payments/connectors",
@@ -4588,7 +4588,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_BANK_ACCOUNTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListBankAccountsRequest)
@@ -4683,7 +4683,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_BANK_ACCOUNTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListBankAccountsRequest)
@@ -4773,7 +4773,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_CONFIGS_AVAILABLE_CONNECTORS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/payments/connectors/configs",
@@ -4858,7 +4858,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_CONFIGS_AVAILABLE_CONNECTORS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/payments/connectors/configs",
@@ -4951,7 +4951,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_CONNECTOR_TASKS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListConnectorTasksRequest)
@@ -5049,7 +5049,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_CONNECTOR_TASKS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListConnectorTasksRequest)
@@ -5144,7 +5144,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_CONNECTOR_TASKS_V1_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListConnectorTasksV1Request)
@@ -5239,7 +5239,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_CONNECTOR_TASKS_V1_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListConnectorTasksV1Request)
@@ -5331,7 +5331,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_PAYMENTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPaymentsRequest)
@@ -5423,7 +5423,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_PAYMENTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPaymentsRequest)
@@ -5515,7 +5515,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_POOLS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPoolsRequest)
@@ -5607,7 +5607,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_POOLS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPoolsRequest)
@@ -5700,7 +5700,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_TRANSFER_INITIATIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -5795,7 +5795,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_TRANSFER_INITIATIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -5895,7 +5895,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.READ_CONNECTOR_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadConnectorConfigRequest)
@@ -5993,7 +5993,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.READ_CONNECTOR_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadConnectorConfigRequest)
@@ -6088,7 +6088,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.READ_CONNECTOR_CONFIG_V1_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadConnectorConfigV1Request)
@@ -6183,7 +6183,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.READ_CONNECTOR_CONFIG_V1_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadConnectorConfigV1Request)
@@ -6278,7 +6278,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.REMOVE_ACCOUNT_FROM_POOL_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RemoveAccountFromPoolRequest)
@@ -6370,7 +6370,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.REMOVE_ACCOUNT_FROM_POOL_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RemoveAccountFromPoolRequest)
@@ -6466,7 +6466,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.RESET_CONNECTOR_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ResetConnectorRequest)
@@ -6562,7 +6562,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.RESET_CONNECTOR_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ResetConnectorRequest)
@@ -6656,7 +6656,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.RESET_CONNECTOR_V1_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ResetConnectorV1Request)
@@ -6750,7 +6750,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.RESET_CONNECTOR_V1_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ResetConnectorV1Request)
@@ -6842,7 +6842,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.RETRY_TRANSFER_INITIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -6936,7 +6936,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.RETRY_TRANSFER_INITIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7030,7 +7030,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.REVERSE_TRANSFER_INITIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7131,7 +7131,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.REVERSE_TRANSFER_INITIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7235,7 +7235,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UNINSTALL_CONNECTOR_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UninstallConnectorRequest)
@@ -7330,7 +7330,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UNINSTALL_CONNECTOR_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UninstallConnectorRequest)
@@ -7422,7 +7422,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UNINSTALL_CONNECTOR_V1_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UninstallConnectorV1Request)
@@ -7514,7 +7514,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UNINSTALL_CONNECTOR_V1_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UninstallConnectorV1Request)
@@ -7604,7 +7604,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_BANK_ACCOUNT_METADATA_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7703,7 +7703,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_BANK_ACCOUNT_METADATA_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7804,7 +7804,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_CONNECTOR_CONFIG_V1_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7901,7 +7901,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_CONNECTOR_CONFIG_V1_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -7995,7 +7995,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_METADATA_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateMetadataRequest)
@@ -8087,7 +8087,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_METADATA_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateMetadataRequest)
@@ -8180,7 +8180,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_POOL_QUERY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdatePoolQueryRequest)
@@ -8277,7 +8277,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_POOL_QUERY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdatePoolQueryRequest)
@@ -8376,7 +8376,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_TRANSFER_INITIATION_STATUS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -8477,7 +8477,7 @@ class PaymentsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_TRANSFER_INITIATION_STATUS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(

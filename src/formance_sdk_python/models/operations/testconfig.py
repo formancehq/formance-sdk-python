@@ -12,11 +12,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-TEST_CONFIG_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class TestConfigRequestTypedDict(TypedDict):
     __test__ = False  # pyright: ignore[reportGeneralTypeIssues]
 

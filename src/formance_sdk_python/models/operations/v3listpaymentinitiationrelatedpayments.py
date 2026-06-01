@@ -18,11 +18,6 @@ from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_LIST_PAYMENT_INITIATION_RELATED_PAYMENTS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3ListPaymentInitiationRelatedPaymentsRequestTypedDict(TypedDict):
     payment_initiation_id: str
     r"""The payment initiation ID"""

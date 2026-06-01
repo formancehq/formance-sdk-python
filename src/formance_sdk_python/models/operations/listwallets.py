@@ -13,11 +13,6 @@ from typing import Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-LIST_WALLETS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ListWalletsRequestTypedDict(TypedDict):
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests.

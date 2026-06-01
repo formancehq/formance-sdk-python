@@ -14,11 +14,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_INITIATE_PAYMENT_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3InitiatePaymentRequestTypedDict(TypedDict):
     v3_initiate_payment_request: NotRequired[
         payments_v3initiatepaymentrequest.V3InitiatePaymentRequestTypedDict

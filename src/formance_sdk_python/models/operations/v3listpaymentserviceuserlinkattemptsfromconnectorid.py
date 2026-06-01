@@ -18,11 +18,6 @@ from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_LIST_PAYMENT_SERVICE_USER_LINK_ATTEMPTS_FROM_CONNECTOR_ID_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequestTypedDict(TypedDict):
     connector_id: str
     r"""The connector ID"""

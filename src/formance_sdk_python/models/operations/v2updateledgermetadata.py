@@ -10,11 +10,6 @@ from typing import Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_UPDATE_LEDGER_METADATA_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2UpdateLedgerMetadataRequestTypedDict(TypedDict):
     request_body: Dict[str, str]
     ledger: str

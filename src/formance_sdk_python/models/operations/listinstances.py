@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-LIST_INSTANCES_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ListInstancesRequestTypedDict(TypedDict):
     running: NotRequired[bool]
     r"""Filter running instances"""

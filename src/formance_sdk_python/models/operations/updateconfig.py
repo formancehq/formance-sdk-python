@@ -8,11 +8,6 @@ import httpx
 from typing_extensions import Annotated, TypedDict
 
 
-UPDATE_CONFIG_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class UpdateConfigRequestTypedDict(TypedDict):
     config_user: webhooks_configuser.ConfigUserTypedDict
     id: str

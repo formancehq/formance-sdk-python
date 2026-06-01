@@ -14,11 +14,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-FORWARD_BANK_ACCOUNT_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ForwardBankAccountRequestTypedDict(TypedDict):
     forward_bank_account_request: (
         payments_forwardbankaccountrequest.ForwardBankAccountRequestTypedDict

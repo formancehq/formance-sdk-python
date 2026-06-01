@@ -18,11 +18,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_GET_ACCOUNT_BALANCES_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3GetAccountBalancesRequestTypedDict(TypedDict):
     account_id: str
     r"""The account ID"""

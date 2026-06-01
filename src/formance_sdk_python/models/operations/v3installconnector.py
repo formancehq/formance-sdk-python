@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_INSTALL_CONNECTOR_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3InstallConnectorRequestTypedDict(TypedDict):
     connector: str
     r"""The connector to filter by"""

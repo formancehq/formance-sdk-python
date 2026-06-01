@@ -19,11 +19,6 @@ from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-REVERT_TRANSACTION_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class RevertTransactionRequestTypedDict(TypedDict):
     ledger: str
     r"""Name of the ledger."""

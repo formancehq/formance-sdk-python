@@ -14,11 +14,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_CREATE_LINK_FOR_PAYMENT_SERVICE_USER_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3CreateLinkForPaymentServiceUserRequestTypedDict(TypedDict):
     connector_id: str
     r"""The connector ID"""

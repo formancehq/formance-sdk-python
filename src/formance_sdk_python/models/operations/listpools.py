@@ -11,11 +11,6 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-LIST_POOLS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ListPoolsRequestTypedDict(TypedDict):
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests. Maximum page size is set to 15.

@@ -14,11 +14,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_CONNECTOR_TASK_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetConnectorTaskRequestTypedDict(TypedDict):
     connector: payments_connector.Connector
     r"""The name of the connector."""

@@ -13,11 +13,6 @@ from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-LIST_POLICIES_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ListPoliciesRequestTypedDict(TypedDict):
     request_body: NotRequired[Dict[str, Any]]
     cursor: NotRequired[str]

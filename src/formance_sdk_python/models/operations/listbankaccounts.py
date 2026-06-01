@@ -13,11 +13,6 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-LIST_BANK_ACCOUNTS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ListBankAccountsRequestTypedDict(TypedDict):
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests. Maximum page size is set to 15.

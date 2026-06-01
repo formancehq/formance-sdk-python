@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-UPDATE_MAPPING_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class UpdateMappingRequestTypedDict(TypedDict):
     mapping: Nullable[ledger_mapping.MappingTTypedDict]
     ledger: str

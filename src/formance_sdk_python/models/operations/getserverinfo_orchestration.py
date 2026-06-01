@@ -11,11 +11,6 @@ from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-GET_SERVER_INFO_ORCHESTRATION_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetServerInfoOrchestrationResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""

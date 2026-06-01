@@ -19,11 +19,6 @@ from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_LIST_LOGS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2ListLogsRequestTypedDict(TypedDict):
     request_body: Dict[str, Any]
     ledger: str

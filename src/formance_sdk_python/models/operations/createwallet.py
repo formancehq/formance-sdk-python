@@ -14,11 +14,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-CREATE_WALLET_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class CreateWalletRequestTypedDict(TypedDict):
     create_wallet_request: NotRequired[
         wallets_createwalletrequest.CreateWalletRequestTypedDict

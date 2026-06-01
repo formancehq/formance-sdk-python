@@ -15,11 +15,6 @@ from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-COUNT_TRANSACTIONS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class MetadataTypedDict(TypedDict):
     r"""Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below."""
 

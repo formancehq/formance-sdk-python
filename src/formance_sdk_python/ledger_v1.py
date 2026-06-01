@@ -41,7 +41,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_TRANSACTIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateTransactionsRequest)
@@ -137,7 +137,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_TRANSACTIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateTransactionsRequest)
@@ -233,7 +233,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.ADD_METADATA_ON_TRANSACTION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -329,7 +329,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.ADD_METADATA_ON_TRANSACTION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -425,7 +425,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.ADD_METADATA_TO_ACCOUNT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.AddMetadataToAccountRequest)
@@ -519,7 +519,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.ADD_METADATA_TO_ACCOUNT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.AddMetadataToAccountRequest)
@@ -612,7 +612,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.COUNT_ACCOUNTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CountAccountsRequest)
@@ -702,7 +702,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.COUNT_ACCOUNTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CountAccountsRequest)
@@ -793,7 +793,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.COUNT_TRANSACTIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CountTransactionsRequest)
@@ -884,7 +884,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.COUNT_TRANSACTIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CountTransactionsRequest)
@@ -975,7 +975,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_TRANSACTION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateTransactionRequest)
@@ -1072,7 +1072,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_TRANSACTION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateTransactionRequest)
@@ -1169,7 +1169,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_ACCOUNT_LEDGER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccountLedgerRequest)
@@ -1262,7 +1262,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_ACCOUNT_LEDGER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccountLedgerRequest)
@@ -1354,7 +1354,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_BALANCES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalancesRequest)
@@ -1446,7 +1446,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_BALANCES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalancesRequest)
@@ -1539,7 +1539,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_BALANCES_AGGREGATED_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalancesAggregatedRequest)
@@ -1632,7 +1632,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_BALANCES_AGGREGATED_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalancesAggregatedRequest)
@@ -1720,7 +1720,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_INFO_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/ledger/_info",
@@ -1803,7 +1803,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_INFO_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/ledger/_info",
@@ -1890,7 +1890,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_LEDGER_INFO_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetLedgerInfoRequest)
@@ -1982,7 +1982,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_LEDGER_INFO_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetLedgerInfoRequest)
@@ -2074,7 +2074,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_MAPPING_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetMappingRequest)
@@ -2166,7 +2166,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_MAPPING_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetMappingRequest)
@@ -2258,7 +2258,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_TRANSACTION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransactionRequest)
@@ -2350,7 +2350,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_TRANSACTION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransactionRequest)
@@ -2445,7 +2445,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_ACCOUNTS_LEDGER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListAccountsLedgerRequest)
@@ -2551,7 +2551,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_ACCOUNTS_LEDGER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListAccountsLedgerRequest)
@@ -2654,7 +2654,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_LOGS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListLogsRequest)
@@ -2746,7 +2746,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_LOGS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListLogsRequest)
@@ -2841,7 +2841,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_TRANSACTIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListTransactionsRequest)
@@ -2936,7 +2936,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_TRANSACTIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListTransactionsRequest)
@@ -3031,7 +3031,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.READ_STATS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadStatsRequest)
@@ -3126,7 +3126,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.READ_STATS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadStatsRequest)
@@ -3219,7 +3219,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.REVERT_TRANSACTION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RevertTransactionRequest)
@@ -3313,7 +3313,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.REVERT_TRANSACTION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RevertTransactionRequest)
@@ -3412,7 +3412,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.RUN_SCRIPT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RunScriptRequest)
@@ -3510,7 +3510,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.RUN_SCRIPT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.RunScriptRequest)
@@ -3602,7 +3602,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_MAPPING_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateMappingRequest)
@@ -3697,7 +3697,7 @@ class LedgerV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_MAPPING_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateMappingRequest)

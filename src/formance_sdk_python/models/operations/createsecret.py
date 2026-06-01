@@ -14,11 +14,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-CREATE_SECRET_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class CreateSecretRequestTypedDict(TypedDict):
     client_id: str
     r"""Client ID"""
