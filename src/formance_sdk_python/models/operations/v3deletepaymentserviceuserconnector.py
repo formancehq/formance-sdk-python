@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_DELETE_PAYMENT_SERVICE_USER_CONNECTOR_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3DeletePaymentServiceUserConnectorRequestTypedDict(TypedDict):
     connector_id: str
     r"""The connector ID"""

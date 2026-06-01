@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_GET_TASK_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3GetTaskRequestTypedDict(TypedDict):
     task_id: str
     r"""The task ID"""

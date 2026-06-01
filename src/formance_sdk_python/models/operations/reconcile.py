@@ -14,11 +14,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-RECONCILE_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ReconcileRequestTypedDict(TypedDict):
     reconciliation_request: (
         reconciliation_reconciliationrequest.ReconciliationRequestTypedDict

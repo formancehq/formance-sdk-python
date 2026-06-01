@@ -10,11 +10,6 @@ from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_DELETE_ACCOUNT_METADATA_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2DeleteAccountMetadataRequestTypedDict(TypedDict):
     address: str
     r"""Account address"""

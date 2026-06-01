@@ -11,11 +11,6 @@ from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-CREATE_POLICY_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class CreatePolicyResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""

@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_POLICY_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetPolicyRequestTypedDict(TypedDict):
     policy_id: str
     r"""The policy ID."""

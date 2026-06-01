@@ -17,11 +17,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_BALANCES_AGGREGATED_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetBalancesAggregatedRequestTypedDict(TypedDict):
     ledger: str
     r"""Name of the ledger."""

@@ -40,7 +40,7 @@ class SearchV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_SERVER_INFO_SEARCH_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/search/_info",
@@ -123,7 +123,7 @@ class SearchV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_SERVER_INFO_SEARCH_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/search/_info",
@@ -210,7 +210,7 @@ class SearchV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.SEARCH_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, search.Query)
@@ -303,7 +303,7 @@ class SearchV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.SEARCH_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, search.Query)

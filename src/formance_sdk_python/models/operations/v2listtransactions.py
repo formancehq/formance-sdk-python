@@ -20,11 +20,6 @@ from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_LIST_TRANSACTIONS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2ListTransactionsOrder(str, Enum):
     r"""Deprecated: Use sort param"""
 

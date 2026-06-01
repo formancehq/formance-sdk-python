@@ -12,11 +12,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_WALLET_SUMMARY_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetWalletSummaryRequestTypedDict(TypedDict):
     id: str
 

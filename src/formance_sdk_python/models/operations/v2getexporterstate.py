@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_GET_EXPORTER_STATE_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2GetExporterStateRequestTypedDict(TypedDict):
     exporter_id: str
     r"""The exporter id"""

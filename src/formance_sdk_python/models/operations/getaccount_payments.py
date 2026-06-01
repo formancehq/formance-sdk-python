@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_ACCOUNT_PAYMENTS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetAccountPaymentsRequestTypedDict(TypedDict):
     account_id: str
     r"""The account ID."""

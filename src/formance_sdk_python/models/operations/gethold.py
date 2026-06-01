@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_HOLD_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetHoldRequestTypedDict(TypedDict):
     hold_id: str
     r"""The hold ID"""

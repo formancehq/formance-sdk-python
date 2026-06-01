@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_POOL_BALANCES_LATEST_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetPoolBalancesLatestRequestTypedDict(TypedDict):
     pool_id: str
     r"""The pool ID."""

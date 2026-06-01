@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-READ_CLIENT_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ReadClientRequestTypedDict(TypedDict):
     client_id: str
     r"""Client ID"""

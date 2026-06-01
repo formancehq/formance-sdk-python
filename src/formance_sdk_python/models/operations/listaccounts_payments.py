@@ -13,11 +13,6 @@ from typing import Any, Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-LIST_ACCOUNTS_PAYMENTS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ListAccountsPaymentsRequestTypedDict(TypedDict):
     request_body: NotRequired[Dict[str, Any]]
     cursor: NotRequired[str]

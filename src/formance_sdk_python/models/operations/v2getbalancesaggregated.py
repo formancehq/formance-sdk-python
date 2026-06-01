@@ -19,11 +19,6 @@ from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_GET_BALANCES_AGGREGATED_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2GetBalancesAggregatedRequestTypedDict(TypedDict):
     request_body: Dict[str, Any]
     ledger: str

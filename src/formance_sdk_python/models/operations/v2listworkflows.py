@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_LIST_WORKFLOWS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2ListWorkflowsRequestTypedDict(TypedDict):
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests.

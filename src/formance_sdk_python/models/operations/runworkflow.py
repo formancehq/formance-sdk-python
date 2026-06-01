@@ -18,11 +18,6 @@ from typing import Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-RUN_WORKFLOW_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class RunWorkflowRequestTypedDict(TypedDict):
     workflow_id: str
     r"""The flow id"""

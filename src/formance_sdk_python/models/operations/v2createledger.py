@@ -10,11 +10,6 @@ import httpx
 from typing_extensions import Annotated, TypedDict
 
 
-V2_CREATE_LEDGER_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2CreateLedgerRequestTypedDict(TypedDict):
     v2_create_ledger_request: (
         ledger_v2createledgerrequest.V2CreateLedgerRequestTypedDict

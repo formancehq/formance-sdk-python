@@ -18,11 +18,6 @@ from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_ADD_METADATA_ON_TRANSACTION_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2AddMetadataOnTransactionRequestTypedDict(TypedDict):
     request_body: Dict[str, str]
     r"""metadata"""

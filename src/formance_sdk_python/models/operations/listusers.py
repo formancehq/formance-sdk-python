@@ -9,11 +9,6 @@ from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-LIST_USERS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ListUsersResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""

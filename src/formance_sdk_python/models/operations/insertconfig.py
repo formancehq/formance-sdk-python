@@ -11,11 +11,6 @@ from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-INSERT_CONFIG_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class InsertConfigResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""

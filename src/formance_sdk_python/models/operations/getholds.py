@@ -13,11 +13,6 @@ from typing import Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_HOLDS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetHoldsRequestTypedDict(TypedDict):
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests.

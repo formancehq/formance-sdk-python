@@ -18,11 +18,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_POOL_BALANCES_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetPoolBalancesRequestTypedDict(TypedDict):
     at: datetime
     r"""Filter balances by date.

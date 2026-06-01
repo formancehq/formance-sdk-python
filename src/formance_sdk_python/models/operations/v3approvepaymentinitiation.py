@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_APPROVE_PAYMENT_INITIATION_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3ApprovePaymentInitiationRequestTypedDict(TypedDict):
     payment_initiation_id: str
     r"""The payment initiation ID"""

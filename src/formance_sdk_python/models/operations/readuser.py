@@ -11,11 +11,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-READ_USER_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ReadUserRequestTypedDict(TypedDict):
     user_id: str
     r"""User ID"""

@@ -39,7 +39,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CONFIRM_HOLD_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ConfirmHoldRequest)
@@ -133,7 +133,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CONFIRM_HOLD_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ConfirmHoldRequest)
@@ -227,7 +227,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_BALANCE_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateBalanceRequest)
@@ -324,7 +324,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_BALANCE_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateBalanceRequest)
@@ -421,7 +421,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_WALLET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateWalletRequest)
@@ -518,7 +518,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_WALLET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateWalletRequest)
@@ -615,7 +615,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREDIT_WALLET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreditWalletRequest)
@@ -709,7 +709,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREDIT_WALLET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreditWalletRequest)
@@ -803,7 +803,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DEBIT_WALLET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DebitWalletRequest)
@@ -908,7 +908,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DEBIT_WALLET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DebitWalletRequest)
@@ -1013,7 +1013,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_BALANCE_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalanceRequest)
@@ -1103,7 +1103,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_BALANCE_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetBalanceRequest)
@@ -1191,7 +1191,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_HOLD_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetHoldRequest)
@@ -1279,7 +1279,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_HOLD_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetHoldRequest)
@@ -1367,7 +1367,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_HOLDS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetHoldsRequest)
@@ -1455,7 +1455,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_HOLDS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetHoldsRequest)
@@ -1541,7 +1541,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_SERVER_INFO_WALLETS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/wallets/_info",
@@ -1622,7 +1622,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_SERVER_INFO_WALLETS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/wallets/_info",
@@ -1706,7 +1706,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_TRANSACTIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransactionsRequest)
@@ -1795,7 +1795,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_TRANSACTIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetTransactionsRequest)
@@ -1885,7 +1885,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_WALLET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWalletRequest)
@@ -1983,7 +1983,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_WALLET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWalletRequest)
@@ -2082,7 +2082,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_WALLET_SUMMARY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWalletSummaryRequest)
@@ -2181,7 +2181,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_WALLET_SUMMARY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWalletSummaryRequest)
@@ -2279,7 +2279,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_BALANCES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListBalancesRequest)
@@ -2368,7 +2368,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_BALANCES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListBalancesRequest)
@@ -2457,7 +2457,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_WALLETS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListWalletsRequest)
@@ -2547,7 +2547,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_WALLETS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListWalletsRequest)
@@ -2637,7 +2637,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_WALLET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateWalletRequest)
@@ -2731,7 +2731,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_WALLET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateWalletRequest)
@@ -2823,7 +2823,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.VOID_HOLD_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.VoidHoldRequest)
@@ -2908,7 +2908,7 @@ class WalletsV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.VOID_HOLD_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.VoidHoldRequest)

@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_GET_POOL_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3GetPoolRequestTypedDict(TypedDict):
     pool_id: str
     r"""The pool ID"""

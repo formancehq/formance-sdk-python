@@ -45,7 +45,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_POLICY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, reconciliation.PolicyRequest)
@@ -143,7 +143,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_POLICY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, reconciliation.PolicyRequest)
@@ -240,7 +240,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DELETE_POLICY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeletePolicyRequest)
@@ -331,7 +331,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DELETE_POLICY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeletePolicyRequest)
@@ -420,7 +420,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_POLICY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPolicyRequest)
@@ -512,7 +512,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_POLICY_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetPolicyRequest)
@@ -605,7 +605,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_RECONCILIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetReconciliationRequest)
@@ -698,7 +698,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_RECONCILIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetReconciliationRequest)
@@ -786,7 +786,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_SERVER_INFO_RECONCILIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/reconciliation/_info",
@@ -869,7 +869,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_SERVER_INFO_RECONCILIATION_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/reconciliation/_info",
@@ -956,7 +956,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_POLICIES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPoliciesRequest)
@@ -1055,7 +1055,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_POLICIES_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListPoliciesRequest)
@@ -1155,7 +1155,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_RECONCILIATIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListReconciliationsRequest)
@@ -1255,7 +1255,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_RECONCILIATIONS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ListReconciliationsRequest)
@@ -1356,7 +1356,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.RECONCILE_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReconcileRequest)
@@ -1457,7 +1457,7 @@ class ReconciliationV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.RECONCILE_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReconcileRequest)

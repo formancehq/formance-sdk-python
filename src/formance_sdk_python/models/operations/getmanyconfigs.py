@@ -12,11 +12,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_MANY_CONFIGS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetManyConfigsRequestTypedDict(TypedDict):
     endpoint: NotRequired[str]
     r"""Optional filter by endpoint URL"""

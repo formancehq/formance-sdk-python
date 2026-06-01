@@ -11,11 +11,6 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-UPDATE_BANK_ACCOUNT_METADATA_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class UpdateBankAccountMetadataRequestTypedDict(TypedDict):
     update_bank_account_metadata_request: payments_updatebankaccountmetadatarequest.UpdateBankAccountMetadataRequestTypedDict
     bank_account_id: str

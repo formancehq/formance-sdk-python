@@ -16,11 +16,6 @@ from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_INSERT_SCHEMA_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2InsertSchemaRequestTypedDict(TypedDict):
     v2_schema_data: ledger_v2schemadata_2.V2SchemaData2TypedDict
     ledger: str

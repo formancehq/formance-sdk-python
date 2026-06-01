@@ -10,11 +10,6 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-V2_CREATE_PIPELINE_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2CreatePipelineResponseTypedDict(TypedDict):
     r"""Created ipeline"""
 

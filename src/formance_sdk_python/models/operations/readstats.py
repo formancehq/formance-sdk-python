@@ -10,11 +10,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-READ_STATS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ReadStatsRequestTypedDict(TypedDict):
     ledger: str
     r"""name of the ledger"""

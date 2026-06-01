@@ -12,11 +12,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-ACTIVATE_CONFIG_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ActivateConfigRequestTypedDict(TypedDict):
     id: str
     r"""Config ID"""

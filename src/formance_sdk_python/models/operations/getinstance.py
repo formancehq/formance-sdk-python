@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_INSTANCE_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetInstanceRequestTypedDict(TypedDict):
     instance_id: str
     r"""The instance id"""

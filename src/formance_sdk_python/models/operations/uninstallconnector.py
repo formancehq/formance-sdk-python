@@ -8,11 +8,6 @@ import httpx
 from typing_extensions import Annotated, TypedDict
 
 
-UNINSTALL_CONNECTOR_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class UninstallConnectorRequestTypedDict(TypedDict):
     connector: payments_connector.Connector
     r"""The name of the connector."""

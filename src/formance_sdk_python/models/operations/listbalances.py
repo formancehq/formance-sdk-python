@@ -12,11 +12,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-LIST_BALANCES_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ListBalancesRequestTypedDict(TypedDict):
     id: str
 

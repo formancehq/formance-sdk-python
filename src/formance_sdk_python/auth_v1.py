@@ -43,7 +43,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_CLIENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[auth.ClientOptions2])
@@ -138,7 +138,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_CLIENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, Optional[auth.ClientOptions2])
@@ -230,7 +230,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_SECRET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateSecretRequest)
@@ -326,7 +326,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CREATE_SECRET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateSecretRequest)
@@ -422,7 +422,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DELETE_CLIENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteClientRequest)
@@ -508,7 +508,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DELETE_CLIENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteClientRequest)
@@ -594,7 +594,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DELETE_SECRET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteSecretRequest)
@@ -680,7 +680,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DELETE_SECRET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteSecretRequest)
@@ -762,7 +762,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_OIDC_WELL_KNOWNS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/auth/.well-known/openid-configuration",
@@ -839,7 +839,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_OIDC_WELL_KNOWNS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/auth/.well-known/openid-configuration",
@@ -916,7 +916,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_SERVER_INFO_AUTH_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/auth/_info",
@@ -996,7 +996,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_SERVER_INFO_AUTH_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/auth/_info",
@@ -1076,7 +1076,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_CLIENTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/auth/clients",
@@ -1156,7 +1156,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_CLIENTS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/auth/clients",
@@ -1238,7 +1238,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_USERS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/api/auth/users",
@@ -1320,7 +1320,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.LIST_USERS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/api/auth/users",
@@ -1404,7 +1404,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.READ_CLIENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadClientRequest)
@@ -1493,7 +1493,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.READ_CLIENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadClientRequest)
@@ -1582,7 +1582,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.READ_USER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadUserRequest)
@@ -1671,7 +1671,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.READ_USER_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ReadUserRequest)
@@ -1760,7 +1760,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_CLIENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateClientRequest)
@@ -1856,7 +1856,7 @@ class AuthV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_CLIENT_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateClientRequest)

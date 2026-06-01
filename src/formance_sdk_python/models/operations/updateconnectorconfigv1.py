@@ -12,11 +12,6 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-UPDATE_CONNECTOR_CONFIG_V1_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class UpdateConnectorConfigV1RequestTypedDict(TypedDict):
     connector_config: payments_connectorconfig.ConnectorConfigTypedDict
     connector: payments_connector.Connector

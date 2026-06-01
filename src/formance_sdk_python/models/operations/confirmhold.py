@@ -18,11 +18,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-CONFIRM_HOLD_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ConfirmHoldRequestTypedDict(TypedDict):
     hold_id: str
     confirm_hold_request: NotRequired[

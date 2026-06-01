@@ -42,7 +42,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.ACTIVATE_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ActivateConfigRequest)
@@ -136,7 +136,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.ACTIVATE_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ActivateConfigRequest)
@@ -235,7 +235,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CHANGE_CONFIG_SECRET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ChangeConfigSecretRequest)
@@ -341,7 +341,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.CHANGE_CONFIG_SECRET_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.ChangeConfigSecretRequest)
@@ -443,7 +443,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DEACTIVATE_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeactivateConfigRequest)
@@ -538,7 +538,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DEACTIVATE_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeactivateConfigRequest)
@@ -632,7 +632,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DELETE_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteConfigRequest)
@@ -723,7 +723,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.DELETE_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteConfigRequest)
@@ -814,7 +814,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_MANY_CONFIGS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetManyConfigsRequest)
@@ -908,7 +908,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.GET_MANY_CONFIGS_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetManyConfigsRequest)
@@ -1011,7 +1011,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.INSERT_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, webhooks.ConfigUser)
@@ -1117,7 +1117,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.INSERT_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, webhooks.ConfigUser)
@@ -1214,7 +1214,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.TEST_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.TestConfigRequest)
@@ -1308,7 +1308,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.TEST_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.TestConfigRequest)
@@ -1402,7 +1402,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateConfigRequest)
@@ -1496,7 +1496,7 @@ class WebhooksV1(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = operations.UPDATE_CONFIG_SERVERS[0]
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateConfigRequest)

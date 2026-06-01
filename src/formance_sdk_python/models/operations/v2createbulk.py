@@ -16,11 +16,6 @@ from typing import Any, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_CREATE_BULK_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2CreateBulkRequestTypedDict(TypedDict):
     request_body: List[Any]
     ledger: str

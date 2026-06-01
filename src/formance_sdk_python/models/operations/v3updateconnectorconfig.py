@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_UPDATE_CONNECTOR_CONFIG_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3UpdateConnectorConfigRequestTypedDict(TypedDict):
     connector_id: str
     r"""The connector ID"""

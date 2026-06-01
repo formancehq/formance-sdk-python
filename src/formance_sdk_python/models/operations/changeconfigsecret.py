@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-CHANGE_CONFIG_SECRET_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ChangeConfigSecretRequestTypedDict(TypedDict):
     id: str
     r"""Config ID"""

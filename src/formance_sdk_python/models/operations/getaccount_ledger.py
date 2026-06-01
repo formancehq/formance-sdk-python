@@ -10,11 +10,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_ACCOUNT_LEDGER_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetAccountLedgerRequestTypedDict(TypedDict):
     address: str
     r"""Exact address of the account. It must match the following regular expressions pattern:

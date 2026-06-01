@@ -22,11 +22,6 @@ from typing import Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_REVERT_TRANSACTION_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2RevertTransactionRequestTypedDict(TypedDict):
     id: int
     r"""Transaction ID."""

@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-GET_RECONCILIATION_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class GetReconciliationRequestTypedDict(TypedDict):
     reconciliation_id: str
     r"""The reconciliation ID."""

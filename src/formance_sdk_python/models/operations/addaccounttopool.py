@@ -11,11 +11,6 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-ADD_ACCOUNT_TO_POOL_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class AddAccountToPoolRequestTypedDict(TypedDict):
     add_account_to_pool_request: (
         payments_addaccounttopoolrequest.AddAccountToPoolRequestTypedDict

@@ -11,11 +11,6 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-UPDATE_POOL_QUERY_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class UpdatePoolQueryRequestTypedDict(TypedDict):
     update_pool_query_request: (
         payments_updatepoolqueryrequest.UpdatePoolQueryRequestTypedDict

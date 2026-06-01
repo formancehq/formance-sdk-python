@@ -9,11 +9,6 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-RESET_CONNECTOR_V1_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ResetConnectorV1RequestTypedDict(TypedDict):
     connector: payments_connector.Connector
     r"""The name of the connector."""

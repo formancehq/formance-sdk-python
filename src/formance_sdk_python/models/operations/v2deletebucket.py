@@ -10,11 +10,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_DELETE_BUCKET_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2DeleteBucketRequestTypedDict(TypedDict):
     bucket: str
     r"""The bucket name"""

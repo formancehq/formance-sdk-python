@@ -14,11 +14,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-CONNECTORS_TRANSFER_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ConnectorsTransferRequestTypedDict(TypedDict):
     transfer_request: payments_transferrequest.TransferRequestTypedDict
     connector: payments_connector.Connector

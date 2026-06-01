@@ -11,11 +11,6 @@ from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-LIST_CONFIGS_AVAILABLE_CONNECTORS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ListConfigsAvailableConnectorsResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""

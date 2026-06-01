@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V3_GET_CONNECTOR_SCHEDULE_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V3GetConnectorScheduleRequestTypedDict(TypedDict):
     connector_id: str
     r"""The connector ID"""

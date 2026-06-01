@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_GET_WORKFLOW_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2GetWorkflowRequestTypedDict(TypedDict):
     flow_id: str
     r"""The flow id"""

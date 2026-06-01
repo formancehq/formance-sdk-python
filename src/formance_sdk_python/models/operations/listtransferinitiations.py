@@ -13,11 +13,6 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-LIST_TRANSFER_INITIATIONS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class ListTransferInitiationsRequestTypedDict(TypedDict):
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests. Maximum page size is set to 15.

@@ -17,11 +17,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_GET_ACCOUNT_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2GetAccountRequestTypedDict(TypedDict):
     address: str
     r"""Exact address of the account. It must match the following regular expressions pattern:

@@ -10,11 +10,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_RESTORE_BUCKET_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2RestoreBucketRequestTypedDict(TypedDict):
     bucket: str
     r"""The bucket name"""

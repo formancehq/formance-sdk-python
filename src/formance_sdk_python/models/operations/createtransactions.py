@@ -13,11 +13,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-CREATE_TRANSACTIONS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class CreateTransactionsRequestTypedDict(TypedDict):
     transactions: ledger_transactions.TransactionsTypedDict
     ledger: str

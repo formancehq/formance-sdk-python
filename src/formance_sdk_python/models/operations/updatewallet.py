@@ -15,11 +15,6 @@ from typing import Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-UPDATE_WALLET_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class UpdateWalletRequestBodyTypedDict(TypedDict):
     metadata: Dict[str, str]
     r"""Custom metadata to attach to this wallet."""

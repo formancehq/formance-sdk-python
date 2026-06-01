@@ -14,11 +14,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-UPDATE_CLIENT_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class UpdateClientRequestTypedDict(TypedDict):
     client_id: str
     r"""Client ID"""

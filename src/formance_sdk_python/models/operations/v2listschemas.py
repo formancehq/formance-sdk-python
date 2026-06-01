@@ -18,11 +18,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_LIST_SCHEMAS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2ListSchemasOrder(str, Enum):
     r"""The sort order"""
 

@@ -13,11 +13,6 @@ from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-V2_LIST_LEDGERS_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class V2ListLedgersRequestTypedDict(TypedDict):
     request_body: Dict[str, Any]
     cursor: NotRequired[str]

@@ -13,11 +13,6 @@ from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-TEST_TRIGGER_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class TestTriggerRequestTypedDict(TypedDict):
     __test__ = False  # pyright: ignore[reportGeneralTypeIssues]
 

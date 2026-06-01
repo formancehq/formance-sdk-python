@@ -123,7 +123,6 @@ if TYPE_CHECKING:
     from .v2createexporter import (
         V2CreateExporterResponse,
         V2CreateExporterResponseTypedDict,
-        V2_CREATE_EXPORTER_SERVERS,
     )
     from .v2createledgerrequest import (
         V2CreateLedgerRequest,
@@ -132,7 +131,6 @@ if TYPE_CHECKING:
     from .v2createpipeline import (
         V2CreatePipelineResponse,
         V2CreatePipelineResponseTypedDict,
-        V2_CREATE_PIPELINE_SERVERS,
     )
     from .v2createpipelinerequest import (
         V2CreatePipelineRequest,
@@ -161,13 +159,11 @@ if TYPE_CHECKING:
     from .v2getexporterstate import (
         V2GetExporterStateResponse,
         V2GetExporterStateResponseTypedDict,
-        V2_GET_EXPORTER_STATE_SERVERS,
     )
     from .v2getledgerresponse import V2GetLedgerResponse, V2GetLedgerResponseTypedDict
     from .v2getpipelinestate import (
         V2GetPipelineStateResponse,
         V2GetPipelineStateResponseTypedDict,
-        V2_GET_PIPELINE_STATE_SERVERS,
     )
     from .v2gettransactionresponse import (
         V2GetTransactionResponse,
@@ -565,10 +561,6 @@ __all__ = [
     "V2VolumesWithBalanceCursorResponseResource",
     "V2VolumesWithBalanceCursorResponseTypedDict",
     "V2VolumesWithBalanceTypedDict",
-    "V2_CREATE_EXPORTER_SERVERS",
-    "V2_CREATE_PIPELINE_SERVERS",
-    "V2_GET_EXPORTER_STATE_SERVERS",
-    "V2_GET_PIPELINE_STATE_SERVERS",
     "Volume",
     "VolumeTypedDict",
 ]
@@ -697,12 +689,10 @@ _dynamic_imports: dict[str, str] = {
     "V2ConfigInfoTypedDict": ".v2configinfo",
     "V2CreateExporterResponse": ".v2createexporter",
     "V2CreateExporterResponseTypedDict": ".v2createexporter",
-    "V2_CREATE_EXPORTER_SERVERS": ".v2createexporter",
     "V2CreateLedgerRequest": ".v2createledgerrequest",
     "V2CreateLedgerRequestTypedDict": ".v2createledgerrequest",
     "V2CreatePipelineResponse": ".v2createpipeline",
     "V2CreatePipelineResponseTypedDict": ".v2createpipeline",
-    "V2_CREATE_PIPELINE_SERVERS": ".v2createpipeline",
     "V2CreatePipelineRequest": ".v2createpipelinerequest",
     "V2CreatePipelineRequestTypedDict": ".v2createpipelinerequest",
     "V2CreateTransactionResponse": ".v2createtransactionresponse",
@@ -720,12 +710,10 @@ _dynamic_imports: dict[str, str] = {
     "V2ExportersCursorResponseTypedDict": ".v2exporterscursorresponse",
     "V2GetExporterStateResponse": ".v2getexporterstate",
     "V2GetExporterStateResponseTypedDict": ".v2getexporterstate",
-    "V2_GET_EXPORTER_STATE_SERVERS": ".v2getexporterstate",
     "V2GetLedgerResponse": ".v2getledgerresponse",
     "V2GetLedgerResponseTypedDict": ".v2getledgerresponse",
     "V2GetPipelineStateResponse": ".v2getpipelinestate",
     "V2GetPipelineStateResponseTypedDict": ".v2getpipelinestate",
-    "V2_GET_PIPELINE_STATE_SERVERS": ".v2getpipelinestate",
     "V2GetTransactionResponse": ".v2gettransactionresponse",
     "V2GetTransactionResponseTypedDict": ".v2gettransactionresponse",
     "V2Ledger": ".v2ledger",

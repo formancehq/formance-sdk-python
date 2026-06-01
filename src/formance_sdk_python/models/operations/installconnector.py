@@ -14,11 +14,6 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-INSTALL_CONNECTOR_SERVERS = [
-    "http://localhost:8080/",
-]
-
-
 class InstallConnectorRequestTypedDict(TypedDict):
     connector_config: payments_connectorconfig.ConnectorConfigTypedDict
     connector: payments_connector.Connector
