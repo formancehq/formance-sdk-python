@@ -5,16 +5,16 @@ management:
   docVersion: SDK_VERSION
   speakeasyVersion: 1.770.0
   generationVersion: 2.893.0
-  releaseVersion: 8.2.0
-  configChecksum: b7aa31125d085aa98009b0c5fa86d891
+  releaseVersion: 8.2.1
+  configChecksum: 3c997e757bd987f30581dc54de27b12d
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
   published: true
 persistentEdits:
-  generation_id: 4b8aa458-b6aa-4045-ac86-b93456131672
-  pristine_commit_hash: 045fa23b733f9bdfbb11593699e3bc97a1e3d72d
-  pristine_tree_hash: bd65521036a0874395880d368d35021ec79acb5d
+  generation_id: dc666553-389c-4425-9dda-e75d566d6a6d
+  pristine_commit_hash: ac076a4e92177038167f3e3d6bd1b78b2933aa48
+  pristine_tree_hash: 399ce53501defc8ae4a7143cb29b8573d4b5668c
 features:
   python:
     additionalDependencies: 1.1.0
@@ -4764,8 +4764,8 @@ trackedFiles:
     pristine_git_object: 7f810d0d754cf46304748cba52ab99323e346c33
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:2cf033ca09629a21389361ca74f1fb47cf74f908
-    pristine_git_object: c6d63081d21bde5e93317966d34eba180bad754d
+    last_write_checksum: sha1:60ef81ed95883f896e96bd7e9e5d0abff0582b1a
+    pristine_git_object: 4982fa9b33308e9f8c4ed87c7ab89a7ec559b1ba
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:72a46c2776bad92e53b4bc5b3b76ca67d13dffda
@@ -4796,8 +4796,8 @@ trackedFiles:
     pristine_git_object: 34750f90d2bbb67b72de877e865b8ab28455b1c0
   src/formance_sdk_python/_version.py:
     id: ece483bb5810
-    last_write_checksum: sha1:0e7acd50ad1c1603d3f112b68a6e7ffc2043367e
-    pristine_git_object: 0631cc99431ec8eac084d26aa5ceda08ae0783c3
+    last_write_checksum: sha1:73876e137e7d26893f5125d6173d91e928edab24
+    pristine_git_object: 443e29ce87ab1e082d8f832bb22c57b1d0e705c1
   src/formance_sdk_python/auth.py:
     id: 937cbfdb64e3
     last_write_checksum: sha1:8f030e786ddba8357a6dab3e2f86cec56415fdc6

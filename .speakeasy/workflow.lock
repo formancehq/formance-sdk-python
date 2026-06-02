@@ -13,7 +13,7 @@ targets:
         sourceRevisionDigest: sha256:c85e21f1f000f0409f58d4ace7aaac0d708f4577a19b638347b41dd37e19f317
         sourceBlobDigest: sha256:24159a4c5e03fd9ebc0727cecb2bff5ed6695d519aeb3fe80346af6ce1fabcfa
         codeSamplesNamespace: stacks-source-python-code-samples
-        codeSamplesRevisionDigest: sha256:b20895f1181cb33d2de31d6778fbf13d4b05d8ad34dba287afa8d297fcc7e329
+        codeSamplesRevisionDigest: sha256:49578638117ca68cb0b44a1596c8fce49223eb7b871b2bea8afb5ce56efa352a
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
