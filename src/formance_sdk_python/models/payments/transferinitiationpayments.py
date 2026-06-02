@@ -16,20 +16,18 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class TransferInitiationPaymentsTypedDict(TypedDict):
-    legacy_payment_status: LegacyPaymentStatus
     created_at: datetime
     payment_id: str
+    status: LegacyPaymentStatus
     error: NotRequired[Nullable[str]]
 
 
 class TransferInitiationPayments(BaseModel):
-    legacy_payment_status: Annotated[
-        LegacyPaymentStatus, pydantic.Field(alias="status")
-    ]
-
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
     payment_id: Annotated[str, pydantic.Field(alias="paymentID")]
+
+    status: LegacyPaymentStatus
 
     error: OptionalNullable[str] = UNSET
 

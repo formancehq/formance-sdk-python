@@ -5,8 +5,8 @@ from typing import Any, TYPE_CHECKING
 from formance_sdk_python.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
-    from .clientoptions_1 import ClientOptions1, ClientOptions1TypedDict
-    from .clientoptions_2 import ClientOptions2, ClientOptions2TypedDict
+    from .client import Client, ClientTypedDict
+    from .clientoptions import ClientOptions, ClientOptionsTypedDict
     from .clientsecret import ClientSecret, ClientSecretTypedDict
     from .createclientresponse import (
         CreateClientResponse,
@@ -20,18 +20,18 @@ if TYPE_CHECKING:
     from .listusersresponse import ListUsersResponse, ListUsersResponseTypedDict
     from .readclientresponse import ReadClientResponse, ReadClientResponseTypedDict
     from .readuserresponse import ReadUserResponse, ReadUserResponseTypedDict
-    from .secretoptions_1 import SecretOptions1, SecretOptions1TypedDict
-    from .secretoptions_2 import SecretOptions2, SecretOptions2TypedDict
+    from .secret import Secret, SecretTypedDict
+    from .secretoptions import SecretOptions, SecretOptionsTypedDict
     from .serverinfo import ServerInfo, ServerInfoTypedDict
     from .user import User, UserTypedDict
 
 __all__ = [
-    "ClientOptions1",
-    "ClientOptions1TypedDict",
-    "ClientOptions2",
-    "ClientOptions2TypedDict",
+    "Client",
+    "ClientOptions",
+    "ClientOptionsTypedDict",
     "ClientSecret",
     "ClientSecretTypedDict",
+    "ClientTypedDict",
     "CreateClientResponse",
     "CreateClientResponseTypedDict",
     "CreateSecretResponse",
@@ -44,10 +44,10 @@ __all__ = [
     "ReadClientResponseTypedDict",
     "ReadUserResponse",
     "ReadUserResponseTypedDict",
-    "SecretOptions1",
-    "SecretOptions1TypedDict",
-    "SecretOptions2",
-    "SecretOptions2TypedDict",
+    "Secret",
+    "SecretOptions",
+    "SecretOptionsTypedDict",
+    "SecretTypedDict",
     "ServerInfo",
     "ServerInfoTypedDict",
     "User",
@@ -55,10 +55,10 @@ __all__ = [
 ]
 
 _dynamic_imports: dict[str, str] = {
-    "ClientOptions1": ".clientoptions_1",
-    "ClientOptions1TypedDict": ".clientoptions_1",
-    "ClientOptions2": ".clientoptions_2",
-    "ClientOptions2TypedDict": ".clientoptions_2",
+    "Client": ".client",
+    "ClientTypedDict": ".client",
+    "ClientOptions": ".clientoptions",
+    "ClientOptionsTypedDict": ".clientoptions",
     "ClientSecret": ".clientsecret",
     "ClientSecretTypedDict": ".clientsecret",
     "CreateClientResponse": ".createclientresponse",
@@ -73,10 +73,10 @@ _dynamic_imports: dict[str, str] = {
     "ReadClientResponseTypedDict": ".readclientresponse",
     "ReadUserResponse": ".readuserresponse",
     "ReadUserResponseTypedDict": ".readuserresponse",
-    "SecretOptions1": ".secretoptions_1",
-    "SecretOptions1TypedDict": ".secretoptions_1",
-    "SecretOptions2": ".secretoptions_2",
-    "SecretOptions2TypedDict": ".secretoptions_2",
+    "Secret": ".secret",
+    "SecretTypedDict": ".secret",
+    "SecretOptions": ".secretoptions",
+    "SecretOptionsTypedDict": ".secretoptions",
     "ServerInfo": ".serverinfo",
     "ServerInfoTypedDict": ".serverinfo",
     "User": ".user",

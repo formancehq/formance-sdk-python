@@ -7,4 +7,4 @@ OK
 
 | Field                                          | Type                                           | Required                                       | Description                                    |
 | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| `pool`                                         | [payments.Pool](../../models/payments/pool.md) | :heavy_check_mark:                             | N/A                                            |
+| `data`                                         | [payments.Pool](../../models/payments/pool.md) | :heavy_check_mark:                             | N/A                                            |

@@ -10,13 +10,13 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ErrorResponseTypedDict(TypedDict):
-    errors_enum: ErrorsEnum
+    error_code: ErrorsEnum
     error_message: str
     details: NotRequired[str]
 
 
 class ErrorResponse(BaseModel):
-    errors_enum: Annotated[ErrorsEnum, pydantic.Field(alias="errorCode")]
+    error_code: Annotated[ErrorsEnum, pydantic.Field(alias="errorCode")]
 
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
 

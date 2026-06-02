@@ -5,19 +5,18 @@ from .monetary import Monetary, MonetaryTypedDict
 from .subject import Subject, SubjectTypedDict
 from datetime import datetime
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Dict, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class DebitWalletRequestTypedDict(TypedDict):
-    monetary: MonetaryTypedDict
+    amount: MonetaryTypedDict
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
-    subject: NotRequired[SubjectTypedDict]
     balances: NotRequired[List[str]]
     description: NotRequired[str]
+    destination: NotRequired[SubjectTypedDict]
     pending: NotRequired[bool]
     r"""Set to true to create a pending hold. If false, the wallet will be debited immediately."""
     timestamp: NotRequired[datetime]
@@ -25,16 +24,16 @@ class DebitWalletRequestTypedDict(TypedDict):
 
 
 class DebitWalletRequest(BaseModel):
-    monetary: Annotated[Monetary, pydantic.Field(alias="amount")]
+    amount: Monetary
 
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
 
-    subject: Annotated[Optional[Subject], pydantic.Field(alias="destination")] = None
-
     balances: Optional[List[str]] = None
 
     description: Optional[str] = None
+
+    destination: Optional[Subject] = None
 
     pending: Optional[bool] = None
     r"""Set to true to create a pending hold. If false, the wallet will be debited immediately."""
@@ -45,7 +44,7 @@ class DebitWalletRequest(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["Subject", "balances", "description", "pending", "timestamp"]
+            ["balances", "description", "destination", "pending", "timestamp"]
         )
         serialized = handler(self)
         m = {}
@@ -59,9 +58,3 @@ class DebitWalletRequest(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    DebitWalletRequest.model_rebuild()
-except NameError:
-    pass

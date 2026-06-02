@@ -5,9 +5,9 @@ from typing import Any, TYPE_CHECKING
 from formance_sdk_python.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
-    from .assetholder_1 import AssetHolder1, AssetHolder1TypedDict
-    from .assetholder_2 import AssetHolder2, AssetHolder2TypedDict
+    from .assetholder import AssetHolder, AssetHolderTypedDict
     from .balance import Balance, BalanceTypedDict
+    from .balancewithassets import BalanceWithAssets, BalanceWithAssetsTypedDict
     from .confirmholdrequest import ConfirmHoldRequest, ConfirmHoldRequestTypedDict
     from .createbalanceresponse import (
         CreateBalanceResponse,
@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .debitwalletrequest import DebitWalletRequest, DebitWalletRequestTypedDict
     from .debitwalletresponse import DebitWalletResponse, DebitWalletResponseTypedDict
     from .errorresponse import ErrorCode, ErrorResponse, ErrorResponseData
+    from .expandeddebithold import ExpandedDebitHold, ExpandedDebitHoldTypedDict
     from .getbalanceresponse import GetBalanceResponse, GetBalanceResponseTypedDict
     from .getholdresponse import GetHoldResponse, GetHoldResponseTypedDict
     from .getholdsresponse import (
@@ -41,8 +42,7 @@ if TYPE_CHECKING:
         GetWalletSummaryResponse,
         GetWalletSummaryResponseTypedDict,
     )
-    from .hold_1 import Hold1, Hold1TypedDict
-    from .hold_2 import Hold2, Hold2TypedDict
+    from .hold import Hold, HoldTypedDict
     from .ledgeraccountsubject import (
         LedgerAccountSubject,
         LedgerAccountSubjectTypedDict,
@@ -76,12 +76,12 @@ if TYPE_CHECKING:
     )
 
 __all__ = [
-    "AssetHolder1",
-    "AssetHolder1TypedDict",
-    "AssetHolder2",
-    "AssetHolder2TypedDict",
+    "AssetHolder",
+    "AssetHolderTypedDict",
     "Balance",
     "BalanceTypedDict",
+    "BalanceWithAssets",
+    "BalanceWithAssetsTypedDict",
     "ConfirmHoldRequest",
     "ConfirmHoldRequestTypedDict",
     "CreateBalanceResponse",
@@ -99,6 +99,8 @@ __all__ = [
     "ErrorCode",
     "ErrorResponse",
     "ErrorResponseData",
+    "ExpandedDebitHold",
+    "ExpandedDebitHoldTypedDict",
     "GetBalanceResponse",
     "GetBalanceResponseTypedDict",
     "GetHoldResponse",
@@ -115,10 +117,8 @@ __all__ = [
     "GetWalletResponseTypedDict",
     "GetWalletSummaryResponse",
     "GetWalletSummaryResponseTypedDict",
-    "Hold1",
-    "Hold1TypedDict",
-    "Hold2",
-    "Hold2TypedDict",
+    "Hold",
+    "HoldTypedDict",
     "LedgerAccountSubject",
     "LedgerAccountSubjectTypedDict",
     "ListBalancesResponse",
@@ -156,12 +156,12 @@ __all__ = [
 ]
 
 _dynamic_imports: dict[str, str] = {
-    "AssetHolder1": ".assetholder_1",
-    "AssetHolder1TypedDict": ".assetholder_1",
-    "AssetHolder2": ".assetholder_2",
-    "AssetHolder2TypedDict": ".assetholder_2",
+    "AssetHolder": ".assetholder",
+    "AssetHolderTypedDict": ".assetholder",
     "Balance": ".balance",
     "BalanceTypedDict": ".balance",
+    "BalanceWithAssets": ".balancewithassets",
+    "BalanceWithAssetsTypedDict": ".balancewithassets",
     "ConfirmHoldRequest": ".confirmholdrequest",
     "ConfirmHoldRequestTypedDict": ".confirmholdrequest",
     "CreateBalanceResponse": ".createbalanceresponse",
@@ -179,6 +179,8 @@ _dynamic_imports: dict[str, str] = {
     "ErrorCode": ".errorresponse",
     "ErrorResponse": ".errorresponse",
     "ErrorResponseData": ".errorresponse",
+    "ExpandedDebitHold": ".expandeddebithold",
+    "ExpandedDebitHoldTypedDict": ".expandeddebithold",
     "GetBalanceResponse": ".getbalanceresponse",
     "GetBalanceResponseTypedDict": ".getbalanceresponse",
     "GetHoldResponse": ".getholdresponse",
@@ -195,10 +197,8 @@ _dynamic_imports: dict[str, str] = {
     "GetWalletResponseTypedDict": ".getwalletresponse",
     "GetWalletSummaryResponse": ".getwalletsummaryresponse",
     "GetWalletSummaryResponseTypedDict": ".getwalletsummaryresponse",
-    "Hold1": ".hold_1",
-    "Hold1TypedDict": ".hold_1",
-    "Hold2": ".hold_2",
-    "Hold2TypedDict": ".hold_2",
+    "Hold": ".hold",
+    "HoldTypedDict": ".hold",
     "LedgerAccountSubject": ".ledgeraccountsubject",
     "LedgerAccountSubjectTypedDict": ".ledgeraccountsubject",
     "ListBalancesResponse": ".listbalancesresponse",

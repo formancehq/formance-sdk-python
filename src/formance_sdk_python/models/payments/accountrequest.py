@@ -17,36 +17,34 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class AccountRequestTypedDict(TypedDict):
-    account_type: AccountType
     connector_id: str
     created_at: datetime
     reference: str
-    account_metadata: NotRequired[Nullable[Dict[str, str]]]
+    type: AccountType
     account_name: NotRequired[str]
     default_asset: NotRequired[str]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
 
 
 class AccountRequest(BaseModel):
-    account_type: Annotated[AccountType, pydantic.Field(alias="type")]
-
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
     reference: str
 
-    account_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
+    type: AccountType
 
     account_name: Annotated[Optional[str], pydantic.Field(alias="accountName")] = None
 
     default_asset: Annotated[Optional[str], pydantic.Field(alias="defaultAsset")] = None
 
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["AccountMetadata", "accountName", "defaultAsset"])
-        nullable_fields = set(["AccountMetadata"])
+        optional_fields = set(["accountName", "defaultAsset", "metadata"])
+        nullable_fields = set(["metadata"])
         serialized = handler(self)
         m = {}
 

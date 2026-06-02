@@ -33,8 +33,8 @@ class TransactionData(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["Metadata", "reference", "timestamp"])
-        nullable_fields = set(["Metadata"])
+        optional_fields = set(["metadata", "reference", "timestamp"])
+        nullable_fields = set(["metadata"])
         serialized = handler(self)
         m = {}
 

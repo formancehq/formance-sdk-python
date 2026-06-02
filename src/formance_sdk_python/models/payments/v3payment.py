@@ -21,8 +21,6 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3PaymentTypedDict(TypedDict):
-    v3_payment_status_enum: V3PaymentStatusEnum
-    v3_payment_type_enum: V3PaymentTypeEnum
     amount: int
     asset: str
     connector_id: str
@@ -32,19 +30,15 @@ class V3PaymentTypedDict(TypedDict):
     provider: str
     reference: str
     scheme: str
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
+    status: V3PaymentStatusEnum
+    type: V3PaymentTypeEnum
     adjustments: NotRequired[Nullable[List[V3PaymentAdjustmentTypedDict]]]
     destination_account_id: NotRequired[Nullable[str]]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
     source_account_id: NotRequired[Nullable[str]]
 
 
 class V3Payment(BaseModel):
-    v3_payment_status_enum: Annotated[
-        V3PaymentStatusEnum, pydantic.Field(alias="status")
-    ]
-
-    v3_payment_type_enum: Annotated[V3PaymentTypeEnum, pydantic.Field(alias="type")]
-
     amount: Annotated[int, BeforeValidator(validate_int)]
 
     asset: str
@@ -66,15 +60,17 @@ class V3Payment(BaseModel):
 
     scheme: str
 
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
+    status: V3PaymentStatusEnum
+
+    type: V3PaymentTypeEnum
 
     adjustments: OptionalNullable[List[V3PaymentAdjustment]] = UNSET
 
     destination_account_id: Annotated[
         OptionalNullable[str], pydantic.Field(alias="destinationAccountID")
     ] = UNSET
+
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
 
     source_account_id: Annotated[
         OptionalNullable[str], pydantic.Field(alias="sourceAccountID")
@@ -83,10 +79,10 @@ class V3Payment(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["V3Metadata", "adjustments", "destinationAccountID", "sourceAccountID"]
+            ["adjustments", "destinationAccountID", "metadata", "sourceAccountID"]
         )
         nullable_fields = set(
-            ["V3Metadata", "adjustments", "destinationAccountID", "sourceAccountID"]
+            ["adjustments", "destinationAccountID", "metadata", "sourceAccountID"]
         )
         serialized = handler(self)
         m = {}

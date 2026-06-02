@@ -24,11 +24,11 @@ class BankAccountTypedDict(TypedDict):
     created_at: datetime
     id: str
     name: str
-    bank_account_metadata: NotRequired[Nullable[Dict[str, str]]]
     account_id: NotRequired[str]
     account_number: NotRequired[str]
     connector_id: NotRequired[str]
     iban: NotRequired[str]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
     provider: NotRequired[str]
     related_accounts: NotRequired[List[BankAccountRelatedAccountsTypedDict]]
     swift_bic_code: NotRequired[str]
@@ -43,10 +43,6 @@ class BankAccount(BaseModel):
 
     name: str
 
-    bank_account_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
-
     account_id: Annotated[Optional[str], pydantic.Field(alias="accountID")] = None
 
     account_number: Annotated[Optional[str], pydantic.Field(alias="accountNumber")] = (
@@ -56,6 +52,8 @@ class BankAccount(BaseModel):
     connector_id: Annotated[Optional[str], pydantic.Field(alias="connectorID")] = None
 
     iban: Optional[str] = None
+
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
 
     provider: Optional[str] = None
 
@@ -72,17 +70,17 @@ class BankAccount(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
-                "BankAccountMetadata",
                 "accountID",
                 "accountNumber",
                 "connectorID",
                 "iban",
+                "metadata",
                 "provider",
                 "relatedAccounts",
                 "swiftBicCode",
             ]
         )
-        nullable_fields = set(["BankAccountMetadata"])
+        nullable_fields = set(["metadata"])
         serialized = handler(self)
         m = {}
 

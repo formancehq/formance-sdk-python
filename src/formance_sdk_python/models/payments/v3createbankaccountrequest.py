@@ -16,19 +16,15 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V3CreateBankAccountRequestTypedDict(TypedDict):
     name: str
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
     account_number: NotRequired[str]
     country: NotRequired[str]
     iban: NotRequired[str]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
     swift_bic_code: NotRequired[str]
 
 
 class V3CreateBankAccountRequest(BaseModel):
     name: str
-
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
 
     account_number: Annotated[Optional[str], pydantic.Field(alias="accountNumber")] = (
         None
@@ -38,6 +34,8 @@ class V3CreateBankAccountRequest(BaseModel):
 
     iban: Optional[str] = None
 
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
+
     swift_bic_code: Annotated[Optional[str], pydantic.Field(alias="swiftBicCode")] = (
         None
     )
@@ -45,9 +43,9 @@ class V3CreateBankAccountRequest(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["V3Metadata", "accountNumber", "country", "iban", "swiftBicCode"]
+            ["accountNumber", "country", "iban", "metadata", "swiftBicCode"]
         )
-        nullable_fields = set(["V3Metadata"])
+        nullable_fields = set(["metadata"])
         serialized = handler(self)
         m = {}
 

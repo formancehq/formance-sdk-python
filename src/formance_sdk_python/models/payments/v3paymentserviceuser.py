@@ -21,10 +21,10 @@ class V3PaymentServiceUserTypedDict(TypedDict):
     created_at: datetime
     id: str
     name: str
-    v3_address: NotRequired[V3AddressTypedDict]
-    v3_contact_details: NotRequired[V3ContactDetailsTypedDict]
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
+    address: NotRequired[V3AddressTypedDict]
     bank_account_i_ds: NotRequired[Nullable[List[str]]]
+    contact_details: NotRequired[V3ContactDetailsTypedDict]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
 
 
 class V3PaymentServiceUser(BaseModel):
@@ -34,26 +34,24 @@ class V3PaymentServiceUser(BaseModel):
 
     name: str
 
-    v3_address: Annotated[Optional[V3Address], pydantic.Field(alias="address")] = None
-
-    v3_contact_details: Annotated[
-        Optional[V3ContactDetails], pydantic.Field(alias="contactDetails")
-    ] = None
-
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
+    address: Optional[V3Address] = None
 
     bank_account_i_ds: Annotated[
         OptionalNullable[List[str]], pydantic.Field(alias="bankAccountIDs")
     ] = UNSET
 
+    contact_details: Annotated[
+        Optional[V3ContactDetails], pydantic.Field(alias="contactDetails")
+    ] = None
+
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["V3Address", "V3ContactDetails", "V3Metadata", "bankAccountIDs"]
+            ["address", "bankAccountIDs", "contactDetails", "metadata"]
         )
-        nullable_fields = set(["V3Metadata", "bankAccountIDs"])
+        nullable_fields = set(["bankAccountIDs", "metadata"])
         serialized = handler(self)
         m = {}
 

@@ -5,4 +5,4 @@
 
 | Field                                                              | Type                                                               | Required                                                           | Description                                                        |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `v2_payment`                                                       | [orchestration.V2Payment](../../models/orchestration/v2payment.md) | :heavy_check_mark:                                                 | N/A                                                                |
+| `data`                                                             | [orchestration.V2Payment](../../models/orchestration/v2payment.md) | :heavy_check_mark:                                                 | N/A                                                                |

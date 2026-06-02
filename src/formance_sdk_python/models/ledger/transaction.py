@@ -23,9 +23,9 @@ class TransactionTypedDict(TypedDict):
     postings: List[PostingTypedDict]
     timestamp: datetime
     txid: int
-    aggregated_volumes: NotRequired[Dict[str, Dict[str, VolumeTypedDict]]]
-    aggregated_volumes1: NotRequired[Dict[str, Dict[str, VolumeTypedDict]]]
     metadata: NotRequired[Nullable[Dict[str, Any]]]
+    post_commit_volumes: NotRequired[Dict[str, Dict[str, VolumeTypedDict]]]
+    pre_commit_volumes: NotRequired[Dict[str, Dict[str, VolumeTypedDict]]]
     reference: NotRequired[str]
 
 
@@ -36,25 +36,25 @@ class Transaction(BaseModel):
 
     txid: Annotated[int, BeforeValidator(validate_int)]
 
-    aggregated_volumes: Annotated[
-        Optional[Dict[str, Dict[str, Volume]]], pydantic.Field(alias="preCommitVolumes")
-    ] = None
+    metadata: OptionalNullable[Dict[str, Any]] = UNSET
 
-    aggregated_volumes1: Annotated[
+    post_commit_volumes: Annotated[
         Optional[Dict[str, Dict[str, Volume]]],
         pydantic.Field(alias="postCommitVolumes"),
     ] = None
 
-    metadata: OptionalNullable[Dict[str, Any]] = UNSET
+    pre_commit_volumes: Annotated[
+        Optional[Dict[str, Dict[str, Volume]]], pydantic.Field(alias="preCommitVolumes")
+    ] = None
 
     reference: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["AggregatedVolumes", "AggregatedVolumes1", "Metadata", "reference"]
+            ["metadata", "postCommitVolumes", "preCommitVolumes", "reference"]
         )
-        nullable_fields = set(["Metadata"])
+        nullable_fields = set(["metadata"])
         serialized = handler(self)
         m = {}
 

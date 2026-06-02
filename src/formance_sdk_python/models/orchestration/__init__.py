@@ -156,8 +156,8 @@ if TYPE_CHECKING:
     )
     from .subject import Subject, SubjectTypedDict
     from .transaction import Transaction, TransactionTypedDict
-    from .triggerdata_1 import TriggerData1, TriggerData1TypedDict
-    from .triggerdata_2 import TriggerData2, TriggerData2TypedDict
+    from .trigger import Trigger, TriggerTypedDict
+    from .triggerdata import TriggerData, TriggerDataTypedDict
     from .triggeroccurrence import TriggerOccurrence, TriggerOccurrenceTypedDict
     from .update import Update, UpdateTypedDict
     from .updateaccount import UpdateAccount, UpdateAccountTypedDict
@@ -272,9 +272,9 @@ if TYPE_CHECKING:
         V2ListTriggersResponseTypedDict,
     )
     from .v2listwalletsresponse import (
-        V2Cursor,
-        V2CursorTypedDict,
         V2ListWalletsResponse,
+        V2ListWalletsResponseCursor,
+        V2ListWalletsResponseCursorTypedDict,
         V2ListWalletsResponseTypedDict,
     )
     from .v2listworkflowsresponse import (
@@ -356,8 +356,8 @@ if TYPE_CHECKING:
         V2TestTriggerResponseTypedDict,
     )
     from .v2transaction import V2Transaction, V2TransactionTypedDict
-    from .v2triggerdata_1 import V2TriggerData1, V2TriggerData1TypedDict
-    from .v2triggerdata_2 import V2TriggerData2, V2TriggerData2TypedDict
+    from .v2trigger import V2Trigger, V2TriggerTypedDict
+    from .v2triggerdata import V2TriggerData, V2TriggerDataTypedDict
     from .v2triggeroccurrence import V2TriggerOccurrence, V2TriggerOccurrenceTypedDict
     from .v2triggertest import (
         Filter,
@@ -564,12 +564,12 @@ __all__ = [
     "SubjectTypedDict",
     "Transaction",
     "TransactionTypedDict",
-    "TriggerData1",
-    "TriggerData1TypedDict",
-    "TriggerData2",
-    "TriggerData2TypedDict",
+    "Trigger",
+    "TriggerData",
+    "TriggerDataTypedDict",
     "TriggerOccurrence",
     "TriggerOccurrenceTypedDict",
+    "TriggerTypedDict",
     "Update",
     "UpdateAccount",
     "UpdateAccountTypedDict",
@@ -614,8 +614,6 @@ __all__ = [
     "V2CreateWorkflowResponseTypedDict",
     "V2CreditWalletRequest",
     "V2CreditWalletRequestTypedDict",
-    "V2Cursor",
-    "V2CursorTypedDict",
     "V2DebitWalletRequest",
     "V2DebitWalletRequestTypedDict",
     "V2DebitWalletResponse",
@@ -650,6 +648,8 @@ __all__ = [
     "V2ListTriggersResponseCursorTypedDict",
     "V2ListTriggersResponseTypedDict",
     "V2ListWalletsResponse",
+    "V2ListWalletsResponseCursor",
+    "V2ListWalletsResponseCursorTypedDict",
     "V2ListWalletsResponseTypedDict",
     "V2ListWorkflowsResponse",
     "V2ListWorkflowsResponseCursor",
@@ -717,14 +717,14 @@ __all__ = [
     "V2TestTriggerResponseTypedDict",
     "V2Transaction",
     "V2TransactionTypedDict",
-    "V2TriggerData1",
-    "V2TriggerData1TypedDict",
-    "V2TriggerData2",
-    "V2TriggerData2TypedDict",
+    "V2Trigger",
+    "V2TriggerData",
+    "V2TriggerDataTypedDict",
     "V2TriggerOccurrence",
     "V2TriggerOccurrenceTypedDict",
     "V2TriggerTest",
     "V2TriggerTestTypedDict",
+    "V2TriggerTypedDict",
     "V2Update",
     "V2UpdateAccount",
     "V2UpdateAccountTypedDict",
@@ -917,10 +917,10 @@ _dynamic_imports: dict[str, str] = {
     "SubjectTypedDict": ".subject",
     "Transaction": ".transaction",
     "TransactionTypedDict": ".transaction",
-    "TriggerData1": ".triggerdata_1",
-    "TriggerData1TypedDict": ".triggerdata_1",
-    "TriggerData2": ".triggerdata_2",
-    "TriggerData2TypedDict": ".triggerdata_2",
+    "Trigger": ".trigger",
+    "TriggerTypedDict": ".trigger",
+    "TriggerData": ".triggerdata",
+    "TriggerDataTypedDict": ".triggerdata",
     "TriggerOccurrence": ".triggeroccurrence",
     "TriggerOccurrenceTypedDict": ".triggeroccurrence",
     "Update": ".update",
@@ -1000,9 +1000,9 @@ _dynamic_imports: dict[str, str] = {
     "V2ListTriggersResponseCursor": ".v2listtriggersresponse",
     "V2ListTriggersResponseCursorTypedDict": ".v2listtriggersresponse",
     "V2ListTriggersResponseTypedDict": ".v2listtriggersresponse",
-    "V2Cursor": ".v2listwalletsresponse",
-    "V2CursorTypedDict": ".v2listwalletsresponse",
     "V2ListWalletsResponse": ".v2listwalletsresponse",
+    "V2ListWalletsResponseCursor": ".v2listwalletsresponse",
+    "V2ListWalletsResponseCursorTypedDict": ".v2listwalletsresponse",
     "V2ListWalletsResponseTypedDict": ".v2listwalletsresponse",
     "V2ListWorkflowsResponse": ".v2listworkflowsresponse",
     "V2ListWorkflowsResponseCursor": ".v2listworkflowsresponse",
@@ -1070,10 +1070,10 @@ _dynamic_imports: dict[str, str] = {
     "V2TestTriggerResponseTypedDict": ".v2testtriggerresponse",
     "V2Transaction": ".v2transaction",
     "V2TransactionTypedDict": ".v2transaction",
-    "V2TriggerData1": ".v2triggerdata_1",
-    "V2TriggerData1TypedDict": ".v2triggerdata_1",
-    "V2TriggerData2": ".v2triggerdata_2",
-    "V2TriggerData2TypedDict": ".v2triggerdata_2",
+    "V2Trigger": ".v2trigger",
+    "V2TriggerTypedDict": ".v2trigger",
+    "V2TriggerData": ".v2triggerdata",
+    "V2TriggerDataTypedDict": ".v2triggerdata",
     "V2TriggerOccurrence": ".v2triggeroccurrence",
     "V2TriggerOccurrenceTypedDict": ".v2triggeroccurrence",
     "Filter": ".v2triggertest",

@@ -9,7 +9,7 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class TransferInitiationsCursorCursorBaseTypedDict(TypedDict):
+class TransferInitiationsCursorCursorTypedDict(TypedDict):
     data: List[TransferInitiationTypedDict]
     has_more: bool
     page_size: int
@@ -17,7 +17,7 @@ class TransferInitiationsCursorCursorBaseTypedDict(TypedDict):
     previous: NotRequired[str]
 
 
-class TransferInitiationsCursorCursorBase(BaseModel):
+class TransferInitiationsCursorCursor(BaseModel):
     data: List[TransferInitiation]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -48,22 +48,16 @@ class TransferInitiationsCursorCursorBase(BaseModel):
 class TransferInitiationsCursorTypedDict(TypedDict):
     r"""OK"""
 
-    cursor_base: TransferInitiationsCursorCursorBaseTypedDict
+    cursor: TransferInitiationsCursorCursorTypedDict
 
 
 class TransferInitiationsCursor(BaseModel):
     r"""OK"""
 
-    cursor_base: Annotated[
-        TransferInitiationsCursorCursorBase, pydantic.Field(alias="cursor")
-    ]
+    cursor: TransferInitiationsCursorCursor
 
 
 try:
-    TransferInitiationsCursorCursorBase.model_rebuild()
-except NameError:
-    pass
-try:
-    TransferInitiationsCursor.model_rebuild()
+    TransferInitiationsCursorCursor.model_rebuild()
 except NameError:
     pass

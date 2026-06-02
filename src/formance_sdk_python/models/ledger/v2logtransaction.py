@@ -16,17 +16,17 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 class V2LogTransactionTypedDict(TypedDict):
     r"""Transaction structure as it appears in log payloads"""
 
-    v2_metadata: Dict[str, str]
     id: int
+    metadata: Dict[str, str]
     postings: List[V2PostingTypedDict]
     reverted: bool
     r"""Indicates if the transaction has been reverted"""
     timestamp: datetime
-    v2_aggregated_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
-    v2_aggregated_volumes1: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
-    v2_aggregated_volumes2: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
-    v2_aggregated_volumes3: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
     inserted_at: NotRequired[datetime]
+    post_commit_effective_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    post_commit_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    pre_commit_effective_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    pre_commit_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
     reference: NotRequired[str]
     reverted_at: NotRequired[datetime]
     template: NotRequired[str]
@@ -37,9 +37,9 @@ class V2LogTransactionTypedDict(TypedDict):
 class V2LogTransaction(BaseModel):
     r"""Transaction structure as it appears in log payloads"""
 
-    v2_metadata: Annotated[Dict[str, str], pydantic.Field(alias="metadata")]
-
     id: Annotated[int, BeforeValidator(validate_int)]
+
+    metadata: Dict[str, str]
 
     postings: List[V2Posting]
 
@@ -48,29 +48,29 @@ class V2LogTransaction(BaseModel):
 
     timestamp: datetime
 
-    v2_aggregated_volumes: Annotated[
-        Optional[Dict[str, Dict[str, V2Volume]]],
-        pydantic.Field(alias="postCommitVolumes"),
-    ] = None
+    inserted_at: Annotated[Optional[datetime], pydantic.Field(alias="insertedAt")] = (
+        None
+    )
 
-    v2_aggregated_volumes1: Annotated[
+    post_commit_effective_volumes: Annotated[
         Optional[Dict[str, Dict[str, V2Volume]]],
         pydantic.Field(alias="postCommitEffectiveVolumes"),
     ] = None
 
-    v2_aggregated_volumes2: Annotated[
+    post_commit_volumes: Annotated[
         Optional[Dict[str, Dict[str, V2Volume]]],
-        pydantic.Field(alias="preCommitVolumes"),
+        pydantic.Field(alias="postCommitVolumes"),
     ] = None
 
-    v2_aggregated_volumes3: Annotated[
+    pre_commit_effective_volumes: Annotated[
         Optional[Dict[str, Dict[str, V2Volume]]],
         pydantic.Field(alias="preCommitEffectiveVolumes"),
     ] = None
 
-    inserted_at: Annotated[Optional[datetime], pydantic.Field(alias="insertedAt")] = (
-        None
-    )
+    pre_commit_volumes: Annotated[
+        Optional[Dict[str, Dict[str, V2Volume]]],
+        pydantic.Field(alias="preCommitVolumes"),
+    ] = None
 
     reference: Optional[str] = None
 
@@ -87,11 +87,11 @@ class V2LogTransaction(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
-                "V2AggregatedVolumes",
-                "V2AggregatedVolumes1",
-                "V2AggregatedVolumes2",
-                "V2AggregatedVolumes3",
                 "insertedAt",
+                "postCommitEffectiveVolumes",
+                "postCommitVolumes",
+                "preCommitEffectiveVolumes",
+                "preCommitVolumes",
                 "reference",
                 "revertedAt",
                 "template",

@@ -9,7 +9,7 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class LedgerV2BulkElementResultErrorV2BaseBulkElementResultTypedDict(TypedDict):
+class V2BulkElementResultErrorTypedDict(TypedDict):
     error_code: str
     error_description: str
     log_id: int
@@ -17,7 +17,7 @@ class LedgerV2BulkElementResultErrorV2BaseBulkElementResultTypedDict(TypedDict):
     error_details: NotRequired[str]
 
 
-class LedgerV2BulkElementResultErrorV2BaseBulkElementResult(BaseModel):
+class V2BulkElementResultError(BaseModel):
     error_code: Annotated[str, pydantic.Field(alias="errorCode")]
 
     error_description: Annotated[str, pydantic.Field(alias="errorDescription")]
@@ -45,56 +45,50 @@ class LedgerV2BulkElementResultErrorV2BaseBulkElementResult(BaseModel):
         return m
 
 
-class LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResultTypedDict(
-    TypedDict
-):
+class V2BulkElementResultDeleteMetadataTypedDict(TypedDict):
     log_id: int
     response_type: str
 
 
-class LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult(BaseModel):
+class V2BulkElementResultDeleteMetadata(BaseModel):
     log_id: Annotated[int, pydantic.Field(alias="logID")]
 
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
 
 
-class LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResultTypedDict(
-    TypedDict
-):
-    v2_transaction: V2TransactionTypedDict
+class V2BulkElementResultRevertTransactionTypedDict(TypedDict):
+    data: V2TransactionTypedDict
     log_id: int
     response_type: str
 
 
-class LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult(BaseModel):
-    v2_transaction: Annotated[V2Transaction, pydantic.Field(alias="data")]
+class V2BulkElementResultRevertTransaction(BaseModel):
+    data: V2Transaction
 
     log_id: Annotated[int, pydantic.Field(alias="logID")]
 
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
 
 
-class LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResultTypedDict(TypedDict):
+class V2BulkElementResultAddMetadataTypedDict(TypedDict):
     log_id: int
     response_type: str
 
 
-class LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult(BaseModel):
+class V2BulkElementResultAddMetadata(BaseModel):
     log_id: Annotated[int, pydantic.Field(alias="logID")]
 
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
 
 
-class LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResultTypedDict(
-    TypedDict
-):
-    v2_transaction: V2TransactionTypedDict
+class V2BulkElementResultCreateTransactionTypedDict(TypedDict):
+    data: V2TransactionTypedDict
     log_id: int
     response_type: str
 
 
-class LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult(BaseModel):
-    v2_transaction: Annotated[V2Transaction, pydantic.Field(alias="data")]
+class V2BulkElementResultCreateTransaction(BaseModel):
+    data: V2Transaction
 
     log_id: Annotated[int, pydantic.Field(alias="logID")]
 
@@ -104,11 +98,11 @@ class LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult(BaseMode
 V2BulkElementResultTypedDict = TypeAliasType(
     "V2BulkElementResultTypedDict",
     Union[
-        LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResultTypedDict,
-        LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResultTypedDict,
-        LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResultTypedDict,
-        LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResultTypedDict,
-        LedgerV2BulkElementResultErrorV2BaseBulkElementResultTypedDict,
+        V2BulkElementResultAddMetadataTypedDict,
+        V2BulkElementResultDeleteMetadataTypedDict,
+        V2BulkElementResultCreateTransactionTypedDict,
+        V2BulkElementResultRevertTransactionTypedDict,
+        V2BulkElementResultErrorTypedDict,
     ],
 )
 
@@ -116,32 +110,32 @@ V2BulkElementResultTypedDict = TypeAliasType(
 V2BulkElementResult = TypeAliasType(
     "V2BulkElementResult",
     Union[
-        LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult,
-        LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult,
-        LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult,
-        LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult,
-        LedgerV2BulkElementResultErrorV2BaseBulkElementResult,
+        V2BulkElementResultAddMetadata,
+        V2BulkElementResultDeleteMetadata,
+        V2BulkElementResultCreateTransaction,
+        V2BulkElementResultRevertTransaction,
+        V2BulkElementResultError,
     ],
 )
 
 
 try:
-    LedgerV2BulkElementResultErrorV2BaseBulkElementResult.model_rebuild()
+    V2BulkElementResultError.model_rebuild()
 except NameError:
     pass
 try:
-    LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult.model_rebuild()
+    V2BulkElementResultDeleteMetadata.model_rebuild()
 except NameError:
     pass
 try:
-    LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult.model_rebuild()
+    V2BulkElementResultRevertTransaction.model_rebuild()
 except NameError:
     pass
 try:
-    LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult.model_rebuild()
+    V2BulkElementResultAddMetadata.model_rebuild()
 except NameError:
     pass
 try:
-    LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult.model_rebuild()
+    V2BulkElementResultCreateTransaction.model_rebuild()
 except NameError:
     pass

@@ -6,21 +6,12 @@ from .accountwithvolumesandbalances import (
     AccountWithVolumesAndBalancesTypedDict,
 )
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class AccountResponseTypedDict(TypedDict):
-    account_with_volumes_and_balances: AccountWithVolumesAndBalancesTypedDict
+    data: AccountWithVolumesAndBalancesTypedDict
 
 
 class AccountResponse(BaseModel):
-    account_with_volumes_and_balances: Annotated[
-        AccountWithVolumesAndBalances, pydantic.Field(alias="data")
-    ]
-
-
-try:
-    AccountResponse.model_rebuild()
-except NameError:
-    pass
+    data: AccountWithVolumesAndBalances

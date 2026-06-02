@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .configinfo import ConfigInfo, ConfigInfoTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class ConfigInfoResponseTypedDict(TypedDict):
-    config_info: ConfigInfoTypedDict
+    data: ConfigInfoTypedDict
 
 
 class ConfigInfoResponse(BaseModel):
-    config_info: Annotated[ConfigInfo, pydantic.Field(alias="data")]
-
-
-try:
-    ConfigInfoResponse.model_rebuild()
-except NameError:
-    pass
+    data: ConfigInfo

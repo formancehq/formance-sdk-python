@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .v3task import V3Task, V3TaskTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V3GetTaskResponseTypedDict(TypedDict):
-    v3_task: V3TaskTypedDict
+    data: V3TaskTypedDict
 
 
 class V3GetTaskResponse(BaseModel):
-    v3_task: Annotated[V3Task, pydantic.Field(alias="data")]
-
-
-try:
-    V3GetTaskResponse.model_rebuild()
-except NameError:
-    pass
+    data: V3Task

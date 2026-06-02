@@ -3,23 +3,16 @@
 from __future__ import annotations
 from .transferinitiation import TransferInitiation, TransferInitiationTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class TransferInitiationResponseTypedDict(TypedDict):
     r"""OK"""
 
-    transfer_initiation: TransferInitiationTypedDict
+    data: TransferInitiationTypedDict
 
 
 class TransferInitiationResponse(BaseModel):
     r"""OK"""
 
-    transfer_initiation: Annotated[TransferInitiation, pydantic.Field(alias="data")]
-
-
-try:
-    TransferInitiationResponse.model_rebuild()
-except NameError:
-    pass
+    data: TransferInitiation

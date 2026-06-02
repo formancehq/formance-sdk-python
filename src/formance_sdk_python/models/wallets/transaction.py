@@ -17,9 +17,9 @@ class TransactionTypedDict(TypedDict):
     r"""Metadata associated with the wallet."""
     postings: List[PostingTypedDict]
     timestamp: datetime
-    aggregated_volumes: NotRequired[Dict[str, Dict[str, VolumeTypedDict]]]
-    aggregated_volumes1: NotRequired[Dict[str, Dict[str, VolumeTypedDict]]]
     ledger: NotRequired[str]
+    post_commit_volumes: NotRequired[Dict[str, Dict[str, VolumeTypedDict]]]
+    pre_commit_volumes: NotRequired[Dict[str, Dict[str, VolumeTypedDict]]]
     reference: NotRequired[str]
 
 
@@ -33,23 +33,23 @@ class Transaction(BaseModel):
 
     timestamp: datetime
 
-    aggregated_volumes: Annotated[
-        Optional[Dict[str, Dict[str, Volume]]], pydantic.Field(alias="preCommitVolumes")
-    ] = None
+    ledger: Optional[str] = None
 
-    aggregated_volumes1: Annotated[
+    post_commit_volumes: Annotated[
         Optional[Dict[str, Dict[str, Volume]]],
         pydantic.Field(alias="postCommitVolumes"),
     ] = None
 
-    ledger: Optional[str] = None
+    pre_commit_volumes: Annotated[
+        Optional[Dict[str, Dict[str, Volume]]], pydantic.Field(alias="preCommitVolumes")
+    ] = None
 
     reference: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["AggregatedVolumes", "AggregatedVolumes1", "ledger", "reference"]
+            ["ledger", "postCommitVolumes", "preCommitVolumes", "reference"]
         )
         serialized = handler(self)
         m = {}

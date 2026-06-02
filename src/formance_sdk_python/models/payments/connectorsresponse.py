@@ -10,18 +10,18 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ConnectorsResponseDataTypedDict(TypedDict):
-    connector: Connector
     connector_id: str
     name: str
+    provider: Connector
     enabled: NotRequired[bool]
 
 
 class ConnectorsResponseData(BaseModel):
-    connector: Annotated[Connector, pydantic.Field(alias="provider")]
-
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
 
     name: str
+
+    provider: Connector
 
     enabled: Optional[bool] = None
 

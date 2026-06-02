@@ -23,10 +23,10 @@ class V3BankAccountTypedDict(TypedDict):
     created_at: datetime
     id: str
     name: str
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
     account_number: NotRequired[Nullable[str]]
     country: NotRequired[Nullable[str]]
     iban: NotRequired[Nullable[str]]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
     related_accounts: NotRequired[List[V3BankAccountRelatedAccountTypedDict]]
     swift_bic_code: NotRequired[Nullable[str]]
 
@@ -38,10 +38,6 @@ class V3BankAccount(BaseModel):
 
     name: str
 
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
-
     account_number: Annotated[
         OptionalNullable[str], pydantic.Field(alias="accountNumber")
     ] = UNSET
@@ -49,6 +45,8 @@ class V3BankAccount(BaseModel):
     country: OptionalNullable[str] = UNSET
 
     iban: OptionalNullable[str] = UNSET
+
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
 
     related_accounts: Annotated[
         Optional[List[V3BankAccountRelatedAccount]],
@@ -63,16 +61,16 @@ class V3BankAccount(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
-                "V3Metadata",
                 "accountNumber",
                 "country",
                 "iban",
+                "metadata",
                 "relatedAccounts",
                 "swiftBicCode",
             ]
         )
         nullable_fields = set(
-            ["V3Metadata", "accountNumber", "country", "iban", "swiftBicCode"]
+            ["accountNumber", "country", "iban", "metadata", "swiftBicCode"]
         )
         serialized = handler(self)
         m = {}

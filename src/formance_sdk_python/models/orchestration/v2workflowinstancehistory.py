@@ -11,7 +11,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2WorkflowInstanceHistoryTypedDict(TypedDict):
-    v2_stage: V2StageTypedDict
+    input: V2StageTypedDict
     name: str
     started_at: datetime
     terminated: bool
@@ -20,7 +20,7 @@ class V2WorkflowInstanceHistoryTypedDict(TypedDict):
 
 
 class V2WorkflowInstanceHistory(BaseModel):
-    v2_stage: Annotated[V2Stage, pydantic.Field(alias="input")]
+    input: V2Stage
 
     name: str
 

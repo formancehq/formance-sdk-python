@@ -9,7 +9,7 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class BalancesCursorCursorBaseTypedDict(TypedDict):
+class BalancesCursorCursorTypedDict(TypedDict):
     data: List[AccountBalanceTypedDict]
     has_more: bool
     page_size: int
@@ -17,7 +17,7 @@ class BalancesCursorCursorBaseTypedDict(TypedDict):
     previous: NotRequired[str]
 
 
-class BalancesCursorCursorBase(BaseModel):
+class BalancesCursorCursor(BaseModel):
     data: List[AccountBalance]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -48,20 +48,16 @@ class BalancesCursorCursorBase(BaseModel):
 class BalancesCursorTypedDict(TypedDict):
     r"""OK"""
 
-    cursor_base: BalancesCursorCursorBaseTypedDict
+    cursor: BalancesCursorCursorTypedDict
 
 
 class BalancesCursor(BaseModel):
     r"""OK"""
 
-    cursor_base: Annotated[BalancesCursorCursorBase, pydantic.Field(alias="cursor")]
+    cursor: BalancesCursorCursor
 
 
 try:
-    BalancesCursorCursorBase.model_rebuild()
-except NameError:
-    pass
-try:
-    BalancesCursor.model_rebuild()
+    BalancesCursorCursor.model_rebuild()
 except NameError:
     pass

@@ -11,14 +11,13 @@ from formance_sdk_python.types import (
     UNSET,
     UNSET_SENTINEL,
 )
-import pydantic
 from pydantic import model_serializer
 from typing import Dict, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class CreditWalletRequestTypedDict(TypedDict):
-    monetary: MonetaryTypedDict
+    amount: MonetaryTypedDict
     balance: NotRequired[str]
     r"""The balance to credit"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
@@ -29,7 +28,7 @@ class CreditWalletRequestTypedDict(TypedDict):
 
 
 class CreditWalletRequest(BaseModel):
-    monetary: Annotated[Monetary, pydantic.Field(alias="amount")]
+    amount: Monetary
 
     balance: Optional[str] = None
     r"""The balance to credit"""
@@ -69,9 +68,3 @@ class CreditWalletRequest(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    CreditWalletRequest.model_rebuild()
-except NameError:
-    pass

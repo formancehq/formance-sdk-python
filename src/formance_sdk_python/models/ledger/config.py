@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .ledgerstorage import LedgerStorage, LedgerStorageTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class ConfigTypedDict(TypedDict):
-    ledger_storage: LedgerStorageTypedDict
+    storage: LedgerStorageTypedDict
 
 
 class Config(BaseModel):
-    ledger_storage: Annotated[LedgerStorage, pydantic.Field(alias="storage")]
-
-
-try:
-    Config.model_rebuild()
-except NameError:
-    pass
+    storage: LedgerStorage

@@ -3,23 +3,16 @@
 from __future__ import annotations
 from .account import Account, AccountTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class AccountResponseTypedDict(TypedDict):
     r"""OK"""
 
-    account: AccountTypedDict
+    data: AccountTypedDict
 
 
 class AccountResponse(BaseModel):
     r"""OK"""
 
-    account: Annotated[Account, pydantic.Field(alias="data")]
-
-
-try:
-    AccountResponse.model_rebuild()
-except NameError:
-    pass
+    data: Account

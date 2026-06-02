@@ -9,22 +9,21 @@ from formance_sdk_python.types import (
     UNSET,
     UNSET_SENTINEL,
 )
-import pydantic
 from pydantic import model_serializer
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class MappingResponseTypedDict(TypedDict):
-    mapping: NotRequired[Nullable[MappingTTypedDict]]
+    data: NotRequired[Nullable[MappingTTypedDict]]
 
 
 class MappingResponse(BaseModel):
-    mapping: Annotated[OptionalNullable[MappingT], pydantic.Field(alias="data")] = UNSET
+    data: OptionalNullable[MappingT] = UNSET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["Mapping"])
-        nullable_fields = set(["Mapping"])
+        optional_fields = set(["data"])
+        nullable_fields = set(["data"])
         serialized = handler(self)
         m = {}
 
@@ -45,9 +44,3 @@ class MappingResponse(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    MappingResponse.model_rebuild()
-except NameError:
-    pass

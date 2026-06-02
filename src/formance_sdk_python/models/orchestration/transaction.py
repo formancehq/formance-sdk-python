@@ -12,8 +12,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class TransactionTypedDict(TypedDict):
-    metadata: Dict[str, str]
     id: int
+    metadata: Dict[str, str]
     postings: List[PostingTypedDict]
     reverted: bool
     timestamp: datetime
@@ -21,9 +21,9 @@ class TransactionTypedDict(TypedDict):
 
 
 class Transaction(BaseModel):
-    metadata: Dict[str, str]
-
     id: Annotated[int, BeforeValidator(validate_int)]
+
+    metadata: Dict[str, str]
 
     postings: List[Posting]
 

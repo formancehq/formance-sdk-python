@@ -20,8 +20,6 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3PaymentInitiationTypedDict(TypedDict):
-    v3_payment_initiation_status_enum: V3PaymentInitiationStatusEnum
-    v3_payment_initiation_type_enum: V3PaymentInitiationTypeEnum
     amount: int
     asset: str
     connector_id: str
@@ -31,21 +29,15 @@ class V3PaymentInitiationTypedDict(TypedDict):
     provider: str
     reference: str
     scheduled_at: datetime
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
+    status: V3PaymentInitiationStatusEnum
+    type: V3PaymentInitiationTypeEnum
     destination_account_id: NotRequired[str]
     error: NotRequired[Nullable[str]]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
     source_account_id: NotRequired[str]
 
 
 class V3PaymentInitiation(BaseModel):
-    v3_payment_initiation_status_enum: Annotated[
-        V3PaymentInitiationStatusEnum, pydantic.Field(alias="status")
-    ]
-
-    v3_payment_initiation_type_enum: Annotated[
-        V3PaymentInitiationTypeEnum, pydantic.Field(alias="type")
-    ]
-
     amount: Annotated[int, BeforeValidator(validate_int)]
 
     asset: str
@@ -64,15 +56,17 @@ class V3PaymentInitiation(BaseModel):
 
     scheduled_at: Annotated[datetime, pydantic.Field(alias="scheduledAt")]
 
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
+    status: V3PaymentInitiationStatusEnum
+
+    type: V3PaymentInitiationTypeEnum
 
     destination_account_id: Annotated[
         Optional[str], pydantic.Field(alias="destinationAccountID")
     ] = None
 
     error: OptionalNullable[str] = UNSET
+
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
 
     source_account_id: Annotated[
         Optional[str], pydantic.Field(alias="sourceAccountID")
@@ -81,9 +75,9 @@ class V3PaymentInitiation(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["V3Metadata", "destinationAccountID", "error", "sourceAccountID"]
+            ["destinationAccountID", "error", "metadata", "sourceAccountID"]
         )
-        nullable_fields = set(["V3Metadata", "error"])
+        nullable_fields = set(["error", "metadata"])
         serialized = handler(self)
         m = {}
 

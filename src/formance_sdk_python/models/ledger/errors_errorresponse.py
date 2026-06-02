@@ -12,7 +12,7 @@ from typing_extensions import Annotated
 
 
 class ErrorsErrorResponseData(BaseModel):
-    errors_enum: Annotated[ErrorsEnum, pydantic.Field(alias="errorCode")]
+    error_code: Annotated[ErrorsEnum, pydantic.Field(alias="errorCode")]
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
     details: Optional[str] = None
 

@@ -18,49 +18,49 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2WorkflowInstanceHistoryStageOutputTypedDict(TypedDict):
-    v2_account_response: NotRequired[V2AccountResponseTypedDict]
-    v2_create_transaction_response: NotRequired[V2CreateTransactionResponseTypedDict]
-    v2_debit_wallet_response: NotRequired[V2DebitWalletResponseTypedDict]
-    v2_get_wallet_response: NotRequired[V2GetWalletResponseTypedDict]
-    v2_list_wallets_response: NotRequired[V2ListWalletsResponseTypedDict]
-    v2_payment_response: NotRequired[V2PaymentResponseTypedDict]
+    create_transaction: NotRequired[V2CreateTransactionResponseTypedDict]
+    debit_wallet: NotRequired[V2DebitWalletResponseTypedDict]
+    get_account: NotRequired[V2AccountResponseTypedDict]
+    get_payment: NotRequired[V2PaymentResponseTypedDict]
+    get_wallet: NotRequired[V2GetWalletResponseTypedDict]
+    list_wallets: NotRequired[V2ListWalletsResponseTypedDict]
 
 
 class V2WorkflowInstanceHistoryStageOutput(BaseModel):
-    v2_account_response: Annotated[
-        Optional[V2AccountResponse], pydantic.Field(alias="GetAccount")
-    ] = None
-
-    v2_create_transaction_response: Annotated[
+    create_transaction: Annotated[
         Optional[V2CreateTransactionResponse], pydantic.Field(alias="CreateTransaction")
     ] = None
 
-    v2_debit_wallet_response: Annotated[
+    debit_wallet: Annotated[
         Optional[V2DebitWalletResponse], pydantic.Field(alias="DebitWallet")
     ] = None
 
-    v2_get_wallet_response: Annotated[
+    get_account: Annotated[
+        Optional[V2AccountResponse], pydantic.Field(alias="GetAccount")
+    ] = None
+
+    get_payment: Annotated[
+        Optional[V2PaymentResponse], pydantic.Field(alias="GetPayment")
+    ] = None
+
+    get_wallet: Annotated[
         Optional[V2GetWalletResponse], pydantic.Field(alias="GetWallet")
     ] = None
 
-    v2_list_wallets_response: Annotated[
+    list_wallets: Annotated[
         Optional[V2ListWalletsResponse], pydantic.Field(alias="ListWallets")
-    ] = None
-
-    v2_payment_response: Annotated[
-        Optional[V2PaymentResponse], pydantic.Field(alias="GetPayment")
     ] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
             [
-                "V2AccountResponse",
-                "V2CreateTransactionResponse",
-                "V2DebitWalletResponse",
-                "V2GetWalletResponse",
-                "V2ListWalletsResponse",
-                "V2PaymentResponse",
+                "CreateTransaction",
+                "DebitWallet",
+                "GetAccount",
+                "GetPayment",
+                "GetWallet",
+                "ListWallets",
             ]
         )
         serialized = handler(self)

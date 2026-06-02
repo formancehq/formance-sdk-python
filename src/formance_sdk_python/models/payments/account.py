@@ -19,27 +19,21 @@ class AccountRaw(BaseModel):
 
 
 class AccountTypedDict(TypedDict):
-    account_metadata: Nullable[Dict[str, str]]
-    account_type: AccountType
     account_name: str
     connector_id: str
     created_at: datetime
     default_asset: str
     default_currency: str
     id: str
+    metadata: Nullable[Dict[str, str]]
     raw: Nullable[AccountRawTypedDict]
     reference: str
+    type: AccountType
     pools: NotRequired[List[str]]
     provider: NotRequired[str]
 
 
 class Account(BaseModel):
-    account_metadata: Annotated[
-        Nullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ]
-
-    account_type: Annotated[AccountType, pydantic.Field(alias="type")]
-
     account_name: Annotated[str, pydantic.Field(alias="accountName")]
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
@@ -58,9 +52,13 @@ class Account(BaseModel):
 
     id: str
 
+    metadata: Nullable[Dict[str, str]]
+
     raw: Nullable[AccountRaw]
 
     reference: str
+
+    type: AccountType
 
     pools: Optional[List[str]] = None
 
@@ -69,7 +67,7 @@ class Account(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(["pools", "provider"])
-        nullable_fields = set(["AccountMetadata", "raw"])
+        nullable_fields = set(["metadata", "raw"])
         serialized = handler(self)
         m = {}
 

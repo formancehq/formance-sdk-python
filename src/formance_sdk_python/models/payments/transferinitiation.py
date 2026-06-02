@@ -33,7 +33,6 @@ class TransferInitiationType(str, Enum):
 
 
 class TransferInitiationTypedDict(TypedDict):
-    transfer_initiation_status: TransferInitiationStatus
     amount: int
     asset: str
     connector_id: str
@@ -46,6 +45,7 @@ class TransferInitiationTypedDict(TypedDict):
     reference: str
     scheduled_at: datetime
     source_account_id: str
+    status: TransferInitiationStatus
     type: TransferInitiationType
     error: NotRequired[Nullable[str]]
     metadata: NotRequired[Nullable[Dict[str, str]]]
@@ -54,10 +54,6 @@ class TransferInitiationTypedDict(TypedDict):
 
 
 class TransferInitiation(BaseModel):
-    transfer_initiation_status: Annotated[
-        TransferInitiationStatus, pydantic.Field(alias="status")
-    ]
-
     amount: Annotated[int, BeforeValidator(validate_int)]
 
     asset: str
@@ -84,6 +80,8 @@ class TransferInitiation(BaseModel):
     scheduled_at: Annotated[datetime, pydantic.Field(alias="scheduledAt")]
 
     source_account_id: Annotated[str, pydantic.Field(alias="sourceAccountID")]
+
+    status: TransferInitiationStatus
 
     type: TransferInitiationType
 

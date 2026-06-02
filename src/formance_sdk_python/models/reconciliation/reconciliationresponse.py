@@ -3,23 +3,16 @@
 from __future__ import annotations
 from .reconciliation import Reconciliation, ReconciliationTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class ReconciliationResponseTypedDict(TypedDict):
     r"""OK"""
 
-    reconciliation: ReconciliationTypedDict
+    data: ReconciliationTypedDict
 
 
 class ReconciliationResponse(BaseModel):
     r"""OK"""
 
-    reconciliation: Annotated[Reconciliation, pydantic.Field(alias="data")]
-
-
-try:
-    ReconciliationResponse.model_rebuild()
-except NameError:
-    pass
+    data: Reconciliation

@@ -5,7 +5,7 @@ from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import errors, ledger, operations
 from formance_sdk_python.models.ledger import (
-    v2exporterconfiguration_2 as ledger_v2exporterconfiguration_2,
+    v2exporterconfiguration as ledger_v2exporterconfiguration,
 )
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
 from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
@@ -819,7 +819,7 @@ class LedgerV2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", List[Any]
+                request.request_body, False, False, "json", List[ledger.V2BulkElement]
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],
@@ -925,7 +925,7 @@ class LedgerV2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", List[Any]
+                request.request_body, False, False, "json", List[ledger.V2BulkElement]
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],
@@ -986,8 +986,8 @@ class LedgerV2(BaseSDK):
         self,
         *,
         request: Union[
-            ledger_v2exporterconfiguration_2.V2ExporterConfiguration2,
-            ledger_v2exporterconfiguration_2.V2ExporterConfiguration2TypedDict,
+            ledger_v2exporterconfiguration.V2ExporterConfiguration,
+            ledger_v2exporterconfiguration.V2ExporterConfigurationTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1013,8 +1013,8 @@ class LedgerV2(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, ledger.V2ExporterConfiguration2)
-        request = cast(ledger.V2ExporterConfiguration2, request)
+            request = utils.unmarshal(request, ledger.V2ExporterConfiguration)
+        request = cast(ledger.V2ExporterConfiguration, request)
 
         req = self._build_request(
             method="POST",
@@ -1029,7 +1029,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", ledger.V2ExporterConfiguration2
+                request, False, False, "json", ledger.V2ExporterConfiguration
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -1078,8 +1078,8 @@ class LedgerV2(BaseSDK):
         self,
         *,
         request: Union[
-            ledger_v2exporterconfiguration_2.V2ExporterConfiguration2,
-            ledger_v2exporterconfiguration_2.V2ExporterConfiguration2TypedDict,
+            ledger_v2exporterconfiguration.V2ExporterConfiguration,
+            ledger_v2exporterconfiguration.V2ExporterConfigurationTypedDict,
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1105,8 +1105,8 @@ class LedgerV2(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, ledger.V2ExporterConfiguration2)
-        request = cast(ledger.V2ExporterConfiguration2, request)
+            request = utils.unmarshal(request, ledger.V2ExporterConfiguration)
+        request = cast(ledger.V2ExporterConfiguration, request)
 
         req = self._build_request_async(
             method="POST",
@@ -1121,7 +1121,7 @@ class LedgerV2(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", ledger.V2ExporterConfiguration2
+                request, False, False, "json", ledger.V2ExporterConfiguration
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -4941,7 +4941,7 @@ class LedgerV2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v2_schema_data, False, False, "json", ledger.V2SchemaData2
+                request.v2_schema_data, False, False, "json", ledger.V2SchemaData
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],
@@ -5034,7 +5034,7 @@ class LedgerV2(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.v2_schema_data, False, False, "json", ledger.V2SchemaData2
+                request.v2_schema_data, False, False, "json", ledger.V2SchemaData
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],
@@ -7740,7 +7740,7 @@ class LedgerV2(BaseSDK):
                 False,
                 False,
                 "json",
-                ledger.V2ExporterConfiguration2,
+                ledger.V2ExporterConfiguration,
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],
@@ -7837,7 +7837,7 @@ class LedgerV2(BaseSDK):
                 False,
                 False,
                 "json",
-                ledger.V2ExporterConfiguration2,
+                ledger.V2ExporterConfiguration,
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],

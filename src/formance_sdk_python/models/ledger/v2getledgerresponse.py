@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .v2ledger import V2Ledger, V2LedgerTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V2GetLedgerResponseTypedDict(TypedDict):
-    v2_ledger: V2LedgerTypedDict
+    data: V2LedgerTypedDict
 
 
 class V2GetLedgerResponse(BaseModel):
-    v2_ledger: Annotated[V2Ledger, pydantic.Field(alias="data")]
-
-
-try:
-    V2GetLedgerResponse.model_rebuild()
-except NameError:
-    pass
+    data: V2Ledger

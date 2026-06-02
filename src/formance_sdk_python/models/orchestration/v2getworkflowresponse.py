@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .v2workflow import V2Workflow, V2WorkflowTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V2GetWorkflowResponseTypedDict(TypedDict):
-    v2_workflow: V2WorkflowTypedDict
+    data: V2WorkflowTypedDict
 
 
 class V2GetWorkflowResponse(BaseModel):
-    v2_workflow: Annotated[V2Workflow, pydantic.Field(alias="data")]
-
-
-try:
-    V2GetWorkflowResponse.model_rebuild()
-except NameError:
-    pass
+    data: V2Workflow

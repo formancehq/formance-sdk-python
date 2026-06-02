@@ -12,8 +12,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 class AccountTypedDict(TypedDict):
     address: str
     metadata: Dict[str, str]
+    effective_volumes: NotRequired[Dict[str, VolumeTypedDict]]
     volumes: NotRequired[Dict[str, VolumeTypedDict]]
-    volumes1: NotRequired[Dict[str, VolumeTypedDict]]
 
 
 class Account(BaseModel):
@@ -21,15 +21,15 @@ class Account(BaseModel):
 
     metadata: Dict[str, str]
 
-    volumes: Optional[Dict[str, Volume]] = None
-
-    volumes1: Annotated[
+    effective_volumes: Annotated[
         Optional[Dict[str, Volume]], pydantic.Field(alias="effectiveVolumes")
     ] = None
 
+    volumes: Optional[Dict[str, Volume]] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["Volumes", "Volumes1"])
+        optional_fields = set(["effectiveVolumes", "volumes"])
         serialized = handler(self)
         m = {}
 

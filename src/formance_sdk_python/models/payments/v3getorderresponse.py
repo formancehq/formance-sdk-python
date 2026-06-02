@@ -3,12 +3,11 @@
 from __future__ import annotations
 from .v3order import V3Order, V3OrderTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V3GetOrderResponseTypedDict(TypedDict):
-    v3_order: V3OrderTypedDict
+    data: V3OrderTypedDict
     r"""A trade order submitted to an exchange-style PSP. Orders are read-only
     in the Formance API: they are fetched from the underlying connector.
     Status transitions are captured via the `adjustments` array; each
@@ -18,16 +17,10 @@ class V3GetOrderResponseTypedDict(TypedDict):
 
 
 class V3GetOrderResponse(BaseModel):
-    v3_order: Annotated[V3Order, pydantic.Field(alias="data")]
+    data: V3Order
     r"""A trade order submitted to an exchange-style PSP. Orders are read-only
     in the Formance API: they are fetched from the underlying connector.
     Status transitions are captured via the `adjustments` array; each
     adjustment is a point-in-time snapshot from the PSP.
 
     """
-
-
-try:
-    V3GetOrderResponse.model_rebuild()
-except NameError:
-    pass

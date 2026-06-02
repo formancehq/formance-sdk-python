@@ -5,4 +5,4 @@
 
 | Field                                                              | Type                                                               | Required                                                           | Description                                                        |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `webhooks_config`                                                  | [webhooks.WebhooksConfig](../../models/webhooks/webhooksconfig.md) | :heavy_check_mark:                                                 | N/A                                                                |
+| `data`                                                             | [webhooks.WebhooksConfig](../../models/webhooks/webhooksconfig.md) | :heavy_check_mark:                                                 | N/A                                                                |

@@ -12,7 +12,7 @@ generation:
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
     sharedNestedComponentsJan2026: false
-    nameOverrideFeb2026: false
+    nameOverrideFeb2026: true
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
@@ -29,7 +29,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 python:
-  version: 8.1.0
+  version: 8.2.0
   additionalDependencies:
     dev: {}
     main: {}
@@ -42,6 +42,7 @@ python:
   authors:
     - Speakeasy
   baseErrorName: SDKBaseError
+  bodyVariantOverloads: false
   clientServerStatusCodesAsErrors: true
   constFieldCasing: upper
   defaultErrorName: SDKError
@@ -71,8 +72,11 @@ python:
   license: ""
   maxMethodParams: 0
   methodArguments: require-security-and-request
+  methodTimeoutArgument: timeout-ms
+  methodTimeoutUnits: milliseconds
   moduleName: ""
   multipartArrayFormat: legacy
+  optionalDependencies: {}
   outputModelSuffix: output
   packageManager: poetry
   packageName: formance-sdk-python
@@ -80,6 +84,7 @@ python:
   projectUrls: {}
   pytestFilterWarnings: []
   pytestTimeout: 0
+  rawResponseHelpers: false
   responseFormat: envelope
   sseFlatResponse: false
   templateVersion: v2

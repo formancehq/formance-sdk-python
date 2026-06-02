@@ -25,10 +25,6 @@ class PaymentRaw(BaseModel):
 
 
 class PaymentTypedDict(TypedDict):
-    payment_metadata: Nullable[Dict[str, str]]
-    payment_scheme: PaymentScheme
-    payment_status: PaymentStatus
-    payment_type: PaymentType
     adjustments: List[PaymentAdjustmentTypedDict]
     amount: int
     asset: str
@@ -37,23 +33,17 @@ class PaymentTypedDict(TypedDict):
     destination_account_id: str
     id: str
     initial_amount: int
+    metadata: Nullable[Dict[str, str]]
     raw: Nullable[PaymentRawTypedDict]
     reference: str
+    scheme: PaymentScheme
     source_account_id: str
-    connector: NotRequired[Connector]
+    status: PaymentStatus
+    type: PaymentType
+    provider: NotRequired[Connector]
 
 
 class Payment(BaseModel):
-    payment_metadata: Annotated[
-        Nullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ]
-
-    payment_scheme: Annotated[PaymentScheme, pydantic.Field(alias="scheme")]
-
-    payment_status: Annotated[PaymentStatus, pydantic.Field(alias="status")]
-
-    payment_type: Annotated[PaymentType, pydantic.Field(alias="type")]
-
     adjustments: List[PaymentAdjustment]
 
     amount: Annotated[int, BeforeValidator(validate_int)]
@@ -73,18 +63,26 @@ class Payment(BaseModel):
         pydantic.Field(alias="initialAmount"),
     ]
 
+    metadata: Nullable[Dict[str, str]]
+
     raw: Nullable[PaymentRaw]
 
     reference: str
 
+    scheme: PaymentScheme
+
     source_account_id: Annotated[str, pydantic.Field(alias="sourceAccountID")]
 
-    connector: Annotated[Optional[Connector], pydantic.Field(alias="provider")] = None
+    status: PaymentStatus
+
+    type: PaymentType
+
+    provider: Optional[Connector] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["Connector"])
-        nullable_fields = set(["PaymentMetadata", "raw"])
+        optional_fields = set(["provider"])
+        nullable_fields = set(["metadata", "raw"])
         serialized = handler(self)
         m = {}
 

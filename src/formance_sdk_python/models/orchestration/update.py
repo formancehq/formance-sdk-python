@@ -3,24 +3,21 @@
 from __future__ import annotations
 from .updateaccount import UpdateAccount, UpdateAccountTypedDict
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class UpdateTypedDict(TypedDict):
-    update_account: NotRequired[UpdateAccountTypedDict]
+    account: NotRequired[UpdateAccountTypedDict]
 
 
 class Update(BaseModel):
-    update_account: Annotated[
-        Optional[UpdateAccount], pydantic.Field(alias="account")
-    ] = None
+    account: Optional[UpdateAccount] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["UpdateAccount"])
+        optional_fields = set(["account"])
         serialized = handler(self)
         m = {}
 
@@ -33,9 +30,3 @@ class Update(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    Update.model_rebuild()
-except NameError:
-    pass

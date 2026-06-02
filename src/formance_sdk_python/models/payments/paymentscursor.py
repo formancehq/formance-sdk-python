@@ -9,7 +9,7 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class PaymentsCursorCursorBaseTypedDict(TypedDict):
+class PaymentsCursorCursorTypedDict(TypedDict):
     data: List[PaymentTypedDict]
     has_more: bool
     page_size: int
@@ -17,7 +17,7 @@ class PaymentsCursorCursorBaseTypedDict(TypedDict):
     previous: NotRequired[str]
 
 
-class PaymentsCursorCursorBase(BaseModel):
+class PaymentsCursorCursor(BaseModel):
     data: List[Payment]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -48,20 +48,16 @@ class PaymentsCursorCursorBase(BaseModel):
 class PaymentsCursorTypedDict(TypedDict):
     r"""OK"""
 
-    cursor_base: PaymentsCursorCursorBaseTypedDict
+    cursor: PaymentsCursorCursorTypedDict
 
 
 class PaymentsCursor(BaseModel):
     r"""OK"""
 
-    cursor_base: Annotated[PaymentsCursorCursorBase, pydantic.Field(alias="cursor")]
+    cursor: PaymentsCursorCursor
 
 
 try:
-    PaymentsCursorCursorBase.model_rebuild()
-except NameError:
-    pass
-try:
-    PaymentsCursor.model_rebuild()
+    PaymentsCursorCursor.model_rebuild()
 except NameError:
     pass

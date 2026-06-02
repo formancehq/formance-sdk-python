@@ -92,20 +92,42 @@ if TYPE_CHECKING:
         V2AggregateBalancesResponse,
         V2AggregateBalancesResponseTypedDict,
     )
-    from .v2basebulkelement import V2BaseBulkElement, V2BaseBulkElementTypedDict
+    from .v2bulkelement import V2BulkElement, V2BulkElementTypedDict
+    from .v2bulkelementaddmetadata import (
+        V2BulkElementAddMetadata,
+        V2BulkElementAddMetadataData,
+        V2BulkElementAddMetadataDataTypedDict,
+        V2BulkElementAddMetadataTypedDict,
+    )
+    from .v2bulkelementcreatetransaction import (
+        V2BulkElementCreateTransaction,
+        V2BulkElementCreateTransactionTypedDict,
+    )
+    from .v2bulkelementdeletemetadata import (
+        V2BulkElementDeleteMetadata,
+        V2BulkElementDeleteMetadataData,
+        V2BulkElementDeleteMetadataDataTypedDict,
+        V2BulkElementDeleteMetadataTypedDict,
+    )
     from .v2bulkelementresult import (
-        LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult,
-        LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResultTypedDict,
-        LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult,
-        LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResultTypedDict,
-        LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult,
-        LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResultTypedDict,
-        LedgerV2BulkElementResultErrorV2BaseBulkElementResult,
-        LedgerV2BulkElementResultErrorV2BaseBulkElementResultTypedDict,
-        LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult,
-        LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResultTypedDict,
         V2BulkElementResult,
+        V2BulkElementResultAddMetadata,
+        V2BulkElementResultAddMetadataTypedDict,
+        V2BulkElementResultCreateTransaction,
+        V2BulkElementResultCreateTransactionTypedDict,
+        V2BulkElementResultDeleteMetadata,
+        V2BulkElementResultDeleteMetadataTypedDict,
+        V2BulkElementResultError,
+        V2BulkElementResultErrorTypedDict,
+        V2BulkElementResultRevertTransaction,
+        V2BulkElementResultRevertTransactionTypedDict,
         V2BulkElementResultTypedDict,
+    )
+    from .v2bulkelementreverttransaction import (
+        V2BulkElementRevertTransaction,
+        V2BulkElementRevertTransactionData,
+        V2BulkElementRevertTransactionDataTypedDict,
+        V2BulkElementRevertTransactionTypedDict,
     )
     from .v2bulkresponse import V2BulkResponse, V2BulkResponseTypedDict
     from .v2chartaccountmetadata import (
@@ -142,13 +164,10 @@ if TYPE_CHECKING:
     )
     from .v2errorresponse import V2ErrorResponse, V2ErrorResponseTypedDict
     from .v2errorsenum import V2ErrorsEnum
-    from .v2exporterconfiguration_1 import (
-        V2ExporterConfiguration1,
-        V2ExporterConfiguration1TypedDict,
-    )
-    from .v2exporterconfiguration_2 import (
-        V2ExporterConfiguration2,
-        V2ExporterConfiguration2TypedDict,
+    from .v2exporter import V2Exporter, V2ExporterTypedDict
+    from .v2exporterconfiguration import (
+        V2ExporterConfiguration,
+        V2ExporterConfigurationTypedDict,
     )
     from .v2exporterscursorresponse import (
         V2ExportersCursorResponse,
@@ -226,10 +245,7 @@ if TYPE_CHECKING:
         V2MigrationInfoState,
         V2MigrationInfoTypedDict,
     )
-    from .v2pipelineconfiguration import (
-        V2PipelineConfiguration,
-        V2PipelineConfigurationTypedDict,
-    )
+    from .v2pipeline import V2Pipeline, V2PipelineTypedDict
     from .v2pipelinescursorresponse import (
         V2PipelinesCursorResponse,
         V2PipelinesCursorResponseCursor,
@@ -266,8 +282,8 @@ if TYPE_CHECKING:
         V2RevertTransactionRequest,
         V2RevertTransactionRequestTypedDict,
     )
-    from .v2schemadata_1 import V2SchemaData1, V2SchemaData1TypedDict
-    from .v2schemadata_2 import V2SchemaData2, V2SchemaData2TypedDict
+    from .v2schema import V2Schema, V2SchemaTypedDict
+    from .v2schemadata import V2SchemaData, V2SchemaDataTypedDict
     from .v2schemaresponse import V2SchemaResponse, V2SchemaResponseTypedDict
     from .v2schemascursor import V2SchemasCursor, V2SchemasCursorTypedDict
     from .v2schemascursorresponse import (
@@ -276,6 +292,8 @@ if TYPE_CHECKING:
     )
     from .v2stats import V2Stats, V2StatsTypedDict
     from .v2statsresponse import V2StatsResponse, V2StatsResponseTypedDict
+    from .v2targetid import V2TargetID, V2TargetIDTypedDict
+    from .v2targettype import V2TargetType
     from .v2transaction import V2Transaction, V2TransactionTypedDict
     from .v2transactionscursorresponse import (
         V2TransactionsCursorResponse,
@@ -348,16 +366,6 @@ __all__ = [
     "LedgerInfoTypedDict",
     "LedgerStorage",
     "LedgerStorageTypedDict",
-    "LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult",
-    "LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResultTypedDict",
-    "LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult",
-    "LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResultTypedDict",
-    "LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult",
-    "LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResultTypedDict",
-    "LedgerV2BulkElementResultErrorV2BaseBulkElementResult",
-    "LedgerV2BulkElementResultErrorV2BaseBulkElementResultTypedDict",
-    "LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult",
-    "LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResultTypedDict",
     "Log",
     "LogType",
     "LogTypedDict",
@@ -420,10 +428,34 @@ __all__ = [
     "V2AccountsCursorResponseTypedDict",
     "V2AggregateBalancesResponse",
     "V2AggregateBalancesResponseTypedDict",
-    "V2BaseBulkElement",
-    "V2BaseBulkElementTypedDict",
+    "V2BulkElement",
+    "V2BulkElementAddMetadata",
+    "V2BulkElementAddMetadataData",
+    "V2BulkElementAddMetadataDataTypedDict",
+    "V2BulkElementAddMetadataTypedDict",
+    "V2BulkElementCreateTransaction",
+    "V2BulkElementCreateTransactionTypedDict",
+    "V2BulkElementDeleteMetadata",
+    "V2BulkElementDeleteMetadataData",
+    "V2BulkElementDeleteMetadataDataTypedDict",
+    "V2BulkElementDeleteMetadataTypedDict",
     "V2BulkElementResult",
+    "V2BulkElementResultAddMetadata",
+    "V2BulkElementResultAddMetadataTypedDict",
+    "V2BulkElementResultCreateTransaction",
+    "V2BulkElementResultCreateTransactionTypedDict",
+    "V2BulkElementResultDeleteMetadata",
+    "V2BulkElementResultDeleteMetadataTypedDict",
+    "V2BulkElementResultError",
+    "V2BulkElementResultErrorTypedDict",
+    "V2BulkElementResultRevertTransaction",
+    "V2BulkElementResultRevertTransactionTypedDict",
     "V2BulkElementResultTypedDict",
+    "V2BulkElementRevertTransaction",
+    "V2BulkElementRevertTransactionData",
+    "V2BulkElementRevertTransactionDataTypedDict",
+    "V2BulkElementRevertTransactionTypedDict",
+    "V2BulkElementTypedDict",
     "V2BulkResponse",
     "V2BulkResponseTypedDict",
     "V2ChartAccountMetadata",
@@ -447,10 +479,10 @@ __all__ = [
     "V2ErrorResponse",
     "V2ErrorResponseTypedDict",
     "V2ErrorsEnum",
-    "V2ExporterConfiguration1",
-    "V2ExporterConfiguration1TypedDict",
-    "V2ExporterConfiguration2",
-    "V2ExporterConfiguration2TypedDict",
+    "V2Exporter",
+    "V2ExporterConfiguration",
+    "V2ExporterConfigurationTypedDict",
+    "V2ExporterTypedDict",
     "V2ExportersCursorResponse",
     "V2ExportersCursorResponseCursor",
     "V2ExportersCursorResponseCursorTypedDict",
@@ -504,8 +536,8 @@ __all__ = [
     "V2MigrationInfo",
     "V2MigrationInfoState",
     "V2MigrationInfoTypedDict",
-    "V2PipelineConfiguration",
-    "V2PipelineConfigurationTypedDict",
+    "V2Pipeline",
+    "V2PipelineTypedDict",
     "V2PipelinesCursorResponse",
     "V2PipelinesCursorResponseCursor",
     "V2PipelinesCursorResponseCursorTypedDict",
@@ -529,12 +561,12 @@ __all__ = [
     "V2QueryTemplateVarTypedDict",
     "V2RevertTransactionRequest",
     "V2RevertTransactionRequestTypedDict",
-    "V2SchemaData1",
-    "V2SchemaData1TypedDict",
-    "V2SchemaData2",
-    "V2SchemaData2TypedDict",
+    "V2Schema",
+    "V2SchemaData",
+    "V2SchemaDataTypedDict",
     "V2SchemaResponse",
     "V2SchemaResponseTypedDict",
+    "V2SchemaTypedDict",
     "V2SchemasCursor",
     "V2SchemasCursorResponse",
     "V2SchemasCursorResponseTypedDict",
@@ -543,6 +575,9 @@ __all__ = [
     "V2StatsResponse",
     "V2StatsResponseTypedDict",
     "V2StatsTypedDict",
+    "V2TargetID",
+    "V2TargetIDTypedDict",
+    "V2TargetType",
     "V2Transaction",
     "V2TransactionTemplate",
     "V2TransactionTemplateTypedDict",
@@ -661,20 +696,34 @@ _dynamic_imports: dict[str, str] = {
     "V2AccountsCursorResponseTypedDict": ".v2accountscursorresponse",
     "V2AggregateBalancesResponse": ".v2aggregatebalancesresponse",
     "V2AggregateBalancesResponseTypedDict": ".v2aggregatebalancesresponse",
-    "V2BaseBulkElement": ".v2basebulkelement",
-    "V2BaseBulkElementTypedDict": ".v2basebulkelement",
-    "LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult": ".v2bulkelementresult",
-    "LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResultTypedDict": ".v2bulkelementresult",
-    "LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult": ".v2bulkelementresult",
-    "LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResultTypedDict": ".v2bulkelementresult",
-    "LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult": ".v2bulkelementresult",
-    "LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResultTypedDict": ".v2bulkelementresult",
-    "LedgerV2BulkElementResultErrorV2BaseBulkElementResult": ".v2bulkelementresult",
-    "LedgerV2BulkElementResultErrorV2BaseBulkElementResultTypedDict": ".v2bulkelementresult",
-    "LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult": ".v2bulkelementresult",
-    "LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResultTypedDict": ".v2bulkelementresult",
+    "V2BulkElement": ".v2bulkelement",
+    "V2BulkElementTypedDict": ".v2bulkelement",
+    "V2BulkElementAddMetadata": ".v2bulkelementaddmetadata",
+    "V2BulkElementAddMetadataData": ".v2bulkelementaddmetadata",
+    "V2BulkElementAddMetadataDataTypedDict": ".v2bulkelementaddmetadata",
+    "V2BulkElementAddMetadataTypedDict": ".v2bulkelementaddmetadata",
+    "V2BulkElementCreateTransaction": ".v2bulkelementcreatetransaction",
+    "V2BulkElementCreateTransactionTypedDict": ".v2bulkelementcreatetransaction",
+    "V2BulkElementDeleteMetadata": ".v2bulkelementdeletemetadata",
+    "V2BulkElementDeleteMetadataData": ".v2bulkelementdeletemetadata",
+    "V2BulkElementDeleteMetadataDataTypedDict": ".v2bulkelementdeletemetadata",
+    "V2BulkElementDeleteMetadataTypedDict": ".v2bulkelementdeletemetadata",
     "V2BulkElementResult": ".v2bulkelementresult",
+    "V2BulkElementResultAddMetadata": ".v2bulkelementresult",
+    "V2BulkElementResultAddMetadataTypedDict": ".v2bulkelementresult",
+    "V2BulkElementResultCreateTransaction": ".v2bulkelementresult",
+    "V2BulkElementResultCreateTransactionTypedDict": ".v2bulkelementresult",
+    "V2BulkElementResultDeleteMetadata": ".v2bulkelementresult",
+    "V2BulkElementResultDeleteMetadataTypedDict": ".v2bulkelementresult",
+    "V2BulkElementResultError": ".v2bulkelementresult",
+    "V2BulkElementResultErrorTypedDict": ".v2bulkelementresult",
+    "V2BulkElementResultRevertTransaction": ".v2bulkelementresult",
+    "V2BulkElementResultRevertTransactionTypedDict": ".v2bulkelementresult",
     "V2BulkElementResultTypedDict": ".v2bulkelementresult",
+    "V2BulkElementRevertTransaction": ".v2bulkelementreverttransaction",
+    "V2BulkElementRevertTransactionData": ".v2bulkelementreverttransaction",
+    "V2BulkElementRevertTransactionDataTypedDict": ".v2bulkelementreverttransaction",
+    "V2BulkElementRevertTransactionTypedDict": ".v2bulkelementreverttransaction",
     "V2BulkResponse": ".v2bulkresponse",
     "V2BulkResponseTypedDict": ".v2bulkresponse",
     "V2ChartAccountMetadata": ".v2chartaccountmetadata",
@@ -700,10 +749,10 @@ _dynamic_imports: dict[str, str] = {
     "V2ErrorResponse": ".v2errorresponse",
     "V2ErrorResponseTypedDict": ".v2errorresponse",
     "V2ErrorsEnum": ".v2errorsenum",
-    "V2ExporterConfiguration1": ".v2exporterconfiguration_1",
-    "V2ExporterConfiguration1TypedDict": ".v2exporterconfiguration_1",
-    "V2ExporterConfiguration2": ".v2exporterconfiguration_2",
-    "V2ExporterConfiguration2TypedDict": ".v2exporterconfiguration_2",
+    "V2Exporter": ".v2exporter",
+    "V2ExporterTypedDict": ".v2exporter",
+    "V2ExporterConfiguration": ".v2exporterconfiguration",
+    "V2ExporterConfigurationTypedDict": ".v2exporterconfiguration",
     "V2ExportersCursorResponse": ".v2exporterscursorresponse",
     "V2ExportersCursorResponseCursor": ".v2exporterscursorresponse",
     "V2ExportersCursorResponseCursorTypedDict": ".v2exporterscursorresponse",
@@ -759,8 +808,8 @@ _dynamic_imports: dict[str, str] = {
     "V2MigrationInfo": ".v2migrationinfo",
     "V2MigrationInfoState": ".v2migrationinfo",
     "V2MigrationInfoTypedDict": ".v2migrationinfo",
-    "V2PipelineConfiguration": ".v2pipelineconfiguration",
-    "V2PipelineConfigurationTypedDict": ".v2pipelineconfiguration",
+    "V2Pipeline": ".v2pipeline",
+    "V2PipelineTypedDict": ".v2pipeline",
     "V2PipelinesCursorResponse": ".v2pipelinescursorresponse",
     "V2PipelinesCursorResponseCursor": ".v2pipelinescursorresponse",
     "V2PipelinesCursorResponseCursorTypedDict": ".v2pipelinescursorresponse",
@@ -792,10 +841,10 @@ _dynamic_imports: dict[str, str] = {
     "V2QueryTemplateVarTypedDict": ".v2querytemplatevar",
     "V2RevertTransactionRequest": ".v2reverttransactionrequest",
     "V2RevertTransactionRequestTypedDict": ".v2reverttransactionrequest",
-    "V2SchemaData1": ".v2schemadata_1",
-    "V2SchemaData1TypedDict": ".v2schemadata_1",
-    "V2SchemaData2": ".v2schemadata_2",
-    "V2SchemaData2TypedDict": ".v2schemadata_2",
+    "V2Schema": ".v2schema",
+    "V2SchemaTypedDict": ".v2schema",
+    "V2SchemaData": ".v2schemadata",
+    "V2SchemaDataTypedDict": ".v2schemadata",
     "V2SchemaResponse": ".v2schemaresponse",
     "V2SchemaResponseTypedDict": ".v2schemaresponse",
     "V2SchemasCursor": ".v2schemascursor",
@@ -806,6 +855,9 @@ _dynamic_imports: dict[str, str] = {
     "V2StatsTypedDict": ".v2stats",
     "V2StatsResponse": ".v2statsresponse",
     "V2StatsResponseTypedDict": ".v2statsresponse",
+    "V2TargetID": ".v2targetid",
+    "V2TargetIDTypedDict": ".v2targetid",
+    "V2TargetType": ".v2targettype",
     "V2Transaction": ".v2transaction",
     "V2TransactionTypedDict": ".v2transaction",
     "V2TransactionsCursorResponse": ".v2transactionscursorresponse",

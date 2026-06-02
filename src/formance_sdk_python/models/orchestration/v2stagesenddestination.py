@@ -14,42 +14,27 @@ from .v2stagesendsourcewallet import (
     V2StageSendSourceWalletTypedDict,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class V2StageSendDestinationTypedDict(TypedDict):
-    v2_stage_send_destination_payment: NotRequired[
-        V2StageSendDestinationPaymentTypedDict
-    ]
-    v2_stage_send_source_account: NotRequired[V2StageSendSourceAccountTypedDict]
-    v2_stage_send_source_wallet: NotRequired[V2StageSendSourceWalletTypedDict]
+    account: NotRequired[V2StageSendSourceAccountTypedDict]
+    payment: NotRequired[V2StageSendDestinationPaymentTypedDict]
+    wallet: NotRequired[V2StageSendSourceWalletTypedDict]
 
 
 class V2StageSendDestination(BaseModel):
-    v2_stage_send_destination_payment: Annotated[
-        Optional[V2StageSendDestinationPayment], pydantic.Field(alias="payment")
-    ] = None
+    account: Optional[V2StageSendSourceAccount] = None
 
-    v2_stage_send_source_account: Annotated[
-        Optional[V2StageSendSourceAccount], pydantic.Field(alias="account")
-    ] = None
+    payment: Optional[V2StageSendDestinationPayment] = None
 
-    v2_stage_send_source_wallet: Annotated[
-        Optional[V2StageSendSourceWallet], pydantic.Field(alias="wallet")
-    ] = None
+    wallet: Optional[V2StageSendSourceWallet] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(
-            [
-                "V2StageSendDestinationPayment",
-                "V2StageSendSourceAccount",
-                "V2StageSendSourceWallet",
-            ]
-        )
+        optional_fields = set(["account", "payment", "wallet"])
         serialized = handler(self)
         m = {}
 
@@ -62,9 +47,3 @@ class V2StageSendDestination(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    V2StageSendDestination.model_rebuild()
-except NameError:
-    pass

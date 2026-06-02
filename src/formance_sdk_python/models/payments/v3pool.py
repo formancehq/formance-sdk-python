@@ -15,8 +15,8 @@ class V3PoolTypedDict(TypedDict):
     id: str
     name: str
     pool_accounts: List[str]
-    v3_pool_type_enum: NotRequired[V3PoolTypeEnum]
     query: NotRequired[Dict[str, Any]]
+    type: NotRequired[V3PoolTypeEnum]
 
 
 class V3Pool(BaseModel):
@@ -28,15 +28,13 @@ class V3Pool(BaseModel):
 
     pool_accounts: Annotated[List[str], pydantic.Field(alias="poolAccounts")]
 
-    v3_pool_type_enum: Annotated[
-        Optional[V3PoolTypeEnum], pydantic.Field(alias="type")
-    ] = None
-
     query: Optional[Dict[str, Any]] = None
+
+    type: Optional[V3PoolTypeEnum] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V3PoolTypeEnum", "query"])
+        optional_fields = set(["query", "type"])
         serialized = handler(self)
         m = {}
 

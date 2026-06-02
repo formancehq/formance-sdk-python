@@ -5,6 +5,6 @@ Payload for INSERTED_SCHEMA log entries. Contains the schema that was inserted i
 
 ## Fields
 
-| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `v2_schema_data`                                             | [ledger.V2SchemaData1](../../models/ledger/v2schemadata1.md) | :heavy_check_mark:                                           | Complete schema structure with metadata                      |
+| Field                                              | Type                                               | Required                                           | Description                                        |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `schema_`                                          | [ledger.V2Schema](../../models/ledger/v2schema.md) | :heavy_check_mark:                                 | Complete schema structure with metadata            |

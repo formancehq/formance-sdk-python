@@ -9,7 +9,6 @@ from formance_sdk_python.types import (
     UNSET_SENTINEL,
 )
 from formance_sdk_python.utils import validate_int
-import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import BeforeValidator
 from typing import Dict
@@ -21,7 +20,7 @@ class V3ReversePaymentInitiationRequestTypedDict(TypedDict):
     asset: str
     description: str
     reference: str
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
 
 
 class V3ReversePaymentInitiationRequest(BaseModel):
@@ -33,14 +32,12 @@ class V3ReversePaymentInitiationRequest(BaseModel):
 
     reference: str
 
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V3Metadata"])
-        nullable_fields = set(["V3Metadata"])
+        optional_fields = set(["metadata"])
+        nullable_fields = set(["metadata"])
         serialized = handler(self)
         m = {}
 
@@ -61,9 +58,3 @@ class V3ReversePaymentInitiationRequest(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    V3ReversePaymentInitiationRequest.model_rebuild()
-except NameError:
-    pass

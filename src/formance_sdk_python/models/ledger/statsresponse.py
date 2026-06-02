@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .stats import Stats, StatsTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class StatsResponseTypedDict(TypedDict):
-    stats: StatsTypedDict
+    data: StatsTypedDict
 
 
 class StatsResponse(BaseModel):
-    stats: Annotated[Stats, pydantic.Field(alias="data")]
-
-
-try:
-    StatsResponse.model_rebuild()
-except NameError:
-    pass
+    data: Stats

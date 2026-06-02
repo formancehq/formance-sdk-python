@@ -6,45 +6,34 @@ from .stagesenddestination import StageSendDestination, StageSendDestinationType
 from .stagesendsource import StageSendSource, StageSendSourceTypedDict
 from datetime import datetime
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Dict, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class StageSendTypedDict(TypedDict):
-    monetary: NotRequired[MonetaryTypedDict]
-    stage_send_destination: NotRequired[StageSendDestinationTypedDict]
-    stage_send_source: NotRequired[StageSendSourceTypedDict]
+    amount: NotRequired[MonetaryTypedDict]
+    destination: NotRequired[StageSendDestinationTypedDict]
     metadata: NotRequired[Dict[str, str]]
+    source: NotRequired[StageSendSourceTypedDict]
     timestamp: NotRequired[datetime]
 
 
 class StageSend(BaseModel):
-    monetary: Annotated[Optional[Monetary], pydantic.Field(alias="amount")] = None
+    amount: Optional[Monetary] = None
 
-    stage_send_destination: Annotated[
-        Optional[StageSendDestination], pydantic.Field(alias="destination")
-    ] = None
-
-    stage_send_source: Annotated[
-        Optional[StageSendSource], pydantic.Field(alias="source")
-    ] = None
+    destination: Optional[StageSendDestination] = None
 
     metadata: Optional[Dict[str, str]] = None
+
+    source: Optional[StageSendSource] = None
 
     timestamp: Optional[datetime] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            [
-                "Monetary",
-                "StageSendDestination",
-                "StageSendSource",
-                "metadata",
-                "timestamp",
-            ]
+            ["amount", "destination", "metadata", "source", "timestamp"]
         )
         serialized = handler(self)
         m = {}
@@ -58,9 +47,3 @@ class StageSend(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    StageSend.model_rebuild()
-except NameError:
-    pass

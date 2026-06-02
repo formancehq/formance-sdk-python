@@ -53,8 +53,6 @@ class V2PaymentType(str, Enum):
 
 
 class V2PaymentTypedDict(TypedDict):
-    v2_payment_metadata: Nullable[V2PaymentMetadataTypedDict]
-    v2_payment_status: V2PaymentStatus
     adjustments: List[V2PaymentAdjustmentTypedDict]
     asset: str
     connector_id: str
@@ -62,21 +60,17 @@ class V2PaymentTypedDict(TypedDict):
     destination_account_id: str
     id: str
     initial_amount: int
+    metadata: Nullable[V2PaymentMetadataTypedDict]
     raw: Nullable[V2PaymentRawTypedDict]
     reference: str
     scheme: V2PaymentScheme
     source_account_id: str
+    status: V2PaymentStatus
     type: V2PaymentType
-    v2_connector: NotRequired[V2Connector]
+    provider: NotRequired[V2Connector]
 
 
 class V2Payment(BaseModel):
-    v2_payment_metadata: Annotated[
-        Nullable[V2PaymentMetadata], pydantic.Field(alias="metadata")
-    ]
-
-    v2_payment_status: Annotated[V2PaymentStatus, pydantic.Field(alias="status")]
-
     adjustments: List[V2PaymentAdjustment]
 
     asset: str
@@ -94,6 +88,8 @@ class V2Payment(BaseModel):
         pydantic.Field(alias="initialAmount"),
     ]
 
+    metadata: Nullable[V2PaymentMetadata]
+
     raw: Nullable[V2PaymentRaw]
 
     reference: str
@@ -102,16 +98,16 @@ class V2Payment(BaseModel):
 
     source_account_id: Annotated[str, pydantic.Field(alias="sourceAccountID")]
 
+    status: V2PaymentStatus
+
     type: V2PaymentType
 
-    v2_connector: Annotated[Optional[V2Connector], pydantic.Field(alias="provider")] = (
-        None
-    )
+    provider: Optional[V2Connector] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V2Connector"])
-        nullable_fields = set(["V2PaymentMetadata", "raw"])
+        optional_fields = set(["provider"])
+        nullable_fields = set(["metadata", "raw"])
         serialized = handler(self)
         m = {}
 

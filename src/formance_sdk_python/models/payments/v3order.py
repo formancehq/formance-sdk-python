@@ -30,33 +30,6 @@ class V3OrderTypedDict(TypedDict):
 
     """
 
-    v3_order_direction_enum: V3OrderDirectionEnum
-    r"""Whether an order buys or sells the base asset."""
-    v3_order_status_enum: V3OrderStatusEnum
-    r"""Lifecycle of an order on the exchange.
-    `PENDING` — accepted by the exchange, not yet working.
-    `OPEN` — live on the book, no fills yet.
-    `PARTIALLY_FILLED` — live on the book, some base quantity filled.
-    `FILLED` — fully filled, terminal.
-    `CANCELLED` — cancelled by the user or system, terminal.
-    `FAILED` — rejected by the exchange, terminal. See `error` for details.
-    `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
-
-    """
-    v3_order_type_enum: V3OrderTypeEnum
-    r"""Exchange order type. Determines which price fields are meaningful on
-    `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
-    `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
-
-    """
-    v3_time_in_force_enum: V3TimeInForceEnum
-    r"""How long an order is valid on the exchange.
-    `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
-    `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
-    `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
-    `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
-
-    """
     base_quantity_ordered: int
     r"""Amount of base asset the order was placed for, as an integer at the base asset's precision."""
     connector_id: str
@@ -68,6 +41,8 @@ class V3OrderTypedDict(TypedDict):
     For BUY: the base currency. For SELL: the quote currency.
 
     """
+    direction: V3OrderDirectionEnum
+    r"""Whether an order buys or sells the base asset."""
     id: str
     r"""Formance-assigned unique order ID (composed from the PSP reference and connector ID)."""
     provider: str
@@ -80,9 +55,33 @@ class V3OrderTypedDict(TypedDict):
     currency.
 
     """
+    status: V3OrderStatusEnum
+    r"""Lifecycle of an order on the exchange.
+    `PENDING` — accepted by the exchange, not yet working.
+    `OPEN` — live on the book, no fills yet.
+    `PARTIALLY_FILLED` — live on the book, some base quantity filled.
+    `FILLED` — fully filled, terminal.
+    `CANCELLED` — cancelled by the user or system, terminal.
+    `FAILED` — rejected by the exchange, terminal. See `error` for details.
+    `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
+
+    """
+    time_in_force: V3TimeInForceEnum
+    r"""How long an order is valid on the exchange.
+    `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
+    `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
+    `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
+    `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
+
+    """
+    type: V3OrderTypeEnum
+    r"""Exchange order type. Determines which price fields are meaningful on
+    `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
+    `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
+
+    """
     updated_at: datetime
     r"""When Formance last observed a state change on the order. Equivalent to the latest adjustment's `createdAt`."""
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
     adjustments: NotRequired[Nullable[List[V3OrderAdjustmentTypedDict]]]
     r"""Ordered history of state snapshots for this order. The most recent element reflects the current `status`."""
     average_fill_price: NotRequired[Nullable[int]]
@@ -108,6 +107,7 @@ class V3OrderTypedDict(TypedDict):
     r"""Currency the fee is denominated in, in `SYMBOL/precision` form. Typically the quote asset."""
     limit_price: NotRequired[Nullable[int]]
     r"""Maximum price (for BUY) or minimum price (for SELL) at which the order may execute, in `priceAsset` precision. Required for LIMIT-family order types; null otherwise."""
+    metadata: NotRequired[Nullable[Dict[str, str]]]
     price_asset: NotRequired[Nullable[str]]
     r"""Currency + precision under which `limitPrice`, `stopPrice`, and
     `averageFillPrice` should be interpreted. Separate from
@@ -141,41 +141,6 @@ class V3Order(BaseModel):
 
     """
 
-    v3_order_direction_enum: Annotated[
-        V3OrderDirectionEnum, pydantic.Field(alias="direction")
-    ]
-    r"""Whether an order buys or sells the base asset."""
-
-    v3_order_status_enum: Annotated[V3OrderStatusEnum, pydantic.Field(alias="status")]
-    r"""Lifecycle of an order on the exchange.
-    `PENDING` — accepted by the exchange, not yet working.
-    `OPEN` — live on the book, no fills yet.
-    `PARTIALLY_FILLED` — live on the book, some base quantity filled.
-    `FILLED` — fully filled, terminal.
-    `CANCELLED` — cancelled by the user or system, terminal.
-    `FAILED` — rejected by the exchange, terminal. See `error` for details.
-    `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
-
-    """
-
-    v3_order_type_enum: Annotated[V3OrderTypeEnum, pydantic.Field(alias="type")]
-    r"""Exchange order type. Determines which price fields are meaningful on
-    `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
-    `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
-
-    """
-
-    v3_time_in_force_enum: Annotated[
-        V3TimeInForceEnum, pydantic.Field(alias="timeInForce")
-    ]
-    r"""How long an order is valid on the exchange.
-    `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
-    `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
-    `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
-    `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
-
-    """
-
     base_quantity_ordered: Annotated[
         Annotated[int, BeforeValidator(validate_int)],
         pydantic.Field(alias="baseQuantityOrdered"),
@@ -194,6 +159,9 @@ class V3Order(BaseModel):
 
     """
 
+    direction: V3OrderDirectionEnum
+    r"""Whether an order buys or sells the base asset."""
+
     id: str
     r"""Formance-assigned unique order ID (composed from the PSP reference and connector ID)."""
 
@@ -210,12 +178,36 @@ class V3Order(BaseModel):
 
     """
 
+    status: V3OrderStatusEnum
+    r"""Lifecycle of an order on the exchange.
+    `PENDING` — accepted by the exchange, not yet working.
+    `OPEN` — live on the book, no fills yet.
+    `PARTIALLY_FILLED` — live on the book, some base quantity filled.
+    `FILLED` — fully filled, terminal.
+    `CANCELLED` — cancelled by the user or system, terminal.
+    `FAILED` — rejected by the exchange, terminal. See `error` for details.
+    `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
+
+    """
+
+    time_in_force: Annotated[V3TimeInForceEnum, pydantic.Field(alias="timeInForce")]
+    r"""How long an order is valid on the exchange.
+    `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
+    `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
+    `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
+    `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
+
+    """
+
+    type: V3OrderTypeEnum
+    r"""Exchange order type. Determines which price fields are meaningful on
+    `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
+    `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
+
+    """
+
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
     r"""When Formance last observed a state change on the order. Equivalent to the latest adjustment's `createdAt`."""
-
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
 
     adjustments: OptionalNullable[List[V3OrderAdjustment]] = UNSET
     r"""Ordered history of state snapshots for this order. The most recent element reflects the current `status`."""
@@ -269,6 +261,8 @@ class V3Order(BaseModel):
     ] = UNSET
     r"""Maximum price (for BUY) or minimum price (for SELL) at which the order may execute, in `priceAsset` precision. Required for LIMIT-family order types; null otherwise."""
 
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
+
     price_asset: Annotated[
         OptionalNullable[str], pydantic.Field(alias="priceAsset")
     ] = UNSET
@@ -313,7 +307,6 @@ class V3Order(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
-                "V3Metadata",
                 "adjustments",
                 "averageFillPrice",
                 "baseQuantityFilled",
@@ -324,6 +317,7 @@ class V3Order(BaseModel):
                 "fee",
                 "feeAsset",
                 "limitPrice",
+                "metadata",
                 "priceAsset",
                 "quoteAmount",
                 "quoteAsset",
@@ -333,7 +327,6 @@ class V3Order(BaseModel):
         )
         nullable_fields = set(
             [
-                "V3Metadata",
                 "adjustments",
                 "averageFillPrice",
                 "baseQuantityFilled",
@@ -344,6 +337,7 @@ class V3Order(BaseModel):
                 "fee",
                 "feeAsset",
                 "limitPrice",
+                "metadata",
                 "priceAsset",
                 "quoteAmount",
                 "quoteAsset",

@@ -3,23 +3,16 @@
 from __future__ import annotations
 from .pool import Pool, PoolTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class PoolResponseTypedDict(TypedDict):
     r"""OK"""
 
-    pool: PoolTypedDict
+    data: PoolTypedDict
 
 
 class PoolResponse(BaseModel):
     r"""OK"""
 
-    pool: Annotated[Pool, pydantic.Field(alias="data")]
-
-
-try:
-    PoolResponse.model_rebuild()
-except NameError:
-    pass
+    data: Pool

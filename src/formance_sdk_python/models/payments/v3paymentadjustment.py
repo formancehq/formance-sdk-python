@@ -27,21 +27,17 @@ class V3PaymentAdjustmentRaw(BaseModel):
 
 
 class V3PaymentAdjustmentTypedDict(TypedDict):
-    v3_payment_status_enum: V3PaymentStatusEnum
     created_at: datetime
     id: str
     raw: V3PaymentAdjustmentRawTypedDict
     reference: str
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
+    status: V3PaymentStatusEnum
     amount: NotRequired[int]
     asset: NotRequired[str]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
 
 
 class V3PaymentAdjustment(BaseModel):
-    v3_payment_status_enum: Annotated[
-        V3PaymentStatusEnum, pydantic.Field(alias="status")
-    ]
-
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
     id: str
@@ -50,18 +46,18 @@ class V3PaymentAdjustment(BaseModel):
 
     reference: str
 
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
+    status: V3PaymentStatusEnum
 
     amount: Annotated[Optional[int], BeforeValidator(validate_int)] = None
 
     asset: Optional[str] = None
 
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V3Metadata", "amount", "asset"])
-        nullable_fields = set(["V3Metadata"])
+        optional_fields = set(["amount", "asset", "metadata"])
+        nullable_fields = set(["metadata"])
         serialized = handler(self)
         m = {}
 

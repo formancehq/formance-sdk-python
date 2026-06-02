@@ -27,13 +27,6 @@ class V3ConversionTypedDict(TypedDict):
 
     """
 
-    v3_conversion_status_enum: V3ConversionStatusEnum
-    r"""Lifecycle of a conversion.
-    `PENDING` — accepted by the PSP, not yet settled.
-    `COMPLETED` — settled, terminal.
-    `FAILED` — rejected or reverted, terminal. See `error`.
-
-    """
     connector_id: str
     r"""ID of the Formance connector this conversion was fetched from."""
     created_at: datetime
@@ -50,9 +43,15 @@ class V3ConversionTypedDict(TypedDict):
     r"""Amount of source asset debited, as an integer at `sourceAsset` precision."""
     source_asset: str
     r"""Asset being converted from, in `SYMBOL/precision` form (e.g. `USD/2`)."""
+    status: V3ConversionStatusEnum
+    r"""Lifecycle of a conversion.
+    `PENDING` — accepted by the PSP, not yet settled.
+    `COMPLETED` — settled, terminal.
+    `FAILED` — rejected or reverted, terminal. See `error`.
+
+    """
     updated_at: datetime
     r"""When Formance last observed a state change on the conversion."""
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
     destination_account_id: NotRequired[Nullable[str]]
     r"""Formance account ID of the wallet the destination asset was credited to."""
     destination_amount: NotRequired[Nullable[int]]
@@ -63,6 +62,7 @@ class V3ConversionTypedDict(TypedDict):
     r"""PSP fee for the conversion, at `feeAsset` precision."""
     fee_asset: NotRequired[Nullable[str]]
     r"""Currency the fee is denominated in, in `SYMBOL/precision` form."""
+    metadata: NotRequired[Nullable[Dict[str, str]]]
     source_account_id: NotRequired[Nullable[str]]
     r"""Formance account ID of the wallet the source asset was debited from."""
 
@@ -73,16 +73,6 @@ class V3Conversion(BaseModel):
     the Formance API: they are fetched from the underlying connector.
     Unlike orders, conversions do not carry an adjustment history —
     Formance records the final state only.
-
-    """
-
-    v3_conversion_status_enum: Annotated[
-        V3ConversionStatusEnum, pydantic.Field(alias="status")
-    ]
-    r"""Lifecycle of a conversion.
-    `PENDING` — accepted by the PSP, not yet settled.
-    `COMPLETED` — settled, terminal.
-    `FAILED` — rejected or reverted, terminal. See `error`.
 
     """
 
@@ -113,12 +103,16 @@ class V3Conversion(BaseModel):
     source_asset: Annotated[str, pydantic.Field(alias="sourceAsset")]
     r"""Asset being converted from, in `SYMBOL/precision` form (e.g. `USD/2`)."""
 
+    status: V3ConversionStatusEnum
+    r"""Lifecycle of a conversion.
+    `PENDING` — accepted by the PSP, not yet settled.
+    `COMPLETED` — settled, terminal.
+    `FAILED` — rejected or reverted, terminal. See `error`.
+
+    """
+
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
     r"""When Formance last observed a state change on the conversion."""
-
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
 
     destination_account_id: Annotated[
         OptionalNullable[str], pydantic.Field(alias="destinationAccountID")
@@ -142,6 +136,8 @@ class V3Conversion(BaseModel):
     )
     r"""Currency the fee is denominated in, in `SYMBOL/precision` form."""
 
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
+
     source_account_id: Annotated[
         OptionalNullable[str], pydantic.Field(alias="sourceAccountID")
     ] = UNSET
@@ -151,23 +147,23 @@ class V3Conversion(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
-                "V3Metadata",
                 "destinationAccountID",
                 "destinationAmount",
                 "error",
                 "fee",
                 "feeAsset",
+                "metadata",
                 "sourceAccountID",
             ]
         )
         nullable_fields = set(
             [
-                "V3Metadata",
                 "destinationAccountID",
                 "destinationAmount",
                 "error",
                 "fee",
                 "feeAsset",
+                "metadata",
                 "sourceAccountID",
             ]
         )

@@ -3,12 +3,11 @@
 from __future__ import annotations
 from .v3conversion import V3Conversion, V3ConversionTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V3GetConversionResponseTypedDict(TypedDict):
-    v3_conversion: V3ConversionTypedDict
+    data: V3ConversionTypedDict
     r"""A currency or asset conversion executed on a PSP (e.g. Coinbase Prime
     transfer between a USD and USDC wallet). Conversions are read-only in
     the Formance API: they are fetched from the underlying connector.
@@ -19,7 +18,7 @@ class V3GetConversionResponseTypedDict(TypedDict):
 
 
 class V3GetConversionResponse(BaseModel):
-    v3_conversion: Annotated[V3Conversion, pydantic.Field(alias="data")]
+    data: V3Conversion
     r"""A currency or asset conversion executed on a PSP (e.g. Coinbase Prime
     transfer between a USD and USDC wallet). Conversions are read-only in
     the Formance API: they are fetched from the underlying connector.
@@ -27,9 +26,3 @@ class V3GetConversionResponse(BaseModel):
     Formance records the final state only.
 
     """
-
-
-try:
-    V3GetConversionResponse.model_rebuild()
-except NameError:
-    pass

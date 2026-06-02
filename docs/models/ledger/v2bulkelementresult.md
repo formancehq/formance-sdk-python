@@ -3,33 +3,33 @@
 
 ## Supported Types
 
-### `ledger.LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult`
+### `ledger.V2BulkElementResultCreateTransaction`
 
 ```python
-value: ledger.LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult = /* values here */
+value: ledger.V2BulkElementResultCreateTransaction = /* values here */
 ```
 
-### `ledger.LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult`
+### `ledger.V2BulkElementResultAddMetadata`
 
 ```python
-value: ledger.LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult = /* values here */
+value: ledger.V2BulkElementResultAddMetadata = /* values here */
 ```
 
-### `ledger.LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult`
+### `ledger.V2BulkElementResultRevertTransaction`
 
 ```python
-value: ledger.LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult = /* values here */
+value: ledger.V2BulkElementResultRevertTransaction = /* values here */
 ```
 
-### `ledger.LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult`
+### `ledger.V2BulkElementResultDeleteMetadata`
 
 ```python
-value: ledger.LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult = /* values here */
+value: ledger.V2BulkElementResultDeleteMetadata = /* values here */
 ```
 
-### `ledger.LedgerV2BulkElementResultErrorV2BaseBulkElementResult`
+### `ledger.V2BulkElementResultError`
 
 ```python
-value: ledger.LedgerV2BulkElementResultErrorV2BaseBulkElementResult = /* values here */
+value: ledger.V2BulkElementResultError = /* values here */
 ```
 

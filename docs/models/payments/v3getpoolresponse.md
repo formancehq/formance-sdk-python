@@ -5,4 +5,4 @@
 
 | Field                                              | Type                                               | Required                                           | Description                                        |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `v3_pool`                                          | [payments.V3Pool](../../models/payments/v3pool.md) | :heavy_check_mark:                                 | N/A                                                |
+| `data`                                             | [payments.V3Pool](../../models/payments/v3pool.md) | :heavy_check_mark:                                 | N/A                                                |

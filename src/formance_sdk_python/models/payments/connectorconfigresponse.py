@@ -3,23 +3,16 @@
 from __future__ import annotations
 from .connectorconfig import ConnectorConfig, ConnectorConfigTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class ConnectorConfigResponseTypedDict(TypedDict):
     r"""OK"""
 
-    connector_config: ConnectorConfigTypedDict
+    data: ConnectorConfigTypedDict
 
 
 class ConnectorConfigResponse(BaseModel):
     r"""OK"""
 
-    connector_config: Annotated[ConnectorConfig, pydantic.Field(alias="data")]
-
-
-try:
-    ConnectorConfigResponse.model_rebuild()
-except NameError:
-    pass
+    data: ConnectorConfig

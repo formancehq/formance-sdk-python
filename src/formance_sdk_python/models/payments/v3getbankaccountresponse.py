@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .v3bankaccount import V3BankAccount, V3BankAccountTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V3GetBankAccountResponseTypedDict(TypedDict):
-    v3_bank_account: V3BankAccountTypedDict
+    data: V3BankAccountTypedDict
 
 
 class V3GetBankAccountResponse(BaseModel):
-    v3_bank_account: Annotated[V3BankAccount, pydantic.Field(alias="data")]
-
-
-try:
-    V3GetBankAccountResponse.model_rebuild()
-except NameError:
-    pass
+    data: V3BankAccount

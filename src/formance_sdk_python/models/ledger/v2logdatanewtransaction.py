@@ -11,22 +11,22 @@ from typing_extensions import Annotated, TypedDict
 class V2LogDataNewTransactionTypedDict(TypedDict):
     r"""Payload for NEW_TRANSACTION log entries. Contains the created transaction and any account metadata set during creation."""
 
-    v2_log_transaction: V2LogTransactionTypedDict
-    r"""Transaction structure as it appears in log payloads"""
     account_metadata: Dict[str, Dict[str, str]]
     r"""Metadata applied to accounts involved in the transaction"""
+    transaction: V2LogTransactionTypedDict
+    r"""Transaction structure as it appears in log payloads"""
 
 
 class V2LogDataNewTransaction(BaseModel):
     r"""Payload for NEW_TRANSACTION log entries. Contains the created transaction and any account metadata set during creation."""
 
-    v2_log_transaction: Annotated[V2LogTransaction, pydantic.Field(alias="transaction")]
-    r"""Transaction structure as it appears in log payloads"""
-
     account_metadata: Annotated[
         Dict[str, Dict[str, str]], pydantic.Field(alias="accountMetadata")
     ]
     r"""Metadata applied to accounts involved in the transaction"""
+
+    transaction: V2LogTransaction
+    r"""Transaction structure as it appears in log payloads"""
 
 
 try:

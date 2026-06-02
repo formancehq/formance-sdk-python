@@ -17,18 +17,16 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3CreateAccountRequestTypedDict(TypedDict):
-    v3_account_type_enum: V3AccountTypeEnum
     account_name: str
     connector_id: str
     created_at: datetime
     reference: str
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
+    type: V3AccountTypeEnum
     default_asset: NotRequired[Nullable[str]]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
 
 
 class V3CreateAccountRequest(BaseModel):
-    v3_account_type_enum: Annotated[V3AccountTypeEnum, pydantic.Field(alias="type")]
-
     account_name: Annotated[str, pydantic.Field(alias="accountName")]
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
@@ -37,18 +35,18 @@ class V3CreateAccountRequest(BaseModel):
 
     reference: str
 
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
+    type: V3AccountTypeEnum
 
     default_asset: Annotated[
         OptionalNullable[str], pydantic.Field(alias="defaultAsset")
     ] = UNSET
 
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V3Metadata", "defaultAsset"])
-        nullable_fields = set(["V3Metadata", "defaultAsset"])
+        optional_fields = set(["defaultAsset", "metadata"])
+        nullable_fields = set(["defaultAsset", "metadata"])
         serialized = handler(self)
         m = {}
 

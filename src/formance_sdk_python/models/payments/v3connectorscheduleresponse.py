@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .v3schedule import V3Schedule, V3ScheduleTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V3ConnectorScheduleResponseTypedDict(TypedDict):
-    v3_schedule: V3ScheduleTypedDict
+    data: V3ScheduleTypedDict
 
 
 class V3ConnectorScheduleResponse(BaseModel):
-    v3_schedule: Annotated[V3Schedule, pydantic.Field(alias="data")]
-
-
-try:
-    V3ConnectorScheduleResponse.model_rebuild()
-except NameError:
-    pass
+    data: V3Schedule

@@ -3,27 +3,24 @@
 from __future__ import annotations
 from .posttransaction import PostTransaction, PostTransactionTypedDict
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class ActivityCreateTransactionTypedDict(TypedDict):
-    post_transaction: NotRequired[PostTransactionTypedDict]
+    data: NotRequired[PostTransactionTypedDict]
     ledger: NotRequired[str]
 
 
 class ActivityCreateTransaction(BaseModel):
-    post_transaction: Annotated[
-        Optional[PostTransaction], pydantic.Field(alias="data")
-    ] = None
+    data: Optional[PostTransaction] = None
 
     ledger: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["PostTransaction", "ledger"])
+        optional_fields = set(["data", "ledger"])
         serialized = handler(self)
         m = {}
 
@@ -36,9 +33,3 @@ class ActivityCreateTransaction(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    ActivityCreateTransaction.model_rebuild()
-except NameError:
-    pass

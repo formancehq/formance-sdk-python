@@ -11,40 +11,27 @@ from .stagesendsourcepayment import (
 )
 from .stagesendsourcewallet import StageSendSourceWallet, StageSendSourceWalletTypedDict
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class StageSendSourceTypedDict(TypedDict):
-    stage_send_source_account: NotRequired[StageSendSourceAccountTypedDict]
-    stage_send_source_payment: NotRequired[StageSendSourcePaymentTypedDict]
-    stage_send_source_wallet: NotRequired[StageSendSourceWalletTypedDict]
+    account: NotRequired[StageSendSourceAccountTypedDict]
+    payment: NotRequired[StageSendSourcePaymentTypedDict]
+    wallet: NotRequired[StageSendSourceWalletTypedDict]
 
 
 class StageSendSource(BaseModel):
-    stage_send_source_account: Annotated[
-        Optional[StageSendSourceAccount], pydantic.Field(alias="account")
-    ] = None
+    account: Optional[StageSendSourceAccount] = None
 
-    stage_send_source_payment: Annotated[
-        Optional[StageSendSourcePayment], pydantic.Field(alias="payment")
-    ] = None
+    payment: Optional[StageSendSourcePayment] = None
 
-    stage_send_source_wallet: Annotated[
-        Optional[StageSendSourceWallet], pydantic.Field(alias="wallet")
-    ] = None
+    wallet: Optional[StageSendSourceWallet] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(
-            [
-                "StageSendSourceAccount",
-                "StageSendSourcePayment",
-                "StageSendSourceWallet",
-            ]
-        )
+        optional_fields = set(["account", "payment", "wallet"])
         serialized = handler(self)
         m = {}
 
@@ -57,9 +44,3 @@ class StageSendSource(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    StageSendSource.model_rebuild()
-except NameError:
-    pass

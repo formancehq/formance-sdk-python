@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .v2triggertest import V2TriggerTest, V2TriggerTestTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V2TestTriggerResponseTypedDict(TypedDict):
-    v2_trigger_test: V2TriggerTestTypedDict
+    data: V2TriggerTestTypedDict
 
 
 class V2TestTriggerResponse(BaseModel):
-    v2_trigger_test: Annotated[V2TriggerTest, pydantic.Field(alias="data")]
-
-
-try:
-    V2TestTriggerResponse.model_rebuild()
-except NameError:
-    pass
+    data: V2TriggerTest

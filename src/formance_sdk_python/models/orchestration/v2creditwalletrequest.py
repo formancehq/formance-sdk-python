@@ -5,14 +5,13 @@ from .v2monetary import V2Monetary, V2MonetaryTypedDict
 from .v2subject import V2Subject, V2SubjectTypedDict
 from datetime import datetime
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Dict, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class V2CreditWalletRequestTypedDict(TypedDict):
-    v2_monetary: V2MonetaryTypedDict
+    amount: V2MonetaryTypedDict
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
     sources: List[V2SubjectTypedDict]
@@ -23,7 +22,7 @@ class V2CreditWalletRequestTypedDict(TypedDict):
 
 
 class V2CreditWalletRequest(BaseModel):
-    v2_monetary: Annotated[V2Monetary, pydantic.Field(alias="amount")]
+    amount: V2Monetary
 
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
@@ -52,9 +51,3 @@ class V2CreditWalletRequest(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    V2CreditWalletRequest.model_rebuild()
-except NameError:
-    pass

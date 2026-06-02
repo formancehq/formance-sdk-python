@@ -3,18 +3,17 @@
 from __future__ import annotations
 from .pooltypeenum import PoolTypeEnum
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Any, Dict, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class PoolTypedDict(TypedDict):
     accounts: List[str]
     id: str
     name: str
-    pool_type_enum: NotRequired[PoolTypeEnum]
     query: NotRequired[Dict[str, Any]]
+    type: NotRequired[PoolTypeEnum]
 
 
 class Pool(BaseModel):
@@ -24,15 +23,13 @@ class Pool(BaseModel):
 
     name: str
 
-    pool_type_enum: Annotated[Optional[PoolTypeEnum], pydantic.Field(alias="type")] = (
-        None
-    )
-
     query: Optional[Dict[str, Any]] = None
+
+    type: Optional[PoolTypeEnum] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["PoolTypeEnum", "query"])
+        optional_fields = set(["query", "type"])
         serialized = handler(self)
         m = {}
 
@@ -45,9 +42,3 @@ class Pool(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    Pool.model_rebuild()
-except NameError:
-    pass

@@ -14,40 +14,27 @@ from .v2stagesendsourcewallet import (
     V2StageSendSourceWalletTypedDict,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class V2StageSendSourceTypedDict(TypedDict):
-    v2_stage_send_source_account: NotRequired[V2StageSendSourceAccountTypedDict]
-    v2_stage_send_source_payment: NotRequired[V2StageSendSourcePaymentTypedDict]
-    v2_stage_send_source_wallet: NotRequired[V2StageSendSourceWalletTypedDict]
+    account: NotRequired[V2StageSendSourceAccountTypedDict]
+    payment: NotRequired[V2StageSendSourcePaymentTypedDict]
+    wallet: NotRequired[V2StageSendSourceWalletTypedDict]
 
 
 class V2StageSendSource(BaseModel):
-    v2_stage_send_source_account: Annotated[
-        Optional[V2StageSendSourceAccount], pydantic.Field(alias="account")
-    ] = None
+    account: Optional[V2StageSendSourceAccount] = None
 
-    v2_stage_send_source_payment: Annotated[
-        Optional[V2StageSendSourcePayment], pydantic.Field(alias="payment")
-    ] = None
+    payment: Optional[V2StageSendSourcePayment] = None
 
-    v2_stage_send_source_wallet: Annotated[
-        Optional[V2StageSendSourceWallet], pydantic.Field(alias="wallet")
-    ] = None
+    wallet: Optional[V2StageSendSourceWallet] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(
-            [
-                "V2StageSendSourceAccount",
-                "V2StageSendSourcePayment",
-                "V2StageSendSourceWallet",
-            ]
-        )
+        optional_fields = set(["account", "payment", "wallet"])
         serialized = handler(self)
         m = {}
 
@@ -60,9 +47,3 @@ class V2StageSendSource(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    V2StageSendSource.model_rebuild()
-except NameError:
-    pass

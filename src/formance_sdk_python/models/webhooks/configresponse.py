@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .webhooksconfig import WebhooksConfig, WebhooksConfigTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class ConfigResponseTypedDict(TypedDict):
-    webhooks_config: WebhooksConfigTypedDict
+    data: WebhooksConfigTypedDict
 
 
 class ConfigResponse(BaseModel):
-    webhooks_config: Annotated[WebhooksConfig, pydantic.Field(alias="data")]
-
-
-try:
-    ConfigResponse.model_rebuild()
-except NameError:
-    pass
+    data: WebhooksConfig

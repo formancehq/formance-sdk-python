@@ -2,30 +2,27 @@
 
 from __future__ import annotations
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Dict, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class V2CreateLedgerRequestTypedDict(TypedDict):
-    v2_metadata: NotRequired[Dict[str, str]]
     bucket: NotRequired[str]
     features: NotRequired[Dict[str, str]]
+    metadata: NotRequired[Dict[str, str]]
 
 
 class V2CreateLedgerRequest(BaseModel):
-    v2_metadata: Annotated[
-        Optional[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = None
-
     bucket: Optional[str] = None
 
     features: Optional[Dict[str, str]] = None
 
+    metadata: Optional[Dict[str, str]] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V2Metadata", "bucket", "features"])
+        optional_fields = set(["bucket", "features", "metadata"])
         serialized = handler(self)
         m = {}
 
@@ -38,9 +35,3 @@ class V2CreateLedgerRequest(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    V2CreateLedgerRequest.model_rebuild()
-except NameError:
-    pass

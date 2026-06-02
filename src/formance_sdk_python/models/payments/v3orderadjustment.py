@@ -35,7 +35,13 @@ class V3OrderAdjustmentTypedDict(TypedDict):
 
     """
 
-    v3_order_status_enum: V3OrderStatusEnum
+    created_at: datetime
+    r"""When Formance observed this state. Not the PSP's own timestamp — reflects ingestion time."""
+    id: str
+    r"""Adjustment ID, composed from the order ID plus the state fields that define uniqueness (status, filled quantity, fee). Idempotent — replaying the same observation produces the same ID."""
+    reference: str
+    r"""PSP reference the adjustment belongs to (equal to the parent order's `reference`)."""
+    status: V3OrderStatusEnum
     r"""Lifecycle of an order on the exchange.
     `PENDING` — accepted by the exchange, not yet working.
     `OPEN` — live on the book, no fills yet.
@@ -46,19 +52,13 @@ class V3OrderAdjustmentTypedDict(TypedDict):
     `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
 
     """
-    created_at: datetime
-    r"""When Formance observed this state. Not the PSP's own timestamp — reflects ingestion time."""
-    id: str
-    r"""Adjustment ID, composed from the order ID plus the state fields that define uniqueness (status, filled quantity, fee). Idempotent — replaying the same observation produces the same ID."""
-    reference: str
-    r"""PSP reference the adjustment belongs to (equal to the parent order's `reference`)."""
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
     base_quantity_filled: NotRequired[Nullable[int]]
     r"""Base asset filled at this observation, at the base asset's precision."""
     fee: NotRequired[Nullable[int]]
     r"""Cumulative fee at this observation, at `feeAsset` precision."""
     fee_asset: NotRequired[Nullable[str]]
     r"""Currency the fee is denominated in, in `SYMBOL/precision` form."""
+    metadata: NotRequired[Nullable[Dict[str, str]]]
     raw: NotRequired[V3OrderAdjustmentRawTypedDict]
     r"""Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay."""
 
@@ -72,7 +72,16 @@ class V3OrderAdjustment(BaseModel):
 
     """
 
-    v3_order_status_enum: Annotated[V3OrderStatusEnum, pydantic.Field(alias="status")]
+    created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When Formance observed this state. Not the PSP's own timestamp — reflects ingestion time."""
+
+    id: str
+    r"""Adjustment ID, composed from the order ID plus the state fields that define uniqueness (status, filled quantity, fee). Idempotent — replaying the same observation produces the same ID."""
+
+    reference: str
+    r"""PSP reference the adjustment belongs to (equal to the parent order's `reference`)."""
+
+    status: V3OrderStatusEnum
     r"""Lifecycle of an order on the exchange.
     `PENDING` — accepted by the exchange, not yet working.
     `OPEN` — live on the book, no fills yet.
@@ -83,19 +92,6 @@ class V3OrderAdjustment(BaseModel):
     `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
 
     """
-
-    created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
-    r"""When Formance observed this state. Not the PSP's own timestamp — reflects ingestion time."""
-
-    id: str
-    r"""Adjustment ID, composed from the order ID plus the state fields that define uniqueness (status, filled quantity, fee). Idempotent — replaying the same observation produces the same ID."""
-
-    reference: str
-    r"""PSP reference the adjustment belongs to (equal to the parent order's `reference`)."""
-
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
 
     base_quantity_filled: Annotated[
         Annotated[OptionalNullable[int], BeforeValidator(validate_int)],
@@ -111,15 +107,17 @@ class V3OrderAdjustment(BaseModel):
     )
     r"""Currency the fee is denominated in, in `SYMBOL/precision` form."""
 
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
+
     raw: Optional[V3OrderAdjustmentRaw] = None
     r"""Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["V3Metadata", "baseQuantityFilled", "fee", "feeAsset", "raw"]
+            ["baseQuantityFilled", "fee", "feeAsset", "metadata", "raw"]
         )
-        nullable_fields = set(["V3Metadata", "baseQuantityFilled", "fee", "feeAsset"])
+        nullable_fields = set(["baseQuantityFilled", "fee", "feeAsset", "metadata"])
         serialized = handler(self)
         m = {}
 

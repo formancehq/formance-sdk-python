@@ -3,27 +3,24 @@
 from __future__ import annotations
 from .debitwalletrequest import DebitWalletRequest, DebitWalletRequestTypedDict
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class ActivityDebitWalletTypedDict(TypedDict):
-    debit_wallet_request: NotRequired[DebitWalletRequestTypedDict]
+    data: NotRequired[DebitWalletRequestTypedDict]
     id: NotRequired[str]
 
 
 class ActivityDebitWallet(BaseModel):
-    debit_wallet_request: Annotated[
-        Optional[DebitWalletRequest], pydantic.Field(alias="data")
-    ] = None
+    data: Optional[DebitWalletRequest] = None
 
     id: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["DebitWalletRequest", "id"])
+        optional_fields = set(["data", "id"])
         serialized = handler(self)
         m = {}
 
@@ -36,9 +33,3 @@ class ActivityDebitWallet(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    ActivityDebitWallet.model_rebuild()
-except NameError:
-    pass

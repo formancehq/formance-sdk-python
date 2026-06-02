@@ -12,16 +12,14 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class AccountWithVolumesAndBalancesTypedDict(TypedDict):
     address: str
-    volumes: NotRequired[Dict[str, VolumeTypedDict]]
     balances: NotRequired[Dict[str, int]]
     metadata: NotRequired[Dict[str, Any]]
     type: NotRequired[str]
+    volumes: NotRequired[Dict[str, VolumeTypedDict]]
 
 
 class AccountWithVolumesAndBalances(BaseModel):
     address: str
-
-    volumes: Optional[Dict[str, Volume]] = None
 
     balances: Optional[Dict[str, Annotated[int, BeforeValidator(validate_int)]]] = None
 
@@ -29,9 +27,11 @@ class AccountWithVolumesAndBalances(BaseModel):
 
     type: Optional[str] = None
 
+    volumes: Optional[Dict[str, Volume]] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["Volumes", "balances", "metadata", "type"])
+        optional_fields = set(["balances", "metadata", "type", "volumes"])
         serialized = handler(self)
         m = {}
 

@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .v3payment import V3Payment, V3PaymentTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V3CreatePaymentResponseTypedDict(TypedDict):
-    v3_payment: V3PaymentTypedDict
+    data: V3PaymentTypedDict
 
 
 class V3CreatePaymentResponse(BaseModel):
-    v3_payment: Annotated[V3Payment, pydantic.Field(alias="data")]
-
-
-try:
-    V3CreatePaymentResponse.model_rebuild()
-except NameError:
-    pass
+    data: V3Payment

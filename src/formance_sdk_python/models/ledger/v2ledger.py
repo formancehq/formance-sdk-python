@@ -19,10 +19,10 @@ class V2LedgerTypedDict(TypedDict):
     added_at: datetime
     bucket: str
     name: str
-    v2_metadata: NotRequired[Dict[str, str]]
     deleted_at: NotRequired[Nullable[datetime]]
     features: NotRequired[Dict[str, str]]
     id: NotRequired[int]
+    metadata: NotRequired[Dict[str, str]]
 
 
 class V2Ledger(BaseModel):
@@ -32,10 +32,6 @@ class V2Ledger(BaseModel):
 
     name: str
 
-    v2_metadata: Annotated[
-        Optional[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = None
-
     deleted_at: Annotated[
         OptionalNullable[datetime], pydantic.Field(alias="deletedAt")
     ] = UNSET
@@ -44,9 +40,11 @@ class V2Ledger(BaseModel):
 
     id: Optional[int] = None
 
+    metadata: Optional[Dict[str, str]] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V2Metadata", "deletedAt", "features", "id"])
+        optional_fields = set(["deletedAt", "features", "id", "metadata"])
         nullable_fields = set(["deletedAt"])
         serialized = handler(self)
         m = {}
