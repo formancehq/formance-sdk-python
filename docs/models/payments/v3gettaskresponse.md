@@ -5,4 +5,4 @@
 
 | Field                                              | Type                                               | Required                                           | Description                                        |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `v3_task`                                          | [payments.V3Task](../../models/payments/v3task.md) | :heavy_check_mark:                                 | N/A                                                |
+| `data`                                             | [payments.V3Task](../../models/payments/v3task.md) | :heavy_check_mark:                                 | N/A                                                |

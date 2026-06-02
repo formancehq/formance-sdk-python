@@ -3,23 +3,16 @@
 from __future__ import annotations
 from .policy import Policy, PolicyTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class PolicyResponseTypedDict(TypedDict):
     r"""OK"""
 
-    policy: PolicyTypedDict
+    data: PolicyTypedDict
 
 
 class PolicyResponse(BaseModel):
     r"""OK"""
 
-    policy: Annotated[Policy, pydantic.Field(alias="data")]
-
-
-try:
-    PolicyResponse.model_rebuild()
-except NameError:
-    pass
+    data: Policy

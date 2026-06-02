@@ -3,20 +3,13 @@
 from __future__ import annotations
 from .v3poolbalance import V3PoolBalance, V3PoolBalanceTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
 from typing import List
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V3PoolBalancesResponseTypedDict(TypedDict):
-    v3_pool_balances: List[V3PoolBalanceTypedDict]
+    data: List[V3PoolBalanceTypedDict]
 
 
 class V3PoolBalancesResponse(BaseModel):
-    v3_pool_balances: Annotated[List[V3PoolBalance], pydantic.Field(alias="data")]
-
-
-try:
-    V3PoolBalancesResponse.model_rebuild()
-except NameError:
-    pass
+    data: List[V3PoolBalance]

@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .v3connectorconfig import V3ConnectorConfig, V3ConnectorConfigTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V3GetConnectorConfigResponseTypedDict(TypedDict):
-    v3_connector_config: V3ConnectorConfigTypedDict
+    data: V3ConnectorConfigTypedDict
 
 
 class V3GetConnectorConfigResponse(BaseModel):
-    v3_connector_config: Annotated[V3ConnectorConfig, pydantic.Field(alias="data")]
-
-
-try:
-    V3GetConnectorConfigResponse.model_rebuild()
-except NameError:
-    pass
+    data: V3ConnectorConfig

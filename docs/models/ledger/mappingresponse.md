@@ -5,4 +5,4 @@
 
 | Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `mapping`                                                            | [OptionalNullable[ledger.MappingT]](../../models/ledger/mappingt.md) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `data`                                                               | [OptionalNullable[ledger.MappingT]](../../models/ledger/mappingt.md) | :heavy_minus_sign:                                                   | N/A                                                                  |

@@ -19,16 +19,14 @@ class V2PaymentAdjustmentRaw(BaseModel):
 
 
 class V2PaymentAdjustmentTypedDict(TypedDict):
-    v2_payment_status: V2PaymentStatus
     absolute: bool
     amount: int
     date_: datetime
     raw: V2PaymentAdjustmentRawTypedDict
+    status: V2PaymentStatus
 
 
 class V2PaymentAdjustment(BaseModel):
-    v2_payment_status: Annotated[V2PaymentStatus, pydantic.Field(alias="status")]
-
     absolute: bool
 
     amount: Annotated[int, BeforeValidator(validate_int)]
@@ -36,6 +34,8 @@ class V2PaymentAdjustment(BaseModel):
     date_: Annotated[datetime, pydantic.Field(alias="date")]
 
     raw: V2PaymentAdjustmentRaw
+
+    status: V2PaymentStatus
 
 
 try:

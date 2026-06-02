@@ -6,24 +6,13 @@ from .v2workflowinstancehistorystage import (
     V2WorkflowInstanceHistoryStageTypedDict,
 )
 from formance_sdk_python.types import BaseModel
-import pydantic
 from typing import List
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V2GetWorkflowInstanceHistoryStageResponseTypedDict(TypedDict):
-    v2_workflow_instance_history_stage_list: List[
-        V2WorkflowInstanceHistoryStageTypedDict
-    ]
+    data: List[V2WorkflowInstanceHistoryStageTypedDict]
 
 
 class V2GetWorkflowInstanceHistoryStageResponse(BaseModel):
-    v2_workflow_instance_history_stage_list: Annotated[
-        List[V2WorkflowInstanceHistoryStage], pydantic.Field(alias="data")
-    ]
-
-
-try:
-    V2GetWorkflowInstanceHistoryStageResponse.model_rebuild()
-except NameError:
-    pass
+    data: List[V2WorkflowInstanceHistoryStage]

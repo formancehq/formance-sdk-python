@@ -4,10 +4,9 @@ from __future__ import annotations
 from .v2posting import V2Posting, V2PostingTypedDict
 from datetime import datetime
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Any, Dict, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class V2PostTransactionScriptTypedDict(TypedDict):
@@ -38,7 +37,7 @@ class V2PostTransactionScript(BaseModel):
 
 
 class V2PostTransactionTypedDict(TypedDict):
-    v2_metadata: Dict[str, str]
+    metadata: Dict[str, str]
     postings: NotRequired[List[V2PostingTypedDict]]
     reference: NotRequired[str]
     script: NotRequired[V2PostTransactionScriptTypedDict]
@@ -46,7 +45,7 @@ class V2PostTransactionTypedDict(TypedDict):
 
 
 class V2PostTransaction(BaseModel):
-    v2_metadata: Annotated[Dict[str, str], pydantic.Field(alias="metadata")]
+    metadata: Dict[str, str]
 
     postings: Optional[List[V2Posting]] = None
 
@@ -71,9 +70,3 @@ class V2PostTransaction(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    V2PostTransaction.model_rebuild()
-except NameError:
-    pass

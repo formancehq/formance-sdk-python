@@ -19,27 +19,21 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3PaymentInitiationAdjustmentTypedDict(TypedDict):
-    v3_payment_initiation_status_enum: V3PaymentInitiationStatusEnum
     created_at: datetime
     id: str
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
+    status: V3PaymentInitiationStatusEnum
     amount: NotRequired[int]
     asset: NotRequired[str]
     error: NotRequired[Nullable[str]]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
 
 
 class V3PaymentInitiationAdjustment(BaseModel):
-    v3_payment_initiation_status_enum: Annotated[
-        V3PaymentInitiationStatusEnum, pydantic.Field(alias="status")
-    ]
-
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
     id: str
 
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
+    status: V3PaymentInitiationStatusEnum
 
     amount: Annotated[Optional[int], BeforeValidator(validate_int)] = None
 
@@ -47,10 +41,12 @@ class V3PaymentInitiationAdjustment(BaseModel):
 
     error: OptionalNullable[str] = UNSET
 
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V3Metadata", "amount", "asset", "error"])
-        nullable_fields = set(["V3Metadata", "error"])
+        optional_fields = set(["amount", "asset", "error", "metadata"])
+        nullable_fields = set(["error", "metadata"])
         serialized = handler(self)
         m = {}
 

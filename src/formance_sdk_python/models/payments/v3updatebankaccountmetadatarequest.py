@@ -2,18 +2,17 @@
 
 from __future__ import annotations
 from formance_sdk_python.types import BaseModel, Nullable, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Dict
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V3UpdateBankAccountMetadataRequestTypedDict(TypedDict):
-    v3_metadata: Nullable[Dict[str, str]]
+    metadata: Nullable[Dict[str, str]]
 
 
 class V3UpdateBankAccountMetadataRequest(BaseModel):
-    v3_metadata: Annotated[Nullable[Dict[str, str]], pydantic.Field(alias="metadata")]
+    metadata: Nullable[Dict[str, str]]
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -28,9 +27,3 @@ class V3UpdateBankAccountMetadataRequest(BaseModel):
                 m[k] = val
 
         return m
-
-
-try:
-    V3UpdateBankAccountMetadataRequest.model_rebuild()
-except NameError:
-    pass

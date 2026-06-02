@@ -17,20 +17,16 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3PaymentServiceUserConnectionTypedDict(TypedDict):
-    v3_connection_status_enum: V3ConnectionStatusEnum
     connection_id: str
     connector_id: str
     created_at: datetime
     data_updated_at: datetime
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
+    status: V3ConnectionStatusEnum
     error: NotRequired[Nullable[str]]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
 
 
 class V3PaymentServiceUserConnection(BaseModel):
-    v3_connection_status_enum: Annotated[
-        V3ConnectionStatusEnum, pydantic.Field(alias="status")
-    ]
-
     connection_id: Annotated[str, pydantic.Field(alias="connectionID")]
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
@@ -39,16 +35,16 @@ class V3PaymentServiceUserConnection(BaseModel):
 
     data_updated_at: Annotated[datetime, pydantic.Field(alias="dataUpdatedAt")]
 
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
+    status: V3ConnectionStatusEnum
 
     error: OptionalNullable[str] = UNSET
 
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V3Metadata", "error"])
-        nullable_fields = set(["V3Metadata", "error"])
+        optional_fields = set(["error", "metadata"])
+        nullable_fields = set(["error", "metadata"])
         serialized = handler(self)
         m = {}
 

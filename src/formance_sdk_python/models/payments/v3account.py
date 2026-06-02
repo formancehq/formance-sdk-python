@@ -26,22 +26,20 @@ class V3AccountRaw(BaseModel):
 
 
 class V3AccountTypedDict(TypedDict):
-    v3_account_type_enum: V3AccountTypeEnum
     connector_id: str
     created_at: datetime
     id: str
     provider: str
     raw: V3AccountRawTypedDict
     reference: str
-    v3_connector_base: NotRequired[V3ConnectorBaseTypedDict]
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
+    type: V3AccountTypeEnum
+    connector: NotRequired[V3ConnectorBaseTypedDict]
     default_asset: NotRequired[Nullable[str]]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
     name: NotRequired[Nullable[str]]
 
 
 class V3Account(BaseModel):
-    v3_account_type_enum: Annotated[V3AccountTypeEnum, pydantic.Field(alias="type")]
-
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
@@ -54,24 +52,22 @@ class V3Account(BaseModel):
 
     reference: str
 
-    v3_connector_base: Annotated[
-        Optional[V3ConnectorBase], pydantic.Field(alias="connector")
-    ] = None
+    type: V3AccountTypeEnum
 
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
+    connector: Optional[V3ConnectorBase] = None
 
     default_asset: Annotated[
         OptionalNullable[str], pydantic.Field(alias="defaultAsset")
     ] = UNSET
 
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
+
     name: OptionalNullable[str] = UNSET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V3ConnectorBase", "V3Metadata", "defaultAsset", "name"])
-        nullable_fields = set(["V3Metadata", "defaultAsset", "name"])
+        optional_fields = set(["connector", "defaultAsset", "metadata", "name"])
+        nullable_fields = set(["defaultAsset", "metadata", "name"])
         serialized = handler(self)
         m = {}
 

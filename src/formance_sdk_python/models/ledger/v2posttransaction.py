@@ -42,22 +42,19 @@ class V2PostTransactionScript(BaseModel):
 
 
 class V2PostTransactionTypedDict(TypedDict):
-    v2_metadata: Dict[str, str]
-    runtime: NotRequired[Runtime]
-    r"""The numscript runtime used to execute the script. Uses \"machine\" by default, unless the \"--experimental-numscript-interpreter\" feature flag is passed."""
+    metadata: Dict[str, str]
     account_metadata: NotRequired[Dict[str, Dict[str, str]]]
     force: NotRequired[bool]
     postings: NotRequired[List[V2PostingTypedDict]]
     reference: NotRequired[str]
+    runtime: NotRequired[Runtime]
+    r"""The numscript runtime used to execute the script. Uses \"machine\" by default, unless the \"--experimental-numscript-interpreter\" feature flag is passed."""
     script: NotRequired[V2PostTransactionScriptTypedDict]
     timestamp: NotRequired[datetime]
 
 
 class V2PostTransaction(BaseModel):
-    v2_metadata: Annotated[Dict[str, str], pydantic.Field(alias="metadata")]
-
-    runtime: Optional[Runtime] = None
-    r"""The numscript runtime used to execute the script. Uses \"machine\" by default, unless the \"--experimental-numscript-interpreter\" feature flag is passed."""
+    metadata: Dict[str, str]
 
     account_metadata: Annotated[
         Optional[Dict[str, Dict[str, str]]], pydantic.Field(alias="accountMetadata")
@@ -69,6 +66,9 @@ class V2PostTransaction(BaseModel):
 
     reference: Optional[str] = None
 
+    runtime: Optional[Runtime] = None
+    r"""The numscript runtime used to execute the script. Uses \"machine\" by default, unless the \"--experimental-numscript-interpreter\" feature flag is passed."""
+
     script: Optional[V2PostTransactionScript] = None
 
     timestamp: Optional[datetime] = None
@@ -77,11 +77,11 @@ class V2PostTransaction(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
-                "Runtime",
                 "accountMetadata",
                 "force",
                 "postings",
                 "reference",
+                "runtime",
                 "script",
                 "timestamp",
             ]

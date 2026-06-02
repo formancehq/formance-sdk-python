@@ -33,8 +33,8 @@ class Script(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["Metadata", "reference", "vars"])
-        nullable_fields = set(["Metadata"])
+        optional_fields = set(["metadata", "reference", "vars"])
+        nullable_fields = set(["metadata"])
         serialized = handler(self)
         m = {}
 

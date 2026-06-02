@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .v2schemascursor import V2SchemasCursor, V2SchemasCursorTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V2SchemasCursorResponseTypedDict(TypedDict):
-    v2_schemas_cursor: V2SchemasCursorTypedDict
+    cursor: V2SchemasCursorTypedDict
 
 
 class V2SchemasCursorResponse(BaseModel):
-    v2_schemas_cursor: Annotated[V2SchemasCursor, pydantic.Field(alias="cursor")]
-
-
-try:
-    V2SchemasCursorResponse.model_rebuild()
-except NameError:
-    pass
+    cursor: V2SchemasCursor

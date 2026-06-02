@@ -5,19 +5,18 @@ from .v2monetary import V2Monetary, V2MonetaryTypedDict
 from .v2subject import V2Subject, V2SubjectTypedDict
 from datetime import datetime
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Dict, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class V2DebitWalletRequestTypedDict(TypedDict):
-    v2_monetary: V2MonetaryTypedDict
+    amount: V2MonetaryTypedDict
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
-    v2_subject: NotRequired[V2SubjectTypedDict]
     balances: NotRequired[List[str]]
     description: NotRequired[str]
+    destination: NotRequired[V2SubjectTypedDict]
     pending: NotRequired[bool]
     r"""Set to true to create a pending hold. If false, the wallet will be debited immediately."""
     timestamp: NotRequired[datetime]
@@ -25,18 +24,16 @@ class V2DebitWalletRequestTypedDict(TypedDict):
 
 
 class V2DebitWalletRequest(BaseModel):
-    v2_monetary: Annotated[V2Monetary, pydantic.Field(alias="amount")]
+    amount: V2Monetary
 
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
 
-    v2_subject: Annotated[Optional[V2Subject], pydantic.Field(alias="destination")] = (
-        None
-    )
-
     balances: Optional[List[str]] = None
 
     description: Optional[str] = None
+
+    destination: Optional[V2Subject] = None
 
     pending: Optional[bool] = None
     r"""Set to true to create a pending hold. If false, the wallet will be debited immediately."""
@@ -47,7 +44,7 @@ class V2DebitWalletRequest(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["V2Subject", "balances", "description", "pending", "timestamp"]
+            ["balances", "description", "destination", "pending", "timestamp"]
         )
         serialized = handler(self)
         m = {}
@@ -61,9 +58,3 @@ class V2DebitWalletRequest(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    V2DebitWalletRequest.model_rebuild()
-except NameError:
-    pass

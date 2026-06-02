@@ -3,27 +3,24 @@
 from __future__ import annotations
 from .v2creditwalletrequest import V2CreditWalletRequest, V2CreditWalletRequestTypedDict
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class V2ActivityCreditWalletTypedDict(TypedDict):
-    v2_credit_wallet_request: NotRequired[V2CreditWalletRequestTypedDict]
+    data: NotRequired[V2CreditWalletRequestTypedDict]
     id: NotRequired[str]
 
 
 class V2ActivityCreditWallet(BaseModel):
-    v2_credit_wallet_request: Annotated[
-        Optional[V2CreditWalletRequest], pydantic.Field(alias="data")
-    ] = None
+    data: Optional[V2CreditWalletRequest] = None
 
     id: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V2CreditWalletRequest", "id"])
+        optional_fields = set(["data", "id"])
         serialized = handler(self)
         m = {}
 
@@ -36,9 +33,3 @@ class V2ActivityCreditWallet(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    V2ActivityCreditWallet.model_rebuild()
-except NameError:
-    pass

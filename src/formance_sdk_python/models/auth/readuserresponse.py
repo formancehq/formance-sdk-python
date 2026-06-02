@@ -3,22 +3,21 @@
 from __future__ import annotations
 from .user import User, UserTypedDict
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class ReadUserResponseTypedDict(TypedDict):
-    user: NotRequired[UserTypedDict]
+    data: NotRequired[UserTypedDict]
 
 
 class ReadUserResponse(BaseModel):
-    user: Annotated[Optional[User], pydantic.Field(alias="data")] = None
+    data: Optional[User] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["User"])
+        optional_fields = set(["data"])
         serialized = handler(self)
         m = {}
 
@@ -31,9 +30,3 @@ class ReadUserResponse(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    ReadUserResponse.model_rebuild()
-except NameError:
-    pass

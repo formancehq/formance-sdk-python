@@ -9,7 +9,7 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class V2CursorTypedDict(TypedDict):
+class V2ListWalletsResponseCursorTypedDict(TypedDict):
     data: List[V2WalletTypedDict]
     page_size: int
     has_more: NotRequired[bool]
@@ -17,7 +17,7 @@ class V2CursorTypedDict(TypedDict):
     previous: NotRequired[str]
 
 
-class V2Cursor(BaseModel):
+class V2ListWalletsResponseCursor(BaseModel):
     data: List[V2Wallet]
 
     page_size: Annotated[int, pydantic.Field(alias="pageSize")]
@@ -46,18 +46,14 @@ class V2Cursor(BaseModel):
 
 
 class V2ListWalletsResponseTypedDict(TypedDict):
-    v2_cursor: V2CursorTypedDict
+    cursor: V2ListWalletsResponseCursorTypedDict
 
 
 class V2ListWalletsResponse(BaseModel):
-    v2_cursor: Annotated[V2Cursor, pydantic.Field(alias="cursor")]
+    cursor: V2ListWalletsResponseCursor
 
 
 try:
-    V2Cursor.model_rebuild()
-except NameError:
-    pass
-try:
-    V2ListWalletsResponse.model_rebuild()
+    V2ListWalletsResponseCursor.model_rebuild()
 except NameError:
     pass

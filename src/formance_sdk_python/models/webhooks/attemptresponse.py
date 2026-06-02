@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .attempt import Attempt, AttemptTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class AttemptResponseTypedDict(TypedDict):
-    attempt: AttemptTypedDict
+    data: AttemptTypedDict
 
 
 class AttemptResponse(BaseModel):
-    attempt: Annotated[Attempt, pydantic.Field(alias="data")]
-
-
-try:
-    AttemptResponse.model_rebuild()
-except NameError:
-    pass
+    data: Attempt

@@ -3,7 +3,7 @@
 from __future__ import annotations
 from formance_sdk_python.models.auth import (
     createsecretresponse as auth_createsecretresponse,
-    secretoptions_1 as auth_secretoptions_1,
+    secretoptions as auth_secretoptions,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import FieldMetadata, PathParamMetadata, RequestMetadata
@@ -17,7 +17,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 class CreateSecretRequestTypedDict(TypedDict):
     client_id: str
     r"""Client ID"""
-    secret_options: NotRequired[auth_secretoptions_1.SecretOptions1TypedDict]
+    secret_options: NotRequired[auth_secretoptions.SecretOptionsTypedDict]
 
 
 class CreateSecretRequest(BaseModel):
@@ -29,7 +29,7 @@ class CreateSecretRequest(BaseModel):
     r"""Client ID"""
 
     secret_options: Annotated[
-        Optional[auth_secretoptions_1.SecretOptions1],
+        Optional[auth_secretoptions.SecretOptions],
         FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ] = None
 

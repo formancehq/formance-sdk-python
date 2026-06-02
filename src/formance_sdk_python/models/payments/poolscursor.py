@@ -9,7 +9,7 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class PoolsCursorCursorBaseTypedDict(TypedDict):
+class PoolsCursorCursorTypedDict(TypedDict):
     data: List[PoolTypedDict]
     has_more: bool
     page_size: int
@@ -17,7 +17,7 @@ class PoolsCursorCursorBaseTypedDict(TypedDict):
     previous: NotRequired[str]
 
 
-class PoolsCursorCursorBase(BaseModel):
+class PoolsCursorCursor(BaseModel):
     data: List[Pool]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -48,20 +48,16 @@ class PoolsCursorCursorBase(BaseModel):
 class PoolsCursorTypedDict(TypedDict):
     r"""OK"""
 
-    cursor_base: PoolsCursorCursorBaseTypedDict
+    cursor: PoolsCursorCursorTypedDict
 
 
 class PoolsCursor(BaseModel):
     r"""OK"""
 
-    cursor_base: Annotated[PoolsCursorCursorBase, pydantic.Field(alias="cursor")]
+    cursor: PoolsCursorCursor
 
 
 try:
-    PoolsCursorCursorBase.model_rebuild()
-except NameError:
-    pass
-try:
-    PoolsCursor.model_rebuild()
+    PoolsCursorCursor.model_rebuild()
 except NameError:
     pass

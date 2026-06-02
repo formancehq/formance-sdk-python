@@ -176,10 +176,10 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.create_account(request={
-        "account_type": payments.AccountType.UNKNOWN,
         "connector_id": "<id>",
         "created_at": parse_datetime("2025-07-27T08:57:17.388Z"),
         "reference": "<value>",
+        "type": payments.AccountType.UNKNOWN,
     })
 
     assert res.account_response is not None
@@ -277,14 +277,14 @@ with SDK(
 ) as sdk:
 
     res = sdk.payments.v1.create_payment(request={
-        "payment_scheme": payments.PaymentScheme.RTP,
-        "payment_status": payments.PaymentStatus.REFUNDED_FAILURE,
-        "payment_type": payments.PaymentType.PAYOUT,
         "amount": 100,
         "asset": "USD",
         "connector_id": "<id>",
         "created_at": parse_datetime("2025-08-26T06:29:11.777Z"),
         "reference": "<value>",
+        "scheme": payments.PaymentScheme.RTP,
+        "status": payments.PaymentStatus.REFUNDED_FAILURE,
+        "type": payments.PaymentType.PAYOUT,
     })
 
     assert res.payment_response is not None
@@ -2091,7 +2091,7 @@ with SDK(
 
     res = sdk.payments.v1.update_bank_account_metadata(request={
         "update_bank_account_metadata_request": {
-            "bank_account_metadata": {
+            "metadata": {
                 "key": "<value>",
                 "key1": "<value>",
                 "key2": "<value>",

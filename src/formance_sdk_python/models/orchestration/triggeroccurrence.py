@@ -14,8 +14,8 @@ class TriggerOccurrenceTypedDict(TypedDict):
     date_: datetime
     event: Dict[str, Any]
     trigger_id: str
-    workflow_instance: NotRequired[WorkflowInstanceTypedDict]
     error: NotRequired[str]
+    workflow_instance: NotRequired[WorkflowInstanceTypedDict]
     workflow_instance_id: NotRequired[str]
 
 
@@ -26,11 +26,11 @@ class TriggerOccurrence(BaseModel):
 
     trigger_id: Annotated[str, pydantic.Field(alias="triggerID")]
 
+    error: Optional[str] = None
+
     workflow_instance: Annotated[
         Optional[WorkflowInstance], pydantic.Field(alias="workflowInstance")
     ] = None
-
-    error: Optional[str] = None
 
     workflow_instance_id: Annotated[
         Optional[str], pydantic.Field(alias="workflowInstanceID")
@@ -38,7 +38,7 @@ class TriggerOccurrence(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["WorkflowInstance", "error", "workflowInstanceID"])
+        optional_fields = set(["error", "workflowInstance", "workflowInstanceID"])
         serialized = handler(self)
         m = {}
 

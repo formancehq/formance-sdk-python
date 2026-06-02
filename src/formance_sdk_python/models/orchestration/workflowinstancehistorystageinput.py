@@ -34,94 +34,92 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class WorkflowInstanceHistoryStageInputTypedDict(TypedDict):
-    activity_add_account_metadata: NotRequired[ActivityAddAccountMetadataTypedDict]
-    activity_confirm_hold: NotRequired[ActivityConfirmHoldTypedDict]
-    activity_create_transaction: NotRequired[ActivityCreateTransactionTypedDict]
-    activity_credit_wallet: NotRequired[ActivityCreditWalletTypedDict]
-    activity_debit_wallet: NotRequired[ActivityDebitWalletTypedDict]
-    activity_get_account: NotRequired[ActivityGetAccountTypedDict]
-    activity_get_payment: NotRequired[ActivityGetPaymentTypedDict]
-    activity_get_wallet: NotRequired[ActivityGetWalletTypedDict]
-    activity_list_wallets: NotRequired[ActivityListWalletsTypedDict]
-    activity_revert_transaction: NotRequired[ActivityRevertTransactionTypedDict]
-    activity_void_hold: NotRequired[ActivityVoidHoldTypedDict]
-    create_transfer_initiation_request: NotRequired[
-        CreateTransferInitiationRequestTypedDict
-    ]
-    stripe_transfer_request: NotRequired[StripeTransferRequestTypedDict]
+    add_account_metadata: NotRequired[ActivityAddAccountMetadataTypedDict]
+    confirm_hold: NotRequired[ActivityConfirmHoldTypedDict]
+    create_transaction: NotRequired[ActivityCreateTransactionTypedDict]
+    create_transfer_initiation: NotRequired[CreateTransferInitiationRequestTypedDict]
+    credit_wallet: NotRequired[ActivityCreditWalletTypedDict]
+    debit_wallet: NotRequired[ActivityDebitWalletTypedDict]
+    get_account: NotRequired[ActivityGetAccountTypedDict]
+    get_payment: NotRequired[ActivityGetPaymentTypedDict]
+    get_wallet: NotRequired[ActivityGetWalletTypedDict]
+    list_wallets: NotRequired[ActivityListWalletsTypedDict]
+    revert_transaction: NotRequired[ActivityRevertTransactionTypedDict]
+    stripe_transfer: NotRequired[StripeTransferRequestTypedDict]
+    void_hold: NotRequired[ActivityVoidHoldTypedDict]
 
 
 class WorkflowInstanceHistoryStageInput(BaseModel):
-    activity_add_account_metadata: Annotated[
+    add_account_metadata: Annotated[
         Optional[ActivityAddAccountMetadata], pydantic.Field(alias="AddAccountMetadata")
     ] = None
 
-    activity_confirm_hold: Annotated[
+    confirm_hold: Annotated[
         Optional[ActivityConfirmHold], pydantic.Field(alias="ConfirmHold")
     ] = None
 
-    activity_create_transaction: Annotated[
+    create_transaction: Annotated[
         Optional[ActivityCreateTransaction], pydantic.Field(alias="CreateTransaction")
     ] = None
 
-    activity_credit_wallet: Annotated[
-        Optional[ActivityCreditWallet], pydantic.Field(alias="CreditWallet")
-    ] = None
-
-    activity_debit_wallet: Annotated[
-        Optional[ActivityDebitWallet], pydantic.Field(alias="DebitWallet")
-    ] = None
-
-    activity_get_account: Annotated[
-        Optional[ActivityGetAccount], pydantic.Field(alias="GetAccount")
-    ] = None
-
-    activity_get_payment: Annotated[
-        Optional[ActivityGetPayment], pydantic.Field(alias="GetPayment")
-    ] = None
-
-    activity_get_wallet: Annotated[
-        Optional[ActivityGetWallet], pydantic.Field(alias="GetWallet")
-    ] = None
-
-    activity_list_wallets: Annotated[
-        Optional[ActivityListWallets], pydantic.Field(alias="ListWallets")
-    ] = None
-
-    activity_revert_transaction: Annotated[
-        Optional[ActivityRevertTransaction], pydantic.Field(alias="RevertTransaction")
-    ] = None
-
-    activity_void_hold: Annotated[
-        Optional[ActivityVoidHold], pydantic.Field(alias="VoidHold")
-    ] = None
-
-    create_transfer_initiation_request: Annotated[
+    create_transfer_initiation: Annotated[
         Optional[CreateTransferInitiationRequest],
         pydantic.Field(alias="CreateTransferInitiation"),
     ] = None
 
-    stripe_transfer_request: Annotated[
+    credit_wallet: Annotated[
+        Optional[ActivityCreditWallet], pydantic.Field(alias="CreditWallet")
+    ] = None
+
+    debit_wallet: Annotated[
+        Optional[ActivityDebitWallet], pydantic.Field(alias="DebitWallet")
+    ] = None
+
+    get_account: Annotated[
+        Optional[ActivityGetAccount], pydantic.Field(alias="GetAccount")
+    ] = None
+
+    get_payment: Annotated[
+        Optional[ActivityGetPayment], pydantic.Field(alias="GetPayment")
+    ] = None
+
+    get_wallet: Annotated[
+        Optional[ActivityGetWallet], pydantic.Field(alias="GetWallet")
+    ] = None
+
+    list_wallets: Annotated[
+        Optional[ActivityListWallets], pydantic.Field(alias="ListWallets")
+    ] = None
+
+    revert_transaction: Annotated[
+        Optional[ActivityRevertTransaction], pydantic.Field(alias="RevertTransaction")
+    ] = None
+
+    stripe_transfer: Annotated[
         Optional[StripeTransferRequest], pydantic.Field(alias="StripeTransfer")
+    ] = None
+
+    void_hold: Annotated[
+        Optional[ActivityVoidHold], pydantic.Field(alias="VoidHold")
     ] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
             [
-                "ActivityAddAccountMetadata",
-                "ActivityConfirmHold",
-                "ActivityCreateTransaction",
-                "ActivityCreditWallet",
-                "ActivityDebitWallet",
-                "ActivityGetAccount",
-                "ActivityGetPayment",
-                "ActivityGetWallet",
-                "ActivityListWallets",
-                "ActivityRevertTransaction",
-                "ActivityVoidHold",
-                "CreateTransferInitiationRequest",
-                "StripeTransferRequest",
+                "AddAccountMetadata",
+                "ConfirmHold",
+                "CreateTransaction",
+                "CreateTransferInitiation",
+                "CreditWallet",
+                "DebitWallet",
+                "GetAccount",
+                "GetPayment",
+                "GetWallet",
+                "ListWallets",
+                "RevertTransaction",
+                "StripeTransfer",
+                "VoidHold",
             ]
         )
         serialized = handler(self)

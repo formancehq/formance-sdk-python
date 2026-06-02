@@ -36,89 +36,87 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2WorkflowInstanceHistoryStageInputTypedDict(TypedDict):
-    v2_activity_add_account_metadata: NotRequired[V2ActivityAddAccountMetadataTypedDict]
-    v2_activity_confirm_hold: NotRequired[V2ActivityConfirmHoldTypedDict]
-    v2_activity_create_transaction: NotRequired[V2ActivityCreateTransactionTypedDict]
-    v2_activity_credit_wallet: NotRequired[V2ActivityCreditWalletTypedDict]
-    v2_activity_debit_wallet: NotRequired[V2ActivityDebitWalletTypedDict]
-    v2_activity_get_account: NotRequired[V2ActivityGetAccountTypedDict]
-    v2_activity_get_payment: NotRequired[V2ActivityGetPaymentTypedDict]
-    v2_activity_get_wallet: NotRequired[V2ActivityGetWalletTypedDict]
-    v2_activity_list_wallets: NotRequired[V2ActivityListWalletsTypedDict]
-    v2_activity_void_hold: NotRequired[V2ActivityVoidHoldTypedDict]
-    v2_create_transfer_initiation_request: NotRequired[
-        V2CreateTransferInitiationRequestTypedDict
-    ]
-    v2_stripe_transfer_request: NotRequired[V2StripeTransferRequestTypedDict]
+    add_account_metadata: NotRequired[V2ActivityAddAccountMetadataTypedDict]
+    confirm_hold: NotRequired[V2ActivityConfirmHoldTypedDict]
+    create_transaction: NotRequired[V2ActivityCreateTransactionTypedDict]
+    create_transfer_initiation: NotRequired[V2CreateTransferInitiationRequestTypedDict]
+    credit_wallet: NotRequired[V2ActivityCreditWalletTypedDict]
+    debit_wallet: NotRequired[V2ActivityDebitWalletTypedDict]
+    get_account: NotRequired[V2ActivityGetAccountTypedDict]
+    get_payment: NotRequired[V2ActivityGetPaymentTypedDict]
+    get_wallet: NotRequired[V2ActivityGetWalletTypedDict]
+    list_wallets: NotRequired[V2ActivityListWalletsTypedDict]
+    stripe_transfer: NotRequired[V2StripeTransferRequestTypedDict]
+    void_hold: NotRequired[V2ActivityVoidHoldTypedDict]
 
 
 class V2WorkflowInstanceHistoryStageInput(BaseModel):
-    v2_activity_add_account_metadata: Annotated[
+    add_account_metadata: Annotated[
         Optional[V2ActivityAddAccountMetadata],
         pydantic.Field(alias="AddAccountMetadata"),
     ] = None
 
-    v2_activity_confirm_hold: Annotated[
+    confirm_hold: Annotated[
         Optional[V2ActivityConfirmHold], pydantic.Field(alias="ConfirmHold")
     ] = None
 
-    v2_activity_create_transaction: Annotated[
+    create_transaction: Annotated[
         Optional[V2ActivityCreateTransaction], pydantic.Field(alias="CreateTransaction")
     ] = None
 
-    v2_activity_credit_wallet: Annotated[
-        Optional[V2ActivityCreditWallet], pydantic.Field(alias="CreditWallet")
-    ] = None
-
-    v2_activity_debit_wallet: Annotated[
-        Optional[V2ActivityDebitWallet], pydantic.Field(alias="DebitWallet")
-    ] = None
-
-    v2_activity_get_account: Annotated[
-        Optional[V2ActivityGetAccount], pydantic.Field(alias="GetAccount")
-    ] = None
-
-    v2_activity_get_payment: Annotated[
-        Optional[V2ActivityGetPayment], pydantic.Field(alias="GetPayment")
-    ] = None
-
-    v2_activity_get_wallet: Annotated[
-        Optional[V2ActivityGetWallet], pydantic.Field(alias="GetWallet")
-    ] = None
-
-    v2_activity_list_wallets: Annotated[
-        Optional[V2ActivityListWallets], pydantic.Field(alias="ListWallets")
-    ] = None
-
-    v2_activity_void_hold: Annotated[
-        Optional[V2ActivityVoidHold], pydantic.Field(alias="VoidHold")
-    ] = None
-
-    v2_create_transfer_initiation_request: Annotated[
+    create_transfer_initiation: Annotated[
         Optional[V2CreateTransferInitiationRequest],
         pydantic.Field(alias="CreateTransferInitiation"),
     ] = None
 
-    v2_stripe_transfer_request: Annotated[
+    credit_wallet: Annotated[
+        Optional[V2ActivityCreditWallet], pydantic.Field(alias="CreditWallet")
+    ] = None
+
+    debit_wallet: Annotated[
+        Optional[V2ActivityDebitWallet], pydantic.Field(alias="DebitWallet")
+    ] = None
+
+    get_account: Annotated[
+        Optional[V2ActivityGetAccount], pydantic.Field(alias="GetAccount")
+    ] = None
+
+    get_payment: Annotated[
+        Optional[V2ActivityGetPayment], pydantic.Field(alias="GetPayment")
+    ] = None
+
+    get_wallet: Annotated[
+        Optional[V2ActivityGetWallet], pydantic.Field(alias="GetWallet")
+    ] = None
+
+    list_wallets: Annotated[
+        Optional[V2ActivityListWallets], pydantic.Field(alias="ListWallets")
+    ] = None
+
+    stripe_transfer: Annotated[
         Optional[V2StripeTransferRequest], pydantic.Field(alias="StripeTransfer")
+    ] = None
+
+    void_hold: Annotated[
+        Optional[V2ActivityVoidHold], pydantic.Field(alias="VoidHold")
     ] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
             [
-                "V2ActivityAddAccountMetadata",
-                "V2ActivityConfirmHold",
-                "V2ActivityCreateTransaction",
-                "V2ActivityCreditWallet",
-                "V2ActivityDebitWallet",
-                "V2ActivityGetAccount",
-                "V2ActivityGetPayment",
-                "V2ActivityGetWallet",
-                "V2ActivityListWallets",
-                "V2ActivityVoidHold",
-                "V2CreateTransferInitiationRequest",
-                "V2StripeTransferRequest",
+                "AddAccountMetadata",
+                "ConfirmHold",
+                "CreateTransaction",
+                "CreateTransferInitiation",
+                "CreditWallet",
+                "DebitWallet",
+                "GetAccount",
+                "GetPayment",
+                "GetWallet",
+                "ListWallets",
+                "StripeTransfer",
+                "VoidHold",
             ]
         )
         serialized = handler(self)

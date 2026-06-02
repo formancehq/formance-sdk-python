@@ -31,7 +31,7 @@ class V2LogDataSetMetadataTargetType(str, Enum):
 class V2LogDataSetMetadataTypedDict(TypedDict):
     r"""Payload for SET_METADATA log entries. Contains the target entity and the metadata that was set."""
 
-    v2_metadata: Dict[str, str]
+    metadata: Dict[str, str]
     target_id: V2LogDataSetMetadataTargetIDTypedDict
     target_type: V2LogDataSetMetadataTargetType
     r"""Type of the target entity"""
@@ -40,7 +40,7 @@ class V2LogDataSetMetadataTypedDict(TypedDict):
 class V2LogDataSetMetadata(BaseModel):
     r"""Payload for SET_METADATA log entries. Contains the target entity and the metadata that was set."""
 
-    v2_metadata: Annotated[Dict[str, str], pydantic.Field(alias="metadata")]
+    metadata: Dict[str, str]
 
     target_id: Annotated[V2LogDataSetMetadataTargetID, pydantic.Field(alias="targetId")]
 

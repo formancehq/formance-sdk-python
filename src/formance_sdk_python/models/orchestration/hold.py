@@ -17,7 +17,7 @@ class HoldTypedDict(TypedDict):
     r"""Metadata associated with the hold."""
     wallet_id: str
     r"""The ID of the wallet the hold is associated with."""
-    subject: NotRequired[SubjectTypedDict]
+    destination: NotRequired[SubjectTypedDict]
 
 
 class Hold(BaseModel):
@@ -32,11 +32,11 @@ class Hold(BaseModel):
     wallet_id: Annotated[str, pydantic.Field(alias="walletID")]
     r"""The ID of the wallet the hold is associated with."""
 
-    subject: Annotated[Optional[Subject], pydantic.Field(alias="destination")] = None
+    destination: Optional[Subject] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["Subject"])
+        optional_fields = set(["destination"])
         serialized = handler(self)
         m = {}
 

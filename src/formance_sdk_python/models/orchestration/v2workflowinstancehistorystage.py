@@ -18,38 +18,28 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2WorkflowInstanceHistoryStageTypedDict(TypedDict):
-    v2_workflow_instance_history_stage_input: (
-        V2WorkflowInstanceHistoryStageInputTypedDict
-    )
     attempt: int
+    input: V2WorkflowInstanceHistoryStageInputTypedDict
     name: str
     started_at: datetime
     terminated: bool
-    v2_workflow_instance_history_stage_output: NotRequired[
-        V2WorkflowInstanceHistoryStageOutputTypedDict
-    ]
     error: NotRequired[str]
     last_failure: NotRequired[str]
     next_execution: NotRequired[datetime]
+    output: NotRequired[V2WorkflowInstanceHistoryStageOutputTypedDict]
     terminated_at: NotRequired[datetime]
 
 
 class V2WorkflowInstanceHistoryStage(BaseModel):
-    v2_workflow_instance_history_stage_input: Annotated[
-        V2WorkflowInstanceHistoryStageInput, pydantic.Field(alias="input")
-    ]
-
     attempt: int
+
+    input: V2WorkflowInstanceHistoryStageInput
 
     name: str
 
     started_at: Annotated[datetime, pydantic.Field(alias="startedAt")]
 
     terminated: bool
-
-    v2_workflow_instance_history_stage_output: Annotated[
-        Optional[V2WorkflowInstanceHistoryStageOutput], pydantic.Field(alias="output")
-    ] = None
 
     error: Optional[str] = None
 
@@ -59,6 +49,8 @@ class V2WorkflowInstanceHistoryStage(BaseModel):
         Optional[datetime], pydantic.Field(alias="nextExecution")
     ] = None
 
+    output: Optional[V2WorkflowInstanceHistoryStageOutput] = None
+
     terminated_at: Annotated[
         Optional[datetime], pydantic.Field(alias="terminatedAt")
     ] = None
@@ -66,13 +58,7 @@ class V2WorkflowInstanceHistoryStage(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            [
-                "V2WorkflowInstanceHistoryStageOutput",
-                "error",
-                "lastFailure",
-                "nextExecution",
-                "terminatedAt",
-            ]
+            ["error", "lastFailure", "nextExecution", "output", "terminatedAt"]
         )
         serialized = handler(self)
         m = {}

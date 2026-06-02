@@ -10,23 +10,21 @@ from typing_extensions import Annotated, TypedDict
 class V2LogDataRevertedTransactionTypedDict(TypedDict):
     r"""Payload for REVERTED_TRANSACTION log entries. Contains both the original reverted transaction and the new reverting transaction."""
 
-    v2_log_transaction: V2LogTransactionTypedDict
+    reverted_transaction: V2LogTransactionTypedDict
     r"""Transaction structure as it appears in log payloads"""
-    v2_log_transaction1: V2LogTransactionTypedDict
+    transaction: V2LogTransactionTypedDict
     r"""Transaction structure as it appears in log payloads"""
 
 
 class V2LogDataRevertedTransaction(BaseModel):
     r"""Payload for REVERTED_TRANSACTION log entries. Contains both the original reverted transaction and the new reverting transaction."""
 
-    v2_log_transaction: Annotated[
+    reverted_transaction: Annotated[
         V2LogTransaction, pydantic.Field(alias="revertedTransaction")
     ]
     r"""Transaction structure as it appears in log payloads"""
 
-    v2_log_transaction1: Annotated[
-        V2LogTransaction, pydantic.Field(alias="transaction")
-    ]
+    transaction: V2LogTransaction
     r"""Transaction structure as it appears in log payloads"""
 
 

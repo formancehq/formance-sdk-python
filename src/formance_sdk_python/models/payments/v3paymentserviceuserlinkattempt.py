@@ -18,22 +18,16 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3PaymentServiceUserLinkAttemptTypedDict(TypedDict):
-    v3_open_banking_connection_attempt_status_enum: (
-        V3OpenBankingConnectionAttemptStatusEnum
-    )
     client_redirect_url: str
     connector_id: str
     created_at: datetime
     id: str
     psu_id: str
+    status: V3OpenBankingConnectionAttemptStatusEnum
     error: NotRequired[Nullable[str]]
 
 
 class V3PaymentServiceUserLinkAttempt(BaseModel):
-    v3_open_banking_connection_attempt_status_enum: Annotated[
-        V3OpenBankingConnectionAttemptStatusEnum, pydantic.Field(alias="status")
-    ]
-
     client_redirect_url: Annotated[str, pydantic.Field(alias="clientRedirectURL")]
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
@@ -43,6 +37,8 @@ class V3PaymentServiceUserLinkAttempt(BaseModel):
     id: str
 
     psu_id: Annotated[str, pydantic.Field(alias="psuID")]
+
+    status: V3OpenBankingConnectionAttemptStatusEnum
 
     error: OptionalNullable[str] = UNSET
 

@@ -9,14 +9,14 @@ from typing_extensions import Annotated, TypedDict
 
 
 class V2WorkflowTypedDict(TypedDict):
-    v2_workflow_config: V2WorkflowConfigTypedDict
+    config: V2WorkflowConfigTypedDict
     created_at: datetime
     id: str
     updated_at: datetime
 
 
 class V2Workflow(BaseModel):
-    v2_workflow_config: Annotated[V2WorkflowConfig, pydantic.Field(alias="config")]
+    config: V2WorkflowConfig
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 

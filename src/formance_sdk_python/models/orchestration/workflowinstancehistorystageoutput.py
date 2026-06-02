@@ -18,55 +18,55 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class WorkflowInstanceHistoryStageOutputTypedDict(TypedDict):
-    account_response: NotRequired[AccountResponseTypedDict]
-    create_transaction_response: NotRequired[CreateTransactionResponseTypedDict]
-    create_transaction_response1: NotRequired[CreateTransactionResponseTypedDict]
-    debit_wallet_response: NotRequired[DebitWalletResponseTypedDict]
-    get_wallet_response: NotRequired[GetWalletResponseTypedDict]
-    list_wallets_response: NotRequired[ListWalletsResponseTypedDict]
-    payment_response: NotRequired[PaymentResponseTypedDict]
+    create_transaction: NotRequired[CreateTransactionResponseTypedDict]
+    debit_wallet: NotRequired[DebitWalletResponseTypedDict]
+    get_account: NotRequired[AccountResponseTypedDict]
+    get_payment: NotRequired[PaymentResponseTypedDict]
+    get_wallet: NotRequired[GetWalletResponseTypedDict]
+    list_wallets: NotRequired[ListWalletsResponseTypedDict]
+    revert_transaction: NotRequired[CreateTransactionResponseTypedDict]
 
 
 class WorkflowInstanceHistoryStageOutput(BaseModel):
-    account_response: Annotated[
-        Optional[AccountResponse], pydantic.Field(alias="GetAccount")
-    ] = None
-
-    create_transaction_response: Annotated[
+    create_transaction: Annotated[
         Optional[CreateTransactionResponse], pydantic.Field(alias="CreateTransaction")
     ] = None
 
-    create_transaction_response1: Annotated[
-        Optional[CreateTransactionResponse], pydantic.Field(alias="RevertTransaction")
-    ] = None
-
-    debit_wallet_response: Annotated[
+    debit_wallet: Annotated[
         Optional[DebitWalletResponse], pydantic.Field(alias="DebitWallet")
     ] = None
 
-    get_wallet_response: Annotated[
+    get_account: Annotated[
+        Optional[AccountResponse], pydantic.Field(alias="GetAccount")
+    ] = None
+
+    get_payment: Annotated[
+        Optional[PaymentResponse], pydantic.Field(alias="GetPayment")
+    ] = None
+
+    get_wallet: Annotated[
         Optional[GetWalletResponse], pydantic.Field(alias="GetWallet")
     ] = None
 
-    list_wallets_response: Annotated[
+    list_wallets: Annotated[
         Optional[ListWalletsResponse], pydantic.Field(alias="ListWallets")
     ] = None
 
-    payment_response: Annotated[
-        Optional[PaymentResponse], pydantic.Field(alias="GetPayment")
+    revert_transaction: Annotated[
+        Optional[CreateTransactionResponse], pydantic.Field(alias="RevertTransaction")
     ] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
             [
-                "AccountResponse",
-                "CreateTransactionResponse",
-                "CreateTransactionResponse1",
-                "DebitWalletResponse",
-                "GetWalletResponse",
-                "ListWalletsResponse",
-                "PaymentResponse",
+                "CreateTransaction",
+                "DebitWallet",
+                "GetAccount",
+                "GetPayment",
+                "GetWallet",
+                "ListWallets",
+                "RevertTransaction",
             ]
         )
         serialized = handler(self)

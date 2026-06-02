@@ -3,21 +3,12 @@
 from __future__ import annotations
 from .v2walletwithbalances import V2WalletWithBalances, V2WalletWithBalancesTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V2GetWalletResponseTypedDict(TypedDict):
-    v2_wallet_with_balances: V2WalletWithBalancesTypedDict
+    data: V2WalletWithBalancesTypedDict
 
 
 class V2GetWalletResponse(BaseModel):
-    v2_wallet_with_balances: Annotated[
-        V2WalletWithBalances, pydantic.Field(alias="data")
-    ]
-
-
-try:
-    V2GetWalletResponse.model_rebuild()
-except NameError:
-    pass
+    data: V2WalletWithBalances

@@ -5,4 +5,4 @@
 
 | Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `v2_workflow`                                                        | [orchestration.V2Workflow](../../models/orchestration/v2workflow.md) | :heavy_check_mark:                                                   | N/A                                                                  |
+| `data`                                                               | [orchestration.V2Workflow](../../models/orchestration/v2workflow.md) | :heavy_check_mark:                                                   | N/A                                                                  |

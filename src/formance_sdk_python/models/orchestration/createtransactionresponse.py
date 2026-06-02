@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .transaction import Transaction, TransactionTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class CreateTransactionResponseTypedDict(TypedDict):
-    transaction: TransactionTypedDict
+    data: TransactionTypedDict
 
 
 class CreateTransactionResponse(BaseModel):
-    transaction: Annotated[Transaction, pydantic.Field(alias="data")]
-
-
-try:
-    CreateTransactionResponse.model_rebuild()
-except NameError:
-    pass
+    data: Transaction

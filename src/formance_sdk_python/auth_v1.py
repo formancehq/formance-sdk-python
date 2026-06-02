@@ -4,7 +4,7 @@ from .basesdk import BaseSDK
 from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import auth, errors, operations
-from formance_sdk_python.models.auth import clientoptions_2 as auth_clientoptions_2
+from formance_sdk_python.models.auth import clientoptions as auth_clientoptions
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
 from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Mapping, Optional, Union, cast
@@ -16,8 +16,8 @@ class AuthV1(BaseSDK):
         *,
         request: Optional[
             Union[
-                auth_clientoptions_2.ClientOptions2,
-                auth_clientoptions_2.ClientOptions2TypedDict,
+                auth_clientoptions.ClientOptions,
+                auth_clientoptions.ClientOptionsTypedDict,
             ]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -46,8 +46,8 @@ class AuthV1(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[auth.ClientOptions2])
-        request = cast(Optional[auth.ClientOptions2], request)
+            request = utils.unmarshal(request, Optional[auth.ClientOptions])
+        request = cast(Optional[auth.ClientOptions], request)
 
         req = self._build_request(
             method="POST",
@@ -63,7 +63,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[auth.ClientOptions2]
+                request, False, True, "json", Optional[auth.ClientOptions]
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],
@@ -111,8 +111,8 @@ class AuthV1(BaseSDK):
         *,
         request: Optional[
             Union[
-                auth_clientoptions_2.ClientOptions2,
-                auth_clientoptions_2.ClientOptions2TypedDict,
+                auth_clientoptions.ClientOptions,
+                auth_clientoptions.ClientOptionsTypedDict,
             ]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -141,8 +141,8 @@ class AuthV1(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[auth.ClientOptions2])
-        request = cast(Optional[auth.ClientOptions2], request)
+            request = utils.unmarshal(request, Optional[auth.ClientOptions])
+        request = cast(Optional[auth.ClientOptions], request)
 
         req = self._build_request_async(
             method="POST",
@@ -158,7 +158,7 @@ class AuthV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[auth.ClientOptions2]
+                request, False, True, "json", Optional[auth.ClientOptions]
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],
@@ -254,7 +254,7 @@ class AuthV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[auth.SecretOptions1],
+                Optional[auth.SecretOptions],
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],
@@ -350,7 +350,7 @@ class AuthV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[auth.SecretOptions1],
+                Optional[auth.SecretOptions],
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],
@@ -1784,7 +1784,7 @@ class AuthV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[auth.ClientOptions2],
+                Optional[auth.ClientOptions],
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],
@@ -1880,7 +1880,7 @@ class AuthV1(BaseSDK):
                 False,
                 True,
                 "json",
-                Optional[auth.ClientOptions2],
+                Optional[auth.ClientOptions],
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],

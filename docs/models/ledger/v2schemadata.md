@@ -1,0 +1,12 @@
+# V2SchemaData
+
+Schema data structure for ledger schemas
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             | Example                                                                                 |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `chart`                                                                                 | Dict[str, [ledger.V2ChartSegment](../../models/ledger/v2chartsegment.md)]               | :heavy_check_mark:                                                                      | Chart of account                                                                        | {<br/>"users": {<br/>"$userID": {<br/>".pattern": "^[0-9]{16}$"<br/>}<br/>}<br/>}       |
+| `queries`                                                                               | Dict[str, [ledger.V2QueryTemplate](../../models/ledger/v2querytemplate.md)]             | :heavy_minus_sign:                                                                      | Query templates                                                                         |                                                                                         |
+| `transactions`                                                                          | Dict[str, [ledger.V2TransactionTemplate](../../models/ledger/v2transactiontemplate.md)] | :heavy_minus_sign:                                                                      | Transaction templates                                                                   |                                                                                         |

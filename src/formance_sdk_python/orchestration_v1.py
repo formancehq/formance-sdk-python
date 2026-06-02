@@ -5,7 +5,7 @@ from formance_sdk_python import utils
 from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import errors, operations, orchestration
 from formance_sdk_python.models.orchestration import (
-    triggerdata_2 as orchestration_triggerdata_2,
+    triggerdata as orchestration_triggerdata,
     workflowconfig as orchestration_workflowconfig,
 )
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
@@ -197,8 +197,8 @@ class OrchestrationV1(BaseSDK):
         *,
         request: Optional[
             Union[
-                orchestration_triggerdata_2.TriggerData2,
-                orchestration_triggerdata_2.TriggerData2TypedDict,
+                orchestration_triggerdata.TriggerData,
+                orchestration_triggerdata.TriggerDataTypedDict,
             ]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -229,8 +229,8 @@ class OrchestrationV1(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[orchestration.TriggerData2])
-        request = cast(Optional[orchestration.TriggerData2], request)
+            request = utils.unmarshal(request, Optional[orchestration.TriggerData])
+        request = cast(Optional[orchestration.TriggerData], request)
 
         req = self._build_request(
             method="POST",
@@ -246,7 +246,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[orchestration.TriggerData2]
+                request, False, True, "json", Optional[orchestration.TriggerData]
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],
@@ -295,8 +295,8 @@ class OrchestrationV1(BaseSDK):
         *,
         request: Optional[
             Union[
-                orchestration_triggerdata_2.TriggerData2,
-                orchestration_triggerdata_2.TriggerData2TypedDict,
+                orchestration_triggerdata.TriggerData,
+                orchestration_triggerdata.TriggerDataTypedDict,
             ]
         ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -327,8 +327,8 @@ class OrchestrationV1(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, Optional[orchestration.TriggerData2])
-        request = cast(Optional[orchestration.TriggerData2], request)
+            request = utils.unmarshal(request, Optional[orchestration.TriggerData])
+        request = cast(Optional[orchestration.TriggerData], request)
 
         req = self._build_request_async(
             method="POST",
@@ -344,7 +344,7 @@ class OrchestrationV1(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, True, "json", Optional[orchestration.TriggerData2]
+                request, False, True, "json", Optional[orchestration.TriggerData]
             ),
             allow_empty_value=None,
             allowed_fields=["client_id"],

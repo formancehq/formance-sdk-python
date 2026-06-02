@@ -11,23 +11,23 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2BulkResponseTypedDict(TypedDict):
-    v2_errors_enum: NotRequired[V2ErrorsEnum]
     data: NotRequired[List[V2BulkElementResultTypedDict]]
+    error_code: NotRequired[V2ErrorsEnum]
     error_message: NotRequired[str]
 
 
 class V2BulkResponse(BaseModel):
-    v2_errors_enum: Annotated[
-        Optional[V2ErrorsEnum], pydantic.Field(alias="errorCode")
-    ] = None
-
     data: Optional[List[V2BulkElementResult]] = None
+
+    error_code: Annotated[Optional[V2ErrorsEnum], pydantic.Field(alias="errorCode")] = (
+        None
+    )
 
     error_message: Annotated[Optional[str], pydantic.Field(alias="errorMessage")] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V2ErrorsEnum", "data", "errorMessage"])
+        optional_fields = set(["data", "errorCode", "errorMessage"])
         serialized = handler(self)
         m = {}
 

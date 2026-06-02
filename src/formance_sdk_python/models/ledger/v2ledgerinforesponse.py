@@ -3,24 +3,21 @@
 from __future__ import annotations
 from .v2ledgerinfo import V2LedgerInfo, V2LedgerInfoTypedDict
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class V2LedgerInfoResponseTypedDict(TypedDict):
-    v2_ledger_info: NotRequired[V2LedgerInfoTypedDict]
+    data: NotRequired[V2LedgerInfoTypedDict]
 
 
 class V2LedgerInfoResponse(BaseModel):
-    v2_ledger_info: Annotated[Optional[V2LedgerInfo], pydantic.Field(alias="data")] = (
-        None
-    )
+    data: Optional[V2LedgerInfo] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V2LedgerInfo"])
+        optional_fields = set(["data"])
         serialized = handler(self)
         m = {}
 
@@ -33,9 +30,3 @@ class V2LedgerInfoResponse(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    V2LedgerInfoResponse.model_rebuild()
-except NameError:
-    pass

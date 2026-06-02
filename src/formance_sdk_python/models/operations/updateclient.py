@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.auth import (
-    clientoptions_2 as auth_clientoptions_2,
+    clientoptions as auth_clientoptions,
     createclientresponse as auth_createclientresponse,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
@@ -17,7 +17,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 class UpdateClientRequestTypedDict(TypedDict):
     client_id: str
     r"""Client ID"""
-    client_options: NotRequired[auth_clientoptions_2.ClientOptions2TypedDict]
+    client_options: NotRequired[auth_clientoptions.ClientOptionsTypedDict]
 
 
 class UpdateClientRequest(BaseModel):
@@ -29,7 +29,7 @@ class UpdateClientRequest(BaseModel):
     r"""Client ID"""
 
     client_options: Annotated[
-        Optional[auth_clientoptions_2.ClientOptions2],
+        Optional[auth_clientoptions.ClientOptions],
         FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ] = None
 

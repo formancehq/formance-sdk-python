@@ -3,22 +3,21 @@
 from __future__ import annotations
 from .ledgerinfo import LedgerInfo, LedgerInfoTypedDict
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class LedgerInfoResponseTypedDict(TypedDict):
-    ledger_info: NotRequired[LedgerInfoTypedDict]
+    data: NotRequired[LedgerInfoTypedDict]
 
 
 class LedgerInfoResponse(BaseModel):
-    ledger_info: Annotated[Optional[LedgerInfo], pydantic.Field(alias="data")] = None
+    data: Optional[LedgerInfo] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["LedgerInfo"])
+        optional_fields = set(["data"])
         serialized = handler(self)
         m = {}
 
@@ -31,9 +30,3 @@ class LedgerInfoResponse(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    LedgerInfoResponse.model_rebuild()
-except NameError:
-    pass

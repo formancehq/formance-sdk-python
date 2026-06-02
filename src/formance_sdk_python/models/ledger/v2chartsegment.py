@@ -26,8 +26,8 @@ class V2ChartSegmentTypedDict(TypedDict):
 
     dot_metadata: NotRequired[Dict[str, V2ChartAccountMetadataTypedDict]]
     dot_pattern: NotRequired[str]
+    dot_rules: NotRequired[V2ChartAccountRulesTypedDict]
     dot_self: NotRequired[DotSelfTypedDict]
-    v2_chart_account_rules: NotRequired[V2ChartAccountRulesTypedDict]
 
 
 class V2ChartSegment(BaseModel):
@@ -44,11 +44,11 @@ class V2ChartSegment(BaseModel):
 
     dot_pattern: Annotated[Optional[str], pydantic.Field(alias=".pattern")] = None
 
-    dot_self: Annotated[Optional[DotSelf], pydantic.Field(alias=".self")] = None
-
-    v2_chart_account_rules: Annotated[
+    dot_rules: Annotated[
         Optional[V2ChartAccountRules], pydantic.Field(alias=".rules")
     ] = None
+
+    dot_self: Annotated[Optional[DotSelf], pydantic.Field(alias=".self")] = None
 
     @property
     def additional_properties(self):
@@ -60,7 +60,7 @@ class V2ChartSegment(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set([".metadata", ".pattern", ".self", "V2ChartAccountRules"])
+        optional_fields = set([".metadata", ".pattern", ".rules", ".self"])
         serialized = handler(self)
         m = {}
 

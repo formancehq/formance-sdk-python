@@ -11,7 +11,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class AttemptTypedDict(TypedDict):
-    webhooks_config: WebhooksConfigTypedDict
+    config: WebhooksConfigTypedDict
     created_at: datetime
     id: str
     payload: str
@@ -24,7 +24,7 @@ class AttemptTypedDict(TypedDict):
 
 
 class Attempt(BaseModel):
-    webhooks_config: Annotated[WebhooksConfig, pydantic.Field(alias="config")]
+    config: WebhooksConfig
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 

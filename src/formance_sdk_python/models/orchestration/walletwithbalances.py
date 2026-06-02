@@ -10,11 +10,11 @@ from typing_extensions import Annotated, TypedDict
 
 
 class WalletWithBalancesBalancesTypedDict(TypedDict):
-    asset_holder: AssetHolderTypedDict
+    main: AssetHolderTypedDict
 
 
 class WalletWithBalancesBalances(BaseModel):
-    asset_holder: Annotated[AssetHolder, pydantic.Field(alias="main")]
+    main: AssetHolder
 
 
 class WalletWithBalancesTypedDict(TypedDict):
@@ -44,10 +44,6 @@ class WalletWithBalances(BaseModel):
     name: str
 
 
-try:
-    WalletWithBalancesBalances.model_rebuild()
-except NameError:
-    pass
 try:
     WalletWithBalances.model_rebuild()
 except NameError:

@@ -5,4 +5,4 @@
 
 | Field                                                    | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `transaction`                                            | [ledger.Transaction](../../models/ledger/transaction.md) | :heavy_check_mark:                                       | N/A                                                      |
+| `data`                                                   | [ledger.Transaction](../../models/ledger/transaction.md) | :heavy_check_mark:                                       | N/A                                                      |

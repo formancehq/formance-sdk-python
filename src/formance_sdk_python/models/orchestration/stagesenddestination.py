@@ -11,40 +11,27 @@ from .stagesendsourceaccount import (
 )
 from .stagesendsourcewallet import StageSendSourceWallet, StageSendSourceWalletTypedDict
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class StageSendDestinationTypedDict(TypedDict):
-    stage_send_destination_payment: NotRequired[StageSendDestinationPaymentTypedDict]
-    stage_send_source_account: NotRequired[StageSendSourceAccountTypedDict]
-    stage_send_source_wallet: NotRequired[StageSendSourceWalletTypedDict]
+    account: NotRequired[StageSendSourceAccountTypedDict]
+    payment: NotRequired[StageSendDestinationPaymentTypedDict]
+    wallet: NotRequired[StageSendSourceWalletTypedDict]
 
 
 class StageSendDestination(BaseModel):
-    stage_send_destination_payment: Annotated[
-        Optional[StageSendDestinationPayment], pydantic.Field(alias="payment")
-    ] = None
+    account: Optional[StageSendSourceAccount] = None
 
-    stage_send_source_account: Annotated[
-        Optional[StageSendSourceAccount], pydantic.Field(alias="account")
-    ] = None
+    payment: Optional[StageSendDestinationPayment] = None
 
-    stage_send_source_wallet: Annotated[
-        Optional[StageSendSourceWallet], pydantic.Field(alias="wallet")
-    ] = None
+    wallet: Optional[StageSendSourceWallet] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(
-            [
-                "StageSendDestinationPayment",
-                "StageSendSourceAccount",
-                "StageSendSourceWallet",
-            ]
-        )
+        optional_fields = set(["account", "payment", "wallet"])
         serialized = handler(self)
         m = {}
 
@@ -57,9 +44,3 @@ class StageSendDestination(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    StageSendDestination.model_rebuild()
-except NameError:
-    pass

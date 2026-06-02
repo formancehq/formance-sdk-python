@@ -9,45 +9,34 @@ from .v2stagesenddestination import (
 from .v2stagesendsource import V2StageSendSource, V2StageSendSourceTypedDict
 from datetime import datetime
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Dict, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class V2StageSendTypedDict(TypedDict):
-    v2_monetary: NotRequired[V2MonetaryTypedDict]
-    v2_stage_send_destination: NotRequired[V2StageSendDestinationTypedDict]
-    v2_stage_send_source: NotRequired[V2StageSendSourceTypedDict]
+    amount: NotRequired[V2MonetaryTypedDict]
+    destination: NotRequired[V2StageSendDestinationTypedDict]
     metadata: NotRequired[Dict[str, str]]
+    source: NotRequired[V2StageSendSourceTypedDict]
     timestamp: NotRequired[datetime]
 
 
 class V2StageSend(BaseModel):
-    v2_monetary: Annotated[Optional[V2Monetary], pydantic.Field(alias="amount")] = None
+    amount: Optional[V2Monetary] = None
 
-    v2_stage_send_destination: Annotated[
-        Optional[V2StageSendDestination], pydantic.Field(alias="destination")
-    ] = None
-
-    v2_stage_send_source: Annotated[
-        Optional[V2StageSendSource], pydantic.Field(alias="source")
-    ] = None
+    destination: Optional[V2StageSendDestination] = None
 
     metadata: Optional[Dict[str, str]] = None
+
+    source: Optional[V2StageSendSource] = None
 
     timestamp: Optional[datetime] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            [
-                "V2Monetary",
-                "V2StageSendDestination",
-                "V2StageSendSource",
-                "metadata",
-                "timestamp",
-            ]
+            ["amount", "destination", "metadata", "source", "timestamp"]
         )
         serialized = handler(self)
         m = {}
@@ -61,9 +50,3 @@ class V2StageSend(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    V2StageSend.model_rebuild()
-except NameError:
-    pass

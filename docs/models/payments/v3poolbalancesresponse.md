@@ -5,4 +5,4 @@
 
 | Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `v3_pool_balances`                                                     | List[[payments.V3PoolBalance](../../models/payments/v3poolbalance.md)] | :heavy_check_mark:                                                     | N/A                                                                    |
+| `data`                                                                 | List[[payments.V3PoolBalance](../../models/payments/v3poolbalance.md)] | :heavy_check_mark:                                                     | N/A                                                                    |

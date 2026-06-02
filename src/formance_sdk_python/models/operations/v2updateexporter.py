@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from formance_sdk_python.models.ledger import (
-    v2exporterconfiguration_2 as ledger_v2exporterconfiguration_2,
+    v2exporterconfiguration as ledger_v2exporterconfiguration,
 )
 from formance_sdk_python.types import BaseModel
 from formance_sdk_python.utils import FieldMetadata, PathParamMetadata, RequestMetadata
@@ -13,7 +13,7 @@ from typing_extensions import Annotated, TypedDict
 
 class V2UpdateExporterRequestTypedDict(TypedDict):
     v2_exporter_configuration: (
-        ledger_v2exporterconfiguration_2.V2ExporterConfiguration2TypedDict
+        ledger_v2exporterconfiguration.V2ExporterConfigurationTypedDict
     )
     exporter_id: str
     r"""The exporter id"""
@@ -21,7 +21,7 @@ class V2UpdateExporterRequestTypedDict(TypedDict):
 
 class V2UpdateExporterRequest(BaseModel):
     v2_exporter_configuration: Annotated[
-        ledger_v2exporterconfiguration_2.V2ExporterConfiguration2,
+        ledger_v2exporterconfiguration.V2ExporterConfiguration,
         FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ]
 

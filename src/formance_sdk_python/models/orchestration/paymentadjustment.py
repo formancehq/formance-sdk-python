@@ -19,16 +19,14 @@ class PaymentAdjustmentRaw(BaseModel):
 
 
 class PaymentAdjustmentTypedDict(TypedDict):
-    payment_status: PaymentStatus
     absolute: bool
     amount: int
     date_: datetime
     raw: PaymentAdjustmentRawTypedDict
+    status: PaymentStatus
 
 
 class PaymentAdjustment(BaseModel):
-    payment_status: Annotated[PaymentStatus, pydantic.Field(alias="status")]
-
     absolute: bool
 
     amount: Annotated[int, BeforeValidator(validate_int)]
@@ -36,6 +34,8 @@ class PaymentAdjustment(BaseModel):
     date_: Annotated[datetime, pydantic.Field(alias="date")]
 
     raw: PaymentAdjustmentRaw
+
+    status: PaymentStatus
 
 
 try:

@@ -11,26 +11,26 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ScriptResponseTypedDict(TypedDict):
-    errors_enum: NotRequired[ErrorsEnum]
-    transaction: NotRequired[TransactionTypedDict]
     details: NotRequired[str]
+    error_code: NotRequired[ErrorsEnum]
     error_message: NotRequired[str]
+    transaction: NotRequired[TransactionTypedDict]
 
 
 class ScriptResponse(BaseModel):
-    errors_enum: Annotated[Optional[ErrorsEnum], pydantic.Field(alias="errorCode")] = (
+    details: Optional[str] = None
+
+    error_code: Annotated[Optional[ErrorsEnum], pydantic.Field(alias="errorCode")] = (
         None
     )
 
-    transaction: Optional[Transaction] = None
-
-    details: Optional[str] = None
-
     error_message: Annotated[Optional[str], pydantic.Field(alias="errorMessage")] = None
+
+    transaction: Optional[Transaction] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["ErrorsEnum", "Transaction", "details", "errorMessage"])
+        optional_fields = set(["details", "errorCode", "errorMessage", "transaction"])
         serialized = handler(self)
         m = {}
 

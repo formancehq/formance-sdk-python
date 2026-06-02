@@ -17,21 +17,19 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class TransferInitiationAdjustmentsTypedDict(TypedDict):
-    transfer_initiation_status: TransferInitiationStatus
     adjustment_id: str
     created_at: datetime
+    status: TransferInitiationStatus
     error: NotRequired[Nullable[str]]
     metadata: NotRequired[Nullable[Dict[str, str]]]
 
 
 class TransferInitiationAdjustments(BaseModel):
-    transfer_initiation_status: Annotated[
-        TransferInitiationStatus, pydantic.Field(alias="status")
-    ]
-
     adjustment_id: Annotated[str, pydantic.Field(alias="adjustmentID")]
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+
+    status: TransferInitiationStatus
 
     error: OptionalNullable[str] = UNSET
 

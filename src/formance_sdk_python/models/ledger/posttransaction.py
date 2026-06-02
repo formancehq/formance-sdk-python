@@ -64,9 +64,9 @@ class PostTransaction(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["Metadata", "postings", "reference", "script", "timestamp"]
+            ["metadata", "postings", "reference", "script", "timestamp"]
         )
-        nullable_fields = set(["Metadata"])
+        nullable_fields = set(["metadata"])
         serialized = handler(self)
         m = {}
 

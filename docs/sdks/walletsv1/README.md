@@ -188,7 +188,7 @@ with SDK(
 
     res = sdk.wallets.v1.credit_wallet(request={
         "credit_wallet_request": {
-            "monetary": {
+            "amount": {
                 "amount": 100,
                 "asset": "USD/2",
             },
@@ -246,7 +246,7 @@ with SDK(
 
     res = sdk.wallets.v1.debit_wallet(request={
         "debit_wallet_request": {
-            "monetary": {
+            "amount": {
                 "amount": 100,
                 "asset": "USD/2",
             },

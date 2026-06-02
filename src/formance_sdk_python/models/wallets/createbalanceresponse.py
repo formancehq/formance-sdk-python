@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .balance import Balance, BalanceTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class CreateBalanceResponseTypedDict(TypedDict):
-    balance: BalanceTypedDict
+    data: BalanceTypedDict
 
 
 class CreateBalanceResponse(BaseModel):
-    balance: Annotated[Balance, pydantic.Field(alias="data")]
-
-
-try:
-    CreateBalanceResponse.model_rebuild()
-except NameError:
-    pass
+    data: Balance

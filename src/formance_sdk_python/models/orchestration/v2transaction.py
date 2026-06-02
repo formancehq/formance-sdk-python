@@ -5,7 +5,6 @@ from .v2posting import V2Posting, V2PostingTypedDict
 from datetime import datetime
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import validate_int
-import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import BeforeValidator
 from typing import Dict, List, Optional
@@ -13,7 +12,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2TransactionTypedDict(TypedDict):
-    v2_metadata: Dict[str, str]
+    metadata: Dict[str, str]
     postings: List[V2PostingTypedDict]
     timestamp: datetime
     txid: int
@@ -21,7 +20,7 @@ class V2TransactionTypedDict(TypedDict):
 
 
 class V2Transaction(BaseModel):
-    v2_metadata: Annotated[Dict[str, str], pydantic.Field(alias="metadata")]
+    metadata: Dict[str, str]
 
     postings: List[V2Posting]
 
@@ -46,9 +45,3 @@ class V2Transaction(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    V2Transaction.model_rebuild()
-except NameError:
-    pass

@@ -17,9 +17,9 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3TaskTypedDict(TypedDict):
-    v3_task_status_enum: V3TaskStatusEnum
     created_at: datetime
     id: str
+    status: V3TaskStatusEnum
     updated_at: datetime
     connector_id: NotRequired[str]
     created_object_id: NotRequired[str]
@@ -27,11 +27,11 @@ class V3TaskTypedDict(TypedDict):
 
 
 class V3Task(BaseModel):
-    v3_task_status_enum: Annotated[V3TaskStatusEnum, pydantic.Field(alias="status")]
-
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
     id: str
+
+    status: V3TaskStatusEnum
 
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
 

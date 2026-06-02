@@ -25,23 +25,21 @@ from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
 class V2RunQueryRequestBodyTypedDict(TypedDict):
-    v2_query_params: NotRequired[ledger_v2queryparams.V2QueryParamsTypedDict]
     cursor: NotRequired[str]
+    params: NotRequired[ledger_v2queryparams.V2QueryParamsTypedDict]
     vars: NotRequired[Dict[str, str]]
 
 
 class V2RunQueryRequestBody(BaseModel):
-    v2_query_params: Annotated[
-        Optional[ledger_v2queryparams.V2QueryParams], pydantic.Field(alias="params")
-    ] = None
-
     cursor: Optional[str] = None
+
+    params: Optional[ledger_v2queryparams.V2QueryParams] = None
 
     vars: Optional[Dict[str, str]] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V2QueryParams", "cursor", "vars"])
+        optional_fields = set(["cursor", "params", "vars"])
         serialized = handler(self)
         m = {}
 
@@ -251,9 +249,3 @@ class V2RunQueryResponse(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    V2RunQueryRequestBody.model_rebuild()
-except NameError:
-    pass

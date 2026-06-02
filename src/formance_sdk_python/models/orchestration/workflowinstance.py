@@ -17,10 +17,10 @@ class WorkflowInstanceTypedDict(TypedDict):
     terminated: bool
     updated_at: datetime
     workflow_id: str
-    workflow: NotRequired[WorkflowTypedDict]
     error: NotRequired[str]
     status: NotRequired[List[StageStatusTypedDict]]
     terminated_at: NotRequired[datetime]
+    workflow: NotRequired[WorkflowTypedDict]
 
 
 class WorkflowInstance(BaseModel):
@@ -34,8 +34,6 @@ class WorkflowInstance(BaseModel):
 
     workflow_id: Annotated[str, pydantic.Field(alias="workflowID")]
 
-    workflow: Optional[Workflow] = None
-
     error: Optional[str] = None
 
     status: Optional[List[StageStatus]] = None
@@ -44,9 +42,11 @@ class WorkflowInstance(BaseModel):
         Optional[datetime], pydantic.Field(alias="terminatedAt")
     ] = None
 
+    workflow: Optional[Workflow] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["Workflow", "error", "status", "terminatedAt"])
+        optional_fields = set(["error", "status", "terminatedAt", "workflow"])
         serialized = handler(self)
         m = {}
 

@@ -598,8 +598,8 @@ with SDK(
 
         # Depending on the method different errors may be thrown
         if isinstance(e, ledger.ErrorsV2ErrorResponse):
-            print(e.data.v2_errors_enum)  # ledger.V2ErrorsEnum
             print(e.data.details)  # Optional[str]
+            print(e.data.error_code)  # ledger.V2ErrorsEnum
             print(e.data.error_message)  # str
 ```
 

@@ -5,40 +5,33 @@ from .v2queryparams import V2QueryParams, V2QueryParamsTypedDict
 from .v2queryresource import V2QueryResource
 from .v2querytemplatevar import V2QueryTemplateVar, V2QueryTemplateVarTypedDict
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Any, Dict, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class V2QueryTemplateTypedDict(TypedDict):
-    v2_query_params: NotRequired[V2QueryParamsTypedDict]
-    v2_query_resource: NotRequired[V2QueryResource]
     body: NotRequired[Dict[str, Any]]
     description: NotRequired[str]
+    params: NotRequired[V2QueryParamsTypedDict]
+    resource: NotRequired[V2QueryResource]
     vars: NotRequired[Dict[str, V2QueryTemplateVarTypedDict]]
 
 
 class V2QueryTemplate(BaseModel):
-    v2_query_params: Annotated[
-        Optional[V2QueryParams], pydantic.Field(alias="params")
-    ] = None
-
-    v2_query_resource: Annotated[
-        Optional[V2QueryResource], pydantic.Field(alias="resource")
-    ] = None
-
     body: Optional[Dict[str, Any]] = None
 
     description: Optional[str] = None
+
+    params: Optional[V2QueryParams] = None
+
+    resource: Optional[V2QueryResource] = None
 
     vars: Optional[Dict[str, V2QueryTemplateVar]] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(
-            ["V2QueryParams", "V2QueryResource", "body", "description", "vars"]
-        )
+        optional_fields = set(["body", "description", "params", "resource", "vars"])
         serialized = handler(self)
         m = {}
 
@@ -51,9 +44,3 @@ class V2QueryTemplate(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    V2QueryTemplate.model_rebuild()
-except NameError:
-    pass

@@ -345,10 +345,10 @@ with SDK() as sdk:
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `request`                                                                          | [ledger.V2ExporterConfiguration2](../../models/ledger/v2exporterconfiguration2.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [ledger.V2ExporterConfiguration](../../models/ledger/v2exporterconfiguration.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
 
 ### Response
 
@@ -382,7 +382,7 @@ with SDK(
 
     res = sdk.ledger.v2.create_ledger(request={
         "v2_create_ledger_request": {
-            "v2_metadata": {
+            "metadata": {
                 "admin": "true",
             },
         },
@@ -477,9 +477,6 @@ with SDK(
 
     res = sdk.ledger.v2.create_transaction(request={
         "v2_post_transaction": {
-            "v2_metadata": {
-                "admin": "true",
-            },
             "account_metadata": {
                 "key": {
                     "admin": "true",
@@ -490,6 +487,9 @@ with SDK(
                 "key2": {
                     "admin": "true",
                 },
+            },
+            "metadata": {
+                "admin": "true",
             },
             "postings": [
                 {
@@ -1372,7 +1372,7 @@ with SDK(
 
     res = sdk.ledger.v2.insert_schema(request={
         "v2_schema_data": {
-            "v2_chart_of_accounts": {
+            "chart": {
                 "users": ledger.V2ChartSegment(
                     **{
                         "$userID": ledger.V2ChartSegment(
@@ -1381,9 +1381,9 @@ with SDK(
                     },
                 ),
             },
-            "v2_query_templates": {
+            "queries": {
                 "key": {
-                    "v2_query_params": {
+                    "params": {
                         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
                         "page_size": 100,
                         "sort": "id:desc",
@@ -1978,7 +1978,7 @@ with SDK(
 
     res = sdk.ledger.v2.run_query(request={
         "request_body": {
-            "v2_query_params": {
+            "params": {
                 "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
                 "page_size": 100,
                 "sort": "id:desc",

@@ -48,7 +48,7 @@ with SDK(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [auth.ClientOptions2](../../models/auth/clientoptions2.md)          | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `request`                                                           | [auth.ClientOptions](../../models/auth/clientoptions.md)            | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response

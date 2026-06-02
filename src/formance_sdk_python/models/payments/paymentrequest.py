@@ -15,25 +15,19 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class PaymentRequestTypedDict(TypedDict):
-    payment_scheme: PaymentScheme
-    payment_status: PaymentStatus
-    payment_type: PaymentType
     amount: int
     asset: str
     connector_id: str
     created_at: datetime
     reference: str
+    scheme: PaymentScheme
+    status: PaymentStatus
+    type: PaymentType
     destination_account_id: NotRequired[str]
     source_account_id: NotRequired[str]
 
 
 class PaymentRequest(BaseModel):
-    payment_scheme: Annotated[PaymentScheme, pydantic.Field(alias="scheme")]
-
-    payment_status: Annotated[PaymentStatus, pydantic.Field(alias="status")]
-
-    payment_type: Annotated[PaymentType, pydantic.Field(alias="type")]
-
     amount: Annotated[int, BeforeValidator(validate_int)]
 
     asset: str
@@ -43,6 +37,12 @@ class PaymentRequest(BaseModel):
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
     reference: str
+
+    scheme: PaymentScheme
+
+    status: PaymentStatus
+
+    type: PaymentType
 
     destination_account_id: Annotated[
         Optional[str], pydantic.Field(alias="destinationAccountID")

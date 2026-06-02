@@ -2,20 +2,13 @@
 
 from __future__ import annotations
 from formance_sdk_python.types import BaseModel
-import pydantic
 from typing import Dict
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class AggregateBalancesResponseTypedDict(TypedDict):
-    assets_balances: Dict[str, int]
+    data: Dict[str, int]
 
 
 class AggregateBalancesResponse(BaseModel):
-    assets_balances: Annotated[Dict[str, int], pydantic.Field(alias="data")]
-
-
-try:
-    AggregateBalancesResponse.model_rebuild()
-except NameError:
-    pass
+    data: Dict[str, int]

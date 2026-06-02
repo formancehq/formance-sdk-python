@@ -19,23 +19,19 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3InitiatePaymentRequestTypedDict(TypedDict):
-    v3_payment_initiation_type_enum: V3PaymentInitiationTypeEnum
     amount: int
     asset: str
     connector_id: str
     description: str
     reference: str
     scheduled_at: datetime
-    v3_metadata: NotRequired[Nullable[Dict[str, str]]]
+    type: V3PaymentInitiationTypeEnum
     destination_account_id: NotRequired[str]
+    metadata: NotRequired[Nullable[Dict[str, str]]]
     source_account_id: NotRequired[Nullable[str]]
 
 
 class V3InitiatePaymentRequest(BaseModel):
-    v3_payment_initiation_type_enum: Annotated[
-        V3PaymentInitiationTypeEnum, pydantic.Field(alias="type")
-    ]
-
     amount: Annotated[int, BeforeValidator(validate_int)]
 
     asset: str
@@ -48,13 +44,13 @@ class V3InitiatePaymentRequest(BaseModel):
 
     scheduled_at: Annotated[datetime, pydantic.Field(alias="scheduledAt")]
 
-    v3_metadata: Annotated[
-        OptionalNullable[Dict[str, str]], pydantic.Field(alias="metadata")
-    ] = UNSET
+    type: V3PaymentInitiationTypeEnum
 
     destination_account_id: Annotated[
         Optional[str], pydantic.Field(alias="destinationAccountID")
     ] = None
+
+    metadata: OptionalNullable[Dict[str, str]] = UNSET
 
     source_account_id: Annotated[
         OptionalNullable[str], pydantic.Field(alias="sourceAccountID")
@@ -62,8 +58,8 @@ class V3InitiatePaymentRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["V3Metadata", "destinationAccountID", "sourceAccountID"])
-        nullable_fields = set(["V3Metadata", "sourceAccountID"])
+        optional_fields = set(["destinationAccountID", "metadata", "sourceAccountID"])
+        nullable_fields = set(["metadata", "sourceAccountID"])
         serialized = handler(self)
         m = {}
 

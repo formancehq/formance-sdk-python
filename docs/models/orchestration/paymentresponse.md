@@ -5,4 +5,4 @@
 
 | Field                                                          | Type                                                           | Required                                                       | Description                                                    |
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `payment`                                                      | [orchestration.Payment](../../models/orchestration/payment.md) | :heavy_check_mark:                                             | N/A                                                            |
+| `data`                                                         | [orchestration.Payment](../../models/orchestration/payment.md) | :heavy_check_mark:                                             | N/A                                                            |

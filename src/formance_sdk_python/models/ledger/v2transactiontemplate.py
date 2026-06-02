@@ -10,22 +10,22 @@ from typing_extensions import NotRequired, TypedDict
 
 class V2TransactionTemplateTypedDict(TypedDict):
     script: str
+    description: NotRequired[str]
     runtime: NotRequired[Runtime]
     r"""The numscript runtime used to execute the script. Uses \"machine\" by default, unless the \"--experimental-numscript-interpreter\" feature flag is passed."""
-    description: NotRequired[str]
 
 
 class V2TransactionTemplate(BaseModel):
     script: str
 
+    description: Optional[str] = None
+
     runtime: Optional[Runtime] = None
     r"""The numscript runtime used to execute the script. Uses \"machine\" by default, unless the \"--experimental-numscript-interpreter\" feature flag is passed."""
 
-    description: Optional[str] = None
-
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["Runtime", "description"])
+        optional_fields = set(["description", "runtime"])
         serialized = handler(self)
         m = {}
 

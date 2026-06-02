@@ -5,14 +5,13 @@ from .monetary import Monetary, MonetaryTypedDict
 from .subject import Subject, SubjectTypedDict
 from datetime import datetime
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-import pydantic
 from pydantic import model_serializer
 from typing import Dict, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class CreditWalletRequestTypedDict(TypedDict):
-    monetary: MonetaryTypedDict
+    amount: MonetaryTypedDict
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
     sources: List[SubjectTypedDict]
@@ -23,7 +22,7 @@ class CreditWalletRequestTypedDict(TypedDict):
 
 
 class CreditWalletRequest(BaseModel):
-    monetary: Annotated[Monetary, pydantic.Field(alias="amount")]
+    amount: Monetary
 
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
@@ -52,9 +51,3 @@ class CreditWalletRequest(BaseModel):
                     m[k] = val
 
         return m
-
-
-try:
-    CreditWalletRequest.model_rebuild()
-except NameError:
-    pass

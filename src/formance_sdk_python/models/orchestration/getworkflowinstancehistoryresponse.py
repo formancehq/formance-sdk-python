@@ -6,22 +6,13 @@ from .workflowinstancehistory import (
     WorkflowInstanceHistoryTypedDict,
 )
 from formance_sdk_python.types import BaseModel
-import pydantic
 from typing import List
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class GetWorkflowInstanceHistoryResponseTypedDict(TypedDict):
-    workflow_instance_history_list: List[WorkflowInstanceHistoryTypedDict]
+    data: List[WorkflowInstanceHistoryTypedDict]
 
 
 class GetWorkflowInstanceHistoryResponse(BaseModel):
-    workflow_instance_history_list: Annotated[
-        List[WorkflowInstanceHistory], pydantic.Field(alias="data")
-    ]
-
-
-try:
-    GetWorkflowInstanceHistoryResponse.model_rebuild()
-except NameError:
-    pass
+    data: List[WorkflowInstanceHistory]

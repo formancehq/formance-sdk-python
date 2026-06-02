@@ -3,19 +3,12 @@
 from __future__ import annotations
 from .v3pool import V3Pool, V3PoolTypedDict
 from formance_sdk_python.types import BaseModel
-import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class V3GetPoolResponseTypedDict(TypedDict):
-    v3_pool: V3PoolTypedDict
+    data: V3PoolTypedDict
 
 
 class V3GetPoolResponse(BaseModel):
-    v3_pool: Annotated[V3Pool, pydantic.Field(alias="data")]
-
-
-try:
-    V3GetPoolResponse.model_rebuild()
-except NameError:
-    pass
+    data: V3Pool
