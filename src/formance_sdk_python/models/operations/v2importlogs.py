@@ -10,14 +10,14 @@ from typing_extensions import Annotated, TypedDict
 
 
 class V2ImportLogsRequestTypedDict(TypedDict):
-    v2_import_logs_request: Union[bytes, IO[bytes], io.BufferedReader]
+    v2_import_logs_request: Union[bytes, IO[bytes], io.IOBase]
     ledger: str
     r"""Name of the ledger."""
 
 
 class V2ImportLogsRequest(BaseModel):
     v2_import_logs_request: Annotated[
-        Union[bytes, IO[bytes], io.BufferedReader], FieldMetadata(request=True)
+        Union[bytes, IO[bytes], io.IOBase], FieldMetadata(request=True)
     ]
 
     ledger: Annotated[

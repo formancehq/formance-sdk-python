@@ -3,11 +3,11 @@
 import importlib.metadata
 
 __title__: str = "formance-sdk-python"
-__version__: str = "8.2.1"
+__version__: str = "8.3.0"
 __openapi_doc_version__: str = "SDK_VERSION"
-__gen_version__: str = "2.893.0"
+__gen_version__: str = "2.918.3"
 __user_agent__: str = (
-    "speakeasy-sdk/python 8.2.1 2.893.0 SDK_VERSION formance-sdk-python"
+    "speakeasy-sdk/python 8.3.0 2.918.3 SDK_VERSION formance-sdk-python"
 )
 
 try:

@@ -279,3 +279,13 @@ Based on:
 - [python v8.2.1] .
 ### Releases
 - [PyPI v8.2.1] https://pypi.org/project/formance-sdk-python/8.2.1 - .
+
+## 2026-07-20 00:49:47
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.790.2 (2.918.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v8.3.0] .
+### Releases
+- [PyPI v8.3.0] https://pypi.org/project/formance-sdk-python/8.3.0 - .

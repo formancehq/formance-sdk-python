@@ -13,6 +13,7 @@ from .v3dummypayconfig import V3DummypayConfig, V3DummypayConfigTypedDict
 from .v3fireblocksconfig import V3FireblocksConfig, V3FireblocksConfigTypedDict
 from .v3genericconfig import V3GenericConfig, V3GenericConfigTypedDict
 from .v3increaseconfig import V3IncreaseConfig, V3IncreaseConfigTypedDict
+from .v3krakenproconfig import V3KrakenproConfig, V3KrakenproConfigTypedDict
 from .v3mangopayconfig import V3MangopayConfig, V3MangopayConfigTypedDict
 from .v3modulrconfig import V3ModulrConfig, V3ModulrConfigTypedDict
 from .v3moneycorpconfig import V3MoneycorpConfig, V3MoneycorpConfigTypedDict
@@ -35,17 +36,18 @@ V3ConnectorConfigTypedDict = TypeAliasType(
         V3WiseConfigTypedDict,
         V3ColumnConfigTypedDict,
         V3MoneycorpConfigTypedDict,
-        V3AtlarConfigTypedDict,
+        V3BitstampConfigTypedDict,
         V3CurrencycloudConfigTypedDict,
         V3IncreaseConfigTypedDict,
         V3MangopayConfigTypedDict,
         V3ModulrConfigTypedDict,
         V3RoutableConfigTypedDict,
         V3PlaidConfigTypedDict,
-        V3FireblocksConfigTypedDict,
+        V3KrakenproConfigTypedDict,
         V3DummypayConfigTypedDict,
-        V3BitstampConfigTypedDict,
+        V3FireblocksConfigTypedDict,
         V3TinkConfigTypedDict,
+        V3AtlarConfigTypedDict,
         V3QontoConfigTypedDict,
         V3BankingbridgeConfigTypedDict,
         V3CoinbaseprimeConfigTypedDict,
@@ -64,17 +66,18 @@ V3ConnectorConfig = TypeAliasType(
         V3WiseConfig,
         V3ColumnConfig,
         V3MoneycorpConfig,
-        V3AtlarConfig,
+        V3BitstampConfig,
         V3CurrencycloudConfig,
         V3IncreaseConfig,
         V3MangopayConfig,
         V3ModulrConfig,
         V3RoutableConfig,
         V3PlaidConfig,
-        V3FireblocksConfig,
+        V3KrakenproConfig,
         V3DummypayConfig,
-        V3BitstampConfig,
+        V3FireblocksConfig,
         V3TinkConfig,
+        V3AtlarConfig,
         V3QontoConfig,
         V3BankingbridgeConfig,
         V3CoinbaseprimeConfig,

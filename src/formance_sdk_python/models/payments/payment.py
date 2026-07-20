@@ -12,16 +12,8 @@ from formance_sdk_python.utils import validate_int
 import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import BeforeValidator
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
-
-
-class PaymentRawTypedDict(TypedDict):
-    pass
-
-
-class PaymentRaw(BaseModel):
-    pass
 
 
 class PaymentTypedDict(TypedDict):
@@ -34,7 +26,7 @@ class PaymentTypedDict(TypedDict):
     id: str
     initial_amount: int
     metadata: Nullable[Dict[str, str]]
-    raw: Nullable[PaymentRawTypedDict]
+    raw: Nullable[Dict[str, Any]]
     reference: str
     scheme: PaymentScheme
     source_account_id: str
@@ -65,7 +57,7 @@ class Payment(BaseModel):
 
     metadata: Nullable[Dict[str, str]]
 
-    raw: Nullable[PaymentRaw]
+    raw: Nullable[Dict[str, Any]]
 
     reference: str
 

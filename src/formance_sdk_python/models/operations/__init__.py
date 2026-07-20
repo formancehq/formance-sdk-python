@@ -1156,6 +1156,12 @@ if TYPE_CHECKING:
         V3GetBankAccountResponse,
         V3GetBankAccountResponseTypedDict,
     )
+    from .v3getconnectorcapabilities import (
+        V3GetConnectorCapabilitiesRequest,
+        V3GetConnectorCapabilitiesRequestTypedDict,
+        V3GetConnectorCapabilitiesResponse,
+        V3GetConnectorCapabilitiesResponseTypedDict,
+    )
     from .v3getconnectorconfig import (
         V3GetConnectorConfigRequest,
         V3GetConnectorConfigRequestTypedDict,
@@ -1251,6 +1257,12 @@ if TYPE_CHECKING:
         V3ListBankAccountsRequestTypedDict,
         V3ListBankAccountsResponse,
         V3ListBankAccountsResponseTypedDict,
+    )
+    from .v3listconnectorcapabilities import (
+        V3ListConnectorCapabilitiesRequest,
+        V3ListConnectorCapabilitiesRequestTypedDict,
+        V3ListConnectorCapabilitiesResponse,
+        V3ListConnectorCapabilitiesResponseTypedDict,
     )
     from .v3listconnectorconfigs import (
         V3ListConnectorConfigsResponse,
@@ -2196,6 +2208,10 @@ __all__ = [
     "V3GetBankAccountRequestTypedDict",
     "V3GetBankAccountResponse",
     "V3GetBankAccountResponseTypedDict",
+    "V3GetConnectorCapabilitiesRequest",
+    "V3GetConnectorCapabilitiesRequestTypedDict",
+    "V3GetConnectorCapabilitiesResponse",
+    "V3GetConnectorCapabilitiesResponseTypedDict",
     "V3GetConnectorConfigRequest",
     "V3GetConnectorConfigRequestTypedDict",
     "V3GetConnectorConfigResponse",
@@ -2260,6 +2276,10 @@ __all__ = [
     "V3ListBankAccountsRequestTypedDict",
     "V3ListBankAccountsResponse",
     "V3ListBankAccountsResponseTypedDict",
+    "V3ListConnectorCapabilitiesRequest",
+    "V3ListConnectorCapabilitiesRequestTypedDict",
+    "V3ListConnectorCapabilitiesResponse",
+    "V3ListConnectorCapabilitiesResponseTypedDict",
     "V3ListConnectorConfigsResponse",
     "V3ListConnectorConfigsResponseTypedDict",
     "V3ListConnectorScheduleInstancesRequest",
@@ -3151,6 +3171,10 @@ _dynamic_imports: dict[str, str] = {
     "V3GetBankAccountRequestTypedDict": ".v3getbankaccount",
     "V3GetBankAccountResponse": ".v3getbankaccount",
     "V3GetBankAccountResponseTypedDict": ".v3getbankaccount",
+    "V3GetConnectorCapabilitiesRequest": ".v3getconnectorcapabilities",
+    "V3GetConnectorCapabilitiesRequestTypedDict": ".v3getconnectorcapabilities",
+    "V3GetConnectorCapabilitiesResponse": ".v3getconnectorcapabilities",
+    "V3GetConnectorCapabilitiesResponseTypedDict": ".v3getconnectorcapabilities",
     "V3GetConnectorConfigRequest": ".v3getconnectorconfig",
     "V3GetConnectorConfigRequestTypedDict": ".v3getconnectorconfig",
     "V3GetConnectorConfigResponse": ".v3getconnectorconfig",
@@ -3215,6 +3239,10 @@ _dynamic_imports: dict[str, str] = {
     "V3ListBankAccountsRequestTypedDict": ".v3listbankaccounts",
     "V3ListBankAccountsResponse": ".v3listbankaccounts",
     "V3ListBankAccountsResponseTypedDict": ".v3listbankaccounts",
+    "V3ListConnectorCapabilitiesRequest": ".v3listconnectorcapabilities",
+    "V3ListConnectorCapabilitiesRequestTypedDict": ".v3listconnectorcapabilities",
+    "V3ListConnectorCapabilitiesResponse": ".v3listconnectorcapabilities",
+    "V3ListConnectorCapabilitiesResponseTypedDict": ".v3listconnectorcapabilities",
     "V3ListConnectorConfigsResponse": ".v3listconnectorconfigs",
     "V3ListConnectorConfigsResponseTypedDict": ".v3listconnectorconfigs",
     "V3ListConnectorsRequest": ".v3listconnectors",

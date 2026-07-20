@@ -86,6 +86,8 @@ class V3(BaseSDK):
                 operation_id="v3AddAccountToPool",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -176,6 +178,8 @@ class V3(BaseSDK):
                 operation_id="v3AddAccountToPool",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -268,6 +272,8 @@ class V3(BaseSDK):
                 operation_id="v3AddBankAccountToPaymentServiceUser",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -360,6 +366,8 @@ class V3(BaseSDK):
                 operation_id="v3AddBankAccountToPaymentServiceUser",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -452,6 +460,8 @@ class V3(BaseSDK):
                 operation_id="v3ApprovePaymentInitiation",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -547,6 +557,8 @@ class V3(BaseSDK):
                 operation_id="v3ApprovePaymentInitiation",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -647,6 +659,8 @@ class V3(BaseSDK):
                 operation_id="v3CreateAccount",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -747,6 +761,8 @@ class V3(BaseSDK):
                 operation_id="v3CreateAccount",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -851,6 +867,8 @@ class V3(BaseSDK):
                 operation_id="v3CreateBankAccount",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -955,6 +973,8 @@ class V3(BaseSDK):
                 operation_id="v3CreateBankAccount",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -1059,6 +1079,8 @@ class V3(BaseSDK):
                 operation_id="v3CreateLinkForPaymentServiceUser",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -1163,6 +1185,8 @@ class V3(BaseSDK):
                 operation_id="v3CreateLinkForPaymentServiceUser",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -1263,6 +1287,8 @@ class V3(BaseSDK):
                 operation_id="v3CreatePayment",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -1363,6 +1389,8 @@ class V3(BaseSDK):
                 operation_id="v3CreatePayment",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -1467,6 +1495,8 @@ class V3(BaseSDK):
                 operation_id="v3CreatePaymentServiceUser",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -1571,6 +1601,8 @@ class V3(BaseSDK):
                 operation_id="v3CreatePaymentServiceUser",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -1669,6 +1701,8 @@ class V3(BaseSDK):
                 operation_id="v3CreatePool",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -1767,6 +1801,8 @@ class V3(BaseSDK):
                 operation_id="v3CreatePool",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -1862,6 +1898,8 @@ class V3(BaseSDK):
                 operation_id="v3DeletePaymentInitiation",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -1954,6 +1992,8 @@ class V3(BaseSDK):
                 operation_id="v3DeletePaymentInitiation",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -2046,6 +2086,8 @@ class V3(BaseSDK):
                 operation_id="v3DeletePaymentServiceUser",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -2141,6 +2183,8 @@ class V3(BaseSDK):
                 operation_id="v3DeletePaymentServiceUser",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -2240,6 +2284,8 @@ class V3(BaseSDK):
                 operation_id="v3DeletePaymentServiceUserConnectionFromConnectorID",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -2340,6 +2386,8 @@ class V3(BaseSDK):
                 operation_id="v3DeletePaymentServiceUserConnectionFromConnectorID",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -2436,6 +2484,8 @@ class V3(BaseSDK):
                 operation_id="v3DeletePaymentServiceUserConnector",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -2532,6 +2582,8 @@ class V3(BaseSDK):
                 operation_id="v3DeletePaymentServiceUserConnector",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -2625,6 +2677,8 @@ class V3(BaseSDK):
                 operation_id="v3DeletePool",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -2714,6 +2768,8 @@ class V3(BaseSDK):
                 operation_id="v3DeletePool",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -2809,6 +2865,8 @@ class V3(BaseSDK):
                 operation_id="v3ForwardBankAccount",
                 oauth2_scopes=None,
                 security_source=None,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -2907,6 +2965,8 @@ class V3(BaseSDK):
                 operation_id="v3ForwardBankAccount",
                 oauth2_scopes=None,
                 security_source=None,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -3013,6 +3073,8 @@ class V3(BaseSDK):
                 operation_id="v3ForwardPaymentServiceUserBankAccount",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -3120,6 +3182,8 @@ class V3(BaseSDK):
                 operation_id="v3ForwardPaymentServiceUserBankAccount",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -3216,6 +3280,8 @@ class V3(BaseSDK):
                 operation_id="v3ForwardPaymentServiceUserToProvider",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -3308,6 +3374,8 @@ class V3(BaseSDK):
                 operation_id="v3ForwardPaymentServiceUserToProvider",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -3397,6 +3465,8 @@ class V3(BaseSDK):
                 operation_id="v3GetAccount",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -3489,6 +3559,8 @@ class V3(BaseSDK):
                 operation_id="v3GetAccount",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -3582,6 +3654,8 @@ class V3(BaseSDK):
                 operation_id="v3GetAccountBalances",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -3675,6 +3749,8 @@ class V3(BaseSDK):
                 operation_id="v3GetAccountBalances",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -3764,6 +3840,8 @@ class V3(BaseSDK):
                 operation_id="v3GetBankAccount",
                 oauth2_scopes=None,
                 security_source=None,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -3853,6 +3931,8 @@ class V3(BaseSDK):
                 operation_id="v3GetBankAccount",
                 oauth2_scopes=None,
                 security_source=None,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -3864,6 +3944,206 @@ class V3(BaseSDK):
             return operations.V3GetBankAccountResponse(
                 v3_get_bank_account_response=unmarshal_json_response(
                     Optional[payments.V3GetBankAccountResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                payments.V3ErrorResponseData, http_res
+            )
+            raise payments.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def get_connector_capabilities(
+        self,
+        *,
+        request: Union[
+            operations.V3GetConnectorCapabilitiesRequest,
+            operations.V3GetConnectorCapabilitiesRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3GetConnectorCapabilitiesResponse:
+        r"""Get the plugin capabilities of an installed connector
+
+        Returns the list of plugin capabilities advertised by the provider backing this installed connector (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...). The same values are also inlined on each row of `v3ListConnectors`; prefer that endpoint when listing multiple connectors.
+
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3GetConnectorCapabilitiesRequest
+            )
+        request = cast(operations.V3GetConnectorCapabilitiesRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/payments/v3/connectors/{connectorID}/capabilities",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3GetConnectorCapabilities",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V3GetConnectorCapabilitiesResponse(
+                v3_connector_capability_response=unmarshal_json_response(
+                    Optional[payments.V3ConnectorCapabilityResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                payments.V3ErrorResponseData, http_res
+            )
+            raise payments.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def get_connector_capabilities_async(
+        self,
+        *,
+        request: Union[
+            operations.V3GetConnectorCapabilitiesRequest,
+            operations.V3GetConnectorCapabilitiesRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3GetConnectorCapabilitiesResponse:
+        r"""Get the plugin capabilities of an installed connector
+
+        Returns the list of plugin capabilities advertised by the provider backing this installed connector (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...). The same values are also inlined on each row of `v3ListConnectors`; prefer that endpoint when listing multiple connectors.
+
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3GetConnectorCapabilitiesRequest
+            )
+        request = cast(operations.V3GetConnectorCapabilitiesRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/payments/v3/connectors/{connectorID}/capabilities",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3GetConnectorCapabilities",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V3GetConnectorCapabilitiesResponse(
+                v3_connector_capability_response=unmarshal_json_response(
+                    Optional[payments.V3ConnectorCapabilityResponse], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
@@ -3946,6 +4226,8 @@ class V3(BaseSDK):
                 operation_id="v3GetConnectorConfig",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -4039,6 +4321,8 @@ class V3(BaseSDK):
                 operation_id="v3GetConnectorConfig",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -4132,6 +4416,8 @@ class V3(BaseSDK):
                 operation_id="v3GetConnectorSchedule",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -4225,6 +4511,8 @@ class V3(BaseSDK):
                 operation_id="v3GetConnectorSchedule",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -4328,6 +4616,8 @@ class V3(BaseSDK):
                 operation_id="v3GetConversion",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -4431,6 +4721,8 @@ class V3(BaseSDK):
                 operation_id="v3GetConversion",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -4533,6 +4825,8 @@ class V3(BaseSDK):
                 operation_id="v3GetOrder",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -4635,6 +4929,8 @@ class V3(BaseSDK):
                 operation_id="v3GetOrder",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -4727,6 +5023,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPayment",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -4819,6 +5117,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPayment",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -4912,6 +5212,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPaymentInitiation",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -5005,6 +5307,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPaymentInitiation",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -5100,6 +5404,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPaymentServiceUser",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -5195,6 +5501,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPaymentServiceUser",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -5293,6 +5601,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPaymentServiceUserLinkAttemptFromConnectorID",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -5391,6 +5701,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPaymentServiceUserLinkAttemptFromConnectorID",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -5483,6 +5795,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPool",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -5575,6 +5889,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPool",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -5668,6 +5984,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPoolBalances",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -5761,6 +6079,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPoolBalances",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -5856,6 +6176,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPoolBalancesLatest",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -5951,6 +6273,8 @@ class V3(BaseSDK):
                 operation_id="v3GetPoolBalancesLatest",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -6043,6 +6367,8 @@ class V3(BaseSDK):
                 operation_id="v3GetTask",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -6135,6 +6461,8 @@ class V3(BaseSDK):
                 operation_id="v3GetTask",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -6235,6 +6563,8 @@ class V3(BaseSDK):
                 operation_id="v3InitiatePayment",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -6335,6 +6665,8 @@ class V3(BaseSDK):
                 operation_id="v3InitiatePayment",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -6435,6 +6767,8 @@ class V3(BaseSDK):
                 operation_id="v3InstallConnector",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -6535,6 +6869,8 @@ class V3(BaseSDK):
                 operation_id="v3InstallConnector",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -6634,6 +6970,8 @@ class V3(BaseSDK):
                 operation_id="v3ListAccounts",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -6733,6 +7071,8 @@ class V3(BaseSDK):
                 operation_id="v3ListAccounts",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -6833,6 +7173,8 @@ class V3(BaseSDK):
                 operation_id="v3ListBankAccounts",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -6933,6 +7275,8 @@ class V3(BaseSDK):
                 operation_id="v3ListBankAccounts",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -6948,6 +7292,226 @@ class V3(BaseSDK):
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                payments.V3ErrorResponseData, http_res
+            )
+            raise payments.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def list_connector_capabilities(
+        self,
+        *,
+        request: Union[
+            operations.V3ListConnectorCapabilitiesRequest,
+            operations.V3ListConnectorCapabilitiesRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3ListConnectorCapabilitiesResponse:
+        r"""List the plugin capabilities advertised by every supported provider
+
+        Returns the static map of provider name to the list of plugin capabilities (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...) compiled into this binary. The catalog is immutable for the lifetime of the process and is therefore safe to cache: the response carries a strong ETag and a `Cache-Control: public, max-age=3600, must-revalidate` directive. Stateless consumers (e.g. console) should set `If-None-Match` on subsequent requests to receive a `304 Not Modified`.
+
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3ListConnectorCapabilitiesRequest
+            )
+        request = cast(operations.V3ListConnectorCapabilitiesRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/payments/v3/connectors/capabilities",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3ListConnectorCapabilities",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["200", "304"], c
+            ),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V3ListConnectorCapabilitiesResponse(
+                v3_connector_capabilities_response=unmarshal_json_response(
+                    Optional[payments.V3ConnectorCapabilitiesResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
+            )
+        if utils.match_response(http_res, "304", "*"):
+            return operations.V3ListConnectorCapabilitiesResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                payments.V3ErrorResponseData, http_res
+            )
+            raise payments.V3ErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def list_connector_capabilities_async(
+        self,
+        *,
+        request: Union[
+            operations.V3ListConnectorCapabilitiesRequest,
+            operations.V3ListConnectorCapabilitiesRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.V3ListConnectorCapabilitiesResponse:
+        r"""List the plugin capabilities advertised by every supported provider
+
+        Returns the static map of provider name to the list of plugin capabilities (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...) compiled into this binary. The catalog is immutable for the lifetime of the process and is therefore safe to cache: the response carries a strong ETag and a `Cache-Control: public, max-age=3600, must-revalidate` directive. Stateless consumers (e.g. console) should set `If-None-Match` on subsequent requests to receive a `304 Not Modified`.
+
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.V3ListConnectorCapabilitiesRequest
+            )
+        request = cast(operations.V3ListConnectorCapabilitiesRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/payments/v3/connectors/capabilities",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="v3ListConnectorCapabilities",
+                oauth2_scopes=["payments:read"],
+                security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["200", "304"], c
+            ),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.V3ListConnectorCapabilitiesResponse(
+                v3_connector_capabilities_response=unmarshal_json_response(
+                    Optional[payments.V3ConnectorCapabilitiesResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
+            )
+        if utils.match_response(http_res, "304", "*"):
+            return operations.V3ListConnectorCapabilitiesResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+                headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
@@ -7016,6 +7580,8 @@ class V3(BaseSDK):
                 operation_id="v3ListConnectorConfigs",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -7099,6 +7665,8 @@ class V3(BaseSDK):
                 operation_id="v3ListConnectorConfigs",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -7194,6 +7762,8 @@ class V3(BaseSDK):
                 operation_id="v3ListConnectorScheduleInstances",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -7290,6 +7860,8 @@ class V3(BaseSDK):
                 operation_id="v3ListConnectorScheduleInstances",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -7393,6 +7965,8 @@ class V3(BaseSDK):
                 operation_id="v3ListConnectorSchedules",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -7495,6 +8069,8 @@ class V3(BaseSDK):
                 operation_id="v3ListConnectorSchedules",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -7595,6 +8171,8 @@ class V3(BaseSDK):
                 operation_id="v3ListConnectors",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -7695,6 +8273,8 @@ class V3(BaseSDK):
                 operation_id="v3ListConnectors",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -7811,6 +8391,8 @@ class V3(BaseSDK):
                 operation_id="v3ListConversions",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -7927,6 +8509,8 @@ class V3(BaseSDK):
                 operation_id="v3ListConversions",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -8042,6 +8626,8 @@ class V3(BaseSDK):
                 operation_id="v3ListOrders",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -8157,6 +8743,8 @@ class V3(BaseSDK):
                 operation_id="v3ListOrders",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -8259,6 +8847,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentInitiationAdjustments",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -8362,6 +8952,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentInitiationAdjustments",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -8467,6 +9059,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentInitiationRelatedPayments",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -8572,6 +9166,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentInitiationRelatedPayments",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -8675,6 +9271,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentInitiations",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -8777,6 +9375,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentInitiations",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -8879,6 +9479,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentServiceUserConnections",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -8982,6 +9584,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentServiceUserConnections",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -9089,6 +9693,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentServiceUserConnectionsFromConnectorID",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -9196,6 +9802,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentServiceUserConnectionsFromConnectorID",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -9304,6 +9912,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentServiceUserLinkAttemptsFromConnectorID",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -9412,6 +10022,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentServiceUserLinkAttemptsFromConnectorID",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -9515,6 +10127,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentServiceUsers",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -9617,6 +10231,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPaymentServiceUsers",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -9716,6 +10332,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPayments",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -9815,6 +10433,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPayments",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -9914,6 +10534,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPools",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -10013,6 +10635,8 @@ class V3(BaseSDK):
                 operation_id="v3ListPools",
                 oauth2_scopes=["payments:read"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
@@ -10108,6 +10732,8 @@ class V3(BaseSDK):
                 operation_id="v3RejectPaymentInitiation",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -10200,6 +10826,8 @@ class V3(BaseSDK):
                 operation_id="v3RejectPaymentInitiation",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -10292,6 +10920,8 @@ class V3(BaseSDK):
                 operation_id="v3RemoveAccountFromPool",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -10384,6 +11014,8 @@ class V3(BaseSDK):
                 operation_id="v3RemoveAccountFromPool",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -10474,6 +11106,8 @@ class V3(BaseSDK):
                 operation_id="v3ResetConnector",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -10567,6 +11201,8 @@ class V3(BaseSDK):
                 operation_id="v3ResetConnector",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -10662,6 +11298,8 @@ class V3(BaseSDK):
                 operation_id="v3RetryPaymentInitiation",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -10757,6 +11395,8 @@ class V3(BaseSDK):
                 operation_id="v3RetryPaymentInitiation",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -10861,6 +11501,8 @@ class V3(BaseSDK):
                 operation_id="v3ReversePaymentInitiation",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -10965,6 +11607,8 @@ class V3(BaseSDK):
                 operation_id="v3ReversePaymentInitiation",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -11058,6 +11702,8 @@ class V3(BaseSDK):
                 operation_id="v3UninstallConnector",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -11151,6 +11797,8 @@ class V3(BaseSDK):
                 operation_id="v3UninstallConnector",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["202"], c),
@@ -11251,6 +11899,8 @@ class V3(BaseSDK):
                 operation_id="v3UpdateBankAccountMetadata",
                 oauth2_scopes=None,
                 security_source=None,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -11348,6 +11998,8 @@ class V3(BaseSDK):
                 operation_id="v3UpdateBankAccountMetadata",
                 oauth2_scopes=None,
                 security_source=None,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -11451,6 +12103,8 @@ class V3(BaseSDK):
                 operation_id="v3UpdateLinkForPaymentServiceUserOnConnector",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -11557,6 +12211,8 @@ class V3(BaseSDK):
                 operation_id="v3UpdateLinkForPaymentServiceUserOnConnector",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
@@ -11661,6 +12317,8 @@ class V3(BaseSDK):
                 operation_id="v3UpdatePaymentMetadata",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -11762,6 +12420,8 @@ class V3(BaseSDK):
                 operation_id="v3UpdatePaymentMetadata",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -11859,6 +12519,8 @@ class V3(BaseSDK):
                 operation_id="v3UpdatePoolQuery",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -11956,6 +12618,8 @@ class V3(BaseSDK):
                 operation_id="v3UpdatePoolQuery",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -12057,6 +12721,8 @@ class V3(BaseSDK):
                 operation_id="v3UpdateConnectorConfig",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
@@ -12158,6 +12824,8 @@ class V3(BaseSDK):
                 operation_id="v3UpdateConnectorConfig",
                 oauth2_scopes=["payments:write"],
                 security_source=self.sdk_configuration.security,
+                tags=["payments.v3"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),

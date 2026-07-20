@@ -129,6 +129,12 @@ value: payments.V3CoinbaseprimeConfig = /* values here */
 value: payments.V3FireblocksConfig = /* values here */
 ```
 
+### `payments.V3KrakenproConfig`
+
+```python
+value: payments.V3KrakenproConfig = /* values here */
+```
+
 ### `payments.V3RoutableConfig`
 
 ```python

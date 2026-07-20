@@ -379,6 +379,7 @@ asyncio.run(main())
 * [get_account](docs/sdks/v3/README.md#get_account) - Get an account by ID
 * [get_account_balances](docs/sdks/v3/README.md#get_account_balances) - Get account balances
 * [get_bank_account](docs/sdks/v3/README.md#get_bank_account) - Get a Bank Account by ID
+* [get_connector_capabilities](docs/sdks/v3/README.md#get_connector_capabilities) - Get the plugin capabilities of an installed connector
 * [get_connector_config](docs/sdks/v3/README.md#get_connector_config) - Get a connector configuration by ID
 * [get_connector_schedule](docs/sdks/v3/README.md#get_connector_schedule) - Get a connector schedule by ID
 * [get_conversion](docs/sdks/v3/README.md#get_conversion) - Get a single conversion by its Formance ID
@@ -395,6 +396,7 @@ asyncio.run(main())
 * [install_connector](docs/sdks/v3/README.md#install_connector) - Install a connector
 * [list_accounts](docs/sdks/v3/README.md#list_accounts) - List all accounts
 * [list_bank_accounts](docs/sdks/v3/README.md#list_bank_accounts) - List all bank accounts
+* [list_connector_capabilities](docs/sdks/v3/README.md#list_connector_capabilities) - List the plugin capabilities advertised by every supported provider
 * [list_connector_configs](docs/sdks/v3/README.md#list_connector_configs) - List all connector configurations
 * [list_connector_schedule_instances](docs/sdks/v3/README.md#list_connector_schedule_instances) - List all connector schedule instances
 * [list_connector_schedules](docs/sdks/v3/README.md#list_connector_schedules) - List all connector schedules
@@ -618,13 +620,13 @@ with SDK(
 
 
 **Inherit from [`SDKBaseError`](./src/formance_sdk_python/models/errors/sdkbaseerror.py)**:
-* [`V3ErrorResponse`](./src/formance_sdk_python/models/errors/v3errorresponse.py): Error. Applicable to 61 of 253 methods.*
-* [`PaymentsErrorResponse`](./src/formance_sdk_python/models/errors/paymentserrorresponse.py): Error. Applicable to 46 of 253 methods.*
-* [`ErrorsV2ErrorResponse`](./src/formance_sdk_python/models/errors/errorsv2errorresponse.py): Applicable to 44 of 253 methods.*
-* [`ErrorResponse`](./src/formance_sdk_python/models/errors/errorresponse.py): Applicable to 31 of 253 methods.*
-* [`ErrorsErrorResponse`](./src/formance_sdk_python/models/errors/errorserrorresponse.py): Applicable to 19 of 253 methods.*
-* [`V2Error`](./src/formance_sdk_python/models/errors/v2error.py): General error. Applicable to 18 of 253 methods.*
-* [`Error`](./src/formance_sdk_python/models/errors/error.py): General error. Applicable to 17 of 253 methods.*
+* [`V3ErrorResponse`](./src/formance_sdk_python/models/errors/v3errorresponse.py): Error. Applicable to 63 of 255 methods.*
+* [`PaymentsErrorResponse`](./src/formance_sdk_python/models/errors/paymentserrorresponse.py): Error. Applicable to 46 of 255 methods.*
+* [`ErrorsV2ErrorResponse`](./src/formance_sdk_python/models/errors/errorsv2errorresponse.py): Applicable to 44 of 255 methods.*
+* [`ErrorResponse`](./src/formance_sdk_python/models/errors/errorresponse.py): Applicable to 31 of 255 methods.*
+* [`ErrorsErrorResponse`](./src/formance_sdk_python/models/errors/errorserrorresponse.py): Applicable to 19 of 255 methods.*
+* [`V2Error`](./src/formance_sdk_python/models/errors/v2error.py): General error. Applicable to 18 of 255 methods.*
+* [`Error`](./src/formance_sdk_python/models/errors/error.py): General error. Applicable to 17 of 255 methods.*
 * [`ResponseValidationError`](./src/formance_sdk_python/models/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>

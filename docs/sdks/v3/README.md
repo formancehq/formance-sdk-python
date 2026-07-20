@@ -27,6 +27,7 @@
 * [get_account](#get_account) - Get an account by ID
 * [get_account_balances](#get_account_balances) - Get account balances
 * [get_bank_account](#get_bank_account) - Get a Bank Account by ID
+* [get_connector_capabilities](#get_connector_capabilities) - Get the plugin capabilities of an installed connector
 * [get_connector_config](#get_connector_config) - Get a connector configuration by ID
 * [get_connector_schedule](#get_connector_schedule) - Get a connector schedule by ID
 * [get_conversion](#get_conversion) - Get a single conversion by its Formance ID
@@ -43,6 +44,7 @@
 * [install_connector](#install_connector) - Install a connector
 * [list_accounts](#list_accounts) - List all accounts
 * [list_bank_accounts](#list_bank_accounts) - List all bank accounts
+* [list_connector_capabilities](#list_connector_capabilities) - List the plugin capabilities advertised by every supported provider
 * [list_connector_configs](#list_connector_configs) - List all connector configurations
 * [list_connector_schedule_instances](#list_connector_schedule_instances) - List all connector schedule instances
 * [list_connector_schedules](#list_connector_schedules) - List all connector schedules
@@ -1023,6 +1025,55 @@ with SDK() as sdk:
 | payments.V3ErrorResponse | default                  | application/json         |
 | errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
+## get_connector_capabilities
+
+Returns the list of plugin capabilities advertised by the provider backing this installed connector (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...). The same values are also inlined on each row of `v3ListConnectors`; prefer that endpoint when listing multiple connectors.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v3GetConnectorCapabilities" method="get" path="/api/payments/v3/connectors/{connectorID}/capabilities" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.get_connector_capabilities(request={
+        "connector_id": "<id>",
+    })
+
+    assert res.v3_connector_capability_response is not None
+
+    # Handle response
+    print(res.v3_connector_capability_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                    | [operations.V3GetConnectorCapabilitiesRequest](../../models/operations/v3getconnectorcapabilitiesrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `retries`                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                             | :heavy_minus_sign:                                                                                           | Configuration to override the default retry behavior of the client.                                          |
+
+### Response
+
+**[operations.V3GetConnectorCapabilitiesResponse](../../models/operations/v3getconnectorcapabilitiesresponse.md)**
+
+### Errors
+
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+
 ## get_connector_config
 
 Get a connector configuration by ID
@@ -1802,6 +1853,53 @@ with SDK(
 ### Response
 
 **[operations.V3ListBankAccountsResponse](../../models/operations/v3listbankaccountsresponse.md)**
+
+### Errors
+
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+
+## list_connector_capabilities
+
+Returns the static map of provider name to the list of plugin capabilities (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...) compiled into this binary. The catalog is immutable for the lifetime of the process and is therefore safe to cache: the response carries a strong ETag and a `Cache-Control: public, max-age=3600, must-revalidate` directive. Stateless consumers (e.g. console) should set `If-None-Match` on subsequent requests to receive a `304 Not Modified`.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v3ListConnectorCapabilities" method="get" path="/api/payments/v3/connectors/capabilities" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.payments.v3.list_connector_capabilities(request={})
+
+    assert res.v3_connector_capabilities_response is not None
+
+    # Handle response
+    print(res.v3_connector_capabilities_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                      | [operations.V3ListConnectorCapabilitiesRequest](../../models/operations/v3listconnectorcapabilitiesrequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
+| `retries`                                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                               | :heavy_minus_sign:                                                                                             | Configuration to override the default retry behavior of the client.                                            |
+
+### Response
+
+**[operations.V3ListConnectorCapabilitiesResponse](../../models/operations/v3listconnectorcapabilitiesresponse.md)**
 
 ### Errors
 

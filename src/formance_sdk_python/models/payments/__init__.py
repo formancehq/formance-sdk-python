@@ -5,7 +5,7 @@ from typing import Any, TYPE_CHECKING
 from formance_sdk_python.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
-    from .account import Account, AccountRaw, AccountRawTypedDict, AccountTypedDict
+    from .account import Account, AccountTypedDict
     from .accountbalance import AccountBalance, AccountBalanceTypedDict
     from .accountrequest import AccountRequest, AccountRequestTypedDict
     from .accountresponse import AccountResponse, AccountResponseTypedDict
@@ -77,13 +77,8 @@ if TYPE_CHECKING:
     from .mangopayconfig import MangoPayConfig, MangoPayConfigTypedDict
     from .modulrconfig import ModulrConfig, ModulrConfigTypedDict
     from .moneycorpconfig import MoneycorpConfig, MoneycorpConfigTypedDict
-    from .payment import Payment, PaymentRaw, PaymentRawTypedDict, PaymentTypedDict
-    from .paymentadjustment import (
-        PaymentAdjustment,
-        PaymentAdjustmentRaw,
-        PaymentAdjustmentRawTypedDict,
-        PaymentAdjustmentTypedDict,
-    )
+    from .payment import Payment, PaymentTypedDict
+    from .paymentadjustment import PaymentAdjustment, PaymentAdjustmentTypedDict
     from .paymentrequest import PaymentRequest, PaymentRequestTypedDict
     from .paymentresponse import PaymentResponse, PaymentResponseTypedDict
     from .paymentscheme import PaymentScheme
@@ -246,12 +241,7 @@ if TYPE_CHECKING:
         UpdateTransferInitiationStatusRequest,
         UpdateTransferInitiationStatusRequestTypedDict,
     )
-    from .v3account import (
-        V3Account,
-        V3AccountRaw,
-        V3AccountRawTypedDict,
-        V3AccountTypedDict,
-    )
+    from .v3account import V3Account, V3AccountTypedDict
     from .v3accountscursorresponse import (
         V3AccountsCursorResponse,
         V3AccountsCursorResponseCursor,
@@ -296,6 +286,7 @@ if TYPE_CHECKING:
         V3BankingcircleConfigTypedDict,
     )
     from .v3bitstampconfig import V3BitstampConfig, V3BitstampConfigTypedDict
+    from .v3capability import V3Capability
     from .v3coinbaseprimeconfig import (
         V3CoinbaseprimeConfig,
         V3CoinbaseprimeConfigTypedDict,
@@ -304,6 +295,14 @@ if TYPE_CHECKING:
     from .v3connectionstatusenum import V3ConnectionStatusEnum
     from .v3connector import Config, ConfigTypedDict, V3Connector, V3ConnectorTypedDict
     from .v3connectorbase import V3ConnectorBase, V3ConnectorBaseTypedDict
+    from .v3connectorcapabilitiesresponse import (
+        V3ConnectorCapabilitiesResponse,
+        V3ConnectorCapabilitiesResponseTypedDict,
+    )
+    from .v3connectorcapabilityresponse import (
+        V3ConnectorCapabilityResponse,
+        V3ConnectorCapabilityResponseTypedDict,
+    )
     from .v3connectorconfig import V3ConnectorConfig, V3ConnectorConfigTypedDict
     from .v3connectorconfigsresponse import (
         V3ConnectorConfigsResponse,
@@ -463,6 +462,7 @@ if TYPE_CHECKING:
         V3InstallConnectorResponseTypedDict,
     )
     from .v3instance import V3Instance, V3InstanceTypedDict
+    from .v3krakenproconfig import V3KrakenproConfig, V3KrakenproConfigTypedDict
     from .v3mangopayconfig import V3MangopayConfig, V3MangopayConfigTypedDict
     from .v3modulrconfig import V3ModulrConfig, V3ModulrConfigTypedDict
     from .v3moneycorpconfig import V3MoneycorpConfig, V3MoneycorpConfigTypedDict
@@ -470,12 +470,7 @@ if TYPE_CHECKING:
         V3OpenBankingConnectionAttemptStatusEnum,
     )
     from .v3order import V3Order, V3OrderTypedDict
-    from .v3orderadjustment import (
-        V3OrderAdjustment,
-        V3OrderAdjustmentRaw,
-        V3OrderAdjustmentRawTypedDict,
-        V3OrderAdjustmentTypedDict,
-    )
+    from .v3orderadjustment import V3OrderAdjustment, V3OrderAdjustmentTypedDict
     from .v3orderdirectionenum import V3OrderDirectionEnum
     from .v3orderscursorresponse import (
         V3OrdersCursorResponse,
@@ -486,12 +481,7 @@ if TYPE_CHECKING:
     from .v3orderstatusenum import V3OrderStatusEnum
     from .v3ordertypeenum import V3OrderTypeEnum
     from .v3payment import V3Payment, V3PaymentTypedDict
-    from .v3paymentadjustment import (
-        V3PaymentAdjustment,
-        V3PaymentAdjustmentRaw,
-        V3PaymentAdjustmentRawTypedDict,
-        V3PaymentAdjustmentTypedDict,
-    )
+    from .v3paymentadjustment import V3PaymentAdjustment, V3PaymentAdjustmentTypedDict
     from .v3paymentinitiation import V3PaymentInitiation, V3PaymentInitiationTypedDict
     from .v3paymentinitiationadjustment import (
         V3PaymentInitiationAdjustment,
@@ -657,8 +647,6 @@ __all__ = [
     "Account",
     "AccountBalance",
     "AccountBalanceTypedDict",
-    "AccountRaw",
-    "AccountRawTypedDict",
     "AccountRequest",
     "AccountRequestTypedDict",
     "AccountResponse",
@@ -729,11 +717,7 @@ __all__ = [
     "MoneycorpConfigTypedDict",
     "Payment",
     "PaymentAdjustment",
-    "PaymentAdjustmentRaw",
-    "PaymentAdjustmentRawTypedDict",
     "PaymentAdjustmentTypedDict",
-    "PaymentRaw",
-    "PaymentRawTypedDict",
     "PaymentRequest",
     "PaymentRequestTypedDict",
     "PaymentResponse",
@@ -862,8 +846,6 @@ __all__ = [
     "UpdateTransferInitiationStatusRequest",
     "UpdateTransferInitiationStatusRequestTypedDict",
     "V3Account",
-    "V3AccountRaw",
-    "V3AccountRawTypedDict",
     "V3AccountTypeEnum",
     "V3AccountTypedDict",
     "V3AccountsCursorResponse",
@@ -902,6 +884,7 @@ __all__ = [
     "V3BankingcircleConfigTypedDict",
     "V3BitstampConfig",
     "V3BitstampConfigTypedDict",
+    "V3Capability",
     "V3CoinbaseprimeConfig",
     "V3CoinbaseprimeConfigTypedDict",
     "V3ColumnConfig",
@@ -910,6 +893,10 @@ __all__ = [
     "V3Connector",
     "V3ConnectorBase",
     "V3ConnectorBaseTypedDict",
+    "V3ConnectorCapabilitiesResponse",
+    "V3ConnectorCapabilitiesResponseTypedDict",
+    "V3ConnectorCapabilityResponse",
+    "V3ConnectorCapabilityResponseTypedDict",
     "V3ConnectorConfig",
     "V3ConnectorConfigTypedDict",
     "V3ConnectorConfigsResponse",
@@ -1019,6 +1006,8 @@ __all__ = [
     "V3InstallConnectorResponseTypedDict",
     "V3Instance",
     "V3InstanceTypedDict",
+    "V3KrakenproConfig",
+    "V3KrakenproConfigTypedDict",
     "V3MangopayConfig",
     "V3MangopayConfigTypedDict",
     "V3ModulrConfig",
@@ -1028,8 +1017,6 @@ __all__ = [
     "V3OpenBankingConnectionAttemptStatusEnum",
     "V3Order",
     "V3OrderAdjustment",
-    "V3OrderAdjustmentRaw",
-    "V3OrderAdjustmentRawTypedDict",
     "V3OrderAdjustmentTypedDict",
     "V3OrderDirectionEnum",
     "V3OrderStatusEnum",
@@ -1041,8 +1028,6 @@ __all__ = [
     "V3OrdersCursorResponseTypedDict",
     "V3Payment",
     "V3PaymentAdjustment",
-    "V3PaymentAdjustmentRaw",
-    "V3PaymentAdjustmentRawTypedDict",
     "V3PaymentAdjustmentTypedDict",
     "V3PaymentInitiation",
     "V3PaymentInitiationAdjustment",
@@ -1166,8 +1151,6 @@ __all__ = [
 
 _dynamic_imports: dict[str, str] = {
     "Account": ".account",
-    "AccountRaw": ".account",
-    "AccountRawTypedDict": ".account",
     "AccountTypedDict": ".account",
     "AccountBalance": ".accountbalance",
     "AccountBalanceTypedDict": ".accountbalance",
@@ -1237,12 +1220,8 @@ _dynamic_imports: dict[str, str] = {
     "MoneycorpConfig": ".moneycorpconfig",
     "MoneycorpConfigTypedDict": ".moneycorpconfig",
     "Payment": ".payment",
-    "PaymentRaw": ".payment",
-    "PaymentRawTypedDict": ".payment",
     "PaymentTypedDict": ".payment",
     "PaymentAdjustment": ".paymentadjustment",
-    "PaymentAdjustmentRaw": ".paymentadjustment",
-    "PaymentAdjustmentRawTypedDict": ".paymentadjustment",
     "PaymentAdjustmentTypedDict": ".paymentadjustment",
     "PaymentRequest": ".paymentrequest",
     "PaymentRequestTypedDict": ".paymentrequest",
@@ -1371,8 +1350,6 @@ _dynamic_imports: dict[str, str] = {
     "UpdateTransferInitiationStatusRequest": ".updatetransferinitiationstatusrequest",
     "UpdateTransferInitiationStatusRequestTypedDict": ".updatetransferinitiationstatusrequest",
     "V3Account": ".v3account",
-    "V3AccountRaw": ".v3account",
-    "V3AccountRawTypedDict": ".v3account",
     "V3AccountTypedDict": ".v3account",
     "V3AccountsCursorResponse": ".v3accountscursorresponse",
     "V3AccountsCursorResponseCursor": ".v3accountscursorresponse",
@@ -1411,6 +1388,7 @@ _dynamic_imports: dict[str, str] = {
     "V3BankingcircleConfigTypedDict": ".v3bankingcircleconfig",
     "V3BitstampConfig": ".v3bitstampconfig",
     "V3BitstampConfigTypedDict": ".v3bitstampconfig",
+    "V3Capability": ".v3capability",
     "V3CoinbaseprimeConfig": ".v3coinbaseprimeconfig",
     "V3CoinbaseprimeConfigTypedDict": ".v3coinbaseprimeconfig",
     "V3ColumnConfig": ".v3columnconfig",
@@ -1422,6 +1400,10 @@ _dynamic_imports: dict[str, str] = {
     "V3ConnectorTypedDict": ".v3connector",
     "V3ConnectorBase": ".v3connectorbase",
     "V3ConnectorBaseTypedDict": ".v3connectorbase",
+    "V3ConnectorCapabilitiesResponse": ".v3connectorcapabilitiesresponse",
+    "V3ConnectorCapabilitiesResponseTypedDict": ".v3connectorcapabilitiesresponse",
+    "V3ConnectorCapabilityResponse": ".v3connectorcapabilityresponse",
+    "V3ConnectorCapabilityResponseTypedDict": ".v3connectorcapabilityresponse",
     "V3ConnectorConfig": ".v3connectorconfig",
     "V3ConnectorConfigTypedDict": ".v3connectorconfig",
     "V3ConnectorConfigsResponse": ".v3connectorconfigsresponse",
@@ -1530,6 +1512,8 @@ _dynamic_imports: dict[str, str] = {
     "V3InstallConnectorResponseTypedDict": ".v3installconnectorresponse",
     "V3Instance": ".v3instance",
     "V3InstanceTypedDict": ".v3instance",
+    "V3KrakenproConfig": ".v3krakenproconfig",
+    "V3KrakenproConfigTypedDict": ".v3krakenproconfig",
     "V3MangopayConfig": ".v3mangopayconfig",
     "V3MangopayConfigTypedDict": ".v3mangopayconfig",
     "V3ModulrConfig": ".v3modulrconfig",
@@ -1540,8 +1524,6 @@ _dynamic_imports: dict[str, str] = {
     "V3Order": ".v3order",
     "V3OrderTypedDict": ".v3order",
     "V3OrderAdjustment": ".v3orderadjustment",
-    "V3OrderAdjustmentRaw": ".v3orderadjustment",
-    "V3OrderAdjustmentRawTypedDict": ".v3orderadjustment",
     "V3OrderAdjustmentTypedDict": ".v3orderadjustment",
     "V3OrderDirectionEnum": ".v3orderdirectionenum",
     "V3OrdersCursorResponse": ".v3orderscursorresponse",
@@ -1553,8 +1535,6 @@ _dynamic_imports: dict[str, str] = {
     "V3Payment": ".v3payment",
     "V3PaymentTypedDict": ".v3payment",
     "V3PaymentAdjustment": ".v3paymentadjustment",
-    "V3PaymentAdjustmentRaw": ".v3paymentadjustment",
-    "V3PaymentAdjustmentRawTypedDict": ".v3paymentadjustment",
     "V3PaymentAdjustmentTypedDict": ".v3paymentadjustment",
     "V3PaymentInitiation": ".v3paymentinitiation",
     "V3PaymentInitiationTypedDict": ".v3paymentinitiation",

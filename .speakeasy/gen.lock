@@ -1,33 +1,33 @@
 lockVersion: 2.0.0
 id: 1e0c88f5-b1c8-4198-83d8-36bd00451cd3
 management:
-  docChecksum: 5a14b806afe8a80f055354bc7f17f3d5
+  docChecksum: da6b322ac067ac61b6561143a8a8bc5a
   docVersion: SDK_VERSION
-  speakeasyVersion: 1.770.0
-  generationVersion: 2.893.0
-  releaseVersion: 8.2.1
-  configChecksum: 3c997e757bd987f30581dc54de27b12d
+  speakeasyVersion: 1.790.2
+  generationVersion: 2.918.3
+  releaseVersion: 8.3.0
+  configChecksum: 34929403b0d62067e463b6b7b25828ae
   repoURL: https://github.com/formancehq/formance-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-python.git
   published: true
 persistentEdits:
-  generation_id: dc666553-389c-4425-9dda-e75d566d6a6d
-  pristine_commit_hash: ac076a4e92177038167f3e3d6bd1b78b2933aa48
-  pristine_tree_hash: 399ce53501defc8ae4a7143cb29b8573d4b5668c
+  generation_id: 91e2c363-e503-430e-89d0-5da7dda26b8c
+  pristine_commit_hash: 2202aa771400f5b54da8b951bf16005b0f3db2f4
+  pristine_tree_hash: ba8c7e8da7aa2c02d85e9c9e98ca6e7e9263f5fe
 features:
   python:
     additionalDependencies: 1.1.0
-    additionalProperties: 1.0.1
+    additionalProperties: 1.0.2
     bigint: 1.0.0
     constsAndDefaults: 1.0.7
-    core: 6.0.24
+    core: 6.0.34
     defaultEnabledRetries: 0.2.0
     deprecations: 3.0.2
     downloadStreams: 1.0.1
     enumUnions: 0.1.1
     envVarSecurityUsage: 0.3.3
-    errors: 3.3.6
+    errors: 3.4.4
     getRequestBodies: 3.0.0
     globalSecurity: 3.0.7
     globalSecurityCallbacks: 1.0.0
@@ -37,10 +37,10 @@ features:
     nullables: 1.0.2
     oauth2ClientCredentials: 2.1.5
     responseFormat: 1.1.0
-    retries: 3.0.5
-    sdkHooks: 1.2.1
-    unions: 3.1.5
-    uploadStreams: 1.0.2
+    retries: 3.0.7
+    sdkHooks: 1.3.0
+    unions: 3.1.7
+    uploadStreams: 1.0.3
 trackedFiles:
   .gitattributes:
     id: 24139dae6567
@@ -1920,8 +1920,8 @@ trackedFiles:
     pristine_git_object: b486e73f7d5a275fc7ab0d88b0d4f0808cb2a90b
   docs/models/operations/v2importlogsrequest.md:
     id: 1cb529b800e8
-    last_write_checksum: sha1:9539e07f4b5ccb7898a4e8a6c32511782912ae7b
-    pristine_git_object: 05d58396b491b1f5f0339ed7a5218a682d12b8ac
+    last_write_checksum: sha1:9d16eb77f1cf85ea92bbc077ec65cf774015488e
+    pristine_git_object: 5847cbe6abd6a990c0e86d561052e16b24a5c481
   docs/models/operations/v2importlogsresponse.md:
     id: ccb1e1c702ac
     last_write_checksum: sha1:e5ffbce8726478862c178d8f4ffb8ea76acc6eff
@@ -2278,6 +2278,14 @@ trackedFiles:
     id: 49a9c9974ecf
     last_write_checksum: sha1:77a3936eb0daad918cc755356c6f89876dcad2c0
     pristine_git_object: 25da678ef31974ba3067fbdbc6c7ce2990684a46
+  docs/models/operations/v3getconnectorcapabilitiesrequest.md:
+    id: 7a3686709d68
+    last_write_checksum: sha1:d5c32a48f32a8dda0fdfc2f01c4fad8f947e47e9
+    pristine_git_object: 1046e2336590e78163e30f55ad23f58b5b2a2f2e
+  docs/models/operations/v3getconnectorcapabilitiesresponse.md:
+    id: 079818944a2f
+    last_write_checksum: sha1:7ae9d64c6afea24a0ab36d92a13a7ce946fdb6bc
+    pristine_git_object: d1e3e9950ce364d87e16d97d293d95c62b51afb6
   docs/models/operations/v3getconnectorconfigrequest.md:
     id: e9d5d6d4de47
     last_write_checksum: sha1:c24c3bfb620ccbf31c5abbcef5a807f1a8f3f5d8
@@ -2406,6 +2414,14 @@ trackedFiles:
     id: 9a2e9f18c7f1
     last_write_checksum: sha1:c5617617db132e723c65a040b10f5f3548c0822a
     pristine_git_object: 9e36ab751a5d4cb0f03d722f661f8528f8731d3a
+  docs/models/operations/v3listconnectorcapabilitiesrequest.md:
+    id: 058426b056a6
+    last_write_checksum: sha1:2c4e2440bf7c1dd39612f51a2fd96552ae435db7
+    pristine_git_object: 28d0372c4b14d6f8e7a1efb48be5a3b2f226d8f0
+  docs/models/operations/v3listconnectorcapabilitiesresponse.md:
+    id: 7debbd9f3c3c
+    last_write_checksum: sha1:84e1d0f4cc61a2ae21175a901d15c38a8e3a487c
+    pristine_git_object: e72290fde264bfa7b1875353990d8ca2004e87b7
   docs/models/operations/v3listconnectorconfigsresponse.md:
     id: ea85c163e8f9
     last_write_checksum: sha1:c3c2f5c170c87f215a05df157f7d863947030bed
@@ -3352,16 +3368,12 @@ trackedFiles:
     pristine_git_object: 46e101999a3295e10237fb2c053890f05ccaee9c
   docs/models/payments/account.md:
     id: 55bbdeaafa86
-    last_write_checksum: sha1:51b6a53edd484ebf70214f6fee531d86b53e33c3
-    pristine_git_object: 7f64549d8e9382fe8b0860431cf56e0f97335abd
+    last_write_checksum: sha1:e2c4b4a6802f81cde1b31ecc8be1f62c9b803fd3
+    pristine_git_object: 1a2692dd18a6b046c39b2cbddeb22b961c11ace6
   docs/models/payments/accountbalance.md:
     id: b57a97b4d9fa
     last_write_checksum: sha1:9ccdcc1e33df249bdeb75a6bd5c899afe06190ac
     pristine_git_object: ee63a9338e5847550b3ed0eb095652e49cc97c45
-  docs/models/payments/accountraw.md:
-    id: 63e3096f14e3
-    last_write_checksum: sha1:a3f46a88411093704c1509ccf8eaa40459c17aca
-    pristine_git_object: 6fb20eb1ef3c1d1b542c27f5cd75e0382084e02e
   docs/models/payments/accountrequest.md:
     id: 9c00ae5df4b1
     last_write_checksum: sha1:2042b8e8f774784c802e551a9958110cc6f39b5d
@@ -3504,20 +3516,12 @@ trackedFiles:
     pristine_git_object: a65d01b5f190d61a2f8bd5d193ef4eabebd5900b
   docs/models/payments/payment.md:
     id: c8d7c7ea4cc9
-    last_write_checksum: sha1:79a17cb063f1b4ab2b8e354a943cd396c024c58f
-    pristine_git_object: 8eefc36361d563d03d2272f9cdcc12cfa1ee50c0
+    last_write_checksum: sha1:4d055b40d2725dd58330c706b61dbebdc2e08a94
+    pristine_git_object: 7bec27ea6a46921f108955a9c2192c5b3848482b
   docs/models/payments/paymentadjustment.md:
     id: 1adf4dd3ae25
-    last_write_checksum: sha1:313f847ae97d47dc221335857d77e6e256749cff
-    pristine_git_object: 58d68030d64bb2d64563b2694675798f580be7cd
-  docs/models/payments/paymentadjustmentraw.md:
-    id: d19886cc2df3
-    last_write_checksum: sha1:a89d39f15638ed74ebf5e484491a846fbba4d63e
-    pristine_git_object: 78f88aee5c8376683e8afb37a557cde1d4779495
-  docs/models/payments/paymentraw.md:
-    id: f615dd909b38
-    last_write_checksum: sha1:8380da891216d461e7cc57ff268f773d0097b105
-    pristine_git_object: e884afe329a45217d54d17af7da259c49bb3adc1
+    last_write_checksum: sha1:b3fdcd9bcbdf890262da7bb1ce03023a7f0c7540
+    pristine_git_object: 70676306ccc44d4bc1968fb8221ac8e973920c20
   docs/models/payments/paymentrequest.md:
     id: 17cb7b525f7e
     last_write_checksum: sha1:8438661b85a67dfaedd0d7c718e2985fed56e3b2
@@ -3792,12 +3796,8 @@ trackedFiles:
     pristine_git_object: d8702704ec66e75192bea765c5633a0f24e1eb63
   docs/models/payments/v3account.md:
     id: 0396b3c898e0
-    last_write_checksum: sha1:79d3a08b1cb1b8cc2d52fc4c5e704effa29a2141
-    pristine_git_object: f277326c4ab3f9aa7e3d1053dc184641724a1c4a
-  docs/models/payments/v3accountraw.md:
-    id: 2fd7eedbe20b
-    last_write_checksum: sha1:b7d449c4a6218d001c0f27161b0e290ae54c4486
-    pristine_git_object: 68315384f57f7c13a374091508e0647c0f90411c
+    last_write_checksum: sha1:0c83b9ee73772fb842f1bd4c5a26cb31491e9ec7
+    pristine_git_object: fa2a4bd8e0dd43cafba4c2f07927bc9e11ca47eb
   docs/models/payments/v3accountscursorresponse.md:
     id: f4d70cf74bfc
     last_write_checksum: sha1:c9586520120a1c963dcc9971927373c7afc66690
@@ -3874,6 +3874,10 @@ trackedFiles:
     id: bbbed3b78b61
     last_write_checksum: sha1:e0937d826fd98f85ec43b54b767a9826e335e73b
     pristine_git_object: 149d3713656290e4ef97576ba6ab8dc5fdb360a1
+  docs/models/payments/v3capability.md:
+    id: 4d53749722be
+    last_write_checksum: sha1:75bbf02c2ef10b5109a3a66a057bbd7a92e931a5
+    pristine_git_object: 2ab9aa8026b11d89db81c5f76e07baa20c66611b
   docs/models/payments/v3coinbaseprimeconfig.md:
     id: 0feaea523857
     last_write_checksum: sha1:1c8c6de406e1e3dd2a10b2bf6a3ac2772371bb35
@@ -3888,16 +3892,24 @@ trackedFiles:
     pristine_git_object: 15e87e4357b63f28051b29633ac65b19d30390c5
   docs/models/payments/v3connector.md:
     id: 60eaa740862a
-    last_write_checksum: sha1:cca1231824e1603057da235c8ec46e817751b2b8
-    pristine_git_object: fd3c7291f5764bc5a69fd2ac937f0c4ab9588c0c
+    last_write_checksum: sha1:09625fc13f64e45fb7a41d6f149d697d33e880da
+    pristine_git_object: 20e1b2ca39f9685b0f9244678ec2074e239de786
   docs/models/payments/v3connectorbase.md:
     id: 3b85f8339ced
     last_write_checksum: sha1:dc05192d77e551422b8943e3e269c5255123c440
     pristine_git_object: ab0603919044605de455dc463b7e9c9c221eabd0
+  docs/models/payments/v3connectorcapabilitiesresponse.md:
+    id: db7d7d91d7a2
+    last_write_checksum: sha1:9c48102791e55681ac56b7901ee977596e98eb7d
+    pristine_git_object: 627fae34cf137ed447826833fecbae2c399777c5
+  docs/models/payments/v3connectorcapabilityresponse.md:
+    id: b29501726729
+    last_write_checksum: sha1:4df5dfd5de5d2f7a643dd284f19ac0a0de5cec62
+    pristine_git_object: 1509a13f258afe090e78e04821be8abbdfaccf5c
   docs/models/payments/v3connectorconfig.md:
     id: 71ba8ea17931
-    last_write_checksum: sha1:3d647c94909b4696ec4666a1203d7b68315d5a6d
-    pristine_git_object: 3af0fb2e3d8d70b313d4daa5e85f38c9a3d78ffe
+    last_write_checksum: sha1:af4ccdd0f7d3ee3a7132adb67d25064d5c714292
+    pristine_git_object: f3f28940a8bb05acaf1e6e28b11bcb01b9d1389d
   docs/models/payments/v3connectorconfigsresponse.md:
     id: ab199496e648
     last_write_checksum: sha1:3eb50d0a76ebfd496de0305d83683efdba5a51cf
@@ -4114,6 +4126,10 @@ trackedFiles:
     id: ef4cc1a88fa2
     last_write_checksum: sha1:5ba9e876ff54d9ff02050808356cbf1a5bf820b7
     pristine_git_object: b6ebe75f9eed9f1c2ea2d65f29829b32db40c8be
+  docs/models/payments/v3krakenproconfig.md:
+    id: 9f21e1aded7f
+    last_write_checksum: sha1:2cdff6a0c5f1ede1d32fdd8c34d7757e9277676d
+    pristine_git_object: 550b4699e0a343ea9b54bd0c0406a17e72484f7d
   docs/models/payments/v3mangopayconfig.md:
     id: 91f37e091378
     last_write_checksum: sha1:c83dc33324488a210a80675532535e51bbda3dfc
@@ -4136,12 +4152,8 @@ trackedFiles:
     pristine_git_object: 2eaa1b0a9ca4a472cdeceabd22d65d80eb195d4f
   docs/models/payments/v3orderadjustment.md:
     id: 55ed3f86e242
-    last_write_checksum: sha1:30978e4accc69122f53c12fd85d8fe31c7359b64
-    pristine_git_object: e0fd0e15b2df09aa607d2a8ba144a4762dcadaa5
-  docs/models/payments/v3orderadjustmentraw.md:
-    id: ba33a17e2867
-    last_write_checksum: sha1:b994af0cf462c87c140db1e0c2118dd05db7f85f
-    pristine_git_object: 40fdc07d462a5ef9e07470f51bbf3344b7ae6414
+    last_write_checksum: sha1:5b9483a5e4b601cf527ec9f77f64c796bb542697
+    pristine_git_object: c1ef08629285e1511b6f7115821d257a4574d458
   docs/models/payments/v3orderdirectionenum.md:
     id: 94dffd0cf300
     last_write_checksum: sha1:0fc9c592dfae09cd4357375c3f41ab7b498ddcb9
@@ -4168,12 +4180,8 @@ trackedFiles:
     pristine_git_object: d40e915e7597cf070d563d3dcb717a6ef3364754
   docs/models/payments/v3paymentadjustment.md:
     id: 9e65962c23eb
-    last_write_checksum: sha1:8051f4f565afe858792a96a67e059136e3efc7b2
-    pristine_git_object: e8f1227808b6981ba006774310906b7ba396a37d
-  docs/models/payments/v3paymentadjustmentraw.md:
-    id: 439ba5ebe38c
-    last_write_checksum: sha1:36fb51ef791a0ae71cc046e851e82c048d93c730
-    pristine_git_object: c2068f70632928514561cd87acbb2a40aedd62f0
+    last_write_checksum: sha1:38d7d112a4e167454b7738d2093ddcd9d5657689
+    pristine_git_object: 2aa59f3f83146b5055ecb42dd9c3c10b0de2ac0d
   docs/models/payments/v3paymentinitiation.md:
     id: 0148e85afba5
     last_write_checksum: sha1:78cb174dd5c9d5e932f47981e86e1362f010995d
@@ -4740,8 +4748,8 @@ trackedFiles:
     pristine_git_object: 754b101469fdf9e9069f27641d00d09cd7fdeef9
   docs/sdks/v3/README.md:
     id: ee683463fcdd
-    last_write_checksum: sha1:ef57b9c21f793c5a80cfc8afa590b7b1004ae382
-    pristine_git_object: 8edf9bf45db6ceec941c517fe11f471eabdb77a0
+    last_write_checksum: sha1:754af69da6643311dd3346b0e0076834f4ab58b0
+    pristine_git_object: ccf1ff03265ce836fc73cdc63fce69d83b7c86bd
   docs/sdks/walletsv1/README.md:
     id: e2e2730793ef
     last_write_checksum: sha1:68717a4d7b2f7be432cc00bb78a70a728539082b
@@ -4764,8 +4772,8 @@ trackedFiles:
     pristine_git_object: 7f810d0d754cf46304748cba52ab99323e346c33
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:60ef81ed95883f896e96bd7e9e5d0abff0582b1a
-    pristine_git_object: 4982fa9b33308e9f8c4ed87c7ab89a7ec559b1ba
+    last_write_checksum: sha1:25452b630aec61ed7416d1a2bd85e34a84849fb1
+    pristine_git_object: 37645f5e459aa004004c23b7cfcf11d10f8aa3d0
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:72a46c2776bad92e53b4bc5b3b76ca67d13dffda
@@ -4792,20 +4800,20 @@ trackedFiles:
     pristine_git_object: b014dc318c5b35c682274ce1f4ad85b64fbabd1b
   src/formance_sdk_python/_hooks/types.py:
     id: 4cb8e5ff255f
-    last_write_checksum: sha1:1c981460f9fd2211cbcb52629954d859c9bc1710
-    pristine_git_object: 34750f90d2bbb67b72de877e865b8ab28455b1c0
+    last_write_checksum: sha1:2c903d011e4be312effd714cc32513b7ab7c8b71
+    pristine_git_object: c99ae5268044d366e2ac584865c45aa00e01595b
   src/formance_sdk_python/_version.py:
     id: ece483bb5810
-    last_write_checksum: sha1:73876e137e7d26893f5125d6173d91e928edab24
-    pristine_git_object: 443e29ce87ab1e082d8f832bb22c57b1d0e705c1
+    last_write_checksum: sha1:4717e19a7f18c990a3d1cfdd050b2bbcd1dffecf
+    pristine_git_object: f4814583ddd26e0dbc5bcc0fc4c2c2fc610084bf
   src/formance_sdk_python/auth.py:
     id: 937cbfdb64e3
     last_write_checksum: sha1:8f030e786ddba8357a6dab3e2f86cec56415fdc6
     pristine_git_object: 2f69c2f240b9dfdb7a13e1b305fd0216b87d543b
   src/formance_sdk_python/auth_v1.py:
     id: c4901fb79d7a
-    last_write_checksum: sha1:b8c13f2a0a21661dd9a5d8300e318c28d6cddebd
-    pristine_git_object: c98a82977e5d9e381306f7c5adf0282499dbc7ad
+    last_write_checksum: sha1:df070d8a9ec2e3016a89242cb08f77fd7f47df15
+    pristine_git_object: 07e92ed63c21950e750d17e4114038f6a3e76013
   src/formance_sdk_python/basesdk.py:
     id: 5464d449f5d2
     last_write_checksum: sha1:ba2a531136699e1abcbcd89e7beacbeade045668
@@ -4816,16 +4824,16 @@ trackedFiles:
     pristine_git_object: 89560b566073785535643e694c112bedbd3db13d
   src/formance_sdk_python/ledger.py:
     id: 829c1443c3b2
-    last_write_checksum: sha1:9aff71cd6dd78755af866733af73e060c67990b4
-    pristine_git_object: 178146a77f0d8fded815fc75a552c3a15fbbb84d
+    last_write_checksum: sha1:4c817ee0430593d232498e31f56f0727613eeed9
+    pristine_git_object: 02f885067eefd49deb6c19e195bbd3db1057ec60
   src/formance_sdk_python/ledger_v1.py:
     id: 1c3bc296e7c8
-    last_write_checksum: sha1:eb21740db31e9526ab80fde44da2ae732f42f9a2
-    pristine_git_object: 18d59c0fb190274c26ca2230088660ceb02a062a
+    last_write_checksum: sha1:2e915e5ebda0801f529eafb8474fe17417214234
+    pristine_git_object: 306af937d552a5376afbfb88ebdf136c31984362
   src/formance_sdk_python/ledger_v2.py:
     id: 7e04403cbae8
-    last_write_checksum: sha1:ac68fa6c7a9cb96d843b96213e0e95583c796073
-    pristine_git_object: ce485a35ca0fd96d5398f03090aefcbe2c8c1c18
+    last_write_checksum: sha1:80a5eecd1925b9b0b5fe442c49461118461a5b89
+    pristine_git_object: 7dd089d68ab1dae2e849f741825753916d37dd75
   src/formance_sdk_python/models/__init__.py:
     id: d1264ca63bc8
     last_write_checksum: sha1:829644477154e824bdd37fb4277563a54fcf9bce
@@ -5332,8 +5340,8 @@ trackedFiles:
     pristine_git_object: 20bc781aa374932da271fef0c8026a285d09eb40
   src/formance_sdk_python/models/operations/__init__.py:
     id: 0080704286af
-    last_write_checksum: sha1:49e2c038b8fe129a3a00eb6e2ae3619e0a2561e0
-    pristine_git_object: a860d6225b4bbf00820e10c88e0e27526e51125e
+    last_write_checksum: sha1:b58978f076d036b5914759644b91d36b6540b8d6
+    pristine_git_object: 9cade90204f719f76711e3c9713ca3cb72acb04f
   src/formance_sdk_python/models/operations/activateconfig.py:
     id: ff8326bbb0e6
     last_write_checksum: sha1:b466172a1cd6a82bab959a11635f7017657ea78e
@@ -5996,8 +6004,8 @@ trackedFiles:
     pristine_git_object: b0594e4ef681ad0e6d53b1ea7ade0893a34465ab
   src/formance_sdk_python/models/operations/v2importlogs.py:
     id: ea6780bd2d26
-    last_write_checksum: sha1:152870967510867d33e5cecc399e3f193eb352f3
-    pristine_git_object: 3717fbb6f57df9137cce7d4ae341e05b1d239fd3
+    last_write_checksum: sha1:3f51672e7074a628faf5e717125c90c011f60e3b
+    pristine_git_object: bc0ccdc282ae127ce8e062493cda43a0aa0f4e76
   src/formance_sdk_python/models/operations/v2insertschema.py:
     id: 8f2c16755ddc
     last_write_checksum: sha1:7b4ae222babc47bc1e2ac4d53d1a8882298f119f
@@ -6174,6 +6182,10 @@ trackedFiles:
     id: 2a01e7e1f165
     last_write_checksum: sha1:a19be7616a0c3aa0cb7d3ca20620607a31ee9e59
     pristine_git_object: 613baf6ed6e66e90c2b2610013ec67bb3179d103
+  src/formance_sdk_python/models/operations/v3getconnectorcapabilities.py:
+    id: a5528343ce01
+    last_write_checksum: sha1:90a4528f6eafa5f382ce7f7f09dcfad784ca873e
+    pristine_git_object: 4f6318405662aee6354e44f4b1b5a7231bc7117a
   src/formance_sdk_python/models/operations/v3getconnectorconfig.py:
     id: a26f3113636c
     last_write_checksum: sha1:90fbfad2ef6509d710feb1009767cc428bf55803
@@ -6238,6 +6250,10 @@ trackedFiles:
     id: 2078917d172f
     last_write_checksum: sha1:cd0a43ebc75be6e9c3f83ef39a0ff7afc7095632
     pristine_git_object: 4943a2c7230c88460fbbf5af093bef2f4cbcee34
+  src/formance_sdk_python/models/operations/v3listconnectorcapabilities.py:
+    id: 3750e8d77465
+    last_write_checksum: sha1:c1c7e83c3a9b1a877c7c70464a6981a3dd8986f6
+    pristine_git_object: 01ac92081f351a592c1bcf031f9b9ff5845c0e54
   src/formance_sdk_python/models/operations/v3listconnectorconfigs.py:
     id: b7e38c6a867d
     last_write_checksum: sha1:07c76ecf23c1c00c74335d8700f360f5a67c930d
@@ -6964,12 +6980,12 @@ trackedFiles:
     pristine_git_object: 364ea73c18ee59a74cd76b88d2c643fbc67e380f
   src/formance_sdk_python/models/payments/__init__.py:
     id: e4cd27cda27d
-    last_write_checksum: sha1:b5110e276834d18ab944ee3c7882e0d183fe5101
-    pristine_git_object: 14cfdd3912f41811dc259015d7851a18bf51cc50
+    last_write_checksum: sha1:a180abc5c2e64dcd00026391c8541ab79875a198
+    pristine_git_object: eaa9816298e64075cc84d6767c81d32c093c4328
   src/formance_sdk_python/models/payments/account.py:
     id: 55ca8d14e55c
-    last_write_checksum: sha1:1f5665e28f28e8307b8a54a165de51c069780f47
-    pristine_git_object: dc1b4bdb4e9477188b780c7f7582b05e617b3c58
+    last_write_checksum: sha1:a7a093de1effdbdca93fe2732ff15a637bef3741
+    pristine_git_object: c936370afc68db238dea95fb8f143899d35f4f25
   src/formance_sdk_python/models/payments/accountbalance.py:
     id: 009a4f97131f
     last_write_checksum: sha1:1599fc79e302733c199e8f7624ef89f66622e8b5
@@ -7088,12 +7104,12 @@ trackedFiles:
     pristine_git_object: d33f816f45f72c2e639aba1853186a940a0dcfa0
   src/formance_sdk_python/models/payments/payment.py:
     id: 56a06008307a
-    last_write_checksum: sha1:f73651034bfd62c44c867167dbc5f78d6bbcecb0
-    pristine_git_object: ade211c5c09ae83a94f5ee1e683982547ef011db
+    last_write_checksum: sha1:97304d964cba2333cbfda5f328fc67440b837995
+    pristine_git_object: 908d670cfeeac424b633060a4f7eb1bb781011f2
   src/formance_sdk_python/models/payments/paymentadjustment.py:
     id: dc3520889b5b
-    last_write_checksum: sha1:54f4533d1ea78d95828c48d0c4be952223b5aa5b
-    pristine_git_object: ca6c37fb35851a0586d3047448a8ec42bb2d1f69
+    last_write_checksum: sha1:586fdf3df6b414146a55dc6c48edb80b002c914c
+    pristine_git_object: f09ef6d5ad0e72c03a3f8424179ccd31a752f6df
   src/formance_sdk_python/models/payments/paymentrequest.py:
     id: 737630196ecb
     last_write_checksum: sha1:7edb945f9eaeb444f2d45963367a72f18f5f934d
@@ -7268,8 +7284,8 @@ trackedFiles:
     pristine_git_object: 5ea0c6b50b161cb8def16c9083398de676c5aeb8
   src/formance_sdk_python/models/payments/v3account.py:
     id: 1fa89158b6b2
-    last_write_checksum: sha1:f5e2e70cfbc36b56da46ce60df3842dd996937ba
-    pristine_git_object: bb81b061facf484c2f353cac9d2446c89bde8065
+    last_write_checksum: sha1:94292f3128348507c2509b2f086bdfd7ae07f020
+    pristine_git_object: d00be08ed2d6071b1da38aa2bfa63acfd63c862b
   src/formance_sdk_python/models/payments/v3accountscursorresponse.py:
     id: 3bd749dc9d9f
     last_write_checksum: sha1:5c63ed85fb09d16527957ed546757e125f962db6
@@ -7330,6 +7346,10 @@ trackedFiles:
     id: bc51d475a27e
     last_write_checksum: sha1:af0b07d93485cafa160c45312cf152f3d1bb29a6
     pristine_git_object: 6b2901091d30bc3945408f050b847e00a609fdea
+  src/formance_sdk_python/models/payments/v3capability.py:
+    id: db2933fee6bd
+    last_write_checksum: sha1:63a0344623590125c7ad77c9517fbfca419df5df
+    pristine_git_object: 4678cfd57056d53a593b6a42c1e70872ff1af24e
   src/formance_sdk_python/models/payments/v3coinbaseprimeconfig.py:
     id: 1a95ad95d110
     last_write_checksum: sha1:4133a85934b6285e23def66cb0207d3fed122ce0
@@ -7344,16 +7364,24 @@ trackedFiles:
     pristine_git_object: 4a01442ae99ffb3bc32a72f71f8582180a423fb6
   src/formance_sdk_python/models/payments/v3connector.py:
     id: a1d68c72dae0
-    last_write_checksum: sha1:52de32a03b4a38d19892270c9607e698127caa92
-    pristine_git_object: 45c39335778e5139c121596faa9c847d514fb8d4
+    last_write_checksum: sha1:81daca44aebcffe1ad9070dfb30a9fdfe4825041
+    pristine_git_object: 4904c471a697b1e8333db838666fe96ea4fddc8e
   src/formance_sdk_python/models/payments/v3connectorbase.py:
     id: 6ea152a14a1c
     last_write_checksum: sha1:95fce700ab2ae5237934851bc195c5f129766f25
     pristine_git_object: 7a88f9ccf518b08f1016ccaa6ab6e195158f6076
+  src/formance_sdk_python/models/payments/v3connectorcapabilitiesresponse.py:
+    id: e078f865e887
+    last_write_checksum: sha1:417ef06924ba5ca641af40fe3ac66a15efb009b0
+    pristine_git_object: dd3876d7380860f088914a575a88094e0f32e918
+  src/formance_sdk_python/models/payments/v3connectorcapabilityresponse.py:
+    id: 5530b65320d7
+    last_write_checksum: sha1:5456be0239475e2dc45eb65f04b7d663fca41148
+    pristine_git_object: aa438a27858126cb7e917ccc4ca659e37d35e5a2
   src/formance_sdk_python/models/payments/v3connectorconfig.py:
     id: 23bf66996df6
-    last_write_checksum: sha1:a1869d9fbbc0f8a6327eceb462f6035dce763142
-    pristine_git_object: 45fe4bf84a5f5a6e77e091dffa32ca0471e82086
+    last_write_checksum: sha1:53564850d1c1998f2d66ec5340750cb467b30880
+    pristine_git_object: 888ac9cd76420c5396e095178da715b22f483b91
   src/formance_sdk_python/models/payments/v3connectorconfigsresponse.py:
     id: 8d83ae07b939
     last_write_checksum: sha1:766c9e873586f7670c41a83885b80f9db09f432a
@@ -7538,6 +7566,10 @@ trackedFiles:
     id: 32c54ef7ef4c
     last_write_checksum: sha1:8bbf4bb9d417c65af34d43f78bb979aa43c10d32
     pristine_git_object: 31c50678b916d99f75519e35dab334f996f1edbd
+  src/formance_sdk_python/models/payments/v3krakenproconfig.py:
+    id: 8053feb7f332
+    last_write_checksum: sha1:3b5f1ed406e391081398a87a696d8bea12314233
+    pristine_git_object: 727aec5aaa0d11fc9459df70cecdceaf79ac47be
   src/formance_sdk_python/models/payments/v3mangopayconfig.py:
     id: e2c18e81eaf1
     last_write_checksum: sha1:26c804526fce9d06df97edd8e2681ebfa826c8fc
@@ -7560,8 +7592,8 @@ trackedFiles:
     pristine_git_object: d5b6f45abc1a2b534a2fadc32f06382d376b9d7f
   src/formance_sdk_python/models/payments/v3orderadjustment.py:
     id: 61efeee276f5
-    last_write_checksum: sha1:33de837c5db67cce4c6ab97311093bdbae6c8bed
-    pristine_git_object: f5ea2d605a0b21f4661c12facc70f93ba2c05127
+    last_write_checksum: sha1:b72f4c2dcca5eebbdff6e82d0cde9c9ff77d3124
+    pristine_git_object: 93f75eed20a4e3a76fae7c4430344ba19298238c
   src/formance_sdk_python/models/payments/v3orderdirectionenum.py:
     id: aeb5e9c97e4e
     last_write_checksum: sha1:832bbec51b1c790e53b6c66fa02e401da3203ef4
@@ -7584,8 +7616,8 @@ trackedFiles:
     pristine_git_object: f38b7c4d33faffae320a1f5b395bc2ac72e11ce8
   src/formance_sdk_python/models/payments/v3paymentadjustment.py:
     id: 84928c13d68c
-    last_write_checksum: sha1:f98658fcfaa1591d010360a2236542a7998bd7ec
-    pristine_git_object: 15d94748c11dabc12272046c678af5688824dde9
+    last_write_checksum: sha1:6e199e40ab30493e7e40df0181ffb493a43ecf1d
+    pristine_git_object: b66ee70c2fcb1130c3285350df1df465a10ad65a
   src/formance_sdk_python/models/payments/v3paymentinitiation.py:
     id: 7653c8d54e96
     last_write_checksum: sha1:a9aadbcaf41a0a23f4e5af870a47c4b0af3672b6
@@ -8024,20 +8056,20 @@ trackedFiles:
     pristine_git_object: 2c0fba2992ffa2fb077f4b9305591e5005754dfc
   src/formance_sdk_python/orchestration_v1.py:
     id: 3f3b42235029
-    last_write_checksum: sha1:a5923bed9987b68b3e4009d04d95f010cd780653
-    pristine_git_object: 28bfa4d993a795280cfb8b51ca257bdd8f8933eb
+    last_write_checksum: sha1:3d43632cfc29f4df2c58033c452fef2d17175e2b
+    pristine_git_object: e6fef1aaaa84de7043e402e809e84bfb41a2e4ee
   src/formance_sdk_python/orchestration_v2.py:
     id: 1d9860970786
-    last_write_checksum: sha1:cbdda080ffef5744b77699741da3c3d10bc22966
-    pristine_git_object: 5cbb8e9dcce7ad4b42c4157fa02cbd58321b25ca
+    last_write_checksum: sha1:dad3e7473eb2e74d38e5868f82ca4e9c24927af5
+    pristine_git_object: 29c490e6c2c303c29de91193746005038b9f5dde
   src/formance_sdk_python/payments.py:
     id: ea5a1e59c6a8
     last_write_checksum: sha1:594f42dda87e67cf353c9c6db92771e27ec1d8f5
     pristine_git_object: 99778a0f6d7f3028112d4c3a0354a330e6b74c49
   src/formance_sdk_python/payments_v1.py:
     id: 1831576d6163
-    last_write_checksum: sha1:48c305b1b32f72fe7b3719414a54a42908a5a8c9
-    pristine_git_object: 94f7bf6d6fba81993658b9dca6396b8e124ffd73
+    last_write_checksum: sha1:94be9d325ba7af8776c0bd1d409382b9d3f03caf
+    pristine_git_object: 8fa3cb0a1dd6013c515c592588d32375bd9c3531
   src/formance_sdk_python/py.typed:
     id: dfba05c0aea1
     last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
@@ -8048,12 +8080,12 @@ trackedFiles:
     pristine_git_object: 294aff92fd54498a44681e428bf4b25127ce93b0
   src/formance_sdk_python/reconciliation_v1.py:
     id: 525731bd0292
-    last_write_checksum: sha1:551374b6301ae0206648944a26a455ed0a94f520
-    pristine_git_object: 45116b1e8a446715a9ea27c1241f686b5d5a58fa
+    last_write_checksum: sha1:42bba933ddc1831dfa5ccc5f585e1785e68c1673
+    pristine_git_object: ce483b341d372b5589aa3d624feb9d837a794888
   src/formance_sdk_python/sdk.py:
     id: 876a78585638
-    last_write_checksum: sha1:494f92fff126c0d483b57b359a196f02b645549e
-    pristine_git_object: b6e2607729ae44281ad2fac1b28e9d7f392c8ec1
+    last_write_checksum: sha1:a29f0025288cc6f0313304df661955d089f3813e
+    pristine_git_object: 6f071749cb381c51ce45c13dbd47dc23492f2c53
   src/formance_sdk_python/sdkconfiguration.py:
     id: 84a052f87fa0
     last_write_checksum: sha1:1c942f58ad74d7e02aa93d67474d994ed637725e
@@ -8064,32 +8096,32 @@ trackedFiles:
     pristine_git_object: 1b51c8c195b44c29435c384a6e58505c73b23129
   src/formance_sdk_python/search_v1.py:
     id: 6de441717a01
-    last_write_checksum: sha1:e811c64efb43f395c3e6bc7fa1b9f501665677af
-    pristine_git_object: 3d59981e172c270946e25927c20cc6c8b3cb6c60
+    last_write_checksum: sha1:5245080451d10a88c64a768fe987015b86a77748
+    pristine_git_object: 8bd10eda3923188f5ffd2a4ca29d79fab696b0a1
   src/formance_sdk_python/types/__init__.py:
     id: 2336d4e1d29a
     last_write_checksum: sha1:f9ad14217f832e74f594285960125add50324be9
     pristine_git_object: faa268137bc01c9d08cfadc4797017db48747a96
   src/formance_sdk_python/types/base64fileinput.py:
     id: 2af7111d3d86
-    last_write_checksum: sha1:4780e893d3853b5a6e28d9a6ca3ee102ce0f502d
-    pristine_git_object: 25fc53989ed497649363f983219fc58705c8bf87
+    last_write_checksum: sha1:1522687ae3398374c35710cad993a6e82b5ab99d
+    pristine_git_object: 862566fe2b1db830276b390e136e65090e5963d2
   src/formance_sdk_python/types/basemodel.py:
     id: 94e044d91e05
     last_write_checksum: sha1:10d84aedeb9d35edfdadf2c3020caa1d24d8b584
     pristine_git_object: a9a640a1a7048736383f96c67c6290c86bf536ee
   src/formance_sdk_python/utils/__init__.py:
     id: 9b6c686abed0
-    last_write_checksum: sha1:1970816f2234ecb8785798240b0edced961de971
-    pristine_git_object: 0498cb8dabf249b39609f81fb10cddc30f1b78b5
+    last_write_checksum: sha1:53c9544397bbc534c45a228feac3cdb2e9017fe6
+    pristine_git_object: 7af3b82cf95edc2901bc85b2624c54f39b7f9724
   src/formance_sdk_python/utils/annotations.py:
     id: f624809919f0
     last_write_checksum: sha1:a4824ad65f730303e4e1e3ec1febf87b4eb46dbc
     pristine_git_object: 12e0aa4f1151bb52474cc02e88397329b90703f6
   src/formance_sdk_python/utils/datetimes.py:
     id: 49fe2afe5043
-    last_write_checksum: sha1:c721e4123000e7dc61ec52b28a739439d9e17341
-    pristine_git_object: a6c52cd61bbe2d459046c940ce5e8c469f2f0664
+    last_write_checksum: sha1:fa47d54c549ff9b95496ce91930fadfb04a36be9
+    pristine_git_object: adad24762cf452d137abe94fda0fd26224cef593
   src/formance_sdk_python/utils/dynamic_imports.py:
     id: 8740a4ca10c0
     last_write_checksum: sha1:a1940c63feb8eddfd8026de53384baf5056d5dcc
@@ -8100,12 +8132,12 @@ trackedFiles:
     pristine_git_object: 3324e1bc2668c54c4d5f5a1a845675319757a828
   src/formance_sdk_python/utils/eventstreaming.py:
     id: 23890b8ccae5
-    last_write_checksum: sha1:620d78a8b4e3b854e08d136e02e40a01a786bd70
-    pristine_git_object: 3bdcd6d3d4fc772cb7f5fca8685dcdc8c85e13e8
+    last_write_checksum: sha1:7d1dc68f8b48486ab646653aa05cc38752e1f912
+    pristine_git_object: a8d4fe5cc88d3c7337339e1b36a61bbf7ca8c4eb
   src/formance_sdk_python/utils/forms.py:
     id: b74fe767ff1c
-    last_write_checksum: sha1:15fa7e9ab1611e062a9984cf06cb20969713d295
-    pristine_git_object: f961e76beaf0a8b1fe0dda44754a74eebd3608e7
+    last_write_checksum: sha1:a971cdb120ad3d416d296d5d0ad89e4808350a7f
+    pristine_git_object: fdf0dc9b2a67bca773eefe6b471498cccaa83424
   src/formance_sdk_python/utils/headers.py:
     id: 9796ea1edea2
     last_write_checksum: sha1:7c6df233ee006332b566a8afa9ce9a245941d935
@@ -8128,16 +8160,16 @@ trackedFiles:
     pristine_git_object: 591415af8e64baa410627b507d2740afb5387d13
   src/formance_sdk_python/utils/retries.py:
     id: 5ae3b08b3cfc
-    last_write_checksum: sha1:471372f5c5d1dd5583239c9cf3c75f1b636e5d87
-    pristine_git_object: af07d4e941007af4213c5ec9047ef8a2fca04e5e
+    last_write_checksum: sha1:3585b891142f30a597fbf7a2f0340700babef8e4
+    pristine_git_object: ca7b59efebbbd9545744d0207ef42725c4cc5143
   src/formance_sdk_python/utils/security.py:
     id: 4bc77a00ba1f
     last_write_checksum: sha1:c11eef495b6aaa249178c24c796940cc540b7a00
     pristine_git_object: 42d8d78e9981eed7507670014d99588e27ab325a
   src/formance_sdk_python/utils/serializers.py:
     id: 9e9ab9106053
-    last_write_checksum: sha1:61009f2e4ef6613a1a5af813fe020373dae5a492
-    pristine_git_object: d2149f8b909cb96628db140ac3cddb1b1e981367
+    last_write_checksum: sha1:7485f1425b0661fd84836186570df90207eec6af
+    pristine_git_object: 1031ed930bad5ece220cf7416a56c29f40f0588b
   src/formance_sdk_python/utils/unmarshal_json_response.py:
     id: 8b86a169c2d0
     last_write_checksum: sha1:5d876d4f611d123b2322968d886780ce8ab3bd4a
@@ -8152,24 +8184,24 @@ trackedFiles:
     pristine_git_object: dae01a44384ac3bc13ae07453a053bf6c898ebe3
   src/formance_sdk_python/v3.py:
     id: c5c687621dee
-    last_write_checksum: sha1:0280650024ac2f97775b24ddc7e83dc3365c8087
-    pristine_git_object: f7d21f98bfd1cfcd119c70df4502e5d1aeb820a4
+    last_write_checksum: sha1:927e2338e753e1fd4b81cfa71d339663f8cc1e12
+    pristine_git_object: acf39f7c299b0a3f7fe09f1d0ce20bc393e56d95
   src/formance_sdk_python/wallets.py:
     id: 012794d17e0d
     last_write_checksum: sha1:3f170b6e72a5f923dabf122599b20df372436452
     pristine_git_object: df4f822e3f4ae33011fac4df10c3def2c953e6ed
   src/formance_sdk_python/wallets_v1.py:
     id: 384aa6d9aa08
-    last_write_checksum: sha1:f8e6de62d2b3fc9a9f2a8fa81ab0863253d2436e
-    pristine_git_object: 465c5cb1c977b59682d057904a03b5fa1e85cd5f
+    last_write_checksum: sha1:47d859222d3135d3150655f5c62a03d83897f292
+    pristine_git_object: d6cfbc8fb5968209398f9137f6074db28f1835e7
   src/formance_sdk_python/webhooks.py:
     id: af96aa82ab3d
     last_write_checksum: sha1:f009114842da0c90419e502bff26f8080bdc9854
     pristine_git_object: 70e6480a03e0b1b2dea64629e8eb6fc742c673c3
   src/formance_sdk_python/webhooks_v1.py:
     id: 2ec22c52fd3b
-    last_write_checksum: sha1:6a15a5adbdc24a0b0e6ed8770043c6ace1f17411
-    pristine_git_object: 770db610566c8abaecde59f396ca2bf46c6212e2
+    last_write_checksum: sha1:ff2d7c58e085f8e4c6e61da14b9397ffef87882a
+    pristine_git_object: 8652ffe07216f4a45031c0acabe99040073829f4
 examples:
   getVersions:
     speakeasy-default-get-versions:
@@ -11651,8 +11683,26 @@ examples:
           application/json: {"version": "<value>"}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
+  v3GetConnectorCapabilities:
+    speakeasy-default-v3-get-connector-capabilities:
+      parameters:
+        path:
+          connectorID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": ["FETCH_EXTERNAL_ACCOUNTS"]}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
+  v3ListConnectorCapabilities:
+    speakeasy-default-v3-list-connector-capabilities:
+      responses:
+        "200":
+          application/json: {"data": {"key": ["ALLOW_FORMANCE_ACCOUNT_CREATION"]}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Python SDK Changes:\n* `sdk.payments.v3.get_account()`:  `response.data.raw` **Changed** (Breaking ⚠️)\n* `sdk.payments.v3.get_connector_config()`:  `response.data.union(V3KrakenproConfig)` **Added** (Breaking ⚠️)\n* `sdk.payments.v1.create_account()`:  `response.data.raw` **Changed** (Breaking ⚠️)\n* `sdk.payments.v1.create_payment()`:  `response.data` **Changed** (Breaking ⚠️)\n* `sdk.payments.v1.get_account_payments()`:  `response.data.raw` **Changed** (Breaking ⚠️)\n* `sdk.payments.v1.get_payment()`:  `response.data` **Changed** (Breaking ⚠️)\n* `sdk.payments.v1.list_accounts_payments()`:  `response.cursor.data[].raw` **Changed** (Breaking ⚠️)\n* `sdk.payments.v1.list_payments()`:  `response.cursor.data[]` **Changed** (Breaking ⚠️)\n* `sdk.payments.v3.create_account()`:  `response.data.raw` **Changed** (Breaking ⚠️)\n* `sdk.payments.v3.create_payment()`:  `response.data.adjustments[].raw` **Changed** (Breaking ⚠️)\n* `sdk.payments.v3.list_payments()`:  `response.cursor.data[].adjustments[].raw` **Changed** (Breaking ⚠️)\n* `sdk.payments.v3.get_order()`:  `response.data.adjustments[].raw` **Changed** (Breaking ⚠️)\n* `sdk.payments.v3.list_payment_initiation_related_payments()`:  `response.cursor.data[].adjustments[].raw` **Changed** (Breaking ⚠️)\n* `sdk.payments.v3.get_payment()`:  `response.data.adjustments[].raw` **Changed** (Breaking ⚠️)\n* `sdk.payments.v3.list_orders()`:  `response.cursor.data[].adjustments[].raw` **Changed** (Breaking ⚠️)\n* `sdk.payments.v3.list_accounts()`:  `response.cursor.data[].raw` **Changed** (Breaking ⚠️)\n* `sdk.payments.v3.list_connectors()`:  `response.cursor.data[].capabilities` **Added**\n* `sdk.payments.v3.install_connector()`: \n  *  `request.v3connector_config.union(V3KrakenproConfig)` **Added**\n* `sdk.payments.v3.get_connector_capabilities()`: **Added**\n* `sdk.payments.v3.list_connector_capabilities()`: **Added**\n* `sdk.payments.v3.v3update_connector_config()`: \n  *  `request.v3connector_config.union(V3KrakenproConfig)` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .vscode/settings.json
