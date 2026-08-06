@@ -1,0 +1,11 @@
+# Schedule
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                | Example                                                                    |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `expr`                                                                     | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | N/A                                                                        | */15 * * * *                                                               |
+| `kind`                                                                     | [reconciliation.ScheduleKind](../../models/reconciliation/schedulekind.md) | :heavy_check_mark:                                                         | N/A                                                                        |                                                                            |
+| `safety_margin`                                                            | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | Go duration string                                                         | 30s                                                                        |
+| `tz`                                                                       | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | N/A                                                                        | UTC                                                                        |

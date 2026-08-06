@@ -1,0 +1,13 @@
+# Resolution
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `at`                                                                           | [date](https://docs.python.org/3/library/datetime.html#date-objects)           | :heavy_check_mark:                                                             | N/A                                                                            |
+| `by`                                                                           | *str*                                                                          | :heavy_check_mark:                                                             | N/A                                                                            |
+| `evidence_snapshot`                                                            | Dict[str, *Any*]                                                               | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `kind`                                                                         | [reconciliation.ResolutionKind](../../models/reconciliation/resolutionkind.md) | :heavy_check_mark:                                                             | N/A                                                                            |
+| `note`                                                                         | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `transaction_refs`                                                             | List[*str*]                                                                    | :heavy_minus_sign:                                                             | N/A                                                                            |

@@ -1,0 +1,13 @@
+# GetDeliveriesRequest
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `config_id`                                                                  | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `created_at_from`                                                            | [date](https://docs.python.org/3/library/datetime.html#date-objects)         | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `created_at_to`                                                              | [date](https://docs.python.org/3/library/datetime.html#date-objects)         | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `cursor`                                                                     | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `page_size`                                                                  | *Optional[int]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `status`                                                                     | [Optional[webhooks.DeliveryStatus]](../../models/webhooks/deliverystatus.md) | :heavy_minus_sign:                                                           | N/A                                                                          |

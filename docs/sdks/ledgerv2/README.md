@@ -23,8 +23,10 @@
 * [get_account](#get_account) - Get account by its address
 * [get_balances_aggregated](#get_balances_aggregated) - Get the aggregated balances from selected accounts
 * [get_exporter_state](#get_exporter_state) - Get exporter state
+* [get_info](#get_info) - Show server information
 * [get_ledger](#get_ledger) - Get a ledger
 * [get_ledger_info](#get_ledger_info) - Get information about a ledger
+* [get_metrics](#get_metrics) - Read in memory metrics
 * [get_pipeline_state](#get_pipeline_state) - Get pipeline state
 * [get_schema](#get_schema) - Get a schema for a ledger by version
 * [get_transaction](#get_transaction) - Get transaction from a ledger by its ID
@@ -1012,6 +1014,51 @@ with SDK() as sdk:
 | ledger.ErrorsV2ErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
+## get_info
+
+Show server information
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="v2GetInfo" method="get" path="/api/ledger/_/info" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.get_info()
+
+    assert res.v2_config_info is not None
+
+    # Handle response
+    print(res.v2_config_info)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[operations.V2GetInfoResponse](../../models/operations/v2getinforesponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| ledger.ErrorsV2ErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+
 ## get_ledger
 
 Get a ledger
@@ -1100,6 +1147,51 @@ with SDK(
 ### Response
 
 **[operations.V2GetLedgerInfoResponse](../../models/operations/v2getledgerinforesponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| ledger.ErrorsV2ErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+
+## get_metrics
+
+Read in memory metrics
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="getMetrics" method="get" path="/api/ledger/_/metrics" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.ledger.v2.get_metrics()
+
+    assert res.object is not None
+
+    # Handle response
+    print(res.object)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[operations.GetMetricsResponse](../../models/operations/getmetricsresponse.md)**
 
 ### Errors
 
@@ -1384,9 +1476,7 @@ with SDK(
             "queries": {
                 "key": {
                     "params": {
-                        "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-                        "page_size": 100,
-                        "sort": "id:desc",
+                        "resource": "volumes",
                     },
                 },
             },
@@ -1979,9 +2069,7 @@ with SDK(
     res = sdk.ledger.v2.run_query(request={
         "request_body": {
             "params": {
-                "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-                "page_size": 100,
-                "sort": "id:desc",
+                "resource": "volumes",
             },
         },
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",

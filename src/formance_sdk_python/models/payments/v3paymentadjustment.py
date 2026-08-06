@@ -14,22 +14,14 @@ from formance_sdk_python.utils import validate_int
 import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import BeforeValidator
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
-
-
-class V3PaymentAdjustmentRawTypedDict(TypedDict):
-    pass
-
-
-class V3PaymentAdjustmentRaw(BaseModel):
-    pass
 
 
 class V3PaymentAdjustmentTypedDict(TypedDict):
     created_at: datetime
     id: str
-    raw: V3PaymentAdjustmentRawTypedDict
+    raw: Dict[str, Any]
     reference: str
     status: V3PaymentStatusEnum
     amount: NotRequired[int]
@@ -42,7 +34,7 @@ class V3PaymentAdjustment(BaseModel):
 
     id: str
 
-    raw: V3PaymentAdjustmentRaw
+    raw: Dict[str, Any]
 
     reference: str
 

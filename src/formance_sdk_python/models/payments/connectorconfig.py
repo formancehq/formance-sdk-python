@@ -12,8 +12,10 @@ from .modulrconfig import ModulrConfig, ModulrConfigTypedDict
 from .moneycorpconfig import MoneycorpConfig, MoneycorpConfigTypedDict
 from .stripeconfig import StripeConfig, StripeConfigTypedDict
 from .wiseconfig import WiseConfig, WiseConfigTypedDict
+from formance_sdk_python.utils import get_discriminator
+from pydantic import Discriminator, Tag
 from typing import Union
-from typing_extensions import TypeAliasType
+from typing_extensions import Annotated, TypeAliasType
 
 
 ConnectorConfigTypedDict = TypeAliasType(
@@ -34,19 +36,19 @@ ConnectorConfigTypedDict = TypeAliasType(
 )
 
 
-ConnectorConfig = TypeAliasType(
-    "ConnectorConfig",
+ConnectorConfig = Annotated[
     Union[
-        WiseConfig,
-        StripeConfig,
-        GenericConfig,
-        ModulrConfig,
-        CurrencyCloudConfig,
-        MangoPayConfig,
-        MoneycorpConfig,
-        AdyenConfig,
-        DummyPayConfig,
-        AtlarConfig,
-        BankingCircleConfig,
+        Annotated[AdyenConfig, Tag("Adyen")],
+        Annotated[AtlarConfig, Tag("Atlar")],
+        Annotated[BankingCircleConfig, Tag("Bankingcircle")],
+        Annotated[CurrencyCloudConfig, Tag("Currencycloud")],
+        Annotated[DummyPayConfig, Tag("Dummypay")],
+        Annotated[GenericConfig, Tag("Generic")],
+        Annotated[MangoPayConfig, Tag("Mangopay")],
+        Annotated[ModulrConfig, Tag("Modulr")],
+        Annotated[MoneycorpConfig, Tag("Moneycorp")],
+        Annotated[StripeConfig, Tag("Stripe")],
+        Annotated[WiseConfig, Tag("Wise")],
     ],
-)
+    Discriminator(lambda m: get_discriminator(m, "provider", "provider")),
+]

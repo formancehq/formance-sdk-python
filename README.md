@@ -191,12 +191,7 @@ asyncio.run(main())
 * [read_user](docs/sdks/authv1/README.md#read_user) - Read user
 * [update_client](docs/sdks/authv1/README.md#update_client) - Update client
 
-### [Ledger](docs/sdks/ledger/README.md)
-
-* [get_info](docs/sdks/ledger/README.md#get_info) - Show server information
-* [get_metrics](docs/sdks/ledger/README.md#get_metrics) - Read in memory metrics
-
-#### [Ledger.V1](docs/sdks/ledgerv1/README.md)
+### [Ledger.V1](docs/sdks/ledgerv1/README.md)
 
 * [create_transactions](docs/sdks/ledgerv1/README.md#create_transactions) - Create a new batch of transactions to a ledger
 * [add_metadata_on_transaction](docs/sdks/ledgerv1/README.md#add_metadata_on_transaction) - Set the metadata of a transaction by its ID
@@ -219,7 +214,7 @@ asyncio.run(main())
 * [~~run_script~~](docs/sdks/ledgerv1/README.md#run_script) - Execute a Numscript :warning: **Deprecated**
 * [update_mapping](docs/sdks/ledgerv1/README.md#update_mapping) - Update the mapping of a ledger
 
-#### [Ledger.V2](docs/sdks/ledgerv2/README.md)
+### [Ledger.V2](docs/sdks/ledgerv2/README.md)
 
 * [add_metadata_on_transaction](docs/sdks/ledgerv2/README.md#add_metadata_on_transaction) - Set the metadata of a transaction by its ID
 * [add_metadata_to_account](docs/sdks/ledgerv2/README.md#add_metadata_to_account) - Add metadata to an account
@@ -240,8 +235,10 @@ asyncio.run(main())
 * [get_account](docs/sdks/ledgerv2/README.md#get_account) - Get account by its address
 * [get_balances_aggregated](docs/sdks/ledgerv2/README.md#get_balances_aggregated) - Get the aggregated balances from selected accounts
 * [get_exporter_state](docs/sdks/ledgerv2/README.md#get_exporter_state) - Get exporter state
+* [get_info](docs/sdks/ledgerv2/README.md#get_info) - Show server information
 * [get_ledger](docs/sdks/ledgerv2/README.md#get_ledger) - Get a ledger
 * [get_ledger_info](docs/sdks/ledgerv2/README.md#get_ledger_info) - Get information about a ledger
+* [get_metrics](docs/sdks/ledgerv2/README.md#get_metrics) - Read in memory metrics
 * [get_pipeline_state](docs/sdks/ledgerv2/README.md#get_pipeline_state) - Get pipeline state
 * [get_schema](docs/sdks/ledgerv2/README.md#get_schema) - Get a schema for a ledger by version
 * [get_transaction](docs/sdks/ledgerv2/README.md#get_transaction) - Get transaction from a ledger by its ID
@@ -379,6 +376,7 @@ asyncio.run(main())
 * [get_account](docs/sdks/v3/README.md#get_account) - Get an account by ID
 * [get_account_balances](docs/sdks/v3/README.md#get_account_balances) - Get account balances
 * [get_bank_account](docs/sdks/v3/README.md#get_bank_account) - Get a Bank Account by ID
+* [get_connector_capabilities](docs/sdks/v3/README.md#get_connector_capabilities) - Get the plugin capabilities of an installed connector
 * [get_connector_config](docs/sdks/v3/README.md#get_connector_config) - Get a connector configuration by ID
 * [get_connector_schedule](docs/sdks/v3/README.md#get_connector_schedule) - Get a connector schedule by ID
 * [get_conversion](docs/sdks/v3/README.md#get_conversion) - Get a single conversion by its Formance ID
@@ -395,6 +393,7 @@ asyncio.run(main())
 * [install_connector](docs/sdks/v3/README.md#install_connector) - Install a connector
 * [list_accounts](docs/sdks/v3/README.md#list_accounts) - List all accounts
 * [list_bank_accounts](docs/sdks/v3/README.md#list_bank_accounts) - List all bank accounts
+* [list_connector_capabilities](docs/sdks/v3/README.md#list_connector_capabilities) - List the plugin capabilities advertised by every supported provider
 * [list_connector_configs](docs/sdks/v3/README.md#list_connector_configs) - List all connector configurations
 * [list_connector_schedule_instances](docs/sdks/v3/README.md#list_connector_schedule_instances) - List all connector schedule instances
 * [list_connector_schedules](docs/sdks/v3/README.md#list_connector_schedules) - List all connector schedules
@@ -426,14 +425,30 @@ Allows to check if users used the link and completed the oauth flow.
 
 ### [Reconciliation.V1](docs/sdks/reconciliationv1/README.md)
 
+* [accept_alert](docs/sdks/reconciliationv1/README.md#accept_alert) - Accept an alert (accepted_by_business)
+* [ack_alert](docs/sdks/reconciliationv1/README.md#ack_alert) - Acknowledge an alert
 * [create_policy](docs/sdks/reconciliationv1/README.md#create_policy) - Create a policy
+* [create_rule](docs/sdks/reconciliationv1/README.md#create_rule) - Create a rule
 * [delete_policy](docs/sdks/reconciliationv1/README.md#delete_policy) - Delete a policy
+* [delete_rule](docs/sdks/reconciliationv1/README.md#delete_rule) - Delete a rule (cascades to evaluations + alerts + alert events)
+* [evaluate_rule](docs/sdks/reconciliationv1/README.md#evaluate_rule) - Evaluate a rule now
+* [get_alert](docs/sdks/reconciliationv1/README.md#get_alert) - Get an alert
+* [get_evaluation](docs/sdks/reconciliationv1/README.md#get_evaluation) - Get an evaluation
 * [get_policy](docs/sdks/reconciliationv1/README.md#get_policy) - Get a policy
 * [get_reconciliation](docs/sdks/reconciliationv1/README.md#get_reconciliation) - Get a reconciliation
+* [get_rule](docs/sdks/reconciliationv1/README.md#get_rule) - Get a rule
 * [get_server_info_reconciliation](docs/sdks/reconciliationv1/README.md#get_server_info_reconciliation) - Get server info
+* [list_alert_events](docs/sdks/reconciliationv1/README.md#list_alert_events) - List alert events (append-only timeline)
+* [list_alerts](docs/sdks/reconciliationv1/README.md#list_alerts) - List alerts
+* [list_evaluations](docs/sdks/reconciliationv1/README.md#list_evaluations) - List evaluations
 * [list_policies](docs/sdks/reconciliationv1/README.md#list_policies) - List policies
 * [list_reconciliations](docs/sdks/reconciliationv1/README.md#list_reconciliations) - List reconciliations
+* [list_rules](docs/sdks/reconciliationv1/README.md#list_rules) - List rules
+* [patch_rule](docs/sdks/reconciliationv1/README.md#patch_rule) - Patch a rule (partial update)
 * [reconcile](docs/sdks/reconciliationv1/README.md#reconcile) - Reconcile using a policy
+* [resolve_alert](docs/sdks/reconciliationv1/README.md#resolve_alert) - Resolve an alert (fixed_by_booking)
+* [snooze_alert](docs/sdks/reconciliationv1/README.md#snooze_alert) - Snooze an alert's notifications until a future instant
+* [unsnooze_alert](docs/sdks/reconciliationv1/README.md#unsnooze_alert) - Lift a snooze early
 
 ### [~~Search.V1~~](docs/sdks/searchv1/README.md)
 
@@ -465,8 +480,13 @@ Allows to check if users used the link and completed the oauth flow.
 * [change_config_secret](docs/sdks/webhooksv1/README.md#change_config_secret) - Change the signing secret of a config
 * [deactivate_config](docs/sdks/webhooksv1/README.md#deactivate_config) - Deactivate one config
 * [delete_config](docs/sdks/webhooksv1/README.md#delete_config) - Delete one config
+* [get_deliveries](docs/sdks/webhooksv1/README.md#get_deliveries) - List webhook deliveries
+* [get_delivery](docs/sdks/webhooksv1/README.md#get_delivery) - Get a webhook delivery
+* [get_delivery_attempts](docs/sdks/webhooksv1/README.md#get_delivery_attempts) - List attempts for a webhook delivery
 * [get_many_configs](docs/sdks/webhooksv1/README.md#get_many_configs) - Get many configs
 * [insert_config](docs/sdks/webhooksv1/README.md#insert_config) - Insert a new config
+* [replay_deliveries](docs/sdks/webhooksv1/README.md#replay_deliveries) - Replay a page of failed or pending deliveries
+* [replay_delivery](docs/sdks/webhooksv1/README.md#replay_delivery) - Replay one failed or pending delivery
 * [test_config](docs/sdks/webhooksv1/README.md#test_config) - Test one config
 * [update_config](docs/sdks/webhooksv1/README.md#update_config) - Update one config
 
@@ -580,12 +600,20 @@ with SDK(
     res = None
     try:
 
-        res = sdk.ledger.get_info()
+        res = sdk.ledger.v2.add_metadata_on_transaction(request={
+            "request_body": {
+                "admin": "true",
+            },
+            "dry_run": True,
+            "id": 1234,
+            "ledger": "ledger001",
+            "schema_version": "v1.0.0",
+        })
 
-        assert res.v2_config_info is not None
+        assert res is not None
 
         # Handle response
-        print(res.v2_config_info)
+        print(res)
 
 
     except errors.SDKBaseError as e:
@@ -618,13 +646,13 @@ with SDK(
 
 
 **Inherit from [`SDKBaseError`](./src/formance_sdk_python/models/errors/sdkbaseerror.py)**:
-* [`V3ErrorResponse`](./src/formance_sdk_python/models/errors/v3errorresponse.py): Error. Applicable to 61 of 253 methods.*
-* [`PaymentsErrorResponse`](./src/formance_sdk_python/models/errors/paymentserrorresponse.py): Error. Applicable to 46 of 253 methods.*
-* [`ErrorsV2ErrorResponse`](./src/formance_sdk_python/models/errors/errorsv2errorresponse.py): Applicable to 44 of 253 methods.*
-* [`ErrorResponse`](./src/formance_sdk_python/models/errors/errorresponse.py): Applicable to 31 of 253 methods.*
-* [`ErrorsErrorResponse`](./src/formance_sdk_python/models/errors/errorserrorresponse.py): Applicable to 19 of 253 methods.*
-* [`V2Error`](./src/formance_sdk_python/models/errors/v2error.py): General error. Applicable to 18 of 253 methods.*
-* [`Error`](./src/formance_sdk_python/models/errors/error.py): General error. Applicable to 17 of 253 methods.*
+* [`V3ErrorResponse`](./src/formance_sdk_python/models/errors/v3errorresponse.py): Error. Applicable to 63 of 276 methods.*
+* [`PaymentsErrorResponse`](./src/formance_sdk_python/models/errors/paymentserrorresponse.py): Error. Applicable to 46 of 276 methods.*
+* [`ErrorsV2ErrorResponse`](./src/formance_sdk_python/models/errors/errorsv2errorresponse.py): Applicable to 44 of 276 methods.*
+* [`ErrorsErrorResponse`](./src/formance_sdk_python/models/errors/errorserrorresponse.py): Applicable to 43 of 276 methods.*
+* [`ErrorResponse`](./src/formance_sdk_python/models/errors/errorresponse.py): Applicable to 28 of 276 methods.*
+* [`V2Error`](./src/formance_sdk_python/models/errors/v2error.py): General error. Applicable to 18 of 276 methods.*
+* [`Error`](./src/formance_sdk_python/models/errors/error.py): General error. Applicable to 17 of 276 methods.*
 * [`ResponseValidationError`](./src/formance_sdk_python/models/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>

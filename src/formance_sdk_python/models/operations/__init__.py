@@ -5,6 +5,18 @@ from typing import Any, TYPE_CHECKING
 from formance_sdk_python.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
+    from .acceptalert import (
+        AcceptAlertRequest,
+        AcceptAlertRequestTypedDict,
+        AcceptAlertResponse,
+        AcceptAlertResponseTypedDict,
+    )
+    from .ackalert import (
+        AckAlertRequest,
+        AckAlertRequestTypedDict,
+        AckAlertResponse,
+        AckAlertResponseTypedDict,
+    )
     from .activateconfig import (
         ActivateConfigRequest,
         ActivateConfigRequestTypedDict,
@@ -82,6 +94,7 @@ if TYPE_CHECKING:
     from .createpayment import CreatePaymentResponse, CreatePaymentResponseTypedDict
     from .createpolicy import CreatePolicyResponse, CreatePolicyResponseTypedDict
     from .createpool import CreatePoolResponse, CreatePoolResponseTypedDict
+    from .createrule import CreateRuleResponse, CreateRuleResponseTypedDict
     from .createsecret import (
         CreateSecretRequest,
         CreateSecretRequestTypedDict,
@@ -154,6 +167,12 @@ if TYPE_CHECKING:
         DeletePoolResponse,
         DeletePoolResponseTypedDict,
     )
+    from .deleterule import (
+        DeleteRuleRequest,
+        DeleteRuleRequestTypedDict,
+        DeleteRuleResponse,
+        DeleteRuleResponseTypedDict,
+    )
     from .deletesecret import (
         DeleteSecretRequest,
         DeleteSecretRequestTypedDict,
@@ -178,6 +197,12 @@ if TYPE_CHECKING:
         DeleteWorkflowResponse,
         DeleteWorkflowResponseTypedDict,
     )
+    from .evaluaterule import (
+        EvaluateRuleRequest,
+        EvaluateRuleRequestTypedDict,
+        EvaluateRuleResponse,
+        EvaluateRuleResponseTypedDict,
+    )
     from .forwardbankaccount import (
         ForwardBankAccountRequest,
         ForwardBankAccountRequestTypedDict,
@@ -201,6 +226,12 @@ if TYPE_CHECKING:
         GetAccountBalancesRequestTypedDict,
         GetAccountBalancesResponse,
         GetAccountBalancesResponseTypedDict,
+    )
+    from .getalert import (
+        GetAlertRequest,
+        GetAlertRequestTypedDict,
+        GetAlertResponse,
+        GetAlertResponseTypedDict,
     )
     from .getbalance import (
         GetBalanceRequest,
@@ -237,6 +268,30 @@ if TYPE_CHECKING:
         GetConnectorTaskV1RequestTypedDict,
         GetConnectorTaskV1Response,
         GetConnectorTaskV1ResponseTypedDict,
+    )
+    from .getdeliveries import (
+        GetDeliveriesRequest,
+        GetDeliveriesRequestTypedDict,
+        GetDeliveriesResponse,
+        GetDeliveriesResponseTypedDict,
+    )
+    from .getdelivery import (
+        GetDeliveryRequest,
+        GetDeliveryRequestTypedDict,
+        GetDeliveryResponse,
+        GetDeliveryResponseTypedDict,
+    )
+    from .getdeliveryattempts import (
+        GetDeliveryAttemptsRequest,
+        GetDeliveryAttemptsRequestTypedDict,
+        GetDeliveryAttemptsResponse,
+        GetDeliveryAttemptsResponseTypedDict,
+    )
+    from .getevaluation import (
+        GetEvaluationRequest,
+        GetEvaluationRequestTypedDict,
+        GetEvaluationResponse,
+        GetEvaluationResponseTypedDict,
     )
     from .gethold import (
         GetHoldRequest,
@@ -328,6 +383,12 @@ if TYPE_CHECKING:
         GetReconciliationResponse,
         GetReconciliationResponseTypedDict,
     )
+    from .getrule import (
+        GetRuleRequest,
+        GetRuleRequestTypedDict,
+        GetRuleResponse,
+        GetRuleResponseTypedDict,
+    )
     from .getserverinfo_auth import (
         GetServerInfoAuthResponse,
         GetServerInfoAuthResponseTypedDict,
@@ -408,6 +469,18 @@ if TYPE_CHECKING:
         ListAccountsPaymentsResponse,
         ListAccountsPaymentsResponseTypedDict,
     )
+    from .listalertevents import (
+        ListAlertEventsRequest,
+        ListAlertEventsRequestTypedDict,
+        ListAlertEventsResponse,
+        ListAlertEventsResponseTypedDict,
+    )
+    from .listalerts import (
+        ListAlertsRequest,
+        ListAlertsRequestTypedDict,
+        ListAlertsResponse,
+        ListAlertsResponseTypedDict,
+    )
     from .listallconnectors import (
         ListAllConnectorsResponse,
         ListAllConnectorsResponseTypedDict,
@@ -440,6 +513,12 @@ if TYPE_CHECKING:
         ListConnectorTasksV1RequestTypedDict,
         ListConnectorTasksV1Response,
         ListConnectorTasksV1ResponseTypedDict,
+    )
+    from .listevaluations import (
+        ListEvaluationsRequest,
+        ListEvaluationsRequestTypedDict,
+        ListEvaluationsResponse,
+        ListEvaluationsResponseTypedDict,
     )
     from .listinstances import (
         ListInstancesRequest,
@@ -477,6 +556,12 @@ if TYPE_CHECKING:
         ListReconciliationsResponse,
         ListReconciliationsResponseTypedDict,
     )
+    from .listrules import (
+        ListRulesRequest,
+        ListRulesRequestTypedDict,
+        ListRulesResponse,
+        ListRulesResponseTypedDict,
+    )
     from .listtransactions import (
         ListTransactionsRequest,
         ListTransactionsRequestTypedDict,
@@ -509,6 +594,12 @@ if TYPE_CHECKING:
         ListWalletsResponseTypedDict,
     )
     from .listworkflows import ListWorkflowsResponse, ListWorkflowsResponseTypedDict
+    from .patchrule import (
+        PatchRuleRequest,
+        PatchRuleRequestTypedDict,
+        PatchRuleResponse,
+        PatchRuleResponseTypedDict,
+    )
     from .readclient import (
         ReadClientRequest,
         ReadClientRequestTypedDict,
@@ -557,6 +648,18 @@ if TYPE_CHECKING:
         RemoveAccountFromPoolResponse,
         RemoveAccountFromPoolResponseTypedDict,
     )
+    from .replaydeliveries import (
+        ReplayDeliveriesRequest,
+        ReplayDeliveriesRequestTypedDict,
+        ReplayDeliveriesResponse,
+        ReplayDeliveriesResponseTypedDict,
+    )
+    from .replaydelivery import (
+        ReplayDeliveryRequest,
+        ReplayDeliveryRequestTypedDict,
+        ReplayDeliveryResponse,
+        ReplayDeliveryResponseTypedDict,
+    )
     from .resetconnector import (
         ResetConnectorRequest,
         ResetConnectorRequestTypedDict,
@@ -568,6 +671,12 @@ if TYPE_CHECKING:
         ResetConnectorV1RequestTypedDict,
         ResetConnectorV1Response,
         ResetConnectorV1ResponseTypedDict,
+    )
+    from .resolvealert import (
+        ResolveAlertRequest,
+        ResolveAlertRequestTypedDict,
+        ResolveAlertResponse,
+        ResolveAlertResponseTypedDict,
     )
     from .retrytransferinitiation import (
         RetryTransferInitiationRequest,
@@ -608,6 +717,12 @@ if TYPE_CHECKING:
         SendEventResponse,
         SendEventResponseTypedDict,
     )
+    from .snoozealert import (
+        SnoozeAlertRequest,
+        SnoozeAlertRequestTypedDict,
+        SnoozeAlertResponse,
+        SnoozeAlertResponseTypedDict,
+    )
     from .testconfig import (
         TestConfigRequest,
         TestConfigRequestTypedDict,
@@ -631,6 +746,12 @@ if TYPE_CHECKING:
         UninstallConnectorV1RequestTypedDict,
         UninstallConnectorV1Response,
         UninstallConnectorV1ResponseTypedDict,
+    )
+    from .unsnoozealert import (
+        UnsnoozeAlertRequest,
+        UnsnoozeAlertRequestTypedDict,
+        UnsnoozeAlertResponse,
+        UnsnoozeAlertResponseTypedDict,
     )
     from .updatebankaccountmetadata import (
         UpdateBankAccountMetadataRequest,
@@ -1156,6 +1277,12 @@ if TYPE_CHECKING:
         V3GetBankAccountResponse,
         V3GetBankAccountResponseTypedDict,
     )
+    from .v3getconnectorcapabilities import (
+        V3GetConnectorCapabilitiesRequest,
+        V3GetConnectorCapabilitiesRequestTypedDict,
+        V3GetConnectorCapabilitiesResponse,
+        V3GetConnectorCapabilitiesResponseTypedDict,
+    )
     from .v3getconnectorconfig import (
         V3GetConnectorConfigRequest,
         V3GetConnectorConfigRequestTypedDict,
@@ -1251,6 +1378,12 @@ if TYPE_CHECKING:
         V3ListBankAccountsRequestTypedDict,
         V3ListBankAccountsResponse,
         V3ListBankAccountsResponseTypedDict,
+    )
+    from .v3listconnectorcapabilities import (
+        V3ListConnectorCapabilitiesRequest,
+        V3ListConnectorCapabilitiesRequestTypedDict,
+        V3ListConnectorCapabilitiesResponse,
+        V3ListConnectorCapabilitiesResponseTypedDict,
     )
     from .v3listconnectorconfigs import (
         V3ListConnectorConfigsResponse,
@@ -1414,6 +1547,14 @@ if TYPE_CHECKING:
     )
 
 __all__ = [
+    "AcceptAlertRequest",
+    "AcceptAlertRequestTypedDict",
+    "AcceptAlertResponse",
+    "AcceptAlertResponseTypedDict",
+    "AckAlertRequest",
+    "AckAlertRequestTypedDict",
+    "AckAlertResponse",
+    "AckAlertResponseTypedDict",
     "ActivateConfigRequest",
     "ActivateConfigRequestTypedDict",
     "ActivateConfigResponse",
@@ -1470,6 +1611,8 @@ __all__ = [
     "CreatePolicyResponseTypedDict",
     "CreatePoolResponse",
     "CreatePoolResponseTypedDict",
+    "CreateRuleResponse",
+    "CreateRuleResponseTypedDict",
     "CreateSecretRequest",
     "CreateSecretRequestTypedDict",
     "CreateSecretResponse",
@@ -1520,6 +1663,10 @@ __all__ = [
     "DeletePoolRequestTypedDict",
     "DeletePoolResponse",
     "DeletePoolResponseTypedDict",
+    "DeleteRuleRequest",
+    "DeleteRuleRequestTypedDict",
+    "DeleteRuleResponse",
+    "DeleteRuleResponseTypedDict",
     "DeleteSecretRequest",
     "DeleteSecretRequestTypedDict",
     "DeleteSecretResponse",
@@ -1536,6 +1683,10 @@ __all__ = [
     "DeleteWorkflowRequestTypedDict",
     "DeleteWorkflowResponse",
     "DeleteWorkflowResponseTypedDict",
+    "EvaluateRuleRequest",
+    "EvaluateRuleRequestTypedDict",
+    "EvaluateRuleResponse",
+    "EvaluateRuleResponseTypedDict",
     "ForwardBankAccountRequest",
     "ForwardBankAccountRequestTypedDict",
     "ForwardBankAccountResponse",
@@ -1552,6 +1703,10 @@ __all__ = [
     "GetAccountPaymentsRequestTypedDict",
     "GetAccountPaymentsResponse",
     "GetAccountPaymentsResponseTypedDict",
+    "GetAlertRequest",
+    "GetAlertRequestTypedDict",
+    "GetAlertResponse",
+    "GetAlertResponseTypedDict",
     "GetBalanceRequest",
     "GetBalanceRequestTypedDict",
     "GetBalanceResponse",
@@ -1576,6 +1731,22 @@ __all__ = [
     "GetConnectorTaskV1RequestTypedDict",
     "GetConnectorTaskV1Response",
     "GetConnectorTaskV1ResponseTypedDict",
+    "GetDeliveriesRequest",
+    "GetDeliveriesRequestTypedDict",
+    "GetDeliveriesResponse",
+    "GetDeliveriesResponseTypedDict",
+    "GetDeliveryAttemptsRequest",
+    "GetDeliveryAttemptsRequestTypedDict",
+    "GetDeliveryAttemptsResponse",
+    "GetDeliveryAttemptsResponseTypedDict",
+    "GetDeliveryRequest",
+    "GetDeliveryRequestTypedDict",
+    "GetDeliveryResponse",
+    "GetDeliveryResponseTypedDict",
+    "GetEvaluationRequest",
+    "GetEvaluationRequestTypedDict",
+    "GetEvaluationResponse",
+    "GetEvaluationResponseTypedDict",
     "GetHoldRequest",
     "GetHoldRequestTypedDict",
     "GetHoldResponse",
@@ -1638,6 +1809,10 @@ __all__ = [
     "GetReconciliationRequestTypedDict",
     "GetReconciliationResponse",
     "GetReconciliationResponseTypedDict",
+    "GetRuleRequest",
+    "GetRuleRequestTypedDict",
+    "GetRuleResponse",
+    "GetRuleResponseTypedDict",
     "GetServerInfoAuthResponse",
     "GetServerInfoAuthResponseTypedDict",
     "GetServerInfoOrchestrationResponse",
@@ -1690,6 +1865,14 @@ __all__ = [
     "ListAccountsPaymentsRequestTypedDict",
     "ListAccountsPaymentsResponse",
     "ListAccountsPaymentsResponseTypedDict",
+    "ListAlertEventsRequest",
+    "ListAlertEventsRequestTypedDict",
+    "ListAlertEventsResponse",
+    "ListAlertEventsResponseTypedDict",
+    "ListAlertsRequest",
+    "ListAlertsRequestTypedDict",
+    "ListAlertsResponse",
+    "ListAlertsResponseTypedDict",
     "ListAllConnectorsResponse",
     "ListAllConnectorsResponseTypedDict",
     "ListBalancesRequest",
@@ -1712,6 +1895,10 @@ __all__ = [
     "ListConnectorTasksV1RequestTypedDict",
     "ListConnectorTasksV1Response",
     "ListConnectorTasksV1ResponseTypedDict",
+    "ListEvaluationsRequest",
+    "ListEvaluationsRequestTypedDict",
+    "ListEvaluationsResponse",
+    "ListEvaluationsResponseTypedDict",
     "ListInstancesRequest",
     "ListInstancesRequestTypedDict",
     "ListInstancesResponse",
@@ -1736,6 +1923,10 @@ __all__ = [
     "ListReconciliationsRequestTypedDict",
     "ListReconciliationsResponse",
     "ListReconciliationsResponseTypedDict",
+    "ListRulesRequest",
+    "ListRulesRequestTypedDict",
+    "ListRulesResponse",
+    "ListRulesResponseTypedDict",
     "ListTransactionsRequest",
     "ListTransactionsRequestTypedDict",
     "ListTransactionsResponse",
@@ -1762,6 +1953,10 @@ __all__ = [
     "ListWorkflowsResponseTypedDict",
     "Metadata",
     "MetadataTypedDict",
+    "PatchRuleRequest",
+    "PatchRuleRequestTypedDict",
+    "PatchRuleResponse",
+    "PatchRuleResponseTypedDict",
     "ReadClientRequest",
     "ReadClientRequestTypedDict",
     "ReadClientResponse",
@@ -1794,6 +1989,14 @@ __all__ = [
     "RemoveAccountFromPoolRequestTypedDict",
     "RemoveAccountFromPoolResponse",
     "RemoveAccountFromPoolResponseTypedDict",
+    "ReplayDeliveriesRequest",
+    "ReplayDeliveriesRequestTypedDict",
+    "ReplayDeliveriesResponse",
+    "ReplayDeliveriesResponseTypedDict",
+    "ReplayDeliveryRequest",
+    "ReplayDeliveryRequestTypedDict",
+    "ReplayDeliveryResponse",
+    "ReplayDeliveryResponseTypedDict",
     "ResetConnectorRequest",
     "ResetConnectorRequestTypedDict",
     "ResetConnectorResponse",
@@ -1802,6 +2005,10 @@ __all__ = [
     "ResetConnectorV1RequestTypedDict",
     "ResetConnectorV1Response",
     "ResetConnectorV1ResponseTypedDict",
+    "ResolveAlertRequest",
+    "ResolveAlertRequestTypedDict",
+    "ResolveAlertResponse",
+    "ResolveAlertResponseTypedDict",
     "RetryTransferInitiationRequest",
     "RetryTransferInitiationRequestTypedDict",
     "RetryTransferInitiationResponse",
@@ -1830,6 +2037,10 @@ __all__ = [
     "SendEventRequestTypedDict",
     "SendEventResponse",
     "SendEventResponseTypedDict",
+    "SnoozeAlertRequest",
+    "SnoozeAlertRequestTypedDict",
+    "SnoozeAlertResponse",
+    "SnoozeAlertResponseTypedDict",
     "Sort",
     "TestConfigRequest",
     "TestConfigRequestTypedDict",
@@ -1847,6 +2058,10 @@ __all__ = [
     "UninstallConnectorV1RequestTypedDict",
     "UninstallConnectorV1Response",
     "UninstallConnectorV1ResponseTypedDict",
+    "UnsnoozeAlertRequest",
+    "UnsnoozeAlertRequestTypedDict",
+    "UnsnoozeAlertResponse",
+    "UnsnoozeAlertResponseTypedDict",
     "UpdateBankAccountMetadataRequest",
     "UpdateBankAccountMetadataRequestTypedDict",
     "UpdateBankAccountMetadataResponse",
@@ -2196,6 +2411,10 @@ __all__ = [
     "V3GetBankAccountRequestTypedDict",
     "V3GetBankAccountResponse",
     "V3GetBankAccountResponseTypedDict",
+    "V3GetConnectorCapabilitiesRequest",
+    "V3GetConnectorCapabilitiesRequestTypedDict",
+    "V3GetConnectorCapabilitiesResponse",
+    "V3GetConnectorCapabilitiesResponseTypedDict",
     "V3GetConnectorConfigRequest",
     "V3GetConnectorConfigRequestTypedDict",
     "V3GetConnectorConfigResponse",
@@ -2260,6 +2479,10 @@ __all__ = [
     "V3ListBankAccountsRequestTypedDict",
     "V3ListBankAccountsResponse",
     "V3ListBankAccountsResponseTypedDict",
+    "V3ListConnectorCapabilitiesRequest",
+    "V3ListConnectorCapabilitiesRequestTypedDict",
+    "V3ListConnectorCapabilitiesResponse",
+    "V3ListConnectorCapabilitiesResponseTypedDict",
     "V3ListConnectorConfigsResponse",
     "V3ListConnectorConfigsResponseTypedDict",
     "V3ListConnectorScheduleInstancesRequest",
@@ -2369,6 +2592,14 @@ __all__ = [
 ]
 
 _dynamic_imports: dict[str, str] = {
+    "AcceptAlertRequest": ".acceptalert",
+    "AcceptAlertRequestTypedDict": ".acceptalert",
+    "AcceptAlertResponse": ".acceptalert",
+    "AcceptAlertResponseTypedDict": ".acceptalert",
+    "AckAlertRequest": ".ackalert",
+    "AckAlertRequestTypedDict": ".ackalert",
+    "AckAlertResponse": ".ackalert",
+    "AckAlertResponseTypedDict": ".ackalert",
     "ActivateConfigRequest": ".activateconfig",
     "ActivateConfigRequestTypedDict": ".activateconfig",
     "ActivateConfigResponse": ".activateconfig",
@@ -2427,6 +2658,8 @@ _dynamic_imports: dict[str, str] = {
     "CreatePolicyResponseTypedDict": ".createpolicy",
     "CreatePoolResponse": ".createpool",
     "CreatePoolResponseTypedDict": ".createpool",
+    "CreateRuleResponse": ".createrule",
+    "CreateRuleResponseTypedDict": ".createrule",
     "CreateSecretRequest": ".createsecret",
     "CreateSecretRequestTypedDict": ".createsecret",
     "CreateSecretResponse": ".createsecret",
@@ -2477,6 +2710,10 @@ _dynamic_imports: dict[str, str] = {
     "DeletePoolRequestTypedDict": ".deletepool",
     "DeletePoolResponse": ".deletepool",
     "DeletePoolResponseTypedDict": ".deletepool",
+    "DeleteRuleRequest": ".deleterule",
+    "DeleteRuleRequestTypedDict": ".deleterule",
+    "DeleteRuleResponse": ".deleterule",
+    "DeleteRuleResponseTypedDict": ".deleterule",
     "DeleteSecretRequest": ".deletesecret",
     "DeleteSecretRequestTypedDict": ".deletesecret",
     "DeleteSecretResponse": ".deletesecret",
@@ -2493,6 +2730,10 @@ _dynamic_imports: dict[str, str] = {
     "DeleteWorkflowRequestTypedDict": ".deleteworkflow",
     "DeleteWorkflowResponse": ".deleteworkflow",
     "DeleteWorkflowResponseTypedDict": ".deleteworkflow",
+    "EvaluateRuleRequest": ".evaluaterule",
+    "EvaluateRuleRequestTypedDict": ".evaluaterule",
+    "EvaluateRuleResponse": ".evaluaterule",
+    "EvaluateRuleResponseTypedDict": ".evaluaterule",
     "ForwardBankAccountRequest": ".forwardbankaccount",
     "ForwardBankAccountRequestTypedDict": ".forwardbankaccount",
     "ForwardBankAccountResponse": ".forwardbankaccount",
@@ -2509,6 +2750,10 @@ _dynamic_imports: dict[str, str] = {
     "GetAccountBalancesRequestTypedDict": ".getaccountbalances",
     "GetAccountBalancesResponse": ".getaccountbalances",
     "GetAccountBalancesResponseTypedDict": ".getaccountbalances",
+    "GetAlertRequest": ".getalert",
+    "GetAlertRequestTypedDict": ".getalert",
+    "GetAlertResponse": ".getalert",
+    "GetAlertResponseTypedDict": ".getalert",
     "GetBalanceRequest": ".getbalance",
     "GetBalanceRequestTypedDict": ".getbalance",
     "GetBalanceResponse": ".getbalance",
@@ -2533,6 +2778,22 @@ _dynamic_imports: dict[str, str] = {
     "GetConnectorTaskV1RequestTypedDict": ".getconnectortaskv1",
     "GetConnectorTaskV1Response": ".getconnectortaskv1",
     "GetConnectorTaskV1ResponseTypedDict": ".getconnectortaskv1",
+    "GetDeliveriesRequest": ".getdeliveries",
+    "GetDeliveriesRequestTypedDict": ".getdeliveries",
+    "GetDeliveriesResponse": ".getdeliveries",
+    "GetDeliveriesResponseTypedDict": ".getdeliveries",
+    "GetDeliveryRequest": ".getdelivery",
+    "GetDeliveryRequestTypedDict": ".getdelivery",
+    "GetDeliveryResponse": ".getdelivery",
+    "GetDeliveryResponseTypedDict": ".getdelivery",
+    "GetDeliveryAttemptsRequest": ".getdeliveryattempts",
+    "GetDeliveryAttemptsRequestTypedDict": ".getdeliveryattempts",
+    "GetDeliveryAttemptsResponse": ".getdeliveryattempts",
+    "GetDeliveryAttemptsResponseTypedDict": ".getdeliveryattempts",
+    "GetEvaluationRequest": ".getevaluation",
+    "GetEvaluationRequestTypedDict": ".getevaluation",
+    "GetEvaluationResponse": ".getevaluation",
+    "GetEvaluationResponseTypedDict": ".getevaluation",
     "GetHoldRequest": ".gethold",
     "GetHoldRequestTypedDict": ".gethold",
     "GetHoldResponse": ".gethold",
@@ -2595,6 +2856,10 @@ _dynamic_imports: dict[str, str] = {
     "GetReconciliationRequestTypedDict": ".getreconciliation",
     "GetReconciliationResponse": ".getreconciliation",
     "GetReconciliationResponseTypedDict": ".getreconciliation",
+    "GetRuleRequest": ".getrule",
+    "GetRuleRequestTypedDict": ".getrule",
+    "GetRuleResponse": ".getrule",
+    "GetRuleResponseTypedDict": ".getrule",
     "GetServerInfoAuthResponse": ".getserverinfo_auth",
     "GetServerInfoAuthResponseTypedDict": ".getserverinfo_auth",
     "GetServerInfoOrchestrationResponse": ".getserverinfo_orchestration",
@@ -2647,6 +2912,14 @@ _dynamic_imports: dict[str, str] = {
     "ListAccountsPaymentsRequestTypedDict": ".listaccounts_payments",
     "ListAccountsPaymentsResponse": ".listaccounts_payments",
     "ListAccountsPaymentsResponseTypedDict": ".listaccounts_payments",
+    "ListAlertEventsRequest": ".listalertevents",
+    "ListAlertEventsRequestTypedDict": ".listalertevents",
+    "ListAlertEventsResponse": ".listalertevents",
+    "ListAlertEventsResponseTypedDict": ".listalertevents",
+    "ListAlertsRequest": ".listalerts",
+    "ListAlertsRequestTypedDict": ".listalerts",
+    "ListAlertsResponse": ".listalerts",
+    "ListAlertsResponseTypedDict": ".listalerts",
     "ListAllConnectorsResponse": ".listallconnectors",
     "ListAllConnectorsResponseTypedDict": ".listallconnectors",
     "ListBalancesRequest": ".listbalances",
@@ -2669,6 +2942,10 @@ _dynamic_imports: dict[str, str] = {
     "ListConnectorTasksV1RequestTypedDict": ".listconnectortasksv1",
     "ListConnectorTasksV1Response": ".listconnectortasksv1",
     "ListConnectorTasksV1ResponseTypedDict": ".listconnectortasksv1",
+    "ListEvaluationsRequest": ".listevaluations",
+    "ListEvaluationsRequestTypedDict": ".listevaluations",
+    "ListEvaluationsResponse": ".listevaluations",
+    "ListEvaluationsResponseTypedDict": ".listevaluations",
     "ListInstancesRequest": ".listinstances",
     "ListInstancesRequestTypedDict": ".listinstances",
     "ListInstancesResponse": ".listinstances",
@@ -2693,6 +2970,10 @@ _dynamic_imports: dict[str, str] = {
     "ListReconciliationsRequestTypedDict": ".listreconciliations",
     "ListReconciliationsResponse": ".listreconciliations",
     "ListReconciliationsResponseTypedDict": ".listreconciliations",
+    "ListRulesRequest": ".listrules",
+    "ListRulesRequestTypedDict": ".listrules",
+    "ListRulesResponse": ".listrules",
+    "ListRulesResponseTypedDict": ".listrules",
     "ListTransactionsRequest": ".listtransactions",
     "ListTransactionsRequestTypedDict": ".listtransactions",
     "ListTransactionsResponse": ".listtransactions",
@@ -2717,6 +2998,10 @@ _dynamic_imports: dict[str, str] = {
     "ListWalletsResponseTypedDict": ".listwallets",
     "ListWorkflowsResponse": ".listworkflows",
     "ListWorkflowsResponseTypedDict": ".listworkflows",
+    "PatchRuleRequest": ".patchrule",
+    "PatchRuleRequestTypedDict": ".patchrule",
+    "PatchRuleResponse": ".patchrule",
+    "PatchRuleResponseTypedDict": ".patchrule",
     "ReadClientRequest": ".readclient",
     "ReadClientRequestTypedDict": ".readclient",
     "ReadClientResponse": ".readclient",
@@ -2749,6 +3034,14 @@ _dynamic_imports: dict[str, str] = {
     "RemoveAccountFromPoolRequestTypedDict": ".removeaccountfrompool",
     "RemoveAccountFromPoolResponse": ".removeaccountfrompool",
     "RemoveAccountFromPoolResponseTypedDict": ".removeaccountfrompool",
+    "ReplayDeliveriesRequest": ".replaydeliveries",
+    "ReplayDeliveriesRequestTypedDict": ".replaydeliveries",
+    "ReplayDeliveriesResponse": ".replaydeliveries",
+    "ReplayDeliveriesResponseTypedDict": ".replaydeliveries",
+    "ReplayDeliveryRequest": ".replaydelivery",
+    "ReplayDeliveryRequestTypedDict": ".replaydelivery",
+    "ReplayDeliveryResponse": ".replaydelivery",
+    "ReplayDeliveryResponseTypedDict": ".replaydelivery",
     "ResetConnectorRequest": ".resetconnector",
     "ResetConnectorRequestTypedDict": ".resetconnector",
     "ResetConnectorResponse": ".resetconnector",
@@ -2757,6 +3050,10 @@ _dynamic_imports: dict[str, str] = {
     "ResetConnectorV1RequestTypedDict": ".resetconnectorv1",
     "ResetConnectorV1Response": ".resetconnectorv1",
     "ResetConnectorV1ResponseTypedDict": ".resetconnectorv1",
+    "ResolveAlertRequest": ".resolvealert",
+    "ResolveAlertRequestTypedDict": ".resolvealert",
+    "ResolveAlertResponse": ".resolvealert",
+    "ResolveAlertResponseTypedDict": ".resolvealert",
     "RetryTransferInitiationRequest": ".retrytransferinitiation",
     "RetryTransferInitiationRequestTypedDict": ".retrytransferinitiation",
     "RetryTransferInitiationResponse": ".retrytransferinitiation",
@@ -2785,6 +3082,10 @@ _dynamic_imports: dict[str, str] = {
     "SendEventRequestTypedDict": ".sendevent",
     "SendEventResponse": ".sendevent",
     "SendEventResponseTypedDict": ".sendevent",
+    "SnoozeAlertRequest": ".snoozealert",
+    "SnoozeAlertRequestTypedDict": ".snoozealert",
+    "SnoozeAlertResponse": ".snoozealert",
+    "SnoozeAlertResponseTypedDict": ".snoozealert",
     "TestConfigRequest": ".testconfig",
     "TestConfigRequestTypedDict": ".testconfig",
     "TestConfigResponse": ".testconfig",
@@ -2801,6 +3102,10 @@ _dynamic_imports: dict[str, str] = {
     "UninstallConnectorV1RequestTypedDict": ".uninstallconnectorv1",
     "UninstallConnectorV1Response": ".uninstallconnectorv1",
     "UninstallConnectorV1ResponseTypedDict": ".uninstallconnectorv1",
+    "UnsnoozeAlertRequest": ".unsnoozealert",
+    "UnsnoozeAlertRequestTypedDict": ".unsnoozealert",
+    "UnsnoozeAlertResponse": ".unsnoozealert",
+    "UnsnoozeAlertResponseTypedDict": ".unsnoozealert",
     "UpdateBankAccountMetadataRequest": ".updatebankaccountmetadata",
     "UpdateBankAccountMetadataRequestTypedDict": ".updatebankaccountmetadata",
     "UpdateBankAccountMetadataResponse": ".updatebankaccountmetadata",
@@ -3151,6 +3456,10 @@ _dynamic_imports: dict[str, str] = {
     "V3GetBankAccountRequestTypedDict": ".v3getbankaccount",
     "V3GetBankAccountResponse": ".v3getbankaccount",
     "V3GetBankAccountResponseTypedDict": ".v3getbankaccount",
+    "V3GetConnectorCapabilitiesRequest": ".v3getconnectorcapabilities",
+    "V3GetConnectorCapabilitiesRequestTypedDict": ".v3getconnectorcapabilities",
+    "V3GetConnectorCapabilitiesResponse": ".v3getconnectorcapabilities",
+    "V3GetConnectorCapabilitiesResponseTypedDict": ".v3getconnectorcapabilities",
     "V3GetConnectorConfigRequest": ".v3getconnectorconfig",
     "V3GetConnectorConfigRequestTypedDict": ".v3getconnectorconfig",
     "V3GetConnectorConfigResponse": ".v3getconnectorconfig",
@@ -3215,6 +3524,10 @@ _dynamic_imports: dict[str, str] = {
     "V3ListBankAccountsRequestTypedDict": ".v3listbankaccounts",
     "V3ListBankAccountsResponse": ".v3listbankaccounts",
     "V3ListBankAccountsResponseTypedDict": ".v3listbankaccounts",
+    "V3ListConnectorCapabilitiesRequest": ".v3listconnectorcapabilities",
+    "V3ListConnectorCapabilitiesRequestTypedDict": ".v3listconnectorcapabilities",
+    "V3ListConnectorCapabilitiesResponse": ".v3listconnectorcapabilities",
+    "V3ListConnectorCapabilitiesResponseTypedDict": ".v3listconnectorcapabilities",
     "V3ListConnectorConfigsResponse": ".v3listconnectorconfigs",
     "V3ListConnectorConfigsResponseTypedDict": ".v3listconnectorconfigs",
     "V3ListConnectorsRequest": ".v3listconnectors",

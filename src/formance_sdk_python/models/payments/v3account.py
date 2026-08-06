@@ -13,16 +13,8 @@ from formance_sdk_python.types import (
 )
 import pydantic
 from pydantic import model_serializer
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
-
-
-class V3AccountRawTypedDict(TypedDict):
-    pass
-
-
-class V3AccountRaw(BaseModel):
-    pass
 
 
 class V3AccountTypedDict(TypedDict):
@@ -30,7 +22,7 @@ class V3AccountTypedDict(TypedDict):
     created_at: datetime
     id: str
     provider: str
-    raw: V3AccountRawTypedDict
+    raw: Dict[str, Any]
     reference: str
     type: V3AccountTypeEnum
     connector: NotRequired[V3ConnectorBaseTypedDict]
@@ -48,7 +40,7 @@ class V3Account(BaseModel):
 
     provider: str
 
-    raw: V3AccountRaw
+    raw: Dict[str, Any]
 
     reference: str
 

@@ -6,6 +6,7 @@ from formance_sdk_python._hooks import HookContext
 from formance_sdk_python.models import errors, operations, reconciliation
 from formance_sdk_python.models.reconciliation import (
     policyrequest as reconciliation_policyrequest,
+    rulerequest as reconciliation_rulerequest,
 )
 from formance_sdk_python.types import BaseModel, OptionalNullable, UNSET
 from formance_sdk_python.utils.unmarshal_json_response import unmarshal_json_response
@@ -13,6 +14,398 @@ from typing import Any, Dict, Mapping, Optional, Union, cast
 
 
 class ReconciliationV1(BaseSDK):
+    def accept_alert(
+        self,
+        *,
+        request: Union[
+            operations.AcceptAlertRequest, operations.AcceptAlertRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.AcceptAlertResponse:
+        r"""Accept an alert (accepted_by_business)
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.AcceptAlertRequest)
+        request = cast(operations.AcceptAlertRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/reconciliation/alerts/{alertID}/accept",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.accept_alert_request,
+                False,
+                False,
+                "json",
+                reconciliation.AcceptAlertRequest,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="acceptAlert",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.AcceptAlertResponse(
+                alert_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def accept_alert_async(
+        self,
+        *,
+        request: Union[
+            operations.AcceptAlertRequest, operations.AcceptAlertRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.AcceptAlertResponse:
+        r"""Accept an alert (accepted_by_business)
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.AcceptAlertRequest)
+        request = cast(operations.AcceptAlertRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/reconciliation/alerts/{alertID}/accept",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.accept_alert_request,
+                False,
+                False,
+                "json",
+                reconciliation.AcceptAlertRequest,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="acceptAlert",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.AcceptAlertResponse(
+                alert_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def ack_alert(
+        self,
+        *,
+        request: Union[operations.AckAlertRequest, operations.AckAlertRequestTypedDict],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.AckAlertResponse:
+        r"""Acknowledge an alert
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.AckAlertRequest)
+        request = cast(operations.AckAlertRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/reconciliation/alerts/{alertID}/ack",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.ack_alert_request,
+                False,
+                False,
+                "json",
+                reconciliation.AckAlertRequest,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="ackAlert",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.AckAlertResponse(
+                alert_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def ack_alert_async(
+        self,
+        *,
+        request: Union[operations.AckAlertRequest, operations.AckAlertRequestTypedDict],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.AckAlertResponse:
+        r"""Acknowledge an alert
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.AckAlertRequest)
+        request = cast(operations.AckAlertRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/reconciliation/alerts/{alertID}/ack",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.ack_alert_request,
+                False,
+                False,
+                "json",
+                reconciliation.AckAlertRequest,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="ackAlert",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.AckAlertResponse(
+                alert_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
     def create_policy(
         self,
         *,
@@ -105,9 +498,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -203,9 +596,201 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def create_rule(
+        self,
+        *,
+        request: Union[
+            reconciliation_rulerequest.RuleRequest,
+            reconciliation_rulerequest.RuleRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.CreateRuleResponse:
+        r"""Create a rule
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, reconciliation.RuleRequest)
+        request = cast(reconciliation.RuleRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/reconciliation/rules",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", reconciliation.RuleRequest
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="createRule",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.CreateRuleResponse(
+                rule_response=unmarshal_json_response(
+                    Optional[reconciliation.RuleResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def create_rule_async(
+        self,
+        *,
+        request: Union[
+            reconciliation_rulerequest.RuleRequest,
+            reconciliation_rulerequest.RuleRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.CreateRuleResponse:
+        r"""Create a rule
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, reconciliation.RuleRequest)
+        request = cast(reconciliation.RuleRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/reconciliation/rules",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", reconciliation.RuleRequest
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="createRule",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["201"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return operations.CreateRuleResponse(
+                rule_response=unmarshal_json_response(
+                    Optional[reconciliation.RuleResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -294,9 +879,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -385,9 +970,771 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def delete_rule(
+        self,
+        *,
+        request: Union[
+            operations.DeleteRuleRequest, operations.DeleteRuleRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.DeleteRuleResponse:
+        r"""Delete a rule (cascades to evaluations + alerts + alert events)
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.DeleteRuleRequest)
+        request = cast(operations.DeleteRuleRequest, request)
+
+        req = self._build_request(
+            method="DELETE",
+            path="/api/reconciliation/rules/{ruleID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="deleteRule",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.DeleteRuleResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def delete_rule_async(
+        self,
+        *,
+        request: Union[
+            operations.DeleteRuleRequest, operations.DeleteRuleRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.DeleteRuleResponse:
+        r"""Delete a rule (cascades to evaluations + alerts + alert events)
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.DeleteRuleRequest)
+        request = cast(operations.DeleteRuleRequest, request)
+
+        req = self._build_request_async(
+            method="DELETE",
+            path="/api/reconciliation/rules/{ruleID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="deleteRule",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["204"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return operations.DeleteRuleResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def evaluate_rule(
+        self,
+        *,
+        request: Union[
+            operations.EvaluateRuleRequest, operations.EvaluateRuleRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.EvaluateRuleResponse:
+        r"""Evaluate a rule now
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.EvaluateRuleRequest)
+        request = cast(operations.EvaluateRuleRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/reconciliation/rules/{ruleID}/evaluate",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.evaluate_rule_request if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[reconciliation.EvaluateRuleRequest],
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="evaluateRule",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["200", "409"], c
+            ),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.EvaluateRuleResponse(
+                evaluation_response=unmarshal_json_response(
+                    Optional[reconciliation.EvaluationResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "409", "application/json"):
+            return operations.EvaluateRuleResponse(
+                error_response=unmarshal_json_response(
+                    Optional[reconciliation.ErrorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def evaluate_rule_async(
+        self,
+        *,
+        request: Union[
+            operations.EvaluateRuleRequest, operations.EvaluateRuleRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.EvaluateRuleResponse:
+        r"""Evaluate a rule now
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.EvaluateRuleRequest)
+        request = cast(operations.EvaluateRuleRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/reconciliation/rules/{ruleID}/evaluate",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.evaluate_rule_request if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[reconciliation.EvaluateRuleRequest],
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="evaluateRule",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["200", "409"], c
+            ),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.EvaluateRuleResponse(
+                evaluation_response=unmarshal_json_response(
+                    Optional[reconciliation.EvaluationResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "409", "application/json"):
+            return operations.EvaluateRuleResponse(
+                error_response=unmarshal_json_response(
+                    Optional[reconciliation.ErrorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def get_alert(
+        self,
+        *,
+        request: Union[operations.GetAlertRequest, operations.GetAlertRequestTypedDict],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetAlertResponse:
+        r"""Get an alert
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetAlertRequest)
+        request = cast(operations.GetAlertRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/reconciliation/alerts/{alertID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getAlert",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetAlertResponse(
+                alert_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def get_alert_async(
+        self,
+        *,
+        request: Union[operations.GetAlertRequest, operations.GetAlertRequestTypedDict],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetAlertResponse:
+        r"""Get an alert
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetAlertRequest)
+        request = cast(operations.GetAlertRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/reconciliation/alerts/{alertID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getAlert",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetAlertResponse(
+                alert_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def get_evaluation(
+        self,
+        *,
+        request: Union[
+            operations.GetEvaluationRequest, operations.GetEvaluationRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetEvaluationResponse:
+        r"""Get an evaluation
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetEvaluationRequest)
+        request = cast(operations.GetEvaluationRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/reconciliation/evaluations/{evaluationID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getEvaluation",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetEvaluationResponse(
+                evaluation_response=unmarshal_json_response(
+                    Optional[reconciliation.EvaluationResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def get_evaluation_async(
+        self,
+        *,
+        request: Union[
+            operations.GetEvaluationRequest, operations.GetEvaluationRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetEvaluationResponse:
+        r"""Get an evaluation
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetEvaluationRequest)
+        request = cast(operations.GetEvaluationRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/reconciliation/evaluations/{evaluationID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getEvaluation",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetEvaluationResponse(
+                evaluation_response=unmarshal_json_response(
+                    Optional[reconciliation.EvaluationResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -477,9 +1824,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -569,9 +1916,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -662,9 +2009,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -755,9 +2102,189 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def get_rule(
+        self,
+        *,
+        request: Union[operations.GetRuleRequest, operations.GetRuleRequestTypedDict],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetRuleResponse:
+        r"""Get a rule
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetRuleRequest)
+        request = cast(operations.GetRuleRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/reconciliation/rules/{ruleID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getRule",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetRuleResponse(
+                rule_response=unmarshal_json_response(
+                    Optional[reconciliation.RuleResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def get_rule_async(
+        self,
+        *,
+        request: Union[operations.GetRuleRequest, operations.GetRuleRequestTypedDict],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetRuleResponse:
+        r"""Get a rule
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.GetRuleRequest)
+        request = cast(operations.GetRuleRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/reconciliation/rules/{ruleID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getRule",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetRuleResponse(
+                rule_response=unmarshal_json_response(
+                    Optional[reconciliation.RuleResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -838,9 +2365,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -921,9 +2448,607 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def list_alert_events(
+        self,
+        *,
+        request: Union[
+            operations.ListAlertEventsRequest,
+            operations.ListAlertEventsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListAlertEventsResponse:
+        r"""List alert events (append-only timeline)
+
+        Returns a page of the events recorded for this alert — every evaluation
+        that touched it plus every manual transition. The list is append-only;
+        events are never modified or deleted. Ordered most-recent-first and
+        cursor-paginated: a long-lived alert's timeline is unbounded (one row per
+        failing evaluation), so callers must page through it.
+
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListAlertEventsRequest)
+        request = cast(operations.ListAlertEventsRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/reconciliation/alerts/{alertID}/events",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listAlertEvents",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListAlertEventsResponse(
+                alert_events_cursor_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertEventsCursorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def list_alert_events_async(
+        self,
+        *,
+        request: Union[
+            operations.ListAlertEventsRequest,
+            operations.ListAlertEventsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListAlertEventsResponse:
+        r"""List alert events (append-only timeline)
+
+        Returns a page of the events recorded for this alert — every evaluation
+        that touched it plus every manual transition. The list is append-only;
+        events are never modified or deleted. Ordered most-recent-first and
+        cursor-paginated: a long-lived alert's timeline is unbounded (one row per
+        failing evaluation), so callers must page through it.
+
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListAlertEventsRequest)
+        request = cast(operations.ListAlertEventsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/reconciliation/alerts/{alertID}/events",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listAlertEvents",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListAlertEventsResponse(
+                alert_events_cursor_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertEventsCursorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def list_alerts(
+        self,
+        *,
+        request: Union[
+            operations.ListAlertsRequest, operations.ListAlertsRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListAlertsResponse:
+        r"""List alerts
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListAlertsRequest)
+        request = cast(operations.ListAlertsRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/reconciliation/alerts",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, Any]],
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listAlerts",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListAlertsResponse(
+                alerts_cursor_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertsCursorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def list_alerts_async(
+        self,
+        *,
+        request: Union[
+            operations.ListAlertsRequest, operations.ListAlertsRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListAlertsResponse:
+        r"""List alerts
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListAlertsRequest)
+        request = cast(operations.ListAlertsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/reconciliation/alerts",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, Any]],
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listAlerts",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListAlertsResponse(
+                alerts_cursor_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertsCursorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def list_evaluations(
+        self,
+        *,
+        request: Union[
+            operations.ListEvaluationsRequest,
+            operations.ListEvaluationsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListEvaluationsResponse:
+        r"""List evaluations
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListEvaluationsRequest)
+        request = cast(operations.ListEvaluationsRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/reconciliation/evaluations",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, Any]],
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listEvaluations",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListEvaluationsResponse(
+                evaluations_cursor_response=unmarshal_json_response(
+                    Optional[reconciliation.EvaluationsCursorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def list_evaluations_async(
+        self,
+        *,
+        request: Union[
+            operations.ListEvaluationsRequest,
+            operations.ListEvaluationsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListEvaluationsResponse:
+        r"""List evaluations
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListEvaluationsRequest)
+        request = cast(operations.ListEvaluationsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/reconciliation/evaluations",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, Any]],
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listEvaluations",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListEvaluationsResponse(
+                evaluations_cursor_response=unmarshal_json_response(
+                    Optional[reconciliation.EvaluationsCursorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1020,9 +3145,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1119,9 +3244,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1219,9 +3344,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1319,9 +3444,405 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def list_rules(
+        self,
+        *,
+        request: Union[
+            operations.ListRulesRequest, operations.ListRulesRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListRulesResponse:
+        r"""List rules
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListRulesRequest)
+        request = cast(operations.ListRulesRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/api/reconciliation/rules",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, Any]],
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listRules",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListRulesResponse(
+                rules_cursor_response=unmarshal_json_response(
+                    Optional[reconciliation.RulesCursorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def list_rules_async(
+        self,
+        *,
+        request: Union[
+            operations.ListRulesRequest, operations.ListRulesRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ListRulesResponse:
+        r"""List rules
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ListRulesRequest)
+        request = cast(operations.ListRulesRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/reconciliation/rules",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[Dict[str, Any]],
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listRules",
+                oauth2_scopes=["reconciliation:read"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ListRulesResponse(
+                rules_cursor_response=unmarshal_json_response(
+                    Optional[reconciliation.RulesCursorResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def patch_rule(
+        self,
+        *,
+        request: Union[
+            operations.PatchRuleRequest, operations.PatchRuleRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.PatchRuleResponse:
+        r"""Patch a rule (partial update)
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.PatchRuleRequest)
+        request = cast(operations.PatchRuleRequest, request)
+
+        req = self._build_request(
+            method="PATCH",
+            path="/api/reconciliation/rules/{ruleID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.rule_patch_request,
+                False,
+                False,
+                "json",
+                reconciliation.RulePatchRequest,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="patchRule",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.PatchRuleResponse(
+                rule_response=unmarshal_json_response(
+                    Optional[reconciliation.RuleResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def patch_rule_async(
+        self,
+        *,
+        request: Union[
+            operations.PatchRuleRequest, operations.PatchRuleRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.PatchRuleResponse:
+        r"""Patch a rule (partial update)
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.PatchRuleRequest)
+        request = cast(operations.PatchRuleRequest, request)
+
+        req = self._build_request_async(
+            method="PATCH",
+            path="/api/reconciliation/rules/{ruleID}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.rule_patch_request,
+                False,
+                False,
+                "json",
+                reconciliation.RulePatchRequest,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="patchRule",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.PatchRuleResponse(
+                rule_response=unmarshal_json_response(
+                    Optional[reconciliation.RuleResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1420,9 +3941,9 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1521,8 +4042,626 @@ class ReconciliationV1(BaseSDK):
             )
         if utils.match_response(http_res, "default", "application/json"):
             response_data = unmarshal_json_response(
-                reconciliation.ErrorResponseData, http_res
+                reconciliation.ErrorsErrorResponseData, http_res
             )
-            raise reconciliation.ErrorResponse(response_data, http_res)
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def resolve_alert(
+        self,
+        *,
+        request: Union[
+            operations.ResolveAlertRequest, operations.ResolveAlertRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ResolveAlertResponse:
+        r"""Resolve an alert (fixed_by_booking)
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ResolveAlertRequest)
+        request = cast(operations.ResolveAlertRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/reconciliation/alerts/{alertID}/resolve",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.resolve_alert_request,
+                False,
+                False,
+                "json",
+                reconciliation.ResolveAlertRequest,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="resolveAlert",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ResolveAlertResponse(
+                alert_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def resolve_alert_async(
+        self,
+        *,
+        request: Union[
+            operations.ResolveAlertRequest, operations.ResolveAlertRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ResolveAlertResponse:
+        r"""Resolve an alert (fixed_by_booking)
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ResolveAlertRequest)
+        request = cast(operations.ResolveAlertRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/reconciliation/alerts/{alertID}/resolve",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.resolve_alert_request,
+                False,
+                False,
+                "json",
+                reconciliation.ResolveAlertRequest,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="resolveAlert",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.ResolveAlertResponse(
+                alert_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def snooze_alert(
+        self,
+        *,
+        request: Union[
+            operations.SnoozeAlertRequest, operations.SnoozeAlertRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.SnoozeAlertResponse:
+        r"""Snooze an alert's notifications until a future instant
+
+        Mutes the alert's webhook notifications until `until`. The alert keeps
+        failing, keeps its status, and keeps counting against period-green —
+        only its notifications are suppressed, even if the discrepancy changes.
+        The first failing evaluation at or after `until` clears the snooze and
+        notifies once. Re-snoozing overwrites the window. Rejects RESOLVED
+        alerts and a non-future `until`.
+
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.SnoozeAlertRequest)
+        request = cast(operations.SnoozeAlertRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/reconciliation/alerts/{alertID}/snooze",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.snooze_alert_request,
+                False,
+                False,
+                "json",
+                reconciliation.SnoozeAlertRequest,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="snoozeAlert",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.SnoozeAlertResponse(
+                alert_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def snooze_alert_async(
+        self,
+        *,
+        request: Union[
+            operations.SnoozeAlertRequest, operations.SnoozeAlertRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.SnoozeAlertResponse:
+        r"""Snooze an alert's notifications until a future instant
+
+        Mutes the alert's webhook notifications until `until`. The alert keeps
+        failing, keeps its status, and keeps counting against period-green —
+        only its notifications are suppressed, even if the discrepancy changes.
+        The first failing evaluation at or after `until` clears the snooze and
+        notifies once. Re-snoozing overwrites the window. Rejects RESOLVED
+        alerts and a non-future `until`.
+
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.SnoozeAlertRequest)
+        request = cast(operations.SnoozeAlertRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/reconciliation/alerts/{alertID}/snooze",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.snooze_alert_request,
+                False,
+                False,
+                "json",
+                reconciliation.SnoozeAlertRequest,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="snoozeAlert",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.SnoozeAlertResponse(
+                alert_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def unsnooze_alert(
+        self,
+        *,
+        request: Union[
+            operations.UnsnoozeAlertRequest, operations.UnsnoozeAlertRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.UnsnoozeAlertResponse:
+        r"""Lift a snooze early
+
+        Clears an active snooze before its window elapses. Idempotent —
+        unsnoozing an alert that is not snoozed returns it unchanged.
+
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.UnsnoozeAlertRequest)
+        request = cast(operations.UnsnoozeAlertRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/reconciliation/alerts/{alertID}/unsnooze",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.unsnooze_alert_request,
+                False,
+                False,
+                "json",
+                reconciliation.UnsnoozeAlertRequest,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="unsnoozeAlert",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.UnsnoozeAlertResponse(
+                alert_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def unsnooze_alert_async(
+        self,
+        *,
+        request: Union[
+            operations.UnsnoozeAlertRequest, operations.UnsnoozeAlertRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.UnsnoozeAlertResponse:
+        r"""Lift a snooze early
+
+        Clears an active snooze before its window elapses. Idempotent —
+        unsnoozing an alert that is not snoozed returns it unchanged.
+
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.UnsnoozeAlertRequest)
+        request = cast(operations.UnsnoozeAlertRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/reconciliation/alerts/{alertID}/unsnooze",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.unsnooze_alert_request,
+                False,
+                False,
+                "json",
+                reconciliation.UnsnoozeAlertRequest,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="unsnoozeAlert",
+                oauth2_scopes=["reconciliation:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.UnsnoozeAlertResponse(
+                alert_response=unmarshal_json_response(
+                    Optional[reconciliation.AlertResponse], http_res
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "application/json"):
+            response_data = unmarshal_json_response(
+                reconciliation.ErrorsErrorResponseData, http_res
+            )
+            raise reconciliation.ErrorsErrorResponse(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)

@@ -6,8 +6,10 @@ from .v2ledgeraccountsubject import (
     V2LedgerAccountSubjectTypedDict,
 )
 from .v2walletsubject import V2WalletSubject, V2WalletSubjectTypedDict
+from formance_sdk_python.utils import get_discriminator
+from pydantic import Discriminator, Tag
 from typing import Union
-from typing_extensions import TypeAliasType
+from typing_extensions import Annotated, TypeAliasType
 
 
 V2SubjectTypedDict = TypeAliasType(
@@ -16,4 +18,10 @@ V2SubjectTypedDict = TypeAliasType(
 )
 
 
-V2Subject = TypeAliasType("V2Subject", Union[V2LedgerAccountSubject, V2WalletSubject])
+V2Subject = Annotated[
+    Union[
+        Annotated[V2LedgerAccountSubject, Tag("ACCOUNT")],
+        Annotated[V2WalletSubject, Tag("WALLET")],
+    ],
+    Discriminator(lambda m: get_discriminator(m, "type", "type")),
+]

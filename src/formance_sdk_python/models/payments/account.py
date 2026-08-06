@@ -6,16 +6,8 @@ from datetime import datetime
 from formance_sdk_python.types import BaseModel, Nullable, UNSET_SENTINEL
 import pydantic
 from pydantic import model_serializer
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
-
-
-class AccountRawTypedDict(TypedDict):
-    pass
-
-
-class AccountRaw(BaseModel):
-    pass
 
 
 class AccountTypedDict(TypedDict):
@@ -26,7 +18,7 @@ class AccountTypedDict(TypedDict):
     default_currency: str
     id: str
     metadata: Nullable[Dict[str, str]]
-    raw: Nullable[AccountRawTypedDict]
+    raw: Nullable[Dict[str, Any]]
     reference: str
     type: AccountType
     pools: NotRequired[List[str]]
@@ -54,7 +46,7 @@ class Account(BaseModel):
 
     metadata: Nullable[Dict[str, str]]
 
-    raw: Nullable[AccountRaw]
+    raw: Nullable[Dict[str, Any]]
 
     reference: str
 
