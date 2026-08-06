@@ -15,10 +15,28 @@ value: payments.V3AdyenConfig = /* values here */
 value: payments.V3AtlarConfig = /* values here */
 ```
 
+### `payments.V3BankingbridgeConfig`
+
+```python
+value: payments.V3BankingbridgeConfig = /* values here */
+```
+
 ### `payments.V3BankingcircleConfig`
 
 ```python
 value: payments.V3BankingcircleConfig = /* values here */
+```
+
+### `payments.V3BitstampConfig`
+
+```python
+value: payments.V3BitstampConfig = /* values here */
+```
+
+### `payments.V3CoinbaseprimeConfig`
+
+```python
+value: payments.V3CoinbaseprimeConfig = /* values here */
 ```
 
 ### `payments.V3ColumnConfig`
@@ -39,6 +57,12 @@ value: payments.V3CurrencycloudConfig = /* values here */
 value: payments.V3DummypayConfig = /* values here */
 ```
 
+### `payments.V3FireblocksConfig`
+
+```python
+value: payments.V3FireblocksConfig = /* values here */
+```
+
 ### `payments.V3GenericConfig`
 
 ```python
@@ -49,6 +73,12 @@ value: payments.V3GenericConfig = /* values here */
 
 ```python
 value: payments.V3IncreaseConfig = /* values here */
+```
+
+### `payments.V3KrakenproConfig`
+
+```python
+value: payments.V3KrakenproConfig = /* values here */
 ```
 
 ### `payments.V3MangopayConfig`
@@ -87,6 +117,12 @@ value: payments.V3PowensConfig = /* values here */
 value: payments.V3QontoConfig = /* values here */
 ```
 
+### `payments.V3RoutableConfig`
+
+```python
+value: payments.V3RoutableConfig = /* values here */
+```
+
 ### `payments.V3StripeConfig`
 
 ```python
@@ -103,35 +139,5 @@ value: payments.V3TinkConfig = /* values here */
 
 ```python
 value: payments.V3WiseConfig = /* values here */
-```
-
-### `payments.V3BankingbridgeConfig`
-
-```python
-value: payments.V3BankingbridgeConfig = /* values here */
-```
-
-### `payments.V3BitstampConfig`
-
-```python
-value: payments.V3BitstampConfig = /* values here */
-```
-
-### `payments.V3CoinbaseprimeConfig`
-
-```python
-value: payments.V3CoinbaseprimeConfig = /* values here */
-```
-
-### `payments.V3FireblocksConfig`
-
-```python
-value: payments.V3FireblocksConfig = /* values here */
-```
-
-### `payments.V3RoutableConfig`
-
-```python
-value: payments.V3RoutableConfig = /* values here */
 ```
 

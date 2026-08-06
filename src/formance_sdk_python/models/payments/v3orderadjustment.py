@@ -14,16 +14,8 @@ from formance_sdk_python.utils import validate_int
 import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import BeforeValidator
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
-
-
-class V3OrderAdjustmentRawTypedDict(TypedDict):
-    r"""Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay."""
-
-
-class V3OrderAdjustmentRaw(BaseModel):
-    r"""Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay."""
 
 
 class V3OrderAdjustmentTypedDict(TypedDict):
@@ -59,7 +51,7 @@ class V3OrderAdjustmentTypedDict(TypedDict):
     fee_asset: NotRequired[Nullable[str]]
     r"""Currency the fee is denominated in, in `SYMBOL/precision` form."""
     metadata: NotRequired[Nullable[Dict[str, str]]]
-    raw: NotRequired[V3OrderAdjustmentRawTypedDict]
+    raw: NotRequired[Dict[str, Any]]
     r"""Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay."""
 
 
@@ -109,7 +101,7 @@ class V3OrderAdjustment(BaseModel):
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
 
-    raw: Optional[V3OrderAdjustmentRaw] = None
+    raw: Optional[Dict[str, Any]] = None
     r"""Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay."""
 
     @model_serializer(mode="wrap")

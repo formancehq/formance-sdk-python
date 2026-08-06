@@ -191,12 +191,7 @@ asyncio.run(main())
 * [read_user](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/authv1/README.md#read_user) - Read user
 * [update_client](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/authv1/README.md#update_client) - Update client
 
-### [Ledger](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledger/README.md)
-
-* [get_info](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledger/README.md#get_info) - Show server information
-* [get_metrics](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledger/README.md#get_metrics) - Read in memory metrics
-
-#### [Ledger.V1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv1/README.md)
+### [Ledger.V1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv1/README.md)
 
 * [create_transactions](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv1/README.md#create_transactions) - Create a new batch of transactions to a ledger
 * [add_metadata_on_transaction](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv1/README.md#add_metadata_on_transaction) - Set the metadata of a transaction by its ID
@@ -219,7 +214,7 @@ asyncio.run(main())
 * [~~run_script~~](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv1/README.md#run_script) - Execute a Numscript :warning: **Deprecated**
 * [update_mapping](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv1/README.md#update_mapping) - Update the mapping of a ledger
 
-#### [Ledger.V2](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md)
+### [Ledger.V2](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md)
 
 * [add_metadata_on_transaction](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#add_metadata_on_transaction) - Set the metadata of a transaction by its ID
 * [add_metadata_to_account](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#add_metadata_to_account) - Add metadata to an account
@@ -240,8 +235,10 @@ asyncio.run(main())
 * [get_account](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_account) - Get account by its address
 * [get_balances_aggregated](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_balances_aggregated) - Get the aggregated balances from selected accounts
 * [get_exporter_state](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_exporter_state) - Get exporter state
+* [get_info](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_info) - Show server information
 * [get_ledger](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_ledger) - Get a ledger
 * [get_ledger_info](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_ledger_info) - Get information about a ledger
+* [get_metrics](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_metrics) - Read in memory metrics
 * [get_pipeline_state](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_pipeline_state) - Get pipeline state
 * [get_schema](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_schema) - Get a schema for a ledger by version
 * [get_transaction](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/ledgerv2/README.md#get_transaction) - Get transaction from a ledger by its ID
@@ -379,6 +376,7 @@ asyncio.run(main())
 * [get_account](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_account) - Get an account by ID
 * [get_account_balances](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_account_balances) - Get account balances
 * [get_bank_account](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_bank_account) - Get a Bank Account by ID
+* [get_connector_capabilities](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_connector_capabilities) - Get the plugin capabilities of an installed connector
 * [get_connector_config](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_connector_config) - Get a connector configuration by ID
 * [get_connector_schedule](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_connector_schedule) - Get a connector schedule by ID
 * [get_conversion](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#get_conversion) - Get a single conversion by its Formance ID
@@ -395,6 +393,7 @@ asyncio.run(main())
 * [install_connector](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#install_connector) - Install a connector
 * [list_accounts](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_accounts) - List all accounts
 * [list_bank_accounts](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_bank_accounts) - List all bank accounts
+* [list_connector_capabilities](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_connector_capabilities) - List the plugin capabilities advertised by every supported provider
 * [list_connector_configs](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_connector_configs) - List all connector configurations
 * [list_connector_schedule_instances](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_connector_schedule_instances) - List all connector schedule instances
 * [list_connector_schedules](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/v3/README.md#list_connector_schedules) - List all connector schedules
@@ -426,14 +425,30 @@ Allows to check if users used the link and completed the oauth flow.
 
 ### [Reconciliation.V1](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md)
 
+* [accept_alert](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#accept_alert) - Accept an alert (accepted_by_business)
+* [ack_alert](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#ack_alert) - Acknowledge an alert
 * [create_policy](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#create_policy) - Create a policy
+* [create_rule](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#create_rule) - Create a rule
 * [delete_policy](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#delete_policy) - Delete a policy
+* [delete_rule](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#delete_rule) - Delete a rule (cascades to evaluations + alerts + alert events)
+* [evaluate_rule](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#evaluate_rule) - Evaluate a rule now
+* [get_alert](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#get_alert) - Get an alert
+* [get_evaluation](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#get_evaluation) - Get an evaluation
 * [get_policy](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#get_policy) - Get a policy
 * [get_reconciliation](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#get_reconciliation) - Get a reconciliation
+* [get_rule](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#get_rule) - Get a rule
 * [get_server_info_reconciliation](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#get_server_info_reconciliation) - Get server info
+* [list_alert_events](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#list_alert_events) - List alert events (append-only timeline)
+* [list_alerts](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#list_alerts) - List alerts
+* [list_evaluations](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#list_evaluations) - List evaluations
 * [list_policies](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#list_policies) - List policies
 * [list_reconciliations](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#list_reconciliations) - List reconciliations
+* [list_rules](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#list_rules) - List rules
+* [patch_rule](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#patch_rule) - Patch a rule (partial update)
 * [reconcile](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#reconcile) - Reconcile using a policy
+* [resolve_alert](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#resolve_alert) - Resolve an alert (fixed_by_booking)
+* [snooze_alert](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#snooze_alert) - Snooze an alert's notifications until a future instant
+* [unsnooze_alert](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/reconciliationv1/README.md#unsnooze_alert) - Lift a snooze early
 
 ### [~~Search.V1~~](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/searchv1/README.md)
 
@@ -465,8 +480,13 @@ Allows to check if users used the link and completed the oauth flow.
 * [change_config_secret](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#change_config_secret) - Change the signing secret of a config
 * [deactivate_config](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#deactivate_config) - Deactivate one config
 * [delete_config](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#delete_config) - Delete one config
+* [get_deliveries](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#get_deliveries) - List webhook deliveries
+* [get_delivery](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#get_delivery) - Get a webhook delivery
+* [get_delivery_attempts](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#get_delivery_attempts) - List attempts for a webhook delivery
 * [get_many_configs](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#get_many_configs) - Get many configs
 * [insert_config](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#insert_config) - Insert a new config
+* [replay_deliveries](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#replay_deliveries) - Replay a page of failed or pending deliveries
+* [replay_delivery](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#replay_delivery) - Replay one failed or pending delivery
 * [test_config](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#test_config) - Test one config
 * [update_config](https://github.com/formancehq/formance-sdk-python/blob/master/./docs/sdks/webhooksv1/README.md#update_config) - Update one config
 
@@ -580,12 +600,20 @@ with SDK(
     res = None
     try:
 
-        res = sdk.ledger.get_info()
+        res = sdk.ledger.v2.add_metadata_on_transaction(request={
+            "request_body": {
+                "admin": "true",
+            },
+            "dry_run": True,
+            "id": 1234,
+            "ledger": "ledger001",
+            "schema_version": "v1.0.0",
+        })
 
-        assert res.v2_config_info is not None
+        assert res is not None
 
         # Handle response
-        print(res.v2_config_info)
+        print(res)
 
 
     except errors.SDKBaseError as e:
@@ -618,13 +646,13 @@ with SDK(
 
 
 **Inherit from [`SDKBaseError`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/sdkbaseerror.py)**:
-* [`V3ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v3errorresponse.py): Error. Applicable to 61 of 253 methods.*
-* [`PaymentsErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/paymentserrorresponse.py): Error. Applicable to 46 of 253 methods.*
-* [`ErrorsV2ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/errorsv2errorresponse.py): Applicable to 44 of 253 methods.*
-* [`ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/errorresponse.py): Applicable to 31 of 253 methods.*
-* [`ErrorsErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/errorserrorresponse.py): Applicable to 19 of 253 methods.*
-* [`V2Error`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v2error.py): General error. Applicable to 18 of 253 methods.*
-* [`Error`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/error.py): General error. Applicable to 17 of 253 methods.*
+* [`V3ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v3errorresponse.py): Error. Applicable to 63 of 276 methods.*
+* [`PaymentsErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/paymentserrorresponse.py): Error. Applicable to 46 of 276 methods.*
+* [`ErrorsV2ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/errorsv2errorresponse.py): Applicable to 44 of 276 methods.*
+* [`ErrorsErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/errorserrorresponse.py): Applicable to 43 of 276 methods.*
+* [`ErrorResponse`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/errorresponse.py): Applicable to 28 of 276 methods.*
+* [`V2Error`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/v2error.py): General error. Applicable to 18 of 276 methods.*
+* [`Error`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/error.py): General error. Applicable to 17 of 276 methods.*
 * [`ResponseValidationError`](https://github.com/formancehq/formance-sdk-python/blob/master/././src/formance_sdk_python/models/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>

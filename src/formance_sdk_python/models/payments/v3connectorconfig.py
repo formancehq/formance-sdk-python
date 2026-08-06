@@ -13,6 +13,7 @@ from .v3dummypayconfig import V3DummypayConfig, V3DummypayConfigTypedDict
 from .v3fireblocksconfig import V3FireblocksConfig, V3FireblocksConfigTypedDict
 from .v3genericconfig import V3GenericConfig, V3GenericConfigTypedDict
 from .v3increaseconfig import V3IncreaseConfig, V3IncreaseConfigTypedDict
+from .v3krakenproconfig import V3KrakenproConfig, V3KrakenproConfigTypedDict
 from .v3mangopayconfig import V3MangopayConfig, V3MangopayConfigTypedDict
 from .v3modulrconfig import V3ModulrConfig, V3ModulrConfigTypedDict
 from .v3moneycorpconfig import V3MoneycorpConfig, V3MoneycorpConfigTypedDict
@@ -23,8 +24,10 @@ from .v3routableconfig import V3RoutableConfig, V3RoutableConfigTypedDict
 from .v3stripeconfig import V3StripeConfig, V3StripeConfigTypedDict
 from .v3tinkconfig import V3TinkConfig, V3TinkConfigTypedDict
 from .v3wiseconfig import V3WiseConfig, V3WiseConfigTypedDict
+from formance_sdk_python.utils import get_discriminator
+from pydantic import Discriminator, Tag
 from typing import Union
-from typing_extensions import TypeAliasType
+from typing_extensions import Annotated, TypeAliasType
 
 
 V3ConnectorConfigTypedDict = TypeAliasType(
@@ -35,17 +38,18 @@ V3ConnectorConfigTypedDict = TypeAliasType(
         V3WiseConfigTypedDict,
         V3ColumnConfigTypedDict,
         V3MoneycorpConfigTypedDict,
-        V3AtlarConfigTypedDict,
+        V3BitstampConfigTypedDict,
         V3CurrencycloudConfigTypedDict,
         V3IncreaseConfigTypedDict,
         V3MangopayConfigTypedDict,
         V3ModulrConfigTypedDict,
         V3RoutableConfigTypedDict,
         V3PlaidConfigTypedDict,
-        V3FireblocksConfigTypedDict,
+        V3KrakenproConfigTypedDict,
         V3DummypayConfigTypedDict,
-        V3BitstampConfigTypedDict,
+        V3FireblocksConfigTypedDict,
         V3TinkConfigTypedDict,
+        V3AtlarConfigTypedDict,
         V3QontoConfigTypedDict,
         V3BankingbridgeConfigTypedDict,
         V3CoinbaseprimeConfigTypedDict,
@@ -56,30 +60,31 @@ V3ConnectorConfigTypedDict = TypeAliasType(
 )
 
 
-V3ConnectorConfig = TypeAliasType(
-    "V3ConnectorConfig",
+V3ConnectorConfig = Annotated[
     Union[
-        V3StripeConfig,
-        V3GenericConfig,
-        V3WiseConfig,
-        V3ColumnConfig,
-        V3MoneycorpConfig,
-        V3AtlarConfig,
-        V3CurrencycloudConfig,
-        V3IncreaseConfig,
-        V3MangopayConfig,
-        V3ModulrConfig,
-        V3RoutableConfig,
-        V3PlaidConfig,
-        V3FireblocksConfig,
-        V3DummypayConfig,
-        V3BitstampConfig,
-        V3TinkConfig,
-        V3QontoConfig,
-        V3BankingbridgeConfig,
-        V3CoinbaseprimeConfig,
-        V3AdyenConfig,
-        V3BankingcircleConfig,
-        V3PowensConfig,
+        Annotated[V3AdyenConfig, Tag("Adyen")],
+        Annotated[V3AtlarConfig, Tag("Atlar")],
+        Annotated[V3BankingbridgeConfig, Tag("Bankingbridge")],
+        Annotated[V3BankingcircleConfig, Tag("Bankingcircle")],
+        Annotated[V3BitstampConfig, Tag("Bitstamp")],
+        Annotated[V3CoinbaseprimeConfig, Tag("Coinbaseprime")],
+        Annotated[V3ColumnConfig, Tag("Column")],
+        Annotated[V3CurrencycloudConfig, Tag("Currencycloud")],
+        Annotated[V3DummypayConfig, Tag("Dummypay")],
+        Annotated[V3FireblocksConfig, Tag("Fireblocks")],
+        Annotated[V3GenericConfig, Tag("Generic")],
+        Annotated[V3IncreaseConfig, Tag("Increase")],
+        Annotated[V3KrakenproConfig, Tag("Krakenpro")],
+        Annotated[V3MangopayConfig, Tag("Mangopay")],
+        Annotated[V3ModulrConfig, Tag("Modulr")],
+        Annotated[V3MoneycorpConfig, Tag("Moneycorp")],
+        Annotated[V3PlaidConfig, Tag("Plaid")],
+        Annotated[V3PowensConfig, Tag("Powens")],
+        Annotated[V3QontoConfig, Tag("Qonto")],
+        Annotated[V3RoutableConfig, Tag("Routable")],
+        Annotated[V3StripeConfig, Tag("Stripe")],
+        Annotated[V3TinkConfig, Tag("Tink")],
+        Annotated[V3WiseConfig, Tag("Wise")],
     ],
-)
+    Discriminator(lambda m: get_discriminator(m, "provider", "provider")),
+]

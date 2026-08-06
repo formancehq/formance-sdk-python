@@ -1,0 +1,11 @@
+# ReplayDeliveryResponse
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `content_type`                                                                   | *str*                                                                            | :heavy_check_mark:                                                               | HTTP response content type for this operation                                    |
+| `delivery_response`                                                              | [Optional[webhooks.DeliveryResponse]](../../models/webhooks/deliveryresponse.md) | :heavy_minus_sign:                                                               | Delivery synchronously placed back in the durable queue.                         |
+| `status_code`                                                                    | *int*                                                                            | :heavy_check_mark:                                                               | HTTP response status code for this operation                                     |
+| `raw_response`                                                                   | [httpx.Response](https://www.python-httpx.org/api/#response)                     | :heavy_check_mark:                                                               | Raw HTTP response; suitable for custom response parsing                          |

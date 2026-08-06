@@ -2,16 +2,13 @@
 
 from __future__ import annotations
 from datetime import datetime
-from enum import Enum
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
+from formance_sdk_python.utils import validate_const
 import pydantic
-from pydantic import model_serializer
-from typing import Optional, Union
+from pydantic import Field, model_serializer
+from pydantic.functional_validators import AfterValidator
+from typing import Literal, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
-
-
-class V2QueryParamsResourceVolumes(str, Enum):
-    VOLUMES = "volumes"
 
 
 class QueryTemplateVolumeParamsTypedDict(TypedDict):
@@ -30,7 +27,7 @@ class QueryTemplateVolumeParamsTypedDict(TypedDict):
 
     """
     pit: NotRequired[datetime]
-    resource: NotRequired[V2QueryParamsResourceVolumes]
+    resource: Literal["volumes"]
     sort: NotRequired[str]
     r"""Sort results using a field name and order (ascending or descending).
     Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
@@ -62,7 +59,10 @@ class QueryTemplateVolumeParams(BaseModel):
 
     pit: Optional[datetime] = None
 
-    resource: Optional[V2QueryParamsResourceVolumes] = None
+    RESOURCE: Annotated[
+        Annotated[Literal["volumes"], AfterValidator(validate_const("volumes"))],
+        pydantic.Field(alias="resource"),
+    ] = "volumes"
 
     sort: Optional[str] = None
     r"""Sort results using a field name and order (ascending or descending).
@@ -73,16 +73,7 @@ class QueryTemplateVolumeParams(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            [
-                "cursor",
-                "expand",
-                "groupBy",
-                "insertionDate",
-                "pageSize",
-                "pit",
-                "resource",
-                "sort",
-            ]
+            ["cursor", "expand", "groupBy", "insertionDate", "pageSize", "pit", "sort"]
         )
         serialized = handler(self)
         m = {}
@@ -96,10 +87,6 @@ class QueryTemplateVolumeParams(BaseModel):
                     m[k] = val
 
         return m
-
-
-class V2QueryParamsResourceLogs(str, Enum):
-    LOGS = "logs"
 
 
 class QueryTemplateLogParamsTypedDict(TypedDict):
@@ -116,7 +103,7 @@ class QueryTemplateLogParamsTypedDict(TypedDict):
 
     """
     pit: NotRequired[datetime]
-    resource: NotRequired[V2QueryParamsResourceLogs]
+    resource: Literal["logs"]
     sort: NotRequired[str]
     r"""Sort results using a field name and order (ascending or descending).
     Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
@@ -142,7 +129,10 @@ class QueryTemplateLogParams(BaseModel):
 
     pit: Optional[datetime] = None
 
-    resource: Optional[V2QueryParamsResourceLogs] = None
+    RESOURCE: Annotated[
+        Annotated[Literal["logs"], AfterValidator(validate_const("logs"))],
+        pydantic.Field(alias="resource"),
+    ] = "logs"
 
     sort: Optional[str] = None
     r"""Sort results using a field name and order (ascending or descending).
@@ -152,9 +142,7 @@ class QueryTemplateLogParams(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(
-            ["cursor", "expand", "pageSize", "pit", "resource", "sort"]
-        )
+        optional_fields = set(["cursor", "expand", "pageSize", "pit", "sort"])
         serialized = handler(self)
         m = {}
 
@@ -167,10 +155,6 @@ class QueryTemplateLogParams(BaseModel):
                     m[k] = val
 
         return m
-
-
-class V2QueryParamsResourceTransactions(str, Enum):
-    TRANSACTIONS = "transactions"
 
 
 class QueryTemplateTransactionParamsTypedDict(TypedDict):
@@ -187,7 +171,7 @@ class QueryTemplateTransactionParamsTypedDict(TypedDict):
 
     """
     pit: NotRequired[datetime]
-    resource: NotRequired[V2QueryParamsResourceTransactions]
+    resource: Literal["transactions"]
     sort: NotRequired[str]
     r"""Sort results using a field name and order (ascending or descending).
     Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
@@ -213,7 +197,12 @@ class QueryTemplateTransactionParams(BaseModel):
 
     pit: Optional[datetime] = None
 
-    resource: Optional[V2QueryParamsResourceTransactions] = None
+    RESOURCE: Annotated[
+        Annotated[
+            Literal["transactions"], AfterValidator(validate_const("transactions"))
+        ],
+        pydantic.Field(alias="resource"),
+    ] = "transactions"
 
     sort: Optional[str] = None
     r"""Sort results using a field name and order (ascending or descending).
@@ -223,9 +212,7 @@ class QueryTemplateTransactionParams(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(
-            ["cursor", "expand", "pageSize", "pit", "resource", "sort"]
-        )
+        optional_fields = set(["cursor", "expand", "pageSize", "pit", "sort"])
         serialized = handler(self)
         m = {}
 
@@ -238,10 +225,6 @@ class QueryTemplateTransactionParams(BaseModel):
                     m[k] = val
 
         return m
-
-
-class V2QueryParamsResourceAccounts(str, Enum):
-    ACCOUNTS = "accounts"
 
 
 class QueryTemplateAccountParamsTypedDict(TypedDict):
@@ -258,7 +241,7 @@ class QueryTemplateAccountParamsTypedDict(TypedDict):
 
     """
     pit: NotRequired[datetime]
-    resource: NotRequired[V2QueryParamsResourceAccounts]
+    resource: Literal["accounts"]
     sort: NotRequired[str]
     r"""Sort results using a field name and order (ascending or descending).
     Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
@@ -284,7 +267,10 @@ class QueryTemplateAccountParams(BaseModel):
 
     pit: Optional[datetime] = None
 
-    resource: Optional[V2QueryParamsResourceAccounts] = None
+    RESOURCE: Annotated[
+        Annotated[Literal["accounts"], AfterValidator(validate_const("accounts"))],
+        pydantic.Field(alias="resource"),
+    ] = "accounts"
 
     sort: Optional[str] = None
     r"""Sort results using a field name and order (ascending or descending).
@@ -294,9 +280,7 @@ class QueryTemplateAccountParams(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(
-            ["cursor", "expand", "pageSize", "pit", "resource", "sort"]
-        )
+        optional_fields = set(["cursor", "expand", "pageSize", "pit", "sort"])
         serialized = handler(self)
         m = {}
 
@@ -322,15 +306,15 @@ V2QueryParamsTypedDict = TypeAliasType(
 )
 
 
-V2QueryParams = TypeAliasType(
-    "V2QueryParams",
+V2QueryParams = Annotated[
     Union[
         QueryTemplateAccountParams,
         QueryTemplateTransactionParams,
         QueryTemplateLogParams,
         QueryTemplateVolumeParams,
     ],
-)
+    Field(discriminator="RESOURCE"),
+]
 
 
 try:

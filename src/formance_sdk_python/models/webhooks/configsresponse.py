@@ -8,26 +8,26 @@ from typing import List
 from typing_extensions import Annotated, TypedDict
 
 
-class CursorTypedDict(TypedDict):
+class ConfigsResponseCursorTypedDict(TypedDict):
     data: List[WebhooksConfigTypedDict]
     has_more: bool
 
 
-class Cursor(BaseModel):
+class ConfigsResponseCursor(BaseModel):
     data: List[WebhooksConfig]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
 
 
 class ConfigsResponseTypedDict(TypedDict):
-    cursor: CursorTypedDict
+    cursor: ConfigsResponseCursorTypedDict
 
 
 class ConfigsResponse(BaseModel):
-    cursor: Cursor
+    cursor: ConfigsResponseCursor
 
 
 try:
-    Cursor.model_rebuild()
+    ConfigsResponseCursor.model_rebuild()
 except NameError:
     pass

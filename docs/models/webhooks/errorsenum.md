@@ -16,3 +16,4 @@ value = ErrorsEnum.INTERNAL
 | `INTERNAL`   | INTERNAL     |
 | `VALIDATION` | VALIDATION   |
 | `NOT_FOUND`  | NOT_FOUND    |
+| `CONFLICT`   | CONFLICT     |

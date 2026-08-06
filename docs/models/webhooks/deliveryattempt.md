@@ -1,0 +1,18 @@
+# DeliveryAttempt
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `attempt_number`                                                     | *int*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `created_at`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |
+| `delivery_id`                                                        | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `duration_millis`                                                    | *Optional[int]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `endpoint`                                                           | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `error`                                                              | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `id`                                                                 | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `outcome`                                                            | [webhooks.Outcome](../../models/webhooks/outcome.md)                 | :heavy_check_mark:                                                   | N/A                                                                  |
+| `replay_generation`                                                  | *int*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `response_excerpt`                                                   | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `status_code`                                                        | *int*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |

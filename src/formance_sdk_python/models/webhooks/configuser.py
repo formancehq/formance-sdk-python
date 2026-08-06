@@ -11,7 +11,6 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 class ConfigUserTypedDict(TypedDict):
     endpoint: str
     event_types: List[str]
-    name: NotRequired[str]
     secret: NotRequired[str]
 
 
@@ -20,13 +19,11 @@ class ConfigUser(BaseModel):
 
     event_types: Annotated[List[str], pydantic.Field(alias="eventTypes")]
 
-    name: Optional[str] = None
-
     secret: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["name", "secret"])
+        optional_fields = set(["secret"])
         serialized = handler(self)
         m = {}
 

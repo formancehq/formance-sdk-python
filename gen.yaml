@@ -29,7 +29,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 python:
-  version: 8.2.1
+  version: 9.0.0
   additionalDependencies:
     dev: {}
     main: {}

@@ -1,0 +1,12 @@
+# Evidence
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `__pydantic_extra__`                                                                 | Dict[str, *Any*]                                                                     | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `evidence`                                                                           | Dict[str, *Any*]                                                                     | :heavy_minus_sign:                                                                   | Full breakdown. Present on FAIL entries.                                             |
+| `fingerprint`                                                                        | *Optional[str]*                                                                      | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `passed`                                                                             | *Optional[bool]*                                                                     | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `proof`                                                                              | Dict[str, *str*]                                                                     | :heavy_minus_sign:                                                                   | Compact green-proof (observed balance integers as strings). Present on PASS entries. |

@@ -7,21 +7,14 @@ from formance_sdk_python.types import BaseModel
 from formance_sdk_python.utils import validate_int
 import pydantic
 from pydantic.functional_validators import BeforeValidator
+from typing import Any, Dict
 from typing_extensions import Annotated, TypedDict
-
-
-class PaymentAdjustmentRawTypedDict(TypedDict):
-    pass
-
-
-class PaymentAdjustmentRaw(BaseModel):
-    pass
 
 
 class PaymentAdjustmentTypedDict(TypedDict):
     amount: int
     created_at: datetime
-    raw: PaymentAdjustmentRawTypedDict
+    raw: Dict[str, Any]
     reference: str
     status: PaymentStatus
 
@@ -31,7 +24,7 @@ class PaymentAdjustment(BaseModel):
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
-    raw: PaymentAdjustmentRaw
+    raw: Dict[str, Any]
 
     reference: str
 

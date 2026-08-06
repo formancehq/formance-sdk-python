@@ -17,8 +17,10 @@ from .v2bulkelementreverttransaction import (
     V2BulkElementRevertTransaction,
     V2BulkElementRevertTransactionTypedDict,
 )
+from formance_sdk_python.utils import get_discriminator
+from pydantic import Discriminator, Tag
 from typing import Union
-from typing_extensions import TypeAliasType
+from typing_extensions import Annotated, TypeAliasType
 
 
 V2BulkElementTypedDict = TypeAliasType(
@@ -32,12 +34,12 @@ V2BulkElementTypedDict = TypeAliasType(
 )
 
 
-V2BulkElement = TypeAliasType(
-    "V2BulkElement",
+V2BulkElement = Annotated[
     Union[
-        V2BulkElementCreateTransaction,
-        V2BulkElementAddMetadata,
-        V2BulkElementRevertTransaction,
-        V2BulkElementDeleteMetadata,
+        Annotated[V2BulkElementAddMetadata, Tag("ADD_METADATA")],
+        Annotated[V2BulkElementCreateTransaction, Tag("CREATE_TRANSACTION")],
+        Annotated[V2BulkElementDeleteMetadata, Tag("DELETE_METADATA")],
+        Annotated[V2BulkElementRevertTransaction, Tag("REVERT_TRANSACTION")],
     ],
-)
+    Discriminator(lambda m: get_discriminator(m, "action", "action")),
+]

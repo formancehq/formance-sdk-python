@@ -3,8 +3,9 @@
 from __future__ import annotations
 from .v2transaction import V2Transaction, V2TransactionTypedDict
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
+from formance_sdk_python.utils import get_discriminator
 import pydantic
-from pydantic import model_serializer
+from pydantic import Discriminator, Tag, model_serializer
 from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
@@ -107,16 +108,16 @@ V2BulkElementResultTypedDict = TypeAliasType(
 )
 
 
-V2BulkElementResult = TypeAliasType(
-    "V2BulkElementResult",
+V2BulkElementResult = Annotated[
     Union[
-        V2BulkElementResultAddMetadata,
-        V2BulkElementResultDeleteMetadata,
-        V2BulkElementResultCreateTransaction,
-        V2BulkElementResultRevertTransaction,
-        V2BulkElementResultError,
+        Annotated[V2BulkElementResultAddMetadata, Tag("ADD_METADATA")],
+        Annotated[V2BulkElementResultCreateTransaction, Tag("CREATE_TRANSACTION")],
+        Annotated[V2BulkElementResultDeleteMetadata, Tag("DELETE_METADATA")],
+        Annotated[V2BulkElementResultError, Tag("ERROR")],
+        Annotated[V2BulkElementResultRevertTransaction, Tag("REVERT_TRANSACTION")],
     ],
-)
+    Discriminator(lambda m: get_discriminator(m, "response_type", "responseType")),
+]
 
 
 try:

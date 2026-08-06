@@ -3,52 +3,10 @@
 
 ## Supported Types
 
-### `payments.StripeConfig`
+### `payments.AdyenConfig`
 
 ```python
-value: payments.StripeConfig = /* values here */
-```
-
-### `payments.DummyPayConfig`
-
-```python
-value: payments.DummyPayConfig = /* values here */
-```
-
-### `payments.WiseConfig`
-
-```python
-value: payments.WiseConfig = /* values here */
-```
-
-### `payments.ModulrConfig`
-
-```python
-value: payments.ModulrConfig = /* values here */
-```
-
-### `payments.CurrencyCloudConfig`
-
-```python
-value: payments.CurrencyCloudConfig = /* values here */
-```
-
-### `payments.BankingCircleConfig`
-
-```python
-value: payments.BankingCircleConfig = /* values here */
-```
-
-### `payments.MangoPayConfig`
-
-```python
-value: payments.MangoPayConfig = /* values here */
-```
-
-### `payments.MoneycorpConfig`
-
-```python
-value: payments.MoneycorpConfig = /* values here */
+value: payments.AdyenConfig = /* values here */
 ```
 
 ### `payments.AtlarConfig`
@@ -57,15 +15,57 @@ value: payments.MoneycorpConfig = /* values here */
 value: payments.AtlarConfig = /* values here */
 ```
 
-### `payments.AdyenConfig`
+### `payments.BankingCircleConfig`
 
 ```python
-value: payments.AdyenConfig = /* values here */
+value: payments.BankingCircleConfig = /* values here */
+```
+
+### `payments.CurrencyCloudConfig`
+
+```python
+value: payments.CurrencyCloudConfig = /* values here */
+```
+
+### `payments.DummyPayConfig`
+
+```python
+value: payments.DummyPayConfig = /* values here */
 ```
 
 ### `payments.GenericConfig`
 
 ```python
 value: payments.GenericConfig = /* values here */
+```
+
+### `payments.MangoPayConfig`
+
+```python
+value: payments.MangoPayConfig = /* values here */
+```
+
+### `payments.ModulrConfig`
+
+```python
+value: payments.ModulrConfig = /* values here */
+```
+
+### `payments.MoneycorpConfig`
+
+```python
+value: payments.MoneycorpConfig = /* values here */
+```
+
+### `payments.StripeConfig`
+
+```python
+value: payments.StripeConfig = /* values here */
+```
+
+### `payments.WiseConfig`
+
+```python
+value: payments.WiseConfig = /* values here */
 ```
 
