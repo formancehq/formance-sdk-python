@@ -15,27 +15,41 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3ScheduleTypedDict(TypedDict):
+    r"""A recurring job a connector runs to fetch data from its provider"""
+
     connector_id: str
+    r"""Identifier of the connector this schedule belongs to"""
     created_at: datetime
+    r"""When the schedule was created"""
     id: str
+    r"""Unique identifier of the schedule"""
     paused_at: NotRequired[Nullable[datetime]]
+    r"""When the schedule was paused, absent while it is running"""
     paused_reason: NotRequired[Nullable[str]]
+    r"""Why the schedule was paused"""
 
 
 class V3Schedule(BaseModel):
+    r"""A recurring job a connector runs to fetch data from its provider"""
+
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector this schedule belongs to"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the schedule was created"""
 
     id: str
+    r"""Unique identifier of the schedule"""
 
     paused_at: Annotated[
         OptionalNullable[datetime], pydantic.Field(alias="pausedAt")
     ] = UNSET
+    r"""When the schedule was paused, absent while it is running"""
 
     paused_reason: Annotated[
         OptionalNullable[str], pydantic.Field(alias="pausedReason")
     ] = UNSET
+    r"""Why the schedule was paused"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

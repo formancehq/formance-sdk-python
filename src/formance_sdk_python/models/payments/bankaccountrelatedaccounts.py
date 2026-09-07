@@ -9,22 +9,32 @@ from typing_extensions import Annotated, TypedDict
 
 class BankAccountRelatedAccountsTypedDict(TypedDict):
     account_id: str
+    r"""Identifier of the provider-side account"""
     connector_id: str
+    r"""Identifier of the connector holding the provider-side account"""
     created_at: datetime
+    r"""When the bank account was forwarded to this provider"""
     id: str
+    r"""Unique identifier of the link between the bank account and the provider"""
     provider: str
+    r"""Name of the payment provider behind the connector"""
 
 
 class BankAccountRelatedAccounts(BaseModel):
     account_id: Annotated[str, pydantic.Field(alias="accountID")]
+    r"""Identifier of the provider-side account"""
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector holding the provider-side account"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the bank account was forwarded to this provider"""
 
     id: str
+    r"""Unique identifier of the link between the bank account and the provider"""
 
     provider: str
+    r"""Name of the payment provider behind the connector"""
 
 
 try:

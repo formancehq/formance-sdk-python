@@ -10,9 +10,11 @@ class BankAccountResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: BankAccountTypedDict
+    r"""A bank account registered with Formance and forwardable to connectors"""
 
 
 class BankAccountResponse(BaseModel):
     r"""OK"""
 
     data: BankAccount
+    r"""A bank account registered with Formance and forwardable to connectors"""

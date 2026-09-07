@@ -10,24 +10,33 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class ModulrConfigTypedDict(TypedDict):
     api_key: str
+    r"""API key issued by Modulr, used to authenticate the connector's requests"""
     api_secret: str
+    r"""API secret issued by Modulr, paired with the API key to sign requests"""
     name: str
+    r"""Human-readable name identifying this connector instance"""
     endpoint: NotRequired[str]
+    r"""Base URL of the Modulr API the connector calls"""
     polling_period: NotRequired[str]
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
 
     """
     provider: NotRequired[str]
+    r"""Identifies the payment provider this configuration targets"""
 
 
 class ModulrConfig(BaseModel):
     api_key: Annotated[str, pydantic.Field(alias="apiKey")]
+    r"""API key issued by Modulr, used to authenticate the connector's requests"""
 
     api_secret: Annotated[str, pydantic.Field(alias="apiSecret")]
+    r"""API secret issued by Modulr, paired with the API key to sign requests"""
 
     name: str
+    r"""Human-readable name identifying this connector instance"""
 
     endpoint: Optional[str] = None
+    r"""Base URL of the Modulr API the connector calls"""
 
     polling_period: Annotated[Optional[str], pydantic.Field(alias="pollingPeriod")] = (
         "30m"
@@ -37,6 +46,7 @@ class ModulrConfig(BaseModel):
     """
 
     provider: Optional[str] = "Modulr"
+    r"""Identifies the payment provider this configuration targets"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -5,4 +5,4 @@
 
 | Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `data`                                                               | List[[payments.V3Capability](../../models/payments/v3capability.md)] | :heavy_check_mark:                                                   | N/A                                                                  |
+| `data`                                                               | List[[payments.V3Capability](../../models/payments/v3capability.md)] | :heavy_check_mark:                                                   | Operations this connector supports                                   |

@@ -17,22 +17,32 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V3ReversePaymentInitiationRequestTypedDict(TypedDict):
     amount: int
+    r"""Amount to reverse, in the asset's smallest unit"""
     asset: str
+    r"""Asset the reversal is denominated in"""
     description: str
+    r"""Human-readable reason for the reversal"""
     reference: str
+    r"""Caller-supplied identifier for the reversal, used to deduplicate retries"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
 
 class V3ReversePaymentInitiationRequest(BaseModel):
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Amount to reverse, in the asset's smallest unit"""
 
     asset: str
+    r"""Asset the reversal is denominated in"""
 
     description: str
+    r"""Human-readable reason for the reversal"""
 
     reference: str
+    r"""Caller-supplied identifier for the reversal, used to deduplicate retries"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

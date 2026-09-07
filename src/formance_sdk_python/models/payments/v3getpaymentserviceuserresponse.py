@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V3GetPaymentServiceUserResponseTypedDict(TypedDict):
     data: V3PaymentServiceUserTypedDict
+    r"""An end user on whose behalf payments and open banking connections are made"""
 
 
 class V3GetPaymentServiceUserResponse(BaseModel):
     data: V3PaymentServiceUser
+    r"""An end user on whose behalf payments and open banking connections are made"""

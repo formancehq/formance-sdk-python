@@ -13,6 +13,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3PaymentServiceUserConnectionsCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the user's open banking connections"""
+
     data: List[V3PaymentServiceUserConnectionTypedDict]
     has_more: bool
     page_size: int
@@ -21,6 +23,8 @@ class V3PaymentServiceUserConnectionsCursorResponseCursorTypedDict(TypedDict):
 
 
 class V3PaymentServiceUserConnectionsCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the user's open banking connections"""
+
     data: List[V3PaymentServiceUserConnection]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -50,10 +54,12 @@ class V3PaymentServiceUserConnectionsCursorResponseCursor(BaseModel):
 
 class V3PaymentServiceUserConnectionsCursorResponseTypedDict(TypedDict):
     cursor: V3PaymentServiceUserConnectionsCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the user's open banking connections"""
 
 
 class V3PaymentServiceUserConnectionsCursorResponse(BaseModel):
     cursor: V3PaymentServiceUserConnectionsCursorResponseCursor
+    r"""Paginated cursor wrapping the user's open banking connections"""
 
 
 try:

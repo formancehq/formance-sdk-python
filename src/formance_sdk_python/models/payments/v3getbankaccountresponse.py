@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V3GetBankAccountResponseTypedDict(TypedDict):
     data: V3BankAccountTypedDict
+    r"""A bank account registered with Formance and forwardable to connectors"""
 
 
 class V3GetBankAccountResponse(BaseModel):
     data: V3BankAccount
+    r"""A bank account registered with Formance and forwardable to connectors"""

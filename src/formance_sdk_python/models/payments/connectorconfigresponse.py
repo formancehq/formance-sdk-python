@@ -10,9 +10,11 @@ class ConnectorConfigResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: ConnectorConfigTypedDict
+    r"""A connector's configuration, whose shape depends on the provider"""
 
 
 class ConnectorConfigResponse(BaseModel):
     r"""OK"""
 
     data: ConnectorConfig
+    r"""A connector's configuration, whose shape depends on the provider"""

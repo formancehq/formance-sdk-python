@@ -8,8 +8,14 @@ from typing_extensions import TypedDict
 
 
 class PoolBalancesTypedDict(TypedDict):
+    r"""Aggregated balances across a pool's accounts"""
+
     balances: List[PoolBalanceTypedDict]
+    r"""Aggregated balance per asset across the pool's accounts"""
 
 
 class PoolBalances(BaseModel):
+    r"""Aggregated balances across a pool's accounts"""
+
     balances: List[PoolBalance]
+    r"""Aggregated balance per asset across the pool's accounts"""

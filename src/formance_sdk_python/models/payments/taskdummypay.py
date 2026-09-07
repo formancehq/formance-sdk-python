@@ -47,40 +47,54 @@ class TaskDummyPayDescriptor(BaseModel):
 
 
 class TaskDummyPayStateTypedDict(TypedDict):
-    pass
+    r"""Internal progress state the task resumes from"""
 
 
 class TaskDummyPayState(BaseModel):
-    pass
+    r"""Internal progress state the task resumes from"""
 
 
 class TaskDummyPayTypedDict(TypedDict):
     connector_id: str
+    r"""Identifier of the connector the task runs against"""
     created_at: datetime
+    r"""When the task was created"""
     descriptor: TaskDummyPayDescriptorTypedDict
     id: str
+    r"""Unique identifier of the task"""
     status: TaskStatus
+    r"""Where a task stands, from pending or active through to stopped, terminated or failed"""
     updated_at: datetime
+    r"""When the task was last updated"""
     error: NotRequired[Nullable[str]]
+    r"""Why the task failed, absent when it succeeded"""
     state: NotRequired[Nullable[TaskDummyPayStateTypedDict]]
+    r"""Internal progress state the task resumes from"""
 
 
 class TaskDummyPay(BaseModel):
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector the task runs against"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the task was created"""
 
     descriptor: TaskDummyPayDescriptor
 
     id: str
+    r"""Unique identifier of the task"""
 
     status: TaskStatus
+    r"""Where a task stands, from pending or active through to stopped, terminated or failed"""
 
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
+    r"""When the task was last updated"""
 
     error: OptionalNullable[str] = UNSET
+    r"""Why the task failed, absent when it succeeded"""
 
     state: OptionalNullable[TaskDummyPayState] = UNSET
+    r"""Internal progress state the task resumes from"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

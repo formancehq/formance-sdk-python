@@ -20,51 +20,79 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class BankAccountTypedDict(TypedDict):
+    r"""A bank account registered with Formance and forwardable to connectors"""
+
     country: str
+    r"""Country the account is held in, as an ISO 3166-1 alpha-2 code"""
     created_at: datetime
+    r"""When the bank account was registered"""
     id: str
+    r"""Unique identifier of the bank account within Formance"""
     name: str
+    r"""Human-readable name of the bank account"""
     account_id: NotRequired[str]
+    r"""Identifier of the provider-side account created by forwarding"""
     account_number: NotRequired[str]
+    r"""Domestic account number, when the account is identified that way"""
     connector_id: NotRequired[str]
+    r"""Identifier of the connector the account has been forwarded to"""
     iban: NotRequired[str]
+    r"""International bank account number, when the account is identified that way"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the bank account"""
     provider: NotRequired[str]
+    r"""Name of the payment provider behind the connector"""
     related_accounts: NotRequired[List[BankAccountRelatedAccountsTypedDict]]
+    r"""Provider-side accounts this bank account has been forwarded to"""
     swift_bic_code: NotRequired[str]
+    r"""SWIFT/BIC code identifying the bank"""
 
 
 class BankAccount(BaseModel):
+    r"""A bank account registered with Formance and forwardable to connectors"""
+
     country: str
+    r"""Country the account is held in, as an ISO 3166-1 alpha-2 code"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the bank account was registered"""
 
     id: str
+    r"""Unique identifier of the bank account within Formance"""
 
     name: str
+    r"""Human-readable name of the bank account"""
 
     account_id: Annotated[Optional[str], pydantic.Field(alias="accountID")] = None
+    r"""Identifier of the provider-side account created by forwarding"""
 
     account_number: Annotated[Optional[str], pydantic.Field(alias="accountNumber")] = (
         None
     )
+    r"""Domestic account number, when the account is identified that way"""
 
     connector_id: Annotated[Optional[str], pydantic.Field(alias="connectorID")] = None
+    r"""Identifier of the connector the account has been forwarded to"""
 
     iban: Optional[str] = None
+    r"""International bank account number, when the account is identified that way"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the bank account"""
 
     provider: Optional[str] = None
+    r"""Name of the payment provider behind the connector"""
 
     related_accounts: Annotated[
         Optional[List[BankAccountRelatedAccounts]],
         pydantic.Field(alias="relatedAccounts"),
     ] = None
+    r"""Provider-side accounts this bank account has been forwarded to"""
 
     swift_bic_code: Annotated[Optional[str], pydantic.Field(alias="swiftBicCode")] = (
         None
     )
+    r"""SWIFT/BIC code identifying the bank"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

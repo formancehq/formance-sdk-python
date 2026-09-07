@@ -11,22 +11,32 @@ from typing_extensions import Annotated, TypedDict
 
 class V3BalanceTypedDict(TypedDict):
     account_id: str
+    r"""Identifier of the account this balance belongs to"""
     asset: str
+    r"""Asset the balance is denominated in"""
     balance: int
+    r"""Amount held, in the asset's smallest unit"""
     created_at: datetime
+    r"""Start of the period this balance covers"""
     last_updated_at: datetime
+    r"""When the balance was last refreshed from the provider"""
 
 
 class V3Balance(BaseModel):
     account_id: Annotated[str, pydantic.Field(alias="accountID")]
+    r"""Identifier of the account this balance belongs to"""
 
     asset: str
+    r"""Asset the balance is denominated in"""
 
     balance: Annotated[int, BeforeValidator(validate_int)]
+    r"""Amount held, in the asset's smallest unit"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""Start of the period this balance covers"""
 
     last_updated_at: Annotated[datetime, pydantic.Field(alias="lastUpdatedAt")]
+    r"""When the balance was last refreshed from the provider"""
 
 
 try:

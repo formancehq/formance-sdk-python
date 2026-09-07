@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class TaskStatus(str, Enum):
+    r"""Where a task stands, from pending or active through to stopped, terminated or failed"""
+
     PENDING = "PENDING"
     ACTIVE = "ACTIVE"
     STOPPED = "STOPPED"

@@ -10,23 +10,28 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class CurrencyCloudConfigTypedDict(TypedDict):
     api_key: str
+    r"""API key issued by Currencycloud, used to authenticate the connector's requests"""
     login_id: str
     r"""Username of the API Key holder"""
     name: str
+    r"""Human-readable name identifying this connector instance"""
     endpoint: NotRequired[str]
     r"""The endpoint to use for the API. Defaults to https://devapi.currencycloud.com"""
     polling_period: NotRequired[str]
     r"""The frequency at which the connector will fetch transactions"""
     provider: NotRequired[str]
+    r"""Identifies the payment provider this configuration targets"""
 
 
 class CurrencyCloudConfig(BaseModel):
     api_key: Annotated[str, pydantic.Field(alias="apiKey")]
+    r"""API key issued by Currencycloud, used to authenticate the connector's requests"""
 
     login_id: Annotated[str, pydantic.Field(alias="loginID")]
     r"""Username of the API Key holder"""
 
     name: str
+    r"""Human-readable name identifying this connector instance"""
 
     endpoint: Optional[str] = None
     r"""The endpoint to use for the API. Defaults to https://devapi.currencycloud.com"""
@@ -37,6 +42,7 @@ class CurrencyCloudConfig(BaseModel):
     r"""The frequency at which the connector will fetch transactions"""
 
     provider: Optional[str] = "Currencycloud"
+    r"""Identifies the payment provider this configuration targets"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

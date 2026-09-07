@@ -16,29 +16,41 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V3CreateBankAccountRequestTypedDict(TypedDict):
     name: str
+    r"""Human-readable name for the bank account"""
     account_number: NotRequired[str]
+    r"""Domestic account number. Supply this or an IBAN"""
     country: NotRequired[str]
+    r"""Country the account is held in, as an ISO 3166-1 alpha-2 code"""
     iban: NotRequired[str]
+    r"""International bank account number. Supply this or an account number"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     swift_bic_code: NotRequired[str]
+    r"""SWIFT/BIC code identifying the bank"""
 
 
 class V3CreateBankAccountRequest(BaseModel):
     name: str
+    r"""Human-readable name for the bank account"""
 
     account_number: Annotated[Optional[str], pydantic.Field(alias="accountNumber")] = (
         None
     )
+    r"""Domestic account number. Supply this or an IBAN"""
 
     country: Optional[str] = None
+    r"""Country the account is held in, as an ISO 3166-1 alpha-2 code"""
 
     iban: Optional[str] = None
+    r"""International bank account number. Supply this or an account number"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     swift_bic_code: Annotated[Optional[str], pydantic.Field(alias="swiftBicCode")] = (
         None
     )
+    r"""SWIFT/BIC code identifying the bank"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

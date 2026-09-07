@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V3GetTaskResponseTypedDict(TypedDict):
     data: V3TaskTypedDict
+    r"""An asynchronous unit of work, tracking an operation that completes in the background"""
 
 
 class V3GetTaskResponse(BaseModel):
     data: V3Task
+    r"""An asynchronous unit of work, tracking an operation that completes in the background"""

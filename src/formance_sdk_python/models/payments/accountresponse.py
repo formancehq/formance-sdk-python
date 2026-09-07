@@ -10,9 +10,11 @@ class AccountResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: AccountTypedDict
+    r"""An account held at a payment provider, surfaced through a connector"""
 
 
 class AccountResponse(BaseModel):
     r"""OK"""
 
     data: Account
+    r"""An account held at a payment provider, surfaced through a connector"""

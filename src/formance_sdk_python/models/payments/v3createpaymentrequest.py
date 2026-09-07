@@ -24,50 +24,74 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V3CreatePaymentRequestTypedDict(TypedDict):
     amount: int
+    r"""Current amount of the payment, in the asset's smallest unit"""
     asset: str
+    r"""Asset the payment is denominated in"""
     connector_id: str
+    r"""Identifier of the connector the payment belongs to"""
     created_at: datetime
+    r"""When the payment was created at the provider"""
     initial_amount: int
+    r"""Amount the payment was created with, before any adjustment"""
     reference: str
+    r"""Identifier the payment carries at the provider"""
     scheme: str
+    r"""Payment scheme or rail the payment travels over"""
     type: V3PaymentTypeEnum
+    r"""Direction of a payment"""
     adjustments: NotRequired[List[V3CreatePaymentAdjustmentRequestTypedDict]]
+    r"""Status and amount changes to record alongside the payment"""
     destination_account_id: NotRequired[str]
+    r"""Identifier of the account the funds reach"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     source_account_id: NotRequired[str]
+    r"""Identifier of the account the funds leave"""
 
 
 class V3CreatePaymentRequest(BaseModel):
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Current amount of the payment, in the asset's smallest unit"""
 
     asset: str
+    r"""Asset the payment is denominated in"""
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector the payment belongs to"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the payment was created at the provider"""
 
     initial_amount: Annotated[
         Annotated[int, BeforeValidator(validate_int)],
         pydantic.Field(alias="initialAmount"),
     ]
+    r"""Amount the payment was created with, before any adjustment"""
 
     reference: str
+    r"""Identifier the payment carries at the provider"""
 
     scheme: str
+    r"""Payment scheme or rail the payment travels over"""
 
     type: V3PaymentTypeEnum
+    r"""Direction of a payment"""
 
     adjustments: Optional[List[V3CreatePaymentAdjustmentRequest]] = None
+    r"""Status and amount changes to record alongside the payment"""
 
     destination_account_id: Annotated[
         Optional[str], pydantic.Field(alias="destinationAccountID")
     ] = None
+    r"""Identifier of the account the funds reach"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     source_account_id: Annotated[
         Optional[str], pydantic.Field(alias="sourceAccountID")
     ] = None
+    r"""Identifier of the account the funds leave"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

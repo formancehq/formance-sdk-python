@@ -19,28 +19,42 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V3PaymentServiceUserLinkAttemptTypedDict(TypedDict):
     client_redirect_url: str
+    r"""URL the user is sent back to once the provider's flow finishes"""
     connector_id: str
+    r"""Identifier of the connector the user is linking to"""
     created_at: datetime
+    r"""When the attempt was started"""
     id: str
+    r"""Unique identifier of the link attempt"""
     psu_id: str
+    r"""Identifier of the payment service user the attempt belongs to"""
     status: V3OpenBankingConnectionAttemptStatusEnum
+    r"""Where a link attempt stands, from pending through to completed on success or exited when the user abandoned the flow or the provider reported an error"""
     error: NotRequired[Nullable[str]]
+    r"""Why the attempt exited, absent when it completed"""
 
 
 class V3PaymentServiceUserLinkAttempt(BaseModel):
     client_redirect_url: Annotated[str, pydantic.Field(alias="clientRedirectURL")]
+    r"""URL the user is sent back to once the provider's flow finishes"""
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector the user is linking to"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the attempt was started"""
 
     id: str
+    r"""Unique identifier of the link attempt"""
 
     psu_id: Annotated[str, pydantic.Field(alias="psuID")]
+    r"""Identifier of the payment service user the attempt belongs to"""
 
     status: V3OpenBankingConnectionAttemptStatusEnum
+    r"""Where a link attempt stands, from pending through to completed on success or exited when the user abandoned the flow or the provider reported an error"""
 
     error: OptionalNullable[str] = UNSET
+    r"""Why the attempt exited, absent when it completed"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

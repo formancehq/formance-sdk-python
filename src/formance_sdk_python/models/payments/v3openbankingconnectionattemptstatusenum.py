@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class V3OpenBankingConnectionAttemptStatusEnum(str, Enum):
+    r"""Where a link attempt stands, from pending through to completed on success or exited when the user abandoned the flow or the provider reported an error"""
+
     PENDING = "pending"
     COMPLETED = "completed"
     EXITED = "exited"

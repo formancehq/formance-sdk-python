@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3ConnectorsCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of connectors"""
+
     data: List[V3ConnectorTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class V3ConnectorsCursorResponseCursorTypedDict(TypedDict):
 
 
 class V3ConnectorsCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of connectors"""
+
     data: List[V3Connector]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -47,10 +51,12 @@ class V3ConnectorsCursorResponseCursor(BaseModel):
 
 class V3ConnectorsCursorResponseTypedDict(TypedDict):
     cursor: V3ConnectorsCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of connectors"""
 
 
 class V3ConnectorsCursorResponse(BaseModel):
     cursor: V3ConnectorsCursorResponseCursor
+    r"""Paginated cursor wrapping the list of connectors"""
 
 
 try:

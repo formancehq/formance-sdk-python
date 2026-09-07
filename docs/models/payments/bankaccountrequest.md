@@ -3,12 +3,12 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `account_number`   | *Optional[str]*    | :heavy_minus_sign: | N/A                |                    |
-| `connector_id`     | *Optional[str]*    | :heavy_minus_sign: | N/A                |                    |
-| `country`          | *str*              | :heavy_check_mark: | N/A                | GB                 |
-| `iban`             | *Optional[str]*    | :heavy_minus_sign: | N/A                |                    |
-| `metadata`         | Dict[str, *str*]   | :heavy_minus_sign: | N/A                |                    |
-| `name`             | *str*              | :heavy_check_mark: | N/A                | My account         |
-| `swift_bic_code`   | *Optional[str]*    | :heavy_minus_sign: | N/A                |                    |
+| Field                                                               | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `account_number`                                                    | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Domestic account number. Supply this or an IBAN                     |                                                                     |
+| `connector_id`                                                      | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Connector to forward the bank account to on creation                |                                                                     |
+| `country`                                                           | *str*                                                               | :heavy_check_mark:                                                  | Country the account is held in, as an ISO 3166-1 alpha-2 code       | GB                                                                  |
+| `iban`                                                              | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | International bank account number. Supply this or an account number |                                                                     |
+| `metadata`                                                          | Dict[str, *str*]                                                    | :heavy_minus_sign:                                                  | Arbitrary key/value pairs attached to the bank account              |                                                                     |
+| `name`                                                              | *str*                                                               | :heavy_check_mark:                                                  | Human-readable name for the bank account                            | My account                                                          |
+| `swift_bic_code`                                                    | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | SWIFT/BIC code identifying the bank                                 |                                                                     |

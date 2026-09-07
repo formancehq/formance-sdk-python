@@ -11,12 +11,14 @@ class TransferResponseTypedDict(TypedDict):
     r"""OK"""
 
     id: NotRequired[str]
+    r"""Identifier of the transfer created at the provider"""
 
 
 class TransferResponse(BaseModel):
     r"""OK"""
 
     id: Optional[str] = None
+    r"""Identifier of the transfer created at the provider"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

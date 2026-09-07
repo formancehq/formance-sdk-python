@@ -13,6 +13,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3PaymentInitiationAdjustmentsCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the initiation's adjustments"""
+
     data: List[V3PaymentInitiationAdjustmentTypedDict]
     has_more: bool
     page_size: int
@@ -21,6 +23,8 @@ class V3PaymentInitiationAdjustmentsCursorResponseCursorTypedDict(TypedDict):
 
 
 class V3PaymentInitiationAdjustmentsCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the initiation's adjustments"""
+
     data: List[V3PaymentInitiationAdjustment]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -50,10 +54,12 @@ class V3PaymentInitiationAdjustmentsCursorResponseCursor(BaseModel):
 
 class V3PaymentInitiationAdjustmentsCursorResponseTypedDict(TypedDict):
     cursor: V3PaymentInitiationAdjustmentsCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the initiation's adjustments"""
 
 
 class V3PaymentInitiationAdjustmentsCursorResponse(BaseModel):
     cursor: V3PaymentInitiationAdjustmentsCursorResponseCursor
+    r"""Paginated cursor wrapping the initiation's adjustments"""
 
 
 try:

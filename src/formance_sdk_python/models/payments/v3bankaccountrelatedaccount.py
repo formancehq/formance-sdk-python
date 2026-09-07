@@ -9,13 +9,17 @@ from typing_extensions import Annotated, TypedDict
 
 class V3BankAccountRelatedAccountTypedDict(TypedDict):
     account_id: str
+    r"""Identifier of the provider-side account"""
     created_at: datetime
+    r"""When the bank account was forwarded to this provider"""
 
 
 class V3BankAccountRelatedAccount(BaseModel):
     account_id: Annotated[str, pydantic.Field(alias="accountID")]
+    r"""Identifier of the provider-side account"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the bank account was forwarded to this provider"""
 
 
 try:

@@ -9,6 +9,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3ReversePaymentInitiationResponseDataTypedDict(TypedDict):
+    r"""The task tracking the reversal, which completes asynchronously"""
+
     payment_initiation_reversal_id: NotRequired[str]
     r"""Related payment initiation reversal object ID created.
 
@@ -20,6 +22,8 @@ class V3ReversePaymentInitiationResponseDataTypedDict(TypedDict):
 
 
 class V3ReversePaymentInitiationResponseData(BaseModel):
+    r"""The task tracking the reversal, which completes asynchronously"""
+
     payment_initiation_reversal_id: Annotated[
         Optional[str], pydantic.Field(alias="paymentInitiationReversalID")
     ] = None
@@ -51,10 +55,12 @@ class V3ReversePaymentInitiationResponseData(BaseModel):
 
 class V3ReversePaymentInitiationResponseTypedDict(TypedDict):
     data: V3ReversePaymentInitiationResponseDataTypedDict
+    r"""The task tracking the reversal, which completes asynchronously"""
 
 
 class V3ReversePaymentInitiationResponse(BaseModel):
     data: V3ReversePaymentInitiationResponseData
+    r"""The task tracking the reversal, which completes asynchronously"""
 
 
 try:

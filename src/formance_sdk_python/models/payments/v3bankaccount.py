@@ -20,42 +20,64 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3BankAccountTypedDict(TypedDict):
+    r"""A bank account registered with Formance and forwardable to connectors"""
+
     created_at: datetime
+    r"""When the bank account was registered"""
     id: str
+    r"""Unique identifier of the bank account within Formance"""
     name: str
+    r"""Human-readable name of the bank account"""
     account_number: NotRequired[Nullable[str]]
+    r"""Domestic account number, when the account is identified that way"""
     country: NotRequired[Nullable[str]]
+    r"""Country the account is held in, as an ISO 3166-1 alpha-2 code"""
     iban: NotRequired[Nullable[str]]
+    r"""International bank account number, when the account is identified that way"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     related_accounts: NotRequired[List[V3BankAccountRelatedAccountTypedDict]]
+    r"""Provider-side accounts this bank account has been forwarded to"""
     swift_bic_code: NotRequired[Nullable[str]]
+    r"""SWIFT/BIC code identifying the bank"""
 
 
 class V3BankAccount(BaseModel):
+    r"""A bank account registered with Formance and forwardable to connectors"""
+
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the bank account was registered"""
 
     id: str
+    r"""Unique identifier of the bank account within Formance"""
 
     name: str
+    r"""Human-readable name of the bank account"""
 
     account_number: Annotated[
         OptionalNullable[str], pydantic.Field(alias="accountNumber")
     ] = UNSET
+    r"""Domestic account number, when the account is identified that way"""
 
     country: OptionalNullable[str] = UNSET
+    r"""Country the account is held in, as an ISO 3166-1 alpha-2 code"""
 
     iban: OptionalNullable[str] = UNSET
+    r"""International bank account number, when the account is identified that way"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     related_accounts: Annotated[
         Optional[List[V3BankAccountRelatedAccount]],
         pydantic.Field(alias="relatedAccounts"),
     ] = None
+    r"""Provider-side accounts this bank account has been forwarded to"""
 
     swift_bic_code: Annotated[
         OptionalNullable[str], pydantic.Field(alias="swiftBicCode")
     ] = UNSET
+    r"""SWIFT/BIC code identifying the bank"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

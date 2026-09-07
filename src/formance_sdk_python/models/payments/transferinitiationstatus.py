@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class TransferInitiationStatus(str, Enum):
+    r"""Where a transfer initiation stands in its lifecycle"""
+
     WAITING_FOR_VALIDATION = "WAITING_FOR_VALIDATION"
     PROCESSING = "PROCESSING"
     PROCESSED = "PROCESSED"

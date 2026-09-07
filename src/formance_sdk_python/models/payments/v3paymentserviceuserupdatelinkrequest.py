@@ -10,12 +10,14 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V3PaymentServiceUserUpdateLinkRequestTypedDict(TypedDict):
     client_redirect_url: str
+    r"""URL to send the user back to once the provider's flow finishes"""
     application_name: NotRequired[str]
     r"""The name of the application to be displayed to the user when they click the link (depending on the open banking provider). Note that this field might be mandatory for some open banking providers."""
 
 
 class V3PaymentServiceUserUpdateLinkRequest(BaseModel):
     client_redirect_url: Annotated[str, pydantic.Field(alias="clientRedirectURL")]
+    r"""URL to send the user back to once the provider's flow finishes"""
 
     application_name: Annotated[
         Optional[str], pydantic.Field(alias="applicationName")

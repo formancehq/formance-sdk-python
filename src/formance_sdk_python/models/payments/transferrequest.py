@@ -11,19 +11,27 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class TransferRequestTypedDict(TypedDict):
     amount: int
+    r"""Amount to transfer, in the asset's smallest unit"""
     asset: str
+    r"""Asset the transfer is denominated in"""
     destination: str
+    r"""Provider-side account receiving the funds"""
     source: NotRequired[str]
+    r"""Provider-side account the funds leave. Defaults to the connector's main account"""
 
 
 class TransferRequest(BaseModel):
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Amount to transfer, in the asset's smallest unit"""
 
     asset: str
+    r"""Asset the transfer is denominated in"""
 
     destination: str
+    r"""Provider-side account receiving the funds"""
 
     source: Optional[str] = None
+    r"""Provider-side account the funds leave. Defaults to the connector's main account"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

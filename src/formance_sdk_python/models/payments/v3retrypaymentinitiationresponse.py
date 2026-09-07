@@ -7,6 +7,8 @@ from typing_extensions import Annotated, TypedDict
 
 
 class V3RetryPaymentInitiationResponseDataTypedDict(TypedDict):
+    r"""The task tracking the retry, which completes asynchronously"""
+
     task_id: str
     r"""Since this call is asynchronous, the response will contain the ID of the task that was created to retry the payment initiation to the PSP. You can use the task API to check the status of the task and get the resulting payment ID.
 
@@ -14,6 +16,8 @@ class V3RetryPaymentInitiationResponseDataTypedDict(TypedDict):
 
 
 class V3RetryPaymentInitiationResponseData(BaseModel):
+    r"""The task tracking the retry, which completes asynchronously"""
+
     task_id: Annotated[str, pydantic.Field(alias="taskID")]
     r"""Since this call is asynchronous, the response will contain the ID of the task that was created to retry the payment initiation to the PSP. You can use the task API to check the status of the task and get the resulting payment ID.
 
@@ -22,10 +26,12 @@ class V3RetryPaymentInitiationResponseData(BaseModel):
 
 class V3RetryPaymentInitiationResponseTypedDict(TypedDict):
     data: V3RetryPaymentInitiationResponseDataTypedDict
+    r"""The task tracking the retry, which completes asynchronously"""
 
 
 class V3RetryPaymentInitiationResponse(BaseModel):
     data: V3RetryPaymentInitiationResponseData
+    r"""The task tracking the retry, which completes asynchronously"""
 
 
 try:

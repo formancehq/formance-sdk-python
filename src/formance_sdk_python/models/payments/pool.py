@@ -9,23 +9,37 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class PoolTypedDict(TypedDict):
+    r"""A named group of accounts whose balances are aggregated together"""
+
     accounts: List[str]
+    r"""Accounts currently in the pool"""
     id: str
+    r"""Unique identifier of the pool"""
     name: str
+    r"""Human-readable name of the pool"""
     query: NotRequired[Dict[str, Any]]
+    r"""Filter selecting the accounts a dynamic pool contains"""
     type: NotRequired[PoolTypeEnum]
+    r"""Whether a pool holds a fixed account list or is driven by a query"""
 
 
 class Pool(BaseModel):
+    r"""A named group of accounts whose balances are aggregated together"""
+
     accounts: List[str]
+    r"""Accounts currently in the pool"""
 
     id: str
+    r"""Unique identifier of the pool"""
 
     name: str
+    r"""Human-readable name of the pool"""
 
     query: Optional[Dict[str, Any]] = None
+    r"""Filter selecting the accounts a dynamic pool contains"""
 
     type: Optional[PoolTypeEnum] = None
+    r"""Whether a pool holds a fixed account list or is driven by a query"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

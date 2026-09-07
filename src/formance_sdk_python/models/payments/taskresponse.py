@@ -27,6 +27,7 @@ TaskResponseDataTypedDict = TypeAliasType(
         TaskMoneycorpTypedDict,
     ],
 )
+r"""The requested task"""
 
 
 TaskResponseData = TypeAliasType(
@@ -42,15 +43,18 @@ TaskResponseData = TypeAliasType(
         TaskMoneycorp,
     ],
 )
+r"""The requested task"""
 
 
 class TaskResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: TaskResponseDataTypedDict
+    r"""The requested task"""
 
 
 class TaskResponse(BaseModel):
     r"""OK"""
 
     data: TaskResponseData
+    r"""The requested task"""

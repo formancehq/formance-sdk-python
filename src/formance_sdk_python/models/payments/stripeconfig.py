@@ -10,7 +10,9 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class StripeConfigTypedDict(TypedDict):
     api_key: str
+    r"""API key issued by Stripe, used to authenticate the connector's requests"""
     name: str
+    r"""Human-readable name identifying this connector instance"""
     page_size: NotRequired[int]
     r"""Number of BalanceTransaction to fetch at each polling interval.
 
@@ -20,12 +22,15 @@ class StripeConfigTypedDict(TypedDict):
 
     """
     provider: NotRequired[str]
+    r"""Identifies the payment provider this configuration targets"""
 
 
 class StripeConfig(BaseModel):
     api_key: Annotated[str, pydantic.Field(alias="apiKey")]
+    r"""API key issued by Stripe, used to authenticate the connector's requests"""
 
     name: str
+    r"""Human-readable name identifying this connector instance"""
 
     page_size: Annotated[Optional[int], pydantic.Field(alias="pageSize")] = 100
     r"""Number of BalanceTransaction to fetch at each polling interval.
@@ -40,6 +45,7 @@ class StripeConfig(BaseModel):
     """
 
     provider: Optional[str] = "Stripe"
+    r"""Identifies the payment provider this configuration targets"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

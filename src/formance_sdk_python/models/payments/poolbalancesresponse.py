@@ -10,9 +10,11 @@ class PoolBalancesResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: PoolBalancesTypedDict
+    r"""Aggregated balances across a pool's accounts"""
 
 
 class PoolBalancesResponse(BaseModel):
     r"""OK"""
 
     data: PoolBalances
+    r"""Aggregated balances across a pool's accounts"""

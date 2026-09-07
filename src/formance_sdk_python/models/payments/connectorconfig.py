@@ -34,6 +34,7 @@ ConnectorConfigTypedDict = TypeAliasType(
         BankingCircleConfigTypedDict,
     ],
 )
+r"""A connector's configuration, whose shape depends on the provider"""
 
 
 ConnectorConfig = Annotated[
@@ -52,3 +53,4 @@ ConnectorConfig = Annotated[
     ],
     Discriminator(lambda m: get_discriminator(m, "provider", "provider")),
 ]
+r"""A connector's configuration, whose shape depends on the provider"""

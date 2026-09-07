@@ -9,26 +9,42 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3AddressTypedDict(TypedDict):
+    r"""A postal address"""
+
     city: NotRequired[str]
+    r"""City of the address"""
     country: NotRequired[str]
+    r"""Country of the address, as an ISO 3166-1 alpha-2 code"""
     postal_code: NotRequired[str]
+    r"""Postal or ZIP code of the address"""
     region: NotRequired[str]
+    r"""Region, state or province of the address"""
     street_name: NotRequired[str]
+    r"""Street name of the address"""
     street_number: NotRequired[str]
+    r"""Street number of the address"""
 
 
 class V3Address(BaseModel):
+    r"""A postal address"""
+
     city: Optional[str] = None
+    r"""City of the address"""
 
     country: Optional[str] = None
+    r"""Country of the address, as an ISO 3166-1 alpha-2 code"""
 
     postal_code: Annotated[Optional[str], pydantic.Field(alias="postalCode")] = None
+    r"""Postal or ZIP code of the address"""
 
     region: Optional[str] = None
+    r"""Region, state or province of the address"""
 
     street_name: Annotated[Optional[str], pydantic.Field(alias="streetName")] = None
+    r"""Street name of the address"""
 
     street_number: Annotated[Optional[str], pydantic.Field(alias="streetNumber")] = None
+    r"""Street number of the address"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

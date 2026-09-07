@@ -12,22 +12,26 @@ class V3CreatePoolRequestTypedDict(TypedDict):
     r"""Query and dynamic pools are available from Connectivity v3.1"""
 
     name: str
+    r"""Human-readable name for the pool"""
     account_i_ds: NotRequired[List[str]]
+    r"""Accounts to place in the pool. Omit when the pool is driven by a query"""
     query: NotRequired[Dict[str, Any]]
-    r"""The same query than in ListAccount. Allowed properties are id, reference, connector_id, type, default_asset, name, psu_id, open_banking_connection_id and metadata."""
+    r"""The same query as in ListAccount. Allowed properties are id, reference, connector_id, type, default_asset, name, psu_id, open_banking_connection_id and metadata."""
 
 
 class V3CreatePoolRequest(BaseModel):
     r"""Query and dynamic pools are available from Connectivity v3.1"""
 
     name: str
+    r"""Human-readable name for the pool"""
 
     account_i_ds: Annotated[Optional[List[str]], pydantic.Field(alias="accountIDs")] = (
         None
     )
+    r"""Accounts to place in the pool. Omit when the pool is driven by a query"""
 
     query: Optional[Dict[str, Any]] = None
-    r"""The same query than in ListAccount. Allowed properties are id, reference, connector_id, type, default_asset, name, psu_id, open_banking_connection_id and metadata."""
+    r"""The same query as in ListAccount. Allowed properties are id, reference, connector_id, type, default_asset, name, psu_id, open_banking_connection_id and metadata."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

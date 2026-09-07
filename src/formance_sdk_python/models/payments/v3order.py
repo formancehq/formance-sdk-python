@@ -108,6 +108,7 @@ class V3OrderTypedDict(TypedDict):
     limit_price: NotRequired[Nullable[int]]
     r"""Maximum price (for BUY) or minimum price (for SELL) at which the order may execute, in `priceAsset` precision. Required for LIMIT-family order types; null otherwise."""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     price_asset: NotRequired[Nullable[str]]
     r"""Currency + precision under which `limitPrice`, `stopPrice`, and
     `averageFillPrice` should be interpreted. Separate from
@@ -262,6 +263,7 @@ class V3Order(BaseModel):
     r"""Maximum price (for BUY) or minimum price (for SELL) at which the order may execute, in `priceAsset` precision. Required for LIMIT-family order types; null otherwise."""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     price_asset: Annotated[
         OptionalNullable[str], pydantic.Field(alias="priceAsset")

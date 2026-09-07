@@ -10,35 +10,50 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class BankingCircleConfigTypedDict(TypedDict):
     authorization_endpoint: str
+    r"""URL the connector calls to obtain an access token"""
     endpoint: str
+    r"""Base URL of the Banking Circle API the connector calls"""
     name: str
+    r"""Human-readable name identifying this connector instance"""
     password: str
+    r"""Password issued by Banking Circle, used to authenticate the connector"""
     user_certificate: str
+    r"""Client certificate presented on the mutual-TLS connection to Banking Circle"""
     user_certificate_key: str
+    r"""Private key matching the client certificate"""
     username: str
+    r"""Username issued by Banking Circle, used to authenticate the connector"""
     polling_period: NotRequired[str]
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
 
     """
     provider: NotRequired[str]
+    r"""Identifies the payment provider this configuration targets"""
 
 
 class BankingCircleConfig(BaseModel):
     authorization_endpoint: Annotated[
         str, pydantic.Field(alias="authorizationEndpoint")
     ]
+    r"""URL the connector calls to obtain an access token"""
 
     endpoint: str
+    r"""Base URL of the Banking Circle API the connector calls"""
 
     name: str
+    r"""Human-readable name identifying this connector instance"""
 
     password: str
+    r"""Password issued by Banking Circle, used to authenticate the connector"""
 
     user_certificate: Annotated[str, pydantic.Field(alias="userCertificate")]
+    r"""Client certificate presented on the mutual-TLS connection to Banking Circle"""
 
     user_certificate_key: Annotated[str, pydantic.Field(alias="userCertificateKey")]
+    r"""Private key matching the client certificate"""
 
     username: str
+    r"""Username issued by Banking Circle, used to authenticate the connector"""
 
     polling_period: Annotated[Optional[str], pydantic.Field(alias="pollingPeriod")] = (
         "30m"
@@ -48,6 +63,7 @@ class BankingCircleConfig(BaseModel):
     """
 
     provider: Optional[str] = "Bankingcircle"
+    r"""Identifies the payment provider this configuration targets"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

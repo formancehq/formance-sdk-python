@@ -17,31 +17,49 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3TaskTypedDict(TypedDict):
+    r"""An asynchronous unit of work, tracking an operation that completes in the background"""
+
     created_at: datetime
+    r"""When the task was created"""
     id: str
+    r"""Unique identifier of the task"""
     status: V3TaskStatusEnum
+    r"""Where a task stands, from processing through to succeeded or failed"""
     updated_at: datetime
+    r"""When the task was last updated"""
     connector_id: NotRequired[str]
+    r"""Identifier of the connector the task runs against"""
     created_object_id: NotRequired[str]
+    r"""Identifier of the object the task created, once it has succeeded"""
     error: NotRequired[Nullable[str]]
+    r"""Why the task failed, absent when it succeeded"""
 
 
 class V3Task(BaseModel):
+    r"""An asynchronous unit of work, tracking an operation that completes in the background"""
+
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the task was created"""
 
     id: str
+    r"""Unique identifier of the task"""
 
     status: V3TaskStatusEnum
+    r"""Where a task stands, from processing through to succeeded or failed"""
 
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
+    r"""When the task was last updated"""
 
     connector_id: Annotated[Optional[str], pydantic.Field(alias="connectorID")] = None
+    r"""Identifier of the connector the task runs against"""
 
     created_object_id: Annotated[
         Optional[str], pydantic.Field(alias="createdObjectID")
     ] = None
+    r"""Identifier of the object the task created, once it has succeeded"""
 
     error: OptionalNullable[str] = UNSET
+    r"""Why the task failed, absent when it succeeded"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

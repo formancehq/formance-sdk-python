@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class PaymentType(str, Enum):
+    r"""Direction of a payment"""
+
     PAY_IN = "PAY-IN"
     PAYOUT = "PAYOUT"
     TRANSFER = "TRANSFER"

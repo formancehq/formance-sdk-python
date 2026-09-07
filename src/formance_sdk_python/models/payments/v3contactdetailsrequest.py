@@ -9,14 +9,22 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3ContactDetailsRequestTypedDict(TypedDict):
+    r"""How to reach the payment service user"""
+
     email: NotRequired[str]
+    r"""Email address of the user"""
     phone_number: NotRequired[str]
+    r"""Phone number of the user, in international format"""
 
 
 class V3ContactDetailsRequest(BaseModel):
+    r"""How to reach the payment service user"""
+
     email: Optional[str] = None
+    r"""Email address of the user"""
 
     phone_number: Annotated[Optional[str], pydantic.Field(alias="phoneNumber")] = None
+    r"""Phone number of the user, in international format"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

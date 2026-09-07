@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V3GetPaymentInitiationResponseTypedDict(TypedDict):
     data: V3PaymentInitiationTypedDict
+    r"""A payment Formance asked a connector to execute"""
 
 
 class V3GetPaymentInitiationResponse(BaseModel):
     data: V3PaymentInitiation
+    r"""A payment Formance asked a connector to execute"""

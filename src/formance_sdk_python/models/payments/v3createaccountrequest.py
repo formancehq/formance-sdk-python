@@ -18,30 +18,44 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V3CreateAccountRequestTypedDict(TypedDict):
     account_name: str
+    r"""Human-readable name of the account"""
     connector_id: str
+    r"""Identifier of the connector the account belongs to"""
     created_at: datetime
+    r"""When the account was created at the provider"""
     reference: str
+    r"""Identifier the account carries at the provider"""
     type: V3AccountTypeEnum
+    r"""Whether an account is internal to the provider or belongs to an external party"""
     default_asset: NotRequired[Nullable[str]]
+    r"""Asset the account is denominated in by default"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
 
 class V3CreateAccountRequest(BaseModel):
     account_name: Annotated[str, pydantic.Field(alias="accountName")]
+    r"""Human-readable name of the account"""
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector the account belongs to"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the account was created at the provider"""
 
     reference: str
+    r"""Identifier the account carries at the provider"""
 
     type: V3AccountTypeEnum
+    r"""Whether an account is internal to the provider or belongs to an external party"""
 
     default_asset: Annotated[
         OptionalNullable[str], pydantic.Field(alias="defaultAsset")
     ] = UNSET
+    r"""Asset the account is denominated in by default"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

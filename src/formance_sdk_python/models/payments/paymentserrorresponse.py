@@ -13,7 +13,9 @@ from typing_extensions import Annotated
 
 class PaymentsErrorResponseData(BaseModel):
     error_code: Annotated[PaymentsErrorsEnum, pydantic.Field(alias="errorCode")]
+    r"""Machine-readable error code identifying the failure"""
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
+    r"""Human-readable description of the error"""
 
 
 @dataclass(unsafe_hash=True)

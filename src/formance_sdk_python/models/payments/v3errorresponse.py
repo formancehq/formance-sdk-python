@@ -13,8 +13,11 @@ from typing_extensions import Annotated
 
 class V3ErrorResponseData(BaseModel):
     error_code: Annotated[V3ErrorsEnum, pydantic.Field(alias="errorCode")]
+    r"""Machine-readable error code identifying the failure"""
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
+    r"""Human-readable description of the error"""
     details: Optional[str] = None
+    r"""Optional link carrying additional context about the error"""
 
 
 @dataclass(unsafe_hash=True)

@@ -1,12 +1,14 @@
 # AccountsCursorCursor
 
+Paginated cursor wrapping the list of accounts
+
 
 ## Fields
 
 | Field                                                      | Type                                                       | Required                                                   | Description                                                | Example                                                    |
 | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
 | `data`                                                     | List[[payments.Account](../../models/payments/account.md)] | :heavy_check_mark:                                         | N/A                                                        |                                                            |
-| `has_more`                                                 | *bool*                                                     | :heavy_check_mark:                                         | N/A                                                        | false                                                      |
-| `next`                                                     | *Optional[str]*                                            | :heavy_minus_sign:                                         | N/A                                                        |                                                            |
-| `page_size`                                                | *int*                                                      | :heavy_check_mark:                                         | N/A                                                        | 15                                                         |
-| `previous`                                                 | *Optional[str]*                                            | :heavy_minus_sign:                                         | N/A                                                        | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=               |
+| `has_more`                                                 | *bool*                                                     | :heavy_check_mark:                                         | Whether further pages are available                        | false                                                      |
+| `next`                                                     | *Optional[str]*                                            | :heavy_minus_sign:                                         | Cursor for the next page, absent on the last page          |                                                            |
+| `page_size`                                                | *int*                                                      | :heavy_check_mark:                                         | Number of items requested per page                         | 15                                                         |
+| `previous`                                                 | *Optional[str]*                                            | :heavy_minus_sign:                                         | Cursor for the previous page, absent on the first page     | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=               |

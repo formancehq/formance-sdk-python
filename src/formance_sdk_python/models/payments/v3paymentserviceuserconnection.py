@@ -18,28 +18,42 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V3PaymentServiceUserConnectionTypedDict(TypedDict):
     connection_id: str
+    r"""Identifier of the open banking connection at the provider"""
     connector_id: str
+    r"""Identifier of the connector holding the connection"""
     created_at: datetime
+    r"""When the connection was established"""
     data_updated_at: datetime
+    r"""When data was last refreshed over this connection"""
     status: V3ConnectionStatusEnum
+    r"""Whether an open banking connection is still usable or needs the user to reconnect"""
     error: NotRequired[Nullable[str]]
+    r"""Why the connection is failing, absent while it is healthy"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
 
 class V3PaymentServiceUserConnection(BaseModel):
     connection_id: Annotated[str, pydantic.Field(alias="connectionID")]
+    r"""Identifier of the open banking connection at the provider"""
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector holding the connection"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the connection was established"""
 
     data_updated_at: Annotated[datetime, pydantic.Field(alias="dataUpdatedAt")]
+    r"""When data was last refreshed over this connection"""
 
     status: V3ConnectionStatusEnum
+    r"""Whether an open banking connection is still usable or needs the user to reconnect"""
 
     error: OptionalNullable[str] = UNSET
+    r"""Why the connection is failing, absent while it is healthy"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

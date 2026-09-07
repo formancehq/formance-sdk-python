@@ -17,33 +17,49 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V3InstanceTypedDict(TypedDict):
     connector_id: str
+    r"""Identifier of the connector this run belongs to"""
     created_at: datetime
+    r"""When the run started"""
     id: str
+    r"""Unique identifier of the run"""
     schedule_id: str
+    r"""Identifier of the schedule that started this run"""
     terminated: bool
+    r"""Whether the run has finished, successfully or not"""
     updated_at: datetime
+    r"""When the run was last updated"""
     error: NotRequired[Nullable[str]]
+    r"""Why the run failed, absent when it succeeded"""
     terminated_at: NotRequired[datetime]
+    r"""When the run finished, absent while it is still running"""
 
 
 class V3Instance(BaseModel):
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector this run belongs to"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the run started"""
 
     id: str
+    r"""Unique identifier of the run"""
 
     schedule_id: Annotated[str, pydantic.Field(alias="scheduleID")]
+    r"""Identifier of the schedule that started this run"""
 
     terminated: bool
+    r"""Whether the run has finished, successfully or not"""
 
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
+    r"""When the run was last updated"""
 
     error: OptionalNullable[str] = UNSET
+    r"""Why the run failed, absent when it succeeded"""
 
     terminated_at: Annotated[
         Optional[datetime], pydantic.Field(alias="terminatedAt")
     ] = None
+    r"""When the run finished, absent while it is still running"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

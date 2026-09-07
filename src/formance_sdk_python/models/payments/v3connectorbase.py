@@ -10,23 +10,37 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3ConnectorBaseTypedDict(TypedDict):
+    r"""Summary of a connector, without its configuration"""
+
     created_at: NotRequired[datetime]
+    r"""When the connector was installed"""
     id: NotRequired[str]
+    r"""Unique identifier of the connector"""
     name: NotRequired[str]
+    r"""Human-readable name of the connector instance"""
     provider: NotRequired[str]
+    r"""Name of the payment provider behind the connector"""
     reference: NotRequired[str]
+    r"""Stable reference identifying the connector"""
 
 
 class V3ConnectorBase(BaseModel):
+    r"""Summary of a connector, without its configuration"""
+
     created_at: Annotated[Optional[datetime], pydantic.Field(alias="createdAt")] = None
+    r"""When the connector was installed"""
 
     id: Optional[str] = None
+    r"""Unique identifier of the connector"""
 
     name: Optional[str] = None
+    r"""Human-readable name of the connector instance"""
 
     provider: Optional[str] = None
+    r"""Name of the payment provider behind the connector"""
 
     reference: Optional[str] = None
+    r"""Stable reference identifying the connector"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

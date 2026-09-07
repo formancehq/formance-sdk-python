@@ -10,9 +10,11 @@ class PoolResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: PoolTypedDict
+    r"""A named group of accounts whose balances are aggregated together"""
 
 
 class PoolResponse(BaseModel):
     r"""OK"""
 
     data: Pool
+    r"""A named group of accounts whose balances are aggregated together"""

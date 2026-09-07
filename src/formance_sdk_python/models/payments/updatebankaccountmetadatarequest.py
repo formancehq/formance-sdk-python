@@ -9,10 +9,12 @@ from typing_extensions import TypedDict
 
 class UpdateBankAccountMetadataRequestTypedDict(TypedDict):
     metadata: Nullable[Dict[str, str]]
+    r"""Arbitrary key/value pairs attached to the bank account"""
 
 
 class UpdateBankAccountMetadataRequest(BaseModel):
     metadata: Nullable[Dict[str, str]]
+    r"""Arbitrary key/value pairs attached to the bank account"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

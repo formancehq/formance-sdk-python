@@ -9,10 +9,12 @@ from typing_extensions import TypedDict
 
 class V3UpdatePaymentMetadataRequestTypedDict(TypedDict):
     metadata: Nullable[Dict[str, str]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
 
 class V3UpdatePaymentMetadataRequest(BaseModel):
     metadata: Nullable[Dict[str, str]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

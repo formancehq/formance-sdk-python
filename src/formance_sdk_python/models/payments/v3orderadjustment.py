@@ -51,6 +51,7 @@ class V3OrderAdjustmentTypedDict(TypedDict):
     fee_asset: NotRequired[Nullable[str]]
     r"""Currency the fee is denominated in, in `SYMBOL/precision` form."""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     raw: NotRequired[Dict[str, Any]]
     r"""Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay."""
 
@@ -100,6 +101,7 @@ class V3OrderAdjustment(BaseModel):
     r"""Currency the fee is denominated in, in `SYMBOL/precision` form."""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     raw: Optional[Dict[str, Any]] = None
     r"""Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay."""

@@ -7,13 +7,17 @@ from typing_extensions import TypedDict
 
 
 class Status(str, Enum):
+    r"""Whether to approve or reject the pending transfer"""
+
     REJECTED = "REJECTED"
     VALIDATED = "VALIDATED"
 
 
 class UpdateTransferInitiationStatusRequestTypedDict(TypedDict):
     status: Status
+    r"""Whether to approve or reject the pending transfer"""
 
 
 class UpdateTransferInitiationStatusRequest(BaseModel):
     status: Status
+    r"""Whether to approve or reject the pending transfer"""

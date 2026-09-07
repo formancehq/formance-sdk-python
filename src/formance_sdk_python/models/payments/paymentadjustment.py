@@ -13,22 +13,32 @@ from typing_extensions import Annotated, TypedDict
 
 class PaymentAdjustmentTypedDict(TypedDict):
     amount: int
+    r"""Amount carried by this adjustment"""
     created_at: datetime
+    r"""When the adjustment occurred at the provider"""
     raw: Dict[str, Any]
+    r"""The provider's original payload for this adjustment"""
     reference: str
+    r"""Identifier the adjustment carries at the provider"""
     status: PaymentStatus
+    r"""Where a payment stands in its lifecycle"""
 
 
 class PaymentAdjustment(BaseModel):
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Amount carried by this adjustment"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the adjustment occurred at the provider"""
 
     raw: Dict[str, Any]
+    r"""The provider's original payload for this adjustment"""
 
     reference: str
+    r"""Identifier the adjustment carries at the provider"""
 
     status: PaymentStatus
+    r"""Where a payment stands in its lifecycle"""
 
 
 try:
