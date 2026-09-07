@@ -9,7 +9,9 @@ from typing_extensions import TypedDict
 
 class V3PoolBalancesResponseTypedDict(TypedDict):
     data: List[V3PoolBalanceTypedDict]
+    r"""Aggregated balances across a pool's accounts"""
 
 
 class V3PoolBalancesResponse(BaseModel):
     data: List[V3PoolBalance]
+    r"""Aggregated balances across a pool's accounts"""

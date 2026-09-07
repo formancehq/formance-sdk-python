@@ -10,21 +10,28 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class GenericConfigTypedDict(TypedDict):
     api_key: str
+    r"""API key used to authenticate the connector's requests"""
     endpoint: str
+    r"""Base URL of the API the connector calls"""
     name: str
+    r"""Human-readable name identifying this connector instance"""
     polling_period: NotRequired[str]
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from the API.
 
     """
     provider: NotRequired[str]
+    r"""Identifies the payment provider this configuration targets"""
 
 
 class GenericConfig(BaseModel):
     api_key: Annotated[str, pydantic.Field(alias="apiKey")]
+    r"""API key used to authenticate the connector's requests"""
 
     endpoint: str
+    r"""Base URL of the API the connector calls"""
 
     name: str
+    r"""Human-readable name identifying this connector instance"""
 
     polling_period: Annotated[Optional[str], pydantic.Field(alias="pollingPeriod")] = (
         "30m"
@@ -34,6 +41,7 @@ class GenericConfig(BaseModel):
     """
 
     provider: Optional[str] = "Generic"
+    r"""Identifies the payment provider this configuration targets"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

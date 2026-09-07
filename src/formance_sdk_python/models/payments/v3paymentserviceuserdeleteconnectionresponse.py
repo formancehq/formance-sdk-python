@@ -7,6 +7,8 @@ from typing_extensions import Annotated, TypedDict
 
 
 class V3PaymentServiceUserDeleteConnectionResponseDataTypedDict(TypedDict):
+    r"""The task tracking the deletion, which completes asynchronously"""
+
     task_id: str
     r"""Since this call is asynchronous, the response will contain the ID of the task that was created to delete the connection. You can use the task API to check the status of the task.
 
@@ -14,6 +16,8 @@ class V3PaymentServiceUserDeleteConnectionResponseDataTypedDict(TypedDict):
 
 
 class V3PaymentServiceUserDeleteConnectionResponseData(BaseModel):
+    r"""The task tracking the deletion, which completes asynchronously"""
+
     task_id: Annotated[str, pydantic.Field(alias="taskID")]
     r"""Since this call is asynchronous, the response will contain the ID of the task that was created to delete the connection. You can use the task API to check the status of the task.
 
@@ -22,10 +26,12 @@ class V3PaymentServiceUserDeleteConnectionResponseData(BaseModel):
 
 class V3PaymentServiceUserDeleteConnectionResponseTypedDict(TypedDict):
     data: V3PaymentServiceUserDeleteConnectionResponseDataTypedDict
+    r"""The task tracking the deletion, which completes asynchronously"""
 
 
 class V3PaymentServiceUserDeleteConnectionResponse(BaseModel):
     data: V3PaymentServiceUserDeleteConnectionResponseData
+    r"""The task tracking the deletion, which completes asynchronously"""
 
 
 try:

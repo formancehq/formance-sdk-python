@@ -10,23 +10,35 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class PaymentsCursorCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of payments"""
+
     data: List[PaymentTypedDict]
     has_more: bool
+    r"""Whether further pages are available"""
     page_size: int
+    r"""Number of items requested per page"""
     next: NotRequired[str]
+    r"""Cursor for the next page, absent on the last page"""
     previous: NotRequired[str]
+    r"""Cursor for the previous page, absent on the first page"""
 
 
 class PaymentsCursorCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of payments"""
+
     data: List[Payment]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
+    r"""Whether further pages are available"""
 
     page_size: Annotated[int, pydantic.Field(alias="pageSize")]
+    r"""Number of items requested per page"""
 
     next: Optional[str] = None
+    r"""Cursor for the next page, absent on the last page"""
 
     previous: Optional[str] = None
+    r"""Cursor for the previous page, absent on the first page"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -49,12 +61,14 @@ class PaymentsCursorTypedDict(TypedDict):
     r"""OK"""
 
     cursor: PaymentsCursorCursorTypedDict
+    r"""Paginated cursor wrapping the list of payments"""
 
 
 class PaymentsCursor(BaseModel):
     r"""OK"""
 
     cursor: PaymentsCursorCursor
+    r"""Paginated cursor wrapping the list of payments"""
 
 
 try:

@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class V3AccountTypeEnum(str, Enum):
+    r"""Whether an account is internal to the provider or belongs to an external party"""
+
     UNKNOWN = "UNKNOWN"
     INTERNAL = "INTERNAL"
     EXTERNAL = "EXTERNAL"

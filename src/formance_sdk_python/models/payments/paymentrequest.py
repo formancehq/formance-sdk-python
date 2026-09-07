@@ -16,41 +16,61 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class PaymentRequestTypedDict(TypedDict):
     amount: int
+    r"""Amount of the payment, in the asset's smallest unit"""
     asset: str
+    r"""Asset the payment is denominated in"""
     connector_id: str
+    r"""Identifier of the connector the payment belongs to"""
     created_at: datetime
+    r"""When the payment was created at the provider"""
     reference: str
+    r"""Identifier the payment carries at the provider"""
     scheme: PaymentScheme
+    r"""Payment scheme or rail a payment travels over"""
     status: PaymentStatus
+    r"""Where a payment stands in its lifecycle"""
     type: PaymentType
+    r"""Direction of a payment"""
     destination_account_id: NotRequired[str]
+    r"""Identifier of the account the funds reach"""
     source_account_id: NotRequired[str]
+    r"""Identifier of the account the funds leave"""
 
 
 class PaymentRequest(BaseModel):
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Amount of the payment, in the asset's smallest unit"""
 
     asset: str
+    r"""Asset the payment is denominated in"""
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector the payment belongs to"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the payment was created at the provider"""
 
     reference: str
+    r"""Identifier the payment carries at the provider"""
 
     scheme: PaymentScheme
+    r"""Payment scheme or rail a payment travels over"""
 
     status: PaymentStatus
+    r"""Where a payment stands in its lifecycle"""
 
     type: PaymentType
+    r"""Direction of a payment"""
 
     destination_account_id: Annotated[
         Optional[str], pydantic.Field(alias="destinationAccountID")
     ] = None
+    r"""Identifier of the account the funds reach"""
 
     source_account_id: Annotated[
         Optional[str], pydantic.Field(alias="sourceAccountID")
     ] = None
+    r"""Identifier of the account the funds leave"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

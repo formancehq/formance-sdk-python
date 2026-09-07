@@ -20,41 +20,61 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V3InitiatePaymentRequestTypedDict(TypedDict):
     amount: int
+    r"""Amount to move, in the asset's smallest unit"""
     asset: str
+    r"""Asset the payment is denominated in"""
     connector_id: str
+    r"""Identifier of the connector to execute the payment through"""
     description: str
+    r"""Human-readable description carried with the payment"""
     reference: str
+    r"""Caller-supplied identifier for the initiation, used to deduplicate retries"""
     scheduled_at: datetime
+    r"""When the payment should be executed"""
     type: V3PaymentInitiationTypeEnum
+    r"""Kind of movement a payment initiation performs, such as a transfer or a payout"""
     destination_account_id: NotRequired[str]
+    r"""Identifier of the account the funds reach"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     source_account_id: NotRequired[Nullable[str]]
+    r"""Identifier of the account the funds leave"""
 
 
 class V3InitiatePaymentRequest(BaseModel):
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Amount to move, in the asset's smallest unit"""
 
     asset: str
+    r"""Asset the payment is denominated in"""
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector to execute the payment through"""
 
     description: str
+    r"""Human-readable description carried with the payment"""
 
     reference: str
+    r"""Caller-supplied identifier for the initiation, used to deduplicate retries"""
 
     scheduled_at: Annotated[datetime, pydantic.Field(alias="scheduledAt")]
+    r"""When the payment should be executed"""
 
     type: V3PaymentInitiationTypeEnum
+    r"""Kind of movement a payment initiation performs, such as a transfer or a payout"""
 
     destination_account_id: Annotated[
         Optional[str], pydantic.Field(alias="destinationAccountID")
     ] = None
+    r"""Identifier of the account the funds reach"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     source_account_id: Annotated[
         OptionalNullable[str], pydantic.Field(alias="sourceAccountID")
     ] = UNSET
+    r"""Identifier of the account the funds leave"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

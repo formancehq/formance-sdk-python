@@ -13,6 +13,7 @@ class ConnectorsResponseDataTypedDict(TypedDict):
     connector_id: str
     name: str
     provider: Connector
+    r"""The payment provider behind a connector"""
     enabled: NotRequired[bool]
 
 
@@ -22,6 +23,7 @@ class ConnectorsResponseData(BaseModel):
     name: str
 
     provider: Connector
+    r"""The payment provider behind a connector"""
 
     enabled: Optional[bool] = None
 
@@ -46,12 +48,14 @@ class ConnectorsResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: List[ConnectorsResponseDataTypedDict]
+    r"""The connectors installed on this stack"""
 
 
 class ConnectorsResponse(BaseModel):
     r"""OK"""
 
     data: List[ConnectorsResponseData]
+    r"""The connectors installed on this stack"""
 
 
 try:

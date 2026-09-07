@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V3UpdatePoolQueryRequestTypedDict(TypedDict):
     query: Dict[str, Any]
+    r"""Filter selecting the accounts a dynamic pool contains"""
 
 
 class V3UpdatePoolQueryRequest(BaseModel):
     query: Dict[str, Any]
+    r"""Filter selecting the accounts a dynamic pool contains"""

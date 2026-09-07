@@ -17,19 +17,27 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class TransferInitiationPaymentsTypedDict(TypedDict):
     created_at: datetime
+    r"""When the payment was produced"""
     payment_id: str
+    r"""Identifier of the payment produced by the initiation"""
     status: LegacyPaymentStatus
+    r"""Status of a payment as reported by the legacy payments API"""
     error: NotRequired[Nullable[str]]
+    r"""Why the payment failed, absent when it succeeded"""
 
 
 class TransferInitiationPayments(BaseModel):
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the payment was produced"""
 
     payment_id: Annotated[str, pydantic.Field(alias="paymentID")]
+    r"""Identifier of the payment produced by the initiation"""
 
     status: LegacyPaymentStatus
+    r"""Status of a payment as reported by the legacy payments API"""
 
     error: OptionalNullable[str] = UNSET
+    r"""Why the payment failed, absent when it succeeded"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

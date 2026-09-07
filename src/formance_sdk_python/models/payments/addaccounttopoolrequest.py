@@ -8,10 +8,12 @@ from typing_extensions import Annotated, TypedDict
 
 class AddAccountToPoolRequestTypedDict(TypedDict):
     account_id: str
+    r"""Identifier of the account to add to the pool"""
 
 
 class AddAccountToPoolRequest(BaseModel):
     account_id: Annotated[str, pydantic.Field(alias="accountID")]
+    r"""Identifier of the account to add to the pool"""
 
 
 try:

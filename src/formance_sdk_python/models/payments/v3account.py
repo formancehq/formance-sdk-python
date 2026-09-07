@@ -18,43 +18,69 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3AccountTypedDict(TypedDict):
+    r"""An account held at a payment provider, surfaced through a connector"""
+
     connector_id: str
+    r"""Identifier of the connector the account belongs to"""
     created_at: datetime
+    r"""When the account was created at the provider"""
     id: str
+    r"""Unique identifier of the account within Formance"""
     provider: str
+    r"""Name of the payment provider behind the connector"""
     raw: Dict[str, Any]
+    r"""The provider's original payload, passed through untouched"""
     reference: str
+    r"""Identifier the account carries at the provider"""
     type: V3AccountTypeEnum
+    r"""Whether an account is internal to the provider or belongs to an external party"""
     connector: NotRequired[V3ConnectorBaseTypedDict]
+    r"""Summary of a connector, without its configuration"""
     default_asset: NotRequired[Nullable[str]]
+    r"""Asset the account is denominated in by default"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     name: NotRequired[Nullable[str]]
+    r"""Human-readable name of the account"""
 
 
 class V3Account(BaseModel):
+    r"""An account held at a payment provider, surfaced through a connector"""
+
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector the account belongs to"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the account was created at the provider"""
 
     id: str
+    r"""Unique identifier of the account within Formance"""
 
     provider: str
+    r"""Name of the payment provider behind the connector"""
 
     raw: Dict[str, Any]
+    r"""The provider's original payload, passed through untouched"""
 
     reference: str
+    r"""Identifier the account carries at the provider"""
 
     type: V3AccountTypeEnum
+    r"""Whether an account is internal to the provider or belongs to an external party"""
 
     connector: Optional[V3ConnectorBase] = None
+    r"""Summary of a connector, without its configuration"""
 
     default_asset: Annotated[
         OptionalNullable[str], pydantic.Field(alias="defaultAsset")
     ] = UNSET
+    r"""Asset the account is denominated in by default"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     name: OptionalNullable[str] = UNSET
+    r"""Human-readable name of the account"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

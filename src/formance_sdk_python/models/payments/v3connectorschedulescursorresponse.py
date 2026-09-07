@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3ConnectorSchedulesCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the connector's schedules"""
+
     data: List[V3ScheduleTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class V3ConnectorSchedulesCursorResponseCursorTypedDict(TypedDict):
 
 
 class V3ConnectorSchedulesCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the connector's schedules"""
+
     data: List[V3Schedule]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -47,10 +51,12 @@ class V3ConnectorSchedulesCursorResponseCursor(BaseModel):
 
 class V3ConnectorSchedulesCursorResponseTypedDict(TypedDict):
     cursor: V3ConnectorSchedulesCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the connector's schedules"""
 
 
 class V3ConnectorSchedulesCursorResponse(BaseModel):
     cursor: V3ConnectorSchedulesCursorResponseCursor
+    r"""Paginated cursor wrapping the connector's schedules"""
 
 
 try:

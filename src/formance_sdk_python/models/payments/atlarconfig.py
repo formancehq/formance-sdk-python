@@ -15,6 +15,7 @@ class AtlarConfigTypedDict(TypedDict):
 
     """
     name: str
+    r"""Human-readable name identifying this connector instance"""
     secret: str
     r"""The secret used by the connector for authorizing requests to the Atlar API.
     You can obtain it along with the associated access key from the Atlar dashboard.
@@ -33,6 +34,7 @@ class AtlarConfigTypedDict(TypedDict):
 
     """
     provider: NotRequired[str]
+    r"""Identifies the payment provider this configuration targets"""
     transfer_initiation_status_polling_period: NotRequired[str]
     r"""The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
 
@@ -47,6 +49,7 @@ class AtlarConfig(BaseModel):
     """
 
     name: str
+    r"""Human-readable name identifying this connector instance"""
 
     secret: str
     r"""The secret used by the connector for authorizing requests to the Atlar API.
@@ -74,6 +77,7 @@ class AtlarConfig(BaseModel):
     """
 
     provider: Optional[str] = "Atlar"
+    r"""Identifies the payment provider this configuration targets"""
 
     transfer_initiation_status_polling_period: Annotated[
         Optional[str],

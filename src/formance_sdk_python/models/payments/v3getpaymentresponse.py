@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V3GetPaymentResponseTypedDict(TypedDict):
     data: V3PaymentTypedDict
+    r"""A payment observed at a provider and surfaced through a connector"""
 
 
 class V3GetPaymentResponse(BaseModel):
     data: V3Payment
+    r"""A payment observed at a provider and surfaced through a connector"""

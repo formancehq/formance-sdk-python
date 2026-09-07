@@ -63,6 +63,7 @@ class V3ConversionTypedDict(TypedDict):
     fee_asset: NotRequired[Nullable[str]]
     r"""Currency the fee is denominated in, in `SYMBOL/precision` form."""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     source_account_id: NotRequired[Nullable[str]]
     r"""Formance account ID of the wallet the source asset was debited from."""
 
@@ -137,6 +138,7 @@ class V3Conversion(BaseModel):
     r"""Currency the fee is denominated in, in `SYMBOL/precision` form."""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     source_account_id: Annotated[
         OptionalNullable[str], pydantic.Field(alias="sourceAccountID")

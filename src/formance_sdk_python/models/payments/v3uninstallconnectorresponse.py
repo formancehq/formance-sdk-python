@@ -7,6 +7,8 @@ from typing_extensions import Annotated, TypedDict
 
 
 class V3UninstallConnectorResponseDataTypedDict(TypedDict):
+    r"""The task tracking the uninstall, which completes asynchronously"""
+
     task_id: str
     r"""Since this call is asynchronous, the response will contain the ID of the task that was created to uninstall the connector. You can use the task API to check the status of the task and get the results.
 
@@ -14,6 +16,8 @@ class V3UninstallConnectorResponseDataTypedDict(TypedDict):
 
 
 class V3UninstallConnectorResponseData(BaseModel):
+    r"""The task tracking the uninstall, which completes asynchronously"""
+
     task_id: Annotated[str, pydantic.Field(alias="taskID")]
     r"""Since this call is asynchronous, the response will contain the ID of the task that was created to uninstall the connector. You can use the task API to check the status of the task and get the results.
 
@@ -22,10 +26,12 @@ class V3UninstallConnectorResponseData(BaseModel):
 
 class V3UninstallConnectorResponseTypedDict(TypedDict):
     data: V3UninstallConnectorResponseDataTypedDict
+    r"""The task tracking the uninstall, which completes asynchronously"""
 
 
 class V3UninstallConnectorResponse(BaseModel):
     data: V3UninstallConnectorResponseData
+    r"""The task tracking the uninstall, which completes asynchronously"""
 
 
 try:

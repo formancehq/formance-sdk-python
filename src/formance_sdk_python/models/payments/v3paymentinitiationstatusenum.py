@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class V3PaymentInitiationStatusEnum(str, Enum):
+    r"""Where a payment initiation stands in its lifecycle"""
+
     UNKNOWN = "UNKNOWN"
     WAITING_FOR_VALIDATION = "WAITING_FOR_VALIDATION"
     SCHEDULED_FOR_PROCESSING = "SCHEDULED_FOR_PROCESSING"

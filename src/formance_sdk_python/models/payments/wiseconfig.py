@@ -10,18 +10,23 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class WiseConfigTypedDict(TypedDict):
     api_key: str
+    r"""API key issued by Wise, used to authenticate the connector's requests"""
     name: str
+    r"""Human-readable name identifying this connector instance"""
     polling_period: NotRequired[str]
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Wise API.
 
     """
     provider: NotRequired[str]
+    r"""Identifies the payment provider this configuration targets"""
 
 
 class WiseConfig(BaseModel):
     api_key: Annotated[str, pydantic.Field(alias="apiKey")]
+    r"""API key issued by Wise, used to authenticate the connector's requests"""
 
     name: str
+    r"""Human-readable name identifying this connector instance"""
 
     polling_period: Annotated[Optional[str], pydantic.Field(alias="pollingPeriod")] = (
         "30m"
@@ -31,6 +36,7 @@ class WiseConfig(BaseModel):
     """
 
     provider: Optional[str] = "Wise"
+    r"""Identifies the payment provider this configuration targets"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

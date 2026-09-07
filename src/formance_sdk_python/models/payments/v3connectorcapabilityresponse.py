@@ -9,7 +9,9 @@ from typing_extensions import TypedDict
 
 class V3ConnectorCapabilityResponseTypedDict(TypedDict):
     data: List[V3Capability]
+    r"""Operations this connector supports"""
 
 
 class V3ConnectorCapabilityResponse(BaseModel):
     data: List[V3Capability]
+    r"""Operations this connector supports"""

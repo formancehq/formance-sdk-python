@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class V3TaskStatusEnum(str, Enum):
+    r"""Where a task stands, from processing through to succeeded or failed"""
+
     PROCESSING = "PROCESSING"
     SUCCEEDED = "SUCCEEDED"
     FAILED = "FAILED"

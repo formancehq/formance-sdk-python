@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class AccountType(str, Enum):
+    r"""Whether an account is internal to the provider or belongs to an external party"""
+
     UNKNOWN = "UNKNOWN"
     INTERNAL = "INTERNAL"
     EXTERNAL = "EXTERNAL"

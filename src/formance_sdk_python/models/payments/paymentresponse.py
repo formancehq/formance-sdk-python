@@ -10,9 +10,11 @@ class PaymentResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: PaymentTypedDict
+    r"""A payment observed at a provider and surfaced through a connector"""
 
 
 class PaymentResponse(BaseModel):
     r"""OK"""
 
     data: Payment
+    r"""A payment observed at a provider and surfaced through a connector"""

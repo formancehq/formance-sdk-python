@@ -40,10 +40,12 @@ class V3ConnectorConfigsResponseData(BaseModel):
 
 class V3ConnectorConfigsResponseTypedDict(TypedDict):
     data: Dict[str, Dict[str, V3ConnectorConfigsResponseDataTypedDict]]
+    r"""Configuration schema of every available connector, keyed by provider"""
 
 
 class V3ConnectorConfigsResponse(BaseModel):
     data: Dict[str, Dict[str, V3ConnectorConfigsResponseData]]
+    r"""Configuration schema of every available connector, keyed by provider"""
 
 
 try:

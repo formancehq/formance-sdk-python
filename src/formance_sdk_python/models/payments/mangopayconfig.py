@@ -10,24 +10,33 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class MangoPayConfigTypedDict(TypedDict):
     api_key: str
+    r"""API key issued by MangoPay, used to authenticate the connector's requests"""
     client_id: str
+    r"""Client ID issued by MangoPay"""
     endpoint: str
+    r"""Base URL of the MangoPay API the connector calls"""
     name: str
+    r"""Human-readable name identifying this connector instance"""
     polling_period: NotRequired[str]
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from MangoPay API.
 
     """
     provider: NotRequired[str]
+    r"""Identifies the payment provider this configuration targets"""
 
 
 class MangoPayConfig(BaseModel):
     api_key: Annotated[str, pydantic.Field(alias="apiKey")]
+    r"""API key issued by MangoPay, used to authenticate the connector's requests"""
 
     client_id: Annotated[str, pydantic.Field(alias="clientID")]
+    r"""Client ID issued by MangoPay"""
 
     endpoint: str
+    r"""Base URL of the MangoPay API the connector calls"""
 
     name: str
+    r"""Human-readable name identifying this connector instance"""
 
     polling_period: Annotated[Optional[str], pydantic.Field(alias="pollingPeriod")] = (
         "30m"
@@ -37,6 +46,7 @@ class MangoPayConfig(BaseModel):
     """
 
     provider: Optional[str] = "Mangopay"
+    r"""Identifies the payment provider this configuration targets"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

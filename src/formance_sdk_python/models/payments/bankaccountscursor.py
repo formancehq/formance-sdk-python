@@ -10,23 +10,35 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class BankAccountsCursorCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of bank accounts"""
+
     data: List[BankAccountTypedDict]
     has_more: bool
+    r"""Whether further pages are available"""
     page_size: int
+    r"""Number of items requested per page"""
     next: NotRequired[str]
+    r"""Cursor for the next page, absent on the last page"""
     previous: NotRequired[str]
+    r"""Cursor for the previous page, absent on the first page"""
 
 
 class BankAccountsCursorCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of bank accounts"""
+
     data: List[BankAccount]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
+    r"""Whether further pages are available"""
 
     page_size: Annotated[int, pydantic.Field(alias="pageSize")]
+    r"""Number of items requested per page"""
 
     next: Optional[str] = None
+    r"""Cursor for the next page, absent on the last page"""
 
     previous: Optional[str] = None
+    r"""Cursor for the previous page, absent on the first page"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -49,12 +61,14 @@ class BankAccountsCursorTypedDict(TypedDict):
     r"""OK"""
 
     cursor: BankAccountsCursorCursorTypedDict
+    r"""Paginated cursor wrapping the list of bank accounts"""
 
 
 class BankAccountsCursor(BaseModel):
     r"""OK"""
 
     cursor: BankAccountsCursorCursor
+    r"""Paginated cursor wrapping the list of bank accounts"""
 
 
 try:

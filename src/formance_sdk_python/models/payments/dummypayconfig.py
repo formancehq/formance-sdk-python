@@ -10,19 +10,27 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class DummyPayConfigTypedDict(TypedDict):
     directory: str
+    r"""Filesystem directory the connector reads payment files from"""
     name: str
+    r"""Human-readable name identifying this connector instance"""
     file_polling_period: NotRequired[str]
     r"""The frequency at which the connector will try to fetch new payment objects from the directory"""
     number_of_accounts_pre_generated: NotRequired[int]
+    r"""How many synthetic accounts to create on startup"""
     number_of_payments_pre_generated: NotRequired[int]
+    r"""How many synthetic payments to create on startup"""
     prefix_file_to_ingest: NotRequired[str]
+    r"""Only ingest files whose name starts with this prefix"""
     provider: NotRequired[str]
+    r"""Identifies the payment provider this configuration targets"""
 
 
 class DummyPayConfig(BaseModel):
     directory: str
+    r"""Filesystem directory the connector reads payment files from"""
 
     name: str
+    r"""Human-readable name identifying this connector instance"""
 
     file_polling_period: Annotated[
         Optional[str], pydantic.Field(alias="filePollingPeriod")
@@ -32,16 +40,20 @@ class DummyPayConfig(BaseModel):
     number_of_accounts_pre_generated: Annotated[
         Optional[int], pydantic.Field(alias="numberOfAccountsPreGenerated")
     ] = None
+    r"""How many synthetic accounts to create on startup"""
 
     number_of_payments_pre_generated: Annotated[
         Optional[int], pydantic.Field(alias="numberOfPaymentsPreGenerated")
     ] = None
+    r"""How many synthetic payments to create on startup"""
 
     prefix_file_to_ingest: Annotated[
         Optional[str], pydantic.Field(alias="prefixFileToIngest")
     ] = None
+    r"""Only ingest files whose name starts with this prefix"""
 
     provider: Optional[str] = "Dummypay"
+    r"""Identifies the payment provider this configuration targets"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

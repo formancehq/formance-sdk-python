@@ -21,60 +21,94 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3PaymentTypedDict(TypedDict):
+    r"""A payment observed at a provider and surfaced through a connector"""
+
     amount: int
+    r"""Current amount of the payment after applying its adjustments"""
     asset: str
+    r"""Asset the payment is denominated in"""
     connector_id: str
+    r"""Identifier of the connector the payment belongs to"""
     created_at: datetime
+    r"""When the payment was created at the provider"""
     id: str
+    r"""Unique identifier of the payment within Formance"""
     initial_amount: int
+    r"""Amount the payment was created with, before any adjustment"""
     provider: str
+    r"""Name of the payment provider behind the connector"""
     reference: str
+    r"""Identifier the payment carries at the provider"""
     scheme: str
+    r"""Payment scheme or rail the payment travelled over"""
     status: V3PaymentStatusEnum
+    r"""Where a payment stands in its lifecycle"""
     type: V3PaymentTypeEnum
+    r"""Direction of a payment"""
     adjustments: NotRequired[Nullable[List[V3PaymentAdjustmentTypedDict]]]
+    r"""Successive changes to the payment's amount and status, newest first"""
     destination_account_id: NotRequired[Nullable[str]]
+    r"""Identifier of the account the funds reached"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     source_account_id: NotRequired[Nullable[str]]
+    r"""Identifier of the account the funds left"""
 
 
 class V3Payment(BaseModel):
+    r"""A payment observed at a provider and surfaced through a connector"""
+
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Current amount of the payment after applying its adjustments"""
 
     asset: str
+    r"""Asset the payment is denominated in"""
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector the payment belongs to"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the payment was created at the provider"""
 
     id: str
+    r"""Unique identifier of the payment within Formance"""
 
     initial_amount: Annotated[
         Annotated[int, BeforeValidator(validate_int)],
         pydantic.Field(alias="initialAmount"),
     ]
+    r"""Amount the payment was created with, before any adjustment"""
 
     provider: str
+    r"""Name of the payment provider behind the connector"""
 
     reference: str
+    r"""Identifier the payment carries at the provider"""
 
     scheme: str
+    r"""Payment scheme or rail the payment travelled over"""
 
     status: V3PaymentStatusEnum
+    r"""Where a payment stands in its lifecycle"""
 
     type: V3PaymentTypeEnum
+    r"""Direction of a payment"""
 
     adjustments: OptionalNullable[List[V3PaymentAdjustment]] = UNSET
+    r"""Successive changes to the payment's amount and status, newest first"""
 
     destination_account_id: Annotated[
         OptionalNullable[str], pydantic.Field(alias="destinationAccountID")
     ] = UNSET
+    r"""Identifier of the account the funds reached"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     source_account_id: Annotated[
         OptionalNullable[str], pydantic.Field(alias="sourceAccountID")
     ] = UNSET
+    r"""Identifier of the account the funds left"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

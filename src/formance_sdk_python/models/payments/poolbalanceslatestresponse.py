@@ -11,9 +11,11 @@ class PoolBalancesLatestResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: List[PoolBalanceTypedDict]
+    r"""Most recent aggregated balances across a pool's accounts"""
 
 
 class PoolBalancesLatestResponse(BaseModel):
     r"""OK"""
 
     data: List[PoolBalance]
+    r"""Most recent aggregated balances across a pool's accounts"""

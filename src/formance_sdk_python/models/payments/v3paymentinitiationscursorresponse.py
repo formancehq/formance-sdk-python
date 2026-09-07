@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3PaymentInitiationsCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of payment initiations"""
+
     data: List[V3PaymentInitiationTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class V3PaymentInitiationsCursorResponseCursorTypedDict(TypedDict):
 
 
 class V3PaymentInitiationsCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of payment initiations"""
+
     data: List[V3PaymentInitiation]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -47,10 +51,12 @@ class V3PaymentInitiationsCursorResponseCursor(BaseModel):
 
 class V3PaymentInitiationsCursorResponseTypedDict(TypedDict):
     cursor: V3PaymentInitiationsCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of payment initiations"""
 
 
 class V3PaymentInitiationsCursorResponse(BaseModel):
     cursor: V3PaymentInitiationsCursorResponseCursor
+    r"""Paginated cursor wrapping the list of payment initiations"""
 
 
 try:

@@ -8,13 +8,17 @@ from typing_extensions import Annotated, TypedDict
 
 class V3PaymentServiceUserCreateLinkResponseTypedDict(TypedDict):
     attempt_id: str
+    r"""Identifier of the link attempt this URL belongs to"""
     link: str
+    r"""URL to send the user to so they can authorise the connection"""
 
 
 class V3PaymentServiceUserCreateLinkResponse(BaseModel):
     attempt_id: Annotated[str, pydantic.Field(alias="attemptID")]
+    r"""Identifier of the link attempt this URL belongs to"""
 
     link: str
+    r"""URL to send the user to so they can authorise the connection"""
 
 
 try:

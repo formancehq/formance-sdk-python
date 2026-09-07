@@ -9,6 +9,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3InitiatePaymentResponseDataTypedDict(TypedDict):
+    r"""The task tracking the initiation, which completes asynchronously"""
+
     payment_initiation_id: NotRequired[str]
     r"""Related payment initiation object ID created.
 
@@ -20,6 +22,8 @@ class V3InitiatePaymentResponseDataTypedDict(TypedDict):
 
 
 class V3InitiatePaymentResponseData(BaseModel):
+    r"""The task tracking the initiation, which completes asynchronously"""
+
     payment_initiation_id: Annotated[
         Optional[str], pydantic.Field(alias="paymentInitiationID")
     ] = None
@@ -51,10 +55,12 @@ class V3InitiatePaymentResponseData(BaseModel):
 
 class V3InitiatePaymentResponseTypedDict(TypedDict):
     data: V3InitiatePaymentResponseDataTypedDict
+    r"""The task tracking the initiation, which completes asynchronously"""
 
 
 class V3InitiatePaymentResponse(BaseModel):
     data: V3InitiatePaymentResponseData
+    r"""The task tracking the initiation, which completes asynchronously"""
 
 
 try:

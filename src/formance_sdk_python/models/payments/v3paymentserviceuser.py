@@ -18,33 +18,51 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3PaymentServiceUserTypedDict(TypedDict):
+    r"""An end user on whose behalf payments and open banking connections are made"""
+
     created_at: datetime
+    r"""When the user was registered"""
     id: str
+    r"""Unique identifier of the payment service user"""
     name: str
+    r"""Full name of the payment service user"""
     address: NotRequired[V3AddressTypedDict]
+    r"""A postal address"""
     bank_account_i_ds: NotRequired[Nullable[List[str]]]
+    r"""Bank accounts associated with the user"""
     contact_details: NotRequired[V3ContactDetailsTypedDict]
+    r"""How to reach a payment service user"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
 
 class V3PaymentServiceUser(BaseModel):
+    r"""An end user on whose behalf payments and open banking connections are made"""
+
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the user was registered"""
 
     id: str
+    r"""Unique identifier of the payment service user"""
 
     name: str
+    r"""Full name of the payment service user"""
 
     address: Optional[V3Address] = None
+    r"""A postal address"""
 
     bank_account_i_ds: Annotated[
         OptionalNullable[List[str]], pydantic.Field(alias="bankAccountIDs")
     ] = UNSET
+    r"""Bank accounts associated with the user"""
 
     contact_details: Annotated[
         Optional[V3ContactDetails], pydantic.Field(alias="contactDetails")
     ] = None
+    r"""How to reach a payment service user"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

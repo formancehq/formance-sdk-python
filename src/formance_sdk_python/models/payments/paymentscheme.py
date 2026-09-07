@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class PaymentScheme(str, Enum):
+    r"""Payment scheme or rail a payment travels over"""
+
     UNKNOWN = "unknown"
     OTHER = "other"
     VISA = "visa"

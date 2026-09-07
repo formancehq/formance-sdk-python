@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class V3PaymentStatusEnum(str, Enum):
+    r"""Where a payment stands in its lifecycle"""
+
     UNKNOWN = "UNKNOWN"
     PENDING = "PENDING"
     SUCCEEDED = "SUCCEEDED"

@@ -13,6 +13,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3PaymentServiceUserLinkAttemptsCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the user's link attempts"""
+
     data: List[V3PaymentServiceUserLinkAttemptTypedDict]
     has_more: bool
     page_size: int
@@ -21,6 +23,8 @@ class V3PaymentServiceUserLinkAttemptsCursorResponseCursorTypedDict(TypedDict):
 
 
 class V3PaymentServiceUserLinkAttemptsCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the user's link attempts"""
+
     data: List[V3PaymentServiceUserLinkAttempt]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -50,10 +54,12 @@ class V3PaymentServiceUserLinkAttemptsCursorResponseCursor(BaseModel):
 
 class V3PaymentServiceUserLinkAttemptsCursorResponseTypedDict(TypedDict):
     cursor: V3PaymentServiceUserLinkAttemptsCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the user's link attempts"""
 
 
 class V3PaymentServiceUserLinkAttemptsCursorResponse(BaseModel):
     cursor: V3PaymentServiceUserLinkAttemptsCursorResponseCursor
+    r"""Paginated cursor wrapping the user's link attempts"""
 
 
 try:

@@ -11,28 +11,48 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class AccountTypedDict(TypedDict):
+    r"""An account held at a payment provider, surfaced through a connector"""
+
     account_name: str
+    r"""Human-readable name of the account"""
     connector_id: str
+    r"""Identifier of the connector the account belongs to"""
     created_at: datetime
+    r"""When the account was created at the provider"""
     default_asset: str
+    r"""Asset the account is denominated in by default"""
     default_currency: str
+    r"""Deprecated alias of defaultAsset, kept for backwards compatibility"""
     id: str
+    r"""Unique identifier of the account within Formance"""
     metadata: Nullable[Dict[str, str]]
+    r"""Arbitrary key/value pairs attached to the account"""
     raw: Nullable[Dict[str, Any]]
+    r"""The provider's original payload, passed through untouched"""
     reference: str
+    r"""Identifier the account carries at the provider"""
     type: AccountType
+    r"""Whether an account is internal to the provider or belongs to an external party"""
     pools: NotRequired[List[str]]
+    r"""Pools this account belongs to"""
     provider: NotRequired[str]
+    r"""Name of the payment provider behind the connector"""
 
 
 class Account(BaseModel):
+    r"""An account held at a payment provider, surfaced through a connector"""
+
     account_name: Annotated[str, pydantic.Field(alias="accountName")]
+    r"""Human-readable name of the account"""
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector the account belongs to"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the account was created at the provider"""
 
     default_asset: Annotated[str, pydantic.Field(alias="defaultAsset")]
+    r"""Asset the account is denominated in by default"""
 
     default_currency: Annotated[
         str,
@@ -41,20 +61,28 @@ class Account(BaseModel):
             alias="defaultCurrency",
         ),
     ]
+    r"""Deprecated alias of defaultAsset, kept for backwards compatibility"""
 
     id: str
+    r"""Unique identifier of the account within Formance"""
 
     metadata: Nullable[Dict[str, str]]
+    r"""Arbitrary key/value pairs attached to the account"""
 
     raw: Nullable[Dict[str, Any]]
+    r"""The provider's original payload, passed through untouched"""
 
     reference: str
+    r"""Identifier the account carries at the provider"""
 
     type: AccountType
+    r"""Whether an account is internal to the provider or belongs to an external party"""
 
     pools: Optional[List[str]] = None
+    r"""Pools this account belongs to"""
 
     provider: Optional[str] = None
+    r"""Name of the payment provider behind the connector"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V3GetPoolResponseTypedDict(TypedDict):
     data: V3PoolTypedDict
+    r"""A named group of accounts whose balances are aggregated together"""
 
 
 class V3GetPoolResponse(BaseModel):
     data: V3Pool
+    r"""A named group of accounts whose balances are aggregated together"""

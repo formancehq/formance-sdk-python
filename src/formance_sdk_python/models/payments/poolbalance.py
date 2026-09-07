@@ -18,18 +18,24 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class PoolBalanceTypedDict(TypedDict):
     amount: int
+    r"""Total held across the pool for this asset, in the asset's smallest unit"""
     asset: str
+    r"""Asset the balance is denominated in"""
     related_accounts: NotRequired[Nullable[List[str]]]
+    r"""Accounts contributing to this balance"""
 
 
 class PoolBalance(BaseModel):
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Total held across the pool for this asset, in the asset's smallest unit"""
 
     asset: str
+    r"""Asset the balance is denominated in"""
 
     related_accounts: Annotated[
         OptionalNullable[List[str]], pydantic.Field(alias="relatedAccounts")
     ] = UNSET
+    r"""Accounts contributing to this balance"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

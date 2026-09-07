@@ -42,12 +42,14 @@ class ConnectorsConfigsResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: Dict[str, Dict[str, ConnectorsConfigsResponseDataTypedDict]]
+    r"""Configuration schema of every available connector, keyed by provider"""
 
 
 class ConnectorsConfigsResponse(BaseModel):
     r"""OK"""
 
     data: Dict[str, Dict[str, ConnectorsConfigsResponseData]]
+    r"""Configuration schema of every available connector, keyed by provider"""
 
 
 try:

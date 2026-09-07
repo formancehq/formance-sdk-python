@@ -20,57 +20,91 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3PaymentInitiationTypedDict(TypedDict):
+    r"""A payment Formance asked a connector to execute"""
+
     amount: int
+    r"""Amount to move, in the asset's smallest unit"""
     asset: str
+    r"""Asset the payment is denominated in"""
     connector_id: str
+    r"""Identifier of the connector executing the payment"""
     created_at: datetime
+    r"""When the initiation was created"""
     description: str
+    r"""Human-readable description carried with the payment"""
     id: str
+    r"""Unique identifier of the payment initiation"""
     provider: str
+    r"""Name of the payment provider behind the connector"""
     reference: str
+    r"""Caller-supplied identifier for the initiation"""
     scheduled_at: datetime
+    r"""When the payment is scheduled to execute"""
     status: V3PaymentInitiationStatusEnum
+    r"""Where a payment initiation stands in its lifecycle"""
     type: V3PaymentInitiationTypeEnum
+    r"""Kind of movement a payment initiation performs, such as a transfer or a payout"""
     destination_account_id: NotRequired[str]
+    r"""Identifier of the account the funds reach"""
     error: NotRequired[Nullable[str]]
+    r"""Why the initiation failed, absent when it succeeded"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     source_account_id: NotRequired[str]
+    r"""Identifier of the account the funds leave"""
 
 
 class V3PaymentInitiation(BaseModel):
+    r"""A payment Formance asked a connector to execute"""
+
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Amount to move, in the asset's smallest unit"""
 
     asset: str
+    r"""Asset the payment is denominated in"""
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector executing the payment"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the initiation was created"""
 
     description: str
+    r"""Human-readable description carried with the payment"""
 
     id: str
+    r"""Unique identifier of the payment initiation"""
 
     provider: str
+    r"""Name of the payment provider behind the connector"""
 
     reference: str
+    r"""Caller-supplied identifier for the initiation"""
 
     scheduled_at: Annotated[datetime, pydantic.Field(alias="scheduledAt")]
+    r"""When the payment is scheduled to execute"""
 
     status: V3PaymentInitiationStatusEnum
+    r"""Where a payment initiation stands in its lifecycle"""
 
     type: V3PaymentInitiationTypeEnum
+    r"""Kind of movement a payment initiation performs, such as a transfer or a payout"""
 
     destination_account_id: Annotated[
         Optional[str], pydantic.Field(alias="destinationAccountID")
     ] = None
+    r"""Identifier of the account the funds reach"""
 
     error: OptionalNullable[str] = UNSET
+    r"""Why the initiation failed, absent when it succeeded"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     source_account_id: Annotated[
         Optional[str], pydantic.Field(alias="sourceAccountID")
     ] = None
+    r"""Identifier of the account the funds leave"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

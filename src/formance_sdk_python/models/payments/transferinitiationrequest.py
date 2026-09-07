@@ -19,46 +19,70 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class TransferInitiationRequestType(str, Enum):
+    r"""Whether the funds move between your accounts or out to a third party"""
+
     TRANSFER = "TRANSFER"
     PAYOUT = "PAYOUT"
 
 
 class TransferInitiationRequestTypedDict(TypedDict):
     amount: int
+    r"""Amount to move, in the asset's smallest unit"""
     asset: str
+    r"""Asset the transfer is denominated in"""
     description: str
+    r"""Human-readable description carried with the transfer"""
     destination_account_id: str
+    r"""Identifier of the account the funds reach"""
     reference: str
+    r"""Caller-supplied identifier for the initiation, used to deduplicate retries"""
     scheduled_at: datetime
+    r"""When the transfer should be executed"""
     source_account_id: str
+    r"""Identifier of the account the funds leave"""
     type: TransferInitiationRequestType
+    r"""Whether the funds move between your accounts or out to a third party"""
     validated: bool
+    r"""When true, the transfer executes immediately instead of waiting for approval"""
     connector_id: NotRequired[str]
+    r"""Identifier of the connector to execute the transfer through"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs to attach to the initiation"""
 
 
 class TransferInitiationRequest(BaseModel):
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Amount to move, in the asset's smallest unit"""
 
     asset: str
+    r"""Asset the transfer is denominated in"""
 
     description: str
+    r"""Human-readable description carried with the transfer"""
 
     destination_account_id: Annotated[str, pydantic.Field(alias="destinationAccountID")]
+    r"""Identifier of the account the funds reach"""
 
     reference: str
+    r"""Caller-supplied identifier for the initiation, used to deduplicate retries"""
 
     scheduled_at: Annotated[datetime, pydantic.Field(alias="scheduledAt")]
+    r"""When the transfer should be executed"""
 
     source_account_id: Annotated[str, pydantic.Field(alias="sourceAccountID")]
+    r"""Identifier of the account the funds leave"""
 
     type: TransferInitiationRequestType
+    r"""Whether the funds move between your accounts or out to a third party"""
 
     validated: bool
+    r"""When true, the transfer executes immediately instead of waiting for approval"""
 
     connector_id: Annotated[Optional[str], pydantic.Field(alias="connectorID")] = None
+    r"""Identifier of the connector to execute the transfer through"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs to attach to the initiation"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

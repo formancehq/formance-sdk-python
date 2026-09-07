@@ -21,26 +21,36 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V3CreatePaymentServiceUserRequestTypedDict(TypedDict):
     name: str
+    r"""Full name of the payment service user"""
     address: NotRequired[V3AddressRequestTypedDict]
+    r"""A postal address to record on the payment service user"""
     bank_account_i_ds: NotRequired[Nullable[List[str]]]
+    r"""Bank accounts to associate with the user"""
     contact_details: NotRequired[V3ContactDetailsRequestTypedDict]
+    r"""How to reach the payment service user"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
 
 class V3CreatePaymentServiceUserRequest(BaseModel):
     name: str
+    r"""Full name of the payment service user"""
 
     address: Optional[V3AddressRequest] = None
+    r"""A postal address to record on the payment service user"""
 
     bank_account_i_ds: Annotated[
         OptionalNullable[List[str]], pydantic.Field(alias="bankAccountIDs")
     ] = UNSET
+    r"""Bank accounts to associate with the user"""
 
     contact_details: Annotated[
         Optional[V3ContactDetailsRequest], pydantic.Field(alias="contactDetails")
     ] = None
+    r"""How to reach the payment service user"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

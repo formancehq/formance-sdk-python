@@ -8,10 +8,12 @@ from typing_extensions import Annotated, TypedDict
 
 class V3ForwardPaymentServiceUserBankAccountRequestTypedDict(TypedDict):
     connector_id: str
+    r"""Identifier of the connector to forward the bank account to"""
 
 
 class V3ForwardPaymentServiceUserBankAccountRequest(BaseModel):
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector to forward the bank account to"""
 
 
 try:

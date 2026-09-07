@@ -5,5 +5,7 @@ from enum import Enum
 
 
 class V3PoolTypeEnum(str, Enum):
+    r"""Whether a pool holds a fixed account list or is driven by a query"""
+
     STATIC = "STATIC"
     DYNAMIC = "DYNAMIC"

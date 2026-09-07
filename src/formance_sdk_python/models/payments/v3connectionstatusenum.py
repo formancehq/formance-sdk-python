@@ -5,5 +5,7 @@ from enum import Enum
 
 
 class V3ConnectionStatusEnum(str, Enum):
+    r"""Whether an open banking connection is still usable or needs the user to reconnect"""
+
     ACTIVE = "ACTIVE"
     ERROR = "ERROR"

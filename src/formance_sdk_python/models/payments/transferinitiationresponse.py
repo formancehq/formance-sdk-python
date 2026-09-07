@@ -10,9 +10,11 @@ class TransferInitiationResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: TransferInitiationTypedDict
+    r"""A transfer Formance asked a connector to execute"""
 
 
 class TransferInitiationResponse(BaseModel):
     r"""OK"""
 
     data: TransferInitiation
+    r"""A transfer Formance asked a connector to execute"""

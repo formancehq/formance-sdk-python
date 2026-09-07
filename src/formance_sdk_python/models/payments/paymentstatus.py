@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class PaymentStatus(str, Enum):
+    r"""Where a payment stands in its lifecycle"""
+
     PENDING = "PENDING"
     SUCCEEDED = "SUCCEEDED"
     CANCELLED = "CANCELLED"

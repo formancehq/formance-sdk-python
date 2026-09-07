@@ -28,76 +28,118 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class TransferInitiationType(str, Enum):
+    r"""Whether the funds move between your accounts or out to a third party"""
+
     TRANSFER = "TRANSFER"
     PAYOUT = "PAYOUT"
 
 
 class TransferInitiationTypedDict(TypedDict):
+    r"""A transfer Formance asked a connector to execute"""
+
     amount: int
+    r"""Amount to move, in the asset's smallest unit"""
     asset: str
+    r"""Asset the transfer is denominated in"""
     connector_id: str
+    r"""Identifier of the connector executing the transfer"""
     created_at: datetime
+    r"""When the initiation was created"""
     description: str
+    r"""Human-readable description carried with the transfer"""
     destination_account_id: str
+    r"""Identifier of the account the funds reach"""
     id: str
+    r"""Unique identifier of the transfer initiation"""
     initial_amount: int
+    r"""Amount the initiation was created with, before any adjustment"""
     provider: Nullable[str]
+    r"""Name of the payment provider behind the connector"""
     reference: str
+    r"""Caller-supplied identifier for the initiation"""
     scheduled_at: datetime
+    r"""When the transfer is scheduled to execute"""
     source_account_id: str
+    r"""Identifier of the account the funds leave"""
     status: TransferInitiationStatus
+    r"""Where a transfer initiation stands in its lifecycle"""
     type: TransferInitiationType
+    r"""Whether the funds move between your accounts or out to a third party"""
     error: NotRequired[Nullable[str]]
+    r"""Why the initiation failed, absent when it succeeded"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the initiation"""
     related_adjustments: NotRequired[List[TransferInitiationAdjustmentsTypedDict]]
+    r"""Successive status changes recorded against the initiation"""
     related_payments: NotRequired[Nullable[List[TransferInitiationPaymentsTypedDict]]]
+    r"""Payments produced by this initiation"""
 
 
 class TransferInitiation(BaseModel):
+    r"""A transfer Formance asked a connector to execute"""
+
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Amount to move, in the asset's smallest unit"""
 
     asset: str
+    r"""Asset the transfer is denominated in"""
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector executing the transfer"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the initiation was created"""
 
     description: str
+    r"""Human-readable description carried with the transfer"""
 
     destination_account_id: Annotated[str, pydantic.Field(alias="destinationAccountID")]
+    r"""Identifier of the account the funds reach"""
 
     id: str
+    r"""Unique identifier of the transfer initiation"""
 
     initial_amount: Annotated[
         Annotated[int, BeforeValidator(validate_int)],
         pydantic.Field(alias="initialAmount"),
     ]
+    r"""Amount the initiation was created with, before any adjustment"""
 
     provider: Nullable[str]
+    r"""Name of the payment provider behind the connector"""
 
     reference: str
+    r"""Caller-supplied identifier for the initiation"""
 
     scheduled_at: Annotated[datetime, pydantic.Field(alias="scheduledAt")]
+    r"""When the transfer is scheduled to execute"""
 
     source_account_id: Annotated[str, pydantic.Field(alias="sourceAccountID")]
+    r"""Identifier of the account the funds leave"""
 
     status: TransferInitiationStatus
+    r"""Where a transfer initiation stands in its lifecycle"""
 
     type: TransferInitiationType
+    r"""Whether the funds move between your accounts or out to a third party"""
 
     error: OptionalNullable[str] = UNSET
+    r"""Why the initiation failed, absent when it succeeded"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the initiation"""
 
     related_adjustments: Annotated[
         Optional[List[TransferInitiationAdjustments]],
         pydantic.Field(alias="relatedAdjustments"),
     ] = None
+    r"""Successive status changes recorded against the initiation"""
 
     related_payments: Annotated[
         OptionalNullable[List[TransferInitiationPayments]],
         pydantic.Field(alias="relatedPayments"),
     ] = UNSET
+    r"""Payments produced by this initiation"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

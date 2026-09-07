@@ -47,23 +47,35 @@ TasksCursorData = TypeAliasType(
 
 
 class TasksCursorCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of tasks"""
+
     data: List[TasksCursorDataTypedDict]
     has_more: bool
+    r"""Whether further pages are available"""
     page_size: int
+    r"""Number of items requested per page"""
     next: NotRequired[str]
+    r"""Cursor for the next page, absent on the last page"""
     previous: NotRequired[str]
+    r"""Cursor for the previous page, absent on the first page"""
 
 
 class TasksCursorCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of tasks"""
+
     data: List[TasksCursorData]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
+    r"""Whether further pages are available"""
 
     page_size: Annotated[int, pydantic.Field(alias="pageSize")]
+    r"""Number of items requested per page"""
 
     next: Optional[str] = None
+    r"""Cursor for the next page, absent on the last page"""
 
     previous: Optional[str] = None
+    r"""Cursor for the previous page, absent on the first page"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -86,12 +98,14 @@ class TasksCursorTypedDict(TypedDict):
     r"""OK"""
 
     cursor: TasksCursorCursorTypedDict
+    r"""Paginated cursor wrapping the list of tasks"""
 
 
 class TasksCursor(BaseModel):
     r"""OK"""
 
     cursor: TasksCursorCursor
+    r"""Paginated cursor wrapping the list of tasks"""
 
 
 try:

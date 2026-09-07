@@ -18,28 +18,42 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class AccountRequestTypedDict(TypedDict):
     connector_id: str
+    r"""Identifier of the connector the account belongs to"""
     created_at: datetime
+    r"""When the account was created at the provider"""
     reference: str
+    r"""Identifier the account carries at the provider"""
     type: AccountType
+    r"""Whether an account is internal to the provider or belongs to an external party"""
     account_name: NotRequired[str]
+    r"""Human-readable name of the account"""
     default_asset: NotRequired[str]
+    r"""Asset the account is denominated in by default"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the account"""
 
 
 class AccountRequest(BaseModel):
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector the account belongs to"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the account was created at the provider"""
 
     reference: str
+    r"""Identifier the account carries at the provider"""
 
     type: AccountType
+    r"""Whether an account is internal to the provider or belongs to an external party"""
 
     account_name: Annotated[Optional[str], pydantic.Field(alias="accountName")] = None
+    r"""Human-readable name of the account"""
 
     default_asset: Annotated[Optional[str], pydantic.Field(alias="defaultAsset")] = None
+    r"""Asset the account is denominated in by default"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the account"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

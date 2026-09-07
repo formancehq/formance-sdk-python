@@ -11,21 +11,31 @@ from typing_extensions import Annotated, TypedDict
 
 class AccountBalanceTypedDict(TypedDict):
     account_id: str
+    r"""Identifier of the account this balance belongs to"""
     asset: str
+    r"""Asset the balance is denominated in"""
     balance: int
+    r"""Amount held, in the asset's smallest unit"""
     created_at: datetime
+    r"""Start of the period this balance covers"""
     currency: str
+    r"""Deprecated alias of asset, kept for backwards compatibility"""
     last_updated_at: datetime
+    r"""When the balance was last refreshed from the provider"""
 
 
 class AccountBalance(BaseModel):
     account_id: Annotated[str, pydantic.Field(alias="accountId")]
+    r"""Identifier of the account this balance belongs to"""
 
     asset: str
+    r"""Asset the balance is denominated in"""
 
     balance: Annotated[int, BeforeValidator(validate_int)]
+    r"""Amount held, in the asset's smallest unit"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""Start of the period this balance covers"""
 
     currency: Annotated[
         str,
@@ -33,8 +43,10 @@ class AccountBalance(BaseModel):
             deprecated="warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
         ),
     ]
+    r"""Deprecated alias of asset, kept for backwards compatibility"""
 
     last_updated_at: Annotated[datetime, pydantic.Field(alias="lastUpdatedAt")]
+    r"""When the balance was last refreshed from the provider"""
 
 
 try:

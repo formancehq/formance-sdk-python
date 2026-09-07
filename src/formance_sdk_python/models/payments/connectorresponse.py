@@ -7,10 +7,14 @@ from typing_extensions import Annotated, TypedDict
 
 
 class ConnectorResponseDataTypedDict(TypedDict):
+    r"""The connector that was installed"""
+
     connector_id: str
 
 
 class ConnectorResponseData(BaseModel):
+    r"""The connector that was installed"""
+
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
 
 
@@ -18,12 +22,14 @@ class ConnectorResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: ConnectorResponseDataTypedDict
+    r"""The connector that was installed"""
 
 
 class ConnectorResponse(BaseModel):
     r"""OK"""
 
     data: ConnectorResponseData
+    r"""The connector that was installed"""
 
 
 try:

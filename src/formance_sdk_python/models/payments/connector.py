@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class Connector(str, Enum):
+    r"""The payment provider behind a connector"""
+
     STRIPE = "STRIPE"
     DUMMY_PAY = "DUMMY-PAY"
     WISE = "WISE"

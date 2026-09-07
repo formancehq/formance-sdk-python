@@ -7,6 +7,8 @@ from typing_extensions import Annotated, TypedDict
 
 
 class V3ForwardBankAccountResponseDataTypedDict(TypedDict):
+    r"""The task tracking the forwarding, which completes asynchronously"""
+
     task_id: str
     r"""Since this call is asynchronous, the response will contain the ID of the task that was created to forward the bank account to the PSP. You can use the task API to check the status of the task and get the resulting bank account ID.
 
@@ -14,6 +16,8 @@ class V3ForwardBankAccountResponseDataTypedDict(TypedDict):
 
 
 class V3ForwardBankAccountResponseData(BaseModel):
+    r"""The task tracking the forwarding, which completes asynchronously"""
+
     task_id: Annotated[str, pydantic.Field(alias="taskID")]
     r"""Since this call is asynchronous, the response will contain the ID of the task that was created to forward the bank account to the PSP. You can use the task API to check the status of the task and get the resulting bank account ID.
 
@@ -22,10 +26,12 @@ class V3ForwardBankAccountResponseData(BaseModel):
 
 class V3ForwardBankAccountResponseTypedDict(TypedDict):
     data: V3ForwardBankAccountResponseDataTypedDict
+    r"""The task tracking the forwarding, which completes asynchronously"""
 
 
 class V3ForwardBankAccountResponse(BaseModel):
     data: V3ForwardBankAccountResponseData
+    r"""The task tracking the forwarding, which completes asynchronously"""
 
 
 try:

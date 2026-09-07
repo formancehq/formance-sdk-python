@@ -17,42 +17,57 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ConfigTypedDict(TypedDict):
-    pass
+    r"""The connector's configuration, whose shape depends on the provider"""
 
 
 class Config(BaseModel):
-    pass
+    r"""The connector's configuration, whose shape depends on the provider"""
 
 
 class V3ConnectorTypedDict(TypedDict):
     config: ConfigTypedDict
+    r"""The connector's configuration, whose shape depends on the provider"""
     created_at: datetime
+    r"""When the connector was installed"""
     id: str
+    r"""Unique identifier of the connector"""
     name: str
+    r"""Human-readable name of the connector instance"""
     provider: str
+    r"""Name of the payment provider behind the connector"""
     reference: str
+    r"""Stable reference identifying the connector"""
     scheduled_for_deletion: bool
+    r"""Whether the connector is being uninstalled"""
     capabilities: NotRequired[List[V3Capability]]
     r"""Plugin capabilities advertised by the connector's provider."""
     updated_at: NotRequired[Nullable[datetime]]
+    r"""When the connector's configuration was last changed"""
 
 
 class V3Connector(BaseModel):
     config: Config
+    r"""The connector's configuration, whose shape depends on the provider"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the connector was installed"""
 
     id: str
+    r"""Unique identifier of the connector"""
 
     name: str
+    r"""Human-readable name of the connector instance"""
 
     provider: str
+    r"""Name of the payment provider behind the connector"""
 
     reference: str
+    r"""Stable reference identifying the connector"""
 
     scheduled_for_deletion: Annotated[
         bool, pydantic.Field(alias="scheduledForDeletion")
     ]
+    r"""Whether the connector is being uninstalled"""
 
     capabilities: Optional[List[V3Capability]] = None
     r"""Plugin capabilities advertised by the connector's provider."""
@@ -60,6 +75,7 @@ class V3Connector(BaseModel):
     updated_at: Annotated[
         OptionalNullable[datetime], pydantic.Field(alias="updatedAt")
     ] = UNSET
+    r"""When the connector's configuration was last changed"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

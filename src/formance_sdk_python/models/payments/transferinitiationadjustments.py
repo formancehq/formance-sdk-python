@@ -18,22 +18,32 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class TransferInitiationAdjustmentsTypedDict(TypedDict):
     adjustment_id: str
+    r"""Unique identifier of the adjustment"""
     created_at: datetime
+    r"""When the adjustment was recorded"""
     status: TransferInitiationStatus
+    r"""Where a transfer initiation stands in its lifecycle"""
     error: NotRequired[Nullable[str]]
+    r"""Why this step failed, absent when it succeeded"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the adjustment"""
 
 
 class TransferInitiationAdjustments(BaseModel):
     adjustment_id: Annotated[str, pydantic.Field(alias="adjustmentID")]
+    r"""Unique identifier of the adjustment"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the adjustment was recorded"""
 
     status: TransferInitiationStatus
+    r"""Where a transfer initiation stands in its lifecycle"""
 
     error: OptionalNullable[str] = UNSET
+    r"""Why this step failed, absent when it succeeded"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the adjustment"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

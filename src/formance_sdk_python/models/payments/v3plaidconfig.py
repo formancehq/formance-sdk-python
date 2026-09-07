@@ -12,6 +12,7 @@ class V3PlaidConfigTypedDict(TypedDict):
     client_id: str
     client_secret: str
     name: str
+    base_url: NotRequired[str]
     is_sandbox: NotRequired[bool]
     page_size: NotRequired[int]
     polling_period: NotRequired[str]
@@ -24,6 +25,8 @@ class V3PlaidConfig(BaseModel):
     client_secret: Annotated[str, pydantic.Field(alias="clientSecret")]
 
     name: str
+
+    base_url: Annotated[Optional[str], pydantic.Field(alias="baseURL")] = None
 
     is_sandbox: Annotated[Optional[bool], pydantic.Field(alias="isSandbox")] = None
 
@@ -43,7 +46,9 @@ class V3PlaidConfig(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["isSandbox", "pageSize", "pollingPeriod", "provider"])
+        optional_fields = set(
+            ["baseURL", "isSandbox", "pageSize", "pollingPeriod", "provider"]
+        )
         serialized = handler(self)
         m = {}
 

@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V3ConnectorScheduleResponseTypedDict(TypedDict):
     data: V3ScheduleTypedDict
+    r"""A recurring job a connector runs to fetch data from its provider"""
 
 
 class V3ConnectorScheduleResponse(BaseModel):
     data: V3Schedule
+    r"""A recurring job a connector runs to fetch data from its provider"""

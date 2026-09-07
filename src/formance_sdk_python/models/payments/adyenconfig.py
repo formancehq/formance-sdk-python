@@ -10,26 +10,35 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class AdyenConfigTypedDict(TypedDict):
     api_key: str
+    r"""API key issued by Adyen, used to authenticate the connector's requests"""
     hmac_key: str
+    r"""HMAC key used to verify the signature on webhooks sent by Adyen"""
     name: str
+    r"""Human-readable name identifying this connector instance"""
     live_endpoint_prefix: NotRequired[str]
+    r"""Prefix of your live Adyen endpoint. Required when the connector runs against production"""
     polling_period: NotRequired[str]
     r"""The frequency at which the connector will try to fetch new BalanceTransaction objects from Adyen API.
 
     """
     provider: NotRequired[str]
+    r"""Identifies the payment provider this configuration targets"""
 
 
 class AdyenConfig(BaseModel):
     api_key: Annotated[str, pydantic.Field(alias="apiKey")]
+    r"""API key issued by Adyen, used to authenticate the connector's requests"""
 
     hmac_key: Annotated[str, pydantic.Field(alias="hmacKey")]
+    r"""HMAC key used to verify the signature on webhooks sent by Adyen"""
 
     name: str
+    r"""Human-readable name identifying this connector instance"""
 
     live_endpoint_prefix: Annotated[
         Optional[str], pydantic.Field(alias="liveEndpointPrefix")
     ] = None
+    r"""Prefix of your live Adyen endpoint. Required when the connector runs against production"""
 
     polling_period: Annotated[Optional[str], pydantic.Field(alias="pollingPeriod")] = (
         "30m"
@@ -39,6 +48,7 @@ class AdyenConfig(BaseModel):
     """
 
     provider: Optional[str] = "Adyen"
+    r"""Identifies the payment provider this configuration targets"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

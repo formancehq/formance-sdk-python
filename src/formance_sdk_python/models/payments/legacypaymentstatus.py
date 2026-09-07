@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class LegacyPaymentStatus(str, Enum):
+    r"""Status of a payment as reported by the legacy payments API"""
+
     PENDING = "PENDING"
     SUCCEEDED = "SUCCEEDED"
     CANCELLED = "CANCELLED"

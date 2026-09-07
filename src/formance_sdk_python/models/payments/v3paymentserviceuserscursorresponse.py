@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3PaymentServiceUsersCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of payment service users"""
+
     data: List[V3PaymentServiceUserTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class V3PaymentServiceUsersCursorResponseCursorTypedDict(TypedDict):
 
 
 class V3PaymentServiceUsersCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of payment service users"""
+
     data: List[V3PaymentServiceUser]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -47,10 +51,12 @@ class V3PaymentServiceUsersCursorResponseCursor(BaseModel):
 
 class V3PaymentServiceUsersCursorResponseTypedDict(TypedDict):
     cursor: V3PaymentServiceUsersCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of payment service users"""
 
 
 class V3PaymentServiceUsersCursorResponse(BaseModel):
     cursor: V3PaymentServiceUsersCursorResponseCursor
+    r"""Paginated cursor wrapping the list of payment service users"""
 
 
 try:

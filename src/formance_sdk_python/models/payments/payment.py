@@ -17,59 +17,95 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class PaymentTypedDict(TypedDict):
+    r"""A payment observed at a provider and surfaced through a connector"""
+
     adjustments: List[PaymentAdjustmentTypedDict]
+    r"""Successive changes to the payment's amount and status"""
     amount: int
+    r"""Current amount of the payment after applying its adjustments"""
     asset: str
+    r"""Asset the payment is denominated in"""
     connector_id: str
+    r"""Identifier of the connector the payment belongs to"""
     created_at: datetime
+    r"""When the payment was created at the provider"""
     destination_account_id: str
+    r"""Identifier of the account the funds reached"""
     id: str
+    r"""Unique identifier of the payment within Formance"""
     initial_amount: int
+    r"""Amount the payment was created with, before any adjustment"""
     metadata: Nullable[Dict[str, str]]
+    r"""Arbitrary key/value pairs attached to the payment"""
     raw: Nullable[Dict[str, Any]]
+    r"""The provider's original payload, passed through untouched"""
     reference: str
+    r"""Identifier the payment carries at the provider"""
     scheme: PaymentScheme
+    r"""Payment scheme or rail a payment travels over"""
     source_account_id: str
+    r"""Identifier of the account the funds left"""
     status: PaymentStatus
+    r"""Where a payment stands in its lifecycle"""
     type: PaymentType
+    r"""Direction of a payment"""
     provider: NotRequired[Connector]
+    r"""The payment provider behind a connector"""
 
 
 class Payment(BaseModel):
+    r"""A payment observed at a provider and surfaced through a connector"""
+
     adjustments: List[PaymentAdjustment]
+    r"""Successive changes to the payment's amount and status"""
 
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Current amount of the payment after applying its adjustments"""
 
     asset: str
+    r"""Asset the payment is denominated in"""
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector the payment belongs to"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the payment was created at the provider"""
 
     destination_account_id: Annotated[str, pydantic.Field(alias="destinationAccountID")]
+    r"""Identifier of the account the funds reached"""
 
     id: str
+    r"""Unique identifier of the payment within Formance"""
 
     initial_amount: Annotated[
         Annotated[int, BeforeValidator(validate_int)],
         pydantic.Field(alias="initialAmount"),
     ]
+    r"""Amount the payment was created with, before any adjustment"""
 
     metadata: Nullable[Dict[str, str]]
+    r"""Arbitrary key/value pairs attached to the payment"""
 
     raw: Nullable[Dict[str, Any]]
+    r"""The provider's original payload, passed through untouched"""
 
     reference: str
+    r"""Identifier the payment carries at the provider"""
 
     scheme: PaymentScheme
+    r"""Payment scheme or rail a payment travels over"""
 
     source_account_id: Annotated[str, pydantic.Field(alias="sourceAccountID")]
+    r"""Identifier of the account the funds left"""
 
     status: PaymentStatus
+    r"""Where a payment stands in its lifecycle"""
 
     type: PaymentType
+    r"""Direction of a payment"""
 
     provider: Optional[Connector] = None
+    r"""The payment provider behind a connector"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

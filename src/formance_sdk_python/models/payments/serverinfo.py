@@ -11,15 +11,19 @@ class ServerInfoTypedDict(TypedDict):
     r"""Server information"""
 
     debug: NotRequired[bool]
+    r"""Whether the service is running in debug mode"""
     version: NotRequired[str]
+    r"""Version of the payments service"""
 
 
 class ServerInfo(BaseModel):
     r"""Server information"""
 
     debug: Optional[bool] = None
+    r"""Whether the service is running in debug mode"""
 
     version: Optional[str] = None
+    r"""Version of the payments service"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

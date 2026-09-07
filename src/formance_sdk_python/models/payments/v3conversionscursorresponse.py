@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V3ConversionsCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of conversions"""
+
     data: List[V3ConversionTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class V3ConversionsCursorResponseCursorTypedDict(TypedDict):
 
 
 class V3ConversionsCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of conversions"""
+
     data: List[V3Conversion]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -47,10 +51,12 @@ class V3ConversionsCursorResponseCursor(BaseModel):
 
 class V3ConversionsCursorResponseTypedDict(TypedDict):
     cursor: V3ConversionsCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of conversions"""
 
 
 class V3ConversionsCursorResponse(BaseModel):
     cursor: V3ConversionsCursorResponseCursor
+    r"""Paginated cursor wrapping the list of conversions"""
 
 
 try:

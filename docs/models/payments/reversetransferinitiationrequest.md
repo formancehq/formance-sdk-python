@@ -3,10 +3,10 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `amount`           | *int*              | :heavy_check_mark: | N/A                |                    |
-| `asset`            | *str*              | :heavy_check_mark: | N/A                | USD                |
-| `description`      | *str*              | :heavy_check_mark: | N/A                |                    |
-| `metadata`         | Dict[str, *str*]   | :heavy_check_mark: | N/A                |                    |
-| `reference`        | *str*              | :heavy_check_mark: | N/A                | XXX                |
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              | Example                                                                  |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `amount`                                                                 | *int*                                                                    | :heavy_check_mark:                                                       | Amount to reverse, in the asset's smallest unit                          |                                                                          |
+| `asset`                                                                  | *str*                                                                    | :heavy_check_mark:                                                       | Asset the reversal is denominated in                                     | USD                                                                      |
+| `description`                                                            | *str*                                                                    | :heavy_check_mark:                                                       | Human-readable reason for the reversal                                   |                                                                          |
+| `metadata`                                                               | Dict[str, *str*]                                                         | :heavy_check_mark:                                                       | Arbitrary key/value pairs to attach to the reversal                      |                                                                          |
+| `reference`                                                              | *str*                                                                    | :heavy_check_mark:                                                       | Caller-supplied identifier for the reversal, used to deduplicate retries | XXX                                                                      |

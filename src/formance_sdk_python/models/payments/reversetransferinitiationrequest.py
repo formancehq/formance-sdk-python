@@ -11,22 +11,32 @@ from typing_extensions import Annotated, TypedDict
 
 class ReverseTransferInitiationRequestTypedDict(TypedDict):
     amount: int
+    r"""Amount to reverse, in the asset's smallest unit"""
     asset: str
+    r"""Asset the reversal is denominated in"""
     description: str
+    r"""Human-readable reason for the reversal"""
     metadata: Nullable[Dict[str, str]]
+    r"""Arbitrary key/value pairs to attach to the reversal"""
     reference: str
+    r"""Caller-supplied identifier for the reversal, used to deduplicate retries"""
 
 
 class ReverseTransferInitiationRequest(BaseModel):
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Amount to reverse, in the asset's smallest unit"""
 
     asset: str
+    r"""Asset the reversal is denominated in"""
 
     description: str
+    r"""Human-readable reason for the reversal"""
 
     metadata: Nullable[Dict[str, str]]
+    r"""Arbitrary key/value pairs to attach to the reversal"""
 
     reference: str
+    r"""Caller-supplied identifier for the reversal, used to deduplicate retries"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

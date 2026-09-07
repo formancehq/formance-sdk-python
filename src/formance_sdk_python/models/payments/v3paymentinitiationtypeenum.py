@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class V3PaymentInitiationTypeEnum(str, Enum):
+    r"""Kind of movement a payment initiation performs, such as a transfer or a payout"""
+
     UNKNOWN = "UNKNOWN"
     TRANSFER = "TRANSFER"
     PAYOUT = "PAYOUT"

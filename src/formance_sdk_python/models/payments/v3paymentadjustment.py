@@ -20,31 +20,47 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V3PaymentAdjustmentTypedDict(TypedDict):
     created_at: datetime
+    r"""When the adjustment occurred at the provider"""
     id: str
+    r"""Unique identifier of the adjustment"""
     raw: Dict[str, Any]
+    r"""The provider's original payload for this adjustment"""
     reference: str
+    r"""Identifier the adjustment carries at the provider"""
     status: V3PaymentStatusEnum
+    r"""Where a payment stands in its lifecycle"""
     amount: NotRequired[int]
+    r"""Amount carried by this adjustment"""
     asset: NotRequired[str]
+    r"""Asset the adjustment is denominated in"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
 
 class V3PaymentAdjustment(BaseModel):
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the adjustment occurred at the provider"""
 
     id: str
+    r"""Unique identifier of the adjustment"""
 
     raw: Dict[str, Any]
+    r"""The provider's original payload for this adjustment"""
 
     reference: str
+    r"""Identifier the adjustment carries at the provider"""
 
     status: V3PaymentStatusEnum
+    r"""Where a payment stands in its lifecycle"""
 
     amount: Annotated[Optional[int], BeforeValidator(validate_int)] = None
+    r"""Amount carried by this adjustment"""
 
     asset: Optional[str] = None
+    r"""Asset the adjustment is denominated in"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
