@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class V2PaymentStatus(str, Enum):
+    r"""Where a payment stands in its lifecycle"""
+
     PENDING = "PENDING"
     ACTIVE = "ACTIVE"
     TERMINATED = "TERMINATED"

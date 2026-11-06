@@ -15,6 +15,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class Status(str, Enum):
+    r"""Where the alert stands in its open, acknowledged, resolved lifecycle"""
+
     OPEN = "OPEN"
     ACKNOWLEDGED = "ACKNOWLEDGED"
     RESOLVED = "RESOLVED"
@@ -25,7 +27,7 @@ class AlertTypedDict(TypedDict):
     reconciliation period. There is exactly one Alert per
     (ruleID, fingerprint, periodID) — within a period, re-opens after resolve
     flip the status back to OPEN in place; the same fingerprint failing in a
-    new period is a separate Alert. For a `continuous`-cadence rule there is
+    new period is a separate Alert. For a `continuous` period type there is
     one unbounded period, so it behaves as one Alert per (ruleID, fingerprint).
     The full history of transitions lives in alert_event
     (see /alerts/{alertID}/events).
@@ -33,23 +35,37 @@ class AlertTypedDict(TypedDict):
     """
 
     created_at: datetime
+    r"""When the alert was created"""
     fingerprint: str
+    r"""Identifies what is failing within the rule, so the same break dedupes to one alert"""
     first_seen_at: datetime
+    r"""When the fingerprint first failed within this period"""
     id: str
+    r"""Unique identifier of the alert"""
     last_evaluation_id: str
+    r"""Identifier of the evaluation that last touched the alert"""
     last_seen_at: datetime
+    r"""When the fingerprint most recently failed"""
     occurrence_count: int
-    r"""Count of FAIL events on this alert across reopen cycles within its period (lifetime, for a continuous-cadence rule)."""
+    r"""Count of FAIL events on this alert across reopen cycles within its period (lifetime, for a `continuous` period type)."""
     period_id: str
     r"""Reconciliation period this alert is scoped to ('continuous' for live-monitoring rules)."""
     rule_id: str
+    r"""Identifier of the rule that raised the alert"""
     severity: Severity
+    r"""How serious an alert is, used to route and prioritise notifications"""
     status: Status
+    r"""Where the alert stands in its open, acknowledged, resolved lifecycle"""
     updated_at: datetime
+    r"""When the alert was last modified"""
     ack: NotRequired[AckTypedDict]
+    r"""Record of who acknowledged an alert and when"""
     evidence: NotRequired[Dict[str, Any]]
+    r"""Data captured from the failing evaluation, explaining what broke"""
     labels: NotRequired[Dict[str, str]]
+    r"""Key/value pairs copied from the rule that raised the alert"""
     resolution: NotRequired[ResolutionTypedDict]
+    r"""Record of how an alert was resolved and by whom"""
     snooze: NotRequired[SnoozeTypedDict]
     r"""A time-boxed, operator-initiated mute of an alert's notifications. While
     `until` is in the future the alert keeps failing and keeps counting
@@ -63,7 +79,7 @@ class Alert(BaseModel):
     reconciliation period. There is exactly one Alert per
     (ruleID, fingerprint, periodID) — within a period, re-opens after resolve
     flip the status back to OPEN in place; the same fingerprint failing in a
-    new period is a separate Alert. For a `continuous`-cadence rule there is
+    new period is a separate Alert. For a `continuous` period type there is
     one unbounded period, so it behaves as one Alert per (ruleID, fingerprint).
     The full history of transitions lives in alert_event
     (see /alerts/{alertID}/events).
@@ -71,38 +87,52 @@ class Alert(BaseModel):
     """
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the alert was created"""
 
     fingerprint: str
+    r"""Identifies what is failing within the rule, so the same break dedupes to one alert"""
 
     first_seen_at: Annotated[datetime, pydantic.Field(alias="firstSeenAt")]
+    r"""When the fingerprint first failed within this period"""
 
     id: str
+    r"""Unique identifier of the alert"""
 
     last_evaluation_id: Annotated[str, pydantic.Field(alias="lastEvaluationID")]
+    r"""Identifier of the evaluation that last touched the alert"""
 
     last_seen_at: Annotated[datetime, pydantic.Field(alias="lastSeenAt")]
+    r"""When the fingerprint most recently failed"""
 
     occurrence_count: Annotated[int, pydantic.Field(alias="occurrenceCount")]
-    r"""Count of FAIL events on this alert across reopen cycles within its period (lifetime, for a continuous-cadence rule)."""
+    r"""Count of FAIL events on this alert across reopen cycles within its period (lifetime, for a `continuous` period type)."""
 
     period_id: Annotated[str, pydantic.Field(alias="periodID")]
     r"""Reconciliation period this alert is scoped to ('continuous' for live-monitoring rules)."""
 
     rule_id: Annotated[str, pydantic.Field(alias="ruleID")]
+    r"""Identifier of the rule that raised the alert"""
 
     severity: Severity
+    r"""How serious an alert is, used to route and prioritise notifications"""
 
     status: Status
+    r"""Where the alert stands in its open, acknowledged, resolved lifecycle"""
 
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
+    r"""When the alert was last modified"""
 
     ack: Optional[Ack] = None
+    r"""Record of who acknowledged an alert and when"""
 
     evidence: Optional[Dict[str, Any]] = None
+    r"""Data captured from the failing evaluation, explaining what broke"""
 
     labels: Optional[Dict[str, str]] = None
+    r"""Key/value pairs copied from the rule that raised the alert"""
 
     resolution: Optional[Resolution] = None
+    r"""Record of how an alert was resolved and by whom"""
 
     snooze: Optional[Snooze] = None
     r"""A time-boxed, operator-initiated mute of an alert's notifications. While

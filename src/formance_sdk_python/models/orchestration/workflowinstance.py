@@ -12,37 +12,59 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class WorkflowInstanceTypedDict(TypedDict):
+    r"""One run of a workflow, tracking its per-stage progress"""
+
     created_at: datetime
+    r"""When the run was started"""
     id: str
+    r"""Unique identifier of the run"""
     terminated: bool
+    r"""Whether the run has finished, successfully or not"""
     updated_at: datetime
+    r"""When the run was last updated"""
     workflow_id: str
+    r"""Identifier of the workflow this run belongs to"""
     error: NotRequired[str]
+    r"""Why the run failed, absent when it succeeded"""
     status: NotRequired[List[StageStatusTypedDict]]
+    r"""Per-stage progress of the run"""
     terminated_at: NotRequired[datetime]
+    r"""When the run finished, absent while it is still running"""
     workflow: NotRequired[WorkflowTypedDict]
+    r"""A workflow definition and the stages it runs"""
 
 
 class WorkflowInstance(BaseModel):
+    r"""One run of a workflow, tracking its per-stage progress"""
+
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the run was started"""
 
     id: str
+    r"""Unique identifier of the run"""
 
     terminated: bool
+    r"""Whether the run has finished, successfully or not"""
 
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
+    r"""When the run was last updated"""
 
     workflow_id: Annotated[str, pydantic.Field(alias="workflowID")]
+    r"""Identifier of the workflow this run belongs to"""
 
     error: Optional[str] = None
+    r"""Why the run failed, absent when it succeeded"""
 
     status: Optional[List[StageStatus]] = None
+    r"""Per-stage progress of the run"""
 
     terminated_at: Annotated[
         Optional[datetime], pydantic.Field(alias="terminatedAt")
     ] = None
+    r"""When the run finished, absent while it is still running"""
 
     workflow: Optional[Workflow] = None
+    r"""A workflow definition and the stages it runs"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

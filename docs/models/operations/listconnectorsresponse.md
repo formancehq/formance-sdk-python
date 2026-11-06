@@ -1,0 +1,12 @@
+# ListConnectorsResponse
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `connector_cursor`                                                                     | [Optional[connectivity.ConnectorCursor]](../../models/connectivity/connectorcursor.md) | :heavy_minus_sign:                                                                     | OK                                                                                     |
+| `content_type`                                                                         | *str*                                                                                  | :heavy_check_mark:                                                                     | HTTP response content type for this operation                                          |
+| `error`                                                                                | [Optional[connectivity.Error]](../../models/connectivity/error.md)                     | :heavy_minus_sign:                                                                     | Request or server error. The HTTP status and code identify the failure.                |
+| `status_code`                                                                          | *int*                                                                                  | :heavy_check_mark:                                                                     | HTTP response status code for this operation                                           |
+| `raw_response`                                                                         | [httpx.Response](https://www.python-httpx.org/api/#response)                           | :heavy_check_mark:                                                                     | Raw HTTP response; suitable for custom response parsing                                |

@@ -7,7 +7,9 @@ from typing_extensions import TypedDict
 
 class ConfigChangeSecretTypedDict(TypedDict):
     secret: str
+    r"""The new signing secret, 24 random bytes encoded as base64"""
 
 
 class ConfigChangeSecret(BaseModel):
     secret: str
+    r"""The new signing secret, 24 random bytes encoded as base64"""

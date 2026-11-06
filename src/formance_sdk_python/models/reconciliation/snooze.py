@@ -16,9 +16,13 @@ class SnoozeTypedDict(TypedDict):
     """
 
     at: datetime
+    r"""When the alert was snoozed"""
     by: str
+    r"""Who snoozed the alert"""
     until: datetime
+    r"""When the mute expires and notifications resume. Must be in the future"""
     note: NotRequired[str]
+    r"""Free-text note left by whoever snoozed the alert"""
 
 
 class Snooze(BaseModel):
@@ -29,12 +33,16 @@ class Snooze(BaseModel):
     """
 
     at: datetime
+    r"""When the alert was snoozed"""
 
     by: str
+    r"""Who snoozed the alert"""
 
     until: datetime
+    r"""When the mute expires and notifications resume. Must be in the future"""
 
     note: Optional[str] = None
+    r"""Free-text note left by whoever snoozed the alert"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

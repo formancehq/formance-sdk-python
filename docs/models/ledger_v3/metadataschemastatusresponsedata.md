@@ -1,0 +1,10 @@
+# MetadataSchemaStatusResponseData
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `account_fields`                                                                          | Dict[str, [ledger_v3.MetadataFieldStatus](../../models/ledger_v3/metadatafieldstatus.md)] | :heavy_check_mark:                                                                        | Account metadata field declarations                                                       |
+| `ledger_fields`                                                                           | Dict[str, [ledger_v3.MetadataFieldStatus](../../models/ledger_v3/metadatafieldstatus.md)] | :heavy_check_mark:                                                                        | Ledger metadata field declarations                                                        |
+| `transaction_fields`                                                                      | Dict[str, [ledger_v3.MetadataFieldStatus](../../models/ledger_v3/metadatafieldstatus.md)] | :heavy_check_mark:                                                                        | Transaction metadata field declarations                                                   |

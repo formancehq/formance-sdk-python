@@ -9,7 +9,9 @@ from typing_extensions import TypedDict
 
 class ListWorkflowsResponseTypedDict(TypedDict):
     data: List[WorkflowTypedDict]
+    r"""The workflows defined on this stack"""
 
 
 class ListWorkflowsResponse(BaseModel):
     data: List[Workflow]
+    r"""The workflows defined on this stack"""

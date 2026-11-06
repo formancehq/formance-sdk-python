@@ -12,22 +12,32 @@ from typing_extensions import NotRequired, TypedDict
 
 class V2QueryTemplateTypedDict(TypedDict):
     body: NotRequired[Dict[str, Any]]
+    r"""The filter expression the query evaluates"""
     description: NotRequired[str]
+    r"""Human-readable description of what the query returns"""
     params: NotRequired[V2QueryParamsTypedDict]
+    r"""Parameters applied when running a query template"""
     resource: NotRequired[V2QueryResource]
+    r"""The resource a query template targets"""
     vars: NotRequired[Dict[str, V2QueryTemplateVarTypedDict]]
+    r"""Variables the query accepts, keyed by variable name"""
 
 
 class V2QueryTemplate(BaseModel):
     body: Optional[Dict[str, Any]] = None
+    r"""The filter expression the query evaluates"""
 
     description: Optional[str] = None
+    r"""Human-readable description of what the query returns"""
 
     params: Optional[V2QueryParams] = None
+    r"""Parameters applied when running a query template"""
 
     resource: Optional[V2QueryResource] = None
+    r"""The resource a query template targets"""
 
     vars: Optional[Dict[str, V2QueryTemplateVar]] = None
+    r"""Variables the query accepts, keyed by variable name"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

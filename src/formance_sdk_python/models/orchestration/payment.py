@@ -17,14 +17,16 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class PaymentRawTypedDict(TypedDict):
-    pass
+    r"""The provider's original payload, passed through untouched"""
 
 
 class PaymentRaw(BaseModel):
-    pass
+    r"""The provider's original payload, passed through untouched"""
 
 
 class PaymentScheme(str, Enum):
+    r"""Payment scheme or rail the payment travelled over"""
+
     VISA = "visa"
     MASTERCARD = "mastercard"
     AMEX = "amex"
@@ -46,6 +48,8 @@ class PaymentScheme(str, Enum):
 
 
 class PaymentType(str, Enum):
+    r"""Direction of the payment"""
+
     PAY_IN = "PAY-IN"
     PAYOUT = "PAYOUT"
     TRANSFER = "TRANSFER"
@@ -53,56 +57,90 @@ class PaymentType(str, Enum):
 
 
 class PaymentTypedDict(TypedDict):
+    r"""A payment observed or initiated through a connector"""
+
     adjustments: List[PaymentAdjustmentTypedDict]
+    r"""Successive changes to the payment's amount and status"""
     asset: str
+    r"""Asset the payment is denominated in"""
     connector_id: str
+    r"""Identifier of the connector that produced the payment"""
     created_at: datetime
+    r"""When the payment was created"""
     destination_account_id: str
+    r"""Identifier of the account the funds reached"""
     id: str
+    r"""Unique identifier of the payment"""
     initial_amount: int
+    r"""Amount the payment was created with, before any adjustment"""
     metadata: Nullable[PaymentMetadataTypedDict]
+    r"""Arbitrary key/value pairs attached to a payment"""
     raw: Nullable[PaymentRawTypedDict]
+    r"""The provider's original payload, passed through untouched"""
     reference: str
+    r"""Identifier the payment carries at the provider"""
     scheme: PaymentScheme
+    r"""Payment scheme or rail the payment travelled over"""
     source_account_id: str
+    r"""Identifier of the account the funds left"""
     status: PaymentStatus
+    r"""Where a payment stands in its lifecycle"""
     type: PaymentType
+    r"""Direction of the payment"""
     provider: NotRequired[Connector]
+    r"""The payment provider behind a connector"""
 
 
 class Payment(BaseModel):
+    r"""A payment observed or initiated through a connector"""
+
     adjustments: List[PaymentAdjustment]
+    r"""Successive changes to the payment's amount and status"""
 
     asset: str
+    r"""Asset the payment is denominated in"""
 
     connector_id: Annotated[str, pydantic.Field(alias="connectorID")]
+    r"""Identifier of the connector that produced the payment"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the payment was created"""
 
     destination_account_id: Annotated[str, pydantic.Field(alias="destinationAccountID")]
+    r"""Identifier of the account the funds reached"""
 
     id: str
+    r"""Unique identifier of the payment"""
 
     initial_amount: Annotated[
         Annotated[int, BeforeValidator(validate_int)],
         pydantic.Field(alias="initialAmount"),
     ]
+    r"""Amount the payment was created with, before any adjustment"""
 
     metadata: Nullable[PaymentMetadata]
+    r"""Arbitrary key/value pairs attached to a payment"""
 
     raw: Nullable[PaymentRaw]
+    r"""The provider's original payload, passed through untouched"""
 
     reference: str
+    r"""Identifier the payment carries at the provider"""
 
     scheme: PaymentScheme
+    r"""Payment scheme or rail the payment travelled over"""
 
     source_account_id: Annotated[str, pydantic.Field(alias="sourceAccountID")]
+    r"""Identifier of the account the funds left"""
 
     status: PaymentStatus
+    r"""Where a payment stands in its lifecycle"""
 
     type: PaymentType
+    r"""Direction of the payment"""
 
     provider: Optional[Connector] = None
+    r"""The payment provider behind a connector"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

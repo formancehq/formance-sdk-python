@@ -9,9 +9,11 @@ class ServerInfoTypedDict(TypedDict):
     r"""Server information"""
 
     version: str
+    r"""Version of the reconciliation service"""
 
 
 class ServerInfo(BaseModel):
     r"""Server information"""
 
     version: str
+    r"""Version of the reconciliation service"""

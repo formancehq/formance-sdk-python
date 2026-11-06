@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class V2QueryResource(str, Enum):
+    r"""The resource a query template targets"""
+
     TRANSACTIONS = "transactions"
     ACCOUNTS = "accounts"
     LOGS = "logs"

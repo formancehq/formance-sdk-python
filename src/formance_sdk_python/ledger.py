@@ -4,11 +4,13 @@ from .basesdk import BaseSDK
 from .sdkconfiguration import SDKConfiguration
 from formance_sdk_python.ledger_v1 import LedgerV1
 from formance_sdk_python.ledger_v2 import LedgerV2
+from formance_sdk_python.ledger_v3 import LedgerV3
 from typing import Optional
 
 
 class Ledger(BaseSDK):
     v2: LedgerV2
+    v3: LedgerV3
     v1: LedgerV1
 
     def __init__(
@@ -20,4 +22,5 @@ class Ledger(BaseSDK):
 
     def _init_sdks(self):
         self.v2 = LedgerV2(self.sdk_configuration, parent_ref=self.parent_ref)
+        self.v3 = LedgerV3(self.sdk_configuration, parent_ref=self.parent_ref)
         self.v1 = LedgerV1(self.sdk_configuration, parent_ref=self.parent_ref)

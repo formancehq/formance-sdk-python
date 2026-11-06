@@ -14,66 +14,98 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2TransactionTypedDict(TypedDict):
+    r"""A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps"""
+
     id: int
+    r"""Unique sequential identifier for this transaction within the ledger"""
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the transaction. Transaction metadata is bi-temporal, so a point-in-time query returns it as it stood at that time"""
     postings: List[V2PostingTypedDict]
+    r"""The fund movements making up the transaction"""
     reverted: bool
+    r"""Indicates if the transaction has been reverted"""
     timestamp: datetime
+    r"""The transaction time: when the transaction is considered to have occurred, also called the effective or booking date. This is the axis the ledger uses to compute balances and resolve point-in-time queries. Settable at creation, defaulting to current machine time if omitted, and immutable once written. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
     inserted_at: NotRequired[datetime]
+    r"""The request time: when the transaction was actually written to the ledger. Set by the ledger, not the caller. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
     post_commit_effective_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    r"""Volumes aggregated per account and per asset"""
     post_commit_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    r"""Volumes aggregated per account and per asset"""
     pre_commit_effective_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    r"""Volumes aggregated per account and per asset"""
     pre_commit_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    r"""Volumes aggregated per account and per asset"""
     reference: NotRequired[str]
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
     reverted_at: NotRequired[datetime]
+    r"""When the transaction was reverted, on the request-time axis. Absent if the transaction has not been reverted"""
     template: NotRequired[str]
+    r"""Name of the transaction template this transaction was created from, if any"""
     updated_at: NotRequired[datetime]
+    r"""When the transaction row was last modified, for example by a metadata change or a revert"""
 
 
 class V2Transaction(BaseModel):
+    r"""A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps"""
+
     id: Annotated[int, BeforeValidator(validate_int)]
+    r"""Unique sequential identifier for this transaction within the ledger"""
 
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the transaction. Transaction metadata is bi-temporal, so a point-in-time query returns it as it stood at that time"""
 
     postings: List[V2Posting]
+    r"""The fund movements making up the transaction"""
 
     reverted: bool
+    r"""Indicates if the transaction has been reverted"""
 
     timestamp: datetime
+    r"""The transaction time: when the transaction is considered to have occurred, also called the effective or booking date. This is the axis the ledger uses to compute balances and resolve point-in-time queries. Settable at creation, defaulting to current machine time if omitted, and immutable once written. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     inserted_at: Annotated[Optional[datetime], pydantic.Field(alias="insertedAt")] = (
         None
     )
+    r"""The request time: when the transaction was actually written to the ledger. Set by the ledger, not the caller. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     post_commit_effective_volumes: Annotated[
         Optional[Dict[str, Dict[str, V2Volume]]],
         pydantic.Field(alias="postCommitEffectiveVolumes"),
     ] = None
+    r"""Volumes aggregated per account and per asset"""
 
     post_commit_volumes: Annotated[
         Optional[Dict[str, Dict[str, V2Volume]]],
         pydantic.Field(alias="postCommitVolumes"),
     ] = None
+    r"""Volumes aggregated per account and per asset"""
 
     pre_commit_effective_volumes: Annotated[
         Optional[Dict[str, Dict[str, V2Volume]]],
         pydantic.Field(alias="preCommitEffectiveVolumes"),
     ] = None
+    r"""Volumes aggregated per account and per asset"""
 
     pre_commit_volumes: Annotated[
         Optional[Dict[str, Dict[str, V2Volume]]],
         pydantic.Field(alias="preCommitVolumes"),
     ] = None
+    r"""Volumes aggregated per account and per asset"""
 
     reference: Optional[str] = None
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
 
     reverted_at: Annotated[Optional[datetime], pydantic.Field(alias="revertedAt")] = (
         None
     )
+    r"""When the transaction was reverted, on the request-time axis. Absent if the transaction has not been reverted"""
 
     template: Optional[str] = None
+    r"""Name of the transaction template this transaction was created from, if any"""
 
     updated_at: Annotated[Optional[datetime], pydantic.Field(alias="updatedAt")] = None
+    r"""When the transaction row was last modified, for example by a metadata change or a revert"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

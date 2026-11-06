@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class ConfigResponseTypedDict(TypedDict):
     data: WebhooksConfigTypedDict
+    r"""A webhook endpoint together with the event types it subscribes to"""
 
 
 class ConfigResponse(BaseModel):
     data: WebhooksConfig
+    r"""A webhook endpoint together with the event types it subscribes to"""

@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V2SchemasCursorResponseTypedDict(TypedDict):
     cursor: V2SchemasCursorTypedDict
+    r"""Paginated cursor over the ledger's schemas"""
 
 
 class V2SchemasCursorResponse(BaseModel):
     cursor: V2SchemasCursor
+    r"""Paginated cursor over the ledger's schemas"""

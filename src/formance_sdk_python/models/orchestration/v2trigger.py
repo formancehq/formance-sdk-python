@@ -10,32 +10,48 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2TriggerTypedDict(TypedDict):
+    r"""A rule that starts a workflow when a matching event arrives"""
+
     created_at: datetime
     event: str
+    r"""Type of event that fires this trigger"""
     id: str
     workflow_id: str
+    r"""Identifier of the workflow to run when the trigger fires"""
     filter_: NotRequired[str]
+    r"""Expression evaluated against the event. The workflow runs only when it matches"""
     name: NotRequired[str]
+    r"""Human-readable name for the trigger"""
     vars: NotRequired[Dict[str, Any]]
+    r"""Expressions evaluated against the event to build the workflow's input variables"""
     version: NotRequired[str]
+    r"""Version of the trigger definition"""
 
 
 class V2Trigger(BaseModel):
+    r"""A rule that starts a workflow when a matching event arrives"""
+
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
     event: str
+    r"""Type of event that fires this trigger"""
 
     id: str
 
     workflow_id: Annotated[str, pydantic.Field(alias="workflowID")]
+    r"""Identifier of the workflow to run when the trigger fires"""
 
     filter_: Annotated[Optional[str], pydantic.Field(alias="filter")] = None
+    r"""Expression evaluated against the event. The workflow runs only when it matches"""
 
     name: Optional[str] = None
+    r"""Human-readable name for the trigger"""
 
     vars: Optional[Dict[str, Any]] = None
+    r"""Expressions evaluated against the event to build the workflow's input variables"""
 
     version: Optional[str] = None
+    r"""Version of the trigger definition"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

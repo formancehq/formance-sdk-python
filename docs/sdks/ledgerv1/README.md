@@ -13,7 +13,6 @@
 * [get_account_ledger](#get_account_ledger) - Get account by its address
 * [get_balances](#get_balances) - Get the balances from a ledger's account
 * [get_balances_aggregated](#get_balances_aggregated) - Get the aggregated balances from selected accounts
-* [get_info](#get_info) - Show server information
 * [get_ledger_info](#get_ledger_info) - Get information about a ledger
 * [get_mapping](#get_mapping) - Get the mapping of a ledger
 * [get_transaction](#get_transaction) - Get transaction from a ledger by its ID
@@ -508,51 +507,6 @@ with SDK(
 ### Response
 
 **[operations.GetBalancesAggregatedResponse](../../models/operations/getbalancesaggregatedresponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| ledger.ErrorsErrorResponse | default                    | application/json           |
-| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
-
-## get_info
-
-Show server information
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="getInfo" method="get" path="/api/ledger/_info" -->
-```python
-from formance_sdk_python import SDK
-from formance_sdk_python.models import shared
-
-
-with SDK(
-    security=shared.Security(
-        client_id="<YOUR_CLIENT_ID_HERE>",
-        client_secret="<YOUR_CLIENT_SECRET_HERE>",
-    ),
-) as sdk:
-
-    res = sdk.ledger.v1.get_info()
-
-    assert res.config_info_response is not None
-
-    # Handle response
-    print(res.config_info_response)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[operations.GetInfoResponse](../../models/operations/getinforesponse.md)**
 
 ### Errors
 

@@ -18,22 +18,34 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class BalanceWithAssetsTypedDict(TypedDict):
+    r"""A named balance within a wallet together with the amounts it holds per asset"""
+
     assets: Dict[str, int]
+    r"""Amounts held, keyed by asset"""
     name: str
+    r"""Name of the balance within the wallet"""
     expires_at: NotRequired[Nullable[datetime]]
+    r"""When the funds in this balance expire. Expired funds stop counting towards available funds"""
     priority: NotRequired[int]
+    r"""Ordering hint when choosing which balances to debit first. Lower values are debited first, and it only breaks ties between balances that carry no expiry date"""
 
 
 class BalanceWithAssets(BaseModel):
+    r"""A named balance within a wallet together with the amounts it holds per asset"""
+
     assets: Dict[str, Annotated[int, BeforeValidator(validate_int)]]
+    r"""Amounts held, keyed by asset"""
 
     name: str
+    r"""Name of the balance within the wallet"""
 
     expires_at: Annotated[
         OptionalNullable[datetime], pydantic.Field(alias="expiresAt")
     ] = UNSET
+    r"""When the funds in this balance expire. Expired funds stop counting towards available funds"""
 
     priority: Annotated[Optional[int], BeforeValidator(validate_int)] = None
+    r"""Ordering hint when choosing which balances to debit first. Lower values are debited first, and it only breaks ties between balances that carry no expiry date"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

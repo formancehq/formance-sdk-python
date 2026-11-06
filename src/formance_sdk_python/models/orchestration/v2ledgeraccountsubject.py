@@ -7,10 +7,14 @@ from typing_extensions import TypedDict
 
 class V2LedgerAccountSubjectTypedDict(TypedDict):
     identifier: str
+    r"""Address of the ledger account"""
     type: str
+    r"""Discriminator identifying this subject as a ledger account"""
 
 
 class V2LedgerAccountSubject(BaseModel):
     identifier: str
+    r"""Address of the ledger account"""
 
     type: str
+    r"""Discriminator identifying this subject as a ledger account"""

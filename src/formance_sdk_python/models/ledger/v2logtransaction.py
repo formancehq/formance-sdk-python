@@ -17,71 +17,95 @@ class V2LogTransactionTypedDict(TypedDict):
     r"""Transaction structure as it appears in log payloads"""
 
     id: int
+    r"""Unique sequential identifier for this transaction within the ledger"""
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the resource"""
     postings: List[V2PostingTypedDict]
+    r"""The fund movements making up the transaction"""
     reverted: bool
     r"""Indicates if the transaction has been reverted"""
     timestamp: datetime
+    r"""The transaction time: when the transaction is considered to have occurred. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
     inserted_at: NotRequired[datetime]
+    r"""The request time: when the transaction was actually written to the ledger. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
     post_commit_effective_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    r"""Volumes aggregated per account and per asset"""
     post_commit_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    r"""Volumes aggregated per account and per asset"""
     pre_commit_effective_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    r"""Volumes aggregated per account and per asset"""
     pre_commit_volumes: NotRequired[Dict[str, Dict[str, V2VolumeTypedDict]]]
+    r"""Volumes aggregated per account and per asset"""
     reference: NotRequired[str]
+    r"""Optional caller-supplied identifier, unique within the ledger"""
     reverted_at: NotRequired[datetime]
+    r"""When the transaction was reverted, on the request-time axis"""
     template: NotRequired[str]
     r"""Transaction template used"""
     updated_at: NotRequired[datetime]
+    r"""When the transaction row was last modified"""
 
 
 class V2LogTransaction(BaseModel):
     r"""Transaction structure as it appears in log payloads"""
 
     id: Annotated[int, BeforeValidator(validate_int)]
+    r"""Unique sequential identifier for this transaction within the ledger"""
 
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     postings: List[V2Posting]
+    r"""The fund movements making up the transaction"""
 
     reverted: bool
     r"""Indicates if the transaction has been reverted"""
 
     timestamp: datetime
+    r"""The transaction time: when the transaction is considered to have occurred. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     inserted_at: Annotated[Optional[datetime], pydantic.Field(alias="insertedAt")] = (
         None
     )
+    r"""The request time: when the transaction was actually written to the ledger. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     post_commit_effective_volumes: Annotated[
         Optional[Dict[str, Dict[str, V2Volume]]],
         pydantic.Field(alias="postCommitEffectiveVolumes"),
     ] = None
+    r"""Volumes aggregated per account and per asset"""
 
     post_commit_volumes: Annotated[
         Optional[Dict[str, Dict[str, V2Volume]]],
         pydantic.Field(alias="postCommitVolumes"),
     ] = None
+    r"""Volumes aggregated per account and per asset"""
 
     pre_commit_effective_volumes: Annotated[
         Optional[Dict[str, Dict[str, V2Volume]]],
         pydantic.Field(alias="preCommitEffectiveVolumes"),
     ] = None
+    r"""Volumes aggregated per account and per asset"""
 
     pre_commit_volumes: Annotated[
         Optional[Dict[str, Dict[str, V2Volume]]],
         pydantic.Field(alias="preCommitVolumes"),
     ] = None
+    r"""Volumes aggregated per account and per asset"""
 
     reference: Optional[str] = None
+    r"""Optional caller-supplied identifier, unique within the ledger"""
 
     reverted_at: Annotated[Optional[datetime], pydantic.Field(alias="revertedAt")] = (
         None
     )
+    r"""When the transaction was reverted, on the request-time axis"""
 
     template: Optional[str] = None
     r"""Transaction template used"""
 
     updated_at: Annotated[Optional[datetime], pydantic.Field(alias="updatedAt")] = None
+    r"""When the transaction row was last modified"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

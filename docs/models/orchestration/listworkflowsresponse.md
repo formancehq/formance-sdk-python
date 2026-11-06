@@ -5,4 +5,4 @@
 
 | Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `data`                                                                 | List[[orchestration.Workflow](../../models/orchestration/workflow.md)] | :heavy_check_mark:                                                     | N/A                                                                    |
+| `data`                                                                 | List[[orchestration.Workflow](../../models/orchestration/workflow.md)] | :heavy_check_mark:                                                     | The workflows defined on this stack                                    |

@@ -1,0 +1,12 @@
+# NumscriptInfo
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `content`                                                            | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | The numscript source code                                            |                                                                      |
+| `created_at`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | Creation/update timestamp (ISO 8601 format)                          |                                                                      |
+| `ledger`                                                             | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | Ledger name this numscript belongs to                                |                                                                      |
+| `name`                                                               | *str*                                                                | :heavy_check_mark:                                                   | Name of the numscript                                                |                                                                      |
+| `version`                                                            | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | Semver version string (e.g. "1.0.0")                                 | 1.0.0                                                                |

@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2PipelinesCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of pipelines"""
+
     data: List[V2PipelineTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class V2PipelinesCursorResponseCursorTypedDict(TypedDict):
 
 
 class V2PipelinesCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of pipelines"""
+
     data: List[V2Pipeline]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -49,12 +53,14 @@ class V2PipelinesCursorResponseTypedDict(TypedDict):
     r"""Pipelines list"""
 
     cursor: V2PipelinesCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of pipelines"""
 
 
 class V2PipelinesCursorResponse(BaseModel):
     r"""Pipelines list"""
 
     cursor: V2PipelinesCursorResponseCursor
+    r"""Paginated cursor wrapping the list of pipelines"""
 
 
 try:

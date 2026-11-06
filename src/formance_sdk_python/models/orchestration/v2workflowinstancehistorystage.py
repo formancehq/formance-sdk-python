@@ -19,46 +19,106 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V2WorkflowInstanceHistoryStageTypedDict(TypedDict):
     attempt: int
+    r"""How many times the activity has been attempted"""
     input: V2WorkflowInstanceHistoryStageInputTypedDict
+    r"""Arguments an activity was called with, keyed by activity name"""
     name: str
+    r"""Name of the activity this history entry records"""
     started_at: datetime
+    r"""When the activity started"""
     terminated: bool
+    r"""Whether the activity has finished"""
+    activity_id: NotRequired[str]
+    r"""Stable identifier of the activity within its workflow execution"""
     error: NotRequired[str]
+    r"""Why the activity failed, absent when it succeeded"""
     last_failure: NotRequired[str]
+    r"""Error reported by the most recent failed attempt"""
+    last_failure_type: NotRequired[str]
+    r"""Application failure type of the most recent failed attempt, when available"""
     next_execution: NotRequired[datetime]
+    r"""When the next retry is scheduled, absent while paused, when no retry is scheduled, or once settled"""
     output: NotRequired[V2WorkflowInstanceHistoryStageOutputTypedDict]
+    r"""Result an activity returned, keyed by activity name"""
+    pause_reason: NotRequired[str]
+    r"""Reason recorded by Temporal for the activity pause, when available"""
+    paused: NotRequired[bool]
+    r"""Whether Temporal has paused this pending activity; a pause is not a terminal failure"""
+    temporal_run_id: NotRequired[str]
+    r"""Run identifier of the described stage workflow execution"""
     terminated_at: NotRequired[datetime]
+    r"""When the activity finished, absent while it is still running"""
 
 
 class V2WorkflowInstanceHistoryStage(BaseModel):
     attempt: int
+    r"""How many times the activity has been attempted"""
 
     input: V2WorkflowInstanceHistoryStageInput
+    r"""Arguments an activity was called with, keyed by activity name"""
 
     name: str
+    r"""Name of the activity this history entry records"""
 
     started_at: Annotated[datetime, pydantic.Field(alias="startedAt")]
+    r"""When the activity started"""
 
     terminated: bool
+    r"""Whether the activity has finished"""
+
+    activity_id: Annotated[Optional[str], pydantic.Field(alias="activityID")] = None
+    r"""Stable identifier of the activity within its workflow execution"""
 
     error: Optional[str] = None
+    r"""Why the activity failed, absent when it succeeded"""
 
     last_failure: Annotated[Optional[str], pydantic.Field(alias="lastFailure")] = None
+    r"""Error reported by the most recent failed attempt"""
+
+    last_failure_type: Annotated[
+        Optional[str], pydantic.Field(alias="lastFailureType")
+    ] = None
+    r"""Application failure type of the most recent failed attempt, when available"""
 
     next_execution: Annotated[
         Optional[datetime], pydantic.Field(alias="nextExecution")
     ] = None
+    r"""When the next retry is scheduled, absent while paused, when no retry is scheduled, or once settled"""
 
     output: Optional[V2WorkflowInstanceHistoryStageOutput] = None
+    r"""Result an activity returned, keyed by activity name"""
+
+    pause_reason: Annotated[Optional[str], pydantic.Field(alias="pauseReason")] = None
+    r"""Reason recorded by Temporal for the activity pause, when available"""
+
+    paused: Optional[bool] = None
+    r"""Whether Temporal has paused this pending activity; a pause is not a terminal failure"""
+
+    temporal_run_id: Annotated[Optional[str], pydantic.Field(alias="temporalRunID")] = (
+        None
+    )
+    r"""Run identifier of the described stage workflow execution"""
 
     terminated_at: Annotated[
         Optional[datetime], pydantic.Field(alias="terminatedAt")
     ] = None
+    r"""When the activity finished, absent while it is still running"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["error", "lastFailure", "nextExecution", "output", "terminatedAt"]
+            [
+                "activityID",
+                "error",
+                "lastFailure",
+                "lastFailureType",
+                "nextExecution",
+                "output",
+                "pauseReason",
+                "paused",
+                "temporalRunID",
+                "terminatedAt",
+            ]
         )
         serialized = handler(self)
         m = {}

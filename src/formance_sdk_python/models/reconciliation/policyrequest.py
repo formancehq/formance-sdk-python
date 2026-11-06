@@ -9,19 +9,27 @@ from typing_extensions import Annotated, TypedDict
 
 class PolicyRequestTypedDict(TypedDict):
     ledger_name: str
+    r"""Name of the ledger the policy reconciles against"""
     ledger_query: Dict[str, Any]
+    r"""Filter selecting the ledger accounts whose balances are reconciled"""
     name: str
+    r"""Human-readable name for the policy"""
     payments_pool_id: str
+    r"""Identifier of the payments pool the ledger side is compared against"""
 
 
 class PolicyRequest(BaseModel):
     ledger_name: Annotated[str, pydantic.Field(alias="ledgerName")]
+    r"""Name of the ledger the policy reconciles against"""
 
     ledger_query: Annotated[Dict[str, Any], pydantic.Field(alias="ledgerQuery")]
+    r"""Filter selecting the ledger accounts whose balances are reconciled"""
 
     name: str
+    r"""Human-readable name for the policy"""
 
     payments_pool_id: Annotated[str, pydantic.Field(alias="paymentsPoolID")]
+    r"""Identifier of the payments pool the ledger side is compared against"""
 
 
 try:

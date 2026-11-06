@@ -12,18 +12,24 @@ class ErrorResponseTypedDict(TypedDict):
     r"""Error response"""
 
     error_code: str
+    r"""Machine-readable error code identifying the failure"""
     error_message: str
+    r"""Human-readable description of the error"""
     details: NotRequired[str]
+    r"""Optional link carrying additional context about the error"""
 
 
 class ErrorResponse(BaseModel):
     r"""Error response"""
 
     error_code: Annotated[str, pydantic.Field(alias="errorCode")]
+    r"""Machine-readable error code identifying the failure"""
 
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
+    r"""Human-readable description of the error"""
 
     details: Optional[str] = None
+    r"""Optional link carrying additional context about the error"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

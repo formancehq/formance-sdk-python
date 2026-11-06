@@ -13,22 +13,32 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V2TransactionTypedDict(TypedDict):
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the resource"""
     postings: List[V2PostingTypedDict]
+    r"""The fund movements making up the transaction"""
     timestamp: datetime
+    r"""The transaction time: when the transaction is considered to have occurred. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
     txid: int
+    r"""Unique sequential identifier for this transaction within the ledger"""
     reference: NotRequired[str]
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
 
 
 class V2Transaction(BaseModel):
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     postings: List[V2Posting]
+    r"""The fund movements making up the transaction"""
 
     timestamp: datetime
+    r"""The transaction time: when the transaction is considered to have occurred. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     txid: Annotated[int, BeforeValidator(validate_int)]
+    r"""Unique sequential identifier for this transaction within the ledger"""
 
     reference: Optional[str] = None
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

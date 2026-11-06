@@ -8,6 +8,7 @@ from formance_sdk_python.models.ledger import (
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
+    HeaderMetadata,
     PathParamMetadata,
     QueryParamMetadata,
     RequestMetadata,
@@ -23,6 +24,12 @@ class V2ListAccountsRequestTypedDict(TypedDict):
     request_body: Dict[str, Any]
     ledger: str
     r"""Name of the ledger."""
+    formance_bigint_as_string: NotRequired[bool]
+    r"""When set to `true`, all bigint values in the response will be serialized
+    as strings instead of JSON numbers.
+    Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+
+    """
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests. Maximum page size is set to 15.
     Set to the value of next for the next page of results.
@@ -53,6 +60,17 @@ class V2ListAccountsRequest(BaseModel):
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""Name of the ledger."""
+
+    formance_bigint_as_string: Annotated[
+        Optional[bool],
+        pydantic.Field(alias="Formance-Bigint-As-String"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = False
+    r"""When set to `true`, all bigint values in the response will be serialized
+    as strings instead of JSON numbers.
+    Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+
+    """
 
     cursor: Annotated[
         Optional[str],
@@ -95,7 +113,9 @@ class V2ListAccountsRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["cursor", "expand", "pageSize", "pit", "sort"])
+        optional_fields = set(
+            ["Formance-Bigint-As-String", "cursor", "expand", "pageSize", "pit", "sort"]
+        )
         serialized = handler(self)
         m = {}
 

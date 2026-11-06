@@ -10,23 +10,35 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ListBalancesResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of balances"""
+
     data: List[BalanceTypedDict]
     page_size: int
+    r"""Number of items requested per page"""
     has_more: NotRequired[bool]
+    r"""Whether further pages are available"""
     next: NotRequired[str]
+    r"""Cursor for the next page, absent on the last page"""
     previous: NotRequired[str]
+    r"""Cursor for the previous page, absent on the first page"""
 
 
 class ListBalancesResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of balances"""
+
     data: List[Balance]
 
     page_size: Annotated[int, pydantic.Field(alias="pageSize")]
+    r"""Number of items requested per page"""
 
     has_more: Annotated[Optional[bool], pydantic.Field(alias="hasMore")] = None
+    r"""Whether further pages are available"""
 
     next: Optional[str] = None
+    r"""Cursor for the next page, absent on the last page"""
 
     previous: Optional[str] = None
+    r"""Cursor for the previous page, absent on the first page"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -47,10 +59,12 @@ class ListBalancesResponseCursor(BaseModel):
 
 class ListBalancesResponseTypedDict(TypedDict):
     cursor: ListBalancesResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of balances"""
 
 
 class ListBalancesResponse(BaseModel):
     cursor: ListBalancesResponseCursor
+    r"""Paginated cursor wrapping the list of balances"""
 
 
 try:

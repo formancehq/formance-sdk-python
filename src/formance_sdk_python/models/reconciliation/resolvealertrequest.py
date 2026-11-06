@@ -15,8 +15,11 @@ class ResolveAlertRequestTypedDict(TypedDict):
     """
 
     by: str
+    r"""Who is resolving the alert"""
     note: NotRequired[str]
+    r"""Free-text note to record with the resolution"""
     transaction_refs: NotRequired[List[str]]
+    r"""References of the transactions booked to correct the break. Supplying any records the resolution as fixed_by_booking"""
 
 
 class ResolveAlertRequest(BaseModel):
@@ -26,12 +29,15 @@ class ResolveAlertRequest(BaseModel):
     """
 
     by: str
+    r"""Who is resolving the alert"""
 
     note: Optional[str] = None
+    r"""Free-text note to record with the resolution"""
 
     transaction_refs: Annotated[
         Optional[List[str]], pydantic.Field(alias="transactionRefs")
     ] = None
+    r"""References of the transactions booked to correct the break. Supplying any records the resolution as fixed_by_booking"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

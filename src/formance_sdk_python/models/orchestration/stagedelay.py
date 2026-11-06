@@ -10,13 +10,17 @@ from typing_extensions import NotRequired, TypedDict
 
 class StageDelayTypedDict(TypedDict):
     duration: NotRequired[str]
+    r"""Wait for this long, expressed as a Go duration such as 10s. Mutually exclusive with until"""
     until: NotRequired[datetime]
+    r"""Wait until this absolute point in time. Mutually exclusive with duration"""
 
 
 class StageDelay(BaseModel):
     duration: Optional[str] = None
+    r"""Wait for this long, expressed as a Go duration such as 10s. Mutually exclusive with until"""
 
     until: Optional[datetime] = None
+    r"""Wait until this absolute point in time. Mutually exclusive with duration"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

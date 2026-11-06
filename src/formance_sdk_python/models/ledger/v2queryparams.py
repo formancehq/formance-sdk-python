@@ -20,6 +20,7 @@ class QueryTemplateVolumeParamsTypedDict(TypedDict):
 
     """
     expand: NotRequired[str]
+    r"""Additional data to include in the response, such as volumes"""
     group_by: NotRequired[int]
     insertion_date: NotRequired[bool]
     page_size: NotRequired[int]
@@ -27,6 +28,7 @@ class QueryTemplateVolumeParamsTypedDict(TypedDict):
 
     """
     pit: NotRequired[datetime]
+    r"""Point-in-time. Returns the state as it existed at this timestamp"""
     resource: Literal["volumes"]
     sort: NotRequired[str]
     r"""Sort results using a field name and order (ascending or descending).
@@ -45,6 +47,7 @@ class QueryTemplateVolumeParams(BaseModel):
     """
 
     expand: Optional[str] = None
+    r"""Additional data to include in the response, such as volumes"""
 
     group_by: Annotated[Optional[int], pydantic.Field(alias="groupBy")] = None
 
@@ -58,6 +61,7 @@ class QueryTemplateVolumeParams(BaseModel):
     """
 
     pit: Optional[datetime] = None
+    r"""Point-in-time. Returns the state as it existed at this timestamp"""
 
     RESOURCE: Annotated[
         Annotated[Literal["volumes"], AfterValidator(validate_const("volumes"))],
@@ -98,11 +102,13 @@ class QueryTemplateLogParamsTypedDict(TypedDict):
 
     """
     expand: NotRequired[str]
+    r"""Additional data to include in the response, such as volumes"""
     page_size: NotRequired[int]
     r"""The maximum number of results to return per page.
 
     """
     pit: NotRequired[datetime]
+    r"""Point-in-time. Returns the state as it existed at this timestamp"""
     resource: Literal["logs"]
     sort: NotRequired[str]
     r"""Sort results using a field name and order (ascending or descending).
@@ -121,6 +127,7 @@ class QueryTemplateLogParams(BaseModel):
     """
 
     expand: Optional[str] = None
+    r"""Additional data to include in the response, such as volumes"""
 
     page_size: Annotated[Optional[int], pydantic.Field(alias="pageSize")] = None
     r"""The maximum number of results to return per page.
@@ -128,6 +135,7 @@ class QueryTemplateLogParams(BaseModel):
     """
 
     pit: Optional[datetime] = None
+    r"""Point-in-time. Returns the state as it existed at this timestamp"""
 
     RESOURCE: Annotated[
         Annotated[Literal["logs"], AfterValidator(validate_const("logs"))],
@@ -166,11 +174,13 @@ class QueryTemplateTransactionParamsTypedDict(TypedDict):
 
     """
     expand: NotRequired[str]
+    r"""Additional data to include in the response, such as volumes"""
     page_size: NotRequired[int]
     r"""The maximum number of results to return per page.
 
     """
     pit: NotRequired[datetime]
+    r"""Point-in-time. Returns the state as it existed at this timestamp"""
     resource: Literal["transactions"]
     sort: NotRequired[str]
     r"""Sort results using a field name and order (ascending or descending).
@@ -189,6 +199,7 @@ class QueryTemplateTransactionParams(BaseModel):
     """
 
     expand: Optional[str] = None
+    r"""Additional data to include in the response, such as volumes"""
 
     page_size: Annotated[Optional[int], pydantic.Field(alias="pageSize")] = None
     r"""The maximum number of results to return per page.
@@ -196,6 +207,7 @@ class QueryTemplateTransactionParams(BaseModel):
     """
 
     pit: Optional[datetime] = None
+    r"""Point-in-time. Returns the state as it existed at this timestamp"""
 
     RESOURCE: Annotated[
         Annotated[
@@ -236,11 +248,13 @@ class QueryTemplateAccountParamsTypedDict(TypedDict):
 
     """
     expand: NotRequired[str]
+    r"""Additional data to include in the response, such as volumes"""
     page_size: NotRequired[int]
     r"""The maximum number of results to return per page.
 
     """
     pit: NotRequired[datetime]
+    r"""Point-in-time. Returns the state as it existed at this timestamp"""
     resource: Literal["accounts"]
     sort: NotRequired[str]
     r"""Sort results using a field name and order (ascending or descending).
@@ -259,6 +273,7 @@ class QueryTemplateAccountParams(BaseModel):
     """
 
     expand: Optional[str] = None
+    r"""Additional data to include in the response, such as volumes"""
 
     page_size: Annotated[Optional[int], pydantic.Field(alias="pageSize")] = None
     r"""The maximum number of results to return per page.
@@ -266,6 +281,7 @@ class QueryTemplateAccountParams(BaseModel):
     """
 
     pit: Optional[datetime] = None
+    r"""Point-in-time. Returns the state as it existed at this timestamp"""
 
     RESOURCE: Annotated[
         Annotated[Literal["accounts"], AfterValidator(validate_const("accounts"))],
@@ -304,6 +320,7 @@ V2QueryParamsTypedDict = TypeAliasType(
         QueryTemplateVolumeParamsTypedDict,
     ],
 )
+r"""Parameters applied when running a query template"""
 
 
 V2QueryParams = Annotated[
@@ -315,6 +332,7 @@ V2QueryParams = Annotated[
     ],
     Field(discriminator="RESOURCE"),
 ]
+r"""Parameters applied when running a query template"""
 
 
 try:

@@ -15,13 +15,17 @@ from typing_extensions import NotRequired, TypedDict
 
 class SecretOptionsTypedDict(TypedDict):
     name: str
+    r"""Human-readable name identifying the secret"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
 
 class SecretOptions(BaseModel):
     name: str
+    r"""Human-readable name identifying the secret"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

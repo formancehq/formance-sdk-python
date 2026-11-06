@@ -846,10 +846,10 @@ with SDK(
         "ledger": "ledger001",
     })
 
-    assert res is not None
+    assert res.bytes_ is not None
 
     # Handle response
-    print(res)
+    print(res.bytes_)
 
 ```
 
@@ -866,9 +866,10 @@ with SDK(
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| ledger.ErrorsV2ErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## get_account
 

@@ -1,0 +1,11 @@
+# MirrorOAuthRead
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `client_id`                                                                                   | *Optional[str]*                                                                               | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `client_secret`                                                                               | [Optional[ledger_v3.ClientSecret]](../../models/ledger_v3/clientsecret.md)                    | :heavy_minus_sign:                                                                            | Presence marker only; reusable secret material is never returned                              |
+| `scopes`                                                                                      | List[*str*]                                                                                   | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `token_endpoint`                                                                              | *Optional[str]*                                                                               | :heavy_minus_sign:                                                                            | OAuth endpoint URL with userinfo (including passwordless tokens) and query credentials masked |

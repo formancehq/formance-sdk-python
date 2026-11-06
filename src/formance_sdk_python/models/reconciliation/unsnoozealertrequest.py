@@ -7,7 +7,9 @@ from typing_extensions import TypedDict
 
 class UnsnoozeAlertRequestTypedDict(TypedDict):
     by: str
+    r"""Who is lifting the snooze"""
 
 
 class UnsnoozeAlertRequest(BaseModel):
     by: str
+    r"""Who is lifting the snooze"""

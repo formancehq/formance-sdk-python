@@ -17,27 +17,39 @@ class Status(str, Enum):
 
 class ReplayDeliveriesRequestTypedDict(TypedDict):
     created_at_from: datetime
+    r"""Replay deliveries created at or after this time"""
     config_ids: NotRequired[List[str]]
+    r"""Restrict the replay to deliveries targeting these webhook configurations"""
     created_at_to: NotRequired[datetime]
+    r"""Replay deliveries created at or before this time. Defaults to now when omitted"""
     cursor: NotRequired[str]
+    r"""Pagination cursor from a previous replay response, used to continue a large replay"""
     page_size: NotRequired[int]
+    r"""Maximum number of deliveries to process in this call"""
     statuses: NotRequired[List[Status]]
+    r"""Restrict the replay to deliveries in these statuses"""
 
 
 class ReplayDeliveriesRequest(BaseModel):
     created_at_from: Annotated[datetime, pydantic.Field(alias="createdAtFrom")]
+    r"""Replay deliveries created at or after this time"""
 
     config_ids: Annotated[Optional[List[str]], pydantic.Field(alias="configIds")] = None
+    r"""Restrict the replay to deliveries targeting these webhook configurations"""
 
     created_at_to: Annotated[
         Optional[datetime], pydantic.Field(alias="createdAtTo")
     ] = None
+    r"""Replay deliveries created at or before this time. Defaults to now when omitted"""
 
     cursor: Optional[str] = None
+    r"""Pagination cursor from a previous replay response, used to continue a large replay"""
 
     page_size: Annotated[Optional[int], pydantic.Field(alias="pageSize")] = 1000
+    r"""Maximum number of deliveries to process in this call"""
 
     statuses: Optional[List[Status]] = None
+    r"""Restrict the replay to deliveries in these statuses"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

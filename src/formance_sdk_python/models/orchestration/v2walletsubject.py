@@ -9,16 +9,22 @@ from typing_extensions import NotRequired, TypedDict
 
 class V2WalletSubjectTypedDict(TypedDict):
     identifier: str
+    r"""Identifier of the wallet"""
     type: str
+    r"""Discriminator identifying this subject as a wallet"""
     balance: NotRequired[str]
+    r"""Name of the balance within the wallet. Defaults to the main balance when omitted"""
 
 
 class V2WalletSubject(BaseModel):
     identifier: str
+    r"""Identifier of the wallet"""
 
     type: str
+    r"""Discriminator identifying this subject as a wallet"""
 
     balance: Optional[str] = None
+    r"""Name of the balance within the wallet. Defaults to the main balance when omitted"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

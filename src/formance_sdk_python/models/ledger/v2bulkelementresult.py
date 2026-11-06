@@ -14,7 +14,9 @@ class V2BulkElementResultErrorTypedDict(TypedDict):
     error_code: str
     error_description: str
     log_id: int
+    r"""Identifier of the log entry produced by this element"""
     response_type: str
+    r"""The action this result corresponds to"""
     error_details: NotRequired[str]
 
 
@@ -24,8 +26,10 @@ class V2BulkElementResultError(BaseModel):
     error_description: Annotated[str, pydantic.Field(alias="errorDescription")]
 
     log_id: Annotated[int, pydantic.Field(alias="logID")]
+    r"""Identifier of the log entry produced by this element"""
 
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
+    r"""The action this result corresponds to"""
 
     error_details: Annotated[Optional[str], pydantic.Field(alias="errorDetails")] = None
 
@@ -48,52 +52,72 @@ class V2BulkElementResultError(BaseModel):
 
 class V2BulkElementResultDeleteMetadataTypedDict(TypedDict):
     log_id: int
+    r"""Identifier of the log entry produced by this element"""
     response_type: str
+    r"""The action this result corresponds to"""
 
 
 class V2BulkElementResultDeleteMetadata(BaseModel):
     log_id: Annotated[int, pydantic.Field(alias="logID")]
+    r"""Identifier of the log entry produced by this element"""
 
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
+    r"""The action this result corresponds to"""
 
 
 class V2BulkElementResultRevertTransactionTypedDict(TypedDict):
     data: V2TransactionTypedDict
+    r"""A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps"""
     log_id: int
+    r"""Identifier of the log entry produced by this element"""
     response_type: str
+    r"""The action this result corresponds to"""
 
 
 class V2BulkElementResultRevertTransaction(BaseModel):
     data: V2Transaction
+    r"""A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps"""
 
     log_id: Annotated[int, pydantic.Field(alias="logID")]
+    r"""Identifier of the log entry produced by this element"""
 
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
+    r"""The action this result corresponds to"""
 
 
 class V2BulkElementResultAddMetadataTypedDict(TypedDict):
     log_id: int
+    r"""Identifier of the log entry produced by this element"""
     response_type: str
+    r"""The action this result corresponds to"""
 
 
 class V2BulkElementResultAddMetadata(BaseModel):
     log_id: Annotated[int, pydantic.Field(alias="logID")]
+    r"""Identifier of the log entry produced by this element"""
 
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
+    r"""The action this result corresponds to"""
 
 
 class V2BulkElementResultCreateTransactionTypedDict(TypedDict):
     data: V2TransactionTypedDict
+    r"""A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps"""
     log_id: int
+    r"""Identifier of the log entry produced by this element"""
     response_type: str
+    r"""The action this result corresponds to"""
 
 
 class V2BulkElementResultCreateTransaction(BaseModel):
     data: V2Transaction
+    r"""A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps"""
 
     log_id: Annotated[int, pydantic.Field(alias="logID")]
+    r"""Identifier of the log entry produced by this element"""
 
     response_type: Annotated[str, pydantic.Field(alias="responseType")]
+    r"""The action this result corresponds to"""
 
 
 V2BulkElementResultTypedDict = TypeAliasType(

@@ -11,6 +11,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2VolumesWithBalanceCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of volumes"""
+
     data: List[V2VolumesWithBalanceTypedDict]
     has_more: bool
     page_size: int
@@ -19,6 +21,8 @@ class V2VolumesWithBalanceCursorResponseCursorTypedDict(TypedDict):
 
 
 class V2VolumesWithBalanceCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of volumes"""
+
     data: List[V2VolumesWithBalance]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -47,18 +51,24 @@ class V2VolumesWithBalanceCursorResponseCursor(BaseModel):
 
 
 class V2VolumesWithBalanceCursorResponseResource(str, Enum):
+    r"""The resource type carried by this cursor"""
+
     VOLUMES = "volumes"
 
 
 class V2VolumesWithBalanceCursorResponseTypedDict(TypedDict):
     cursor: V2VolumesWithBalanceCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of volumes"""
     resource: NotRequired[V2VolumesWithBalanceCursorResponseResource]
+    r"""The resource type carried by this cursor"""
 
 
 class V2VolumesWithBalanceCursorResponse(BaseModel):
     cursor: V2VolumesWithBalanceCursorResponseCursor
+    r"""Paginated cursor wrapping the list of volumes"""
 
     resource: Optional[V2VolumesWithBalanceCursorResponseResource] = None
+    r"""The resource type carried by this cursor"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

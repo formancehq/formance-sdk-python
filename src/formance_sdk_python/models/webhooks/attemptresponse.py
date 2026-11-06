@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class AttemptResponseTypedDict(TypedDict):
     data: AttemptTypedDict
+    r"""A single delivery attempt made against a webhook endpoint"""
 
 
 class AttemptResponse(BaseModel):
     data: Attempt
+    r"""A single delivery attempt made against a webhook endpoint"""

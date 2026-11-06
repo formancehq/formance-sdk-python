@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V2GetLedgerResponseTypedDict(TypedDict):
     data: V2LedgerTypedDict
+    r"""A ledger and its configuration"""
 
 
 class V2GetLedgerResponse(BaseModel):
     data: V2Ledger
+    r"""A ledger and its configuration"""

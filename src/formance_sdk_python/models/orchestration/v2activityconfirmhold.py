@@ -6,8 +6,14 @@ from typing_extensions import TypedDict
 
 
 class V2ActivityConfirmHoldTypedDict(TypedDict):
+    r"""Arguments for the activity that confirms a wallet hold"""
+
     id: str
+    r"""Identifier of the hold to confirm"""
 
 
 class V2ActivityConfirmHold(BaseModel):
+    r"""Arguments for the activity that confirms a wallet hold"""
+
     id: str
+    r"""Identifier of the hold to confirm"""

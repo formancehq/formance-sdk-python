@@ -14,20 +14,24 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class DotSelfTypedDict(TypedDict):
-    pass
+    r"""Rules and metadata applied to the segment's own account, as opposed to its children"""
 
 
 class DotSelf(BaseModel):
-    pass
+    r"""Rules and metadata applied to the segment's own account, as opposed to its children"""
 
 
 class V2ChartSegmentTypedDict(TypedDict):
     r"""Segment within a chart of accounts"""
 
     dot_metadata: NotRequired[Dict[str, V2ChartAccountMetadataTypedDict]]
+    r"""Metadata applied to accounts matching this segment, keyed by metadata key"""
     dot_pattern: NotRequired[str]
+    r"""Regular expression every child segment name must match"""
     dot_rules: NotRequired[V2ChartAccountRulesTypedDict]
+    r"""Rules applied to accounts matching a chart-of-accounts segment"""
     dot_self: NotRequired[DotSelfTypedDict]
+    r"""Rules and metadata applied to the segment's own account, as opposed to its children"""
 
 
 class V2ChartSegment(BaseModel):
@@ -41,14 +45,18 @@ class V2ChartSegment(BaseModel):
     dot_metadata: Annotated[
         Optional[Dict[str, V2ChartAccountMetadata]], pydantic.Field(alias=".metadata")
     ] = None
+    r"""Metadata applied to accounts matching this segment, keyed by metadata key"""
 
     dot_pattern: Annotated[Optional[str], pydantic.Field(alias=".pattern")] = None
+    r"""Regular expression every child segment name must match"""
 
     dot_rules: Annotated[
         Optional[V2ChartAccountRules], pydantic.Field(alias=".rules")
     ] = None
+    r"""Rules applied to accounts matching a chart-of-accounts segment"""
 
     dot_self: Annotated[Optional[DotSelf], pydantic.Field(alias=".self")] = None
+    r"""Rules and metadata applied to the segment's own account, as opposed to its children"""
 
     @property
     def additional_properties(self):

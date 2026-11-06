@@ -9,12 +9,16 @@ class AcceptAlertRequestTypedDict(TypedDict):
     r"""Business acceptance. `note` is required and the evidence is snapshotted onto the resolution."""
 
     by: str
+    r"""Who is accepting the break"""
     note: str
+    r"""Why the break is being accepted rather than corrected"""
 
 
 class AcceptAlertRequest(BaseModel):
     r"""Business acceptance. `note` is required and the evidence is snapshotted onto the resolution."""
 
     by: str
+    r"""Who is accepting the break"""
 
     note: str
+    r"""Why the break is being accepted rather than corrected"""
