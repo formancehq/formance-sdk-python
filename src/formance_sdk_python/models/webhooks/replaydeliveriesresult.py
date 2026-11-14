@@ -10,26 +10,42 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ReplayDeliveriesResultTypedDict(TypedDict):
+    r"""Outcome of a bulk replay, counting the deliveries it moved"""
+
     created_at_to: datetime
+    r"""Upper time bound actually applied, echoed so a paginated replay stays on a fixed window"""
     expedited: int
+    r"""Number of already-pending deliveries whose next attempt was brought forward to now"""
     has_more: bool
+    r"""Whether further deliveries match and can be processed with the returned cursor"""
     replayed: int
+    r"""Number of failed deliveries moved back to pending and scheduled for a new retry cycle"""
     skipped: int
+    r"""Number of candidates left untouched, because their status changed before the replay applied"""
     next_cursor: NotRequired[str]
+    r"""Cursor to pass to the next replay call to continue where this one stopped"""
 
 
 class ReplayDeliveriesResult(BaseModel):
+    r"""Outcome of a bulk replay, counting the deliveries it moved"""
+
     created_at_to: Annotated[datetime, pydantic.Field(alias="createdAtTo")]
+    r"""Upper time bound actually applied, echoed so a paginated replay stays on a fixed window"""
 
     expedited: int
+    r"""Number of already-pending deliveries whose next attempt was brought forward to now"""
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
+    r"""Whether further deliveries match and can be processed with the returned cursor"""
 
     replayed: int
+    r"""Number of failed deliveries moved back to pending and scheduled for a new retry cycle"""
 
     skipped: int
+    r"""Number of candidates left untouched, because their status changed before the replay applied"""
 
     next_cursor: Annotated[Optional[str], pydantic.Field(alias="nextCursor")] = None
+    r"""Cursor to pass to the next replay call to continue where this one stopped"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

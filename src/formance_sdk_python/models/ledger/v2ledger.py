@@ -16,31 +16,49 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2LedgerTypedDict(TypedDict):
+    r"""A ledger and its configuration"""
+
     added_at: datetime
+    r"""When the ledger was created"""
     bucket: str
+    r"""Name of the storage bucket backing the ledger"""
     name: str
+    r"""Name of the ledger"""
     deleted_at: NotRequired[Nullable[datetime]]
+    r"""When the ledger was deleted, absent for active ledgers"""
     features: NotRequired[Dict[str, str]]
+    r"""Feature flags enabled on the ledger, keyed by feature name"""
     id: NotRequired[int]
+    r"""Unique sequential identifier for the ledger"""
     metadata: NotRequired[Dict[str, str]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
 
 class V2Ledger(BaseModel):
+    r"""A ledger and its configuration"""
+
     added_at: Annotated[datetime, pydantic.Field(alias="addedAt")]
+    r"""When the ledger was created"""
 
     bucket: str
+    r"""Name of the storage bucket backing the ledger"""
 
     name: str
+    r"""Name of the ledger"""
 
     deleted_at: Annotated[
         OptionalNullable[datetime], pydantic.Field(alias="deletedAt")
     ] = UNSET
+    r"""When the ledger was deleted, absent for active ledgers"""
 
     features: Optional[Dict[str, str]] = None
+    r"""Feature flags enabled on the ledger, keyed by feature name"""
 
     id: Optional[int] = None
+    r"""Unique sequential identifier for the ledger"""
 
     metadata: Optional[Dict[str, str]] = None
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

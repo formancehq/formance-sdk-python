@@ -846,10 +846,10 @@ with SDK(
         "ledger": "ledger001",
     })
 
-    assert res is not None
+    assert res.bytes_ is not None
 
     # Handle response
-    print(res)
+    print(res.bytes_)
 
 ```
 
@@ -866,9 +866,10 @@ with SDK(
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| ledger.ErrorsV2ErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## get_account
 
@@ -1475,9 +1476,7 @@ with SDK(
             },
             "queries": {
                 "key": {
-                    "params": {
-                        "resource": "volumes",
-                    },
+                    "resource": ledger.V2VolumeQueryTemplateResource.VOLUMES,
                 },
             },
         },
@@ -2069,7 +2068,8 @@ with SDK(
     res = sdk.ledger.v2.run_query(request={
         "request_body": {
             "params": {
-                "resource": "volumes",
+                "page_size": 100,
+                "sort": "id:desc",
             },
         },
         "cursor": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",

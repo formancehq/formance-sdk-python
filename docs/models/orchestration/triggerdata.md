@@ -3,11 +3,11 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `event`            | *str*              | :heavy_check_mark: | N/A                |
-| `filter_`          | *Optional[str]*    | :heavy_minus_sign: | N/A                |
-| `name`             | *Optional[str]*    | :heavy_minus_sign: | N/A                |
-| `vars`             | Dict[str, *Any*]   | :heavy_minus_sign: | N/A                |
-| `version`          | *Optional[str]*    | :heavy_minus_sign: | N/A                |
-| `workflow_id`      | *str*              | :heavy_check_mark: | N/A                |
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `event`                                                                         | *str*                                                                           | :heavy_check_mark:                                                              | Type of event that fires this trigger                                           |
+| `filter_`                                                                       | *Optional[str]*                                                                 | :heavy_minus_sign:                                                              | Expression evaluated against the event. The workflow runs only when it matches  |
+| `name`                                                                          | *Optional[str]*                                                                 | :heavy_minus_sign:                                                              | Human-readable name for the trigger                                             |
+| `vars`                                                                          | Dict[str, *Any*]                                                                | :heavy_minus_sign:                                                              | Expressions evaluated against the event to build the workflow's input variables |
+| `version`                                                                       | *Optional[str]*                                                                 | :heavy_minus_sign:                                                              | Version of the trigger definition                                               |
+| `workflow_id`                                                                   | *str*                                                                           | :heavy_check_mark:                                                              | Identifier of the workflow to run when the trigger fires                        |

@@ -1,0 +1,10 @@
+# LedgerMetadataSchema
+
+
+## Fields
+
+| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `account_fields`                                                                                      | Dict[str, [ledger_v3.LedgerMetadataFieldSchema](../../models/ledger_v3/ledgermetadatafieldschema.md)] | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |
+| `ledger_fields`                                                                                       | Dict[str, [ledger_v3.LedgerMetadataFieldSchema](../../models/ledger_v3/ledgermetadatafieldschema.md)] | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |
+| `transaction_fields`                                                                                  | Dict[str, [ledger_v3.LedgerMetadataFieldSchema](../../models/ledger_v3/ledgermetadatafieldschema.md)] | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |

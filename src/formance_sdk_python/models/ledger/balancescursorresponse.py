@@ -9,6 +9,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class BalancesCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of balances"""
+
     data: List[Dict[str, Dict[str, int]]]
     has_more: bool
     page_size: int
@@ -17,6 +19,8 @@ class BalancesCursorResponseCursorTypedDict(TypedDict):
 
 
 class BalancesCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of balances"""
+
     data: List[Dict[str, Dict[str, int]]]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -46,10 +50,12 @@ class BalancesCursorResponseCursor(BaseModel):
 
 class BalancesCursorResponseTypedDict(TypedDict):
     cursor: BalancesCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of balances"""
 
 
 class BalancesCursorResponse(BaseModel):
     cursor: BalancesCursorResponseCursor
+    r"""Paginated cursor wrapping the list of balances"""
 
 
 try:

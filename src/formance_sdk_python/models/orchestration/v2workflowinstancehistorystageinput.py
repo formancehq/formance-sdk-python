@@ -10,6 +10,10 @@ from .v2activitycreatetransaction import (
     V2ActivityCreateTransaction,
     V2ActivityCreateTransactionTypedDict,
 )
+from .v2activitycreatetransferinitiation import (
+    V2ActivityCreateTransferInitiation,
+    V2ActivityCreateTransferInitiationTypedDict,
+)
 from .v2activitycreditwallet import (
     V2ActivityCreditWallet,
     V2ActivityCreditWalletTypedDict,
@@ -19,15 +23,11 @@ from .v2activitygetaccount import V2ActivityGetAccount, V2ActivityGetAccountType
 from .v2activitygetpayment import V2ActivityGetPayment, V2ActivityGetPaymentTypedDict
 from .v2activitygetwallet import V2ActivityGetWallet, V2ActivityGetWalletTypedDict
 from .v2activitylistwallets import V2ActivityListWallets, V2ActivityListWalletsTypedDict
+from .v2activitystripetransfer import (
+    V2ActivityStripeTransfer,
+    V2ActivityStripeTransferTypedDict,
+)
 from .v2activityvoidhold import V2ActivityVoidHold, V2ActivityVoidHoldTypedDict
-from .v2createtransferinitiationrequest import (
-    V2CreateTransferInitiationRequest,
-    V2CreateTransferInitiationRequestTypedDict,
-)
-from .v2stripetransferrequest import (
-    V2StripeTransferRequest,
-    V2StripeTransferRequestTypedDict,
-)
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 import pydantic
 from pydantic import model_serializer
@@ -36,70 +36,98 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2WorkflowInstanceHistoryStageInputTypedDict(TypedDict):
+    r"""Arguments an activity was called with, keyed by activity name"""
+
     add_account_metadata: NotRequired[V2ActivityAddAccountMetadataTypedDict]
+    r"""Arguments for the activity that sets metadata on a ledger account"""
     confirm_hold: NotRequired[V2ActivityConfirmHoldTypedDict]
+    r"""Arguments for the activity that confirms a wallet hold"""
     create_transaction: NotRequired[V2ActivityCreateTransactionTypedDict]
-    create_transfer_initiation: NotRequired[V2CreateTransferInitiationRequestTypedDict]
+    r"""Arguments for the activity that writes a transaction to a ledger"""
+    create_transfer_initiation: NotRequired[V2ActivityCreateTransferInitiationTypedDict]
+    r"""Arguments for the activity that initiates a transfer through a connector"""
     credit_wallet: NotRequired[V2ActivityCreditWalletTypedDict]
+    r"""Arguments for the activity that credits a wallet"""
     debit_wallet: NotRequired[V2ActivityDebitWalletTypedDict]
+    r"""Arguments for the activity that debits a wallet"""
     get_account: NotRequired[V2ActivityGetAccountTypedDict]
+    r"""Arguments for the activity that reads a ledger account"""
     get_payment: NotRequired[V2ActivityGetPaymentTypedDict]
+    r"""Arguments for the activity that reads a payment"""
     get_wallet: NotRequired[V2ActivityGetWalletTypedDict]
+    r"""Arguments for the activity that reads a wallet"""
     list_wallets: NotRequired[V2ActivityListWalletsTypedDict]
-    stripe_transfer: NotRequired[V2StripeTransferRequestTypedDict]
+    r"""Arguments for the activity that lists wallets"""
+    stripe_transfer: NotRequired[V2ActivityStripeTransferTypedDict]
+    r"""Arguments for the activity that transfers funds through Stripe"""
     void_hold: NotRequired[V2ActivityVoidHoldTypedDict]
+    r"""Arguments for the activity that releases a wallet hold"""
 
 
 class V2WorkflowInstanceHistoryStageInput(BaseModel):
+    r"""Arguments an activity was called with, keyed by activity name"""
+
     add_account_metadata: Annotated[
         Optional[V2ActivityAddAccountMetadata],
         pydantic.Field(alias="AddAccountMetadata"),
     ] = None
+    r"""Arguments for the activity that sets metadata on a ledger account"""
 
     confirm_hold: Annotated[
         Optional[V2ActivityConfirmHold], pydantic.Field(alias="ConfirmHold")
     ] = None
+    r"""Arguments for the activity that confirms a wallet hold"""
 
     create_transaction: Annotated[
         Optional[V2ActivityCreateTransaction], pydantic.Field(alias="CreateTransaction")
     ] = None
+    r"""Arguments for the activity that writes a transaction to a ledger"""
 
     create_transfer_initiation: Annotated[
-        Optional[V2CreateTransferInitiationRequest],
+        Optional[V2ActivityCreateTransferInitiation],
         pydantic.Field(alias="CreateTransferInitiation"),
     ] = None
+    r"""Arguments for the activity that initiates a transfer through a connector"""
 
     credit_wallet: Annotated[
         Optional[V2ActivityCreditWallet], pydantic.Field(alias="CreditWallet")
     ] = None
+    r"""Arguments for the activity that credits a wallet"""
 
     debit_wallet: Annotated[
         Optional[V2ActivityDebitWallet], pydantic.Field(alias="DebitWallet")
     ] = None
+    r"""Arguments for the activity that debits a wallet"""
 
     get_account: Annotated[
         Optional[V2ActivityGetAccount], pydantic.Field(alias="GetAccount")
     ] = None
+    r"""Arguments for the activity that reads a ledger account"""
 
     get_payment: Annotated[
         Optional[V2ActivityGetPayment], pydantic.Field(alias="GetPayment")
     ] = None
+    r"""Arguments for the activity that reads a payment"""
 
     get_wallet: Annotated[
         Optional[V2ActivityGetWallet], pydantic.Field(alias="GetWallet")
     ] = None
+    r"""Arguments for the activity that reads a wallet"""
 
     list_wallets: Annotated[
         Optional[V2ActivityListWallets], pydantic.Field(alias="ListWallets")
     ] = None
+    r"""Arguments for the activity that lists wallets"""
 
     stripe_transfer: Annotated[
-        Optional[V2StripeTransferRequest], pydantic.Field(alias="StripeTransfer")
+        Optional[V2ActivityStripeTransfer], pydantic.Field(alias="StripeTransfer")
     ] = None
+    r"""Arguments for the activity that transfers funds through Stripe"""
 
     void_hold: Annotated[
         Optional[V2ActivityVoidHold], pydantic.Field(alias="VoidHold")
     ] = None
+    r"""Arguments for the activity that releases a wallet hold"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

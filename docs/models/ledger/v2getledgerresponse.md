@@ -5,4 +5,4 @@
 
 | Field                                              | Type                                               | Required                                           | Description                                        |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `data`                                             | [ledger.V2Ledger](../../models/ledger/v2ledger.md) | :heavy_check_mark:                                 | N/A                                                |
+| `data`                                             | [ledger.V2Ledger](../../models/ledger/v2ledger.md) | :heavy_check_mark:                                 | A ledger and its configuration                     |

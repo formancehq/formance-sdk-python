@@ -10,27 +10,39 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ScheduleKind(str, Enum):
+    r"""Whether the rule runs only when triggered or on a recurring cron schedule"""
+
     ON_DEMAND = "on_demand"
     CRON = "cron"
 
 
 class ScheduleTypedDict(TypedDict):
+    r"""When a rule runs, either on demand or on a cron expression"""
+
     kind: ScheduleKind
+    r"""Whether the rule runs only when triggered or on a recurring cron schedule"""
     expr: NotRequired[str]
+    r"""Cron expression driving the schedule, required when kind is cron"""
     safety_margin: NotRequired[str]
     r"""Go duration string"""
     tz: NotRequired[str]
+    r"""Timezone the cron expression is interpreted in"""
 
 
 class Schedule(BaseModel):
+    r"""When a rule runs, either on demand or on a cron expression"""
+
     kind: ScheduleKind
+    r"""Whether the rule runs only when triggered or on a recurring cron schedule"""
 
     expr: Optional[str] = None
+    r"""Cron expression driving the schedule, required when kind is cron"""
 
     safety_margin: Annotated[Optional[str], pydantic.Field(alias="safetyMargin")] = None
     r"""Go duration string"""
 
     tz: Optional[str] = None
+    r"""Timezone the cron expression is interpreted in"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

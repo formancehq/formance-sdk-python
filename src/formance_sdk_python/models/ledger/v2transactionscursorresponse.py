@@ -11,6 +11,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2TransactionsCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of transactions"""
+
     data: List[V2TransactionTypedDict]
     has_more: bool
     page_size: int
@@ -19,6 +21,8 @@ class V2TransactionsCursorResponseCursorTypedDict(TypedDict):
 
 
 class V2TransactionsCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of transactions"""
+
     data: List[V2Transaction]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -47,18 +51,24 @@ class V2TransactionsCursorResponseCursor(BaseModel):
 
 
 class V2TransactionsCursorResponseResource(str, Enum):
+    r"""The resource type carried by this cursor"""
+
     TRANSACTIONS = "transactions"
 
 
 class V2TransactionsCursorResponseTypedDict(TypedDict):
     cursor: V2TransactionsCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of transactions"""
     resource: NotRequired[V2TransactionsCursorResponseResource]
+    r"""The resource type carried by this cursor"""
 
 
 class V2TransactionsCursorResponse(BaseModel):
     cursor: V2TransactionsCursorResponseCursor
+    r"""Paginated cursor wrapping the list of transactions"""
 
     resource: Optional[V2TransactionsCursorResponseResource] = None
+    r"""The resource type carried by this cursor"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

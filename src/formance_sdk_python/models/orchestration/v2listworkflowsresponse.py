@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2ListWorkflowsResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of workflows"""
+
     data: List[V2WorkflowTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class V2ListWorkflowsResponseCursorTypedDict(TypedDict):
 
 
 class V2ListWorkflowsResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of workflows"""
+
     data: List[V2Workflow]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -47,10 +51,12 @@ class V2ListWorkflowsResponseCursor(BaseModel):
 
 class V2ListWorkflowsResponseTypedDict(TypedDict):
     cursor: V2ListWorkflowsResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of workflows"""
 
 
 class V2ListWorkflowsResponse(BaseModel):
     cursor: V2ListWorkflowsResponseCursor
+    r"""Paginated cursor wrapping the list of workflows"""
 
 
 try:

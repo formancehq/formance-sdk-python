@@ -8,22 +8,26 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class ExprTypedDict(TypedDict):
-    pass
+    r"""Expression the account's balances must satisfy"""
 
 
 class Expr(BaseModel):
-    pass
+    r"""Expression the account's balances must satisfy"""
 
 
 class ContractTypedDict(TypedDict):
     expr: ExprTypedDict
+    r"""Expression the account's balances must satisfy"""
     account: NotRequired[str]
+    r"""Account address, or pattern, the contract applies to"""
 
 
 class Contract(BaseModel):
     expr: Expr
+    r"""Expression the account's balances must satisfy"""
 
     account: Optional[str] = None
+    r"""Account address, or pattern, the contract applies to"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

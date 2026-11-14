@@ -10,22 +10,34 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ConfigInfoTypedDict(TypedDict):
+    r"""Configuration and version information for the ledger server"""
+
     config: ConfigTypedDict
+    r"""Configuration the ledger server is running with"""
     server: str
+    r"""Name of the server serving the API"""
     version: str
+    r"""Version of the ledger service"""
     experimental_features: NotRequired[List[str]]
+    r"""Experimental feature flags enabled on this deployment"""
 
 
 class ConfigInfo(BaseModel):
+    r"""Configuration and version information for the ledger server"""
+
     config: Config
+    r"""Configuration the ledger server is running with"""
 
     server: str
+    r"""Name of the server serving the API"""
 
     version: str
+    r"""Version of the ledger service"""
 
     experimental_features: Annotated[
         Optional[List[str]], pydantic.Field(alias="experimentalFeatures")
     ] = None
+    r"""Experimental feature flags enabled on this deployment"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

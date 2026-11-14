@@ -7,13 +7,19 @@ from typing_extensions import TypedDict
 
 class VersionTypedDict(TypedDict):
     health: bool
+    r"""Whether the component is reporting itself healthy"""
     name: str
+    r"""Name of the component"""
     version: str
+    r"""Version of the component currently deployed"""
 
 
 class Version(BaseModel):
     health: bool
+    r"""Whether the component is reporting itself healthy"""
 
     name: str
+    r"""Name of the component"""
 
     version: str
+    r"""Version of the component currently deployed"""

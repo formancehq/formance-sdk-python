@@ -10,10 +10,12 @@ from typing_extensions import NotRequired, TypedDict
 
 class ReadClientResponseTypedDict(TypedDict):
     data: NotRequired[ClientTypedDict]
+    r"""An OAuth2 client registered on the stack"""
 
 
 class ReadClientResponse(BaseModel):
     data: Optional[Client] = None
+    r"""An OAuth2 client registered on the stack"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

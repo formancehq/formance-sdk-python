@@ -10,22 +10,34 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2AccountTypedDict(TypedDict):
+    r"""An account in the ledger, identified by its address"""
+
     address: str
+    r"""The account address, a colon-separated segmented path such as users:001"""
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the account"""
     effective_volumes: NotRequired[Dict[str, V2VolumeTypedDict]]
+    r"""Volumes per asset for a single account"""
     volumes: NotRequired[Dict[str, V2VolumeTypedDict]]
+    r"""Volumes per asset for a single account"""
 
 
 class V2Account(BaseModel):
+    r"""An account in the ledger, identified by its address"""
+
     address: str
+    r"""The account address, a colon-separated segmented path such as users:001"""
 
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the account"""
 
     effective_volumes: Annotated[
         Optional[Dict[str, V2Volume]], pydantic.Field(alias="effectiveVolumes")
     ] = None
+    r"""Volumes per asset for a single account"""
 
     volumes: Optional[Dict[str, V2Volume]] = None
+    r"""Volumes per asset for a single account"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -1,0 +1,10 @@
+# V3UpdatePreparedQueryRequest
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `update_prepared_query_request`                                                              | [ledger_v3.UpdatePreparedQueryRequest](../../models/ledger_v3/updatepreparedqueryrequest.md) | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `ledger_name`                                                                                | *str*                                                                                        | :heavy_check_mark:                                                                           | Name of the ledger                                                                           |
+| `query_name`                                                                                 | *str*                                                                                        | :heavy_check_mark:                                                                           | Prepared query name, URL-encoded as one path segment. Decoded exactly once.                  |

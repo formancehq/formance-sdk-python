@@ -6,8 +6,14 @@ from typing_extensions import TypedDict
 
 
 class V2ActivityGetWalletTypedDict(TypedDict):
+    r"""Arguments for the activity that reads a wallet"""
+
     id: str
+    r"""Identifier of the wallet to read"""
 
 
 class V2ActivityGetWallet(BaseModel):
+    r"""Arguments for the activity that reads a wallet"""
+
     id: str
+    r"""Identifier of the wallet to read"""

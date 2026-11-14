@@ -7,11 +7,19 @@ from typing_extensions import TypedDict
 
 
 class LedgerStorageTypedDict(TypedDict):
+    r"""Storage backend the ledgers are held in"""
+
     driver: str
+    r"""Name of the storage driver backing the ledgers"""
     ledgers: List[str]
+    r"""Names of the ledgers held in this storage backend"""
 
 
 class LedgerStorage(BaseModel):
+    r"""Storage backend the ledgers are held in"""
+
     driver: str
+    r"""Name of the storage driver backing the ledgers"""
 
     ledgers: List[str]
+    r"""Names of the ledgers held in this storage backend"""

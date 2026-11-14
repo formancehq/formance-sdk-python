@@ -9,22 +9,30 @@ from typing_extensions import Annotated, TypedDict
 
 
 class ConfigsResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of configurations"""
+
     data: List[WebhooksConfigTypedDict]
     has_more: bool
+    r"""Whether further pages are available"""
 
 
 class ConfigsResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of configurations"""
+
     data: List[WebhooksConfig]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
+    r"""Whether further pages are available"""
 
 
 class ConfigsResponseTypedDict(TypedDict):
     cursor: ConfigsResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of configurations"""
 
 
 class ConfigsResponse(BaseModel):
     cursor: ConfigsResponseCursor
+    r"""Paginated cursor wrapping the list of configurations"""
 
 
 try:

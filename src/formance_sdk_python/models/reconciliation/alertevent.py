@@ -17,18 +17,24 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class NewStatus(str, Enum):
+    r"""Status after this event"""
+
     OPEN = "OPEN"
     ACKNOWLEDGED = "ACKNOWLEDGED"
     RESOLVED = "RESOLVED"
 
 
 class PrevStatus(str, Enum):
+    r"""Status before this event. Null only for the alert's inaugural event"""
+
     OPEN = "OPEN"
     ACKNOWLEDGED = "ACKNOWLEDGED"
     RESOLVED = "RESOLVED"
 
 
 class Type(str, Enum):
+    r"""What happened, whether an evaluation outcome or a manual transition"""
+
     FAIL = "fail"
     PASS = "pass"
     ACK = "ack"
@@ -51,17 +57,25 @@ class AlertEventTypedDict(TypedDict):
     """
 
     alert_id: str
+    r"""Identifier of the alert this event belongs to"""
     at: datetime
+    r"""When the event occurred"""
     id: str
+    r"""Unique identifier of the event"""
     is_reopen: bool
+    r"""True when a failure landed on an already-resolved alert, reopening it"""
     new_status: NewStatus
+    r"""Status after this event"""
     notify: bool
     r"""Whether this transition was published to the message bus. false = recorded for audit but suppressed."""
     type: Type
+    r"""What happened, whether an evaluation outcome or a manual transition"""
     evaluation_id: NotRequired[Nullable[str]]
+    r"""Identifier of the evaluation that produced this event, absent for manual transitions"""
     payload: NotRequired[Dict[str, Any]]
     r"""Event-type-specific payload (evidence for fail, resolution for resolve/accept, ack object for ack, snooze object for snooze)."""
     prev_status: NotRequired[Nullable[PrevStatus]]
+    r"""Status before this event. Null only for the alert's inaugural event"""
 
 
 class AlertEvent(BaseModel):
@@ -77,23 +91,30 @@ class AlertEvent(BaseModel):
     """
 
     alert_id: Annotated[str, pydantic.Field(alias="alertID")]
+    r"""Identifier of the alert this event belongs to"""
 
     at: datetime
+    r"""When the event occurred"""
 
     id: str
+    r"""Unique identifier of the event"""
 
     is_reopen: Annotated[bool, pydantic.Field(alias="isReopen")]
+    r"""True when a failure landed on an already-resolved alert, reopening it"""
 
     new_status: Annotated[NewStatus, pydantic.Field(alias="newStatus")]
+    r"""Status after this event"""
 
     notify: bool
     r"""Whether this transition was published to the message bus. false = recorded for audit but suppressed."""
 
     type: Type
+    r"""What happened, whether an evaluation outcome or a manual transition"""
 
     evaluation_id: Annotated[
         OptionalNullable[str], pydantic.Field(alias="evaluationID")
     ] = UNSET
+    r"""Identifier of the evaluation that produced this event, absent for manual transitions"""
 
     payload: Optional[Dict[str, Any]] = None
     r"""Event-type-specific payload (evidence for fail, resolution for resolve/accept, ack object for ack, snooze object for snooze)."""
@@ -101,6 +122,7 @@ class AlertEvent(BaseModel):
     prev_status: Annotated[
         OptionalNullable[PrevStatus], pydantic.Field(alias="prevStatus")
     ] = UNSET
+    r"""Status before this event. Null only for the alert's inaugural event"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

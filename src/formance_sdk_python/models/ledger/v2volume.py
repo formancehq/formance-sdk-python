@@ -11,16 +11,22 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V2VolumeTypedDict(TypedDict):
     input: int
+    r"""Total amount credited for this asset"""
     output: int
+    r"""Total amount debited for this asset"""
     balance: NotRequired[int]
+    r"""Net balance, equal to input minus output"""
 
 
 class V2Volume(BaseModel):
     input: Annotated[int, BeforeValidator(validate_int)]
+    r"""Total amount credited for this asset"""
 
     output: Annotated[int, BeforeValidator(validate_int)]
+    r"""Total amount debited for this asset"""
 
     balance: Annotated[Optional[int], BeforeValidator(validate_int)] = None
+    r"""Net balance, equal to input minus output"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -10,6 +10,7 @@ class CreateWalletRequestTypedDict(TypedDict):
     metadata: Dict[str, str]
     r"""Custom metadata to attach to this wallet."""
     name: str
+    r"""Human-readable name for the wallet"""
 
 
 class CreateWalletRequest(BaseModel):
@@ -17,3 +18,4 @@ class CreateWalletRequest(BaseModel):
     r"""Custom metadata to attach to this wallet."""
 
     name: str
+    r"""Human-readable name for the wallet"""

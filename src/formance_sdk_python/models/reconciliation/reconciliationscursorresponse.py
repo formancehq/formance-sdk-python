@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ReconciliationsCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of reconciliations"""
+
     data: List[ReconciliationTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class ReconciliationsCursorResponseCursorTypedDict(TypedDict):
 
 
 class ReconciliationsCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of reconciliations"""
+
     data: List[Reconciliation]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -49,12 +53,14 @@ class ReconciliationsCursorResponseTypedDict(TypedDict):
     r"""OK"""
 
     cursor: ReconciliationsCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of reconciliations"""
 
 
 class ReconciliationsCursorResponse(BaseModel):
     r"""OK"""
 
     cursor: ReconciliationsCursorResponseCursor
+    r"""Paginated cursor wrapping the list of reconciliations"""
 
 
 try:

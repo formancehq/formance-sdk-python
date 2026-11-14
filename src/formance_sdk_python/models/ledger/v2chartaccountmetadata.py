@@ -9,10 +9,12 @@ from typing_extensions import NotRequired, TypedDict
 
 class V2ChartAccountMetadataTypedDict(TypedDict):
     default: NotRequired[str]
+    r"""Value applied to this metadata key when an account matching the segment is created"""
 
 
 class V2ChartAccountMetadata(BaseModel):
     default: Optional[str] = None
+    r"""Value applied to this metadata key when an account matching the segment is created"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

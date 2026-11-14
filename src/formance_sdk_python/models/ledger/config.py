@@ -7,8 +7,14 @@ from typing_extensions import TypedDict
 
 
 class ConfigTypedDict(TypedDict):
+    r"""Configuration the ledger server is running with"""
+
     storage: LedgerStorageTypedDict
+    r"""Storage backend the ledgers are held in"""
 
 
 class Config(BaseModel):
+    r"""Configuration the ledger server is running with"""
+
     storage: LedgerStorage
+    r"""Storage backend the ledgers are held in"""

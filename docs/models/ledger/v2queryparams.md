@@ -1,29 +1,14 @@
 # V2QueryParams
 
+Parameters applied when running a query template
 
-## Supported Types
 
-### `ledger.QueryTemplateAccountParams`
+## Fields
 
-```python
-value: ledger.QueryTemplateAccountParams = /* values here */
-```
-
-### `ledger.QueryTemplateTransactionParams`
-
-```python
-value: ledger.QueryTemplateTransactionParams = /* values here */
-```
-
-### `ledger.QueryTemplateLogParams`
-
-```python
-value: ledger.QueryTemplateLogParams = /* values here */
-```
-
-### `ledger.QueryTemplateVolumeParams`
-
-```python
-value: ledger.QueryTemplateVolumeParams = /* values here */
-```
-
+| Field                                                                                                                                                                       | Type                                                                                                                                                                        | Required                                                                                                                                                                    | Description                                                                                                                                                                 | Example                                                                                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `end_time`                                                                                                                                                                  | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                                                                                        | :heavy_minus_sign:                                                                                                                                                          | Upper bound of the time window the query covers                                                                                                                             |                                                                                                                                                                             |
+| `expand`                                                                                                                                                                    | List[*str*]                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                          | Additional data to include in the response, such as volumes                                                                                                                 |                                                                                                                                                                             |
+| `page_size`                                                                                                                                                                 | *Optional[int]*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                          | The maximum number of results to return per page.<br/>                                                                                                                      | 100                                                                                                                                                                         |
+| `sort`                                                                                                                                                                      | *Optional[str]*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                          | Sort results using a field name and order (ascending or descending).<br/>Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.<br/> | id:desc                                                                                                                                                                     |
+| `start_time`                                                                                                                                                                | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                                                                                        | :heavy_minus_sign:                                                                                                                                                          | Lower bound of the time window the query covers                                                                                                                             |                                                                                                                                                                             |

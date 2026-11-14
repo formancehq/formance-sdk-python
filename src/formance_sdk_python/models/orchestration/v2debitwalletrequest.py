@@ -11,12 +11,18 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class V2DebitWalletRequestTypedDict(TypedDict):
+    r"""A debit to apply to a wallet"""
+
     amount: V2MonetaryTypedDict
+    r"""An amount together with the asset it is denominated in"""
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
     balances: NotRequired[List[str]]
+    r"""Names of the balances to debit from, in order. Defaults to the main balance when omitted"""
     description: NotRequired[str]
+    r"""Human-readable reason for the debit"""
     destination: NotRequired[V2SubjectTypedDict]
+    r"""The counterparty of a wallet movement, either a ledger account or another wallet"""
     pending: NotRequired[bool]
     r"""Set to true to create a pending hold. If false, the wallet will be debited immediately."""
     timestamp: NotRequired[datetime]
@@ -24,16 +30,22 @@ class V2DebitWalletRequestTypedDict(TypedDict):
 
 
 class V2DebitWalletRequest(BaseModel):
+    r"""A debit to apply to a wallet"""
+
     amount: V2Monetary
+    r"""An amount together with the asset it is denominated in"""
 
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
 
     balances: Optional[List[str]] = None
+    r"""Names of the balances to debit from, in order. Defaults to the main balance when omitted"""
 
     description: Optional[str] = None
+    r"""Human-readable reason for the debit"""
 
     destination: Optional[V2Subject] = None
+    r"""The counterparty of a wallet movement, either a ledger account or another wallet"""
 
     pending: Optional[bool] = None
     r"""Set to true to create a pending hold. If false, the wallet will be debited immediately."""

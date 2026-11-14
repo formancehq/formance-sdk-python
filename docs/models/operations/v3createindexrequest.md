@@ -1,0 +1,10 @@
+# V3CreateIndexRequest
+
+
+## Fields
+
+| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `idempotency_key`                                                                          | *Optional[str]*                                                                            | :heavy_minus_sign:                                                                         | N/A                                                                                        |
+| `request_body`                                                                             | [operations.V3CreateIndexRequestBody](../../models/operations/v3createindexrequestbody.md) | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `ledger_name`                                                                              | *str*                                                                                      | :heavy_check_mark:                                                                         | Name of the ledger                                                                         |

@@ -9,7 +9,10 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2StageSendSourceAccountTypedDict(TypedDict):
+    r"""Take the funds from a ledger account"""
+
     id: str
+    r"""Address of the ledger account to take funds from"""
     allow_overdraft: NotRequired[bool]
     r"""Enables unbounded overdraft on the throughAccount when set to true.
     This is useful when the throughAccount represents a liability or bridge account
@@ -18,6 +21,7 @@ class V2StageSendSourceAccountTypedDict(TypedDict):
 
     """
     ledger: NotRequired[str]
+    r"""Name of the ledger holding the account"""
     through_account: NotRequired[str]
     r"""Account used when this ledger account interacts with external systems (payments, cross-ledger).
     - As SOURCE going to payment: funds are sent to this account (e.g., \"liabilities:payouts-pending\")
@@ -28,7 +32,10 @@ class V2StageSendSourceAccountTypedDict(TypedDict):
 
 
 class V2StageSendSourceAccount(BaseModel):
+    r"""Take the funds from a ledger account"""
+
     id: str
+    r"""Address of the ledger account to take funds from"""
 
     allow_overdraft: Annotated[
         Optional[bool], pydantic.Field(alias="allowOverdraft")
@@ -41,6 +48,7 @@ class V2StageSendSourceAccount(BaseModel):
     """
 
     ledger: Optional[str] = None
+    r"""Name of the ledger holding the account"""
 
     through_account: Annotated[
         Optional[str], pydantic.Field(alias="throughAccount")

@@ -22,6 +22,7 @@ class GetDeliveriesRequestTypedDict(TypedDict):
     cursor: NotRequired[str]
     page_size: NotRequired[int]
     status: NotRequired[webhooks_deliverystatus.DeliveryStatus]
+    r"""Current state of a delivery in its retry lifecycle"""
 
 
 class GetDeliveriesRequest(BaseModel):
@@ -58,6 +59,7 @@ class GetDeliveriesRequest(BaseModel):
         Optional[webhooks_deliverystatus.DeliveryStatus],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
+    r"""Current state of a delivery in its retry lifecycle"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

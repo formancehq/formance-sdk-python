@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class TransactionResponseTypedDict(TypedDict):
     data: TransactionTypedDict
+    r"""A transaction recorded in the ledger, carrying its postings and metadata"""
 
 
 class TransactionResponse(BaseModel):
     data: Transaction
+    r"""A transaction recorded in the ledger, carrying its postings and metadata"""

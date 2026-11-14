@@ -9,17 +9,21 @@ from typing_extensions import Annotated, TypedDict
 
 class ReconciliationRequestTypedDict(TypedDict):
     reconciled_at_ledger: datetime
+    r"""Point in time at which the ledger side is evaluated"""
     reconciled_at_payments: datetime
+    r"""Point in time at which the payments side is evaluated"""
 
 
 class ReconciliationRequest(BaseModel):
     reconciled_at_ledger: Annotated[
         datetime, pydantic.Field(alias="reconciledAtLedger")
     ]
+    r"""Point in time at which the ledger side is evaluated"""
 
     reconciled_at_payments: Annotated[
         datetime, pydantic.Field(alias="reconciledAtPayments")
     ]
+    r"""Point in time at which the payments side is evaluated"""
 
 
 try:

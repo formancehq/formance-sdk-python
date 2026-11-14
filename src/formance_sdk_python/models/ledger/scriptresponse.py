@@ -12,21 +12,29 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class ScriptResponseTypedDict(TypedDict):
     details: NotRequired[str]
+    r"""Optional link carrying additional context about the error, such as a Numscript playground URL reproducing it"""
     error_code: NotRequired[ErrorsEnum]
+    r"""Machine-readable error code identifying the failure"""
     error_message: NotRequired[str]
+    r"""Human-readable description of the error"""
     transaction: NotRequired[TransactionTypedDict]
+    r"""A transaction recorded in the ledger, carrying its postings and metadata"""
 
 
 class ScriptResponse(BaseModel):
     details: Optional[str] = None
+    r"""Optional link carrying additional context about the error, such as a Numscript playground URL reproducing it"""
 
     error_code: Annotated[Optional[ErrorsEnum], pydantic.Field(alias="errorCode")] = (
         None
     )
+    r"""Machine-readable error code identifying the failure"""
 
     error_message: Annotated[Optional[str], pydantic.Field(alias="errorMessage")] = None
+    r"""Human-readable description of the error"""
 
     transaction: Optional[Transaction] = None
+    r"""A transaction recorded in the ledger, carrying its postings and metadata"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

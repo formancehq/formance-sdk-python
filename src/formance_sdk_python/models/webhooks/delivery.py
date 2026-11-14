@@ -11,68 +11,104 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class DeliveryTypedDict(TypedDict):
+    r"""An event queued for delivery to a webhook endpoint, tracking its retry state"""
+
     attempt_count: int
+    r"""Number of attempts made in the current retry cycle. Reset when a failed delivery is replayed"""
     config_id: str
+    r"""Identifier of the webhook configuration this delivery targets"""
     created_at: datetime
+    r"""When the delivery was created"""
     event_id: str
+    r"""Identifier of the event being delivered"""
     event_type: str
+    r"""Type of the event being delivered"""
     id: str
+    r"""Unique identifier of the delivery"""
     replay_generation: int
+    r"""Incremented each time a failed delivery is replayed, grouping attempts into retry cycles. Replaying a pending delivery leaves it unchanged"""
     status: DeliveryStatus
+    r"""Current state of a delivery in its retry lifecycle"""
     updated_at: datetime
+    r"""When the delivery was last modified"""
     claimed_at: NotRequired[datetime]
+    r"""When a worker claimed this delivery for the attempt in flight. Cleared when a failed delivery is replayed"""
     cycle_started_at: NotRequired[datetime]
+    r"""When the current retry cycle began. Cleared when a failed delivery is replayed"""
     idempotency_key: NotRequired[str]
+    r"""Key sent with the request so the receiver can deduplicate retries of the same delivery"""
     last_attempt_at: NotRequired[datetime]
+    r"""When the most recent attempt was made"""
     last_error: NotRequired[str]
+    r"""Error reported by the most recent attempt"""
     last_status_code: NotRequired[int]
+    r"""HTTP status code returned by the most recent attempt"""
     next_attempt_at: NotRequired[datetime]
+    r"""When the next delivery attempt is scheduled"""
     payload: NotRequired[str]
     r"""Present only on delivery detail responses."""
 
 
 class Delivery(BaseModel):
+    r"""An event queued for delivery to a webhook endpoint, tracking its retry state"""
+
     attempt_count: Annotated[int, pydantic.Field(alias="attemptCount")]
+    r"""Number of attempts made in the current retry cycle. Reset when a failed delivery is replayed"""
 
     config_id: Annotated[str, pydantic.Field(alias="configID")]
+    r"""Identifier of the webhook configuration this delivery targets"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the delivery was created"""
 
     event_id: Annotated[str, pydantic.Field(alias="eventID")]
+    r"""Identifier of the event being delivered"""
 
     event_type: Annotated[str, pydantic.Field(alias="eventType")]
+    r"""Type of the event being delivered"""
 
     id: str
+    r"""Unique identifier of the delivery"""
 
     replay_generation: Annotated[int, pydantic.Field(alias="replayGeneration")]
+    r"""Incremented each time a failed delivery is replayed, grouping attempts into retry cycles. Replaying a pending delivery leaves it unchanged"""
 
     status: DeliveryStatus
+    r"""Current state of a delivery in its retry lifecycle"""
 
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
+    r"""When the delivery was last modified"""
 
     claimed_at: Annotated[Optional[datetime], pydantic.Field(alias="claimedAt")] = None
+    r"""When a worker claimed this delivery for the attempt in flight. Cleared when a failed delivery is replayed"""
 
     cycle_started_at: Annotated[
         Optional[datetime], pydantic.Field(alias="cycleStartedAt")
     ] = None
+    r"""When the current retry cycle began. Cleared when a failed delivery is replayed"""
 
     idempotency_key: Annotated[
         Optional[str], pydantic.Field(alias="idempotencyKey")
     ] = None
+    r"""Key sent with the request so the receiver can deduplicate retries of the same delivery"""
 
     last_attempt_at: Annotated[
         Optional[datetime], pydantic.Field(alias="lastAttemptAt")
     ] = None
+    r"""When the most recent attempt was made"""
 
     last_error: Annotated[Optional[str], pydantic.Field(alias="lastError")] = None
+    r"""Error reported by the most recent attempt"""
 
     last_status_code: Annotated[
         Optional[int], pydantic.Field(alias="lastStatusCode")
     ] = None
+    r"""HTTP status code returned by the most recent attempt"""
 
     next_attempt_at: Annotated[
         Optional[datetime], pydantic.Field(alias="nextAttemptAt")
     ] = None
+    r"""When the next delivery attempt is scheduled"""
 
     payload: Optional[str] = None
     r"""Present only on delivery detail responses."""

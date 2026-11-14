@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V2TestTriggerResponseTypedDict(TypedDict):
     data: V2TriggerTestTypedDict
+    r"""Result of evaluating a trigger against a sample event, without running the workflow"""
 
 
 class V2TestTriggerResponse(BaseModel):
     data: V2TriggerTest
+    r"""Result of evaluating a trigger against a sample event, without running the workflow"""

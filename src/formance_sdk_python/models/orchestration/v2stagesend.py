@@ -16,22 +16,32 @@ from typing_extensions import NotRequired, TypedDict
 
 class V2StageSendTypedDict(TypedDict):
     amount: NotRequired[V2MonetaryTypedDict]
+    r"""An amount together with the asset it is denominated in"""
     destination: NotRequired[V2StageSendDestinationTypedDict]
+    r"""Where a send stage puts the funds"""
     metadata: NotRequired[Dict[str, str]]
+    r"""Metadata to attach to the resulting transaction"""
     source: NotRequired[V2StageSendSourceTypedDict]
+    r"""Where a send stage takes the funds from"""
     timestamp: NotRequired[datetime]
+    r"""The transaction time to record on the resulting transaction. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
 
 class V2StageSend(BaseModel):
     amount: Optional[V2Monetary] = None
+    r"""An amount together with the asset it is denominated in"""
 
     destination: Optional[V2StageSendDestination] = None
+    r"""Where a send stage puts the funds"""
 
     metadata: Optional[Dict[str, str]] = None
+    r"""Metadata to attach to the resulting transaction"""
 
     source: Optional[V2StageSendSource] = None
+    r"""Where a send stage takes the funds from"""
 
     timestamp: Optional[datetime] = None
+    r"""The transaction time to record on the resulting transaction. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

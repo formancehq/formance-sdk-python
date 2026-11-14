@@ -11,6 +11,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class Outcome(str, Enum):
+    r"""How the attempt ended. A retryable failure is retried, a permanent failure is not"""
+
     SUCCEEDED = "succeeded"
     RETRYABLE_FAILURE = "retryable_failure"
     PERMANENT_FAILURE = "permanent_failure"
@@ -18,44 +20,66 @@ class Outcome(str, Enum):
 
 class DeliveryAttemptTypedDict(TypedDict):
     attempt_number: int
+    r"""Position of this attempt within its retry cycle"""
     created_at: datetime
+    r"""When the attempt was made"""
     delivery_id: str
+    r"""Identifier of the delivery this attempt belongs to"""
     endpoint: str
+    r"""URL the attempt was sent to"""
     id: str
+    r"""Unique identifier of the attempt"""
     outcome: Outcome
+    r"""How the attempt ended. A retryable failure is retried, a permanent failure is not"""
     replay_generation: int
+    r"""Retry cycle this attempt belongs to"""
     status_code: int
+    r"""HTTP status code returned by the endpoint"""
     duration_millis: NotRequired[int]
+    r"""How long the attempt took, in milliseconds"""
     error: NotRequired[str]
+    r"""Error reported by the attempt, when it did not succeed"""
     response_excerpt: NotRequired[str]
+    r"""Truncated body returned by the endpoint, kept for troubleshooting"""
 
 
 class DeliveryAttempt(BaseModel):
     attempt_number: Annotated[int, pydantic.Field(alias="attemptNumber")]
+    r"""Position of this attempt within its retry cycle"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the attempt was made"""
 
     delivery_id: Annotated[str, pydantic.Field(alias="deliveryID")]
+    r"""Identifier of the delivery this attempt belongs to"""
 
     endpoint: str
+    r"""URL the attempt was sent to"""
 
     id: str
+    r"""Unique identifier of the attempt"""
 
     outcome: Outcome
+    r"""How the attempt ended. A retryable failure is retried, a permanent failure is not"""
 
     replay_generation: Annotated[int, pydantic.Field(alias="replayGeneration")]
+    r"""Retry cycle this attempt belongs to"""
 
     status_code: Annotated[int, pydantic.Field(alias="statusCode")]
+    r"""HTTP status code returned by the endpoint"""
 
     duration_millis: Annotated[
         Optional[int], pydantic.Field(alias="durationMillis")
     ] = None
+    r"""How long the attempt took, in milliseconds"""
 
     error: Optional[str] = None
+    r"""Error reported by the attempt, when it did not succeed"""
 
     response_excerpt: Annotated[
         Optional[str], pydantic.Field(alias="responseExcerpt")
     ] = None
+    r"""Truncated body returned by the endpoint, kept for troubleshooting"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

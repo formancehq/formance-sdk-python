@@ -12,12 +12,16 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2PostTransactionScriptTypedDict(TypedDict):
+    r"""A Numscript program executed to produce the postings. Mutually exclusive with postings"""
+
     plain: NotRequired[str]
     template: NotRequired[str]
     vars: NotRequired[Dict[str, str]]
 
 
 class V2PostTransactionScript(BaseModel):
+    r"""A Numscript program executed to produce the postings. Mutually exclusive with postings"""
+
     plain: Optional[str] = None
 
     template: Optional[str] = None
@@ -43,35 +47,49 @@ class V2PostTransactionScript(BaseModel):
 
 class V2PostTransactionTypedDict(TypedDict):
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the resource"""
     account_metadata: NotRequired[Dict[str, Dict[str, str]]]
+    r"""Metadata to set on the accounts involved in the transaction, keyed by account address"""
     force: NotRequired[bool]
+    r"""When true, lets source accounts overdraft without bound, bypassing the balance check. Applies to the postings form only"""
     postings: NotRequired[List[V2PostingTypedDict]]
+    r"""Fund movements to apply. Mutually exclusive with script and template"""
     reference: NotRequired[str]
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
     runtime: NotRequired[Runtime]
     r"""The numscript runtime used to execute the script. Uses \"machine\" by default, unless the \"--experimental-numscript-interpreter\" feature flag is passed."""
     script: NotRequired[V2PostTransactionScriptTypedDict]
+    r"""A Numscript program executed to produce the postings. Mutually exclusive with postings"""
     timestamp: NotRequired[datetime]
+    r"""The transaction time to record, letting you backdate or postdate the transaction. Defaults to current machine time if omitted. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
 
 class V2PostTransaction(BaseModel):
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     account_metadata: Annotated[
         Optional[Dict[str, Dict[str, str]]], pydantic.Field(alias="accountMetadata")
     ] = None
+    r"""Metadata to set on the accounts involved in the transaction, keyed by account address"""
 
     force: Optional[bool] = None
+    r"""When true, lets source accounts overdraft without bound, bypassing the balance check. Applies to the postings form only"""
 
     postings: Optional[List[V2Posting]] = None
+    r"""Fund movements to apply. Mutually exclusive with script and template"""
 
     reference: Optional[str] = None
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
 
     runtime: Optional[Runtime] = None
     r"""The numscript runtime used to execute the script. Uses \"machine\" by default, unless the \"--experimental-numscript-interpreter\" feature flag is passed."""
 
     script: Optional[V2PostTransactionScript] = None
+    r"""A Numscript program executed to produce the postings. Mutually exclusive with postings"""
 
     timestamp: Optional[datetime] = None
+    r"""The transaction time to record, letting you backdate or postdate the transaction. Defaults to current machine time if omitted. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

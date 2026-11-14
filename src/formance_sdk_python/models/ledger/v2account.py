@@ -11,35 +11,53 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2AccountTypedDict(TypedDict):
+    r"""An account in the ledger, identified by its address and carrying its metadata and volumes"""
+
     address: str
+    r"""The account address, a colon-separated segmented path such as users:001"""
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the account. Metadata is bi-temporal, so a point-in-time query returns the metadata as it stood at that time"""
     effective_volumes: NotRequired[Dict[str, V2VolumeTypedDict]]
+    r"""Volumes per asset for a single account"""
     first_usage: NotRequired[datetime]
+    r"""Transaction time of the earliest transaction touching this account. Inserting a backdated transaction can move it earlier"""
     insertion_date: NotRequired[datetime]
+    r"""When the account was first written to the ledger, on the request-time axis"""
     updated_at: NotRequired[datetime]
+    r"""When the account was last modified, for example by a metadata change"""
     volumes: NotRequired[Dict[str, V2VolumeTypedDict]]
+    r"""Volumes per asset for a single account"""
 
 
 class V2Account(BaseModel):
+    r"""An account in the ledger, identified by its address and carrying its metadata and volumes"""
+
     address: str
+    r"""The account address, a colon-separated segmented path such as users:001"""
 
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the account. Metadata is bi-temporal, so a point-in-time query returns the metadata as it stood at that time"""
 
     effective_volumes: Annotated[
         Optional[Dict[str, V2Volume]], pydantic.Field(alias="effectiveVolumes")
     ] = None
+    r"""Volumes per asset for a single account"""
 
     first_usage: Annotated[Optional[datetime], pydantic.Field(alias="firstUsage")] = (
         None
     )
+    r"""Transaction time of the earliest transaction touching this account. Inserting a backdated transaction can move it earlier"""
 
     insertion_date: Annotated[
         Optional[datetime], pydantic.Field(alias="insertionDate")
     ] = None
+    r"""When the account was first written to the ledger, on the request-time axis"""
 
     updated_at: Annotated[Optional[datetime], pydantic.Field(alias="updatedAt")] = None
+    r"""When the account was last modified, for example by a metadata change"""
 
     volumes: Optional[Dict[str, V2Volume]] = None
+    r"""Volumes per asset for a single account"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

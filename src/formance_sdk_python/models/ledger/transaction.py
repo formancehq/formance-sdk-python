@@ -20,34 +20,52 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class TransactionTypedDict(TypedDict):
+    r"""A transaction recorded in the ledger, carrying its postings and metadata"""
+
     postings: List[PostingTypedDict]
+    r"""The fund movements making up the transaction"""
     timestamp: datetime
+    r"""The transaction time: when the transaction is considered to have occurred. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
     txid: int
+    r"""Unique sequential identifier for this transaction within the ledger"""
     metadata: NotRequired[Nullable[Dict[str, Any]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     post_commit_volumes: NotRequired[Dict[str, Dict[str, VolumeTypedDict]]]
+    r"""Volumes aggregated per account and per asset"""
     pre_commit_volumes: NotRequired[Dict[str, Dict[str, VolumeTypedDict]]]
+    r"""Volumes aggregated per account and per asset"""
     reference: NotRequired[str]
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
 
 
 class Transaction(BaseModel):
+    r"""A transaction recorded in the ledger, carrying its postings and metadata"""
+
     postings: List[Posting]
+    r"""The fund movements making up the transaction"""
 
     timestamp: datetime
+    r"""The transaction time: when the transaction is considered to have occurred. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     txid: Annotated[int, BeforeValidator(validate_int)]
+    r"""Unique sequential identifier for this transaction within the ledger"""
 
     metadata: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     post_commit_volumes: Annotated[
         Optional[Dict[str, Dict[str, Volume]]],
         pydantic.Field(alias="postCommitVolumes"),
     ] = None
+    r"""Volumes aggregated per account and per asset"""
 
     pre_commit_volumes: Annotated[
         Optional[Dict[str, Dict[str, Volume]]], pydantic.Field(alias="preCommitVolumes")
     ] = None
+    r"""Volumes aggregated per account and per asset"""
 
     reference: Optional[str] = None
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
