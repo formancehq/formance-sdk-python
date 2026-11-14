@@ -9,29 +9,47 @@ from typing_extensions import Annotated, TypedDict
 
 
 class WebhooksConfigTypedDict(TypedDict):
+    r"""A webhook endpoint together with the event types it subscribes to"""
+
     active: bool
+    r"""Whether the configuration is active. Deactivated configurations receive no deliveries"""
     created_at: datetime
+    r"""When the configuration was created"""
     endpoint: str
+    r"""URL events are delivered to"""
     event_types: List[str]
+    r"""Types of event that trigger a delivery to this endpoint"""
     id: str
+    r"""Unique identifier of the configuration"""
     secret: str
+    r"""Secret used to sign delivery payloads, letting the receiver verify their authenticity"""
     updated_at: datetime
+    r"""When the configuration was last modified"""
 
 
 class WebhooksConfig(BaseModel):
+    r"""A webhook endpoint together with the event types it subscribes to"""
+
     active: bool
+    r"""Whether the configuration is active. Deactivated configurations receive no deliveries"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the configuration was created"""
 
     endpoint: str
+    r"""URL events are delivered to"""
 
     event_types: Annotated[List[str], pydantic.Field(alias="eventTypes")]
+    r"""Types of event that trigger a delivery to this endpoint"""
 
     id: str
+    r"""Unique identifier of the configuration"""
 
     secret: str
+    r"""Secret used to sign delivery payloads, letting the receiver verify their authenticity"""
 
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
+    r"""When the configuration was last modified"""
 
 
 try:

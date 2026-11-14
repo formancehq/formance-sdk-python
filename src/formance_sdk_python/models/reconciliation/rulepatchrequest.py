@@ -15,37 +15,53 @@ class RulePatchRequestTypedDict(TypedDict):
     r"""Partial update — only fields supplied are applied."""
 
     enabled: NotRequired[bool]
+    r"""Whether the rule should be evaluated"""
     labels: NotRequired[Dict[str, str]]
+    r"""New set of key/value pairs attached to the rule"""
     name: NotRequired[str]
+    r"""New human-readable name for the rule"""
     notifications: NotRequired[List[str]]
+    r"""New set of channels to notify when this rule raises an alert"""
     schedule: NotRequired[ScheduleTypedDict]
+    r"""When a rule runs, either on demand or on a cron expression"""
     severity: NotRequired[Severity]
+    r"""How serious an alert is, used to route and prioritise notifications"""
     template_kind: NotRequired[TemplateKind]
+    r"""Which built-in check a rule applies, determining the shape of its templateSpec"""
     template_spec: NotRequired[Dict[str, Any]]
+    r"""New parameters for the template, whose shape depends on templateKind"""
 
 
 class RulePatchRequest(BaseModel):
     r"""Partial update — only fields supplied are applied."""
 
     enabled: Optional[bool] = None
+    r"""Whether the rule should be evaluated"""
 
     labels: Optional[Dict[str, str]] = None
+    r"""New set of key/value pairs attached to the rule"""
 
     name: Optional[str] = None
+    r"""New human-readable name for the rule"""
 
     notifications: Optional[List[str]] = None
+    r"""New set of channels to notify when this rule raises an alert"""
 
     schedule: Optional[Schedule] = None
+    r"""When a rule runs, either on demand or on a cron expression"""
 
     severity: Optional[Severity] = None
+    r"""How serious an alert is, used to route and prioritise notifications"""
 
     template_kind: Annotated[
         Optional[TemplateKind], pydantic.Field(alias="templateKind")
     ] = None
+    r"""Which built-in check a rule applies, determining the shape of its templateSpec"""
 
     template_spec: Annotated[
         Optional[Dict[str, Any]], pydantic.Field(alias="templateSpec")
     ] = None
+    r"""New parameters for the template, whose shape depends on templateKind"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

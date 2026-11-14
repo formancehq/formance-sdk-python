@@ -6,8 +6,14 @@ from typing_extensions import TypedDict
 
 
 class V2ActivityGetPaymentTypedDict(TypedDict):
+    r"""Arguments for the activity that reads a payment"""
+
     id: str
+    r"""Identifier of the payment to read"""
 
 
 class V2ActivityGetPayment(BaseModel):
+    r"""Arguments for the activity that reads a payment"""
+
     id: str
+    r"""Identifier of the payment to read"""

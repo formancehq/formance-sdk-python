@@ -1,0 +1,10 @@
+# DeleteMetadataRequest
+
+
+## Fields
+
+| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `key`                                                                                                  | *str*                                                                                                  | :heavy_check_mark:                                                                                     | Metadata key to delete                                                                                 |
+| `target_id`                                                                                            | [ledger_v3.DeleteMetadataRequestTargetID](../../models/ledger_v3/deletemetadatarequesttargetid.md)     | :heavy_check_mark:                                                                                     | ID of the target (account address or transaction ID). Required.<br/>                                   |
+| `target_type`                                                                                          | [ledger_v3.DeleteMetadataRequestTargetType](../../models/ledger_v3/deletemetadatarequesttargettype.md) | :heavy_check_mark:                                                                                     | Type of target (account or transaction)                                                                |

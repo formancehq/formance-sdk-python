@@ -3,8 +3,8 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `balance`          | *Optional[str]*    | :heavy_minus_sign: | N/A                |
-| `identifier`       | *str*              | :heavy_check_mark: | N/A                |
-| `type`             | *str*              | :heavy_check_mark: | N/A                |
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `balance`                                                                        | *Optional[str]*                                                                  | :heavy_minus_sign:                                                               | Name of the balance within the wallet. Defaults to the main balance when omitted |
+| `identifier`                                                                     | *str*                                                                            | :heavy_check_mark:                                                               | Identifier of the wallet                                                         |
+| `type`                                                                           | *str*                                                                            | :heavy_check_mark:                                                               | Discriminator identifying this subject as a wallet                               |

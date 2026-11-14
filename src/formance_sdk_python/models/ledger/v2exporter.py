@@ -10,17 +10,21 @@ from typing_extensions import Annotated, TypedDict
 
 class V2ExporterTypedDict(TypedDict):
     config: Dict[str, Any]
+    r"""Driver-specific configuration for the exporter"""
     created_at: datetime
     driver: str
+    r"""Name of the exporter driver to use"""
     id: str
 
 
 class V2Exporter(BaseModel):
     config: Dict[str, Any]
+    r"""Driver-specific configuration for the exporter"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
     driver: str
+    r"""Name of the exporter driver to use"""
 
     id: str
 

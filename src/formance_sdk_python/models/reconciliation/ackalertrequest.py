@@ -9,13 +9,17 @@ from typing_extensions import NotRequired, TypedDict
 
 class AckAlertRequestTypedDict(TypedDict):
     by: str
+    r"""Who is acknowledging the alert"""
     note: NotRequired[str]
+    r"""Free-text note to record with the acknowledgement"""
 
 
 class AckAlertRequest(BaseModel):
     by: str
+    r"""Who is acknowledging the alert"""
 
     note: Optional[str] = None
+    r"""Free-text note to record with the acknowledgement"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

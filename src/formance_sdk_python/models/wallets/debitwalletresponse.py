@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class DebitWalletResponseTypedDict(TypedDict):
     data: HoldTypedDict
+    r"""Funds locked by a pending debit, later either confirmed or voided"""
 
 
 class DebitWalletResponse(BaseModel):
     data: Hold
+    r"""Funds locked by a pending debit, later either confirmed or voided"""

@@ -7,14 +7,24 @@ from typing_extensions import TypedDict
 
 
 class ActivityAddAccountMetadataTypedDict(TypedDict):
+    r"""Arguments for the activity that sets metadata on a ledger account"""
+
     id: str
+    r"""Address of the ledger account to update"""
     ledger: str
+    r"""Name of the ledger holding the account"""
     metadata: Dict[str, str]
+    r"""Metadata to set on the account"""
 
 
 class ActivityAddAccountMetadata(BaseModel):
+    r"""Arguments for the activity that sets metadata on a ledger account"""
+
     id: str
+    r"""Address of the ledger account to update"""
 
     ledger: str
+    r"""Name of the ledger holding the account"""
 
     metadata: Dict[str, str]
+    r"""Metadata to set on the account"""

@@ -17,17 +17,27 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class StageSendSourceTypedDict(TypedDict):
+    r"""Where a send stage takes the funds from"""
+
     account: NotRequired[StageSendSourceAccountTypedDict]
+    r"""Take the funds from a ledger account"""
     payment: NotRequired[StageSendSourcePaymentTypedDict]
+    r"""Take the funds from a payment"""
     wallet: NotRequired[StageSendSourceWalletTypedDict]
+    r"""Take the funds from a wallet"""
 
 
 class StageSendSource(BaseModel):
+    r"""Where a send stage takes the funds from"""
+
     account: Optional[StageSendSourceAccount] = None
+    r"""Take the funds from a ledger account"""
 
     payment: Optional[StageSendSourcePayment] = None
+    r"""Take the funds from a payment"""
 
     wallet: Optional[StageSendSourceWallet] = None
+    r"""Take the funds from a wallet"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

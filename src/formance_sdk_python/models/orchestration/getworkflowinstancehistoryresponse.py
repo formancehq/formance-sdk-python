@@ -12,7 +12,9 @@ from typing_extensions import TypedDict
 
 class GetWorkflowInstanceHistoryResponseTypedDict(TypedDict):
     data: List[WorkflowInstanceHistoryTypedDict]
+    r"""Per-stage history of a workflow run"""
 
 
 class GetWorkflowInstanceHistoryResponse(BaseModel):
     data: List[WorkflowInstanceHistory]
+    r"""Per-stage history of a workflow run"""

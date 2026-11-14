@@ -12,29 +12,41 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V2TriggerOccurrenceTypedDict(TypedDict):
     date_: datetime
+    r"""When the trigger fired"""
     event: Dict[str, Any]
+    r"""The event that fired the trigger"""
     trigger_id: str
+    r"""Identifier of the trigger that fired"""
     error: NotRequired[str]
+    r"""Why the trigger failed to start a run, absent when it succeeded"""
     workflow_instance: NotRequired[V2WorkflowInstanceTypedDict]
+    r"""One run of a workflow, tracking its per-stage progress"""
     workflow_instance_id: NotRequired[str]
+    r"""Identifier of the run the trigger started, absent when it started none"""
 
 
 class V2TriggerOccurrence(BaseModel):
     date_: Annotated[datetime, pydantic.Field(alias="date")]
+    r"""When the trigger fired"""
 
     event: Dict[str, Any]
+    r"""The event that fired the trigger"""
 
     trigger_id: Annotated[str, pydantic.Field(alias="triggerID")]
+    r"""Identifier of the trigger that fired"""
 
     error: Optional[str] = None
+    r"""Why the trigger failed to start a run, absent when it succeeded"""
 
     workflow_instance: Annotated[
         Optional[V2WorkflowInstance], pydantic.Field(alias="workflowInstance")
     ] = None
+    r"""One run of a workflow, tracking its per-stage progress"""
 
     workflow_instance_id: Annotated[
         Optional[str], pydantic.Field(alias="workflowInstanceID")
     ] = None
+    r"""Identifier of the run the trigger started, absent when it started none"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

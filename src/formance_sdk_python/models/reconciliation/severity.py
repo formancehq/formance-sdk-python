@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class Severity(str, Enum):
+    r"""How serious an alert is, used to route and prioritise notifications"""
+
     INFO = "info"
     LOW = "low"
     MEDIUM = "medium"

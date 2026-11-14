@@ -3,13 +3,13 @@
 
 ## Fields
 
-| Field                       | Type                        | Required                    | Description                 |
-| --------------------------- | --------------------------- | --------------------------- | --------------------------- |
-| `description`               | *Optional[str]*             | :heavy_minus_sign:          | N/A                         |
-| `metadata`                  | Dict[str, *str*]            | :heavy_minus_sign:          | N/A                         |
-| `name`                      | *str*                       | :heavy_check_mark:          | N/A                         |
-| `post_logout_redirect_uris` | List[*str*]                 | :heavy_minus_sign:          | N/A                         |
-| `public`                    | *Optional[bool]*            | :heavy_minus_sign:          | N/A                         |
-| `redirect_uris`             | List[*str*]                 | :heavy_minus_sign:          | N/A                         |
-| `scopes`                    | List[*str*]                 | :heavy_minus_sign:          | N/A                         |
-| `trusted`                   | *Optional[bool]*            | :heavy_minus_sign:          | N/A                         |
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `description`                                                                       | *Optional[str]*                                                                     | :heavy_minus_sign:                                                                  | Human-readable description of the client                                            |
+| `metadata`                                                                          | Dict[str, *str*]                                                                    | :heavy_minus_sign:                                                                  | Arbitrary key/value pairs attached to the resource                                  |
+| `name`                                                                              | *str*                                                                               | :heavy_check_mark:                                                                  | Display name of the client                                                          |
+| `post_logout_redirect_uris`                                                         | List[*str*]                                                                         | :heavy_minus_sign:                                                                  | URIs the authorization server may redirect to after logout                          |
+| `public`                                                                            | *Optional[bool]*                                                                    | :heavy_minus_sign:                                                                  | Whether the client is public, meaning it cannot keep a secret and uses PKCE instead |
+| `redirect_uris`                                                                     | List[*str*]                                                                         | :heavy_minus_sign:                                                                  | URIs the authorization server may redirect to after a successful authorization      |
+| `scopes`                                                                            | List[*str*]                                                                         | :heavy_minus_sign:                                                                  | Scopes the client is allowed to request                                             |
+| `trusted`                                                                           | *Optional[bool]*                                                                    | :heavy_minus_sign:                                                                  | Whether the client is trusted, skipping the user consent screen                     |

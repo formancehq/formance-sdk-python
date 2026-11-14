@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class AlertsCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of alerts"""
+
     data: List[AlertTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class AlertsCursorResponseCursorTypedDict(TypedDict):
 
 
 class AlertsCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of alerts"""
+
     data: List[Alert]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -49,12 +53,14 @@ class AlertsCursorResponseTypedDict(TypedDict):
     r"""OK"""
 
     cursor: AlertsCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of alerts"""
 
 
 class AlertsCursorResponse(BaseModel):
     r"""OK"""
 
     cursor: AlertsCursorResponseCursor
+    r"""Paginated cursor wrapping the list of alerts"""
 
 
 try:

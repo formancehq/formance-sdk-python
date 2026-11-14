@@ -11,38 +11,54 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class WalletBalancesTypedDict(TypedDict):
+    r"""The wallet's main balance, keyed by asset"""
+
     main: AssetHolderTypedDict
 
 
 class WalletBalances(BaseModel):
+    r"""The wallet's main balance, keyed by asset"""
+
     main: AssetHolder
 
 
 class WalletTypedDict(TypedDict):
+    r"""A wallet backed by a set of ledger accounts"""
+
     created_at: datetime
+    r"""When the wallet was created"""
     id: str
     r"""The unique ID of the wallet."""
     ledger: str
+    r"""Name of the ledger backing this wallet"""
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
     name: str
+    r"""Human-readable name of the wallet"""
     balances: NotRequired[WalletBalancesTypedDict]
+    r"""The wallet's main balance, keyed by asset"""
 
 
 class Wallet(BaseModel):
+    r"""A wallet backed by a set of ledger accounts"""
+
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the wallet was created"""
 
     id: str
     r"""The unique ID of the wallet."""
 
     ledger: str
+    r"""Name of the ledger backing this wallet"""
 
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
 
     name: str
+    r"""Human-readable name of the wallet"""
 
     balances: Optional[WalletBalances] = None
+    r"""The wallet's main balance, keyed by asset"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

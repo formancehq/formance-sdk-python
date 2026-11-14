@@ -12,26 +12,42 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class TransactionTypedDict(TypedDict):
+    r"""A transaction recorded in the ledger, carrying its postings and metadata"""
+
     id: int
+    r"""Unique sequential identifier for this transaction within the ledger"""
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the resource"""
     postings: List[PostingTypedDict]
+    r"""The fund movements making up the transaction"""
     reverted: bool
+    r"""Indicates if the transaction has been reverted"""
     timestamp: datetime
+    r"""The transaction time: when the transaction is considered to have occurred. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
     reference: NotRequired[str]
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
 
 
 class Transaction(BaseModel):
+    r"""A transaction recorded in the ledger, carrying its postings and metadata"""
+
     id: Annotated[int, BeforeValidator(validate_int)]
+    r"""Unique sequential identifier for this transaction within the ledger"""
 
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     postings: List[Posting]
+    r"""The fund movements making up the transaction"""
 
     reverted: bool
+    r"""Indicates if the transaction has been reverted"""
 
     timestamp: datetime
+    r"""The transaction time: when the transaction is considered to have occurred. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     reference: Optional[str] = None
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

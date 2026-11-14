@@ -6,7 +6,6 @@ from formance_sdk_python.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
     from .account import Account, AccountTypedDict
-    from .accountresponse import AccountResponse, AccountResponseTypedDict
     from .activityaddaccountmetadata import (
         ActivityAddAccountMetadata,
         ActivityAddAccountMetadataTypedDict,
@@ -16,33 +15,60 @@ if TYPE_CHECKING:
         ActivityCreateTransaction,
         ActivityCreateTransactionTypedDict,
     )
+    from .activitycreatetransactionoutput import (
+        ActivityCreateTransactionOutput,
+        ActivityCreateTransactionOutputTypedDict,
+    )
+    from .activitycreatetransferinitiation import (
+        ActivityCreateTransferInitiation,
+        ActivityCreateTransferInitiationMetadata,
+        ActivityCreateTransferInitiationMetadataTypedDict,
+        ActivityCreateTransferInitiationType,
+        ActivityCreateTransferInitiationTypedDict,
+    )
     from .activitycreditwallet import (
         ActivityCreditWallet,
         ActivityCreditWalletTypedDict,
     )
     from .activitydebitwallet import ActivityDebitWallet, ActivityDebitWalletTypedDict
+    from .activitydebitwalletoutput import (
+        ActivityDebitWalletOutput,
+        ActivityDebitWalletOutputTypedDict,
+    )
     from .activitygetaccount import ActivityGetAccount, ActivityGetAccountTypedDict
+    from .activitygetaccountoutput import (
+        ActivityGetAccountOutput,
+        ActivityGetAccountOutputTypedDict,
+    )
     from .activitygetpayment import ActivityGetPayment, ActivityGetPaymentTypedDict
+    from .activitygetpaymentoutput import (
+        ActivityGetPaymentOutput,
+        ActivityGetPaymentOutputTypedDict,
+    )
     from .activitygetwallet import ActivityGetWallet, ActivityGetWalletTypedDict
+    from .activitygetwalletoutput import (
+        ActivityGetWalletOutput,
+        ActivityGetWalletOutputTypedDict,
+    )
     from .activitylistwallets import ActivityListWallets, ActivityListWalletsTypedDict
+    from .activitypause import ActivityPause, ActivityPauseTypedDict
     from .activityreverttransaction import (
         ActivityRevertTransaction,
         ActivityRevertTransactionTypedDict,
     )
+    from .activityreverttransactionoutput import (
+        ActivityRevertTransactionOutput,
+        ActivityRevertTransactionOutputTypedDict,
+    )
+    from .activitystripetransfer import (
+        ActivityStripeTransfer,
+        ActivityStripeTransferMetadata,
+        ActivityStripeTransferMetadataTypedDict,
+        ActivityStripeTransferTypedDict,
+    )
     from .activityvoidhold import ActivityVoidHold, ActivityVoidHoldTypedDict
     from .assetholder import AssetHolder, AssetHolderTypedDict
     from .connector import Connector
-    from .createtransactionresponse import (
-        CreateTransactionResponse,
-        CreateTransactionResponseTypedDict,
-    )
-    from .createtransferinitiationrequest import (
-        CreateTransferInitiationRequest,
-        CreateTransferInitiationRequestMetadata,
-        CreateTransferInitiationRequestMetadataTypedDict,
-        CreateTransferInitiationRequestType,
-        CreateTransferInitiationRequestTypedDict,
-    )
     from .createtriggerresponse import (
         CreateTriggerResponse,
         CreateTriggerResponseTypedDict,
@@ -53,9 +79,20 @@ if TYPE_CHECKING:
     )
     from .creditwalletrequest import CreditWalletRequest, CreditWalletRequestTypedDict
     from .debitwalletrequest import DebitWalletRequest, DebitWalletRequestTypedDict
-    from .debitwalletresponse import DebitWalletResponse, DebitWalletResponseTypedDict
-    from .error import Error, ErrorData, ErrorErrorCode
-    from .getwalletresponse import GetWalletResponse, GetWalletResponseTypedDict
+    from .errors_error import (
+        Error,
+        ErrorErrorCode,
+        ErrorTypedDict,
+        ErrorsError,
+        ErrorsErrorData,
+    )
+    from .errors_v2error import (
+        ErrorsV2Error,
+        ErrorsV2ErrorData,
+        V2Error,
+        V2ErrorErrorCode,
+        V2ErrorTypedDict,
+    )
     from .getworkflowinstancehistoryresponse import (
         GetWorkflowInstanceHistoryResponse,
         GetWorkflowInstanceHistoryResponseTypedDict,
@@ -109,7 +146,6 @@ if TYPE_CHECKING:
         PaymentAdjustmentTypedDict,
     )
     from .paymentmetadata import PaymentMetadata, PaymentMetadataTypedDict
-    from .paymentresponse import PaymentResponse, PaymentResponseTypedDict
     from .paymentstatus import PaymentStatus
     from .posting import Posting, PostingTypedDict
     from .posttransaction import (
@@ -128,10 +164,18 @@ if TYPE_CHECKING:
         StageSendDestination,
         StageSendDestinationTypedDict,
     )
+    from .stagesenddestinationaccount import (
+        StageSendDestinationAccount,
+        StageSendDestinationAccountTypedDict,
+    )
     from .stagesenddestinationpayment import (
         StageSendDestinationPayment,
         StageSendDestinationPaymentType,
         StageSendDestinationPaymentTypedDict,
+    )
+    from .stagesenddestinationwallet import (
+        StageSendDestinationWallet,
+        StageSendDestinationWalletTypedDict,
     )
     from .stagesendsource import StageSendSource, StageSendSourceTypedDict
     from .stagesendsourceaccount import (
@@ -148,12 +192,6 @@ if TYPE_CHECKING:
     )
     from .stagestatus import StageStatus, StageStatusTypedDict
     from .stagewaitevent import StageWaitEvent, StageWaitEventTypedDict
-    from .stripetransferrequest import (
-        StripeTransferRequest,
-        StripeTransferRequestMetadata,
-        StripeTransferRequestMetadataTypedDict,
-        StripeTransferRequestTypedDict,
-    )
     from .subject import Subject, SubjectTypedDict
     from .transaction import Transaction, TransactionTypedDict
     from .trigger import Trigger, TriggerTypedDict
@@ -162,7 +200,6 @@ if TYPE_CHECKING:
     from .update import Update, UpdateTypedDict
     from .updateaccount import UpdateAccount, UpdateAccountTypedDict
     from .v2account import V2Account, V2AccountTypedDict
-    from .v2accountresponse import V2AccountResponse, V2AccountResponseTypedDict
     from .v2activityaddaccountmetadata import (
         V2ActivityAddAccountMetadata,
         V2ActivityAddAccountMetadataTypedDict,
@@ -175,6 +212,17 @@ if TYPE_CHECKING:
         V2ActivityCreateTransaction,
         V2ActivityCreateTransactionTypedDict,
     )
+    from .v2activitycreatetransactionoutput import (
+        V2ActivityCreateTransactionOutput,
+        V2ActivityCreateTransactionOutputTypedDict,
+    )
+    from .v2activitycreatetransferinitiation import (
+        V2ActivityCreateTransferInitiation,
+        V2ActivityCreateTransferInitiationMetadata,
+        V2ActivityCreateTransferInitiationMetadataTypedDict,
+        V2ActivityCreateTransferInitiationType,
+        V2ActivityCreateTransferInitiationTypedDict,
+    )
     from .v2activitycreditwallet import (
         V2ActivityCreditWallet,
         V2ActivityCreditWalletTypedDict,
@@ -183,33 +231,45 @@ if TYPE_CHECKING:
         V2ActivityDebitWallet,
         V2ActivityDebitWalletTypedDict,
     )
+    from .v2activitydebitwalletoutput import (
+        V2ActivityDebitWalletOutput,
+        V2ActivityDebitWalletOutputTypedDict,
+    )
     from .v2activitygetaccount import (
         V2ActivityGetAccount,
         V2ActivityGetAccountTypedDict,
+    )
+    from .v2activitygetaccountoutput import (
+        V2ActivityGetAccountOutput,
+        V2ActivityGetAccountOutputTypedDict,
     )
     from .v2activitygetpayment import (
         V2ActivityGetPayment,
         V2ActivityGetPaymentTypedDict,
     )
+    from .v2activitygetpaymentoutput import (
+        V2ActivityGetPaymentOutput,
+        V2ActivityGetPaymentOutputTypedDict,
+    )
     from .v2activitygetwallet import V2ActivityGetWallet, V2ActivityGetWalletTypedDict
+    from .v2activitygetwalletoutput import (
+        V2ActivityGetWalletOutput,
+        V2ActivityGetWalletOutputTypedDict,
+    )
     from .v2activitylistwallets import (
         V2ActivityListWallets,
         V2ActivityListWalletsTypedDict,
     )
+    from .v2activitypause import V2ActivityPause, V2ActivityPauseTypedDict
+    from .v2activitystripetransfer import (
+        V2ActivityStripeTransfer,
+        V2ActivityStripeTransferMetadata,
+        V2ActivityStripeTransferMetadataTypedDict,
+        V2ActivityStripeTransferTypedDict,
+    )
     from .v2activityvoidhold import V2ActivityVoidHold, V2ActivityVoidHoldTypedDict
     from .v2assetholder import V2AssetHolder, V2AssetHolderTypedDict
     from .v2connector import V2Connector
-    from .v2createtransactionresponse import (
-        V2CreateTransactionResponse,
-        V2CreateTransactionResponseTypedDict,
-    )
-    from .v2createtransferinitiationrequest import (
-        V2CreateTransferInitiationRequest,
-        V2CreateTransferInitiationRequestMetadata,
-        V2CreateTransferInitiationRequestMetadataTypedDict,
-        V2CreateTransferInitiationRequestType,
-        V2CreateTransferInitiationRequestTypedDict,
-    )
     from .v2createtriggerresponse import (
         V2CreateTriggerResponse,
         V2CreateTriggerResponseTypedDict,
@@ -226,12 +286,6 @@ if TYPE_CHECKING:
         V2DebitWalletRequest,
         V2DebitWalletRequestTypedDict,
     )
-    from .v2debitwalletresponse import (
-        V2DebitWalletResponse,
-        V2DebitWalletResponseTypedDict,
-    )
-    from .v2error import V2Error, V2ErrorData, V2ErrorErrorCode
-    from .v2getwalletresponse import V2GetWalletResponse, V2GetWalletResponseTypedDict
     from .v2getworkflowinstancehistoryresponse import (
         V2GetWorkflowInstanceHistoryResponse,
         V2GetWorkflowInstanceHistoryResponseTypedDict,
@@ -299,7 +353,6 @@ if TYPE_CHECKING:
         V2PaymentAdjustmentTypedDict,
     )
     from .v2paymentmetadata import V2PaymentMetadata, V2PaymentMetadataTypedDict
-    from .v2paymentresponse import V2PaymentResponse, V2PaymentResponseTypedDict
     from .v2paymentstatus import V2PaymentStatus
     from .v2posting import V2Posting, V2PostingTypedDict
     from .v2posttransaction import (
@@ -324,10 +377,18 @@ if TYPE_CHECKING:
         V2StageSendDestination,
         V2StageSendDestinationTypedDict,
     )
+    from .v2stagesenddestinationaccount import (
+        V2StageSendDestinationAccount,
+        V2StageSendDestinationAccountTypedDict,
+    )
     from .v2stagesenddestinationpayment import (
         V2StageSendDestinationPayment,
         V2StageSendDestinationPaymentType,
         V2StageSendDestinationPaymentTypedDict,
+    )
+    from .v2stagesenddestinationwallet import (
+        V2StageSendDestinationWallet,
+        V2StageSendDestinationWalletTypedDict,
     )
     from .v2stagesendsource import V2StageSendSource, V2StageSendSourceTypedDict
     from .v2stagesendsourceaccount import (
@@ -344,12 +405,6 @@ if TYPE_CHECKING:
     )
     from .v2stagestatus import V2StageStatus, V2StageStatusTypedDict
     from .v2stagewaitevent import V2StageWaitEvent, V2StageWaitEventTypedDict
-    from .v2stripetransferrequest import (
-        V2StripeTransferRequest,
-        V2StripeTransferRequestMetadata,
-        V2StripeTransferRequestMetadataTypedDict,
-        V2StripeTransferRequestTypedDict,
-    )
     from .v2subject import V2Subject, V2SubjectTypedDict
     from .v2testtriggerresponse import (
         V2TestTriggerResponse,
@@ -428,41 +483,55 @@ if TYPE_CHECKING:
 
 __all__ = [
     "Account",
-    "AccountResponse",
-    "AccountResponseTypedDict",
     "AccountTypedDict",
     "ActivityAddAccountMetadata",
     "ActivityAddAccountMetadataTypedDict",
     "ActivityConfirmHold",
     "ActivityConfirmHoldTypedDict",
     "ActivityCreateTransaction",
+    "ActivityCreateTransactionOutput",
+    "ActivityCreateTransactionOutputTypedDict",
     "ActivityCreateTransactionTypedDict",
+    "ActivityCreateTransferInitiation",
+    "ActivityCreateTransferInitiationMetadata",
+    "ActivityCreateTransferInitiationMetadataTypedDict",
+    "ActivityCreateTransferInitiationType",
+    "ActivityCreateTransferInitiationTypedDict",
     "ActivityCreditWallet",
     "ActivityCreditWalletTypedDict",
     "ActivityDebitWallet",
+    "ActivityDebitWalletOutput",
+    "ActivityDebitWalletOutputTypedDict",
     "ActivityDebitWalletTypedDict",
     "ActivityGetAccount",
+    "ActivityGetAccountOutput",
+    "ActivityGetAccountOutputTypedDict",
     "ActivityGetAccountTypedDict",
     "ActivityGetPayment",
+    "ActivityGetPaymentOutput",
+    "ActivityGetPaymentOutputTypedDict",
     "ActivityGetPaymentTypedDict",
     "ActivityGetWallet",
+    "ActivityGetWalletOutput",
+    "ActivityGetWalletOutputTypedDict",
     "ActivityGetWalletTypedDict",
     "ActivityListWallets",
     "ActivityListWalletsTypedDict",
+    "ActivityPause",
+    "ActivityPauseTypedDict",
     "ActivityRevertTransaction",
+    "ActivityRevertTransactionOutput",
+    "ActivityRevertTransactionOutputTypedDict",
     "ActivityRevertTransactionTypedDict",
+    "ActivityStripeTransfer",
+    "ActivityStripeTransferMetadata",
+    "ActivityStripeTransferMetadataTypedDict",
+    "ActivityStripeTransferTypedDict",
     "ActivityVoidHold",
     "ActivityVoidHoldTypedDict",
     "AssetHolder",
     "AssetHolderTypedDict",
     "Connector",
-    "CreateTransactionResponse",
-    "CreateTransactionResponseTypedDict",
-    "CreateTransferInitiationRequest",
-    "CreateTransferInitiationRequestMetadata",
-    "CreateTransferInitiationRequestMetadataTypedDict",
-    "CreateTransferInitiationRequestType",
-    "CreateTransferInitiationRequestTypedDict",
     "CreateTriggerResponse",
     "CreateTriggerResponseTypedDict",
     "CreateWorkflowResponse",
@@ -471,15 +540,15 @@ __all__ = [
     "CreditWalletRequestTypedDict",
     "DebitWalletRequest",
     "DebitWalletRequestTypedDict",
-    "DebitWalletResponse",
-    "DebitWalletResponseTypedDict",
     "Error",
-    "ErrorData",
     "ErrorErrorCode",
+    "ErrorTypedDict",
+    "ErrorsError",
+    "ErrorsErrorData",
+    "ErrorsV2Error",
+    "ErrorsV2ErrorData",
     "Filter",
     "FilterTypedDict",
-    "GetWalletResponse",
-    "GetWalletResponseTypedDict",
     "GetWorkflowInstanceHistoryResponse",
     "GetWorkflowInstanceHistoryResponseTypedDict",
     "GetWorkflowInstanceHistoryStageResponse",
@@ -515,8 +584,6 @@ __all__ = [
     "PaymentMetadataTypedDict",
     "PaymentRaw",
     "PaymentRawTypedDict",
-    "PaymentResponse",
-    "PaymentResponseTypedDict",
     "PaymentScheme",
     "PaymentStatus",
     "PaymentType",
@@ -538,10 +605,14 @@ __all__ = [
     "StageDelayTypedDict",
     "StageSend",
     "StageSendDestination",
+    "StageSendDestinationAccount",
+    "StageSendDestinationAccountTypedDict",
     "StageSendDestinationPayment",
     "StageSendDestinationPaymentType",
     "StageSendDestinationPaymentTypedDict",
     "StageSendDestinationTypedDict",
+    "StageSendDestinationWallet",
+    "StageSendDestinationWalletTypedDict",
     "StageSendSource",
     "StageSendSourceAccount",
     "StageSendSourceAccountTypedDict",
@@ -556,10 +627,6 @@ __all__ = [
     "StageTypedDict",
     "StageWaitEvent",
     "StageWaitEventTypedDict",
-    "StripeTransferRequest",
-    "StripeTransferRequestMetadata",
-    "StripeTransferRequestMetadataTypedDict",
-    "StripeTransferRequestTypedDict",
     "Subject",
     "SubjectTypedDict",
     "Transaction",
@@ -575,39 +642,51 @@ __all__ = [
     "UpdateAccountTypedDict",
     "UpdateTypedDict",
     "V2Account",
-    "V2AccountResponse",
-    "V2AccountResponseTypedDict",
     "V2AccountTypedDict",
     "V2ActivityAddAccountMetadata",
     "V2ActivityAddAccountMetadataTypedDict",
     "V2ActivityConfirmHold",
     "V2ActivityConfirmHoldTypedDict",
     "V2ActivityCreateTransaction",
+    "V2ActivityCreateTransactionOutput",
+    "V2ActivityCreateTransactionOutputTypedDict",
     "V2ActivityCreateTransactionTypedDict",
+    "V2ActivityCreateTransferInitiation",
+    "V2ActivityCreateTransferInitiationMetadata",
+    "V2ActivityCreateTransferInitiationMetadataTypedDict",
+    "V2ActivityCreateTransferInitiationType",
+    "V2ActivityCreateTransferInitiationTypedDict",
     "V2ActivityCreditWallet",
     "V2ActivityCreditWalletTypedDict",
     "V2ActivityDebitWallet",
+    "V2ActivityDebitWalletOutput",
+    "V2ActivityDebitWalletOutputTypedDict",
     "V2ActivityDebitWalletTypedDict",
     "V2ActivityGetAccount",
+    "V2ActivityGetAccountOutput",
+    "V2ActivityGetAccountOutputTypedDict",
     "V2ActivityGetAccountTypedDict",
     "V2ActivityGetPayment",
+    "V2ActivityGetPaymentOutput",
+    "V2ActivityGetPaymentOutputTypedDict",
     "V2ActivityGetPaymentTypedDict",
     "V2ActivityGetWallet",
+    "V2ActivityGetWalletOutput",
+    "V2ActivityGetWalletOutputTypedDict",
     "V2ActivityGetWalletTypedDict",
     "V2ActivityListWallets",
     "V2ActivityListWalletsTypedDict",
+    "V2ActivityPause",
+    "V2ActivityPauseTypedDict",
+    "V2ActivityStripeTransfer",
+    "V2ActivityStripeTransferMetadata",
+    "V2ActivityStripeTransferMetadataTypedDict",
+    "V2ActivityStripeTransferTypedDict",
     "V2ActivityVoidHold",
     "V2ActivityVoidHoldTypedDict",
     "V2AssetHolder",
     "V2AssetHolderTypedDict",
     "V2Connector",
-    "V2CreateTransactionResponse",
-    "V2CreateTransactionResponseTypedDict",
-    "V2CreateTransferInitiationRequest",
-    "V2CreateTransferInitiationRequestMetadata",
-    "V2CreateTransferInitiationRequestMetadataTypedDict",
-    "V2CreateTransferInitiationRequestType",
-    "V2CreateTransferInitiationRequestTypedDict",
     "V2CreateTriggerResponse",
     "V2CreateTriggerResponseTypedDict",
     "V2CreateWorkflowResponse",
@@ -616,13 +695,9 @@ __all__ = [
     "V2CreditWalletRequestTypedDict",
     "V2DebitWalletRequest",
     "V2DebitWalletRequestTypedDict",
-    "V2DebitWalletResponse",
-    "V2DebitWalletResponseTypedDict",
     "V2Error",
-    "V2ErrorData",
     "V2ErrorErrorCode",
-    "V2GetWalletResponse",
-    "V2GetWalletResponseTypedDict",
+    "V2ErrorTypedDict",
     "V2GetWorkflowInstanceHistoryResponse",
     "V2GetWorkflowInstanceHistoryResponseTypedDict",
     "V2GetWorkflowInstanceHistoryStageResponse",
@@ -666,8 +741,6 @@ __all__ = [
     "V2PaymentMetadataTypedDict",
     "V2PaymentRaw",
     "V2PaymentRawTypedDict",
-    "V2PaymentResponse",
-    "V2PaymentResponseTypedDict",
     "V2PaymentScheme",
     "V2PaymentStatus",
     "V2PaymentType",
@@ -689,10 +762,14 @@ __all__ = [
     "V2StageDelayTypedDict",
     "V2StageSend",
     "V2StageSendDestination",
+    "V2StageSendDestinationAccount",
+    "V2StageSendDestinationAccountTypedDict",
     "V2StageSendDestinationPayment",
     "V2StageSendDestinationPaymentType",
     "V2StageSendDestinationPaymentTypedDict",
     "V2StageSendDestinationTypedDict",
+    "V2StageSendDestinationWallet",
+    "V2StageSendDestinationWalletTypedDict",
     "V2StageSendSource",
     "V2StageSendSourceAccount",
     "V2StageSendSourceAccountTypedDict",
@@ -707,10 +784,6 @@ __all__ = [
     "V2StageTypedDict",
     "V2StageWaitEvent",
     "V2StageWaitEventTypedDict",
-    "V2StripeTransferRequest",
-    "V2StripeTransferRequestMetadata",
-    "V2StripeTransferRequestMetadataTypedDict",
-    "V2StripeTransferRequestTypedDict",
     "V2Subject",
     "V2SubjectTypedDict",
     "V2TestTriggerResponse",
@@ -784,40 +857,54 @@ __all__ = [
 _dynamic_imports: dict[str, str] = {
     "Account": ".account",
     "AccountTypedDict": ".account",
-    "AccountResponse": ".accountresponse",
-    "AccountResponseTypedDict": ".accountresponse",
     "ActivityAddAccountMetadata": ".activityaddaccountmetadata",
     "ActivityAddAccountMetadataTypedDict": ".activityaddaccountmetadata",
     "ActivityConfirmHold": ".activityconfirmhold",
     "ActivityConfirmHoldTypedDict": ".activityconfirmhold",
     "ActivityCreateTransaction": ".activitycreatetransaction",
     "ActivityCreateTransactionTypedDict": ".activitycreatetransaction",
+    "ActivityCreateTransactionOutput": ".activitycreatetransactionoutput",
+    "ActivityCreateTransactionOutputTypedDict": ".activitycreatetransactionoutput",
+    "ActivityCreateTransferInitiation": ".activitycreatetransferinitiation",
+    "ActivityCreateTransferInitiationMetadata": ".activitycreatetransferinitiation",
+    "ActivityCreateTransferInitiationMetadataTypedDict": ".activitycreatetransferinitiation",
+    "ActivityCreateTransferInitiationType": ".activitycreatetransferinitiation",
+    "ActivityCreateTransferInitiationTypedDict": ".activitycreatetransferinitiation",
     "ActivityCreditWallet": ".activitycreditwallet",
     "ActivityCreditWalletTypedDict": ".activitycreditwallet",
     "ActivityDebitWallet": ".activitydebitwallet",
     "ActivityDebitWalletTypedDict": ".activitydebitwallet",
+    "ActivityDebitWalletOutput": ".activitydebitwalletoutput",
+    "ActivityDebitWalletOutputTypedDict": ".activitydebitwalletoutput",
     "ActivityGetAccount": ".activitygetaccount",
     "ActivityGetAccountTypedDict": ".activitygetaccount",
+    "ActivityGetAccountOutput": ".activitygetaccountoutput",
+    "ActivityGetAccountOutputTypedDict": ".activitygetaccountoutput",
     "ActivityGetPayment": ".activitygetpayment",
     "ActivityGetPaymentTypedDict": ".activitygetpayment",
+    "ActivityGetPaymentOutput": ".activitygetpaymentoutput",
+    "ActivityGetPaymentOutputTypedDict": ".activitygetpaymentoutput",
     "ActivityGetWallet": ".activitygetwallet",
     "ActivityGetWalletTypedDict": ".activitygetwallet",
+    "ActivityGetWalletOutput": ".activitygetwalletoutput",
+    "ActivityGetWalletOutputTypedDict": ".activitygetwalletoutput",
     "ActivityListWallets": ".activitylistwallets",
     "ActivityListWalletsTypedDict": ".activitylistwallets",
+    "ActivityPause": ".activitypause",
+    "ActivityPauseTypedDict": ".activitypause",
     "ActivityRevertTransaction": ".activityreverttransaction",
     "ActivityRevertTransactionTypedDict": ".activityreverttransaction",
+    "ActivityRevertTransactionOutput": ".activityreverttransactionoutput",
+    "ActivityRevertTransactionOutputTypedDict": ".activityreverttransactionoutput",
+    "ActivityStripeTransfer": ".activitystripetransfer",
+    "ActivityStripeTransferMetadata": ".activitystripetransfer",
+    "ActivityStripeTransferMetadataTypedDict": ".activitystripetransfer",
+    "ActivityStripeTransferTypedDict": ".activitystripetransfer",
     "ActivityVoidHold": ".activityvoidhold",
     "ActivityVoidHoldTypedDict": ".activityvoidhold",
     "AssetHolder": ".assetholder",
     "AssetHolderTypedDict": ".assetholder",
     "Connector": ".connector",
-    "CreateTransactionResponse": ".createtransactionresponse",
-    "CreateTransactionResponseTypedDict": ".createtransactionresponse",
-    "CreateTransferInitiationRequest": ".createtransferinitiationrequest",
-    "CreateTransferInitiationRequestMetadata": ".createtransferinitiationrequest",
-    "CreateTransferInitiationRequestMetadataTypedDict": ".createtransferinitiationrequest",
-    "CreateTransferInitiationRequestType": ".createtransferinitiationrequest",
-    "CreateTransferInitiationRequestTypedDict": ".createtransferinitiationrequest",
     "CreateTriggerResponse": ".createtriggerresponse",
     "CreateTriggerResponseTypedDict": ".createtriggerresponse",
     "CreateWorkflowResponse": ".createworkflowresponse",
@@ -826,13 +913,16 @@ _dynamic_imports: dict[str, str] = {
     "CreditWalletRequestTypedDict": ".creditwalletrequest",
     "DebitWalletRequest": ".debitwalletrequest",
     "DebitWalletRequestTypedDict": ".debitwalletrequest",
-    "DebitWalletResponse": ".debitwalletresponse",
-    "DebitWalletResponseTypedDict": ".debitwalletresponse",
-    "Error": ".error",
-    "ErrorData": ".error",
-    "ErrorErrorCode": ".error",
-    "GetWalletResponse": ".getwalletresponse",
-    "GetWalletResponseTypedDict": ".getwalletresponse",
+    "Error": ".errors_error",
+    "ErrorErrorCode": ".errors_error",
+    "ErrorTypedDict": ".errors_error",
+    "ErrorsError": ".errors_error",
+    "ErrorsErrorData": ".errors_error",
+    "ErrorsV2Error": ".errors_v2error",
+    "ErrorsV2ErrorData": ".errors_v2error",
+    "V2Error": ".errors_v2error",
+    "V2ErrorErrorCode": ".errors_v2error",
+    "V2ErrorTypedDict": ".errors_v2error",
     "GetWorkflowInstanceHistoryResponse": ".getworkflowinstancehistoryresponse",
     "GetWorkflowInstanceHistoryResponseTypedDict": ".getworkflowinstancehistoryresponse",
     "GetWorkflowInstanceHistoryStageResponse": ".getworkflowinstancehistorystageresponse",
@@ -871,8 +961,6 @@ _dynamic_imports: dict[str, str] = {
     "PaymentAdjustmentTypedDict": ".paymentadjustment",
     "PaymentMetadata": ".paymentmetadata",
     "PaymentMetadataTypedDict": ".paymentmetadata",
-    "PaymentResponse": ".paymentresponse",
-    "PaymentResponseTypedDict": ".paymentresponse",
     "PaymentStatus": ".paymentstatus",
     "Posting": ".posting",
     "PostingTypedDict": ".posting",
@@ -894,9 +982,13 @@ _dynamic_imports: dict[str, str] = {
     "StageSendTypedDict": ".stagesend",
     "StageSendDestination": ".stagesenddestination",
     "StageSendDestinationTypedDict": ".stagesenddestination",
+    "StageSendDestinationAccount": ".stagesenddestinationaccount",
+    "StageSendDestinationAccountTypedDict": ".stagesenddestinationaccount",
     "StageSendDestinationPayment": ".stagesenddestinationpayment",
     "StageSendDestinationPaymentType": ".stagesenddestinationpayment",
     "StageSendDestinationPaymentTypedDict": ".stagesenddestinationpayment",
+    "StageSendDestinationWallet": ".stagesenddestinationwallet",
+    "StageSendDestinationWalletTypedDict": ".stagesenddestinationwallet",
     "StageSendSource": ".stagesendsource",
     "StageSendSourceTypedDict": ".stagesendsource",
     "StageSendSourceAccount": ".stagesendsourceaccount",
@@ -909,10 +1001,6 @@ _dynamic_imports: dict[str, str] = {
     "StageStatusTypedDict": ".stagestatus",
     "StageWaitEvent": ".stagewaitevent",
     "StageWaitEventTypedDict": ".stagewaitevent",
-    "StripeTransferRequest": ".stripetransferrequest",
-    "StripeTransferRequestMetadata": ".stripetransferrequest",
-    "StripeTransferRequestMetadataTypedDict": ".stripetransferrequest",
-    "StripeTransferRequestTypedDict": ".stripetransferrequest",
     "Subject": ".subject",
     "SubjectTypedDict": ".subject",
     "Transaction": ".transaction",
@@ -929,38 +1017,50 @@ _dynamic_imports: dict[str, str] = {
     "UpdateAccountTypedDict": ".updateaccount",
     "V2Account": ".v2account",
     "V2AccountTypedDict": ".v2account",
-    "V2AccountResponse": ".v2accountresponse",
-    "V2AccountResponseTypedDict": ".v2accountresponse",
     "V2ActivityAddAccountMetadata": ".v2activityaddaccountmetadata",
     "V2ActivityAddAccountMetadataTypedDict": ".v2activityaddaccountmetadata",
     "V2ActivityConfirmHold": ".v2activityconfirmhold",
     "V2ActivityConfirmHoldTypedDict": ".v2activityconfirmhold",
     "V2ActivityCreateTransaction": ".v2activitycreatetransaction",
     "V2ActivityCreateTransactionTypedDict": ".v2activitycreatetransaction",
+    "V2ActivityCreateTransactionOutput": ".v2activitycreatetransactionoutput",
+    "V2ActivityCreateTransactionOutputTypedDict": ".v2activitycreatetransactionoutput",
+    "V2ActivityCreateTransferInitiation": ".v2activitycreatetransferinitiation",
+    "V2ActivityCreateTransferInitiationMetadata": ".v2activitycreatetransferinitiation",
+    "V2ActivityCreateTransferInitiationMetadataTypedDict": ".v2activitycreatetransferinitiation",
+    "V2ActivityCreateTransferInitiationType": ".v2activitycreatetransferinitiation",
+    "V2ActivityCreateTransferInitiationTypedDict": ".v2activitycreatetransferinitiation",
     "V2ActivityCreditWallet": ".v2activitycreditwallet",
     "V2ActivityCreditWalletTypedDict": ".v2activitycreditwallet",
     "V2ActivityDebitWallet": ".v2activitydebitwallet",
     "V2ActivityDebitWalletTypedDict": ".v2activitydebitwallet",
+    "V2ActivityDebitWalletOutput": ".v2activitydebitwalletoutput",
+    "V2ActivityDebitWalletOutputTypedDict": ".v2activitydebitwalletoutput",
     "V2ActivityGetAccount": ".v2activitygetaccount",
     "V2ActivityGetAccountTypedDict": ".v2activitygetaccount",
+    "V2ActivityGetAccountOutput": ".v2activitygetaccountoutput",
+    "V2ActivityGetAccountOutputTypedDict": ".v2activitygetaccountoutput",
     "V2ActivityGetPayment": ".v2activitygetpayment",
     "V2ActivityGetPaymentTypedDict": ".v2activitygetpayment",
+    "V2ActivityGetPaymentOutput": ".v2activitygetpaymentoutput",
+    "V2ActivityGetPaymentOutputTypedDict": ".v2activitygetpaymentoutput",
     "V2ActivityGetWallet": ".v2activitygetwallet",
     "V2ActivityGetWalletTypedDict": ".v2activitygetwallet",
+    "V2ActivityGetWalletOutput": ".v2activitygetwalletoutput",
+    "V2ActivityGetWalletOutputTypedDict": ".v2activitygetwalletoutput",
     "V2ActivityListWallets": ".v2activitylistwallets",
     "V2ActivityListWalletsTypedDict": ".v2activitylistwallets",
+    "V2ActivityPause": ".v2activitypause",
+    "V2ActivityPauseTypedDict": ".v2activitypause",
+    "V2ActivityStripeTransfer": ".v2activitystripetransfer",
+    "V2ActivityStripeTransferMetadata": ".v2activitystripetransfer",
+    "V2ActivityStripeTransferMetadataTypedDict": ".v2activitystripetransfer",
+    "V2ActivityStripeTransferTypedDict": ".v2activitystripetransfer",
     "V2ActivityVoidHold": ".v2activityvoidhold",
     "V2ActivityVoidHoldTypedDict": ".v2activityvoidhold",
     "V2AssetHolder": ".v2assetholder",
     "V2AssetHolderTypedDict": ".v2assetholder",
     "V2Connector": ".v2connector",
-    "V2CreateTransactionResponse": ".v2createtransactionresponse",
-    "V2CreateTransactionResponseTypedDict": ".v2createtransactionresponse",
-    "V2CreateTransferInitiationRequest": ".v2createtransferinitiationrequest",
-    "V2CreateTransferInitiationRequestMetadata": ".v2createtransferinitiationrequest",
-    "V2CreateTransferInitiationRequestMetadataTypedDict": ".v2createtransferinitiationrequest",
-    "V2CreateTransferInitiationRequestType": ".v2createtransferinitiationrequest",
-    "V2CreateTransferInitiationRequestTypedDict": ".v2createtransferinitiationrequest",
     "V2CreateTriggerResponse": ".v2createtriggerresponse",
     "V2CreateTriggerResponseTypedDict": ".v2createtriggerresponse",
     "V2CreateWorkflowResponse": ".v2createworkflowresponse",
@@ -969,13 +1069,6 @@ _dynamic_imports: dict[str, str] = {
     "V2CreditWalletRequestTypedDict": ".v2creditwalletrequest",
     "V2DebitWalletRequest": ".v2debitwalletrequest",
     "V2DebitWalletRequestTypedDict": ".v2debitwalletrequest",
-    "V2DebitWalletResponse": ".v2debitwalletresponse",
-    "V2DebitWalletResponseTypedDict": ".v2debitwalletresponse",
-    "V2Error": ".v2error",
-    "V2ErrorData": ".v2error",
-    "V2ErrorErrorCode": ".v2error",
-    "V2GetWalletResponse": ".v2getwalletresponse",
-    "V2GetWalletResponseTypedDict": ".v2getwalletresponse",
     "V2GetWorkflowInstanceHistoryResponse": ".v2getworkflowinstancehistoryresponse",
     "V2GetWorkflowInstanceHistoryResponseTypedDict": ".v2getworkflowinstancehistoryresponse",
     "V2GetWorkflowInstanceHistoryStageResponse": ".v2getworkflowinstancehistorystageresponse",
@@ -1022,8 +1115,6 @@ _dynamic_imports: dict[str, str] = {
     "V2PaymentAdjustmentTypedDict": ".v2paymentadjustment",
     "V2PaymentMetadata": ".v2paymentmetadata",
     "V2PaymentMetadataTypedDict": ".v2paymentmetadata",
-    "V2PaymentResponse": ".v2paymentresponse",
-    "V2PaymentResponseTypedDict": ".v2paymentresponse",
     "V2PaymentStatus": ".v2paymentstatus",
     "V2Posting": ".v2posting",
     "V2PostingTypedDict": ".v2posting",
@@ -1045,9 +1136,13 @@ _dynamic_imports: dict[str, str] = {
     "V2StageSendTypedDict": ".v2stagesend",
     "V2StageSendDestination": ".v2stagesenddestination",
     "V2StageSendDestinationTypedDict": ".v2stagesenddestination",
+    "V2StageSendDestinationAccount": ".v2stagesenddestinationaccount",
+    "V2StageSendDestinationAccountTypedDict": ".v2stagesenddestinationaccount",
     "V2StageSendDestinationPayment": ".v2stagesenddestinationpayment",
     "V2StageSendDestinationPaymentType": ".v2stagesenddestinationpayment",
     "V2StageSendDestinationPaymentTypedDict": ".v2stagesenddestinationpayment",
+    "V2StageSendDestinationWallet": ".v2stagesenddestinationwallet",
+    "V2StageSendDestinationWalletTypedDict": ".v2stagesenddestinationwallet",
     "V2StageSendSource": ".v2stagesendsource",
     "V2StageSendSourceTypedDict": ".v2stagesendsource",
     "V2StageSendSourceAccount": ".v2stagesendsourceaccount",
@@ -1060,10 +1155,6 @@ _dynamic_imports: dict[str, str] = {
     "V2StageStatusTypedDict": ".v2stagestatus",
     "V2StageWaitEvent": ".v2stagewaitevent",
     "V2StageWaitEventTypedDict": ".v2stagewaitevent",
-    "V2StripeTransferRequest": ".v2stripetransferrequest",
-    "V2StripeTransferRequestMetadata": ".v2stripetransferrequest",
-    "V2StripeTransferRequestMetadataTypedDict": ".v2stripetransferrequest",
-    "V2StripeTransferRequestTypedDict": ".v2stripetransferrequest",
     "V2Subject": ".v2subject",
     "V2SubjectTypedDict": ".v2subject",
     "V2TestTriggerResponse": ".v2testtriggerresponse",

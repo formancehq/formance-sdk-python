@@ -10,23 +10,35 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2ListWalletsResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of wallets"""
+
     data: List[V2WalletTypedDict]
     page_size: int
+    r"""Number of items requested per page"""
     has_more: NotRequired[bool]
+    r"""Whether further pages are available"""
     next: NotRequired[str]
+    r"""Cursor for the next page, absent on the last page"""
     previous: NotRequired[str]
+    r"""Cursor for the previous page, absent on the first page"""
 
 
 class V2ListWalletsResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of wallets"""
+
     data: List[V2Wallet]
 
     page_size: Annotated[int, pydantic.Field(alias="pageSize")]
+    r"""Number of items requested per page"""
 
     has_more: Annotated[Optional[bool], pydantic.Field(alias="hasMore")] = None
+    r"""Whether further pages are available"""
 
     next: Optional[str] = None
+    r"""Cursor for the next page, absent on the last page"""
 
     previous: Optional[str] = None
+    r"""Cursor for the previous page, absent on the first page"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -46,11 +58,17 @@ class V2ListWalletsResponseCursor(BaseModel):
 
 
 class V2ListWalletsResponseTypedDict(TypedDict):
+    r"""A page of wallets"""
+
     cursor: V2ListWalletsResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of wallets"""
 
 
 class V2ListWalletsResponse(BaseModel):
+    r"""A page of wallets"""
+
     cursor: V2ListWalletsResponseCursor
+    r"""Paginated cursor wrapping the list of wallets"""
 
 
 try:

@@ -14,6 +14,7 @@ class V3RoutableConfigTypedDict(TypedDict):
     acting_team_member: NotRequired[str]
     endpoint: NotRequired[str]
     page_size: NotRequired[int]
+    payouts_per_minute: NotRequired[int]
     polling_period: NotRequired[str]
     provider: NotRequired[str]
 
@@ -37,6 +38,10 @@ class V3RoutableConfig(BaseModel):
         ),
     ] = 25
 
+    payouts_per_minute: Annotated[
+        Optional[int], pydantic.Field(alias="payoutsPerMinute")
+    ] = None
+
     polling_period: Annotated[Optional[str], pydantic.Field(alias="pollingPeriod")] = (
         "30m"
     )
@@ -46,7 +51,14 @@ class V3RoutableConfig(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["actingTeamMember", "endpoint", "pageSize", "pollingPeriod", "provider"]
+            [
+                "actingTeamMember",
+                "endpoint",
+                "pageSize",
+                "payoutsPerMinute",
+                "pollingPeriod",
+                "provider",
+            ]
         )
         serialized = handler(self)
         m = {}

@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class CreateWalletResponseTypedDict(TypedDict):
     data: WalletTypedDict
+    r"""A wallet backed by a set of ledger accounts"""
 
 
 class CreateWalletResponse(BaseModel):
     data: Wallet
+    r"""A wallet backed by a set of ledger accounts"""

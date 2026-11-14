@@ -10,11 +10,15 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class PostTransactionScriptTypedDict(TypedDict):
+    r"""A Numscript program executed to produce the postings. Mutually exclusive with postings"""
+
     plain: str
     vars: NotRequired[Dict[str, Any]]
 
 
 class PostTransactionScript(BaseModel):
+    r"""A Numscript program executed to produce the postings. Mutually exclusive with postings"""
+
     plain: str
 
     vars: Optional[Dict[str, Any]] = None
@@ -37,23 +41,37 @@ class PostTransactionScript(BaseModel):
 
 
 class PostTransactionTypedDict(TypedDict):
+    r"""A transaction to write to a ledger"""
+
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the resource"""
     postings: NotRequired[List[PostingTypedDict]]
+    r"""Fund movements to apply. Mutually exclusive with script"""
     reference: NotRequired[str]
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
     script: NotRequired[PostTransactionScriptTypedDict]
+    r"""A Numscript program executed to produce the postings. Mutually exclusive with postings"""
     timestamp: NotRequired[datetime]
+    r"""The transaction time to record, letting you backdate or postdate the transaction. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
 
 class PostTransaction(BaseModel):
+    r"""A transaction to write to a ledger"""
+
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     postings: Optional[List[Posting]] = None
+    r"""Fund movements to apply. Mutually exclusive with script"""
 
     reference: Optional[str] = None
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
 
     script: Optional[PostTransactionScript] = None
+    r"""A Numscript program executed to produce the postings. Mutually exclusive with postings"""
 
     timestamp: Optional[datetime] = None
+    r"""The transaction time to record, letting you backdate or postdate the transaction. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

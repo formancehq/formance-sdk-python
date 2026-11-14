@@ -26,16 +26,20 @@ class V2BulkElementAddMetadataData(BaseModel):
 
 class V2BulkElementAddMetadataTypedDict(TypedDict):
     action: str
+    r"""The bulk action this element performs"""
     data: NotRequired[V2BulkElementAddMetadataDataTypedDict]
     ik: NotRequired[str]
+    r"""Idempotency key scoped to this element, making it safe to retry the bulk request"""
 
 
 class V2BulkElementAddMetadata(BaseModel):
     action: str
+    r"""The bulk action this element performs"""
 
     data: Optional[V2BulkElementAddMetadataData] = None
 
     ik: Optional[str] = None
+    r"""Idempotency key scoped to this element, making it safe to retry the bulk request"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

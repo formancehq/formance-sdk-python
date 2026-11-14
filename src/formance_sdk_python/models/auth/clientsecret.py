@@ -16,19 +16,27 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class ClientSecretTypedDict(TypedDict):
     id: str
+    r"""Unique identifier of the secret"""
     last_digits: str
+    r"""Last digits of the secret. The full plaintext is hidden, and only the last digits are exposed."""
     name: str
+    r"""Human-readable name identifying the secret"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
 
 class ClientSecret(BaseModel):
     id: str
+    r"""Unique identifier of the secret"""
 
     last_digits: Annotated[str, pydantic.Field(alias="lastDigits")]
+    r"""Last digits of the secret. The full plaintext is hidden, and only the last digits are exposed."""
 
     name: str
+    r"""Human-readable name identifying the secret"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

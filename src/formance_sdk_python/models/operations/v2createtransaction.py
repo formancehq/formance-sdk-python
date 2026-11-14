@@ -29,6 +29,12 @@ class V2CreateTransactionRequestTypedDict(TypedDict):
     """
     ledger: str
     r"""Name of the ledger."""
+    formance_bigint_as_string: NotRequired[bool]
+    r"""When set to `true`, all bigint values in the response will be serialized
+    as strings instead of JSON numbers.
+    Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+
+    """
     idempotency_key: NotRequired[str]
     r"""Use an idempotency key"""
     dry_run: NotRequired[bool]
@@ -54,6 +60,17 @@ class V2CreateTransactionRequest(BaseModel):
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""Name of the ledger."""
+
+    formance_bigint_as_string: Annotated[
+        Optional[bool],
+        pydantic.Field(alias="Formance-Bigint-As-String"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = False
+    r"""When set to `true`, all bigint values in the response will be serialized
+    as strings instead of JSON numbers.
+    Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+
+    """
 
     idempotency_key: Annotated[
         Optional[str],
@@ -84,7 +101,15 @@ class V2CreateTransactionRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["Idempotency-Key", "dryRun", "force", "schemaVersion"])
+        optional_fields = set(
+            [
+                "Formance-Bigint-As-String",
+                "Idempotency-Key",
+                "dryRun",
+                "force",
+                "schemaVersion",
+            ]
+        )
         serialized = handler(self)
         m = {}
 

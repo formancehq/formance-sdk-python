@@ -10,10 +10,12 @@ from typing_extensions import NotRequired, TypedDict
 
 class CreateSecretResponseTypedDict(TypedDict):
     data: NotRequired[SecretTypedDict]
+    r"""A client secret. The full value is returned only at creation and cannot be retrieved again"""
 
 
 class CreateSecretResponse(BaseModel):
     data: Optional[Secret] = None
+    r"""A client secret. The full value is returned only at creation and cannot be retrieved again"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

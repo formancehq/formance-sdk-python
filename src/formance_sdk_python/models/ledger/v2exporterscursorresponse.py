@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2ExportersCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of exporters"""
+
     data: List[V2ExporterTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class V2ExportersCursorResponseCursorTypedDict(TypedDict):
 
 
 class V2ExportersCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of exporters"""
+
     data: List[V2Exporter]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -49,12 +53,14 @@ class V2ExportersCursorResponseTypedDict(TypedDict):
     r"""Exporters list"""
 
     cursor: V2ExportersCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of exporters"""
 
 
 class V2ExportersCursorResponse(BaseModel):
     r"""Exporters list"""
 
     cursor: V2ExportersCursorResponseCursor
+    r"""Paginated cursor wrapping the list of exporters"""
 
 
 try:

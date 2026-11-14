@@ -9,20 +9,32 @@ from typing_extensions import Annotated, TypedDict
 
 
 class V2WorkflowTypedDict(TypedDict):
+    r"""A workflow definition and the stages it runs"""
+
     config: V2WorkflowConfigTypedDict
+    r"""The stages a workflow runs, in order"""
     created_at: datetime
+    r"""When the workflow was created"""
     id: str
+    r"""Unique identifier of the workflow"""
     updated_at: datetime
+    r"""When the workflow was last modified"""
 
 
 class V2Workflow(BaseModel):
+    r"""A workflow definition and the stages it runs"""
+
     config: V2WorkflowConfig
+    r"""The stages a workflow runs, in order"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the workflow was created"""
 
     id: str
+    r"""Unique identifier of the workflow"""
 
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
+    r"""When the workflow was last modified"""
 
 
 try:

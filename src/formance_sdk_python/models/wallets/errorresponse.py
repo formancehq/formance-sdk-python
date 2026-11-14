@@ -12,6 +12,8 @@ from typing_extensions import Annotated
 
 
 class ErrorCode(str, Enum):
+    r"""Machine-readable error code identifying the failure"""
+
     VALIDATION = "VALIDATION"
     INTERNAL_ERROR = "INTERNAL_ERROR"
     INSUFFICIENT_FUND = "INSUFFICIENT_FUND"
@@ -20,7 +22,9 @@ class ErrorCode(str, Enum):
 
 class ErrorResponseData(BaseModel):
     error_code: Annotated[ErrorCode, pydantic.Field(alias="errorCode")]
+    r"""Machine-readable error code identifying the failure"""
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
+    r"""Human-readable description of the error"""
 
 
 @dataclass(unsafe_hash=True)

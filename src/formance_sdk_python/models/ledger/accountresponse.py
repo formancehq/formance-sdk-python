@@ -11,7 +11,9 @@ from typing_extensions import TypedDict
 
 class AccountResponseTypedDict(TypedDict):
     data: AccountWithVolumesAndBalancesTypedDict
+    r"""An account together with its volumes and net balances per asset"""
 
 
 class AccountResponse(BaseModel):
     data: AccountWithVolumesAndBalances
+    r"""An account together with its volumes and net balances per asset"""

@@ -11,36 +11,54 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ResolutionKind(str, Enum):
+    r"""How the alert was resolved, whether automatically, by booking a correcting transaction, or by business acceptance"""
+
     AUTO = "auto"
     FIXED_BY_BOOKING = "fixed_by_booking"
     ACCEPTED_BY_BUSINESS = "accepted_by_business"
 
 
 class ResolutionTypedDict(TypedDict):
+    r"""Record of how an alert was resolved and by whom"""
+
     at: datetime
+    r"""When the alert was resolved"""
     by: str
+    r"""Who resolved the alert"""
     kind: ResolutionKind
+    r"""How the alert was resolved, whether automatically, by booking a correcting transaction, or by business acceptance"""
     evidence_snapshot: NotRequired[Dict[str, Any]]
+    r"""The alert's evidence captured at resolution time, kept for audit"""
     note: NotRequired[str]
+    r"""Free-text note left by whoever resolved the alert"""
     transaction_refs: NotRequired[List[str]]
+    r"""References of the transactions booked to correct the break"""
 
 
 class Resolution(BaseModel):
+    r"""Record of how an alert was resolved and by whom"""
+
     at: datetime
+    r"""When the alert was resolved"""
 
     by: str
+    r"""Who resolved the alert"""
 
     kind: ResolutionKind
+    r"""How the alert was resolved, whether automatically, by booking a correcting transaction, or by business acceptance"""
 
     evidence_snapshot: Annotated[
         Optional[Dict[str, Any]], pydantic.Field(alias="evidenceSnapshot")
     ] = None
+    r"""The alert's evidence captured at resolution time, kept for audit"""
 
     note: Optional[str] = None
+    r"""Free-text note left by whoever resolved the alert"""
 
     transaction_refs: Annotated[
         Optional[List[str]], pydantic.Field(alias="transactionRefs")
     ] = None
+    r"""References of the transactions booked to correct the break"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

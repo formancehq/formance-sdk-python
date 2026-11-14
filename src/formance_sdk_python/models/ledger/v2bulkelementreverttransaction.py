@@ -15,6 +15,7 @@ class V2BulkElementRevertTransactionDataTypedDict(TypedDict):
     at_effective_date: NotRequired[bool]
     force: NotRequired[bool]
     metadata: NotRequired[Dict[str, str]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
 
 class V2BulkElementRevertTransactionData(BaseModel):
@@ -27,6 +28,7 @@ class V2BulkElementRevertTransactionData(BaseModel):
     force: Optional[bool] = None
 
     metadata: Optional[Dict[str, str]] = None
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -47,16 +49,20 @@ class V2BulkElementRevertTransactionData(BaseModel):
 
 class V2BulkElementRevertTransactionTypedDict(TypedDict):
     action: str
+    r"""The bulk action this element performs"""
     data: NotRequired[V2BulkElementRevertTransactionDataTypedDict]
     ik: NotRequired[str]
+    r"""Idempotency key scoped to this element, making it safe to retry the bulk request"""
 
 
 class V2BulkElementRevertTransaction(BaseModel):
     action: str
+    r"""The bulk action this element performs"""
 
     data: Optional[V2BulkElementRevertTransactionData] = None
 
     ik: Optional[str] = None
+    r"""Idempotency key scoped to this element, making it safe to retry the bulk request"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class GetBalanceResponseTypedDict(TypedDict):
     data: BalanceWithAssetsTypedDict
+    r"""A named balance within a wallet together with the amounts it holds per asset"""
 
 
 class GetBalanceResponse(BaseModel):
     data: BalanceWithAssets
+    r"""A named balance within a wallet together with the amounts it holds per asset"""

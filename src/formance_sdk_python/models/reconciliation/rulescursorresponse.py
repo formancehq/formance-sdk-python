@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class RulesCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of rules"""
+
     data: List[RuleTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class RulesCursorResponseCursorTypedDict(TypedDict):
 
 
 class RulesCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of rules"""
+
     data: List[Rule]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -49,12 +53,14 @@ class RulesCursorResponseTypedDict(TypedDict):
     r"""OK"""
 
     cursor: RulesCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of rules"""
 
 
 class RulesCursorResponse(BaseModel):
     r"""OK"""
 
     cursor: RulesCursorResponseCursor
+    r"""Paginated cursor wrapping the list of rules"""
 
 
 try:

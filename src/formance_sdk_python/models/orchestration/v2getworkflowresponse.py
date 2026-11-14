@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V2GetWorkflowResponseTypedDict(TypedDict):
     data: V2WorkflowTypedDict
+    r"""A workflow definition and the stages it runs"""
 
 
 class V2GetWorkflowResponse(BaseModel):
     data: V2Workflow
+    r"""A workflow definition and the stages it runs"""

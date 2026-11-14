@@ -10,7 +10,9 @@ from typing_extensions import Annotated, TypedDict
 
 class AssetHolderTypedDict(TypedDict):
     assets: Dict[str, int]
+    r"""Amounts held, keyed by asset"""
 
 
 class AssetHolder(BaseModel):
     assets: Dict[str, Annotated[int, BeforeValidator(validate_int)]]
+    r"""Amounts held, keyed by asset"""

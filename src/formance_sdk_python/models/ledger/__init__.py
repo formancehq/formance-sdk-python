@@ -80,6 +80,11 @@ if TYPE_CHECKING:
         TransactionsResponseTypedDict,
     )
     from .v2account import V2Account, V2AccountTypedDict
+    from .v2accountquerytemplate import (
+        V2AccountQueryTemplate,
+        V2AccountQueryTemplateTypedDict,
+    )
+    from .v2accountquerytemplateresource import V2AccountQueryTemplateResource
     from .v2accountresponse import V2AccountResponse, V2AccountResponseTypedDict
     from .v2accountscursorresponse import (
         V2AccountsCursorResponse,
@@ -222,7 +227,11 @@ if TYPE_CHECKING:
         V2LogDataNewTransactionTypedDict,
     )
     from .v2logdatarevertedtransaction import (
+        RevertedTransaction,
+        RevertedTransactionTypedDict,
         V2LogDataRevertedTransaction,
+        V2LogDataRevertedTransactionTransaction,
+        V2LogDataRevertedTransactionTransactionTypedDict,
         V2LogDataRevertedTransactionTypedDict,
     )
     from .v2logdatasetmetadata import (
@@ -232,6 +241,8 @@ if TYPE_CHECKING:
         V2LogDataSetMetadataTargetType,
         V2LogDataSetMetadataTypedDict,
     )
+    from .v2logquerytemplate import V2LogQueryTemplate, V2LogQueryTemplateTypedDict
+    from .v2logquerytemplateresource import V2LogQueryTemplateResource
     from .v2logscursorresponse import (
         V2LogsCursorResponse,
         V2LogsCursorResponseCursor,
@@ -259,25 +270,14 @@ if TYPE_CHECKING:
         V2PostTransactionScriptTypedDict,
         V2PostTransactionTypedDict,
     )
-    from .v2queryparams import (
-        QueryTemplateAccountParams,
-        QueryTemplateAccountParamsTypedDict,
-        QueryTemplateLogParams,
-        QueryTemplateLogParamsTypedDict,
-        QueryTemplateTransactionParams,
-        QueryTemplateTransactionParamsTypedDict,
-        QueryTemplateVolumeParams,
-        QueryTemplateVolumeParamsTypedDict,
-        V2QueryParams,
-        V2QueryParamsTypedDict,
-    )
-    from .v2queryresource import V2QueryResource
+    from .v2queryparams import V2QueryParams, V2QueryParamsTypedDict
     from .v2querytemplate import V2QueryTemplate, V2QueryTemplateTypedDict
     from .v2querytemplatevar import V2QueryTemplateVar, V2QueryTemplateVarTypedDict
     from .v2reverttransactionrequest import (
         V2RevertTransactionRequest,
         V2RevertTransactionRequestTypedDict,
     )
+    from .v2runqueryparams import V2RunQueryParams, V2RunQueryParamsTypedDict
     from .v2schema import V2Schema, V2SchemaTypedDict
     from .v2schemadata import V2SchemaData, V2SchemaDataTypedDict
     from .v2schemaresponse import V2SchemaResponse, V2SchemaResponseTypedDict
@@ -291,6 +291,11 @@ if TYPE_CHECKING:
     from .v2targetid import V2TargetID, V2TargetIDTypedDict
     from .v2targettype import V2TargetType
     from .v2transaction import V2Transaction, V2TransactionTypedDict
+    from .v2transactionquerytemplate import (
+        V2TransactionQueryTemplate,
+        V2TransactionQueryTemplateTypedDict,
+    )
+    from .v2transactionquerytemplateresource import V2TransactionQueryTemplateResource
     from .v2transactionscursorresponse import (
         V2TransactionsCursorResponse,
         V2TransactionsCursorResponseCursor,
@@ -303,6 +308,12 @@ if TYPE_CHECKING:
         V2TransactionTemplateTypedDict,
     )
     from .v2volume import V2Volume, V2VolumeTypedDict
+    from .v2volumequeryparams import V2VolumeQueryParams, V2VolumeQueryParamsTypedDict
+    from .v2volumequerytemplate import (
+        V2VolumeQueryTemplate,
+        V2VolumeQueryTemplateTypedDict,
+    )
+    from .v2volumequerytemplateresource import V2VolumeQueryTemplateResource
     from .v2volumeswithbalance import (
         V2VolumesWithBalance,
         V2VolumesWithBalanceTypedDict,
@@ -382,14 +393,8 @@ __all__ = [
     "PostTransactionTypedDict",
     "Posting",
     "PostingTypedDict",
-    "QueryTemplateAccountParams",
-    "QueryTemplateAccountParamsTypedDict",
-    "QueryTemplateLogParams",
-    "QueryTemplateLogParamsTypedDict",
-    "QueryTemplateTransactionParams",
-    "QueryTemplateTransactionParamsTypedDict",
-    "QueryTemplateVolumeParams",
-    "QueryTemplateVolumeParamsTypedDict",
+    "RevertedTransaction",
+    "RevertedTransactionTypedDict",
     "Runtime",
     "Script",
     "ScriptResponse",
@@ -414,6 +419,9 @@ __all__ = [
     "TransactionsResponseTypedDict",
     "TransactionsTypedDict",
     "V2Account",
+    "V2AccountQueryTemplate",
+    "V2AccountQueryTemplateResource",
+    "V2AccountQueryTemplateTypedDict",
     "V2AccountResponse",
     "V2AccountResponseTypedDict",
     "V2AccountTypedDict",
@@ -514,12 +522,17 @@ __all__ = [
     "V2LogDataNewTransaction",
     "V2LogDataNewTransactionTypedDict",
     "V2LogDataRevertedTransaction",
+    "V2LogDataRevertedTransactionTransaction",
+    "V2LogDataRevertedTransactionTransactionTypedDict",
     "V2LogDataRevertedTransactionTypedDict",
     "V2LogDataSetMetadata",
     "V2LogDataSetMetadataTargetID",
     "V2LogDataSetMetadataTargetIDTypedDict",
     "V2LogDataSetMetadataTargetType",
     "V2LogDataSetMetadataTypedDict",
+    "V2LogQueryTemplate",
+    "V2LogQueryTemplateResource",
+    "V2LogQueryTemplateTypedDict",
     "V2LogTransaction",
     "V2LogTransactionTypedDict",
     "V2LogType",
@@ -546,13 +559,14 @@ __all__ = [
     "V2PostingTypedDict",
     "V2QueryParams",
     "V2QueryParamsTypedDict",
-    "V2QueryResource",
     "V2QueryTemplate",
     "V2QueryTemplateTypedDict",
     "V2QueryTemplateVar",
     "V2QueryTemplateVarTypedDict",
     "V2RevertTransactionRequest",
     "V2RevertTransactionRequestTypedDict",
+    "V2RunQueryParams",
+    "V2RunQueryParamsTypedDict",
     "V2Schema",
     "V2SchemaData",
     "V2SchemaDataTypedDict",
@@ -571,6 +585,9 @@ __all__ = [
     "V2TargetIDTypedDict",
     "V2TargetType",
     "V2Transaction",
+    "V2TransactionQueryTemplate",
+    "V2TransactionQueryTemplateResource",
+    "V2TransactionQueryTemplateTypedDict",
     "V2TransactionTemplate",
     "V2TransactionTemplateTypedDict",
     "V2TransactionTypedDict",
@@ -580,6 +597,11 @@ __all__ = [
     "V2TransactionsCursorResponseResource",
     "V2TransactionsCursorResponseTypedDict",
     "V2Volume",
+    "V2VolumeQueryParams",
+    "V2VolumeQueryParamsTypedDict",
+    "V2VolumeQueryTemplate",
+    "V2VolumeQueryTemplateResource",
+    "V2VolumeQueryTemplateTypedDict",
     "V2VolumeTypedDict",
     "V2VolumesWithBalance",
     "V2VolumesWithBalanceCursorResponse",
@@ -679,6 +701,9 @@ _dynamic_imports: dict[str, str] = {
     "TransactionsResponseTypedDict": ".transactionsresponse",
     "V2Account": ".v2account",
     "V2AccountTypedDict": ".v2account",
+    "V2AccountQueryTemplate": ".v2accountquerytemplate",
+    "V2AccountQueryTemplateTypedDict": ".v2accountquerytemplate",
+    "V2AccountQueryTemplateResource": ".v2accountquerytemplateresource",
     "V2AccountResponse": ".v2accountresponse",
     "V2AccountResponseTypedDict": ".v2accountresponse",
     "V2AccountsCursorResponse": ".v2accountscursorresponse",
@@ -783,13 +808,20 @@ _dynamic_imports: dict[str, str] = {
     "V2LogDataInsertedSchemaTypedDict": ".v2logdatainsertedschema",
     "V2LogDataNewTransaction": ".v2logdatanewtransaction",
     "V2LogDataNewTransactionTypedDict": ".v2logdatanewtransaction",
+    "RevertedTransaction": ".v2logdatarevertedtransaction",
+    "RevertedTransactionTypedDict": ".v2logdatarevertedtransaction",
     "V2LogDataRevertedTransaction": ".v2logdatarevertedtransaction",
+    "V2LogDataRevertedTransactionTransaction": ".v2logdatarevertedtransaction",
+    "V2LogDataRevertedTransactionTransactionTypedDict": ".v2logdatarevertedtransaction",
     "V2LogDataRevertedTransactionTypedDict": ".v2logdatarevertedtransaction",
     "V2LogDataSetMetadata": ".v2logdatasetmetadata",
     "V2LogDataSetMetadataTargetID": ".v2logdatasetmetadata",
     "V2LogDataSetMetadataTargetIDTypedDict": ".v2logdatasetmetadata",
     "V2LogDataSetMetadataTargetType": ".v2logdatasetmetadata",
     "V2LogDataSetMetadataTypedDict": ".v2logdatasetmetadata",
+    "V2LogQueryTemplate": ".v2logquerytemplate",
+    "V2LogQueryTemplateTypedDict": ".v2logquerytemplate",
+    "V2LogQueryTemplateResource": ".v2logquerytemplateresource",
     "V2LogsCursorResponse": ".v2logscursorresponse",
     "V2LogsCursorResponseCursor": ".v2logscursorresponse",
     "V2LogsCursorResponseCursorTypedDict": ".v2logscursorresponse",
@@ -812,23 +844,16 @@ _dynamic_imports: dict[str, str] = {
     "V2PostTransactionScript": ".v2posttransaction",
     "V2PostTransactionScriptTypedDict": ".v2posttransaction",
     "V2PostTransactionTypedDict": ".v2posttransaction",
-    "QueryTemplateAccountParams": ".v2queryparams",
-    "QueryTemplateAccountParamsTypedDict": ".v2queryparams",
-    "QueryTemplateLogParams": ".v2queryparams",
-    "QueryTemplateLogParamsTypedDict": ".v2queryparams",
-    "QueryTemplateTransactionParams": ".v2queryparams",
-    "QueryTemplateTransactionParamsTypedDict": ".v2queryparams",
-    "QueryTemplateVolumeParams": ".v2queryparams",
-    "QueryTemplateVolumeParamsTypedDict": ".v2queryparams",
     "V2QueryParams": ".v2queryparams",
     "V2QueryParamsTypedDict": ".v2queryparams",
-    "V2QueryResource": ".v2queryresource",
     "V2QueryTemplate": ".v2querytemplate",
     "V2QueryTemplateTypedDict": ".v2querytemplate",
     "V2QueryTemplateVar": ".v2querytemplatevar",
     "V2QueryTemplateVarTypedDict": ".v2querytemplatevar",
     "V2RevertTransactionRequest": ".v2reverttransactionrequest",
     "V2RevertTransactionRequestTypedDict": ".v2reverttransactionrequest",
+    "V2RunQueryParams": ".v2runqueryparams",
+    "V2RunQueryParamsTypedDict": ".v2runqueryparams",
     "V2Schema": ".v2schema",
     "V2SchemaTypedDict": ".v2schema",
     "V2SchemaData": ".v2schemadata",
@@ -848,6 +873,9 @@ _dynamic_imports: dict[str, str] = {
     "V2TargetType": ".v2targettype",
     "V2Transaction": ".v2transaction",
     "V2TransactionTypedDict": ".v2transaction",
+    "V2TransactionQueryTemplate": ".v2transactionquerytemplate",
+    "V2TransactionQueryTemplateTypedDict": ".v2transactionquerytemplate",
+    "V2TransactionQueryTemplateResource": ".v2transactionquerytemplateresource",
     "V2TransactionsCursorResponse": ".v2transactionscursorresponse",
     "V2TransactionsCursorResponseCursor": ".v2transactionscursorresponse",
     "V2TransactionsCursorResponseCursorTypedDict": ".v2transactionscursorresponse",
@@ -857,6 +885,11 @@ _dynamic_imports: dict[str, str] = {
     "V2TransactionTemplateTypedDict": ".v2transactiontemplate",
     "V2Volume": ".v2volume",
     "V2VolumeTypedDict": ".v2volume",
+    "V2VolumeQueryParams": ".v2volumequeryparams",
+    "V2VolumeQueryParamsTypedDict": ".v2volumequeryparams",
+    "V2VolumeQueryTemplate": ".v2volumequerytemplate",
+    "V2VolumeQueryTemplateTypedDict": ".v2volumequerytemplate",
+    "V2VolumeQueryTemplateResource": ".v2volumequerytemplateresource",
     "V2VolumesWithBalance": ".v2volumeswithbalance",
     "V2VolumesWithBalanceTypedDict": ".v2volumeswithbalance",
     "V2VolumesWithBalanceCursorResponse": ".v2volumeswithbalancecursorresponse",

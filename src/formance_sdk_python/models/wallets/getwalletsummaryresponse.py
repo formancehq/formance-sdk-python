@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class GetWalletSummaryResponseTypedDict(TypedDict):
     data: WalletSummaryTypedDict
+    r"""Aggregated funds held by a wallet, broken down by availability"""
 
 
 class GetWalletSummaryResponse(BaseModel):
     data: WalletSummary
+    r"""Aggregated funds held by a wallet, broken down by availability"""
