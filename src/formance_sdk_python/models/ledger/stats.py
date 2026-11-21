@@ -6,11 +6,19 @@ from typing_extensions import TypedDict
 
 
 class StatsTypedDict(TypedDict):
+    r"""Aggregate counts for a ledger"""
+
     accounts: int
+    r"""Total number of accounts in the ledger"""
     transactions: int
+    r"""Total number of transactions in the ledger"""
 
 
 class Stats(BaseModel):
+    r"""Aggregate counts for a ledger"""
+
     accounts: int
+    r"""Total number of accounts in the ledger"""
 
     transactions: int
+    r"""Total number of transactions in the ledger"""

@@ -10,38 +10,54 @@ from typing_extensions import Annotated, TypedDict
 
 
 class WalletWithBalancesBalancesTypedDict(TypedDict):
+    r"""Aggregated funds held by the wallet, keyed by asset"""
+
     main: AssetHolderTypedDict
 
 
 class WalletWithBalancesBalances(BaseModel):
+    r"""Aggregated funds held by the wallet, keyed by asset"""
+
     main: AssetHolder
 
 
 class WalletWithBalancesTypedDict(TypedDict):
+    r"""A wallet together with the funds it currently holds"""
+
     balances: WalletWithBalancesBalancesTypedDict
+    r"""Aggregated funds held by the wallet, keyed by asset"""
     created_at: datetime
+    r"""When the wallet was created"""
     id: str
     r"""The unique ID of the wallet."""
     ledger: str
+    r"""Name of the ledger backing this wallet"""
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
     name: str
+    r"""Human-readable name of the wallet"""
 
 
 class WalletWithBalances(BaseModel):
+    r"""A wallet together with the funds it currently holds"""
+
     balances: WalletWithBalancesBalances
+    r"""Aggregated funds held by the wallet, keyed by asset"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the wallet was created"""
 
     id: str
     r"""The unique ID of the wallet."""
 
     ledger: str
+    r"""Name of the ledger backing this wallet"""
 
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
 
     name: str
+    r"""Human-readable name of the wallet"""
 
 
 try:

@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class CreateBalanceResponseTypedDict(TypedDict):
     data: BalanceTypedDict
+    r"""A named balance within a wallet, optionally carrying an expiry date"""
 
 
 class CreateBalanceResponse(BaseModel):
     data: Balance
+    r"""A named balance within a wallet, optionally carrying an expiry date"""

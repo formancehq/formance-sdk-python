@@ -2,24 +2,40 @@
 
 from __future__ import annotations
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
+import pydantic
 from pydantic import model_serializer
 from typing import Any, Dict, List, Optional
-from typing_extensions import NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class WorkflowConfigTypedDict(TypedDict):
+    r"""The stages a workflow runs, in order"""
+
     stages: List[Dict[str, Any]]
+    r"""The stages executed in order when the workflow runs"""
+    activity_max_attempts: NotRequired[int]
+    r"""Total attempts per stage activity, including the initial attempt. Stored at workflow creation; defaults to 15 when omitted."""
     name: NotRequired[str]
+    r"""Human-readable name for the workflow"""
 
 
 class WorkflowConfig(BaseModel):
+    r"""The stages a workflow runs, in order"""
+
     stages: List[Dict[str, Any]]
+    r"""The stages executed in order when the workflow runs"""
+
+    activity_max_attempts: Annotated[
+        Optional[int], pydantic.Field(alias="activityMaxAttempts")
+    ] = 15
+    r"""Total attempts per stage activity, including the initial attempt. Stored at workflow creation; defaults to 15 when omitted."""
 
     name: Optional[str] = None
+    r"""Human-readable name for the workflow"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["name"])
+        optional_fields = set(["activityMaxAttempts", "name"])
         serialized = handler(self)
         m = {}
 
@@ -32,3 +48,9 @@ class WorkflowConfig(BaseModel):
                     m[k] = val
 
         return m
+
+
+try:
+    WorkflowConfig.model_rebuild()
+except NameError:
+    pass

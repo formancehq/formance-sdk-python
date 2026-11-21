@@ -12,51 +12,75 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ReconciliationTypedDict(TypedDict):
+    r"""One run of a policy, comparing both sides and reporting the drift between them"""
+
     created_at: datetime
+    r"""When the reconciliation was run"""
     drift_balances: Dict[str, int]
+    r"""Difference between the two sides, keyed by asset. All-zero means the sides agree"""
     id: str
+    r"""Unique identifier of the reconciliation run"""
     ledger_balances: Dict[str, int]
+    r"""Balances observed on the ledger side, keyed by asset"""
     payments_balances: Dict[str, int]
+    r"""Balances observed on the payments side, keyed by asset"""
     policy_id: str
+    r"""Identifier of the policy this run applied"""
     reconciled_at_ledger: datetime
+    r"""Point in time at which the ledger side was evaluated"""
     reconciled_at_payments: datetime
+    r"""Point in time at which the payments side was evaluated"""
     status: str
+    r"""Outcome of the reconciliation run"""
     error: NotRequired[str]
+    r"""Why the run failed, when its status reports an error"""
 
 
 class Reconciliation(BaseModel):
+    r"""One run of a policy, comparing both sides and reporting the drift between them"""
+
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the reconciliation was run"""
 
     drift_balances: Annotated[
         Dict[str, Annotated[int, BeforeValidator(validate_int)]],
         pydantic.Field(alias="driftBalances"),
     ]
+    r"""Difference between the two sides, keyed by asset. All-zero means the sides agree"""
 
     id: str
+    r"""Unique identifier of the reconciliation run"""
 
     ledger_balances: Annotated[
         Dict[str, Annotated[int, BeforeValidator(validate_int)]],
         pydantic.Field(alias="ledgerBalances"),
     ]
+    r"""Balances observed on the ledger side, keyed by asset"""
 
     payments_balances: Annotated[
         Dict[str, Annotated[int, BeforeValidator(validate_int)]],
         pydantic.Field(alias="paymentsBalances"),
     ]
+    r"""Balances observed on the payments side, keyed by asset"""
 
     policy_id: Annotated[str, pydantic.Field(alias="policyID")]
+    r"""Identifier of the policy this run applied"""
 
     reconciled_at_ledger: Annotated[
         datetime, pydantic.Field(alias="reconciledAtLedger")
     ]
+    r"""Point in time at which the ledger side was evaluated"""
 
     reconciled_at_payments: Annotated[
         datetime, pydantic.Field(alias="reconciledAtPayments")
     ]
+    r"""Point in time at which the payments side was evaluated"""
 
     status: str
+    r"""Outcome of the reconciliation run"""
 
     error: Optional[str] = None
+    r"""Why the run failed, when its status reports an error"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

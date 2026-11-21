@@ -9,16 +9,22 @@ from typing_extensions import NotRequired, TypedDict
 
 class AccountTypedDict(TypedDict):
     address: str
+    r"""The account address, a colon-separated segmented path such as users:001"""
     metadata: NotRequired[Dict[str, Any]]
+    r"""Arbitrary key/value pairs attached to the account"""
     type: NotRequired[str]
+    r"""Free-form classification of the account"""
 
 
 class Account(BaseModel):
     address: str
+    r"""The account address, a colon-separated segmented path such as users:001"""
 
     metadata: Optional[Dict[str, Any]] = None
+    r"""Arbitrary key/value pairs attached to the account"""
 
     type: Optional[str] = None
+    r"""Free-form classification of the account"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

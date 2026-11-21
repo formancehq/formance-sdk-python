@@ -9,14 +9,22 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class ActivityCreateTransactionTypedDict(TypedDict):
+    r"""Arguments for the activity that writes a transaction to a ledger"""
+
     data: NotRequired[PostTransactionTypedDict]
+    r"""A transaction to write to a ledger"""
     ledger: NotRequired[str]
+    r"""Name of the ledger to write the transaction to"""
 
 
 class ActivityCreateTransaction(BaseModel):
+    r"""Arguments for the activity that writes a transaction to a ledger"""
+
     data: Optional[PostTransaction] = None
+    r"""A transaction to write to a ledger"""
 
     ledger: Optional[str] = None
+    r"""Name of the ledger to write the transaction to"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

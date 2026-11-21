@@ -12,8 +12,10 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 class V2PipelineTypedDict(TypedDict):
     created_at: datetime
     exporter_id: str
+    r"""Identifier of the exporter the pipeline feeds"""
     id: str
     ledger: str
+    r"""Name of the ledger the pipeline reads from"""
     enabled: NotRequired[bool]
     last_log_id: NotRequired[int]
 
@@ -22,10 +24,12 @@ class V2Pipeline(BaseModel):
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
 
     exporter_id: Annotated[str, pydantic.Field(alias="exporterID")]
+    r"""Identifier of the exporter the pipeline feeds"""
 
     id: str
 
     ledger: str
+    r"""Name of the ledger the pipeline reads from"""
 
     enabled: Optional[bool] = None
 

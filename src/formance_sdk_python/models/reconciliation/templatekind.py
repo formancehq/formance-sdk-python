@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class TemplateKind(str, Enum):
+    r"""Which built-in check a rule applies, determining the shape of its templateSpec"""
+
     LEDGER_VS_POOL_DRIFT = "ledger_vs_pool_drift"
     LEDGER_INVARIANT = "ledger_invariant"
     ACCOUNT_THRESHOLD = "account_threshold"

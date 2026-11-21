@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class GetHoldResponseTypedDict(TypedDict):
     data: ExpandedDebitHoldTypedDict
+    r"""A hold together with the amounts it currently locks and has already released"""
 
 
 class GetHoldResponse(BaseModel):
     data: ExpandedDebitHold
+    r"""A hold together with the amounts it currently locks and has already released"""

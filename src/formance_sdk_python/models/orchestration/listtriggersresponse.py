@@ -9,7 +9,9 @@ from typing_extensions import TypedDict
 
 class ListTriggersResponseTypedDict(TypedDict):
     data: List[TriggerTypedDict]
+    r"""The triggers defined on this stack"""
 
 
 class ListTriggersResponse(BaseModel):
     data: List[Trigger]
+    r"""The triggers defined on this stack"""

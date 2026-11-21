@@ -19,6 +19,7 @@
 * [list_triggers_occurrences](#list_triggers_occurrences) - List triggers occurrences
 * [list_workflows](#list_workflows) - List registered workflows
 * [read_trigger](#read_trigger) - Read trigger
+* [resume_activity](#resume_activity) - Resume a paused activity
 * [run_workflow](#run_workflow) - Run workflow
 * [send_event](#send_event) - Send an event to a running workflow
 
@@ -65,10 +66,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## create_trigger
 
@@ -111,10 +112,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## create_workflow
 
@@ -157,10 +158,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## delete_trigger
 
@@ -205,10 +206,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## delete_workflow
 
@@ -253,10 +254,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## get_instance
 
@@ -301,10 +302,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## get_instance_history
 
@@ -349,10 +350,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## get_instance_stage_history
 
@@ -398,10 +399,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## get_server_info_orchestration
 
@@ -443,10 +444,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## get_workflow
 
@@ -491,10 +492,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## list_instances
 
@@ -540,10 +541,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## list_triggers
 
@@ -586,10 +587,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## list_triggers_occurrences
 
@@ -634,10 +635,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## list_workflows
 
@@ -679,10 +680,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## read_trigger
 
@@ -727,10 +728,68 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
+
+## resume_activity
+
+Resume a paused activity identified by temporalRunID and pausedAt.
+Use both values from the paused activity projection. A stale run id or
+pause timestamp returns a conflict, preventing a delayed resend from
+resuming an activity in a newer run or a subsequent pause generation.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="resumeActivity" method="post" path="/api/orchestration/instances/{instanceID}/stages/{number}/activities/{activityID}/resume" -->
+```python
+from formance_sdk_python import SDK
+from formance_sdk_python.models import shared
+from formance_sdk_python.utils import parse_datetime
+
+
+with SDK(
+    security=shared.Security(
+        client_id="<YOUR_CLIENT_ID_HERE>",
+        client_secret="<YOUR_CLIENT_SECRET_HERE>",
+    ),
+) as sdk:
+
+    res = sdk.orchestration.v1.resume_activity(request={
+        "request_body": {
+            "paused_at": parse_datetime("2025-06-22T15:55:52.985Z"),
+            "temporal_run_id": "<id>",
+        },
+        "activity_id": "<id>",
+        "instance_id": "<id>",
+        "number": 113977,
+    })
+
+    assert res.error is not None
+
+    # Handle response
+    print(res.error)
+
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `request`                                                                            | [operations.ResumeActivityRequest](../../models/operations/resumeactivityrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
+
+### Response
+
+**[operations.ResumeActivityResponse](../../models/operations/resumeactivityresponse.md)**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## run_workflow
 
@@ -775,10 +834,10 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |
 
 ## send_event
 
@@ -823,7 +882,7 @@ with SDK(
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| orchestration.Error | default             | application/json    |
-| errors.SDKError     | 4XX, 5XX            | \*/\*               |
+| Error Type                | Status Code               | Content Type              |
+| ------------------------- | ------------------------- | ------------------------- |
+| orchestration.ErrorsError | default                   | application/json          |
+| errors.SDKError           | 4XX, 5XX                  | \*/\*                     |

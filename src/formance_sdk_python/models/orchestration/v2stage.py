@@ -18,8 +18,10 @@ V2StageTypedDict = TypeAliasType(
         V2StageSendTypedDict,
     ],
 )
+r"""One step of a workflow, whose shape depends on the stage type"""
 
 
 V2Stage = TypeAliasType(
     "V2Stage", Union[V2StageWaitEvent, V2Update, V2StageDelay, V2StageSend]
 )
+r"""One step of a workflow, whose shape depends on the stage type"""

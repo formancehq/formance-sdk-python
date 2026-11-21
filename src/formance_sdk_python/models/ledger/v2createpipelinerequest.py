@@ -8,10 +8,12 @@ from typing_extensions import Annotated, TypedDict
 
 class V2CreatePipelineRequestTypedDict(TypedDict):
     exporter_id: str
+    r"""Identifier of the exporter this pipeline feeds"""
 
 
 class V2CreatePipelineRequest(BaseModel):
     exporter_id: Annotated[str, pydantic.Field(alias="exporterID")]
+    r"""Identifier of the exporter this pipeline feeds"""
 
 
 try:

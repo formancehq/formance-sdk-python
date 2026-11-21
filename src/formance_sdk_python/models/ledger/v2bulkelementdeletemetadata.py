@@ -26,16 +26,20 @@ class V2BulkElementDeleteMetadataData(BaseModel):
 
 class V2BulkElementDeleteMetadataTypedDict(TypedDict):
     action: str
+    r"""The bulk action this element performs"""
     data: NotRequired[V2BulkElementDeleteMetadataDataTypedDict]
     ik: NotRequired[str]
+    r"""Idempotency key scoped to this element, making it safe to retry the bulk request"""
 
 
 class V2BulkElementDeleteMetadata(BaseModel):
     action: str
+    r"""The bulk action this element performs"""
 
     data: Optional[V2BulkElementDeleteMetadataData] = None
 
     ik: Optional[str] = None
+    r"""Idempotency key scoped to this element, making it safe to retry the bulk request"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

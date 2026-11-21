@@ -8,11 +8,17 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class V2ActivityListWalletsTypedDict(TypedDict):
+    r"""Arguments for the activity that lists wallets"""
+
     name: NotRequired[str]
+    r"""Restrict the listing to wallets with this name"""
 
 
 class V2ActivityListWallets(BaseModel):
+    r"""Arguments for the activity that lists wallets"""
+
     name: Optional[str] = None
+    r"""Restrict the listing to wallets with this name"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

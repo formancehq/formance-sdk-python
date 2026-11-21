@@ -10,28 +10,40 @@ from typing_extensions import Annotated, TypedDict
 
 
 class LogType(str, Enum):
+    r"""The type of operation this log represents"""
+
     NEW_TRANSACTION = "NEW_TRANSACTION"
     SET_METADATA = "SET_METADATA"
 
 
 class LogTypedDict(TypedDict):
     data: Dict[str, Any]
+    r"""The payload of the log entry, whose shape depends on the log type"""
     date_: datetime
+    r"""Timestamp when the operation was recorded"""
     hash: str
+    r"""SHA256 hash of the log entry, chained from the previous log for integrity verification"""
     id: int
+    r"""Unique sequential identifier for this log entry within the ledger"""
     type: LogType
+    r"""The type of operation this log represents"""
 
 
 class Log(BaseModel):
     data: Dict[str, Any]
+    r"""The payload of the log entry, whose shape depends on the log type"""
 
     date_: Annotated[datetime, pydantic.Field(alias="date")]
+    r"""Timestamp when the operation was recorded"""
 
     hash: str
+    r"""SHA256 hash of the log entry, chained from the previous log for integrity verification"""
 
     id: int
+    r"""Unique sequential identifier for this log entry within the ledger"""
 
     type: LogType
+    r"""The type of operation this log represents"""
 
 
 try:

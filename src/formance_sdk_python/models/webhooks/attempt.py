@@ -11,40 +11,64 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class AttemptTypedDict(TypedDict):
+    r"""A single delivery attempt made against a webhook endpoint"""
+
     config: WebhooksConfigTypedDict
+    r"""A webhook endpoint together with the event types it subscribes to"""
     created_at: datetime
+    r"""When the attempt was created"""
     id: str
+    r"""Unique identifier of the attempt"""
     payload: str
+    r"""The event body sent to the endpoint"""
     retry_attempt: int
+    r"""Position of this attempt in the retry sequence"""
     status: str
+    r"""Current status of the attempt"""
     status_code: int
+    r"""HTTP status code returned by the endpoint"""
     updated_at: datetime
+    r"""When the attempt was last modified"""
     webhook_id: str
+    r"""Identifier of the webhook this attempt belongs to"""
     next_retry_after: NotRequired[datetime]
+    r"""When the next retry is scheduled, absent once the attempt is settled"""
 
 
 class Attempt(BaseModel):
+    r"""A single delivery attempt made against a webhook endpoint"""
+
     config: WebhooksConfig
+    r"""A webhook endpoint together with the event types it subscribes to"""
 
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the attempt was created"""
 
     id: str
+    r"""Unique identifier of the attempt"""
 
     payload: str
+    r"""The event body sent to the endpoint"""
 
     retry_attempt: Annotated[int, pydantic.Field(alias="retryAttempt")]
+    r"""Position of this attempt in the retry sequence"""
 
     status: str
+    r"""Current status of the attempt"""
 
     status_code: Annotated[int, pydantic.Field(alias="statusCode")]
+    r"""HTTP status code returned by the endpoint"""
 
     updated_at: Annotated[datetime, pydantic.Field(alias="updatedAt")]
+    r"""When the attempt was last modified"""
 
     webhook_id: Annotated[str, pydantic.Field(alias="webhookID")]
+    r"""Identifier of the webhook this attempt belongs to"""
 
     next_retry_after: Annotated[
         Optional[datetime], pydantic.Field(alias="nextRetryAfter")
     ] = None
+    r"""When the next retry is scheduled, absent once the attempt is settled"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

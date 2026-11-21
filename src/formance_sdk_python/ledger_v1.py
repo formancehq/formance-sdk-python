@@ -1723,7 +1723,7 @@ class LedgerV1(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
-            path="/api/ledger/_info",
+            path="/api/ledger/_info#ledger",
             base_url=base_url,
             url_variables=url_variables,
             request=None,
@@ -1806,7 +1806,7 @@ class LedgerV1(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
-            path="/api/ledger/_info",
+            path="/api/ledger/_info#ledger",
             base_url=base_url,
             url_variables=url_variables,
             request=None,

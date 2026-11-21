@@ -1,5 +1,7 @@
 # MigrationInfoState
 
+Current state of the migration
+
 ## Example Usage
 
 ```python

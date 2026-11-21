@@ -10,16 +10,20 @@ from typing_extensions import NotRequired, TypedDict
 
 class V2BulkElementCreateTransactionTypedDict(TypedDict):
     action: str
+    r"""The bulk action this element performs"""
     data: NotRequired[V2PostTransactionTypedDict]
     ik: NotRequired[str]
+    r"""Idempotency key scoped to this element, making it safe to retry the bulk request"""
 
 
 class V2BulkElementCreateTransaction(BaseModel):
     action: str
+    r"""The bulk action this element performs"""
 
     data: Optional[V2PostTransaction] = None
 
     ik: Optional[str] = None
+    r"""Idempotency key scoped to this element, making it safe to retry the bulk request"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V2StatsResponseTypedDict(TypedDict):
     data: V2StatsTypedDict
+    r"""Aggregate counts for a ledger"""
 
 
 class V2StatsResponse(BaseModel):
     data: V2Stats
+    r"""Aggregate counts for a ledger"""
