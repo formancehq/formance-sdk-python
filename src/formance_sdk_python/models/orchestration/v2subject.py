@@ -16,6 +16,7 @@ V2SubjectTypedDict = TypeAliasType(
     "V2SubjectTypedDict",
     Union[V2LedgerAccountSubjectTypedDict, V2WalletSubjectTypedDict],
 )
+r"""The counterparty of a wallet movement, either a ledger account or another wallet"""
 
 
 V2Subject = Annotated[
@@ -25,3 +26,4 @@ V2Subject = Annotated[
     ],
     Discriminator(lambda m: get_discriminator(m, "type", "type")),
 ]
+r"""The counterparty of a wallet movement, either a ledger account or another wallet"""

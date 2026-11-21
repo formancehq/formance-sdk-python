@@ -1,5 +1,7 @@
 # AccountsCursorResponseCursor
 
+Paginated cursor wrapping the list of accounts
+
 
 ## Fields
 

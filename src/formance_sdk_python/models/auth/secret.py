@@ -15,14 +15,20 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class SecretTypedDict(TypedDict):
+    r"""A client secret. The full value is returned only at creation and cannot be retrieved again"""
+
     clear: str
     id: str
     last_digits: str
     name: str
+    r"""Human-readable name identifying the secret"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
 
 class Secret(BaseModel):
+    r"""A client secret. The full value is returned only at creation and cannot be retrieved again"""
+
     clear: str
 
     id: str
@@ -30,8 +36,10 @@ class Secret(BaseModel):
     last_digits: Annotated[str, pydantic.Field(alias="lastDigits")]
 
     name: str
+    r"""Human-readable name identifying the secret"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -9,10 +9,14 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class LedgerInfoStorageTypedDict(TypedDict):
+    r"""Storage backend information, including the applied migrations"""
+
     migrations: NotRequired[List[MigrationInfoTypedDict]]
 
 
 class LedgerInfoStorage(BaseModel):
+    r"""Storage backend information, including the applied migrations"""
+
     migrations: Optional[List[MigrationInfo]] = None
 
     @model_serializer(mode="wrap")
@@ -33,14 +37,22 @@ class LedgerInfoStorage(BaseModel):
 
 
 class LedgerInfoTypedDict(TypedDict):
+    r"""Runtime information about a ledger, including the state of its storage migrations"""
+
     name: NotRequired[str]
+    r"""Name of the ledger"""
     storage: NotRequired[LedgerInfoStorageTypedDict]
+    r"""Storage backend information, including the applied migrations"""
 
 
 class LedgerInfo(BaseModel):
+    r"""Runtime information about a ledger, including the state of its storage migrations"""
+
     name: Optional[str] = None
+    r"""Name of the ledger"""
 
     storage: Optional[LedgerInfoStorage] = None
+    r"""Storage backend information, including the applied migrations"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

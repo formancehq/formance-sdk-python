@@ -9,17 +9,27 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class AckTypedDict(TypedDict):
+    r"""Record of who acknowledged an alert and when"""
+
     at: datetime
+    r"""When the alert was acknowledged"""
     by: str
+    r"""Who acknowledged the alert"""
     note: NotRequired[str]
+    r"""Free-text note left by whoever acknowledged the alert"""
 
 
 class Ack(BaseModel):
+    r"""Record of who acknowledged an alert and when"""
+
     at: datetime
+    r"""When the alert was acknowledged"""
 
     by: str
+    r"""Who acknowledged the alert"""
 
     note: Optional[str] = None
+    r"""Free-text note left by whoever acknowledged the alert"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

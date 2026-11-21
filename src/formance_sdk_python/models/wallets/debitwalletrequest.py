@@ -12,11 +12,15 @@ from typing_extensions import NotRequired, TypedDict
 
 class DebitWalletRequestTypedDict(TypedDict):
     amount: MonetaryTypedDict
+    r"""An amount together with the asset it is denominated in"""
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
     balances: NotRequired[List[str]]
+    r"""Names of the balances to debit from, in order. Defaults to the main balance when omitted"""
     description: NotRequired[str]
+    r"""Human-readable reason for the debit"""
     destination: NotRequired[SubjectTypedDict]
+    r"""The counterparty of a wallet movement, either a ledger account or another wallet"""
     pending: NotRequired[bool]
     r"""Set to true to create a pending hold. If false, the wallet will be debited immediately."""
     timestamp: NotRequired[datetime]
@@ -25,15 +29,19 @@ class DebitWalletRequestTypedDict(TypedDict):
 
 class DebitWalletRequest(BaseModel):
     amount: Monetary
+    r"""An amount together with the asset it is denominated in"""
 
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
 
     balances: Optional[List[str]] = None
+    r"""Names of the balances to debit from, in order. Defaults to the main balance when omitted"""
 
     description: Optional[str] = None
+    r"""Human-readable reason for the debit"""
 
     destination: Optional[Subject] = None
+    r"""The counterparty of a wallet movement, either a ledger account or another wallet"""
 
     pending: Optional[bool] = None
     r"""Set to true to create a pending hold. If false, the wallet will be debited immediately."""

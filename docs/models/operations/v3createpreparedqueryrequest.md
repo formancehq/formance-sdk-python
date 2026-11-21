@@ -1,0 +1,10 @@
+# V3CreatePreparedQueryRequest
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `create_prepared_query_request`                                                              | [ledger_v3.CreatePreparedQueryRequest](../../models/ledger_v3/createpreparedqueryrequest.md) | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `idempotency_key`                                                                            | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | Idempotency key for the request                                                              |
+| `ledger_name`                                                                                | *str*                                                                                        | :heavy_check_mark:                                                                           | Name of the ledger                                                                           |

@@ -12,18 +12,24 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V2BulkResponseTypedDict(TypedDict):
     data: NotRequired[List[V2BulkElementResultTypedDict]]
+    r"""Result of each element of the bulk request, in submission order"""
     error_code: NotRequired[V2ErrorsEnum]
+    r"""Machine-readable error code identifying the failure"""
     error_message: NotRequired[str]
+    r"""Human-readable description of the error"""
 
 
 class V2BulkResponse(BaseModel):
     data: Optional[List[V2BulkElementResult]] = None
+    r"""Result of each element of the bulk request, in submission order"""
 
     error_code: Annotated[Optional[V2ErrorsEnum], pydantic.Field(alias="errorCode")] = (
         None
     )
+    r"""Machine-readable error code identifying the failure"""
 
     error_message: Annotated[Optional[str], pydantic.Field(alias="errorMessage")] = None
+    r"""Human-readable description of the error"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -9,10 +9,12 @@ from typing_extensions import NotRequired, TypedDict
 
 class V2RevertTransactionRequestTypedDict(TypedDict):
     metadata: NotRequired[Dict[str, str]]
+    r"""Metadata to attach to the compensating transaction created by the revert"""
 
 
 class V2RevertTransactionRequest(BaseModel):
     metadata: Optional[Dict[str, str]] = None
+    r"""Metadata to attach to the compensating transaction created by the revert"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

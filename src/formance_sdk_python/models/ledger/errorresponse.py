@@ -11,16 +11,22 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class ErrorResponseTypedDict(TypedDict):
     error_code: ErrorsEnum
+    r"""Machine-readable error code identifying the failure"""
     error_message: str
+    r"""Human-readable description of the error"""
     details: NotRequired[str]
+    r"""Optional link carrying additional context about the error, such as a Numscript playground URL reproducing it"""
 
 
 class ErrorResponse(BaseModel):
     error_code: Annotated[ErrorsEnum, pydantic.Field(alias="errorCode")]
+    r"""Machine-readable error code identifying the failure"""
 
     error_message: Annotated[str, pydantic.Field(alias="errorMessage")]
+    r"""Human-readable description of the error"""
 
     details: Optional[str] = None
+    r"""Optional link carrying additional context about the error, such as a Numscript playground URL reproducing it"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

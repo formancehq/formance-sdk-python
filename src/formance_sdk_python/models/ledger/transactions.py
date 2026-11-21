@@ -9,7 +9,9 @@ from typing_extensions import TypedDict
 
 class TransactionsTypedDict(TypedDict):
     transactions: List[TransactionDataTypedDict]
+    r"""The transactions to create, applied in order"""
 
 
 class Transactions(BaseModel):
     transactions: List[TransactionData]
+    r"""The transactions to create, applied in order"""

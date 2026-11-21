@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V2CreateTransactionResponseTypedDict(TypedDict):
     data: V2TransactionTypedDict
+    r"""A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps"""
 
 
 class V2CreateTransactionResponse(BaseModel):
     data: V2Transaction
+    r"""A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps"""

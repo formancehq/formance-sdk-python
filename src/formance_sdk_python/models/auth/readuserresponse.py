@@ -10,10 +10,12 @@ from typing_extensions import NotRequired, TypedDict
 
 class ReadUserResponseTypedDict(TypedDict):
     data: NotRequired[UserTypedDict]
+    r"""A user known to the stack's identity provider"""
 
 
 class ReadUserResponse(BaseModel):
     data: Optional[User] = None
+    r"""A user known to the stack's identity provider"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

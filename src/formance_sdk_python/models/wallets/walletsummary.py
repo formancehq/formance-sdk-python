@@ -11,35 +11,49 @@ from typing_extensions import Annotated, TypedDict
 
 
 class WalletSummaryTypedDict(TypedDict):
+    r"""Aggregated funds held by a wallet, broken down by availability"""
+
     available_funds: Dict[str, int]
+    r"""Funds available to debit, keyed by asset. Covers balances with no expiry and those not yet expired"""
     balances: List[BalanceWithAssetsTypedDict]
+    r"""Each balance of the wallet with its per-asset amounts"""
     expirable_funds: Dict[str, int]
+    r"""Funds held in balances carrying an expiry date that has not yet passed, keyed by asset"""
     expired_funds: Dict[str, int]
+    r"""Funds held in balances whose expiry date has passed, keyed by asset"""
     hold_funds: Dict[str, int]
+    r"""Funds currently locked by pending holds, keyed by asset"""
 
 
 class WalletSummary(BaseModel):
+    r"""Aggregated funds held by a wallet, broken down by availability"""
+
     available_funds: Annotated[
         Dict[str, Annotated[int, BeforeValidator(validate_int)]],
         pydantic.Field(alias="availableFunds"),
     ]
+    r"""Funds available to debit, keyed by asset. Covers balances with no expiry and those not yet expired"""
 
     balances: List[BalanceWithAssets]
+    r"""Each balance of the wallet with its per-asset amounts"""
 
     expirable_funds: Annotated[
         Dict[str, Annotated[int, BeforeValidator(validate_int)]],
         pydantic.Field(alias="expirableFunds"),
     ]
+    r"""Funds held in balances carrying an expiry date that has not yet passed, keyed by asset"""
 
     expired_funds: Annotated[
         Dict[str, Annotated[int, BeforeValidator(validate_int)]],
         pydantic.Field(alias="expiredFunds"),
     ]
+    r"""Funds held in balances whose expiry date has passed, keyed by asset"""
 
     hold_funds: Annotated[
         Dict[str, Annotated[int, BeforeValidator(validate_int)]],
         pydantic.Field(alias="holdFunds"),
     ]
+    r"""Funds currently locked by pending holds, keyed by asset"""
 
 
 try:

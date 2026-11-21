@@ -9,14 +9,22 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class ActivityCreditWalletTypedDict(TypedDict):
+    r"""Arguments for the activity that credits a wallet"""
+
     data: NotRequired[CreditWalletRequestTypedDict]
+    r"""A credit to apply to a wallet"""
     id: NotRequired[str]
+    r"""Identifier of the wallet to credit"""
 
 
 class ActivityCreditWallet(BaseModel):
+    r"""Arguments for the activity that credits a wallet"""
+
     data: Optional[CreditWalletRequest] = None
+    r"""A credit to apply to a wallet"""
 
     id: Optional[str] = None
+    r"""Identifier of the wallet to credit"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

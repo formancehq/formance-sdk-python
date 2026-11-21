@@ -98,8 +98,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -187,8 +189,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -285,8 +289,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -383,8 +389,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -481,8 +489,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -579,8 +589,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -668,8 +680,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -757,8 +771,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -846,8 +862,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -935,8 +953,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1027,8 +1047,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1119,8 +1141,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1212,8 +1236,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1305,8 +1331,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1401,8 +1429,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1497,8 +1527,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1578,8 +1610,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1659,8 +1693,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1751,8 +1787,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1843,8 +1881,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -1935,8 +1975,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2027,8 +2069,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2119,8 +2163,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2211,8 +2257,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2306,8 +2354,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2401,8 +2451,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2484,8 +2536,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2567,8 +2621,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2659,8 +2715,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2751,8 +2809,240 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    def resume_activity(
+        self,
+        *,
+        request: Union[
+            operations.ResumeActivityRequest, operations.ResumeActivityRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ResumeActivityResponse:
+        r"""Resume a paused activity
+
+        Resume a paused activity identified by temporalRunID and pausedAt.
+        Use both values from the paused activity projection. A stale run id or
+        pause timestamp returns a conflict, preventing a delayed resend from
+        resuming an activity in a newer run or a subsequent pause generation.
+
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ResumeActivityRequest)
+        request = cast(operations.ResumeActivityRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/api/orchestration/instances/{instanceID}/stages/{number}/activities/{activityID}/resume",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body,
+                False,
+                False,
+                "json",
+                operations.ResumeActivityRequestBody,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="resumeActivity",
+                oauth2_scopes=["orchestration:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["204", "400", "404", "409", "500"], c
+            ),
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "204", "*"):
+            return operations.ResumeActivityResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, ["400", "404", "409"], "application/json"):
+            return operations.ResumeActivityResponse(
+                error=unmarshal_json_response(Optional[orchestration.Error], http_res),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "500", "application/json"):
+            return operations.ResumeActivityResponse(
+                error=unmarshal_json_response(Optional[orchestration.Error], http_res),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
+
+        raise errors.SDKError("Unexpected response received", http_res)
+
+    async def resume_activity_async(
+        self,
+        *,
+        request: Union[
+            operations.ResumeActivityRequest, operations.ResumeActivityRequestTypedDict
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.ResumeActivityResponse:
+        r"""Resume a paused activity
+
+        Resume a paused activity identified by temporalRunID and pausedAt.
+        Use both values from the paused activity projection. A stale run id or
+        pause timestamp returns a conflict, preventing a delayed resend from
+        resuming an activity in a newer run or a subsequent pause generation.
+
+
+        If set, this operation will use `client_id` from the global security.
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.ResumeActivityRequest)
+        request = cast(operations.ResumeActivityRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/api/orchestration/instances/{instanceID}/stages/{number}/activities/{activityID}/resume",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body,
+                False,
+                False,
+                "json",
+                operations.ResumeActivityRequestBody,
+            ),
+            allow_empty_value=None,
+            allowed_fields=["client_id"],
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="resumeActivity",
+                oauth2_scopes=["orchestration:write"],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: not utils.match_status_codes(
+                ["204", "400", "404", "409", "500"], c
+            ),
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "204", "*"):
+            return operations.ResumeActivityResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, ["400", "404", "409"], "application/json"):
+            return operations.ResumeActivityResponse(
+                error=unmarshal_json_response(Optional[orchestration.Error], http_res),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "500", "application/json"):
+            return operations.ResumeActivityResponse(
+                error=unmarshal_json_response(Optional[orchestration.Error], http_res),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "default", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2850,8 +3140,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -2949,8 +3241,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3045,8 +3339,10 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)
 
@@ -3141,7 +3437,9 @@ class OrchestrationV1(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "default", "application/json"):
-            response_data = unmarshal_json_response(orchestration.ErrorData, http_res)
-            raise orchestration.Error(response_data, http_res)
+            response_data = unmarshal_json_response(
+                orchestration.ErrorsErrorData, http_res
+            )
+            raise orchestration.ErrorsError(response_data, http_res)
 
         raise errors.SDKError("Unexpected response received", http_res)

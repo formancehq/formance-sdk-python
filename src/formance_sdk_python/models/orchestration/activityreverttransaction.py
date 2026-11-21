@@ -6,11 +6,19 @@ from typing_extensions import TypedDict
 
 
 class ActivityRevertTransactionTypedDict(TypedDict):
+    r"""Arguments for the activity that reverts a ledger transaction"""
+
     id: str
+    r"""Identifier of the transaction to revert"""
     ledger: str
+    r"""Name of the ledger holding the transaction"""
 
 
 class ActivityRevertTransaction(BaseModel):
+    r"""Arguments for the activity that reverts a ledger transaction"""
+
     id: str
+    r"""Identifier of the transaction to revert"""
 
     ledger: str
+    r"""Name of the ledger holding the transaction"""

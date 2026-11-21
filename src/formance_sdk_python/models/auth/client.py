@@ -16,42 +16,62 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ClientTypedDict(TypedDict):
+    r"""An OAuth2 client registered on the stack"""
+
     id: str
     name: str
+    r"""Display name of the client"""
     description: NotRequired[str]
+    r"""Human-readable description of the client"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     post_logout_redirect_uris: NotRequired[List[str]]
+    r"""URIs the authorization server may redirect to after logout"""
     public: NotRequired[bool]
+    r"""Whether the client is public, meaning it cannot keep a secret and uses PKCE instead"""
     redirect_uris: NotRequired[List[str]]
+    r"""URIs the authorization server may redirect to after a successful authorization"""
     scopes: NotRequired[List[str]]
+    r"""Scopes the client is allowed to request"""
     secrets: NotRequired[List[ClientSecretTypedDict]]
     trusted: NotRequired[bool]
+    r"""Whether the client is trusted, skipping the user consent screen"""
 
 
 class Client(BaseModel):
+    r"""An OAuth2 client registered on the stack"""
+
     id: str
 
     name: str
+    r"""Display name of the client"""
 
     description: Optional[str] = None
+    r"""Human-readable description of the client"""
 
     metadata: OptionalNullable[Dict[str, str]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     post_logout_redirect_uris: Annotated[
         Optional[List[str]], pydantic.Field(alias="postLogoutRedirectUris")
     ] = None
+    r"""URIs the authorization server may redirect to after logout"""
 
     public: Optional[bool] = None
+    r"""Whether the client is public, meaning it cannot keep a secret and uses PKCE instead"""
 
     redirect_uris: Annotated[
         Optional[List[str]], pydantic.Field(alias="redirectUris")
     ] = None
+    r"""URIs the authorization server may redirect to after a successful authorization"""
 
     scopes: Optional[List[str]] = None
+    r"""Scopes the client is allowed to request"""
 
     secrets: Optional[List[ClientSecret]] = None
 
     trusted: Optional[bool] = None
+    r"""Whether the client is trusted, skipping the user consent screen"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -13,12 +13,14 @@ from typing_extensions import Annotated, TypeAliasType, TypedDict
 V2LogDataDeleteMetadataTargetIDTypedDict = TypeAliasType(
     "V2LogDataDeleteMetadataTargetIDTypedDict", Union[str, int]
 )
+r"""Identifier of the entity the metadata was deleted from, either an account address or a transaction ID"""
 
 
 V2LogDataDeleteMetadataTargetID = TypeAliasType(
     "V2LogDataDeleteMetadataTargetID",
     Union[str, Annotated[int, BeforeValidator(validate_int)]],
 )
+r"""Identifier of the entity the metadata was deleted from, either an account address or a transaction ID"""
 
 
 class V2LogDataDeleteMetadataTargetType(str, Enum):
@@ -34,6 +36,7 @@ class V2LogDataDeleteMetadataTypedDict(TypedDict):
     key: str
     r"""The metadata key that was deleted"""
     target_id: V2LogDataDeleteMetadataTargetIDTypedDict
+    r"""Identifier of the entity the metadata was deleted from, either an account address or a transaction ID"""
     target_type: V2LogDataDeleteMetadataTargetType
     r"""Type of the target entity"""
 
@@ -47,6 +50,7 @@ class V2LogDataDeleteMetadata(BaseModel):
     target_id: Annotated[
         V2LogDataDeleteMetadataTargetID, pydantic.Field(alias="targetId")
     ]
+    r"""Identifier of the entity the metadata was deleted from, either an account address or a transaction ID"""
 
     target_type: Annotated[
         V2LogDataDeleteMetadataTargetType, pydantic.Field(alias="targetType")

@@ -7,14 +7,15 @@ from formance_sdk_python.utils.dynamic_imports import lazy_getattr, lazy_dir
 if TYPE_CHECKING:
     from . import (
         auth,
+        connectivity,
         errors,
         gateway,
         ledger,
+        ledger_v3,
         operations,
         orchestration,
         payments,
         reconciliation,
-        search,
         shared,
         wallets,
         webhooks,
@@ -25,14 +26,15 @@ if TYPE_CHECKING:
 
 _sub_packages = [
     "auth",
+    "connectivity",
     "errors",
     "gateway",
     "ledger",
+    "ledger_v3",
     "operations",
     "orchestration",
     "payments",
     "reconciliation",
-    "search",
     "shared",
     "wallets",
     "webhooks",

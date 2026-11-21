@@ -9,19 +9,29 @@ from typing_extensions import Annotated, TypedDict
 
 class V2VolumesWithBalanceTypedDict(TypedDict):
     account: str
+    r"""The account address these volumes belong to"""
     asset: str
+    r"""The asset these volumes are denominated in"""
     balance: int
+    r"""Net balance for this asset, equal to input minus output"""
     input: int
+    r"""Total amount credited to the account for this asset"""
     output: int
+    r"""Total amount debited from the account for this asset"""
 
 
 class V2VolumesWithBalance(BaseModel):
     account: str
+    r"""The account address these volumes belong to"""
 
     asset: str
+    r"""The asset these volumes are denominated in"""
 
     balance: Annotated[int, BeforeValidator(validate_int)]
+    r"""Net balance for this asset, equal to input minus output"""
 
     input: Annotated[int, BeforeValidator(validate_int)]
+    r"""Total amount credited to the account for this asset"""
 
     output: Annotated[int, BeforeValidator(validate_int)]
+    r"""Total amount debited from the account for this asset"""

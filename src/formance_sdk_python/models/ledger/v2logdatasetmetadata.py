@@ -13,12 +13,14 @@ from typing_extensions import Annotated, TypeAliasType, TypedDict
 V2LogDataSetMetadataTargetIDTypedDict = TypeAliasType(
     "V2LogDataSetMetadataTargetIDTypedDict", Union[str, int]
 )
+r"""Identifier of the entity the metadata was set on, either an account address or a transaction ID"""
 
 
 V2LogDataSetMetadataTargetID = TypeAliasType(
     "V2LogDataSetMetadataTargetID",
     Union[str, Annotated[int, BeforeValidator(validate_int)]],
 )
+r"""Identifier of the entity the metadata was set on, either an account address or a transaction ID"""
 
 
 class V2LogDataSetMetadataTargetType(str, Enum):
@@ -32,7 +34,9 @@ class V2LogDataSetMetadataTypedDict(TypedDict):
     r"""Payload for SET_METADATA log entries. Contains the target entity and the metadata that was set."""
 
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the resource"""
     target_id: V2LogDataSetMetadataTargetIDTypedDict
+    r"""Identifier of the entity the metadata was set on, either an account address or a transaction ID"""
     target_type: V2LogDataSetMetadataTargetType
     r"""Type of the target entity"""
 
@@ -41,8 +45,10 @@ class V2LogDataSetMetadata(BaseModel):
     r"""Payload for SET_METADATA log entries. Contains the target entity and the metadata that was set."""
 
     metadata: Dict[str, str]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     target_id: Annotated[V2LogDataSetMetadataTargetID, pydantic.Field(alias="targetId")]
+    r"""Identifier of the entity the metadata was set on, either an account address or a transaction ID"""
 
     target_type: Annotated[
         V2LogDataSetMetadataTargetType, pydantic.Field(alias="targetType")

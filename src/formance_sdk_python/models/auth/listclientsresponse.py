@@ -10,10 +10,12 @@ from typing_extensions import NotRequired, TypedDict
 
 class ListClientsResponseTypedDict(TypedDict):
     data: NotRequired[List[ClientTypedDict]]
+    r"""The clients registered on this stack"""
 
 
 class ListClientsResponse(BaseModel):
     data: Optional[List[Client]] = None
+    r"""The clients registered on this stack"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

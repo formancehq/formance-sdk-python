@@ -8,14 +8,22 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class StageSendSourceWalletTypedDict(TypedDict):
+    r"""Take the funds from a wallet"""
+
     id: str
+    r"""Identifier of the wallet to take funds from"""
     balance: NotRequired[str]
+    r"""Name of the balance within the wallet. Defaults to the main balance when omitted"""
 
 
 class StageSendSourceWallet(BaseModel):
+    r"""Take the funds from a wallet"""
+
     id: str
+    r"""Identifier of the wallet to take funds from"""
 
     balance: Optional[str] = None
+    r"""Name of the balance within the wallet. Defaults to the main balance when omitted"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

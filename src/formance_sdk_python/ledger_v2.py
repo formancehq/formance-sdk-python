@@ -2905,7 +2905,7 @@ class LedgerV2(BaseSDK):
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/octet-stream",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
@@ -2931,20 +2931,27 @@ class LedgerV2(BaseSDK):
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            stream=True,
             retry_config=retry_config,
         )
 
-        if utils.match_response(http_res, "200", "*"):
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/octet-stream"):
             return operations.V2ExportLogsResponse(
+                bytes_=http_res,
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, "default", "*"):
+        if utils.match_response(http_res, "default", "application/json"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError("API error occurred", http_res, http_res_text)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsV2ErrorResponseData, http_res, http_res_text
+            )
+            raise ledger.ErrorsV2ErrorResponse(response_data, http_res, http_res_text)
 
-        raise errors.SDKError("Unexpected response received", http_res)
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError("Unexpected response received", http_res, http_res_text)
 
     async def export_logs_async(
         self,
@@ -2991,7 +2998,7 @@ class LedgerV2(BaseSDK):
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="*/*",
+            accept_header_value="application/octet-stream",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             allow_empty_value=None,
@@ -3017,20 +3024,27 @@ class LedgerV2(BaseSDK):
             ),
             request=req,
             is_error_status_code=lambda c: not utils.match_status_codes(["200"], c),
+            stream=True,
             retry_config=retry_config,
         )
 
-        if utils.match_response(http_res, "200", "*"):
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/octet-stream"):
             return operations.V2ExportLogsResponse(
+                bytes_=http_res,
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, "default", "*"):
+        if utils.match_response(http_res, "default", "application/json"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError("API error occurred", http_res, http_res_text)
+            response_data = unmarshal_json_response(
+                ledger.ErrorsV2ErrorResponseData, http_res, http_res_text
+            )
+            raise ledger.ErrorsV2ErrorResponse(response_data, http_res, http_res_text)
 
-        raise errors.SDKError("Unexpected response received", http_res)
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError("Unexpected response received", http_res, http_res_text)
 
     def get_account(
         self,

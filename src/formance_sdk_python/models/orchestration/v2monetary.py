@@ -8,6 +8,8 @@ from typing_extensions import Annotated, TypedDict
 
 
 class V2MonetaryTypedDict(TypedDict):
+    r"""An amount together with the asset it is denominated in"""
+
     amount: int
     r"""The amount of the monetary value."""
     asset: str
@@ -15,6 +17,8 @@ class V2MonetaryTypedDict(TypedDict):
 
 
 class V2Monetary(BaseModel):
+    r"""An amount together with the asset it is denominated in"""
+
     amount: Annotated[int, BeforeValidator(validate_int)]
     r"""The amount of the monetary value."""
 

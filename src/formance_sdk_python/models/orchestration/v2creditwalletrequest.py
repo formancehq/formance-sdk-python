@@ -11,30 +11,42 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class V2CreditWalletRequestTypedDict(TypedDict):
+    r"""A credit to apply to a wallet"""
+
     amount: V2MonetaryTypedDict
+    r"""An amount together with the asset it is denominated in"""
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
     sources: List[V2SubjectTypedDict]
+    r"""Where the funds come from"""
     balance: NotRequired[str]
     r"""The balance to credit"""
     reference: NotRequired[str]
+    r"""Optional caller-supplied identifier used to deduplicate the credit"""
     timestamp: NotRequired[datetime]
+    r"""The transaction time to record on the resulting transaction. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
 
 class V2CreditWalletRequest(BaseModel):
+    r"""A credit to apply to a wallet"""
+
     amount: V2Monetary
+    r"""An amount together with the asset it is denominated in"""
 
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
 
     sources: List[V2Subject]
+    r"""Where the funds come from"""
 
     balance: Optional[str] = None
     r"""The balance to credit"""
 
     reference: Optional[str] = None
+    r"""Optional caller-supplied identifier used to deduplicate the credit"""
 
     timestamp: Optional[datetime] = None
+    r"""The transaction time to record on the resulting transaction. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

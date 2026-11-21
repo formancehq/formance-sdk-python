@@ -5,4 +5,4 @@
 
 | Field                                                          | Type                                                           | Required                                                       | Description                                                    |
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `data`                                                         | List[[ledger.Transaction](../../models/ledger/transaction.md)] | :heavy_check_mark:                                             | N/A                                                            |
+| `data`                                                         | List[[ledger.Transaction](../../models/ledger/transaction.md)] | :heavy_check_mark:                                             | The transactions that were created                             |

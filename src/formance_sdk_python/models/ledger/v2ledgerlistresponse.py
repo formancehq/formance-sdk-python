@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2LedgerListResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of ledgers"""
+
     data: List[V2LedgerTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class V2LedgerListResponseCursorTypedDict(TypedDict):
 
 
 class V2LedgerListResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of ledgers"""
+
     data: List[V2Ledger]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -47,10 +51,12 @@ class V2LedgerListResponseCursor(BaseModel):
 
 class V2LedgerListResponseTypedDict(TypedDict):
     cursor: V2LedgerListResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of ledgers"""
 
 
 class V2LedgerListResponse(BaseModel):
     cursor: V2LedgerListResponseCursor
+    r"""Paginated cursor wrapping the list of ledgers"""
 
 
 try:

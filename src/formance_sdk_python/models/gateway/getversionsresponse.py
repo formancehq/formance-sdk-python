@@ -9,13 +9,19 @@ from typing_extensions import TypedDict
 
 class GetVersionsResponseTypedDict(TypedDict):
     env: str
+    r"""Environment the stack is deployed in"""
     region: str
+    r"""Region the stack is deployed in"""
     versions: List[VersionTypedDict]
+    r"""Version and health of each component in the stack"""
 
 
 class GetVersionsResponse(BaseModel):
     env: str
+    r"""Environment the stack is deployed in"""
 
     region: str
+    r"""Region the stack is deployed in"""
 
     versions: List[Version]
+    r"""Version and health of each component in the stack"""

@@ -9,7 +9,9 @@ from typing_extensions import TypedDict
 
 class ListTriggersOccurrencesResponseTypedDict(TypedDict):
     data: List[TriggerOccurrenceTypedDict]
+    r"""The trigger's occurrences"""
 
 
 class ListTriggersOccurrencesResponse(BaseModel):
     data: List[TriggerOccurrence]
+    r"""The trigger's occurrences"""

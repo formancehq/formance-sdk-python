@@ -11,25 +11,35 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class MigrationInfoState(str, Enum):
+    r"""Current state of the migration"""
+
     TO_DO = "TO DO"
     DONE = "DONE"
 
 
 class MigrationInfoTypedDict(TypedDict):
     date_: NotRequired[datetime]
+    r"""When the migration was applied"""
     name: NotRequired[str]
+    r"""Name of the migration"""
     state: NotRequired[MigrationInfoState]
+    r"""Current state of the migration"""
     version: NotRequired[str]
+    r"""Sequence number of the migration"""
 
 
 class MigrationInfo(BaseModel):
     date_: Annotated[Optional[datetime], pydantic.Field(alias="date")] = None
+    r"""When the migration was applied"""
 
     name: Optional[str] = None
+    r"""Name of the migration"""
 
     state: Optional[MigrationInfoState] = None
+    r"""Current state of the migration"""
 
     version: Optional[str] = None
+    r"""Sequence number of the migration"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

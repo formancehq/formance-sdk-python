@@ -522,7 +522,7 @@ Show server information
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="getInfo" method="get" path="/api/ledger/_info" -->
+<!-- UsageSnippet language="python" operationID="getInfo" method="get" path="/api/ledger/_info#ledger" -->
 ```python
 from formance_sdk_python import SDK
 from formance_sdk_python.models import shared

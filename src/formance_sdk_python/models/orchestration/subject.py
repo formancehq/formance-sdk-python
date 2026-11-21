@@ -12,6 +12,7 @@ from typing_extensions import Annotated, TypeAliasType
 SubjectTypedDict = TypeAliasType(
     "SubjectTypedDict", Union[LedgerAccountSubjectTypedDict, WalletSubjectTypedDict]
 )
+r"""The counterparty of a wallet movement, either a ledger account or another wallet"""
 
 
 Subject = Annotated[
@@ -21,3 +22,4 @@ Subject = Annotated[
     ],
     Discriminator(lambda m: get_discriminator(m, "type", "type")),
 ]
+r"""The counterparty of a wallet movement, either a ledger account or another wallet"""

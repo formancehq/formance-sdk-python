@@ -1,9 +1,12 @@
 # V2WorkflowConfig
 
+The stages a workflow runs, in order
+
 
 ## Fields
 
-| Field                  | Type                   | Required               | Description            |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `name`                 | *Optional[str]*        | :heavy_minus_sign:     | N/A                    |
-| `stages`               | List[Dict[str, *Any*]] | :heavy_check_mark:     | N/A                    |
+| Field                                                                                                                       | Type                                                                                                                        | Required                                                                                                                    | Description                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `activity_max_attempts`                                                                                                     | *Optional[int]*                                                                                                             | :heavy_minus_sign:                                                                                                          | Total attempts per stage activity, including the initial attempt. Stored at workflow creation; defaults to 15 when omitted. |
+| `name`                                                                                                                      | *Optional[str]*                                                                                                             | :heavy_minus_sign:                                                                                                          | Human-readable name for the workflow                                                                                        |
+| `stages`                                                                                                                    | List[Dict[str, *Any*]]                                                                                                      | :heavy_check_mark:                                                                                                          | The stages executed in order when the workflow runs                                                                         |

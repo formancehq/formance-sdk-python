@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2ListTriggersOccurrencesResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the trigger's occurrences"""
+
     data: List[V2TriggerOccurrenceTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class V2ListTriggersOccurrencesResponseCursorTypedDict(TypedDict):
 
 
 class V2ListTriggersOccurrencesResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the trigger's occurrences"""
+
     data: List[V2TriggerOccurrence]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -47,10 +51,12 @@ class V2ListTriggersOccurrencesResponseCursor(BaseModel):
 
 class V2ListTriggersOccurrencesResponseTypedDict(TypedDict):
     cursor: V2ListTriggersOccurrencesResponseCursorTypedDict
+    r"""Paginated cursor wrapping the trigger's occurrences"""
 
 
 class V2ListTriggersOccurrencesResponse(BaseModel):
     cursor: V2ListTriggersOccurrencesResponseCursor
+    r"""Paginated cursor wrapping the trigger's occurrences"""
 
 
 try:

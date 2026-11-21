@@ -8,11 +8,17 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class V2PaymentMetadataTypedDict(TypedDict):
+    r"""Arbitrary key/value pairs attached to a payment"""
+
     key: NotRequired[str]
+    r"""Metadata value carried by the payment"""
 
 
 class V2PaymentMetadata(BaseModel):
+    r"""Arbitrary key/value pairs attached to a payment"""
+
     key: Optional[str] = None
+    r"""Metadata value carried by the payment"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

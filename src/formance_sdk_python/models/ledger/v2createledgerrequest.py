@@ -9,16 +9,22 @@ from typing_extensions import NotRequired, TypedDict
 
 class V2CreateLedgerRequestTypedDict(TypedDict):
     bucket: NotRequired[str]
+    r"""Name of the storage bucket backing the ledger. Ledgers sharing a bucket share a database schema"""
     features: NotRequired[Dict[str, str]]
+    r"""Feature flags to enable on the ledger, keyed by feature name"""
     metadata: NotRequired[Dict[str, str]]
+    r"""Arbitrary key/value pairs attached to the resource"""
 
 
 class V2CreateLedgerRequest(BaseModel):
     bucket: Optional[str] = None
+    r"""Name of the storage bucket backing the ledger. Ledgers sharing a bucket share a database schema"""
 
     features: Optional[Dict[str, str]] = None
+    r"""Feature flags to enable on the ledger, keyed by feature name"""
 
     metadata: Optional[Dict[str, str]] = None
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -9,7 +9,9 @@ from typing_extensions import TypedDict
 
 class ListRunsResponseTypedDict(TypedDict):
     data: List[WorkflowInstanceTypedDict]
+    r"""The runs of this workflow"""
 
 
 class ListRunsResponse(BaseModel):
     data: List[WorkflowInstance]
+    r"""The runs of this workflow"""
