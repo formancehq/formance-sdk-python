@@ -8,17 +8,27 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class UserTypedDict(TypedDict):
+    r"""A user known to the stack's identity provider"""
+
     email: NotRequired[str]
+    r"""Email address of the user"""
     id: NotRequired[str]
+    r"""Unique identifier of the user"""
     subject: NotRequired[str]
+    r"""Subject claim identifying the user with the identity provider"""
 
 
 class User(BaseModel):
+    r"""A user known to the stack's identity provider"""
+
     email: Optional[str] = None
+    r"""Email address of the user"""
 
     id: Optional[str] = None
+    r"""Unique identifier of the user"""
 
     subject: Optional[str] = None
+    r"""Subject claim identifying the user with the identity provider"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

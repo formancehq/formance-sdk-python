@@ -10,6 +10,10 @@ from .activitycreatetransaction import (
     ActivityCreateTransaction,
     ActivityCreateTransactionTypedDict,
 )
+from .activitycreatetransferinitiation import (
+    ActivityCreateTransferInitiation,
+    ActivityCreateTransferInitiationTypedDict,
+)
 from .activitycreditwallet import ActivityCreditWallet, ActivityCreditWalletTypedDict
 from .activitydebitwallet import ActivityDebitWallet, ActivityDebitWalletTypedDict
 from .activitygetaccount import ActivityGetAccount, ActivityGetAccountTypedDict
@@ -20,12 +24,11 @@ from .activityreverttransaction import (
     ActivityRevertTransaction,
     ActivityRevertTransactionTypedDict,
 )
-from .activityvoidhold import ActivityVoidHold, ActivityVoidHoldTypedDict
-from .createtransferinitiationrequest import (
-    CreateTransferInitiationRequest,
-    CreateTransferInitiationRequestTypedDict,
+from .activitystripetransfer import (
+    ActivityStripeTransfer,
+    ActivityStripeTransferTypedDict,
 )
-from .stripetransferrequest import StripeTransferRequest, StripeTransferRequestTypedDict
+from .activityvoidhold import ActivityVoidHold, ActivityVoidHoldTypedDict
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 import pydantic
 from pydantic import model_serializer
@@ -34,74 +37,104 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class WorkflowInstanceHistoryStageInputTypedDict(TypedDict):
+    r"""Arguments an activity was called with, keyed by activity name"""
+
     add_account_metadata: NotRequired[ActivityAddAccountMetadataTypedDict]
+    r"""Arguments for the activity that sets metadata on a ledger account"""
     confirm_hold: NotRequired[ActivityConfirmHoldTypedDict]
+    r"""Arguments for the activity that confirms a wallet hold"""
     create_transaction: NotRequired[ActivityCreateTransactionTypedDict]
-    create_transfer_initiation: NotRequired[CreateTransferInitiationRequestTypedDict]
+    r"""Arguments for the activity that writes a transaction to a ledger"""
+    create_transfer_initiation: NotRequired[ActivityCreateTransferInitiationTypedDict]
+    r"""Arguments for the activity that initiates a transfer through a connector"""
     credit_wallet: NotRequired[ActivityCreditWalletTypedDict]
+    r"""Arguments for the activity that credits a wallet"""
     debit_wallet: NotRequired[ActivityDebitWalletTypedDict]
+    r"""Arguments for the activity that debits a wallet"""
     get_account: NotRequired[ActivityGetAccountTypedDict]
+    r"""Arguments for the activity that reads a ledger account"""
     get_payment: NotRequired[ActivityGetPaymentTypedDict]
+    r"""Arguments for the activity that reads a payment"""
     get_wallet: NotRequired[ActivityGetWalletTypedDict]
+    r"""Arguments for the activity that reads a wallet"""
     list_wallets: NotRequired[ActivityListWalletsTypedDict]
+    r"""Arguments for the activity that lists wallets"""
     revert_transaction: NotRequired[ActivityRevertTransactionTypedDict]
-    stripe_transfer: NotRequired[StripeTransferRequestTypedDict]
+    r"""Arguments for the activity that reverts a ledger transaction"""
+    stripe_transfer: NotRequired[ActivityStripeTransferTypedDict]
+    r"""Arguments for the activity that transfers funds through Stripe"""
     void_hold: NotRequired[ActivityVoidHoldTypedDict]
+    r"""Arguments for the activity that releases a wallet hold"""
 
 
 class WorkflowInstanceHistoryStageInput(BaseModel):
+    r"""Arguments an activity was called with, keyed by activity name"""
+
     add_account_metadata: Annotated[
         Optional[ActivityAddAccountMetadata], pydantic.Field(alias="AddAccountMetadata")
     ] = None
+    r"""Arguments for the activity that sets metadata on a ledger account"""
 
     confirm_hold: Annotated[
         Optional[ActivityConfirmHold], pydantic.Field(alias="ConfirmHold")
     ] = None
+    r"""Arguments for the activity that confirms a wallet hold"""
 
     create_transaction: Annotated[
         Optional[ActivityCreateTransaction], pydantic.Field(alias="CreateTransaction")
     ] = None
+    r"""Arguments for the activity that writes a transaction to a ledger"""
 
     create_transfer_initiation: Annotated[
-        Optional[CreateTransferInitiationRequest],
+        Optional[ActivityCreateTransferInitiation],
         pydantic.Field(alias="CreateTransferInitiation"),
     ] = None
+    r"""Arguments for the activity that initiates a transfer through a connector"""
 
     credit_wallet: Annotated[
         Optional[ActivityCreditWallet], pydantic.Field(alias="CreditWallet")
     ] = None
+    r"""Arguments for the activity that credits a wallet"""
 
     debit_wallet: Annotated[
         Optional[ActivityDebitWallet], pydantic.Field(alias="DebitWallet")
     ] = None
+    r"""Arguments for the activity that debits a wallet"""
 
     get_account: Annotated[
         Optional[ActivityGetAccount], pydantic.Field(alias="GetAccount")
     ] = None
+    r"""Arguments for the activity that reads a ledger account"""
 
     get_payment: Annotated[
         Optional[ActivityGetPayment], pydantic.Field(alias="GetPayment")
     ] = None
+    r"""Arguments for the activity that reads a payment"""
 
     get_wallet: Annotated[
         Optional[ActivityGetWallet], pydantic.Field(alias="GetWallet")
     ] = None
+    r"""Arguments for the activity that reads a wallet"""
 
     list_wallets: Annotated[
         Optional[ActivityListWallets], pydantic.Field(alias="ListWallets")
     ] = None
+    r"""Arguments for the activity that lists wallets"""
 
     revert_transaction: Annotated[
         Optional[ActivityRevertTransaction], pydantic.Field(alias="RevertTransaction")
     ] = None
+    r"""Arguments for the activity that reverts a ledger transaction"""
 
     stripe_transfer: Annotated[
-        Optional[StripeTransferRequest], pydantic.Field(alias="StripeTransfer")
+        Optional[ActivityStripeTransfer], pydantic.Field(alias="StripeTransfer")
     ] = None
+    r"""Arguments for the activity that transfers funds through Stripe"""
 
     void_hold: Annotated[
         Optional[ActivityVoidHold], pydantic.Field(alias="VoidHold")
     ] = None
+    r"""Arguments for the activity that releases a wallet hold"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

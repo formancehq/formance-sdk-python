@@ -10,10 +10,12 @@ from typing_extensions import NotRequired, TypedDict
 
 class V2UpdateTypedDict(TypedDict):
     account: NotRequired[V2UpdateAccountTypedDict]
+    r"""Metadata to set on a ledger account"""
 
 
 class V2Update(BaseModel):
     account: Optional[V2UpdateAccount] = None
+    r"""Metadata to set on a ledger account"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

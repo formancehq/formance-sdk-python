@@ -9,7 +9,10 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class V2StageSendSourcePaymentTypedDict(TypedDict):
+    r"""Take the funds from a payment"""
+
     id: str
+    r"""Identifier of the payment to take funds from"""
     allow_overdraft: NotRequired[bool]
     r"""Enables unbounded overdraft on the throughAccount when set to true.
     Only applies when throughAccount is not \"world\" (which already has unbounded overdraft).
@@ -33,7 +36,10 @@ class V2StageSendSourcePaymentTypedDict(TypedDict):
 
 
 class V2StageSendSourcePayment(BaseModel):
+    r"""Take the funds from a payment"""
+
     id: str
+    r"""Identifier of the payment to take funds from"""
 
     allow_overdraft: Annotated[
         Optional[bool], pydantic.Field(alias="allowOverdraft")

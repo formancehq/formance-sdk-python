@@ -10,9 +10,11 @@ class RuleResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: RuleTypedDict
+    r"""A monitoring rule evaluated on a schedule, raising alerts when it fails"""
 
 
 class RuleResponse(BaseModel):
     r"""OK"""
 
     data: Rule
+    r"""A monitoring rule evaluated on a schedule, raising alerts when it fails"""

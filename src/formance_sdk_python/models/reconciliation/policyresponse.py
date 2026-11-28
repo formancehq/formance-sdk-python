@@ -10,9 +10,11 @@ class PolicyResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: PolicyTypedDict
+    r"""A reconciliation policy pairing a ledger query with a payments pool"""
 
 
 class PolicyResponse(BaseModel):
     r"""OK"""
 
     data: Policy
+    r"""A reconciliation policy pairing a ledger query with a payments pool"""

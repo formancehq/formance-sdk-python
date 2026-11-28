@@ -10,7 +10,9 @@ from typing_extensions import Annotated, TypedDict
 
 class V2AggregateBalancesResponseTypedDict(TypedDict):
     data: Dict[str, int]
+    r"""Balances keyed by asset"""
 
 
 class V2AggregateBalancesResponse(BaseModel):
     data: Dict[str, Annotated[int, BeforeValidator(validate_int)]]
+    r"""Balances keyed by asset"""

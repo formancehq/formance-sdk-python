@@ -6,13 +6,14 @@ from enum import Enum
 from formance_sdk_python.models.ledger import (
     v2accountscursorresponse as ledger_v2accountscursorresponse,
     v2logscursorresponse as ledger_v2logscursorresponse,
-    v2queryparams as ledger_v2queryparams,
+    v2runqueryparams as ledger_v2runqueryparams,
     v2transactionscursorresponse as ledger_v2transactionscursorresponse,
     v2volumeswithbalancecursorresponse as ledger_v2volumeswithbalancecursorresponse,
 )
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
+    HeaderMetadata,
     PathParamMetadata,
     QueryParamMetadata,
     RequestMetadata,
@@ -26,14 +27,16 @@ from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 class V2RunQueryRequestBodyTypedDict(TypedDict):
     cursor: NotRequired[str]
-    params: NotRequired[ledger_v2queryparams.V2QueryParamsTypedDict]
+    params: NotRequired[ledger_v2runqueryparams.V2RunQueryParamsTypedDict]
+    r"""Parameter overrides applied when running a query template. `insertionDate` and `groupBy` only apply to volume queries."""
     vars: NotRequired[Dict[str, str]]
 
 
 class V2RunQueryRequestBody(BaseModel):
     cursor: Optional[str] = None
 
-    params: Optional[ledger_v2queryparams.V2QueryParams] = None
+    params: Optional[ledger_v2runqueryparams.V2RunQueryParams] = None
+    r"""Parameter overrides applied when running a query template. `insertionDate` and `groupBy` only apply to volume queries."""
 
     vars: Optional[Dict[str, str]] = None
 
@@ -68,6 +71,12 @@ class V2RunQueryRequestTypedDict(TypedDict):
     r"""Name of the ledger."""
     schema_version: str
     r"""Schema version to use for validation"""
+    formance_bigint_as_string: NotRequired[bool]
+    r"""When set to `true`, all bigint values in the response will be serialized
+    as strings instead of JSON numbers.
+    Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+
+    """
     cursor: NotRequired[str]
     r"""Parameter used in pagination requests. Maximum page size is set to 15.
     Set to the value of next for the next page of results.
@@ -113,6 +122,17 @@ class V2RunQueryRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ]
     r"""Schema version to use for validation"""
+
+    formance_bigint_as_string: Annotated[
+        Optional[bool],
+        pydantic.Field(alias="Formance-Bigint-As-String"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = False
+    r"""When set to `true`, all bigint values in the response will be serialized
+    as strings instead of JSON numbers.
+    Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+
+    """
 
     cursor: Annotated[
         Optional[str],
@@ -170,7 +190,16 @@ class V2RunQueryRequest(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["cursor", "expand", "order", "pageSize", "pit", "reverse", "sort"]
+            [
+                "Formance-Bigint-As-String",
+                "cursor",
+                "expand",
+                "order",
+                "pageSize",
+                "pit",
+                "reverse",
+                "sort",
+            ]
         )
         serialized = handler(self)
         m = {}

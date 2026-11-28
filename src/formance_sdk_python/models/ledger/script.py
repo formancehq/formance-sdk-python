@@ -15,21 +15,27 @@ from typing_extensions import NotRequired, TypedDict
 
 class ScriptTypedDict(TypedDict):
     plain: str
+    r"""The Numscript program to execute"""
     metadata: NotRequired[Nullable[Dict[str, Any]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     reference: NotRequired[str]
     r"""Reference to attach to the generated transaction"""
     vars: NotRequired[Dict[str, Any]]
+    r"""Values bound to the script's declared variables, keyed by variable name"""
 
 
 class Script(BaseModel):
     plain: str
+    r"""The Numscript program to execute"""
 
     metadata: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     reference: Optional[str] = None
     r"""Reference to attach to the generated transaction"""
 
     vars: Optional[Dict[str, Any]] = None
+    r"""Values bound to the script's declared variables, keyed by variable name"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

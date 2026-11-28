@@ -18,11 +18,11 @@ import weakref
 
 if TYPE_CHECKING:
     from formance_sdk_python.auth import Auth
+    from formance_sdk_python.connectivity import Connectivity
     from formance_sdk_python.ledger import Ledger
     from formance_sdk_python.orchestration import Orchestration
     from formance_sdk_python.payments import Payments
     from formance_sdk_python.reconciliation import Reconciliation
-    from formance_sdk_python.search import Search
     from formance_sdk_python.wallets import Wallets
     from formance_sdk_python.webhooks import Webhooks
 
@@ -39,23 +39,24 @@ class SDK(BaseSDK):
     OAuth2 - an open protocol to allow secure authorization in a simple
     and standard method from web, mobile and desktop applications.
     <SecurityDefinitions />
+
     """
 
     auth: "Auth"
+    connectivity: "Connectivity"
     ledger: "Ledger"
     orchestration: "Orchestration"
     payments: "Payments"
     reconciliation: "Reconciliation"
-    search: "Search"
     wallets: "Wallets"
     webhooks: "Webhooks"
     _sub_sdk_map = {
         "auth": ("formance_sdk_python.auth", "Auth"),
+        "connectivity": ("formance_sdk_python.connectivity", "Connectivity"),
         "ledger": ("formance_sdk_python.ledger", "Ledger"),
         "orchestration": ("formance_sdk_python.orchestration", "Orchestration"),
         "payments": ("formance_sdk_python.payments", "Payments"),
         "reconciliation": ("formance_sdk_python.reconciliation", "Reconciliation"),
-        "search": ("formance_sdk_python.search", "Search"),
         "wallets": ("formance_sdk_python.wallets", "Wallets"),
         "webhooks": ("formance_sdk_python.webhooks", "Webhooks"),
     }

@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class GetWorkflowInstanceResponseTypedDict(TypedDict):
     data: WorkflowInstanceTypedDict
+    r"""One run of a workflow, tracking its per-stage progress"""
 
 
 class GetWorkflowInstanceResponse(BaseModel):
     data: WorkflowInstance
+    r"""One run of a workflow, tracking its per-stage progress"""

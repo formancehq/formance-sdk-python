@@ -3,8 +3,8 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `health`           | *bool*             | :heavy_check_mark: | N/A                |
-| `name`             | *str*              | :heavy_check_mark: | N/A                |
-| `version`          | *str*              | :heavy_check_mark: | N/A                |
+| Field                                             | Type                                              | Required                                          | Description                                       |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `health`                                          | *bool*                                            | :heavy_check_mark:                                | Whether the component is reporting itself healthy |
+| `name`                                            | *str*                                             | :heavy_check_mark:                                | Name of the component                             |
+| `version`                                         | *str*                                             | :heavy_check_mark:                                | Version of the component currently deployed       |

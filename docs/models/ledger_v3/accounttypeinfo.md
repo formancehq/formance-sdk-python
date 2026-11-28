@@ -1,0 +1,11 @@
+# AccountTypeInfo
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `name`                                                                                       | *str*                                                                                        | :heavy_check_mark:                                                                           | Account type name                                                                            |
+| `pattern`                                                                                    | *str*                                                                                        | :heavy_check_mark:                                                                           | Account address pattern                                                                      |
+| `persistence`                                                                                | [ledger_v3.AccountTypeInfoPersistence](../../models/ledger_v3/accounttypeinfopersistence.md) | :heavy_check_mark:                                                                           | How account volumes are stored (NORMAL, EPHEMERAL, or TRANSIENT)                             |
+| `segment_types`                                                                              | Dict[str, [Nullable[ledger_v3.SegmentType]](../../models/ledger_v3/segmenttype.md)]          | :heavy_minus_sign:                                                                           | Maps a pattern variable name to a type constraint.                                           |

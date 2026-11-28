@@ -10,9 +10,11 @@ class EvaluationResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: EvaluationTypedDict
+    r"""One run of a rule, carrying its outcome and cost"""
 
 
 class EvaluationResponse(BaseModel):
     r"""OK"""
 
     data: Evaluation
+    r"""One run of a rule, carrying its outcome and cost"""

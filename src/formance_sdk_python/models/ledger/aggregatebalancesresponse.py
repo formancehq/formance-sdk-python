@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class AggregateBalancesResponseTypedDict(TypedDict):
     data: Dict[str, int]
+    r"""Balances keyed by asset"""
 
 
 class AggregateBalancesResponse(BaseModel):
     data: Dict[str, int]
+    r"""Balances keyed by asset"""

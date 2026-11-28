@@ -9,14 +9,22 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class V2ActivityDebitWalletTypedDict(TypedDict):
+    r"""Arguments for the activity that debits a wallet"""
+
     data: NotRequired[V2DebitWalletRequestTypedDict]
+    r"""A debit to apply to a wallet"""
     id: NotRequired[str]
+    r"""Identifier of the wallet to debit"""
 
 
 class V2ActivityDebitWallet(BaseModel):
+    r"""Arguments for the activity that debits a wallet"""
+
     data: Optional[V2DebitWalletRequest] = None
+    r"""A debit to apply to a wallet"""
 
     id: Optional[str] = None
+    r"""Identifier of the wallet to debit"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

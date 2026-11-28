@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class ConfigInfoResponseTypedDict(TypedDict):
     data: ConfigInfoTypedDict
+    r"""Configuration and version information for the ledger server"""
 
 
 class ConfigInfoResponse(BaseModel):
     data: ConfigInfo
+    r"""Configuration and version information for the ledger server"""

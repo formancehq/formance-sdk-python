@@ -12,18 +12,24 @@ class SnoozeAlertRequestTypedDict(TypedDict):
     r"""Mute an alert's notifications until `until` (which must be in the future)."""
 
     by: str
+    r"""Who is snoozing the alert"""
     until: datetime
+    r"""When the mute expires and notifications resume. Must be in the future"""
     note: NotRequired[str]
+    r"""Free-text note to record with the snooze"""
 
 
 class SnoozeAlertRequest(BaseModel):
     r"""Mute an alert's notifications until `until` (which must be in the future)."""
 
     by: str
+    r"""Who is snoozing the alert"""
 
     until: datetime
+    r"""When the mute expires and notifications resume. Must be in the future"""
 
     note: Optional[str] = None
+    r"""Free-text note to record with the snooze"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

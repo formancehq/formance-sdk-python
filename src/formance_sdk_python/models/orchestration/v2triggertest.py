@@ -9,11 +9,15 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class FilterTypedDict(TypedDict):
+    r"""How the trigger's filter evaluated against the sample event"""
+
     error: NotRequired[str]
     match: NotRequired[bool]
 
 
 class Filter(BaseModel):
+    r"""How the trigger's filter evaluated against the sample event"""
+
     error: Optional[str] = None
 
     match: Optional[bool] = None
@@ -63,14 +67,22 @@ class Variables(BaseModel):
 
 
 class V2TriggerTestTypedDict(TypedDict):
+    r"""Result of evaluating a trigger against a sample event, without running the workflow"""
+
     filter_: NotRequired[FilterTypedDict]
+    r"""How the trigger's filter evaluated against the sample event"""
     variables: NotRequired[Dict[str, VariablesTypedDict]]
+    r"""The variables the trigger would build from the sample event"""
 
 
 class V2TriggerTest(BaseModel):
+    r"""Result of evaluating a trigger against a sample event, without running the workflow"""
+
     filter_: Annotated[Optional[Filter], pydantic.Field(alias="filter")] = None
+    r"""How the trigger's filter evaluated against the sample event"""
 
     variables: Optional[Dict[str, Variables]] = None
+    r"""The variables the trigger would build from the sample event"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

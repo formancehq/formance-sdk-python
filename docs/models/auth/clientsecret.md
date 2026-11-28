@@ -3,9 +3,9 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `id`               | *str*              | :heavy_check_mark: | N/A                |
-| `last_digits`      | *str*              | :heavy_check_mark: | N/A                |
-| `metadata`         | Dict[str, *str*]   | :heavy_minus_sign: | N/A                |
-| `name`             | *str*              | :heavy_check_mark: | N/A                |
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `id`                                                                                           | *str*                                                                                          | :heavy_check_mark:                                                                             | Unique identifier of the secret                                                                |
+| `last_digits`                                                                                  | *str*                                                                                          | :heavy_check_mark:                                                                             | Last digits of the secret. The full plaintext is hidden, and only the last digits are exposed. |
+| `metadata`                                                                                     | Dict[str, *str*]                                                                               | :heavy_minus_sign:                                                                             | Arbitrary key/value pairs attached to the resource                                             |
+| `name`                                                                                         | *str*                                                                                          | :heavy_check_mark:                                                                             | Human-readable name identifying the secret                                                     |

@@ -7,7 +7,9 @@ from typing_extensions import TypedDict
 
 class V2StageWaitEventTypedDict(TypedDict):
     event: str
+    r"""Type of event the workflow waits for before continuing"""
 
 
 class V2StageWaitEvent(BaseModel):
     event: str
+    r"""Type of event the workflow waits for before continuing"""

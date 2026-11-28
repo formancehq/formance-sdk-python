@@ -1,0 +1,9 @@
+# ListNumscriptVersionsResponseData
+
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              | Example                                                                                  |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `latest_version`                                                                         | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | The current latest — the greatest stored semver                                          | 2.0.0                                                                                    |
+| `versions`                                                                               | List[[ledger_v3.NumscriptVersionEntry](../../models/ledger_v3/numscriptversionentry.md)] | :heavy_minus_sign:                                                                       | Every stored version, highest-first                                                      |                                                                                          |

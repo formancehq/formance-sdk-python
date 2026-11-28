@@ -9,13 +9,17 @@ from typing_extensions import NotRequired, TypedDict
 
 class V2QueryTemplateVarTypedDict(TypedDict):
     type: str
+    r"""Type of the variable"""
     default: NotRequired[Any]
+    r"""Value used when the variable is not supplied at query time"""
 
 
 class V2QueryTemplateVar(BaseModel):
     type: str
+    r"""Type of the variable"""
 
     default: Optional[Any] = None
+    r"""Value used when the variable is not supplied at query time"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

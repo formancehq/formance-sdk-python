@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class LogsCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of logs"""
+
     data: List[LogTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class LogsCursorResponseCursorTypedDict(TypedDict):
 
 
 class LogsCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of logs"""
+
     data: List[Log]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -47,10 +51,12 @@ class LogsCursorResponseCursor(BaseModel):
 
 class LogsCursorResponseTypedDict(TypedDict):
     cursor: LogsCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of logs"""
 
 
 class LogsCursorResponse(BaseModel):
     cursor: LogsCursorResponseCursor
+    r"""Paginated cursor wrapping the list of logs"""
 
 
 try:

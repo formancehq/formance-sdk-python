@@ -7,7 +7,9 @@ from typing_extensions import TypedDict
 
 class V2ServerInfoTypedDict(TypedDict):
     version: str
+    r"""Version of the orchestration service"""
 
 
 class V2ServerInfo(BaseModel):
     version: str
+    r"""Version of the orchestration service"""

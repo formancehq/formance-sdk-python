@@ -13,38 +13,52 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class TransactionTypedDict(TypedDict):
     id: int
+    r"""Unique sequential identifier for this transaction within the ledger"""
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
     postings: List[PostingTypedDict]
+    r"""The fund movements making up the transaction"""
     timestamp: datetime
+    r"""The transaction time: when the transaction is considered to have occurred. See [bi- temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
     ledger: NotRequired[str]
+    r"""Name of the ledger the transaction was recorded in"""
     post_commit_volumes: NotRequired[Dict[str, Dict[str, VolumeTypedDict]]]
+    r"""Volumes aggregated per account and per asset"""
     pre_commit_volumes: NotRequired[Dict[str, Dict[str, VolumeTypedDict]]]
+    r"""Volumes aggregated per account and per asset"""
     reference: NotRequired[str]
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
 
 
 class Transaction(BaseModel):
     id: int
+    r"""Unique sequential identifier for this transaction within the ledger"""
 
     metadata: Dict[str, str]
     r"""Metadata associated with the wallet."""
 
     postings: List[Posting]
+    r"""The fund movements making up the transaction"""
 
     timestamp: datetime
+    r"""The transaction time: when the transaction is considered to have occurred. See [bi- temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     ledger: Optional[str] = None
+    r"""Name of the ledger the transaction was recorded in"""
 
     post_commit_volumes: Annotated[
         Optional[Dict[str, Dict[str, Volume]]],
         pydantic.Field(alias="postCommitVolumes"),
     ] = None
+    r"""Volumes aggregated per account and per asset"""
 
     pre_commit_volumes: Annotated[
         Optional[Dict[str, Dict[str, Volume]]], pydantic.Field(alias="preCommitVolumes")
     ] = None
+    r"""Volumes aggregated per account and per asset"""
 
     reference: Optional[str] = None
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

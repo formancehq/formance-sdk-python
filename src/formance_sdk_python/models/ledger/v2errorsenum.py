@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class V2ErrorsEnum(str, Enum):
+    r"""Machine-readable error code identifying the failure"""
+
     INTERNAL = "INTERNAL"
     INSUFFICIENT_FUND = "INSUFFICIENT_FUND"
     VALIDATION = "VALIDATION"

@@ -17,19 +17,27 @@ from typing_extensions import NotRequired, TypedDict
 
 class TransactionDataTypedDict(TypedDict):
     postings: List[PostingTypedDict]
+    r"""The fund movements making up the transaction"""
     metadata: NotRequired[Nullable[Dict[str, Any]]]
+    r"""Arbitrary key/value pairs attached to the resource"""
     reference: NotRequired[str]
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
     timestamp: NotRequired[datetime]
+    r"""The transaction time to record, letting you backdate or postdate the transaction. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
 
 class TransactionData(BaseModel):
     postings: List[Posting]
+    r"""The fund movements making up the transaction"""
 
     metadata: OptionalNullable[Dict[str, Any]] = UNSET
+    r"""Arbitrary key/value pairs attached to the resource"""
 
     reference: Optional[str] = None
+    r"""Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions"""
 
     timestamp: Optional[datetime] = None
+    r"""The transaction time to record, letting you backdate or postdate the transaction. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

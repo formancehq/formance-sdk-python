@@ -9,10 +9,14 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class V2LedgerInfoStorageTypedDict(TypedDict):
+    r"""Storage backend information, including the migrations applied to the ledger's bucket"""
+
     migrations: NotRequired[List[V2MigrationInfoTypedDict]]
 
 
 class V2LedgerInfoStorage(BaseModel):
+    r"""Storage backend information, including the migrations applied to the ledger's bucket"""
+
     migrations: Optional[List[V2MigrationInfo]] = None
 
     @model_serializer(mode="wrap")
@@ -33,14 +37,22 @@ class V2LedgerInfoStorage(BaseModel):
 
 
 class V2LedgerInfoTypedDict(TypedDict):
+    r"""Runtime information about a ledger, including the state of its storage migrations"""
+
     name: NotRequired[str]
+    r"""Name of the ledger"""
     storage: NotRequired[V2LedgerInfoStorageTypedDict]
+    r"""Storage backend information, including the migrations applied to the ledger's bucket"""
 
 
 class V2LedgerInfo(BaseModel):
+    r"""Runtime information about a ledger, including the state of its storage migrations"""
+
     name: Optional[str] = None
+    r"""Name of the ledger"""
 
     storage: Optional[V2LedgerInfoStorage] = None
+    r"""Storage backend information, including the migrations applied to the ledger's bucket"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

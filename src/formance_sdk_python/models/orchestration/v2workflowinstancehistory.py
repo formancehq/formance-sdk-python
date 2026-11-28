@@ -12,27 +12,39 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class V2WorkflowInstanceHistoryTypedDict(TypedDict):
     input: V2StageTypedDict
+    r"""One step of a workflow, whose shape depends on the stage type"""
     name: str
+    r"""Name of the stage this history entry records"""
     started_at: datetime
+    r"""When the stage started"""
     terminated: bool
+    r"""Whether the stage has finished"""
     error: NotRequired[str]
+    r"""Why the stage failed, absent when it succeeded"""
     terminated_at: NotRequired[datetime]
+    r"""When the stage finished, absent while it is still running"""
 
 
 class V2WorkflowInstanceHistory(BaseModel):
     input: V2Stage
+    r"""One step of a workflow, whose shape depends on the stage type"""
 
     name: str
+    r"""Name of the stage this history entry records"""
 
     started_at: Annotated[datetime, pydantic.Field(alias="startedAt")]
+    r"""When the stage started"""
 
     terminated: bool
+    r"""Whether the stage has finished"""
 
     error: Optional[str] = None
+    r"""Why the stage failed, absent when it succeeded"""
 
     terminated_at: Annotated[
         Optional[datetime], pydantic.Field(alias="terminatedAt")
     ] = None
+    r"""When the stage finished, absent while it is still running"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

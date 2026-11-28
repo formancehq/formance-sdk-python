@@ -11,31 +11,41 @@ from typing_extensions import Annotated, TypedDict
 
 
 class PaymentAdjustmentRawTypedDict(TypedDict):
-    pass
+    r"""The provider's original payload for this adjustment"""
 
 
 class PaymentAdjustmentRaw(BaseModel):
-    pass
+    r"""The provider's original payload for this adjustment"""
 
 
 class PaymentAdjustmentTypedDict(TypedDict):
     absolute: bool
+    r"""Whether amount replaces the payment's amount rather than adding to it"""
     amount: int
+    r"""Amount carried by this adjustment"""
     date_: datetime
+    r"""When the adjustment was recorded"""
     raw: PaymentAdjustmentRawTypedDict
+    r"""The provider's original payload for this adjustment"""
     status: PaymentStatus
+    r"""Where a payment stands in its lifecycle"""
 
 
 class PaymentAdjustment(BaseModel):
     absolute: bool
+    r"""Whether amount replaces the payment's amount rather than adding to it"""
 
     amount: Annotated[int, BeforeValidator(validate_int)]
+    r"""Amount carried by this adjustment"""
 
     date_: Annotated[datetime, pydantic.Field(alias="date")]
+    r"""When the adjustment was recorded"""
 
     raw: PaymentAdjustmentRaw
+    r"""The provider's original payload for this adjustment"""
 
     status: PaymentStatus
+    r"""Where a payment stands in its lifecycle"""
 
 
 try:

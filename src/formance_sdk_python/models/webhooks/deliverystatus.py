@@ -5,6 +5,8 @@ from enum import Enum
 
 
 class DeliveryStatus(str, Enum):
+    r"""Current state of a delivery in its retry lifecycle"""
+
     PENDING = "pending"
     DELIVERING = "delivering"
     SUCCEEDED = "succeeded"

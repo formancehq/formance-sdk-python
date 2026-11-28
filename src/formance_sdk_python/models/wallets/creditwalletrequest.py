@@ -18,17 +18,22 @@ from typing_extensions import NotRequired, TypedDict
 
 class CreditWalletRequestTypedDict(TypedDict):
     amount: MonetaryTypedDict
+    r"""An amount together with the asset it is denominated in"""
     balance: NotRequired[str]
     r"""The balance to credit"""
     metadata: NotRequired[Nullable[Dict[str, str]]]
     r"""Metadata associated with the wallet."""
     reference: NotRequired[str]
+    r"""Optional caller-supplied identifier used to deduplicate the credit"""
     sources: NotRequired[Nullable[List[SubjectTypedDict]]]
+    r"""Where the funds come from. Defaults to the world account when omitted"""
     timestamp: NotRequired[datetime]
+    r"""The transaction time to record, letting you backdate or postdate the credit. See [bi- temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
 
 class CreditWalletRequest(BaseModel):
     amount: Monetary
+    r"""An amount together with the asset it is denominated in"""
 
     balance: Optional[str] = None
     r"""The balance to credit"""
@@ -37,10 +42,13 @@ class CreditWalletRequest(BaseModel):
     r"""Metadata associated with the wallet."""
 
     reference: Optional[str] = None
+    r"""Optional caller-supplied identifier used to deduplicate the credit"""
 
     sources: OptionalNullable[List[Subject]] = UNSET
+    r"""Where the funds come from. Defaults to the world account when omitted"""
 
     timestamp: Optional[datetime] = None
+    r"""The transaction time to record, letting you backdate or postdate the credit. See [bi- temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

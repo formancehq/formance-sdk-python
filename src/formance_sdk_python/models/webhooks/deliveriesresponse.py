@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class DeliveriesResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of deliveries"""
+
     data: List[DeliveryTypedDict]
     has_more: bool
     next: NotRequired[str]
@@ -17,6 +19,8 @@ class DeliveriesResponseCursorTypedDict(TypedDict):
 
 
 class DeliveriesResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of deliveries"""
+
     data: List[Delivery]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -44,10 +48,12 @@ class DeliveriesResponseCursor(BaseModel):
 
 class DeliveriesResponseTypedDict(TypedDict):
     cursor: DeliveriesResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of deliveries"""
 
 
 class DeliveriesResponse(BaseModel):
     cursor: DeliveriesResponseCursor
+    r"""Paginated cursor wrapping the list of deliveries"""
 
 
 try:
