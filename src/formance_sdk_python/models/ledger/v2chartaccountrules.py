@@ -6,8 +6,8 @@ from typing_extensions import TypedDict
 
 
 class V2ChartAccountRulesTypedDict(TypedDict):
-    pass
+    r"""Rules applied to accounts matching a chart-of-accounts segment"""
 
 
 class V2ChartAccountRules(BaseModel):
-    pass
+    r"""Rules applied to accounts matching a chart-of-accounts segment"""

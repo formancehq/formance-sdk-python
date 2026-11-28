@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class DeliveryResponseTypedDict(TypedDict):
     data: DeliveryTypedDict
+    r"""An event queued for delivery to a webhook endpoint, tracking its retry state"""
 
 
 class DeliveryResponse(BaseModel):
     data: Delivery
+    r"""An event queued for delivery to a webhook endpoint, tracking its retry state"""

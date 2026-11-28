@@ -11,23 +11,37 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class AccountWithVolumesAndBalancesTypedDict(TypedDict):
+    r"""An account together with its volumes and net balances per asset"""
+
     address: str
+    r"""The account address, a colon-separated segmented path such as users:001"""
     balances: NotRequired[Dict[str, int]]
+    r"""Net balance per asset, equal to input minus output"""
     metadata: NotRequired[Dict[str, Any]]
+    r"""Arbitrary key/value pairs attached to the account"""
     type: NotRequired[str]
+    r"""Free-form classification of the account"""
     volumes: NotRequired[Dict[str, VolumeTypedDict]]
+    r"""Volumes per asset for a single account"""
 
 
 class AccountWithVolumesAndBalances(BaseModel):
+    r"""An account together with its volumes and net balances per asset"""
+
     address: str
+    r"""The account address, a colon-separated segmented path such as users:001"""
 
     balances: Optional[Dict[str, Annotated[int, BeforeValidator(validate_int)]]] = None
+    r"""Net balance per asset, equal to input minus output"""
 
     metadata: Optional[Dict[str, Any]] = None
+    r"""Arbitrary key/value pairs attached to the account"""
 
     type: Optional[str] = None
+    r"""Free-form classification of the account"""
 
     volumes: Optional[Dict[str, Volume]] = None
+    r"""Volumes per asset for a single account"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

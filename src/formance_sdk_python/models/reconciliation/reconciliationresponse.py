@@ -10,9 +10,11 @@ class ReconciliationResponseTypedDict(TypedDict):
     r"""OK"""
 
     data: ReconciliationTypedDict
+    r"""One run of a policy, comparing both sides and reporting the drift between them"""
 
 
 class ReconciliationResponse(BaseModel):
     r"""OK"""
 
     data: Reconciliation
+    r"""One run of a policy, comparing both sides and reporting the drift between them"""

@@ -21,6 +21,7 @@ value = V3PaymentInitiationStatusEnum.UNKNOWN
 | `PROCESSING`               | PROCESSING                 |
 | `PROCESSED`                | PROCESSED                  |
 | `FAILED`                   | FAILED                     |
+| `NOT_INITIATED`            | NOT_INITIATED              |
 | `REJECTED`                 | REJECTED                   |
 | `REVERSE_PROCESSING`       | REVERSE_PROCESSING         |
 | `REVERSE_FAILED`           | REVERSE_FAILED             |

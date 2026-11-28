@@ -10,10 +10,12 @@ from typing_extensions import NotRequired, TypedDict
 
 class V2LedgerInfoResponseTypedDict(TypedDict):
     data: NotRequired[V2LedgerInfoTypedDict]
+    r"""Runtime information about a ledger, including the state of its storage migrations"""
 
 
 class V2LedgerInfoResponse(BaseModel):
     data: Optional[V2LedgerInfo] = None
+    r"""Runtime information about a ledger, including the state of its storage migrations"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

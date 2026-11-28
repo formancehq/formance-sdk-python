@@ -6,8 +6,14 @@ from typing_extensions import TypedDict
 
 
 class V2ActivityVoidHoldTypedDict(TypedDict):
+    r"""Arguments for the activity that releases a wallet hold"""
+
     id: str
+    r"""Identifier of the hold to release"""
 
 
 class V2ActivityVoidHold(BaseModel):
+    r"""Arguments for the activity that releases a wallet hold"""
+
     id: str
+    r"""Identifier of the hold to release"""

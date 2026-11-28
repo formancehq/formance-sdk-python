@@ -9,13 +9,19 @@ from typing_extensions import Annotated, TypedDict
 
 class VolumeTypedDict(TypedDict):
     balance: int
+    r"""Net balance, equal to input minus output"""
     input: int
+    r"""Total amount credited for this asset"""
     output: int
+    r"""Total amount debited for this asset"""
 
 
 class Volume(BaseModel):
     balance: Annotated[int, BeforeValidator(validate_int)]
+    r"""Net balance, equal to input minus output"""
 
     input: Annotated[int, BeforeValidator(validate_int)]
+    r"""Total amount credited for this asset"""
 
     output: Annotated[int, BeforeValidator(validate_int)]
+    r"""Total amount debited for this asset"""

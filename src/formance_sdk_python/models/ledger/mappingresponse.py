@@ -15,10 +15,12 @@ from typing_extensions import NotRequired, TypedDict
 
 class MappingResponseTypedDict(TypedDict):
     data: NotRequired[Nullable[MappingTTypedDict]]
+    r"""Contracts constraining the balances a ledger's accounts may hold"""
 
 
 class MappingResponse(BaseModel):
     data: OptionalNullable[MappingT] = UNSET
+    r"""Contracts constraining the balances a ledger's accounts may hold"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

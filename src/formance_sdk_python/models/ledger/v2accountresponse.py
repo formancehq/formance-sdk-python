@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class V2AccountResponseTypedDict(TypedDict):
     data: V2AccountTypedDict
+    r"""An account in the ledger, identified by its address and carrying its metadata and volumes"""
 
 
 class V2AccountResponse(BaseModel):
     data: V2Account
+    r"""An account in the ledger, identified by its address and carrying its metadata and volumes"""

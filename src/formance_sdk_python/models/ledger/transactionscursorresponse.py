@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class TransactionsCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of transactions"""
+
     data: List[TransactionTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class TransactionsCursorResponseCursorTypedDict(TypedDict):
 
 
 class TransactionsCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of transactions"""
+
     data: List[Transaction]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -47,10 +51,12 @@ class TransactionsCursorResponseCursor(BaseModel):
 
 class TransactionsCursorResponseTypedDict(TypedDict):
     cursor: TransactionsCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of transactions"""
 
 
 class TransactionsCursorResponse(BaseModel):
     cursor: TransactionsCursorResponseCursor
+    r"""Paginated cursor wrapping the list of transactions"""
 
 
 try:

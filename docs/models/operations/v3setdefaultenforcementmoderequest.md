@@ -1,0 +1,9 @@
+# V3SetDefaultEnforcementModeRequest
+
+
+## Fields
+
+| Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `set_default_enforcement_mode_request`                                                                   | [ledger_v3.SetDefaultEnforcementModeRequest](../../models/ledger_v3/setdefaultenforcementmoderequest.md) | :heavy_check_mark:                                                                                       | N/A                                                                                                      |
+| `ledger_name`                                                                                            | *str*                                                                                                    | :heavy_check_mark:                                                                                       | Name of the ledger                                                                                       |

@@ -9,26 +9,42 @@ from typing_extensions import Annotated, TypedDict
 
 
 class PolicyTypedDict(TypedDict):
+    r"""A reconciliation policy pairing a ledger query with a payments pool"""
+
     created_at: datetime
+    r"""When the policy was created"""
     id: str
+    r"""Unique identifier of the policy"""
     ledger_name: str
+    r"""Name of the ledger the policy reconciles against"""
     ledger_query: Dict[str, Any]
+    r"""Filter selecting the ledger accounts whose balances are reconciled"""
     name: str
+    r"""Human-readable name of the policy"""
     payments_pool_id: str
+    r"""Identifier of the payments pool the ledger side is compared against"""
 
 
 class Policy(BaseModel):
+    r"""A reconciliation policy pairing a ledger query with a payments pool"""
+
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the policy was created"""
 
     id: str
+    r"""Unique identifier of the policy"""
 
     ledger_name: Annotated[str, pydantic.Field(alias="ledgerName")]
+    r"""Name of the ledger the policy reconciles against"""
 
     ledger_query: Annotated[Dict[str, Any], pydantic.Field(alias="ledgerQuery")]
+    r"""Filter selecting the ledger accounts whose balances are reconciled"""
 
     name: str
+    r"""Human-readable name of the policy"""
 
     payments_pool_id: Annotated[str, pydantic.Field(alias="paymentsPoolID")]
+    r"""Identifier of the payments pool the ledger side is compared against"""
 
 
 try:

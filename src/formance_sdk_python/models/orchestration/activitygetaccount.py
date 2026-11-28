@@ -6,11 +6,19 @@ from typing_extensions import TypedDict
 
 
 class ActivityGetAccountTypedDict(TypedDict):
+    r"""Arguments for the activity that reads a ledger account"""
+
     id: str
+    r"""Address of the ledger account to read"""
     ledger: str
+    r"""Name of the ledger holding the account"""
 
 
 class ActivityGetAccount(BaseModel):
+    r"""Arguments for the activity that reads a ledger account"""
+
     id: str
+    r"""Address of the ledger account to read"""
 
     ledger: str
+    r"""Name of the ledger holding the account"""

@@ -9,7 +9,9 @@ from typing_extensions import TypedDict
 
 class TransactionsResponseTypedDict(TypedDict):
     data: List[TransactionTypedDict]
+    r"""The transactions that were created"""
 
 
 class TransactionsResponse(BaseModel):
     data: List[Transaction]
+    r"""The transactions that were created"""

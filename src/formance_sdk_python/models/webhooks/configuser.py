@@ -10,16 +10,22 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class ConfigUserTypedDict(TypedDict):
     endpoint: str
+    r"""URL events are delivered to"""
     event_types: List[str]
+    r"""Types of event that trigger a delivery to this endpoint"""
     secret: NotRequired[str]
+    r"""Secret used to sign delivery payloads. Generated automatically when omitted"""
 
 
 class ConfigUser(BaseModel):
     endpoint: str
+    r"""URL events are delivered to"""
 
     event_types: Annotated[List[str], pydantic.Field(alias="eventTypes")]
+    r"""Types of event that trigger a delivery to this endpoint"""
 
     secret: Optional[str] = None
+    r"""Secret used to sign delivery payloads. Generated automatically when omitted"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

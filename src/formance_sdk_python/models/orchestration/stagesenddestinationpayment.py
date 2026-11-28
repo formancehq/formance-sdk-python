@@ -21,6 +21,8 @@ class StageSendDestinationPaymentType(str, Enum):
 
 
 class StageSendDestinationPaymentTypedDict(TypedDict):
+    r"""Send the funds to a payment"""
+
     psp: str
     r"""Payment service provider name (e.g., stripe, wise, mangopay).
     Validated by the Payments service based on installed connectors.
@@ -40,6 +42,8 @@ class StageSendDestinationPaymentTypedDict(TypedDict):
 
 
 class StageSendDestinationPayment(BaseModel):
+    r"""Send the funds to a payment"""
+
     psp: str
     r"""Payment service provider name (e.g., stripe, wise, mangopay).
     Validated by the Payments service based on installed connectors.

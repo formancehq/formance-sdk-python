@@ -11,7 +11,9 @@ from typing_extensions import TypedDict
 
 class ReplayDeliveriesResponseTypedDict(TypedDict):
     data: ReplayDeliveriesResultTypedDict
+    r"""Outcome of a bulk replay, counting the deliveries it moved"""
 
 
 class ReplayDeliveriesResponse(BaseModel):
     data: ReplayDeliveriesResult
+    r"""Outcome of a bulk replay, counting the deliveries it moved"""

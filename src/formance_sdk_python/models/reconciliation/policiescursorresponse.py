@@ -10,6 +10,8 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class PoliciesCursorResponseCursorTypedDict(TypedDict):
+    r"""Paginated cursor wrapping the list of policies"""
+
     data: List[PolicyTypedDict]
     has_more: bool
     page_size: int
@@ -18,6 +20,8 @@ class PoliciesCursorResponseCursorTypedDict(TypedDict):
 
 
 class PoliciesCursorResponseCursor(BaseModel):
+    r"""Paginated cursor wrapping the list of policies"""
+
     data: List[Policy]
 
     has_more: Annotated[bool, pydantic.Field(alias="hasMore")]
@@ -49,12 +53,14 @@ class PoliciesCursorResponseTypedDict(TypedDict):
     r"""OK"""
 
     cursor: PoliciesCursorResponseCursorTypedDict
+    r"""Paginated cursor wrapping the list of policies"""
 
 
 class PoliciesCursorResponse(BaseModel):
     r"""OK"""
 
     cursor: PoliciesCursorResponseCursor
+    r"""Paginated cursor wrapping the list of policies"""
 
 
 try:

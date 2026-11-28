@@ -8,7 +8,9 @@ from typing_extensions import TypedDict
 
 class CreateTriggerResponseTypedDict(TypedDict):
     data: TriggerTypedDict
+    r"""A rule that starts a workflow when a matching event arrives"""
 
 
 class CreateTriggerResponse(BaseModel):
     data: Trigger
+    r"""A rule that starts a workflow when a matching event arrives"""

@@ -74,20 +74,32 @@ r"""For PASS/FAIL: the per-fingerprint roster. Each PASS entry carries a compact
 
 
 class Result(str, Enum):
+    r"""Whether the rule passed, failed, or could not be evaluated"""
+
     PASS = "PASS"
     FAIL = "FAIL"
     ERROR = "ERROR"
 
 
 class EvaluationTypedDict(TypedDict):
+    r"""One run of a rule, carrying its outcome and cost"""
+
     created_at: datetime
+    r"""When the evaluation record was created"""
     ended_at: datetime
+    r"""When the evaluation finished"""
     id: str
+    r"""Unique identifier of the evaluation"""
     result: Result
+    r"""Whether the rule passed, failed, or could not be evaluated"""
     rule_id: str
+    r"""Identifier of the rule that was evaluated"""
     started_at: datetime
+    r"""When the evaluation started"""
     cost_units: NotRequired[int]
+    r"""Cumulative CEL runtime cost of the evaluation, used to track expensive rules"""
     error: NotRequired[str]
+    r"""Why the evaluation could not complete, when its result reports an error"""
     evidence: NotRequired[EvidenceUnionTypedDict]
     r"""For PASS/FAIL: the per-fingerprint roster. Each PASS entry carries a compact `proof`: the observed balances that make the check hold, with self-describing keys — both sides where two are compared, e.g. {\"ledger\":\"523500\",\"pool\":\"-523500\"} (drift), {\"left\":…,\"right\":…} (source_parity), {\"positive\":…,\"negative\":…} (ledger_invariant), or {\"balance\":…} (account_threshold). These reuse the FAIL balance keys, so under tolerance the residual (left−right) is visible without recomputation. Each FAIL entry carries the full `evidence` breakdown (balances, drift, tolerance, compiled CEL). Bounded by asset count (per-asset granularity; per-account is parked). An empty array means no outcomes were produced (no assets matched). For ERROR: an object describing the engine failure."""
     pit_per_source: NotRequired[Dict[str, datetime]]
@@ -95,21 +107,31 @@ class EvaluationTypedDict(TypedDict):
 
 
 class Evaluation(BaseModel):
+    r"""One run of a rule, carrying its outcome and cost"""
+
     created_at: Annotated[datetime, pydantic.Field(alias="createdAt")]
+    r"""When the evaluation record was created"""
 
     ended_at: Annotated[datetime, pydantic.Field(alias="endedAt")]
+    r"""When the evaluation finished"""
 
     id: str
+    r"""Unique identifier of the evaluation"""
 
     result: Result
+    r"""Whether the rule passed, failed, or could not be evaluated"""
 
     rule_id: Annotated[str, pydantic.Field(alias="ruleID")]
+    r"""Identifier of the rule that was evaluated"""
 
     started_at: Annotated[datetime, pydantic.Field(alias="startedAt")]
+    r"""When the evaluation started"""
 
     cost_units: Annotated[Optional[int], pydantic.Field(alias="costUnits")] = None
+    r"""Cumulative CEL runtime cost of the evaluation, used to track expensive rules"""
 
     error: Optional[str] = None
+    r"""Why the evaluation could not complete, when its result reports an error"""
 
     evidence: Optional[EvidenceUnion] = None
     r"""For PASS/FAIL: the per-fingerprint roster. Each PASS entry carries a compact `proof`: the observed balances that make the check hold, with self-describing keys — both sides where two are compared, e.g. {\"ledger\":\"523500\",\"pool\":\"-523500\"} (drift), {\"left\":…,\"right\":…} (source_parity), {\"positive\":…,\"negative\":…} (ledger_invariant), or {\"balance\":…} (account_threshold). These reuse the FAIL balance keys, so under tolerance the residual (left−right) is visible without recomputation. Each FAIL entry carries the full `evidence` breakdown (balances, drift, tolerance, compiled CEL). Bounded by asset count (per-asset granularity; per-account is parked). An empty array means no outcomes were produced (no assets matched). For ERROR: an object describing the engine failure."""

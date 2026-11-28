@@ -10,15 +10,19 @@ from typing_extensions import NotRequired, TypedDict
 
 class V2TransactionTemplateTypedDict(TypedDict):
     script: str
+    r"""The Numscript program the template executes"""
     description: NotRequired[str]
+    r"""Human-readable description of what the template does"""
     runtime: NotRequired[Runtime]
     r"""The numscript runtime used to execute the script. Uses \"machine\" by default, unless the \"--experimental-numscript-interpreter\" feature flag is passed."""
 
 
 class V2TransactionTemplate(BaseModel):
     script: str
+    r"""The Numscript program the template executes"""
 
     description: Optional[str] = None
+    r"""Human-readable description of what the template does"""
 
     runtime: Optional[Runtime] = None
     r"""The numscript runtime used to execute the script. Uses \"machine\" by default, unless the \"--experimental-numscript-interpreter\" feature flag is passed."""

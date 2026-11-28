@@ -12,8 +12,12 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ExpandedDebitHoldTypedDict(TypedDict):
+    r"""A hold together with the amounts it currently locks and has already released"""
+
     asset: str
+    r"""Asset the held funds are denominated in"""
     description: str
+    r"""Human-readable reason the funds were held"""
     id: str
     r"""The unique ID of the hold."""
     metadata: Dict[str, str]
@@ -25,12 +29,17 @@ class ExpandedDebitHoldTypedDict(TypedDict):
     wallet_id: str
     r"""The ID of the wallet the hold is associated with."""
     destination: NotRequired[SubjectTypedDict]
+    r"""The counterparty of a wallet movement, either a ledger account or another wallet"""
 
 
 class ExpandedDebitHold(BaseModel):
+    r"""A hold together with the amounts it currently locks and has already released"""
+
     asset: str
+    r"""Asset the held funds are denominated in"""
 
     description: str
+    r"""Human-readable reason the funds were held"""
 
     id: str
     r"""The unique ID of the hold."""
@@ -51,6 +60,7 @@ class ExpandedDebitHold(BaseModel):
     r"""The ID of the wallet the hold is associated with."""
 
     destination: Optional[Subject] = None
+    r"""The counterparty of a wallet movement, either a ledger account or another wallet"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -1,5 +1,7 @@
 # V2ErrorErrorCode
 
+Machine-readable error code identifying the failure
+
 ## Example Usage
 
 ```python
@@ -16,3 +18,4 @@ value = V2ErrorErrorCode.VALIDATION
 | `VALIDATION` | VALIDATION   |
 | `NOT_FOUND`  | NOT_FOUND    |
 | `INTERNAL`   | INTERNAL     |
+| `CONFLICT`   | CONFLICT     |

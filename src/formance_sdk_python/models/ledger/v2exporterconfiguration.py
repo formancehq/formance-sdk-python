@@ -8,10 +8,14 @@ from typing_extensions import TypedDict
 
 class V2ExporterConfigurationTypedDict(TypedDict):
     config: Dict[str, Any]
+    r"""Driver-specific configuration for the exporter"""
     driver: str
+    r"""Name of the exporter driver to use"""
 
 
 class V2ExporterConfiguration(BaseModel):
     config: Dict[str, Any]
+    r"""Driver-specific configuration for the exporter"""
 
     driver: str
+    r"""Name of the exporter driver to use"""

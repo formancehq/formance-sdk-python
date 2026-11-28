@@ -3,66 +3,45 @@
 from __future__ import annotations
 from datetime import datetime
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
-from formance_sdk_python.utils import validate_const
 import pydantic
-from pydantic import Field, model_serializer
-from pydantic.functional_validators import AfterValidator
-from typing import Literal, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from pydantic import model_serializer
+from typing import List, Optional
+from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class QueryTemplateVolumeParamsTypedDict(TypedDict):
-    cursor: NotRequired[str]
-    r"""Parameter used in pagination requests. Maximum page size is set to 15.
-    Set to the value of next for the next page of results.
-    Set to the value of previous for the previous page of results.
-    No other parameters can be set when this parameter is set.
+class V2QueryParamsTypedDict(TypedDict):
+    r"""Parameters applied when running a query template"""
 
-    """
-    expand: NotRequired[str]
-    group_by: NotRequired[int]
-    insertion_date: NotRequired[bool]
+    end_time: NotRequired[datetime]
+    r"""Upper bound of the time window the query covers"""
+    expand: NotRequired[List[str]]
+    r"""Additional data to include in the response, such as volumes"""
     page_size: NotRequired[int]
     r"""The maximum number of results to return per page.
 
     """
-    pit: NotRequired[datetime]
-    resource: Literal["volumes"]
     sort: NotRequired[str]
     r"""Sort results using a field name and order (ascending or descending).
     Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
 
     """
+    start_time: NotRequired[datetime]
+    r"""Lower bound of the time window the query covers"""
 
 
-class QueryTemplateVolumeParams(BaseModel):
-    cursor: Optional[str] = None
-    r"""Parameter used in pagination requests. Maximum page size is set to 15.
-    Set to the value of next for the next page of results.
-    Set to the value of previous for the previous page of results.
-    No other parameters can be set when this parameter is set.
+class V2QueryParams(BaseModel):
+    r"""Parameters applied when running a query template"""
 
-    """
+    end_time: Annotated[Optional[datetime], pydantic.Field(alias="endTime")] = None
+    r"""Upper bound of the time window the query covers"""
 
-    expand: Optional[str] = None
-
-    group_by: Annotated[Optional[int], pydantic.Field(alias="groupBy")] = None
-
-    insertion_date: Annotated[Optional[bool], pydantic.Field(alias="insertionDate")] = (
-        None
-    )
+    expand: Optional[List[str]] = None
+    r"""Additional data to include in the response, such as volumes"""
 
     page_size: Annotated[Optional[int], pydantic.Field(alias="pageSize")] = None
     r"""The maximum number of results to return per page.
 
     """
-
-    pit: Optional[datetime] = None
-
-    RESOURCE: Annotated[
-        Annotated[Literal["volumes"], AfterValidator(validate_const("volumes"))],
-        pydantic.Field(alias="resource"),
-    ] = "volumes"
 
     sort: Optional[str] = None
     r"""Sort results using a field name and order (ascending or descending).
@@ -70,11 +49,12 @@ class QueryTemplateVolumeParams(BaseModel):
 
     """
 
+    start_time: Annotated[Optional[datetime], pydantic.Field(alias="startTime")] = None
+    r"""Lower bound of the time window the query covers"""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(
-            ["cursor", "expand", "groupBy", "insertionDate", "pageSize", "pit", "sort"]
-        )
+        optional_fields = set(["endTime", "expand", "pageSize", "sort", "startTime"])
         serialized = handler(self)
         m = {}
 
@@ -89,247 +69,7 @@ class QueryTemplateVolumeParams(BaseModel):
         return m
 
 
-class QueryTemplateLogParamsTypedDict(TypedDict):
-    cursor: NotRequired[str]
-    r"""Parameter used in pagination requests. Maximum page size is set to 15.
-    Set to the value of next for the next page of results.
-    Set to the value of previous for the previous page of results.
-    No other parameters can be set when this parameter is set.
-
-    """
-    expand: NotRequired[str]
-    page_size: NotRequired[int]
-    r"""The maximum number of results to return per page.
-
-    """
-    pit: NotRequired[datetime]
-    resource: Literal["logs"]
-    sort: NotRequired[str]
-    r"""Sort results using a field name and order (ascending or descending).
-    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
-
-    """
-
-
-class QueryTemplateLogParams(BaseModel):
-    cursor: Optional[str] = None
-    r"""Parameter used in pagination requests. Maximum page size is set to 15.
-    Set to the value of next for the next page of results.
-    Set to the value of previous for the previous page of results.
-    No other parameters can be set when this parameter is set.
-
-    """
-
-    expand: Optional[str] = None
-
-    page_size: Annotated[Optional[int], pydantic.Field(alias="pageSize")] = None
-    r"""The maximum number of results to return per page.
-
-    """
-
-    pit: Optional[datetime] = None
-
-    RESOURCE: Annotated[
-        Annotated[Literal["logs"], AfterValidator(validate_const("logs"))],
-        pydantic.Field(alias="resource"),
-    ] = "logs"
-
-    sort: Optional[str] = None
-    r"""Sort results using a field name and order (ascending or descending).
-    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
-
-    """
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(["cursor", "expand", "pageSize", "pit", "sort"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k, serialized.get(n))
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
-class QueryTemplateTransactionParamsTypedDict(TypedDict):
-    cursor: NotRequired[str]
-    r"""Parameter used in pagination requests. Maximum page size is set to 15.
-    Set to the value of next for the next page of results.
-    Set to the value of previous for the previous page of results.
-    No other parameters can be set when this parameter is set.
-
-    """
-    expand: NotRequired[str]
-    page_size: NotRequired[int]
-    r"""The maximum number of results to return per page.
-
-    """
-    pit: NotRequired[datetime]
-    resource: Literal["transactions"]
-    sort: NotRequired[str]
-    r"""Sort results using a field name and order (ascending or descending).
-    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
-
-    """
-
-
-class QueryTemplateTransactionParams(BaseModel):
-    cursor: Optional[str] = None
-    r"""Parameter used in pagination requests. Maximum page size is set to 15.
-    Set to the value of next for the next page of results.
-    Set to the value of previous for the previous page of results.
-    No other parameters can be set when this parameter is set.
-
-    """
-
-    expand: Optional[str] = None
-
-    page_size: Annotated[Optional[int], pydantic.Field(alias="pageSize")] = None
-    r"""The maximum number of results to return per page.
-
-    """
-
-    pit: Optional[datetime] = None
-
-    RESOURCE: Annotated[
-        Annotated[
-            Literal["transactions"], AfterValidator(validate_const("transactions"))
-        ],
-        pydantic.Field(alias="resource"),
-    ] = "transactions"
-
-    sort: Optional[str] = None
-    r"""Sort results using a field name and order (ascending or descending).
-    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
-
-    """
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(["cursor", "expand", "pageSize", "pit", "sort"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k, serialized.get(n))
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
-class QueryTemplateAccountParamsTypedDict(TypedDict):
-    cursor: NotRequired[str]
-    r"""Parameter used in pagination requests. Maximum page size is set to 15.
-    Set to the value of next for the next page of results.
-    Set to the value of previous for the previous page of results.
-    No other parameters can be set when this parameter is set.
-
-    """
-    expand: NotRequired[str]
-    page_size: NotRequired[int]
-    r"""The maximum number of results to return per page.
-
-    """
-    pit: NotRequired[datetime]
-    resource: Literal["accounts"]
-    sort: NotRequired[str]
-    r"""Sort results using a field name and order (ascending or descending).
-    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
-
-    """
-
-
-class QueryTemplateAccountParams(BaseModel):
-    cursor: Optional[str] = None
-    r"""Parameter used in pagination requests. Maximum page size is set to 15.
-    Set to the value of next for the next page of results.
-    Set to the value of previous for the previous page of results.
-    No other parameters can be set when this parameter is set.
-
-    """
-
-    expand: Optional[str] = None
-
-    page_size: Annotated[Optional[int], pydantic.Field(alias="pageSize")] = None
-    r"""The maximum number of results to return per page.
-
-    """
-
-    pit: Optional[datetime] = None
-
-    RESOURCE: Annotated[
-        Annotated[Literal["accounts"], AfterValidator(validate_const("accounts"))],
-        pydantic.Field(alias="resource"),
-    ] = "accounts"
-
-    sort: Optional[str] = None
-    r"""Sort results using a field name and order (ascending or descending).
-    Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
-
-    """
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(["cursor", "expand", "pageSize", "pit", "sort"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k, serialized.get(n))
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
-V2QueryParamsTypedDict = TypeAliasType(
-    "V2QueryParamsTypedDict",
-    Union[
-        QueryTemplateAccountParamsTypedDict,
-        QueryTemplateTransactionParamsTypedDict,
-        QueryTemplateLogParamsTypedDict,
-        QueryTemplateVolumeParamsTypedDict,
-    ],
-)
-
-
-V2QueryParams = Annotated[
-    Union[
-        QueryTemplateAccountParams,
-        QueryTemplateTransactionParams,
-        QueryTemplateLogParams,
-        QueryTemplateVolumeParams,
-    ],
-    Field(discriminator="RESOURCE"),
-]
-
-
 try:
-    QueryTemplateVolumeParams.model_rebuild()
-except NameError:
-    pass
-try:
-    QueryTemplateLogParams.model_rebuild()
-except NameError:
-    pass
-try:
-    QueryTemplateTransactionParams.model_rebuild()
-except NameError:
-    pass
-try:
-    QueryTemplateAccountParams.model_rebuild()
+    V2QueryParams.model_rebuild()
 except NameError:
     pass

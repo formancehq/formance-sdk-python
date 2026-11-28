@@ -8,10 +8,12 @@ from formance_sdk_python.models.ledger import (
 from formance_sdk_python.types import BaseModel, UNSET_SENTINEL
 from formance_sdk_python.utils import (
     FieldMetadata,
+    HeaderMetadata,
     PathParamMetadata,
     QueryParamMetadata,
 )
 import httpx
+import pydantic
 from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
@@ -27,6 +29,12 @@ class V2GetAccountRequestTypedDict(TypedDict):
     """
     ledger: str
     r"""Name of the ledger."""
+    formance_bigint_as_string: NotRequired[bool]
+    r"""When set to `true`, all bigint values in the response will be serialized
+    as strings instead of JSON numbers.
+    Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+
+    """
     expand: NotRequired[str]
     pit: NotRequired[datetime]
 
@@ -47,6 +55,17 @@ class V2GetAccountRequest(BaseModel):
     ]
     r"""Name of the ledger."""
 
+    formance_bigint_as_string: Annotated[
+        Optional[bool],
+        pydantic.Field(alias="Formance-Bigint-As-String"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = False
+    r"""When set to `true`, all bigint values in the response will be serialized
+    as strings instead of JSON numbers.
+    Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+
+    """
+
     expand: Annotated[
         Optional[str],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
@@ -59,7 +78,7 @@ class V2GetAccountRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["expand", "pit"])
+        optional_fields = set(["Formance-Bigint-As-String", "expand", "pit"])
         serialized = handler(self)
         m = {}
 

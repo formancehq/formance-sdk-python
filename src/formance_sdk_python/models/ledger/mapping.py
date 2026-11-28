@@ -8,8 +8,14 @@ from typing_extensions import TypedDict
 
 
 class MappingTTypedDict(TypedDict):
+    r"""Contracts constraining the balances a ledger's accounts may hold"""
+
     contracts: List[ContractTypedDict]
+    r"""Constraints enforced on the ledger's accounts"""
 
 
 class MappingT(BaseModel):
+    r"""Contracts constraining the balances a ledger's accounts may hold"""
+
     contracts: List[Contract]
+    r"""Constraints enforced on the ledger's accounts"""
